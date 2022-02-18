@@ -1,0 +1,34 @@
+// 變數宣告
+
+//空值變數
+$null: null; //可以協助把屬性刪掉
+
+// 字形變數
+$font_family: "Courier New', Courier, monospace"; //字串
+$font_color: #2C2D48;
+$fontsize_huge: 120px;
+$fontsize_h1: 48px;
+$fontsize_h2: 36px;
+$fontsize_h3: 24px;
+$fontsize_h4: 20px;
+$fontsize_h5: 16px;
+$fontsize_p: 18px;
+$fontsize_span: 18px;
+$fontsize_a: 18px;
+$fontsize_li: 14px;
+$fontsize_ul: 18px;
+
+//尺寸變數
+$btn_padding: 20px;
+$white_space_no_wrap: "no-wrap";
+
+//邊框變數
+
+// 一般按鈕圓角
+$border_radius_btn: 25px;
+// 一般按鈕圓角
+$border_radius_btn_ro: 50%;
+
+//效果變數
+// 陰影效果
+$btn_box_shadow: 0 2px 4px #aaa;

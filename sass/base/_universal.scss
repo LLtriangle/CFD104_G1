@@ -1,0 +1,123 @@
+*{
+    font-family: 'Noto Serif TC', serif;
+}
+html{
+    --main-color: #2C2D48;
+}
+img{
+    vertical-align: middle;
+}
+h1{
+	font-size: 44px;
+	font-weight: 700;
+}
+h2{
+  	font-size: 36px;
+}
+h3{
+  	font-size: 24px;
+}
+h4{
+  	font-size: 14px;
+}
+p{
+  	font-size: 18px;
+}
+a{
+  	text-decoration: none;
+}
+select,
+input {
+    -webkit-appearance: none;  /* Sdc2f02ri 和 Chrome，常用於iOS下移除內建樣式 */
+    -moz-appearance: none;     /* FireFox */
+    appearance: none;
+}
+
+/* 卷軸 */
+::-webkit-scrollbar{
+    width: 6px;
+    background-color: #f3f3ed;
+}
+::-webkit-scrollbar-button{
+    height: 0;
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+}
+
+/* loading畫面 */
+
+/* header */
+
+/* main */
+
+/* banner */
+.banner{
+	margin-top: 60px;
+	display: flex;
+	justify-content: start;
+	flex-wrap: wrap;
+}
+.banner h4{
+	margin: 10px 0;
+	letter-spacing: .2em;
+}
+.banner h1{
+	margin: 30px 0;
+	letter-spacing: .2em;
+}
+.banner h1::after{
+	content: "";
+	display: block;
+	margin-top: 10px;
+	height: 3px;
+	width: 100px;
+	background-color: #2C2D48;
+}
+.banner p{
+	font-size: 24px;
+	line-height: 1.5em;
+	letter-spacing: .2em;
+}
+.banner > div:first-child{
+	width: 30vw;
+	min-width: 250px;
+	padding-left: 20px;
+}
+.banner > div:first-child .pic{
+	width: 250px;
+	height: 65px;
+	overflow: hidden;
+}
+.banner div:first-child img{
+	width: 90%;
+}
+.banner div:first-child .txt{
+	width: 70vw;
+	filter: drop-shadow(0 0 5px #fff);
+}
+.banner div:last-child img{
+	width: 100%;
+}
+.banner div:last-child .txt{
+	margin-left: 20px;
+}
+@media screen and (min-width:768px) {
+	.banner{
+		justify-content: end;
+	}
+	.banner p{
+		font-size: 32px;
+	}
+	.banner > div:first-child{
+		padding-left: 0;
+		padding-top: calc(32vw - 275px);
+	}
+	.banner div:last-child img{
+		width: 60vw;
+	}
+	.banner div:last-child .txt{
+		margin: -30px 0 0 -30vw;
+	}
+}
+/* footer */

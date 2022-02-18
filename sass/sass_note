@@ -1,0 +1,13 @@
+//筆記
+// scss的註解 --> 編譯出來後不會顯示，
+/*css的註解 --> 編譯出來後會顯示，可給客戶看*/
+
+// $padding: 10px 10px 20px; //lis型態 --> 可用在多數值上
+
+// map --> map-get(key, value值)
+// $color: (
+//     "main_color": #2C2D48,
+//     "plain": #f3f3ed,
+// );
+
+// $font_family: "Courier New', Courier, monospace"; //字串

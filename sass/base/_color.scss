@@ -1,0 +1,32 @@
+//顏色變數宣告
+// 使用方法 color: map-get(key, value值)
+// 使用範例 color: map-get($key, main)
+
+// 區塊顏色(背景、section、裝飾性區塊)
+$color: (
+    "main": #2C2D48,
+    "plain": #f3f3ed,
+    "cover": #f5dfb0,
+    "bg": #ebcdbd,
+    "bg_white": #fff,
+    "sub_red": #d03e3e,
+    "sub_blue": #8c96a8,
+    "sub_brown": #d6aa81,
+);// map --> map-get(key, value值)
+
+// 按鈕顏色
+$btn_color: (
+    "red": #d03e3e,
+    "blue": #8c96a8,
+    "brown": #d6aa81,
+    "brown": #d6aa81,
+    "black": #000,
+); 
+
+// 裝飾元素顏色
+
+// 邊框顏色
+$border_color: (
+    "border": #000,
+    "border_white": #fff,
+);

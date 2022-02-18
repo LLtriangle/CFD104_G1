@@ -1,0 +1,210 @@
+// 按鈕css部分
+
+/* 所有不同種類的按鈕區域(分開按鈕用) */
+.link_btn_box, .submit_btn_box, .btn_btn_box, .link_ro_box, .link_ro_sl_box, .link_under_line_box, .link_bs_btn, .bs_btn_box{
+    padding: 50px;
+    }
+
+    /*電腦版&手機按鈕共用設定*/
+
+    /*reset*/
+    /*input預設標籤樣式清除*/
+    input{
+        border: $null;
+        appearance:$null;
+        -moz-appearance:$null;
+        // background-color: map-get($color , "border_bl" );
+    }
+    /*input標籤聚焦不出現預設邊框:*/
+    input:focus{
+        outline: $null;
+    }
+
+
+
+    
+    /*按鈕內容不換行，按鈕才不會被切斷*/
+    .link_btn, .link_ro{
+        white-space: $white_space_no_wrap;
+    }
+    
+    /* 手機板按鈕 */
+    @media screen and (max-width:768px) {
+    /* 一般a連結的按鈕樣式 */
+        .link_btn{
+            padding: $btn_padding;
+            border: 1px solid var(--bg_w);
+            color: var(--bg_w);
+            border-radius: 25px;
+        }
+        .link_btn.bl{
+            background-color: map-get($btn_color, "blue" );
+        }
+        .link_btn.rd{
+            background-color: map-get($btn_color, "red" );
+        }
+        .link_btn.br{
+            background-color: map-get($btn_color, "brown" );
+        }
+    }
+    
+    /* 電腦板按鈕 */
+    @media screen and (min-width:769px) {
+    /* 一般a連結的按鈕樣式 */
+        .link_btn{
+            padding: 10px;
+            border: 1px solid map-get($color, "border" );
+            border-radius: 25px;
+            transition: 0.4s ease-in;
+        }
+        .link_btn:hover{
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 2px 4px #aaa;
+        }
+        .link_btn.bl:hover{
+            background-color: map-get($btn_color, "blue" );
+        }
+        .link_btn.rd:hover{
+            background-color: var(--btn_red);
+        }
+        .link_btn.br:hover{
+            background-color: var(--btn_brown);
+        }
+        
+        /* 圓形a連結的按鈕展式 */
+        .link_ro{
+            position: relative;
+            display: table-cell;
+            box-sizing: border-box;
+            padding: 10px;
+            height: 150px;
+            width: 150px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            vertical-align: middle;
+            text-align: center;
+            overflow:hidden;
+            transition: 0.4s ease-in-out;
+        }
+        .link_ro_w{
+            position: relative;
+        }
+        .link_ro::before{
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            padding: 10px;
+            height: 150px;
+            width: 150px;
+            border: 1px solid transparent;
+            border-radius: 100px;
+            transform-origin: center center;
+            transition: .4s ease-in;
+            box-sizing: border-box;
+            opacity: 0;
+        }
+        /* .link_ro:hover{
+            border-color: transparent;
+        } */
+        .link_ro.bl:hover::before{
+            background-color: map-get($btn_color, "blue" );
+            top: 0%;
+            left: 0%;
+            opacity: 1;
+        }
+        .link_ro.rd:hover::before{
+            background-color: var(--btn_red);
+            top: 0%;
+            left: 0%;
+            opacity: 1;
+        }
+        .link_ro.br:hover::before{
+            background-color: var(--btn_brown);
+            top: 0%;
+            left: 0%;
+            opacity: 1;
+        }
+        
+        /* 20px底線連結(按鈕)樣式樣示，注意，此字級為: 20px，大小如有變動需再調整 */
+        
+        /* 底線連結的底線的父層*/
+        .link_under_line_l{
+            position: relative;
+            padding: 0 20px;
+        }
+        .link_under_line_l:hover span::after{
+            width: 100%;
+        }
+        .link_under_line_l:hover span::before{
+            left: auto;
+            right: 0;
+            width: 0%;
+        }
+        /* 底線連結的底線使用絕對定位，父層為 .link_under_line_l*/
+        .link_under_line_w::before{
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 7px;
+            bottom: -1px;
+            background: var(--bg_w);
+            z-index: 3;
+            transition: 0.4s ease-in;
+        }
+        .link_under_line_w::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 0%;
+            height: 7px;
+            background: var(--bg_w);
+            z-index: 2;
+            mix-blend-mode: difference;
+            transition: 0.4s ease-in;
+        }
+    }
+
+
+    .li{
+        width: 10em + 10;
+        height: 10px - 1px;
+        margin: 10 * 10;
+
+        font: floor($x / $y); //無條件進位
+        font: round($x / $y); //四捨五入
+    }
+    
+    $bg_color : blue;
+
+    .go{
+        @if  $bg_color == red {
+            background-color: red;
+        }@else{
+            background-color: red;
+        }
+    }
+
+
+
+    $width: "full";
+    .wrapper{
+        @if $width == "full"{
+            margin: 100%;
+        }@else{
+            width: $width;
+            margin: 0 auto;
+        }
+    }
+
+
+
+
+
+
+
+
+    
