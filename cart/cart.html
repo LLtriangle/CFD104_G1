@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart</title>
+    <link rel="stylesheet" href="css/cart.css">
+    <!-- <script src="js/cart.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+    
+</head>
+
+<body>
+    <div id="tabs" class="container">
+
+        <div class="tabs">
+            <a v-bind:class="[ activetab === '1' ? 'active' : '' ]">訂單資料</a>
+            <a v-bind:class="[ activetab === '2' ? 'active' : '' ]">收件人資訊</a>
+            <a v-bind:class="[ activetab === '3' ? 'active' : '' ]">訂單明細確認</a>
+        </div>
+
+        <div class="content">
+            <div v-if="activetab ==='1'" class="tabcontent">
+                <table>
+                    <tr>
+                        <td>商品詳情</td>
+                        <td>單價</td>
+                        <td colspan="3">數量</td>
+                        <td colspan="2">小計</td>
+                    </tr>
+                    <tr v-show="product">
+                        <td><img :src="image"></td>
+                        <td>{{price}}</td>
+                        <td><button @click="countNum(-1)" :disabled="isDisabled">-</button></td>
+                        <td>{{count}}</td>
+                        <td><button @click="countNum(1)">+</button></td>
+                        <td>{{total}}</td>
+                        <td><button @click="count=0">刪除</button></td>
+                    </tr>
+                    <tr>
+                        <td class="left">送貨及物流資訊</td>
+                    </tr>
+                    <tr>
+                        <td class="left"><input type="radio" v-model="delivery" value="宅配">宅配</td>
+                    </tr>
+                    <tr>
+                        <td class="left"><input type="radio" v-model="delivery" value="7-11超商取貨付款">7-11超商取貨付款</td>
+                    </tr>
+                    <tr>
+                        <td class="left"><input type="radio" v-model="delivery" value="全家超商取貨付款">全家超商取貨付款</td>
+                    </tr>
+                    <tr>
+                        <td>優惠碼輸入:</td>
+                        <td colspan="6"><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button>繼續購物</button></td>
+                        <td colspan="5"><button v-on:click="activetab='2'">下一步</button></td>
+                    </tr>
+                </table>
+            </div>
+            <div v-if="activetab ==='2'" class="tabcontent">
+                <table>
+                    <tr>
+                        <td>信用卡:</td>
+                        <td colspan="2">
+                            <input type="radio" name="payment" value="Visa" id="visa" />Visa &nbsp;
+                            <input type="radio" name="payment" value="Master Card" />Master Card &nbsp;
+                            <input type="radio" name="payment" value="American Express" />American Express &nbsp;
+                            <input type="radio" name="payment" value="Discover" />Discover <br />
+                            <label>Card Number:</label>
+                            <input type="text" name="cardNumber" id="cardNum" size="30" value="" v-model="credit_card" maxlength="16"
+                                onblur="ValidateCreditCardNumber()" /></td>
+                    </tr>
+                    <tr>
+                        <td>信用卡到期日:</td>
+                        <td>
+                            <select name="年" v-model="selectedYear">
+                                <option v-for="year in years">{{year}}年</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="月份"  v-model="selectedMonth" @change="changeDays">
+                                <option v-for="month in 12">{{month}}月</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>收貨人姓名:</td>
+                        <td><input type="text" v-model="name"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">收貨地址:</td>
+                        <td><input size="25" v-model="address1"></td>
+                    </tr>
+                    <tr>
+                        <td><input size="25" v-model="address2"></td>
+                    </tr>
+                    <tr>
+                        <td><button v-on:click="activetab='1'">返回</button>
+                        <td></td></td>
+                        <td><button v-on:click="activetab='3'">下一步</button></td>
+                    </tr>
+                </table>
+            </div>
+            <div v-if="activetab ==='3'" class="tabcontent">
+                <table>
+                    <tr>
+                        <td>信用卡明細:</td>
+                        <td>{{credit_card}}</td>
+                    </tr>
+                    <tr>
+                        <td>物流資訊:</td>
+                        <td>{{delivery}}</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">收貨地址:</td>
+                        <td>{{address1}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{address2}}</td>
+                    </tr>
+                    <tr>
+                        <td>收貨人姓名:</td>
+                        <td>{{name}}</td>
+                    </tr>
+                    <tr>
+                        <td>總金額:</td>
+                        <td>{{total}}</td>
+                    </tr>
+                    <tr>
+                        <td><button v-on:click="activetab='2'">返回</button></td>
+                        <td><button>送出</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function ValidateCreditCardNumber() {
+
+            var ccNum = document.getElementById("cardNum").value;
+
+            var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+            var mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
+            var amexpRegEx = /^(?:3[47][0-9]{13})$/;
+            var discovRegEx = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
+
+
+            if (visaRegEx.test(ccNum) === false) { // Visa validation
+                alert("信用卡資料有誤");
+            }
+            if (mastercardRegEx.test(ccNum) === false) { // MasterCard validation
+                alert("信用卡資料有誤");
+            }
+            if (amexpRegEx.test(ccNum) === false) { // Amex  validation
+                alert("信用卡資料有誤");
+            }
+            if (discovRegEx.test(ccNum) === false) { // Discover validation
+                alert("信用卡資料有誤");
+            }
+        }
+    </script>
+    <script>
+        new Vue({
+            el: '#tabs',
+            data: {
+                activetab: '1',
+                message: '',
+                address1: '',
+                address2: '',
+                credit_card: '',
+                delivery: '',
+                name: '',
+                coupon: '',
+                count: 1,
+                price: 3200,
+                image: 'images/3341.gif',
+                isDisabled: true,
+                years: [2020,2021,2022,2023]
+            },
+            methods: {
+               countNum(x){
+                    this.count += x;
+                    if(this.count != 1){
+                        this.isDisabled = false
+                    }else{
+                        this.isDisabled = true
+                    }
+               }
+            },
+            computed: {
+                total() {
+                    return parseInt(this.price) * parseInt(this.count)
+                },
+                product() {
+                    return parseInt(this.count)
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>
