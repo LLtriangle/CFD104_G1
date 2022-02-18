@@ -1,17 +1,31 @@
 {
-  "name": "G1_test",
+  "name": "cfd104_g1",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "echo \"Error: no test specified\" && exit 1",
+    "安裝套件"  : "npm i",
+    "打包html" : "gulp w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sexfat/cfd104.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sexfat/cfd104/issues"
+  },
+  "homepage": "https://github.com/sexfat/cfd104#readme",
   "dependencies": {
-    "bootstrap": "^5.1.3",
     "jquery": "^3.6.0",
-    "vue": "^3.2.31"
+    "swiper": "^8.0.6",
+    "vue": "^2.6.14"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-file-include": "^2.3.0"
   }
 }

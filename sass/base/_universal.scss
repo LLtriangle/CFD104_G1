@@ -25,6 +25,7 @@ p{
 }
 a{
   	text-decoration: none;
+	color: map-get($font_color , "black" );
 }
 select,
 input {
@@ -36,13 +37,13 @@ input {
 /* 卷軸 */
 ::-webkit-scrollbar{
     width: 6px;
-    background-color: #f3f3ed;
+    background-color: map-get($color , "plain" );;
 }
 ::-webkit-scrollbar-button{
     height: 0;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: var(--main-color);
+    background-color: map-get($color , "" );
 }
 
 /* loading畫面 */

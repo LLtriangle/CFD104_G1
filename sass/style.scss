@@ -1,1 +1,17 @@
+// css基礎、共用設定
+
+/*reset*/
+@import  "base/reset";
+/*變數*/
+@import  "base/var";
+/*顏色*/
+@import  "base/color";
+/*格線*/
 @import  "bootstrap/scss/bootstrap";
+/*其他共用*/
+@import  "base/universal";
+
+// module 組件
+
+/*按鈕*/
+@import "module/btn";
