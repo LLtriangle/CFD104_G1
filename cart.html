@@ -3,7 +3,23 @@
 
 <head>
     <!-- 初始設定，請自行修改title，及添加js連結 -->
-    @@include('layout/head.html')
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Google Text 連結 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<!-- 網頁標題左側顯示logo -->
+	<link rel="icon" href="img/soeasylogo.ico" type="image/x-icon">
+	<!-- 收藏夾顯示圖示 -->
+	<link rel="shortcut icon" href="img/soeasylogo.ico" type="image/x-icon">
+	<!-- .css連結 -->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- .js連結-->
+	<script src="js/jquery.js"></script>
+  	<script src="js/jquery-ui.js"></script>
+  	<script src="js/vue.js"></script>
     <title>cart</title>
 
     <link rel="stylesheet" href="css/cart.css">
@@ -15,7 +31,8 @@
 <body>
 
     <!-- <header></header> -->
-    @@include('layout/header.html')
+    <header></header>
+
 
     <div id="tabs" class="container">
 
@@ -209,7 +226,7 @@
     </script>
     
 <!-- <footer></footer> -->
-@@include('layout/footer.html')
+<footer></footer>
 </body>
 
 </html>

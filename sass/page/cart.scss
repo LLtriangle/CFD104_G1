@@ -1,13 +1,13 @@
-@import  "base/var";
-@import  "base/color";
+@import  "../base/var";
+@import  "../base/color";
 
 button{
     padding: $btn_padding;
     border-radius: $border_radius_btn;
     box-shadow: $btn_box_shadow;
-    background-color: map-get($btn_color, red) ;
+    background-color: map-get($btn_color, 'red') ;
     :hover{
-        background-color: map-get($btn_color, brown) ;
+        background-color: map-get($btn_color, 'brown') ;
     }
 }
 .container{
@@ -16,7 +16,7 @@ button{
     margin: 40px auto;
     font-family: $font_family;
     font-size: 0.9em;
-    color: map-get($color, main);
+    color: map-get($color, 'main');
     .progress{
         overflow: hidden;
         margin-bottom: -2px; /* hide bottom border */
@@ -28,7 +28,7 @@ button{
             transition: background-color 0.2s;
             border: 1px solid #ccc;
             border-right: none;
-            background-color: map-get($color, deep_blue);
+            background-color: map-get($color, 'deep_blue');
             border-radius: 10px 10px 0 0;
             font-weight: bold;
             :last-child { 
@@ -36,11 +36,11 @@ button{
             }
             :hover {
             background-color: #aaa;
-            color: map-get($color, yellow);
+            color: map-get($color, 'yellow');
             }
             .active {
             background-color: #fff;
-            color: map-get($color, blue);
+            color: map-get($color, 'blue');
             border-bottom: 2px solid #fff;
             cursor: default;
             }
@@ -60,7 +60,7 @@ table{
     box-shadow: 4px 4px 8px #e1e1e1;
     td {
         padding: 0.3em 0.4em;
-        color: map-get($color, plain_blue);
+        color: map-get($color, 'plain_blue');
     }
 }
 .data { width: 120px; }
