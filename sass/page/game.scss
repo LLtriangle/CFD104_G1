@@ -1,30 +1,100 @@
 @import  "../base/color";
 .text_ill{
-    background-color: map-get($color, 'sub_blue');
+    position: absolute;
+    z-index: 1;
+    left: 19px;
+    top: -1px;
+    box-sizing: border-box;
+    border: 2px solid map-get($color, 'main');
+    width: calc(100vw - 40px);
+    height: calc(100vh - 80px);
     padding: 30px;
     border-radius: 30px;
+    background-color: map-get($color, 'plain');
     margin: auto;
-    width: 80vw;
     margin-top: 60px;
+    // position: relative;
+    &::after{
+        transform: rotate(-45deg);
+    }
     .pic{
-        margin: 30px 0;
+        margin: 20px 0;
         // height: 200px;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         img{
-            width: 25%;
-            
+            width: 60px;
+            margin: 0 10px;
+        }
+        &:nth-of-type(1) img:nth-of-type(2){
+            transform: rotate(90deg);
+        }
+        &:nth-of-type(5) img{
+            box-sizing: border-box;
+            width: 60px;
+            padding: 5px;
+            background: url("https://cdn-icons-png.flaticon.com/512/128/128236.png") center/cover ;
         }
     }
+    .txt{
+        margin: 30px 0;
+        p{
+            line-height: 1.5em;
+        }
+    }
+    button{
+        display: block;
+        margin: auto;
+        padding: 10px 30px;
+    }
 }
-
+.text_game{
+    box-sizing: border-box;
+    width: calc(100vw - 40px);
+    height: calc(100vh - 80px);
+    border-radius: 30px;
+    background-color: map-get($color, 'main');
+    margin: auto;
+    margin-top: 60px;
+    .box_group{
+        background: url('../img/game_room_nodoor.png') no-repeat left/cover ;
+        width: 100%;
+        height: 80%;
+        box-sizing: border-box;
+        border: 2px solid map-get($color, 'main');
+        border-radius: 30px 30px 0 0;
+        position: relative;
+        img{
+            width: 140px;
+            position: absolute;
+            top: 20px;
+            left: 188px;
+            animation: doormove 5s infinite;
+        }
+    }
+    .item_group{
+        width: 100%;
+        height: 20%;
+        box-sizing: border-box;
+        border: 2px solid map-get($color, 'main');
+        border-radius: 0 0 30px 30px;
+        background-color: map-get($color, 'plain');
+    }
+}
+@keyframes doormove{
+    0%{
+        top: 20px;
+        left: 188px;
+    }
+    50%{
+        top: 73px;
+        left: 84px;
+    }
+    100%{
+        top: 20px;
+        left: 188px;
+    }
+}
 @media screen and (min-width: 769px) {
     
-    .text_ill div .pic{
-        height: 100%;
-        float: left;
-    }
-    .text_ill div:nth-of-type(1) .pic{
-        float: right;
-    }
 }

@@ -13,25 +13,86 @@
     <main>
         <!-- 測驗說明 -->
         <section class="text_ill">
-            <h1>測驗說明</h1>
+            <h2>測驗說明</h2>
+            <div class="txt">
+                <p>不同人格，收納習慣也大不同</p>
+                <p>你是收納苦手嗎？</p>
+                <p>來找出你的收納昆蟲人格吧！</p>
+            </div>
             <div class="pic">
                 <img src="https://cdn-icons-png.flaticon.com/512/57/57213.png">
-                <img src="https://cdn-icons-png.flaticon.com/512/64/64798.png">
+                <img src="https://cdn-icons-png.flaticon.com/128/64/64797.png">
                 <img src="https://cdn-icons-png.flaticon.com/512/128/128236.png">
             </div>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis labore tempore velit.</p>
+            <div class="pic">
+                <!-- <img src="https://cdn-icons-png.flaticon.com/512/57/57213.png"> -->
+                <img src="https://cdn-icons-png.flaticon.com/128/64/64791.png">
+                <img src="https://cdn-icons-png.flaticon.com/512/35/35444.png">
+            </div>
+            <div class="txt">
+                <p>點選物件放置在框線中，或丟棄於垃圾桶。</p>
+            </div>
             <div class="pic">
                 <img src="https://cdn-icons-png.flaticon.com/512/57/57213.png">
-                <img src="https://cdn-icons-png.flaticon.com/512/64/64798.png">
             </div>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis labore tempore velit.</p>
+            <div class="txt">
+                <p>點選物件放置在框線中，或丟棄於垃圾桶。</p>
+            </div>
+            <button class="btn_btn bl" id="gamestart">開始測驗</button>
         </section>
+        <!-- 關閉說明視窗 -->
+        <script>
+            function switch_light(){ //燈箱開關
+                $('.text_ill').css('display','none');
+            };
+          
+            $(document).ready(function(){
+                $('#gamestart').click(switch_light);
+            });
+          </script>
 
         <!-- 遊戲 -->
         <section class="text_game">
+            <div class="box_group">
+                <img src="../img/game_room_door.png" alt="">
+            </div>
+            <div class="item_group">
 
+            </div>
         </section>
+        <!-- 遊戲拖曳 -->
+        <!-- <script>
+            $(document).ready(function(){
+              $('#drag').draggable({
+                cursor: 'crosshair',
+                opacity: 0.5,
+                
+                // 拖曳範圍限制(預設是window)
+                containment: 'parent',
+                // containment: [0,0,300,300],   // containment: [x1,y1,x2,y2],
+                
+                // 限制可拉動的軸
+                // axis: 'x',
         
+                // 回原位
+                revert: true,
+        
+                // start: function(){},
+                // drag: function(){},
+                // stop: function(){},
+                start(){
+                  $('#feedback').html(`<span style='color:pink;'>Drag srarted<span>`);
+                },
+                drag(){
+                  $('#feedback').html(`<span style='color:blue;'>Drag dragging<span>`);
+                },
+                stop(){
+                  $('#feedback').html(`<span style='color:green;'>Drag stop<span>`);
+                },
+              });
+            });
+          </script> -->
+
         <!-- 測驗結果 -->
         <section class="text_result">
             
