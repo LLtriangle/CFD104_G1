@@ -53,21 +53,21 @@ input {
 /* main */
 
 /* banner */
-.banner{
+.uni_banner{
 	margin-top: 60px;
 	display: flex;
 	justify-content: start;
 	flex-wrap: wrap;
 }
-.banner h4{
+.uni_banner h4{
 	margin: 10px 0;
 	letter-spacing: .2em;
 }
-.banner h1{
+.uni_banner h1{
 	margin: 30px 0;
 	letter-spacing: .2em;
 }
-.banner h1::after{
+.uni_banner h1::after{
 	content: "";
 	display: block;
 	margin-top: 10px;
@@ -75,49 +75,49 @@ input {
 	width: 100px;
 	background-color: #2C2D48;
 }
-.banner p{
+.uni_banner p{
 	font-size: 24px;
 	line-height: 1.5em;
 	letter-spacing: .2em;
 }
-.banner > div:first-child{
+.uni_banner > div:first-child{
 	width: 30vw;
 	min-width: 250px;
 	padding-left: 20px;
 }
-.banner > div:first-child .pic{
+.uni_banner > div:first-child .pic{
 	width: 250px;
 	height: 65px;
 	overflow: hidden;
 }
-.banner div:first-child img{
+.uni_banner div:first-child img{
 	width: 90%;
 }
-.banner div:first-child .txt{
+.uni_banner div:first-child .txt{
 	width: 70vw;
 	filter: drop-shadow(0 0 5px #fff);
 }
-.banner div:last-child img{
+.uni_banner div:last-child img{
 	width: 100%;
 }
-.banner div:last-child .txt{
+.uni_banner div:last-child .txt{
 	margin-left: 20px;
 }
 @media screen and (min-width:768px) {
-	.banner{
+	.uni_banner{
 		justify-content: end;
 	}
-	.banner p{
+	.uni_banner p{
 		font-size: 32px;
 	}
-	.banner > div:first-child{
+	.uni_banner > div:first-child{
 		padding-left: 0;
 		padding-top: calc(32vw - 275px);
 	}
-	.banner div:last-child img{
+	.uni_banner div:last-child img{
 		width: 60vw;
 	}
-	.banner div:last-child .txt{
+	.uni_banner div:last-child .txt{
 		margin: -30px 0 0 -30vw;
 	}
 }
