@@ -1,0 +1,30 @@
+@import  "../base/color";
+.text_ill{
+    background-color: map-get($color, 'sub_blue');
+    padding: 30px;
+    border-radius: 30px;
+    margin: auto;
+    width: 80vw;
+    margin-top: 60px;
+    .pic{
+        margin: 30px 0;
+        // height: 200px;
+        display: flex;
+        justify-content: space-around;
+        img{
+            width: 25%;
+            
+        }
+    }
+}
+
+@media screen and (min-width: 769px) {
+    
+    .text_ill div .pic{
+        height: 100%;
+        float: left;
+    }
+    .text_ill div:nth-of-type(1) .pic{
+        float: right;
+    }
+}
