@@ -2,11 +2,10 @@
     margin: 30px auto;
     max-width: 1200px;
     .acti_news{
-        height:1200px;
+        
         display: flex;
         flex-wrap: wrap;
-        flex-direction: column;
-        justify-content: space-around;
+        
         .acti_item{
             width: 498px;
             margin: 50px;
@@ -22,13 +21,18 @@
             input{
                 width: 70%;
                 height: 30px;
-                background-color: aqua;
+                background-color: #f3f3ed;
+                border: 2px solid #d6aa81;
                 text-align: center;
                 margin: 0 0 15px 15px ;
+                border-radius: 8px 0 0 8px;
             }
             button{
                 margin: 0 0 0 -4px;
-                height: 30px;
+                height: 36px;
+                width: 50px;
+                color: #fff;
+                background-color:#d6aa81 ;
             }
         }
     }
