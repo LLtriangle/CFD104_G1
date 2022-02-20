@@ -36,14 +36,14 @@ input {
 
 /* 卷軸 */
 ::-webkit-scrollbar{
-    width: 6px;
+    width: 5px;
     background-color: map-get($color , "plain" );;
 }
 ::-webkit-scrollbar-button{
     height: 0;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: map-get($color , "" );
+    background-color: map-get($color , "main" );
 }
 
 /* loading畫面 */

@@ -6052,12 +6052,16 @@ input {
 
 /* 卷軸 */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
   background-color: #f3f3ed;
 }
 
 ::-webkit-scrollbar-button {
   height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2C2D48;
 }
 
 /* loading畫面 */

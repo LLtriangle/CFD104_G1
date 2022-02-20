@@ -42,7 +42,6 @@
                 <img src="https://cdn-icons-png.flaticon.com/512/128/128236.png">
             </div>
             <div class="pic">
-                <!-- <img src="https://cdn-icons-png.flaticon.com/512/57/57213.png"> -->
                 <img src="https://cdn-icons-png.flaticon.com/128/64/64791.png">
                 <img src="https://cdn-icons-png.flaticon.com/512/35/35444.png">
             </div>
@@ -57,6 +56,7 @@
             </div>
             <button class="btn_btn bl" id="gamestart">開始測驗</button>
         </section>
+
         <!-- 關閉說明視窗 -->
         <script>
             function switch_light(){ //燈箱開關
@@ -66,50 +66,153 @@
             $(document).ready(function(){
                 $('#gamestart').click(switch_light);
             });
-          </script>
+        </script>
+
 
         <!-- 遊戲 -->
         <section class="text_game">
-            <div class="box_group">
-                <img src="../img/game_room_door.png" alt="">
+            <div class="pull">
+                <div class="pullbox_group">
+                    <div class="pullbox"></div>
+                    <div class="pullbox"></div>
+                    <div class="pullbox"></div>
+                    <div class="pullbox"></div>
+                    <div class="pullbox"></div>
+                    <div class="pullbox"></div>
+                    <div class="pullbox"></div>
+                    <div class="pullbox"></div>
+                    <div class="pullbox"></div>
+                    <div class="pullbox"></div>
+                    <div class="pullbox"></div>
+                    <div class="pullbox"></div>
+                    <div class="pullbox"></div>
+                    <img id="door" src="../img/game_room_door.png">
+                    <img id="pull_arrow" src="https://cdn-icons-png.flaticon.com/512/64/64797.png">
+                </div>
             </div>
-            <div class="item_group">
 
+            <input type="checkbox" id="open_trashcan">
+            <label id="trashcan" for="open_trashcan">
+                <ul class="garbage">
+                    <!-- <li></li> -->
+                </ul>
+                <div class="pic">
+                    <img src="../img/game_trashcan1.png">
+                    <img src="../img/game_trashcan0.png">
+                </div>
+            </label>
+                    
+            <div class="push">
+                <div class="item_group">
+                    <label>
+                        <input type="radio" name="item">
+                        <img src="https://cdn-icons-png.flaticon.com/128/57/57377.png" alt="">
+                    </label>
+                    <label>
+                        <input type="radio" name="item">
+                        <img src="https://cdn-icons-png.flaticon.com/128/57/57274.png" alt="">
+                    </label>
+                    <label>
+                        <input type="radio" name="item">
+                        <img src="https://cdn-icons-png.flaticon.com/512/57/57350.png" alt="">
+                    </label>
+                    <label>
+                        <input type="radio" name="item">
+                        <img src="https://cdn-icons-png.flaticon.com/128/57/57337.png" alt="">
+                    </label>
+                    <label>
+                        <input type="radio" name="item">
+                        <img src="https://cdn-icons-png.flaticon.com/128/58/58000.png" alt="">
+                    </label>
+                    <label>
+                        <input type="radio" name="item">
+                        <img src="https://cdn-icons-png.flaticon.com/128/58/58188.png" alt="">
+                    </label>
+                    <label>
+                        <input type="radio" name="item">
+                        <img src="https://cdn-icons-png.flaticon.com/128/53/53616.png" alt="">
+                    </label>
+                    <label>
+                        <input type="radio" name="item">
+                        <img src="https://cdn-icons-png.flaticon.com/512/57/57392.png" alt="">
+                    </label>
+                    <label>
+                        <input type="radio" name="item">
+                        <img src="https://cdn-icons-png.flaticon.com/128/57/57363.png" alt="">
+                    </label>
+                    <label>
+                        <input type="radio" name="item">
+                        <img src="https://cdn-icons-png.flaticon.com/128/35/35489.png" alt="">
+                    </label>
+                    <label>
+                        <input type="radio" name="item">
+                        <img src="https://cdn-icons-png.flaticon.com/512/288/288686.png" alt="">
+                    </label>
+                    <input class="btn_sub bl" type="button" value="完成放置" disabled>
+                </div>
             </div>
         </section>
         <!-- 遊戲拖曳 -->
-        <!-- <script>
-            $(document).ready(function(){
-              $('#drag').draggable({
-                cursor: 'crosshair',
-                opacity: 0.5,
-                
-                // 拖曳範圍限制(預設是window)
-                containment: 'parent',
-                // containment: [0,0,300,300],   // containment: [x1,y1,x2,y2],
-                
-                // 限制可拉動的軸
-                // axis: 'x',
-        
-                // 回原位
-                revert: true,
-        
-                // start: function(){},
-                // drag: function(){},
-                // stop: function(){},
-                start(){
-                  $('#feedback').html(`<span style='color:pink;'>Drag srarted<span>`);
-                },
-                drag(){
-                  $('#feedback').html(`<span style='color:blue;'>Drag dragging<span>`);
-                },
-                stop(){
-                  $('#feedback').html(`<span style='color:green;'>Drag stop<span>`);
-                },
-              });
-            });
-          </script> -->
+        <!-- 動態寬度 -->
+        <script>
+            $(function () {
+                // 開關門
+                $('#door').on('click',function(){
+                    $('#door').toggleClass('open');
+                    $('#pull_arrow').css('display','none');
+                });
 
+                // 放置
+                $('.pullbox_group .pullbox').on('click',function(){
+                    if(!($(this).html()) && $('.item_group input:checked').length) {
+                        // 條件:位置為空，且有選擇物品
+                        $(this).append($('.item_group input:checked').parent());
+                    }else if($(this).html()){
+                        // 條件:位置上已有物品
+                        $(this).children().prependTo($('.item_group'));
+                    };
+                    
+                    // 送出按鈕disabled切換
+                    if($('.item_group label').length==0) {
+                        $('.item_group > input').attr('disabled',false);
+                        $('.item_group > input').addClass('rd');
+                        $('.item_group > input').removeClass('bl');
+                    }else if($('.item_group label').length>0){
+                        $('.item_group > input').attr('disabled',true);
+                        $('.item_group > input').addClass('bl');
+                        $('.item_group > input').removeClass('rd');
+                    };
+                });
+                // 丟棄
+                $('#trashcan').on('click',function(){
+                    if($('.item_group input:checked').length >= 0) {
+                        // 條件:有選擇物品，丟進垃圾桶
+                        $('#trashcan ul').append(
+                            $('<li/>').append($('.item_group input:checked').parent())
+                        );
+                        if($('#open_trashcan').prop('checked')){
+                            $('#open_trashcan').attr('checked',false);
+                        }else if(!$('#open_trashcan').prop('checked')){
+                            $('#open_trashcan').attr('checked',true);
+                        };
+                    };
+                    // 送出按鈕disabled切換
+                    if($('.item_group label').length==0) {
+                        $('.item_group > input').attr('disabled',false);
+                        $('.item_group > input').addClass('rd');
+                        $('.item_group > input').removeClass('bl');
+                    }else if($('.item_group label').length>0){
+                        $('.item_group > input').attr('disabled',true);
+                        $('.item_group > input').addClass('bl');
+                        $('.item_group > input').removeClass('rd');
+                    };
+                    // 撿回垃圾
+                    $('.garbage li').on('click',function(){
+                        $(this).children().prependTo($('.item_group'));
+                    });
+                });
+            });
+        </script>
         <!-- 測驗結果 -->
         <section class="text_result">
             

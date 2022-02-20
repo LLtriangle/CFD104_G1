@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 初始設定，請自行修改title，及添加js連結 -->
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Google Text 連結 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<!-- 網頁標題左側顯示logo -->
+	<link rel="icon" href="img/soeasylogo.ico" type="image/x-icon">
+	<!-- 收藏夾顯示圖示 -->
+	<link rel="shortcut icon" href="img/soeasylogo.ico" type="image/x-icon">
+	<!-- .css連結 -->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- .js連結-->
+	<script src="js/jquery.js"></script>
+  	<script src="js/jquery-ui.js"></script>
+  	<script src="js/vue.js"></script>
+    <title>服務預約</title>
+
+    <link rel="stylesheet" href="css/cart.css">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script> -->
+    
+</head>
+
+<body>
+    <div id="tabs" class="container">
+
+        <div class="tabs">
+            <a v-bind:class="[ activetab === '1' ? 'active' : '' ]">預約表單</a>
+            <a v-bind:class="[ activetab === '2' ? 'active' : '' ]">訂金付款</a>
+            <a v-bind:class="[ activetab === '3' ? 'active' : '' ]">服務預約明細</a>
+        </div>
+
+        <div class="content">
+            <div v-if="activetab ==='1'" class="tabcontent">
+                <!-- 預約表單 -->
+                <form action="get">
+                    <!-- 選擇方案 -->
+                    <div class="form_item choose_plan">
+                        <h3>選擇方案</h3>
+                        <div class="plan_li">
+                            <li>
+                                <input type="radio" v-model="plan" value="到府一對一教學" id="plan0">
+                                <label for="plan0">到府一對一教學</label>
+                            </li>
+                            <li>
+                                <input type="radio" v-model="plan" value="空間整理收納" id="plan1">
+                                <label for="plan1">空間整理收納</label>
+                            </li>
+                            <li>
+                                <input type="radio" v-model="plan" value="搬家前後物品上下架" id="plan2">
+                                <label for="plan2">搬家前後物品上下架</label>
+                            </li>
+                        </div>
+                        <!-- 方案介紹 -->
+                        <div class="plan_info" v-show="plan_info">
+                            <img src="https://picsum.photos/200/130/?random=10">
+                        </div>
+                    </div>
+
+                    <!-- 選擇整理師 -->
+                    <div class="form_item choose_emp">
+                        <h3>選擇整理師</h3>
+                        <select v-model="selectedEmp">
+                            <option value="" disabled>請選擇</option>
+                            <option v-for="emp in emps">{{emp}}</option>
+                        </select>
+                        <!-- 整理師介紹 -->
+                        <div class="emp_info" v-show="emp_info">
+                            <img src="images/3341.gif" alt="">
+                            <p>{{selectedEmp}}</p>
+                        </div>
+                    </div>
+
+
+                    <!-- 選擇日期 -->
+                    <div class="form_item choose_date">
+                        <h3>選擇日期</h3>
+                    </div>
+
+                </form>
+                <button v-on:click="activetab='2'">下一步</button>    
+            </div>
+            <div v-if="activetab ==='2'" class="tabcontent">
+                <table>
+                    <tr>
+                        <td>信用卡:</td>
+                        <td>
+                            <input type="radio" name="payment" value="Visa" id="visa" />Visa &nbsp;
+                            <input type="radio" name="payment" value="Master Card" />Master Card &nbsp;
+                            <input type="radio" name="payment" value="American Express" />American Express &nbsp;
+                            <input type="radio" name="payment" value="Discover" />Discover <br /><br />
+                            <label>Card Number:</label>
+                            <input type="text" name="cardNumber" id="cardNum" size="30" value="" v-model="credit_card" onblur="ValidateCreditCardNumber()"/></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>姓名</td>
+                        <td><input type="text" v-model="name"></td>
+                    </tr>
+                    <tr>
+                        <td><button v-on:click="activetab='1'">返回</button></td>
+                        <td><button v-on:click="activetab='3'">下一步</button></td>
+                    </tr>
+                </table>
+            </div>
+            <div v-if="activetab ==='3'" class="tabcontent">
+                <table>
+                    <tr>
+                        <td>信用卡明細</td>
+                        <td>{{credit_card}}</td>
+                    </tr>
+                    <tr>
+                        <td>預約人姓名</td>
+                        <td>{{name}}</td>
+                    </tr>
+                    <tr>
+                        <td>訂金金額</td>
+                        <td>{{total}}</td>
+                    </tr>
+                    <tr>
+                        <td>方案</td>
+                        <td>{{plan}}</td>
+                    </tr>
+                    <tr>
+                        <td>預約整理師</td>
+                        <td>{{emp}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><button v-on:click="activetab='2'">返回</button></td>
+                        <td><button>送出</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+                
+    <script>            
+        function ValidateCreditCardNumber(){
+        
+            var ccNum = document.getElementById("cardNum").value;
+
+            var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+            var mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
+            var amexpRegEx = /^(?:3[47][0-9]{13})$/;
+            var discovRegEx = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/; 
+        
+        
+            if (visaRegEx.test(ccNum) === false ){ // Visa validation
+               alert("信用卡卡號錯誤");
+                }
+            if (mastercardRegEx.test(ccNum) === false){ // MasterCard validation
+                alert("信用卡卡號錯誤");  
+                }
+            if(amexpRegEx.test(ccNum) === false){ // Amex  validation
+                alert("信用卡卡號錯誤");  
+                }  
+            if (discovRegEx.test(ccNum) === false){ // Discover validation
+                alert("信用卡卡號錯誤"); 
+                }
+            }
+    </script>
+    <script>
+        new Vue({
+            el: '#tabs',
+            data: {
+                activetab: '1',
+                message: '',
+                address: '',
+                credit_card: '',
+                plan: '到府一對一教學',
+                name:'',
+                coupon:'',
+                count: 1,
+                price: 3200,
+                image: 'images/3341.gif',
+                emps: ["麻里不會","末牛子","潔癖子","由收easy安排"],
+                selectedEmp: '',
+                
+            },
+            methods: {
+                
+            },
+            computed: {
+                total() {
+                    return parseInt(this.price) * parseInt(this.count)
+                },
+                product() {
+                    return parseInt(this.count)
+                },
+                plan_info() {
+                    return this.plan;
+                },
+                emp_info() {
+                    return this.selectedEmp;
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>
