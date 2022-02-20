@@ -21,6 +21,7 @@
 	<script src="js/jquery.js"></script>
   	<script src="js/jquery-ui.js"></script>
   	<script src="js/vue.js"></script>
+    <link rel="stylesheet" href="css/activity.css">
     <title>活動與專欄</title>
 </head>
 <body>
@@ -50,10 +51,70 @@
 			</div>
 		</section>
         
-        <section></section>
+        <section class="activity">
+            <h1>活動</h1>
+            <div class="acti_news">
+                <div class="acti_item">
+                    <div class="img">
+                        <img src="https://fakeimg.pl/300x200/200">
+                    </div>
+                    <div class="txt">
+                        <h3>title</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit praesentium maiores, quia consequuntur laboriosam deleniti a illo excepturi tempore.
+                        </p> 
+                        </div>
+                        <input id="textArea" value="22HAPPYMDAY">
+                        <button onclick="copyToClipBoard('textArea')">複製</button>
+                </div>
+                <div class="acti_item">
+                    <div class="img">
+                        <img src="https://fakeimg.pl/300x200/200">
+                    </div>
+                    <div class="txt">
+                        <h3>title</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit praesentium maiores, quia consequuntur laboriosam deleniti a illo excepturi tempore.
+                        </p> 
+                    </div>                        
+                        <input id="textArea2" value="2022HAPPY88">
+                        <button onclick="copyToClipBoard('textArea2')">複製</button>     
+                </div>
+                <div class="acti_item">
+                    <div class="img">
+                        <img src="https://fakeimg.pl/300x200/200">
+                    </div>
+                    <div class="txt">
+                        <h3>title</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit praesentium maiores, quia consequuntur laboriosam deleniti a illo excepturi tempore.
+                        </p> 
+                    </div>                        
+                        <input type="text" value="22SOEASYEVD" readonly id="textAreas3"/>
+                        <button onclick="copyToClipBoard('textAreas3')">複製</button>
+                </div>
+                
+            </div>
+            <div class="acti_columns">
+
+            </div>
+        </section>
 
     </main>
 
     <footer></footer>
+
+
+    <script>
+        function copyToClipBoard(p1) {
+
+        var content = document.getElementById(p1);
+
+        content.select();
+        document.execCommand('copy');
+
+        alert("Copied!");
+        }
+    </script>
 </body>
 </html>

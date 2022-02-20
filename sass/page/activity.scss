@@ -1,0 +1,35 @@
+.activity{
+    margin: 30px auto;
+    max-width: 1200px;
+    .acti_news{
+        height:1200px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: space-around;
+        .acti_item{
+            width: 498px;
+            margin: 50px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            overflow: hidden;
+            img{
+                width: 100%;
+            }
+            .txt{
+                padding: 10px 15px;
+            }
+            input{
+                width: 70%;
+                height: 30px;
+                background-color: aqua;
+                text-align: center;
+                margin: 0 0 15px 15px ;
+            }
+            button{
+                margin: 0 0 0 -4px;
+                height: 30px;
+            }
+        }
+    }
+}
