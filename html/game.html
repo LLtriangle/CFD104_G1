@@ -131,7 +131,7 @@
                         <input type="radio" name="item">
                         <img src="https://cdn-icons-png.flaticon.com/512/288/288686.png" alt="">
                     </label>
-                    <input class="btn_sub bl" type="button" value="完成放置" disabled>
+                    <input id="finish" class="btn_sub bl" type="button" value="完成放置" disabled>
                 </div>
             </div>
         </section>
@@ -145,7 +145,7 @@
                     $('#pull_arrow').css('display','none');
                 });
 
-                // 放置
+                // 點擊放置
                 $('.pullbox_group .pullbox').on('click',function(){
                     if(!($(this).html()) && $('.item_group input:checked').length) {
                         // 條件:位置為空，且有選擇物品
@@ -157,45 +157,54 @@
                     
                     // 送出按鈕disabled切換
                     if($('.item_group label').length==0) {
-                        $('.item_group > input').attr('disabled',false);
-                        $('.item_group > input').addClass('rd');
-                        $('.item_group > input').removeClass('bl');
+                        $('#finish').attr('disabled',false);
+                        $('#finish').addClass('rd');
+                        $('#finish').removeClass('bl');
                     }else if($('.item_group label').length>0){
-                        $('.item_group > input').attr('disabled',true);
-                        $('.item_group > input').addClass('bl');
-                        $('.item_group > input').removeClass('rd');
+                        $('#finish').attr('disabled',true);
+                        $('#finish').addClass('bl');
+                        $('#finish').removeClass('rd');
                     };
                 });
-                // 丟棄
+
+                // $('.item_group input').on('change',function(){
+                //     // 條件:有選擇物品
+                //     if($('.item_group input:checked').length >= 0){
+                //         $('#open_trashcan').attr('disabled',true);
+                //     }else{
+                //         $('#open_trashcan').attr('disabled',false);
+                //     };
+                // });
+
+                // 點擊垃圾桶
                 $('#trashcan').on('click',function(){
-                    if($('.item_group input:checked').length >= 0) {
+                    if($('.item_group input:checked').length > 0) {
                         // 條件:有選擇物品，丟進垃圾桶
                         $('#trashcan ul').append(
                             $('<li/>').append($('.item_group input:checked').parent())
                         );
-                        if($('#open_trashcan').prop('checked')){
-                            $('#open_trashcan').attr('checked',false);
-                        }else if(!$('#open_trashcan').prop('checked')){
-                            $('#open_trashcan').attr('checked',true);
-                        };
+                    }else{
+                        $('#open_trashcan').attr('disabled',false);
                     };
                     // 送出按鈕disabled切換
                     if($('.item_group label').length==0) {
-                        $('.item_group > input').attr('disabled',false);
-                        $('.item_group > input').addClass('rd');
-                        $('.item_group > input').removeClass('bl');
+                        $('#finish').attr('disabled',false);
+                        $('#finish').addClass('rd');
+                        $('#finish').removeClass('bl');
                     }else if($('.item_group label').length>0){
-                        $('.item_group > input').attr('disabled',true);
-                        $('.item_group > input').addClass('bl');
-                        $('.item_group > input').removeClass('rd');
+                        $('#finish').attr('disabled',true);
+                        $('#finish').addClass('bl');
+                        $('#finish').removeClass('rd');
                     };
-                    // 撿回垃圾
-                    $('.garbage li').on('click',function(){
-                        $(this).children().prependTo($('.item_group'));
-                    });
+                });
+                // 點擊垃圾
+                $('.garbage li').on('click',function(){
+                    $(this).children().prependTo($('.item_group'));
+                    $(this).remove();
                 });
             });
         </script>
+        
         <!-- 測驗結果 -->
         <section class="text_result">
             
