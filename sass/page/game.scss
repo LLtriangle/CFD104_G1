@@ -45,7 +45,6 @@
     button{
         display: block;
         margin: auto;
-        padding: 10px 30px;
     }
 }
 
@@ -171,8 +170,10 @@
         display: none;
         &:checked + #trashcan{
             .garbage{
-                height: calc((100vh - 160px) * 0.8 - 100px);
                 overflow:visible;
+                li{
+                    width: calc((100vw - 180px));
+                }
             }
             .pic img{
                 &:first-child{
@@ -184,12 +185,14 @@
         }
     }
     #trashcan{
-        width: 80px;
+        width: calc((100vw - 180px));
+        height: 80px;
         position: absolute;
         bottom: calc(20% + 10px);
         left: 10px;
+        display: flex;
         .pic img{
-            width: 100%;
+            height: 100%;
             &:first-child{
                 position: absolute;
                 bottom: 0px;
@@ -198,12 +201,11 @@
             }
         }
         .garbage{
-            height: 0;
-            width: 140px;
-            transition: .5s;
-            text-align: end;
+            width: 0%;
+            display: flex;
             overflow: hidden;
             li{
+                transition: .5s;
                 display: inline-block;
                 label{
                     background: url("https://cdn-icons-png.flaticon.com/512/128/128236.png") center/cover ;
@@ -252,7 +254,6 @@
                 }
             }
             input{
-                padding: 10px 20px;
                 margin: 10px;
             }
         }
