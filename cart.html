@@ -25,9 +25,8 @@
     <title>cart</title>
 
     <link rel="stylesheet" href="css/cart.css">
-    <!-- <script src="js/cart.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script> -->
-    
+
+
 </head>
 
 <body>
@@ -122,8 +121,8 @@
                     <tr>
                         <td>商品詳情</td>
                         <td>單價</td>
-                        <td colspan="3">數量</td>
-                        <td colspan="2">小計</td>
+                        <td>數量</td>
+                        <td>小計</td>
                     </tr>
                     <tr v-show="product">
                         <td><img :src="image"></td>
@@ -138,64 +137,85 @@
                         <td class="left">送貨及物流資訊</td>
                     </tr>
                     <tr>
-                        <td class="left"><input type="radio" v-model="delivery" value="宅配">宅配</td>
+                        <td class="left" colspan="3"><input type="radio" v-model="delivery" value="宅配" id="plan1"
+                                class="radio-input"><label for="plan1" class="radio-label"><span
+                                    class="radio-button"></span>宅配</label></td>
                     </tr>
                     <tr>
-                        <td class="left"><input type="radio" v-model="delivery" value="7-11超商取貨付款">7-11超商取貨付款</td>
+                        <td class="left" colspan="3"><input type="radio" v-model="delivery" value="7-11超商取貨付款" id="plan2"
+                                class="radio-input"><label for="plan2" class="radio-label"><span
+                                    class="radio-button"></span>7-11超商取貨付款</label></td>
                     </tr>
                     <tr>
-                        <td class="left"><input type="radio" v-model="delivery" value="全家超商取貨付款">全家超商取貨付款</td>
+                        <td class="left" colspan="3"><input type="radio" v-model="delivery" value="全家超商取貨付款" id="plan3"
+                                class="radio-input"><label for="plan3" class="radio-label"><span
+                                    class="radio-button"></span>全家超商取貨付款</label></td>
                     </tr>
                     <tr>
                         <td>優惠碼輸入:</td>
-                        <td colspan="6"><input type="text"></td>
+                        <td colspan="3"><input type="text"></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><button>繼續購物</button></td>
-                        <td colspan="5"><button v-on:click="activetab='2'">下一步</button></td>
+                        <td><button>繼續購物</button></td>
+                        <td><button v-on:click="activetab='2'">下一步</button></td>
                     </tr>
                 </table>
             </div>
             <div v-if="activetab ==='2'" class="tabcontent">
                 <table>
                     <tr>
-                        <td>信用卡:</td>
-                        <td colspan="2">
-                            <input type="radio" name="payment" value="Visa" id="visa" />Visa &nbsp;
-                            <input type="radio" name="payment" value="Master Card" />Master Card &nbsp;
-                            <input type="radio" name="payment" value="American Express" />American Express &nbsp;
-                            <input type="radio" name="payment" value="Discover" />Discover <br />
-                            <label>Card Number:</label>
-                            <input type="text" name="cardNumber" id="cardNum" size="30" value="" v-model="credit_card" maxlength="16"
-                                onblur="ValidateCreditCardNumber()" /></td>
+                        <td colspan="2">信用卡:</td>
+                        <td>
+                            <input type="radio" v-model="payment" value="Visa" id="visa" class="radio-input"><label
+                                for="visa" class="radio-label"><span class="radio-button"></span>Visa</label></td>
+                        <td>
+                            <input type="radio" v-model="payment" value="Master Card" id="Master Card"
+                                class="radio-input"><label for="Master Card" class="radio-label"><span
+                                    class="radio-button"></span>Master Card</label></td>
+                        <td>
+                            <input type="radio" v-model="payment" value="American Express" id="American Express"
+                                class="radio-input"><label for="American Express" class="radio-label"><span
+                                    class="radio-button"></span>American Express</label></td>
+                        <td>
+                            <input type="radio" v-model="payment" value="Discover" id="Discover"
+                                class="radio-input"><label for="Discover" class="radio-label"><span
+                                    class="radio-button"></span>Discover</label></td>
                     </tr>
                     <tr>
-                        <td>信用卡到期日:</td>
-                        <td>
+                        <td colspan="2">
+                            <label>Card Number:</label></td>
+                        <td colspan="3">
+                            <input type="text" name="cardNumber" id="cardNum" size="30" value="" v-model="credit_card"
+                                maxlength="16" onblur="ValidateCreditCardNumber()" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">信用卡到期日:</td>
+                        <td colspan="2">
                             <select name="年" v-model="selectedYear">
                                 <option v-for="year in years">{{year}}年</option>
                             </select>
                         </td>
-                        <td>
-                            <select name="月份"  v-model="selectedMonth" @change="changeDays">
+                        <td colspan="2">
+                            <select name="月份" v-model="selectedMonth">
                                 <option v-for="month in 12">{{month}}月</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <td>收貨人姓名:</td>
-                        <td><input type="text" v-model="name"></td>
+                        <td colspan="2">收貨人姓名:</td>
+                        <td colspan="3"><input type="text" v-model="name"></td>
                     </tr>
                     <tr>
-                        <td rowspan="2">收貨地址:</td>
-                        <td><input size="25" v-model="address1"></td>
+                        <td rowspan="2" colspan="2">收貨地址:</td>
+                        <td colspan="3"><input size="25" v-model="address1"></td>
                     </tr>
                     <tr>
-                        <td><input size="25" v-model="address2"></td>
+                        <td colspan="3"><input size="25" v-model="address2"></td>
                     </tr>
                     <tr>
-                        <td><button v-on:click="activetab='1'">返回</button>
-                        <td></td></td>
+                        <td colspan="2"><button v-on:click="activetab='1'">返回</button>
+                        <td></td>
+                        </td colspan="2">
                         <td><button v-on:click="activetab='3'">下一步</button></td>
                     </tr>
                 </table>
@@ -211,7 +231,7 @@
                         <td>{{delivery}}</td>
                     </tr>
                     <tr>
-                        <td rowspan="2">收貨地址:</td>
+                        <td>收貨地址:</td>
                         <td>{{address1}}</td>
                     </tr>
                     <tr>
@@ -270,23 +290,24 @@
                 address2: '',
                 credit_card: '',
                 delivery: '',
+                payment: '',
                 name: '',
                 coupon: '',
                 count: 1,
                 price: 3200,
                 image: 'images/3341.gif',
                 isDisabled: true,
-                years: [2020,2021,2022,2023]
+                years: [2020, 2021, 2022, 2023]
             },
             methods: {
-               countNum(x){
+                countNum(x) {
                     this.count += x;
-                    if(this.count != 1){
+                    if (this.count != 1) {
                         this.isDisabled = false
-                    }else{
+                    } else {
                         this.isDisabled = true
                     }
-               }
+                }
             },
             computed: {
                 total() {
@@ -298,9 +319,9 @@
             },
         });
     </script>
-    
-<!-- <footer></footer> -->
-<footer>
+
+    <!-- <footer></footer> -->
+    <footer>
     <div class="footer_elements">
         <div class="col-12 go_top_btn">
             <div class="link_ro bl">
