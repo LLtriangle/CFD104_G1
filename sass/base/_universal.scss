@@ -26,7 +26,10 @@ p{
 a{
   	text-decoration: none;
 	color: map-get($font_color , "black" );
+	font-family: 'Noto Serif TC', serif;
 }
+
+/* 取消input 和 下拉是選單預設樣式 byLL */
 select,
 input {
     -webkit-appearance: none;  /* Sdc2f02ri 和 Chrome，常用於iOS下移除內建樣式 */
@@ -36,14 +39,16 @@ input {
 
 /* 卷軸 */
 ::-webkit-scrollbar{
-    width: 6px;
+    width: 5px;
+	height: 5px;
     background-color: map-get($color , "plain" );;
 }
 ::-webkit-scrollbar-button{
-    height: 0;
+    width: 0;
+	height: 0;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: map-get($color , "" );
+    background-color: map-get($color , "main" );
 }
 
 /* loading畫面 */
@@ -51,6 +56,10 @@ input {
 /* header */
 
 /* main */
+
+
+
+
 
 /* banner */
 .uni_banner{

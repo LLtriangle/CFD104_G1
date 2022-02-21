@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @@include('layout/head.html')
+    <link rel="stylesheet" href="css/activity.css">
     <title>活動與專欄</title>
 </head>
 <body>
@@ -33,10 +34,95 @@
 			</div>
 		</section>
         
-        <section></section>
+        <section class="activity">
+            <div class="acti_news">
+                <h3>活動</h3>
+                <div class="acti_item">
+                    <div class="img">
+                        <img src="https://fakeimg.pl/300x200/200">
+                    </div>
+                    <div class="txt">
+                        <h3>title</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit praesentium maiores, quia consequuntur laboriosam deleniti a illo excepturi tempore.
+                        </p> 
+                        </div>
+                        <input id="textArea" value="22HAPPYMDAY">
+                        <button onclick="copyToClipBoard('textArea')">複製</button>
+                </div>
+                <div class="acti_item">
+                    <div class="img">
+                        <img src="https://fakeimg.pl/300x200/200">
+                    </div>
+                    <div class="txt">
+                        <h3>title</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit praesentium maiores, quia consequuntur laboriosam deleniti a illo excepturi tempore.
+                        </p> 
+                    </div>                        
+                        <input id="textArea2" value="2022HAPPY88">
+                        <button onclick="copyToClipBoard('textArea2')">複製</button>     
+                </div>
+                <div class="acti_item">
+                    <div class="img">
+                        <img src="https://fakeimg.pl/300x200/200">
+                    </div>
+                    <div class="txt">
+                        <h3>title</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit praesentium maiores, quia consequuntur laboriosam deleniti a illo excepturi tempore.
+                        </p> 
+                    </div>                        
+                        <input type="text" value="22SOEASYEVD" readonly id="textAreas3"/>
+                        <button onclick="copyToClipBoard('textAreas3')">複製</button>
+                </div>
+                
+            </div>
+            <div class="acti_columns">
+                <h3>專欄</h3>
+                <div class="col">
+                    <div class="img"><img src="https://fakeimg.pl/300x200/200"></div>
+                    <div class="txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ex omnis quo .
+                        <a href="">more...</a>
+                    </div>
+                   
+                </div>
+                <div class="col">
+                    <div class="img"><img src="https://fakeimg.pl/300x200/200"></div>
+                    <div class="txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ex omnis quo .
+                        <a href="">more...</a>
+                    </div>
+                    
+                </div>
+                <div class="col">
+                    <div class="img"><img src="https://fakeimg.pl/300x200/200"></div>
+                    <div class="txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ex omnis quo .</div>
+                    
+                </div>
+                <div class="col">
+                    <div class="img"><img src="https://fakeimg.pl/300x200/200"></div>
+                    <div class="txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ex omnis quo .
+                        <a href="">more...</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
     @@include('layout/footer.html')
+
+
+    <script>
+        function copyToClipBoard(p1) {
+
+        var content = document.getElementById(p1);
+
+        content.select();
+        document.execCommand('copy');
+
+        alert("Copied!");
+        }
+    </script>
 </body>
 </html>

@@ -1,30 +1,319 @@
 @import  "../base/color";
 .text_ill{
-    background-color: map-get($color, 'sub_blue');
+    display: none;
+    position: absolute;
+    z-index: 5;
+    left: 50%;
+    top: -1px;
+    transform: translate(-50%);
+    box-sizing: border-box;
+    border: 2px solid map-get($color, 'main');
+    width: calc(100vw - 40px);
+    height: calc(100vh - 100px);
     padding: 30px;
     border-radius: 30px;
+    background-color: map-get($color, 'plain');
     margin: auto;
-    width: 80vw;
-    margin-top: 60px;
+    margin-top: 80px;
+    &::after{
+        transform: rotate(-45deg);
+    }
     .pic{
-        margin: 30px 0;
-        // height: 200px;
+        margin: 20px 0;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         img{
-            width: 25%;
-            
+            width: 60px;
+            margin: 0 10px;
         }
+        &:nth-of-type(1) img:nth-of-type(2){
+            transform: rotate(90deg);
+        }
+        &:nth-of-type(5) img{
+            box-sizing: border-box;
+            width: 60px;
+            padding: 5px;
+            background: url("https://cdn-icons-png.flaticon.com/512/128/128236.png") center/cover ;
+        }
+    }
+    .txt{
+        margin: 30px 0;
+        p{
+            line-height: 1.5em;
+        }
+    }
+    button{
+        display: block;
+        margin: auto;
     }
 }
 
-@media screen and (min-width: 769px) {
+.text_game{
+    box-sizing: border-box;
+    width: calc(100vw - 40px);
+    height: calc(100vh - 100px);
+    border-radius: 30px;
+    border: 2px solid map-get($color, 'main');
+    background-color: map-get($color, 'main');
+    margin: auto;
+    margin-top: 80px;
+    overflow: hidden;
+    position: relative;
+    .pull{
+        width: 100%;
+        height: 80%;
+        overflow: auto;
+        .pullbox_group{
+            box-sizing: border-box;
+            width: 100%;
+            min-width: 780px;
+            height: 100%;
+            background: url('../img/game_room_nodoor.png') no-repeat center/auto 100%;
+            position: relative;
+            .pullbox{
+                width: calc((100vh - 100px) * 0.8 * 0.125);
+                height: calc((100vh - 100px) * 0.8 * 0.125);
+                box-sizing: border-box;
+                padding: 5px;
+                background: url("https://cdn-icons-png.flaticon.com/512/128/128236.png") center/cover ;
+                border-radius: 10px;
+                position: absolute;
+                left: 50%;
+                label{
+                    width: calc((100vh - 100px) * 0.2 - 20px);
+                    input{
+                        display: none;
+                    }
+                    img{
+                        width: 100%;
+                    }
+                }
+                &:nth-child(1){
+                    top: 17%;
+                    transform: translate(-160%,0);}
+                &:nth-child(2){
+                    top: 11%;
+                    transform: translate(-65%,0);}
+                &:nth-child(3){
+                    top: 5%;
+                    transform: translate(30%,0);}
+                &:nth-child(4){
+                    top: 57%;
+                    transform: translate(-85%,0);}
+                &:nth-child(5){
+                    top: 13%;
+                    transform: translate(-318%,0);}
+                &:nth-child(6){
+                    top: 28%;
+                    transform: translate(-365%,0);}
+                &:nth-child(7){
+                    top: 43%;
+                    transform: translate(-318%,0);}
+                &:nth-child(8){
+                    top: 58%;
+                    transform: translate(-365%,0);}
+                &:nth-child(9){
+                    top: 55%;
+                    transform: translate(250%,0);}
+                &:nth-child(10){
+                    top: 65%;
+                    transform: translate(110%,0);}
+                &:nth-child(11){
+                    top: 80%;
+                    transform: translate(-200%,0);}
+                &:nth-child(12){
+                    top: 25%;
+                    transform: translate(20%,0);}
+                &:nth-child(13){
+                    top: 33%;
+                    transform: translate(-120%,0);}
+            }
+            #door{
+                height: 76%;
+                position: absolute;
+                top: 4%;
+                left: 50%;
+                transform: translate(-203%,0);
+                transition: .5s ease-in;
+                &.open{
+                    top: 14%;
+                    left: 50%;
+                    transform: translate(-280%,0);
+                }
+            }
+            #pull_arrow{
+                width: calc((100vh - 100px) * 0.1 );
+                position: absolute;
+                z-index: 2;
+                top: 42%;
+                left: 50%;
+                transform: translate(-320%,0) rotate(-120deg);
+                animation: pull_arrow .5s infinite alternate;
+            }
+        }
+    }
+    #open_trashcan{
+        display: none;
+        &:checked + #trashcan{
+            .garbage{
+                li{
+                    opacity: 1;
+                    width: 60px;
+                    margin-right: 10px;
+                }
+            }
+            .pic img{
+                &:first-child{
+                    bottom: 15px;
+                    left: 5px;
+                    transform: rotate(-30deg);
+                }
+           }
+        }
+    }
+    #trashcan{
+        // width: calc((100vw - 180px));
+        height: 80px;
+        position: absolute;
+        bottom: calc(20% + 10px);
+        left: 10px;
+        .pic {
+            display: inline-block;
+            img{
+                height: 100%;
+                position: absolute;
+                bottom: 0px;
+                left: 0;
+                transition: .5s;
+            }
+        }
+        .garbage{
+            margin-left: 80px;
+            display: inline-block;
+            display: flex;
+            flex-wrap: wrap;
+            min-width: calc(100vw - 180px);
+            justify-content: start;
+            overflow: hidden;
+            transition: .5s;
+            li{
+                opacity: 0;
+                width: 0px;
+                transition: .5s;
+                display: inline-block;
+                margin: 0px;
+                label{
+                    background: url("https://cdn-icons-png.flaticon.com/512/128/128236.png") center/cover ;
+                    width: 60px;
+                    display: inline-block;
+                }
+                input{
+                    display: none;
+                }
+                img{
+                    box-sizing: border-box;
+                    width: 100%;
+                    padding: 10px;
+                    position: relative;
+                }
+            }
+        }
+    }
+    .push{
+        width: 100%;
+        height: 20%;
+        overflow: auto;
+        background-color: map-get($color, 'plain');
+        .item_group{
+            height: 100%;
+            width: 1560px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            label{
+                width: calc((100vh - 120px) * 0.2 - 20px);
+                margin: 10px;
+                display: inline-block;
+                input{
+                    display: none;
+                }
+                img{
+                    box-sizing: border-box;
+                    width: 100%;
+                    padding: 10px;
+                    position: relative;
+                }
+                input:checked + img{
+                    background: url("../img/game_focus.png") center/cover ;
+                }
+            }
+            input{
+                margin: 10px;
+            }
+        }
+    }
+        
+}
+@keyframes pull_arrow{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: .5;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .text_ill{
+        width: calc(100vw - 60px);
+    }
+    .text_game{
+        width: calc(100vw - 60px);
+        .pull{
+            .pullbox_group{
+                .pullbox{
+                    width: calc((100vh - 80px) * 0.8 * 0.125);
+                    height: calc((100vh - 80px) * 0.8 * 0.125);
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width: 992px) {
+    .text_ill{
+        max-width: 980px;
+    }
+    .text_game{
+        max-width: 980px;
+        height: calc(100vh - 160px);
+        display: flex;
+        .pull{
+            width: 855px;
+            height: 100%;
+            overflow: hidden;
+            .pullbox_group{
+                .pullbox{
+                    width: calc((100vh - 160px) * 0.125);
+                    height: calc((100vh - 160px) * 0.125);
+                }
+                #pull_arrow{
+                    transform: translate(-350%,0) rotate(-120deg);
+                }
+            }
+        }
+        .push{
+            width: 125px;
+            height: 100%;
+            .item_group{
+                width: 100%;
+                height: 1430px;
+                flex-direction: column;
+            }
+        }
+        #trashcan{
+            bottom: 10px;
+            left: 10px;
+        }
+    }
     
-    .text_ill div .pic{
-        height: 100%;
-        float: left;
-    }
-    .text_ill div:nth-of-type(1) .pic{
-        float: right;
-    }
 }
