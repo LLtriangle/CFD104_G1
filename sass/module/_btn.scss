@@ -209,6 +209,7 @@ input:focus, button:focus{
         position: relative;
         padding: 0 20px;
         background: map-get($color , "bg_white" );
+        z-index: 0;
     }
     .link_under_line_l:hover span::after{
         width: 100%;

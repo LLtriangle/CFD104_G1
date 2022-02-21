@@ -1,0 +1,91 @@
+// css基礎、共用設定
+
+/*reset*/
+@import  "../base/reset";
+/*變數*/
+@import  "../base/var";
+/*顏色*/
+@import  "../base/color";
+/*格線*/
+@import  "../bootstrap/scss/bootstrap";
+/*其他共用*/
+@import  "../base/universal";
+/*header*/
+@import  "../layout/header";
+/*footer*/
+@import  "../layout/footer";
+
+/*module 組件*/
+ 
+
+/*按鈕*/
+@import "../module/btn";
+
+
+/*css設定部分*/
+
+/*手機板與電腦版共用部分*/
+
+.index{
+    width: 100%;
+}
+
+/*登陸section .index_landing*/
+.index_landing {
+
+    display: flex;
+    background-color: map-get($color , "sub_brown" );
+
+    /*index頁面 landing section 滿屏*/
+    .full_img{
+        width: 50vw;
+        height: 100vh;
+    }
+    /*index頁面 web_title 置中，margin-top = 50vh - (web_title.height/2) */
+    .web_title{
+        text-align: center;
+        margin-top: calc(50vh - 121px);
+    }
+
+    .title_txt{
+        h1, p{
+            padding-bottom: 15px;
+        }
+    }
+
+    .logo_img{
+        width: 100px;
+        height: 150px;
+    }
+}
+
+/*手機板部分*/
+
+@media screen and (max-width:768px) {
+    
+    /*登陸section .index_landing*/
+    .index_landing {
+        .web_title{
+            text-align: center;
+            height: 100vh;
+        }
+        .full_img{
+            display: none;
+        }
+    }
+    /*服務section .index_plans*/
+
+    .index_plans{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-around;
+        text-align: center;
+    }
+
+}
+
+/*電腦版部分*/
+
+@media screen and (min-width:769px) {
+
+}
