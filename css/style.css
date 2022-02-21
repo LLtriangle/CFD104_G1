@@ -6193,7 +6193,7 @@ input:focus, button:focus {
 
 /* 一般a連結的按鈕樣式 */
 .link_btn, .btn_sub, .btn_btn, .link_bs {
-  padding: 20px;
+  padding: 10px 20px;
   border-radius: 50px;
 }
 
@@ -6276,7 +6276,6 @@ input:focus, button:focus {
   /* 一般a連結的按鈕樣式 */
   /* input 和 button的按鈕樣式 */
   .link_btn, .btn_sub, .btn_btn {
-    padding: 10px;
     border: 1px solid;
     -webkit-transition: 0.4s ease-in;
     transition: 0.4s ease-in;
