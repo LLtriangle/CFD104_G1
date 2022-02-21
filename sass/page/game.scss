@@ -9,12 +9,12 @@
     box-sizing: border-box;
     border: 2px solid map-get($color, 'main');
     width: calc(100vw - 40px);
-    height: calc(100vh - 80px);
+    height: calc(100vh - 100px);
     padding: 30px;
     border-radius: 30px;
     background-color: map-get($color, 'plain');
     margin: auto;
-    margin-top: 60px;
+    margin-top: 80px;
     &::after{
         transform: rotate(-45deg);
     }
@@ -48,29 +48,15 @@
     }
 }
 
-/* 卷軸 */
-::-webkit-scrollbar{
-    width: 5px;
-    height: 5px;
-    background-color: map-get($color , "plain" );;
-}
-::-webkit-scrollbar-button{
-    height: 0;
-    width: 0;
-}
-::-webkit-scrollbar-thumb {
-    background-color: map-get($color , "main" );
-}
-
 .text_game{
     box-sizing: border-box;
     width: calc(100vw - 40px);
-    height: calc(100vh - 160px);
+    height: calc(100vh - 100px);
     border-radius: 30px;
     border: 2px solid map-get($color, 'main');
     background-color: map-get($color, 'main');
     margin: auto;
-    margin-top: 60px;
+    margin-top: 80px;
     overflow: hidden;
     position: relative;
     .pull{
@@ -85,8 +71,8 @@
             background: url('../img/game_room_nodoor.png') no-repeat center/auto 100%;
             position: relative;
             .pullbox{
-                width: calc((100vh - 160px) * 0.8 * 0.125);
-                height: calc((100vh - 160px) * 0.8 * 0.125);
+                width: calc((100vh - 100px) * 0.8 * 0.125);
+                height: calc((100vh - 100px) * 0.8 * 0.125);
                 box-sizing: border-box;
                 padding: 5px;
                 background: url("https://cdn-icons-png.flaticon.com/512/128/128236.png") center/cover ;
@@ -94,7 +80,7 @@
                 position: absolute;
                 left: 50%;
                 label{
-                    width: calc((100vh - 160px) * 0.2 - 20px);
+                    width: calc((100vh - 100px) * 0.2 - 20px);
                     input{
                         display: none;
                     }
@@ -156,12 +142,12 @@
                 }
             }
             #pull_arrow{
-                width: 50px;
+                width: calc((100vh - 100px) * 0.1 );
                 position: absolute;
                 z-index: 2;
                 top: 42%;
                 left: 50%;
-                transform: translate(-400%,0) rotate(-120deg);
+                transform: translate(-320%,0) rotate(-120deg);
                 animation: pull_arrow .5s infinite alternate;
             }
         }
@@ -170,9 +156,10 @@
         display: none;
         &:checked + #trashcan{
             .garbage{
-                overflow:visible;
                 li{
-                    width: calc((100vw - 180px));
+                    opacity: 1;
+                    width: 60px;
+                    margin-right: 10px;
                 }
             }
             .pic img{
@@ -185,15 +172,15 @@
         }
     }
     #trashcan{
-        width: calc((100vw - 180px));
+        // width: calc((100vw - 180px));
         height: 80px;
         position: absolute;
         bottom: calc(20% + 10px);
         left: 10px;
-        display: flex;
-        .pic img{
-            height: 100%;
-            &:first-child{
+        .pic {
+            display: inline-block;
+            img{
+                height: 100%;
                 position: absolute;
                 bottom: 0px;
                 left: 0;
@@ -201,16 +188,23 @@
             }
         }
         .garbage{
-            width: 0%;
+            margin-left: 80px;
+            display: inline-block;
             display: flex;
+            flex-wrap: wrap;
+            min-width: calc(100vw - 180px);
+            justify-content: start;
             overflow: hidden;
+            transition: .5s;
             li{
+                opacity: 0;
+                width: 0px;
                 transition: .5s;
                 display: inline-block;
+                margin: 0px;
                 label{
                     background: url("https://cdn-icons-png.flaticon.com/512/128/128236.png") center/cover ;
                     width: 60px;
-                    margin: 5px;
                     display: inline-block;
                 }
                 input{
@@ -269,7 +263,7 @@
     }
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 768px) {
     .text_ill{
         width: calc(100vw - 60px);
     }
@@ -278,8 +272,8 @@
         .pull{
             .pullbox_group{
                 .pullbox{
-                    width: calc((100vh - 60px) * 0.8 * 0.125);
-                    height: calc((100vh - 60px) * 0.8 * 0.125);
+                    width: calc((100vh - 80px) * 0.8 * 0.125);
+                    height: calc((100vh - 80px) * 0.8 * 0.125);
                 }
             }
         }
@@ -301,6 +295,9 @@
                 .pullbox{
                     width: calc((100vh - 160px) * 0.125);
                     height: calc((100vh - 160px) * 0.125);
+                }
+                #pull_arrow{
+                    transform: translate(-350%,0) rotate(-120deg);
                 }
             }
         }
