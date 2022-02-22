@@ -116,7 +116,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">收貨地址:</td>
-                        <td><select name="市" v-model="selectedCity" @change="changeCity">
+                        <td><select name="市" v-model="selectedCity"  @change="changeCity">
                             <option v-for="City in Citys">{{City}}</option>
                         </select></td>
                         <td><select name="區" v-model="selectedArea" @change="changeCity">
@@ -180,15 +180,19 @@
 
             if (visaRegEx.test(ccNum) === false) { // Visa validation
                 alert("信用卡資料有誤");
+                return;
             }
             if (mastercardRegEx.test(ccNum) === false) { // MasterCard validation
                 alert("信用卡資料有誤");
+                return;
             }
             if (amexpRegEx.test(ccNum) === false) { // Amex  validation
                 alert("信用卡資料有誤");
+                return;
             }
             if (discovRegEx.test(ccNum) === false) { // Discover validation
                 alert("信用卡資料有誤");
+                return;
             }
         }
     </script>
@@ -208,7 +212,7 @@
                 coupon: '',
                 count: 1,
                 price: 3200,
-                image: 'images/3341.gif',
+                image: 'img/SoEazy.png',
                 isDisabled: true,
                 years: [2020, 2021, 2022, 2023]
             },
