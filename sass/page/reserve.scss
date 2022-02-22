@@ -290,3 +290,24 @@ td > span:hover {
 }
 // button:hover { cursor: pointer; }
 button:focus { outline: none; }
+
+
+// 上傳照片
+.upload_pics{
+    .your_pics{
+        width: 150px;
+        label{
+            display: block;
+            #myImage{
+               max-width: 150px;
+               cursor: pointer;
+            }
+        }
+    }
+}
+
+
+// 下拉式選單樣式
+select{
+    
+}
