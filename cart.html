@@ -36,7 +36,7 @@
     <div class="header_elements">
         <div class="logo">
             <a class="logo_link" href="link_logo">
-                <img class="logo_img" src="../../img/SoEazy.png" alt="">
+                <img class="logo_img" src="img/SoEazy.png" alt="">
             </a>
         </div>
         <div class="header_function">
@@ -124,7 +124,7 @@
                         <td>數量</td>
                         <td>小計</td>
                     </tr>
-                    <tr v-show="product">
+                    <tr v-if="product">
                         <td><img :src="image"></td>
                         <td>{{price}}</td>
                         <td><button @click="countNum(-1)" :disabled="isDisabled">-</button></td>
