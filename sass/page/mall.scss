@@ -1,0 +1,53 @@
+@import  "../base/color";
+// 手機版
+.mall_btn{
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+}
+.container{
+    max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    // box-sizing: border-box;
+    .prod_item{
+        margin: 10px;
+        width: calc(50% - 20px);
+        .prod_img{
+            img{
+                width: 100%;
+            }
+        }
+    }
+}
+// 桌機版
+@media (min-width: 1200px) {
+    .mall_btn{
+        .btn_btn{
+            margin: 0 30px;
+        }
+    }
+    .container{
+        max-width: 1200px;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        // box-sizing: border-box;
+        .prod_item{
+            margin: 10px;
+            width: calc(25% - 20px);
+            .prod_img{
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }        
+    .mall_nextpagebtn{
+        display: flex;
+        justify-content: center;
+        .btn_btn.bl{
+            margin: 0 5px;
+        }
+    }
+}
