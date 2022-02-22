@@ -10,13 +10,8 @@
 @import  "bootstrap/scss/bootstrap";
 /*其他共用*/
 @import  "base/universal";
-/*header*/
-@import  "layout/header";
-/*footer*/
-@import  "layout/footer";
 
 // layout
-
 /*header*/
 @import  "layout/header";
 /*footer*/
@@ -26,3 +21,5 @@
 
 /*按鈕*/
 @import "module/btn";
+/*card*/
+@import "module/card";
