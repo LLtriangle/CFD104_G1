@@ -6017,7 +6017,7 @@ img {
 }
 
 h1 {
-  font-size: 44px;
+  font-size: 48px;
   font-weight: 700;
   line-height: 1.6em;
 }
@@ -6032,7 +6032,11 @@ h3 {
 }
 
 h4 {
-  font-size: 14px;
+  font-size: 20px;
+}
+
+h5 {
+  font-size: 16px;
 }
 
 p {
@@ -6043,6 +6047,23 @@ a {
   text-decoration: none;
   color: #000;
   font-family: 'Noto Serif TC', serif;
+  font-size: 18px;
+}
+
+span {
+  font-size: 18px;
+}
+
+ul {
+  font-size: 18px;
+}
+
+li {
+  font-size: 14px;
+}
+
+button {
+  font-size: 20px;
 }
 
 /* 取消input 和 下拉是選單預設樣式 byLL */
@@ -6403,13 +6424,8 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background-image: url("/img/footer_bg_full.png");
   background-size: cover;
   background-color: brown;
-  height: 30vh;
 }
 
 /*footer 容器*/
@@ -6418,6 +6434,14 @@ footer {
   width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  /*footer logo大小*/
+  /*footer icon大小*/
+  /*footer go top btn 大小*/
+  /*header_function menu 被點按，slogan 和 社群媒體相關資訊*/
+}
+
+.footer_elements .footer_cap {
+  width: 100vw;
 }
 
 .footer_elements .footer_info {
@@ -6426,12 +6450,10 @@ footer {
   display: flex;
 }
 
-/*footer logo大小*/
 .footer_elements .logo_img {
   width: 40px;
 }
 
-/*footer icon大小*/
 .footer_elements .footer_infos svg {
   height: 15px;
   fill: #2C2D48;
@@ -6442,7 +6464,6 @@ footer {
   fill: #2C2D48;
 }
 
-/*footer go top btn 大小*/
 .footer_elements .go_top_btn {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6467,7 +6488,6 @@ footer {
   opacity: 1;
 }
 
-/*header_function menu 被點按，slogan 和 社群媒體相關資訊*/
 .footer_elements .menu_slogan_info {
   position: absolute;
   left: 5%;
@@ -6475,7 +6495,7 @@ footer {
   top: 60%;
 }
 
-.footer_elements .slogan, .fb a, .ig a, .phone {
+.footer_elements .slogan, .footer_elements .fb a, .footer_elements .ig a, .footer_elements .phone {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6516,19 +6536,7 @@ footer {
 }
 
 /*電腦版&手機按鈕共用設定*/
-/*input預設標籤樣式清除*/
-input, button {
-  border: none;
-  -webkit-appearance: none;
-          appearance: none;
-  -moz-appearance: none;
-}
-
-/*input標籤聚焦不出現預設邊框:*/
-input:focus, button:focus {
-  outline: none;
-}
-
+/*input預設標籤樣式清除 先註解 有需要用到再打開 LL*/
 /*按鈕內容不換行，按鈕才不會被切斷*/
 .link_btn {
   white-space: nowrap;

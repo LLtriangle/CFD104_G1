@@ -4,11 +4,10 @@
 footer{
     padding-top: 60px;
     display: flex;
-    justify-content: center;
-    background-image: url("/img/footer_bg_full.png");
+    // justify-content: center;
+    // background-image: url("/img/footer_bg_full.png");
     background-size: cover;
     background-color: brown;
-    height: 30vh;
 }
 
 
@@ -17,71 +16,84 @@ footer{
     max-width: 1200px;
     width: 100%;
     box-sizing: border-box;
-}
-.footer_elements .footer_info{
-    display: flex;
-}
-/*footer logo大小*/
-.footer_elements .logo_img{
-    width: 40px;
-}
-/*footer icon大小*/
-.footer_elements .footer_infos svg{
-    height: 15px;
-    fill: map-get($color , "main" );
-}
-.footer_elements .logo_shaped{
-    height: 15px;
-    fill: map-get($color , "main" );
+
+    .footer_cap{
+        width: 100vw;
+    }
+
+    .footer_info{
+        display: flex;
+    }
+
+    /*footer logo大小*/
+    .logo_img{
+        width: 40px;
+    }
+
+    /*footer icon大小*/
+    .footer_infos svg{
+        height: 15px;
+        fill: map-get($color , "main" );
+    }
+
+    .logo_shaped{
+        height: 15px;
+        fill: map-get($color , "main" );
+    }
+
+    /*footer go top btn 大小*/
+    .go_top_btn{
+        display: flex;
+        justify-content: center;
+        padding-bottom: 150px;
+    }
+
+    .link_ro{
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+    }
+
+    .link_ro.bl:hover::before{
+        background-color: map-get($btn_color, "blue" );
+        border-color: map-get($btn_color, "blue" );
+        top: -120%;
+        left: -120%;
+        opacity: 1;
+    }
+
+    /*header_function menu 被點按，slogan 和 社群媒體相關資訊*/
+    .menu_slogan_info{
+        position: absolute;
+        left: 5%;
+        width: 20vw;
+        top: 60%;
+    }
+
+    .slogan, .fb a, .ig a, .phone{
+        display: flex;
+        padding-top: 10px;
+        justify-content: flex-start;
+    }
+
+    .slogan{
+        font-size: 16px;
+    }
+
+    .fb p, .ig p, .phone p{
+        padding-left: 5px;
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        font-size: 700;
+    }
+
+    .footer_info .col-4{
+            padding-left: 40px;
+            box-sizing: border-box;
+    }
 }
 
-/*footer go top btn 大小*/
-.footer_elements .go_top_btn{
-    display: flex;
-    justify-content: center;
-    padding-bottom: 150px;
-}
-.footer_elements .link_ro{
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-}
-
-.footer_elements .link_ro.bl:hover::before{
-    background-color: map-get($btn_color, "blue" );
-    border-color: map-get($btn_color, "blue" );
-    top: -120%;
-    left: -120%;
-    opacity: 1;
-}
-
-/*header_function menu 被點按，slogan 和 社群媒體相關資訊*/
-.footer_elements .menu_slogan_info{
-    position: absolute;
-    left: 5%;
-    width: 20vw;
-    top: 60%;
-}
-.footer_elements .slogan, .fb a, .ig a, .phone{
-    display: flex;
-    padding-top: 10px;
-    justify-content: flex-start;
-}
-.footer_elements .slogan{
-    font-size: 16px;
-}
-.footer_elements .fb p, .footer_elements .ig p, .footer_elements .phone p{
-    padding-left: 5px;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    font-size: 700;
-}
-
-.footer_elements .footer_info .col-4{
-        padding-left: 40px;
-        box-sizing: border-box;
-}
 
 /*手機板部分*/
 @media screen and (max-width:768px) {
