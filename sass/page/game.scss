@@ -1,22 +1,87 @@
 @import  "../base/color";
 .text_ill{
-    display: none;
-    position: absolute;
-    z-index: 5;
-    left: 50%;
-    top: -1px;
-    transform: translate(-50%);
-    box-sizing: border-box;
-    border: 2px solid map-get($color, 'main');
-    width: calc(100vw - 40px);
-    height: calc(100vh - 100px);
-    padding: 30px;
-    border-radius: 30px;
-    background-color: map-get($color, 'plain');
-    margin: auto;
-    margin-top: 80px;
-    &::after{
-        transform: rotate(-45deg);
+    // display: none;
+    .welcome{
+        max-width: 980px;
+        box-sizing: border-box;
+        width: calc(100vw - 40px);
+        height: calc(100vh - 100px);
+        border-radius: 30px;
+        border: 2px solid map-get($color, 'main');
+        background-color: map-get($color, 'plain');
+        margin: auto;
+        margin-top: 80px;
+
+        position: absolute;
+        z-index: 10;
+        left: 50%;
+        top: -1px;
+        transform: translate(-50%);
+        padding: 30px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        h2{
+            display: flex;
+            position: relative;
+            &::before,
+            &::after{
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                width: 50%;
+                height: 3px;
+                border-radius: 5px;
+                transform: translate(-150%,-50%);
+                background-color: map-get($color, 'cover');
+            }
+            &::after{
+                left: auto;
+                right: 0;
+                transform: translate(150%,-50%);
+            }
+        }
+    }
+    .intr{
+        max-width: 980px;
+        box-sizing: border-box;
+        width: calc(100vw - 40px);
+        height: calc(100vh - 100px);
+        border-radius: 30px;
+        border: 2px solid map-get($color, 'main');
+        background-color: #f3f3eddd;
+        margin: auto;
+        margin-top: 80px;
+
+        position: absolute;
+        z-index: 5;
+        left: 50%;
+        top: -1px;
+        transform: translate(-50%);
+        padding: 30px;
+        text-align: center;
+        overflow: hidden;
+        .pic{
+            &:nth-of-type(1) img:nth-of-type(2){
+                transform: rotate(90deg);
+            }
+            &:nth-of-type(4) img{
+                box-sizing: border-box;
+                width: 60px;
+                padding: 5px;
+                background: url("../img/game_pullbox.png") center/cover ;
+            }
+        }
+        button{
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            transform: translate(-50%);
+        }
     }
     .pic{
         margin: 20px 0;
@@ -26,25 +91,12 @@
             width: 60px;
             margin: 0 10px;
         }
-        &:nth-of-type(1) img:nth-of-type(2){
-            transform: rotate(90deg);
-        }
-        &:nth-of-type(5) img{
-            box-sizing: border-box;
-            width: 60px;
-            padding: 5px;
-            background: url("https://cdn-icons-png.flaticon.com/512/128/128236.png") center/cover ;
-        }
     }
     .txt{
         margin: 30px 0;
         p{
             line-height: 1.5em;
         }
-    }
-    button{
-        display: block;
-        margin: auto;
     }
 }
 
@@ -66,7 +118,7 @@
         .pullbox_group{
             box-sizing: border-box;
             width: 100%;
-            min-width: 780px;
+            min-width: calc((100vh - 100px) * 0.8 * (170 / 108));
             height: 100%;
             background: url('../img/game_room_nodoor.png') no-repeat center/auto 100%;
             position: relative;
@@ -75,7 +127,7 @@
                 height: calc((100vh - 100px) * 0.8 * 0.125);
                 box-sizing: border-box;
                 padding: 5px;
-                background: url("https://cdn-icons-png.flaticon.com/512/128/128236.png") center/cover ;
+                background: url("../img/game_pullbox.png") center/cover ;
                 border-radius: 10px;
                 position: absolute;
                 left: 50%;
@@ -119,8 +171,8 @@
                     top: 65%;
                     transform: translate(110%,0);}
                 &:nth-child(11){
-                    top: 80%;
-                    transform: translate(-200%,0);}
+                    top: 70%;
+                    transform: translate(-250%,0);}
                 &:nth-child(12){
                     top: 25%;
                     transform: translate(20%,0);}
@@ -156,6 +208,7 @@
         display: none;
         &:checked + #trashcan{
             .garbage{
+                // width: 0;
                 li{
                     opacity: 1;
                     width: 60px;
@@ -192,7 +245,7 @@
             display: inline-block;
             display: flex;
             flex-wrap: wrap;
-            min-width: calc(100vw - 180px);
+            max-width: calc(100vw - 180px);
             justify-content: start;
             overflow: hidden;
             transition: .5s;
@@ -203,7 +256,7 @@
                 display: inline-block;
                 margin: 0px;
                 label{
-                    background: url("https://cdn-icons-png.flaticon.com/512/128/128236.png") center/cover ;
+                    background: url("../img/game_pullbox.png") center/cover ;
                     width: 60px;
                     display: inline-block;
                 }
@@ -224,12 +277,14 @@
         height: 20%;
         overflow: auto;
         background-color: map-get($color, 'plain');
+        // position: relative;
         .item_group{
             height: 100%;
-            width: 1560px;
-            box-sizing: border-box;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            justify-content: start;
+            align-content: start;
+            flex-wrap: wrap;
             label{
                 width: calc((100vh - 120px) * 0.2 - 20px);
                 margin: 10px;
@@ -248,12 +303,182 @@
                 }
             }
             input{
-                margin: 10px;
+                position: absolute;
+                bottom: 5vh;
+                left: 50%;
+                transform: translate(-50%,0);
+                &:disabled{
+                    display: none;
+                }
             }
         }
     }
-        
 }
+.text_result{
+    display: none;
+    max-width: 980px;
+    box-sizing: border-box;
+    width: calc(100vw - 40px);
+    height: calc(100vh - 100px);
+    border-radius: 30px;
+    border: 2px solid map-get($color, 'main');
+    background-color: #2C2D48aa;
+    margin: auto;
+    margin-top: 80px;
+
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: -1px;
+    transform: translate(-50%);
+    overflow: hidden;
+    .typewriter{
+        width: 120%;
+        position: absolute;
+        z-index: 2;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    .paper{
+        margin:0 13.5%;
+        width: 73%;
+        height: 100%;
+        overflow: scroll;
+        h2{
+            text-align: center;
+            padding: 30px;
+            margin-top: 25%;
+            background-color: map-get($color, 'plain');
+            position: relative;
+            &::before,
+            &::after{
+                content: '';
+                width: 70%;
+                height: 3px;
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                border-radius: 3px;
+                transform: translate(-50%);
+                background-color: map-get($color, 'cover');
+            }
+            &::after{
+                width: 50%;
+                bottom: -20px;
+            }
+        }
+        h3{
+            text-align: center;
+            padding: 30px;
+        }
+        .result{
+            >h3{
+                font-weight: 700;
+                margin-top: 30px;
+                border-top: 2px dashed map-get($color, 'main');
+            }
+            padding: 5px 20px;
+            background-color: map-get($color, 'plain');
+            .evaluate{
+                margin: 30px 0;
+                div{
+                    &:first-child{
+                        text-align: center;
+                    }
+                }
+                .pic{
+                    width: 200px;
+                    margin: auto;
+                    img{
+                        width: 100%;
+                    }
+                }
+                .txt{
+                    p{
+                        line-height: 1.5em;
+                    }
+                }
+            }
+            .push_product,
+            .push_service{
+                max-width: 500px;
+                margin: auto;
+                border: 2px solid map-get($color, 'main');
+                border-radius: 10px;
+                background-color: map-get($color, 'bg_white');
+                position: relative;
+                h3{
+                    padding: 15px 0 10px;
+                }
+                >h3{
+                    padding: 20px;
+                    color: #fff;
+                    position: absolute;
+                    top: 0;
+                    left: -5px;
+                    z-index: 1;
+                    &::after{
+                        content: '';
+                        width: 100%;
+                        height: 50px;
+                        position: absolute;
+                        z-index: -1;
+                        top: 50%;
+                        left: 0;
+                        border-radius: 0 30px 30px 0;
+                        transform: translate(0 ,-50%);
+                        background-color: map-get($color, 'main');
+                    }
+                }
+                img{
+                    width: 100%;
+                    border-radius: 10px 10px 0 0;
+                }
+                .txt{
+                    padding: 0 20px 20px;
+                    p{
+                        text-align: center;
+                        line-height: 1.5em;
+                    }
+                    a{
+                        display: inline-block;
+                        text-align: center;
+                    }
+                }
+            }
+            .push_products{
+                overflow: scroll;
+                margin: 0 -20px;
+                >div{
+                    display: flex;
+                    width: 660px;
+                    margin: auto;
+                    .push_product{
+                        margin: 0 15px 200px;
+                        width: 200px;
+                        .txt{
+                            padding: 20px;
+                            line-height: 1.5em;
+                            height: 180px;
+                            display: flex;
+                            justify-content: space-between;
+                            flex-direction: column;
+                            p{
+                                text-align: center;
+                            }
+                            a{
+                                display: inline-block;
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @keyframes pull_arrow{
     0%{
         opacity: 1;
@@ -278,10 +503,21 @@
             }
         }
     }
+    .text_result{
+        .typewriter{
+            top: 60%;
+        }
+    }
 }
 @media screen and (min-width: 992px) {
     .text_ill{
         max-width: 980px;
+        .welcome{
+            height: calc(100vh - 160px);
+        }
+        .intr{
+            height: calc(100vh - 160px);
+        }
     }
     .text_game{
         max-width: 980px;
@@ -293,8 +529,8 @@
             overflow: hidden;
             .pullbox_group{
                 .pullbox{
-                    width: calc((100vh - 160px) * 0.125);
-                    height: calc((100vh - 160px) * 0.125);
+                    width: calc((100vh - 150px) * 0.125);
+                    height: calc((100vh - 150px) * 0.125);
                 }
                 #pull_arrow{
                     transform: translate(-350%,0) rotate(-120deg);
@@ -306,8 +542,13 @@
             height: 100%;
             .item_group{
                 width: 100%;
-                height: 1430px;
-                flex-direction: column;
+                flex-direction: row;
+                input{
+                    position: absolute;
+                    bottom: 80px;
+                    right: 120px;
+                    left: auto;
+                }
             }
         }
         #trashcan{
@@ -315,5 +556,24 @@
             left: 10px;
         }
     }
-    
+    .text_result{
+        height: calc(100vh - 160px);
+        .paper{
+            .result{
+                .evaluate{
+                    >div:last-child{
+                        display: flex;
+                        align-items: center;
+                        .pic{
+                            // display: inline-block;
+                            width: 300px;
+                        }
+                        .txt{
+                            width: calc(100% - 300px);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
