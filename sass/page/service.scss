@@ -1,0 +1,4 @@
+@import  "../base/color";
+.serve_qa{
+    background-color: map-get($color , "plain");
+}
