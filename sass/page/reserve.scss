@@ -141,7 +141,7 @@ input[type=text],input[type=email]{
     border-radius: 10px;
     background-color: map-get($color , "plain" );
     &:focus{
-        box-shadow: -1px -1px 3px 1px map-get($btn_color, 'brown');
+        box-shadow: -1px -1px 3px map-get($color, 'main');
     }
 }
 
@@ -309,5 +309,25 @@ button:focus { outline: none; }
 
 // 下拉式選單樣式
 select{
-    
+    border: none;
+    box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
+    border-radius: 10px;
+    padding: 5px;
+    &:focus{
+        outline: none;
+        box-shadow: 1px 1px 5px map-get($color, 'main');
+    }
+}
+
+.choose_add select{
+    margin-right: 10px;
+}
+
+textarea {
+    outline: none;
+    border: none;
+    box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
+    &:focus{
+        box-shadow: 1px 1px 5px map-get($color, 'main');
+    }
 }

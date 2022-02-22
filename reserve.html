@@ -161,7 +161,7 @@
                         <!-- 整理師介紹 -->
                         <div class="emp_info" v-show="emp_info">
                             <img src="">
-                            <p>{{selectedEmp}}</p>
+                            <!-- <p>{{selectedEmp}}</p> -->
                         </div>
                     </div>
 
@@ -189,7 +189,7 @@
                         <input type="email" v-model="email" placeholder="請輸入email">
                     </div>
                     <!-- 地址 -->
-                    <div class="form_item">
+                    <div class="form_item choose_add">
                         <h3>地址</h3>
                         <select name="市" v-model="selectedCity" @change="changeCity">
                             <option value="" disabled>選擇縣市</option>
@@ -200,7 +200,6 @@
                             <option v-for="Area in Areas">{{Area}}</option>
                         </select>
                         <input type="text" placeholder="請輸入地址">
-                        <p id="add"></p>
                     </div>
                     <!-- 需求 -->
                     <div class="form_item">
