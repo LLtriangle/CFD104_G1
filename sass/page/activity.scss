@@ -51,12 +51,29 @@
     .acti_columns{
         .col{
             display: flex;
+            justify-content: space-between;
             .img{
                 width: 550px;
                 img{
                     width: 100%;
                 }
             }
+            .txt{
+                width: 45%;
+                display: flex;
+                flex-direction: column;
+                
+                position: relative;
+                a{
+                    position: absolute;
+                    bottom: 30px;
+                    right: 0;
+                    
+                }
+            }
+        }
+        .col:nth-child(even){
+            flex-direction: row-reverse;
         }
     }
 }
