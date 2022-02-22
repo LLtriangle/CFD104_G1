@@ -1,0 +1,108 @@
+section{
+    margin: 60px auto;
+}
+.about_belief{
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    &::after{
+            content: '';
+            // border-style: solid;
+            // border-width: 500px 0 0 150vw;
+            // border-color:transparent transparent transparent #d6aa81;
+            // position: absolute;
+            // bottom: 0;
+            // left: 0;
+            // z-index: -1;
+        }
+    .big_img{
+        margin: 0px 50px;
+        margin-bottom: 20px;
+    }
+    .txt{
+        margin: 20px 30px;
+        line-height: 2;
+        display: block;
+        width: 100vw;
+        position: relative;
+        h2{
+            margin-bottom: 10px;
+        }
+        .small_img{
+            position:absolute;
+            right: 0;
+            bottom: 0;display: flex;
+        }
+    }
+}
+
+
+
+
+.about_team{
+    margin: 150px 10px;
+    display: flex;
+    .circle_big_img{
+        width: 60%;
+        position: relative;
+        &::after{
+            content: '';
+            background-color: #fff;
+            width: 600px;
+            height: 600px;
+            border: #d6aa81 100px solid;
+            border-radius: 50%;
+            position: absolute;
+            top: -20px;
+            left: -320px;
+            z-index: -1;
+        }
+        .change_img:nth-of-type(3){
+            margin-top: 400px;
+        }
+        .change_img:nth-of-type(even){
+            position: absolute;
+            right: 25%;
+        }
+        .change_img:nth-of-type(odd){
+            margin-left: -50px;
+        }
+    }
+
+    .introduce{
+        width: 40%;
+        margin-top: 50px;
+        h3{
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #d6aa81;
+        }
+        p{
+            line-height: 2;
+        }
+        .circle_small_card{
+            display: flex;
+            margin-top: 220px;
+            .introduce_card{
+                margin-right: 20px;
+            }
+        }
+    }
+}
+
+
+
+
+
+.about_contact{
+    margin-top: 50px;
+    display: flex;
+    margin: 220px 10px 50px 10px;
+    .con_left{
+        width: 50%;
+    }
+    .con_right{
+        width: 50%;
+    }
+}
+
