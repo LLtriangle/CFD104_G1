@@ -81,7 +81,7 @@ input[type = submit]{
 
 /* banner */
 .uni_banner{
-	margin-top: 60px;
+	margin-top: 90px;
 	display: flex;
 	justify-content: start;
 	flex-wrap: wrap;
@@ -129,6 +129,7 @@ input[type = submit]{
 }
 .uni_banner div:last-child .txt{
 	margin-left: 20px;
+	color: map-get($color , "sub_blue");
 }
 @media screen and (min-width:768px) {
 	.uni_banner{
