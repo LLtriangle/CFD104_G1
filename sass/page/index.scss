@@ -32,31 +32,110 @@
 
 /*登陸section .index_landing*/
 .index_landing {
-
     display: flex;
-    background-color: map-get($color , "sub_brown" );
+    background-color: map-get($color , "cover" );
 
     /*index頁面 landing section 滿屏*/
     .full_img{
         width: 50vw;
         height: 100vh;
     }
-    /*index頁面 web_title 置中，margin-top = 50vh - (web_title.height/2) */
+    /*index頁面 web_title 置中，padding-top = 50vh - (web_title.height/2) */
     .web_title{
         text-align: center;
-        margin-top: calc(50vh - 121px);
+        padding-top: calc(50vh - 121px);
+        box-sizing: border-box;
     }
 
     .title_txt{
-        h1, p{
+        p{
             padding-bottom: 15px;
         }
     }
 
     .logo_img{
-        width: 100px;
-        height: 150px;
+        width: 180px;
+        height: 200px;
     }
+}
+
+/*登陸section .index_slogan*/
+.index_slogan{
+    height: 120vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .slogan{
+        max-width: 1200px;
+    }
+}
+
+/*服務section .index_plans*/
+.index_plans{
+    display: flex;
+    height: 120vh;
+
+    h2{
+        padding-bottom: 20px;
+    }
+    
+    .plans_link, .plans_view{
+        margin: auto;
+
+        li{
+            padding: 20px;
+
+            span{
+                font-size: $font_size_h3;
+            }
+        }
+    }
+    
+    .plans_img{
+        width: 50vw;
+        height: 80vh;
+    }
+}
+
+/*煩惱section .index_needs*/
+.index_needs{
+
+    h2{
+        text-align: center;
+        padding-bottom: 20px;
+    }
+
+    .bubble {
+        height: 250px;
+        width: 40%;
+        min-width: 200px;
+        background: map-get($color , "plain" );
+        display: block;
+        border-radius: 20px;
+        margin-top: 50px;
+        font-size: 24px;
+        text-align: center;
+    }
+    
+    .pointer {
+        height: 40px;
+        width: 40px;
+        background: map-get($color , "plain" );
+        transform: rotate(45deg);
+        border-radius: 12px;
+        margin: 0 auto;
+        margin-top: -22px;
+        position: relative;
+        // left: calc(0.5vw - 50px);
+    }
+    
+}
+
+/*預約流程section .index_progress*/
+.index_progress{
+    height: 120vh;
 }
 
 /*手機板部分*/
@@ -65,27 +144,87 @@
     
     /*登陸section .index_landing*/
     .index_landing {
+        
         .web_title{
             text-align: center;
             height: 100vh;
         }
+
         .full_img{
             display: none;
         }
     }
-    /*服務section .index_plans*/
 
-    .index_plans{
+    /*登陸section .index_slogan*/
+    .index_slogan{
+        height: 120vh;
+        position: relative;
         display: flex;
+        flex-direction: column;
+
+        .slogan{
+            max-width: 1200px;
+            
+            h2, p{
+                padding: 20px;
+            }
+        }   
+    }
+    /*服務section .index_plans*/
+    .index_plans{
         flex-direction: column-reverse;
         justify-content: space-around;
-        text-align: center;
-    }
 
+        h2{
+            padding-left: 20px;
+        }
+
+        .plans_img{
+            width: 100vw;
+            height: 20vh;
+        }
+
+        li{
+            text-align: right;
+
+            svg{
+                width: 20px;
+                fill: map-get($color , "main" );
+            }
+        }
+    }
 }
+    
+    
 
 /*電腦版部分*/
 
 @media screen and (min-width:769px) {
+    /*登陸section .index_slogan*/
+    .index_slogan{
+
+        .slogan{
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            margin: auto;
+        }
+    }
+
+    /*服務section .index_plans*/
+    .index_plans{
+        
+        .plans_link{
+            padding-left: 10vw;
+            box-sizing: border-box;
+            margin: auto;
+        }
+        
+        li{
+            svg{
+                display: none;
+            }
+        }
+    }
 
 }
