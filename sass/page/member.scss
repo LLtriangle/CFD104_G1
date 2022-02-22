@@ -1,0 +1,196 @@
+@import  "../base/color";
+@import  "../base/reset";
+@import  "../base/universal";
+@import  "../base/var";
+
+input{
+    font-size: 14px;
+}
+.title_color{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 30px;
+    border-radius:19px 19px 0px 0px ;
+    background-color: #d6aa81;
+    border: #d6aa81 1px solid;
+    // color: opacity($color: #000000);
+}
+@media  screen and (max-width:768px){
+    main{
+        margin-top: 80px;
+        .data_column{
+            margin: auto;
+            width: 95%;
+            background-color: #f5dfb0;
+            border-radius:20px;
+            display: flex;
+            
+            .mem_icon{
+                // margin: auto;
+                text-align: center;
+                margin: 20px 5px;
+                width: 80px;
+                img{
+                    width: 100%;
+                    border-radius: 50%;
+                }
+            }
+            .id{
+                text-align: center;
+                line-height: 2;
+                margin: auto;
+            }
+            .data_button{
+                display: flex;
+                text-align: center;
+                flex-wrap: wrap;
+                line-height: 2;
+                a{
+                    display: block;
+                    margin: auto;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    margin: auto 10px;
+                }
+            }
+        }
+        .data_con{
+            width: 95%;
+            margin: 30px auto;
+            background-color: #f3f3ed;
+            border: #d6aa81 2px solid;
+            border-radius: 20px;
+            flex-direction: row;
+            .data_mem{
+                .icon_edit{
+                    .mem_icon{
+                        margin:10px auto;
+
+                        width: 200px;
+                        img{
+                            width: 100%;
+                            border-radius: 50%;
+                        }
+                    }
+                    button{
+                        display: block;
+                        // height: 50px;
+                        margin: auto;
+                    }
+                }
+                .mem_txt{
+                    width: 80%;
+                    border: #d6aa81 2px solid;
+                    background: #fff;
+                    border-radius: 20px;
+                    margin: 20px auto;
+                    line-height: 3;
+                    box-sizing: border-box;
+                    padding-left: 20px;
+                    padding-bottom: 60px;
+                    position: relative;
+                    button{
+                        position: absolute;
+                        right: 10px;
+                        bottom: 10px;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+
+
+
+@media  screen and (min-width:768px){
+    main{
+        display: flex;
+        height: 100%;
+        .data_column{
+            width: 15%;
+            height: 100vh;
+            // margin-right: 50px;
+            // margin-top: 100px;
+            display: block;
+            background-color: #f5dfb0;
+            border-top-right-radius:80px;
+            .mem_icon{
+                // margin: auto;
+                text-align: center;
+                margin: 20px 0px;
+                margin-top: 100px;
+                img{
+                    border-radius: 50%;
+                }
+            }
+            .id{
+                text-align: center;
+                line-height: 2;
+            }
+            .data_button{
+                // flex-direction: column;
+                text-align: center;
+                line-height: 2;
+                a{
+                    display: block;
+                    margin: auto;
+                    font-size: 16px;
+                    line-height: 1.5;
+                }
+            }
+        }
+        
+        .data_con{
+            width: 70%;
+            height: 80%;
+            margin: auto;
+            background-color: #f3f3ed;
+            border: #d6aa81 2px solid;
+            border-radius: 20px;
+            flex-direction: row;
+            .data_mem{
+                display: flex;
+                // justify-content: space-between;
+                .icon_edit{
+                    .mem_icon{
+                        margin: 20px 50px;
+                        width: 200px;
+                        img{
+                            width: 100%;
+                            border-radius: 50%;
+                        }
+                    }
+                    button{
+                        display: block;
+                        // height: 50px;
+                        margin: auto;
+                    }
+                }
+                .mem_txt{
+                    width: 60%;
+                    border: #d6aa81 2px solid;
+                    background: #fff;
+                    border-radius: 20px;
+                    margin: 20px 50px;
+                    line-height: 3;
+                    box-sizing: border-box;
+                    padding-left: 20px;
+                    padding-bottom: 60px;
+                    position: relative;
+                    button{
+                        position: absolute;
+                        right: 10px;
+                        bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+    
+
+}
+
+

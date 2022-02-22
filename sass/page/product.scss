@@ -1,0 +1,26 @@
+@import  "../base/color";
+
+.btn_btn_box{
+    margin: 15px;
+    max-width: 1200px;
+}
+
+.container{
+    // max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    // box-sizing: border-box;
+.prod_item{
+    margin: 10px;
+    width: calc(50% - 20px);
+    .prod_img{
+        img{
+            width: 100%;
+        }
+    }
+}
+}
+
+// @media (min-width: 768px) {
+// }

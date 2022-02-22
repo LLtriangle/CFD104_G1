@@ -13,41 +13,54 @@
     <main>
         <!-- 測驗說明 -->
         <section class="text_ill">
-            <h2>測驗說明</h2>
-            <div class="txt">
-                <p>不同人格，收納習慣也大不同</p>
-                <p>你是收納苦手嗎？</p>
-                <p>來找出你的收納昆蟲人格吧！</p>
+            <div class="welcome">
+                <h2>測驗說明</h2>
+                <div class="txt">
+                    <p>不同人格，收納習慣也大不同</p>
+                    <p>你是收納苦手嗎？</p>
+                    <p>來找出你的收納昆蟲人格吧！</p>
+                    <div class="pic">
+                        <img src="img/game_butterfly.png" alt="">
+                        <img src="img/game_ladybug.png" alt="">
+                        <img src="img/game_bee.png" alt="">
+                        <img src="img/game_cricket.png" alt="">
+                    </div>
+                </div>
+                <button class="btn_btn rd">下一步</button>
             </div>
-            <div class="pic">
-                <img src="https://cdn-icons-png.flaticon.com/512/57/57213.png">
-                <img src="https://cdn-icons-png.flaticon.com/128/64/64797.png">
-                <img src="https://cdn-icons-png.flaticon.com/512/128/128236.png">
+            
+            <div class="intr">
+                <h2>遊玩方法</h2>
+                <div class="pic">
+                    <img src="https://cdn-icons-png.flaticon.com/512/57/57213.png">
+                    <img src="https://cdn-icons-png.flaticon.com/128/64/64797.png">
+                    <img src="https://cdn-icons-png.flaticon.com/512/128/128236.png">
+                </div>
+                <div class="pic">
+                    <img src="https://cdn-icons-png.flaticon.com/128/64/64791.png">
+                    <img src="https://cdn-icons-png.flaticon.com/512/35/35444.png">
+                </div>
+                <div class="txt">
+                    <p>點選物件放置在框線中，或丟棄於垃圾桶。</p>
+                </div>
+                <div class="pic">
+                    <img src="https://cdn-icons-png.flaticon.com/512/57/57213.png">
+                </div>
+                <div class="txt">
+                    <p>點選物件放置在框線中，或丟棄於垃圾桶。</p>
+                </div>
+                <button class="btn_btn rd">開始測驗</button>
             </div>
-            <div class="pic">
-                <img src="https://cdn-icons-png.flaticon.com/128/64/64791.png">
-                <img src="https://cdn-icons-png.flaticon.com/512/35/35444.png">
-            </div>
-            <div class="txt">
-                <p>點選物件放置在框線中，或丟棄於垃圾桶。</p>
-            </div>
-            <div class="pic">
-                <img src="https://cdn-icons-png.flaticon.com/512/57/57213.png">
-            </div>
-            <div class="txt">
-                <p>點選物件放置在框線中，或丟棄於垃圾桶。</p>
-            </div>
-            <button class="btn_btn bl" id="gamestart">開始測驗</button>
         </section>
 
         <!-- 關閉說明視窗 -->
         <script>
-            function switch_light(){ //燈箱開關
-                $('.text_ill').css('display','none');
+            function switch_light(e){ //燈箱開關
+                $(this).parent().css('display','none');
             };
-          
+
             $(document).ready(function(){
-                $('#gamestart').click(switch_light);
+                $('.text_ill button').click(switch_light);
             });
         </script>
 
@@ -115,10 +128,10 @@
                         <input type="radio" name="item">
                         <img src="https://cdn-icons-png.flaticon.com/128/53/53616.png" alt="">
                     </label>
-                    <label>
+                    <!-- <label>
                         <input type="radio" name="item">
                         <img src="https://cdn-icons-png.flaticon.com/512/57/57392.png" alt="">
-                    </label>
+                    </label> -->
                     <label>
                         <input type="radio" name="item">
                         <img src="https://cdn-icons-png.flaticon.com/128/57/57363.png" alt="">
@@ -131,10 +144,11 @@
                         <input type="radio" name="item">
                         <img src="https://cdn-icons-png.flaticon.com/512/288/288686.png" alt="">
                     </label>
-                    <input class="btn_sub bl" type="button" value="完成放置" disabled>
+                    <input id="finish" class="btn_sub rd" type="button" value="完成放置" disabled>
                 </div>
             </div>
         </section>
+        
         <!-- 遊戲拖曳 -->
         <!-- 動態寬度 -->
         <script>
@@ -145,7 +159,7 @@
                     $('#pull_arrow').css('display','none');
                 });
 
-                // 放置
+                // 點擊放置
                 $('.pullbox_group .pullbox').on('click',function(){
                     if(!($(this).html()) && $('.item_group input:checked').length) {
                         // 條件:位置為空，且有選擇物品
@@ -157,48 +171,149 @@
                     
                     // 送出按鈕disabled切換
                     if($('.item_group label').length==0) {
-                        $('.item_group > input').attr('disabled',false);
-                        $('.item_group > input').addClass('rd');
-                        $('.item_group > input').removeClass('bl');
+                        $('#finish').attr('disabled',false);
                     }else if($('.item_group label').length>0){
-                        $('.item_group > input').attr('disabled',true);
-                        $('.item_group > input').addClass('bl');
-                        $('.item_group > input').removeClass('rd');
+                        $('#finish').attr('disabled',true);
                     };
                 });
-                // 丟棄
+
+                // $('.item_group input').on('change',function(){
+                //     // 條件:有選擇物品
+                //     if($('.item_group input:checked').length >= 0){
+                //         $('#open_trashcan').attr('disabled',true);
+                //     }else{
+                //         $('#open_trashcan').attr('disabled',false);
+                //     };
+                // });
+
+                // 點擊垃圾桶
                 $('#trashcan').on('click',function(){
-                    if($('.item_group input:checked').length >= 0) {
+                    if($('.item_group input:checked').length > 0) {
                         // 條件:有選擇物品，丟進垃圾桶
                         $('#trashcan ul').append(
                             $('<li/>').append($('.item_group input:checked').parent())
                         );
-                        if($('#open_trashcan').prop('checked')){
-                            $('#open_trashcan').attr('checked',false);
-                        }else if(!$('#open_trashcan').prop('checked')){
-                            $('#open_trashcan').attr('checked',true);
-                        };
+                    }else{
+                        $('#open_trashcan').attr('disabled',false);
                     };
                     // 送出按鈕disabled切換
                     if($('.item_group label').length==0) {
-                        $('.item_group > input').attr('disabled',false);
-                        $('.item_group > input').addClass('rd');
-                        $('.item_group > input').removeClass('bl');
+                        $('#finish').attr('disabled',false);
+                        $('#finish').addClass('rd');
+                        $('#finish').removeClass('bl');
                     }else if($('.item_group label').length>0){
-                        $('.item_group > input').attr('disabled',true);
-                        $('.item_group > input').addClass('bl');
-                        $('.item_group > input').removeClass('rd');
+                        $('#finish').attr('disabled',true);
+                        $('#finish').addClass('bl');
+                        $('#finish').removeClass('rd');
                     };
-                    // 撿回垃圾
-                    $('.garbage li').on('click',function(){
-                        $(this).children().prependTo($('.item_group'));
-                    });
+                });
+                // 點擊垃圾
+                $('.garbage li').on('click',function(){
+                    $(this).children().prependTo($('.item_group'));
+                    $(this).remove();
                 });
             });
         </script>
+        
+        <!-- 跳出測驗結果 -->
+        <script>
+            function open_result(e){ //燈箱開關
+                $(".text_result").css('display','block');
+            };
+
+            $(document).ready(function(){
+                $('#finish').click(open_result);
+            });
+        </script>
+        
         <!-- 測驗結果 -->
         <section class="text_result">
-            
+            <img class="typewriter" src="img/game_typewriter-01.png" alt="打字機">
+            <div class="paper">
+                <h2>測驗結果</h2>
+                <div class="result">
+                    <div class="evaluate bee">
+                        <div class="txt">
+                            <h3>你是蜜蜂人！</h3>
+                            <p>你偏好讓所有事物在眼前自成秩序，並深信它們都能物盡其用。</p>
+                            <p>你比較喜歡：「豐富視覺＋詳盡收納」</p>
+
+                        </div>
+                        <div>
+                            <div class="pic">
+                                <img src="img/game_bee.png">
+                            </div>
+                            <div class="txt">
+                                <h3>｜人格魅力｜</h3>
+                                <p>你做事有條理，也有強盛的行動力，容易對手作DIY有熱情，生活過得充實精彩！</p>
+                                <h3>｜收納難題｜</h3>
+                                <p>「我的興趣很多，導致東西也很多！」
+                                    忙碌的小蜜蜂被嗜好圍繞雖然幸福，但是空間也因此被各種器材用品塞爆。
+                                    又因為常常想著「以後可能會用到啊！」結果割捨不下任何東西，只好通通堆在自己身邊。
+                                    很想要找出完美的收納方式，但可能會先被雜物淹沒……</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>推薦服務</h3>
+                    <div class="push_service">
+                        <h3>到府一對一教學</h3>
+                        <img src="https://picsum.photos/300/200/?random=0">
+                        <div class="txt">
+                            <h3>｜適合對象｜</h3>
+                            <p>#平日愛整理收納，想了解更多整理達人收納術。</p>
+                            <p>#希望有整理師現場帶領和調整一個適合自己的整理方式。</p>
+                            <p>#協助與室內設計師溝通適合的收納空間規劃。</p>
+                            <h3>｜方案特色｜</h3>
+                            <p>以一個範圍教學完流程後，可嘗試自行完成其他區域。</p>
+                            <br>
+                            <p>
+                                <a href="service.html" class="link_btn rd">馬上預約</a>
+                            </p>
+                        </div>
+                    </div>
+                    <h3>推薦精品</h3>
+                    <div class="push_products">
+                        <div>
+                            <div class="push_product">
+                                <img src="https://www.shuter.com.tw/upload/2021_06_1615/20210616112309h9nbkd9CJ9.jpg">
+                                <div class="txt">
+                                    <p>黑色不鏽鋼落地廚房雙層瀝水碗盤可拆洗置物收納架</p>
+                                    <div>
+                                        <p>$1,680</p>
+                                        <p>
+                                            <a href="service.html" class="link_btn rd">Buy this</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="push_product">
+                                <img src="https://www.shuter.com.tw/upload/2021_10_074/20211007175019ykq3fogyX1.jpg">
+                                <div class="txt">
+                                    <p>木頭上蓋桌板組</p>
+                                    <div>
+                                        <p>$1,699</p>
+                                        <p>
+                                            <a href="service.html" class="link_btn rd">Buy this</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="push_product">
+                                <img src="https://www.shuter.com.tw/upload/2021_05_2015/20210520110058stzksesgG4.jpg">
+                                <div class="txt">
+                                    <p>掛牆置物架</p>
+                                    <div>
+                                        <p>$5,200</p>
+                                        <p>
+                                            <a href="service.html" class="link_btn rd">Buy this</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
     </main>

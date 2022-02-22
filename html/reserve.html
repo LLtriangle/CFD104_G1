@@ -5,16 +5,20 @@
     <!-- 初始設定，請自行修改title，及添加js連結 -->
     @@include('layout/head.html')
     <title>服務預約</title>
-
-    <link rel="stylesheet" href="css/cart.css">
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script> -->
     
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/reserve.css">
+    <script src="js/reserve.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
+     
 </head>
-
 <body>
+    <!-- <header></header> -->
+    @@include('layout/header.html')
     <div id="tabs" class="container">
-
-        <div class="tabs">
+        <!-- 進度條 -->
+        <div class="progress">
             <a v-bind:class="[ activetab === '1' ? 'active' : '' ]">預約表單</a>
             <a v-bind:class="[ activetab === '2' ? 'active' : '' ]">訂金付款</a>
             <a v-bind:class="[ activetab === '3' ? 'active' : '' ]">服務預約明細</a>
@@ -23,22 +27,31 @@
         <div class="content">
             <div v-if="activetab ==='1'" class="tabcontent">
                 <!-- 預約表單 -->
-                <form action="get">
+                <form>
                     <!-- 選擇方案 -->
                     <div class="form_item choose_plan">
                         <h3>選擇方案</h3>
                         <div class="plan_li">
                             <li>
-                                <input type="radio" v-model="plan" value="到府一對一教學" id="plan0">
-                                <label for="plan0">到府一對一教學</label>
+                                <input type="radio" v-model="plan" value="到府一對一教學" id="plan0" class="radio-input">
+                                <label for="plan0" class="radio-label">
+                                    <span class="radio-button"></span>
+                                    到府一對一教學
+                                </label>
                             </li>
                             <li>
-                                <input type="radio" v-model="plan" value="空間整理收納" id="plan1">
-                                <label for="plan1">空間整理收納</label>
+                                <input type="radio" v-model="plan" value="空間整理收納" id="plan1" class="radio-input">
+                                <label for="plan1" class="radio-label">
+                                    <span class="radio-button"></span>
+                                    空間整理收納
+                                </label>
                             </li>
                             <li>
-                                <input type="radio" v-model="plan" value="搬家前後物品上下架" id="plan2">
-                                <label for="plan2">搬家前後物品上下架</label>
+                                <input type="radio" v-model="plan" value="搬家前後物品上下架" id="plan2" class="radio-input">
+                                <label for="plan2" class="radio-label">
+                                    <span class="radio-button"></span>
+                                    搬家前後物品上下架
+                                </label>
                             </li>
                         </div>
                         <!-- 方案介紹 -->
@@ -56,7 +69,7 @@
                         </select>
                         <!-- 整理師介紹 -->
                         <div class="emp_info" v-show="emp_info">
-                            <img src="images/3341.gif" alt="">
+                            <img src="">
                             <p>{{selectedEmp}}</p>
                         </div>
                     </div>
@@ -65,30 +78,95 @@
                     <!-- 選擇日期 -->
                     <div class="form_item choose_date">
                         <h3>選擇日期</h3>
+                        <!-- 月曆 -->
+                        <div id="calendari"></div>
                     </div>
+
+                    <!-- 姓名 -->
+                    <div class="form_item">
+                        <h3>姓名</h3>
+                        <input type="text" v-model="name" placeholder="請輸入姓名">
+                    </div>
+                    <!-- 電話 -->
+                    <div class="form_item">
+                        <h3>電話</h3>
+                        <input type="text" v-model="tel"  placeholder="請輸入電話">
+                    </div>
+                    <!-- email -->
+                    <div class="form_item">
+                        <h3>email</h3>
+                        <input type="email" v-model="email" placeholder="請輸入email">
+                    </div>
+                    <!-- 地址 -->
+                    <div class="form_item">
+                        <h3>地址</h3>
+                        <select name="市" v-model="selectedCity" @change="changeCity">
+                            <option v-for="City in Citys">{{City}}</option>
+                        </select>
+                        <select name="區" v-model="selectedArea" @change="changeCity">
+                            <option v-for="Area in Areas">{{Area}}</option>
+                        </select>
+                        <input type="text" placeholder="請輸入地址">
+                        <p id="add"></p>
+                    </div>
+                    <!-- 需求 -->
+                    <div class="form_item">
+                        <h3>需求</h3>
+                        <textarea cols="50" rows="5"></textarea>
+                    </div>
+                    <!-- 上傳照片 -->
+                    <div class="form_item upload_pics">
+                        <p>上傳照片讓我們了解您想改善的空間<br>(最多上傳3張,僅支援格式 jpg /png)</p>
+                        <div class="your_pics">
+
+
+                        </div>
+                    </div>
+                
 
                 </form>
                 <button v-on:click="activetab='2'">下一步</button>    
             </div>
             <div v-if="activetab ==='2'" class="tabcontent">
-                <table>
+                <table class="creditCard">
                     <tr>
                         <td>信用卡:</td>
-                        <td>
+                        <td colspan="2">
                             <input type="radio" name="payment" value="Visa" id="visa" />Visa &nbsp;
                             <input type="radio" name="payment" value="Master Card" />Master Card &nbsp;
                             <input type="radio" name="payment" value="American Express" />American Express &nbsp;
-                            <input type="radio" name="payment" value="Discover" />Discover <br /><br />
+                            <input type="radio" name="payment" value="Discover" />Discover <br />
                             <label>Card Number:</label>
-                            <input type="text" name="cardNumber" id="cardNum" size="30" value="" v-model="credit_card" onblur="ValidateCreditCardNumber()"/></td>
-                        <td></td>
+                            <input type="text" name="cardNumber" id="cardNum" size="30" value="" v-model="credit_card" maxlength="16"
+                                onblur="ValidateCreditCardNumber()" /></td>
                     </tr>
                     <tr>
-                        <td>姓名</td>
+                        <td>信用卡到期日:</td>
+                        <td>
+                            <select name="年" v-model="selectedYear">
+                                <option v-for="year in years">{{year}}年</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="月份"  v-model="selectedMonth" @change="changeDays">
+                                <option v-for="month in 12">{{month}}月</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>收貨人姓名:</td>
                         <td><input type="text" v-model="name"></td>
                     </tr>
                     <tr>
-                        <td><button v-on:click="activetab='1'">返回</button></td>
+                        <td rowspan="2">收貨地址:</td>
+                        <td><input size="25" v-model="address1"></td>
+                    </tr>
+                    <tr>
+                        <td><input size="25" v-model="address2"></td>
+                    </tr>
+                    <tr>
+                        <td><button v-on:click="activetab='1'">返回</button>
+                        <td></td></td>
                         <td><button v-on:click="activetab='3'">下一步</button></td>
                     </tr>
                 </table>
@@ -125,69 +203,83 @@
         </div>
 
     </div>
-                
-    <script>            
-        function ValidateCreditCardNumber(){
-        
-            var ccNum = document.getElementById("cardNum").value;
-
-            var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
-            var mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
-            var amexpRegEx = /^(?:3[47][0-9]{13})$/;
-            var discovRegEx = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/; 
-        
-        
-            if (visaRegEx.test(ccNum) === false ){ // Visa validation
-               alert("信用卡卡號錯誤");
-                }
-            if (mastercardRegEx.test(ccNum) === false){ // MasterCard validation
-                alert("信用卡卡號錯誤");  
-                }
-            if(amexpRegEx.test(ccNum) === false){ // Amex  validation
-                alert("信用卡卡號錯誤");  
-                }  
-            if (discovRegEx.test(ccNum) === false){ // Discover validation
-                alert("信用卡卡號錯誤"); 
-                }
-            }
-    </script>
-    <script>
-        new Vue({
-            el: '#tabs',
-            data: {
-                activetab: '1',
-                message: '',
-                address: '',
-                credit_card: '',
-                plan: '到府一對一教學',
-                name:'',
-                coupon:'',
-                count: 1,
-                price: 3200,
-                image: 'images/3341.gif',
-                emps: ["麻里不會","末牛子","潔癖子","由收easy安排"],
-                selectedEmp: '',
-                
-            },
-            methods: {
-                
-            },
-            computed: {
-                total() {
-                    return parseInt(this.price) * parseInt(this.count)
-                },
-                product() {
-                    return parseInt(this.count)
-                },
-                plan_info() {
-                    return this.plan;
-                },
-                emp_info() {
-                    return this.selectedEmp;
-                },
-            },
-        });
-    </script>
+<!-- <footer></footer> -->
+@@include('layout/footer.html')           
 </body>
+<script>
+    function ValidateCreditCardNumber(){
 
+var ccNum = document.getElementById("cardNum").value;
+
+var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+var mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
+var amexpRegEx = /^(?:3[47][0-9]{13})$/;
+var discovRegEx = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/; 
+
+
+if (visaRegEx.test(ccNum) === false ){ // Visa validation
+   alert("信用卡卡號錯誤");
+    }
+if (mastercardRegEx.test(ccNum) === false){ // MasterCard validation
+    alert("信用卡卡號錯誤");  
+    }
+if(amexpRegEx.test(ccNum) === false){ // Amex  validation
+    alert("信用卡卡號錯誤");  
+    }  
+if (discovRegEx.test(ccNum) === false){ // Discover validation
+    alert("信用卡卡號錯誤"); 
+    }
+}
+</script>
+<script>
+    new Vue({
+        el: '#tabs',
+        data: {
+            activetab: '1',
+            message: '',
+            address: '',
+            credit_card: '',
+            plan: '到府一對一教學',//預設
+            name:'',
+            coupon:'',
+            count: 1,
+            price: 3200,
+            image: 'images/3341.gif',
+            emps: ["麻里不會","末牛子","潔癖子","由收easy安排"],
+            selectedEmp: '',
+            tel: '',
+            email: '',
+            Citys: ["台北市","新北市","基隆市","桃園市"],
+            Areas: '',
+        },
+        methods: {
+            changeCity(){
+                    if(this.selectedCity === "台北市"){
+                        return this.Areas = ["中正區","大同區","中山區","松山區","大安區","萬華區","信義區","士林區","北投區","內湖區","南港區","文山區"];
+                    }else if(this.selectedCity === "新北市"){
+                        return this.Areas = ["萬里區","金山區","板橋區","汐止區","深坑區","石碇區","瑞芳區","平溪區","雙溪區","貢寮區","新店區","坪林區","烏來區","永和區","中和區","土城區","三峽區","樹林區","鶯歌區","三重區","新莊區","泰山區","林口區","蘆洲區","五股區","八里區","淡水區","三芝區","石門區"];
+                    }else if(this.selectedCity === "基隆市"){
+                        return this.Areas = ["仁愛區","信義區","中正區","中山區","安樂區","暖暖區","七堵區"];
+                    }else{
+                        return this.Areas = ["中壢區","平鎮區","龍潭區","楊梅區","新屋區","觀音區","桃園區","龜山區","八德區","大溪區","復興區","大園區","蘆竹區"];
+                    }
+                }  
+        },
+        computed: {
+            total() {
+                return parseInt(this.price) * parseInt(this.count)
+            },
+            product() {
+                return parseInt(this.count)
+            },
+            plan_info() {
+                return this.plan;
+            },
+            emp_info() {
+                return this.selectedEmp;           
+            },
+            
+        },
+    });
+</script>
 </html>

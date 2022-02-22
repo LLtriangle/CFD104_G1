@@ -58,10 +58,12 @@ input[type = submit]{
 /* 卷軸 */
 ::-webkit-scrollbar{
     width: 5px;
+	height: 5px;
     background-color: map-get($color , "plain" );;
 }
 ::-webkit-scrollbar-button{
-    height: 0;
+    width: 0;
+	height: 0;
 }
 ::-webkit-scrollbar-thumb {
     background-color: map-get($color , "main" );
@@ -79,7 +81,7 @@ input[type = submit]{
 
 /* banner */
 .uni_banner{
-	margin-top: 60px;
+	margin-top: 90px;
 	display: flex;
 	justify-content: start;
 	flex-wrap: wrap;

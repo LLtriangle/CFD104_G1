@@ -1,19 +1,22 @@
 @import  "../base/var";
 @import  "../base/color";
 
+
 .activity{
     margin: 30px auto;
     max-width: 1200px;
     .acti_news{
         display: flex;
         flex-wrap: wrap;
+        flex-direction: column;
+        position: relative;
         h3{
             display: inline-block;
             width: 100%;
         }
         .acti_item{
-            width: 498px;
-            margin: 50px;
+            width: calc(75%-50px);
+            margin: 25px 80px;
             border-radius: 10px;
             border: 1px solid #ddd;
             overflow: hidden;
@@ -43,12 +46,190 @@
     }
     .acti_columns{
         .col{
+            margin: 30px 0;
             display: flex;
+            justify-content: space-between;
             .img{
-                width: 550px;
+                width: 50%;
                 img{
                     width: 100%;
                 }
+            }
+            .txt{
+                width: 45%;
+                display: flex;
+                flex-direction: column;
+                
+                position: relative;
+                a{
+                    position: absolute;
+                    bottom: 30px;
+                    right: 0;
+                    
+                }
+            }
+        }
+        .col:nth-child(even){
+            flex-direction: row-reverse;
+        }
+    }
+}
+
+@media screen and(min-width:768px){
+    .activity{
+        margin: 30px auto;
+        max-width: 1200px;
+        .acti_news{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            position: relative;
+            h3{
+                display: inline-block;
+                width: 100%;
+            }
+            .acti_item{
+                width: 40%;
+                margin: 50px;
+                border-radius: 10px;
+                border: 1px solid #ddd;
+                overflow: hidden;
+                img{
+                    width: 100%;
+                }
+                .txt{
+                    padding: 10px 15px;
+                }
+                input{
+                    width: 70%;
+                    height: 30px;
+                    background-color: #f3f3ed;
+                    border: 2px solid #d6aa81;
+                    text-align: center;
+                    margin: 0 0 15px 15px ;
+                    border-radius: 8px 0 0 8px;
+                }
+                button{
+                    margin: 0 0 0 -4px;
+                    height: 36px;
+                    width: 50px;
+                    color: #fff;
+                    background-color:map-get($btn_color,'orange') ;
+                }
+            }
+            .acti_item:nth-child(odd){
+                position: absolute ;
+                top: 33.333333%;
+                right: 0;
+            }
+        }
+        .acti_columns{
+            .col{
+                margin: 30px 0;
+                display: flex;
+                justify-content: space-between;
+                .img{
+                    width: 550px;
+                    img{
+                        width: 100%;
+                    }
+                }
+                .txt{
+                    width: 45%;
+                    display: flex;
+                    flex-direction: column;
+                    
+                    position: relative;
+                    a{
+                        position: absolute;
+                        bottom: 30px;
+                        right: 0;
+                        
+                    }
+                }
+            }
+            .col:nth-child(even){
+                flex-direction: row-reverse;
+            }
+        }
+    }
+}
+
+@media screen  and(min-width:1200px){
+    .activity{
+        margin: 30px auto;
+        max-width: 1200px;
+        .acti_news{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            position: relative;
+            h3{
+                display: inline-block;
+                width: 100%;
+            }
+            .acti_item{
+                width: 40%;
+                margin: 50px;
+                border-radius: 10px;
+                border: 1px solid #ddd;
+                overflow: hidden;
+                img{
+                    width: 100%;
+                }
+                .txt{
+                    padding: 10px 15px;
+                }
+                input{
+                    width: 70%;
+                    height: 30px;
+                    background-color: #f3f3ed;
+                    border: 2px solid #d6aa81;
+                    text-align: center;
+                    margin: 0 0 15px 15px ;
+                    border-radius: 8px 0 0 8px;
+                }
+                button{
+                    margin: 0 0 0 -4px;
+                    height: 36px;
+                    width: 50px;
+                    color: #fff;
+                    background-color:map-get($btn_color,'orange') ;
+                }
+            }
+            .acti_item:nth-child(odd){
+                position: absolute ;
+                top: 33.333333%;
+                right: 0;
+            }
+        }
+        .acti_columns{
+            .col{
+                margin: 30px 0;
+                display: flex;
+                justify-content: space-between;
+                .img{
+                    width: 550px;
+                    img{
+                        width: 100%;
+                    }
+                }
+                .txt{
+                    width: 45%;
+                    display: flex;
+                    flex-direction: column;
+                    
+                    position: relative;
+                    a{
+                        position: absolute;
+                        bottom: 30px;
+                        right: 0;
+                        
+                    }
+                }
+            }
+            .col:nth-child(even){
+                flex-direction: row-reverse;
             }
         }
     }

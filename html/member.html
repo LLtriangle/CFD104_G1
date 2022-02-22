@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @@include('layout/head.html')
+    <title>會員專區</title>
+    <link rel="stylesheet" href="/css/member.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    @@include('layout/header.html')
+    <main>
+        <section class="data_column">
+            <div class="mem_icon">
+                <img src="https://picsum.photos/100/100/?random=33">
+            </div>
+            <div class="id">
+                <p>王雪碧</p>
+                <p>G1G1_cfd104</p>
+            </div>
+            <div class="data_button">
+                <a href="">會員資料</a><br>
+                <a href="">商品訂單</a><br>
+                <a href="">服務預約</a><br>
+                <a href="">收藏清單</a><br>
+                <a href="">登出</a>
+            </div>
+        </section>
+        <section class="data_con">
+            <div class="title_color"></div>
+            <div class="data_mem">
+                <div class="icon_edit">
+                    <div class="mem_icon">
+                        <img src="https://picsum.photos/100/100/?random=33">
+                    
+                    </div>
+                    <button class="btn_btn bl">
+                        編輯大頭貼
+                    </button>
+                </div>
+                <div class="mem_txt">
+                    <label><p>姓名：
+                        <input class='member_name' type="text" value='王雪碧'></p>
+                    </label>
+                    <div class='gender'><p>性別：
+                        <input class='memberLeft' name='gender' type="radio" id="male" value='male'>
+                        <label for="male">男性</label>
+                        <input name='gender' type="radio" id="female" value='female' checked>
+                        <label for="female">女性</label>
+                        <input name='gender' type="radio" id="other" value='other'>
+                        <label for="other">其他</label></p>
+                    </div>
+                <label><p>帳號：
+                    <input class='mem_id' disabled type="email" value='G1G1_cfd104'></p>
+                </label>
+                <label><p>連絡電話：
+                    <input type="text" value='0912345678'></p>
+                </label>
+                <label><p>地址：
+                    <input class='memberLeft memberAdr' type="text" value="桃園市中壢區"></p>
+                </label>
+                <label><p>信用卡資訊：
+                    <input type="text" value='xxx'></p>
+                </label>
+                <button type="submit" class="btn_sub br">儲存修改</button>
+                    <!-- <p>帳號 : G1G1_cfd104</p>
+                    <p>姓名 : 王雪碧</p>
+                    <p>性別 : 女</p>
+                    <p>我的收藏 : 0 件</p>
+                    <p>註冊日期 : 2022-02-20</p>
+                    <p>電話 : 0912345678</p>
+                    <p>地址 : 桃園市中壢區</p>
+                    <p>信用卡資訊 : </p> -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+</body>
+</html>
