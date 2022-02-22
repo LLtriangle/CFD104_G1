@@ -10,10 +10,10 @@
     display: flex;
     flex-wrap: wrap;
     // box-sizing: border-box;
-    .prod_item{
+    .mall_item{
         margin: 10px;
         width: calc(50% - 20px);
-        .prod_img{
+        .mall_img{
             img{
                 width: 100%;
             }
@@ -33,10 +33,10 @@
         display: flex;
         flex-wrap: wrap;
         // box-sizing: border-box;
-        .prod_item{
+        .mall_item{
             margin: 10px;
             width: calc(25% - 20px);
-            .prod_img{
+            .mall_img{
                 img{
                     width: 100%;
                 }
