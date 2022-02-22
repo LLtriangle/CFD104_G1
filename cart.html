@@ -206,11 +206,14 @@
                         <td colspan="3"><input type="text" v-model="name"></td>
                     </tr>
                     <tr>
-                        <td rowspan="2" colspan="2">收貨地址:</td>
-                        <td colspan="3"><input size="25" v-model="address1"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3"><input size="25" v-model="address2"></td>
+                        <td colspan="2">收貨地址:</td>
+                        <td><select name="市" v-model="selectedCity" @change="changeCity">
+                            <option v-for="City in Citys">{{City}}</option>
+                        </select></td>
+                        <td><select name="區" v-model="selectedArea" @change="changeCity">
+                            <option v-for="Area in Areas">{{Area}}</option>
+                        </select></td>
+                        <td><input type="text" v-model="address"></td>
                     </tr>
                     <tr>
                         <td colspan="2"><button v-on:click="activetab='1'">返回</button>
@@ -232,7 +235,7 @@
                     </tr>
                     <tr>
                         <td>收貨地址:</td>
-                        <td>{{address1}}</td>
+                        <td>{{selectedCity}}{{selectedArea}}{{address}}</td>
                     </tr>
                     <tr>
                         <td>{{address2}}</td>
@@ -286,8 +289,9 @@
             data: {
                 activetab: '1',
                 message: '',
-                address1: '',
-                address2: '',
+                Citys: ["台北市","新北市","基隆市","桃園市"],
+                Areas: '',
+                address: '',
                 credit_card: '',
                 delivery: '',
                 payment: '',
@@ -307,7 +311,18 @@
                     } else {
                         this.isDisabled = true
                     }
-                }
+                    },
+                changeCity(){
+                    if(this.selectedCity === "台北市"){
+                        return this.Areas = ["中正區","大同區","中山區","松山區","大安區","萬華區","信義區","士林區","北投區","內湖區","南港區","文山區"];
+                    }else if(this.selectedCity === "新北市"){ //leap year
+                        return this.Areas = ["萬　里","金　山","板　橋","汐　止","深　坑","石　碇","瑞　芳","平　溪","雙　溪","貢　寮","新　店","坪　林","烏　來","永　和","中　和","土　城","三　峽","樹　林","鶯　歌","三　重","新　莊","泰　山","林　口","	蘆　洲","五　股","八　里","淡　水","三　芝","石　門"];
+                    }else if(this.selectedCity === "基隆市"){
+                        return this.Areas = ["仁愛區","信義區","中正區","中山區","安樂區","暖暖區","七堵區"];
+                    }else{
+                        return this.Areas = ["中　壢","平　鎮","龍　潭","楊　梅","新　屋","觀　音","桃　園","龜　山","八　德","大　溪","復　興","大　園","蘆　竹"];
+                    }
+                }  
             },
             computed: {
                 total() {
