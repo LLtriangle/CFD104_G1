@@ -129,6 +129,7 @@ input[type = submit]{
 }
 .uni_banner div:last-child .txt{
 	margin-left: 20px;
+	color: map-get($color , "sub_blue");
 }
 @media screen and (min-width:768px) {
 	.uni_banner{
