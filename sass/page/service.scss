@@ -1,4 +1,20 @@
 @import  "../base/color";
+.serve_plans{
+    .item_group{
+        display: flex;
+        justify-content: center;
+        .item{
+            width: 30%;
+            padding: 30px;
+            .pic{
+                width: 100%;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
 .serve_qa{
     background-color: map-get($color , "plain");
 }
