@@ -116,7 +116,7 @@ input:focus, button:focus{
 /* input 和 button的按鈕樣式 */
     .link_btn, .btn_sub, .btn_btn{
         border: 1px solid map-get($color, "border" );
-        transition: 0.4s ease-in;
+        transition: 0.2s ease-in;
     }
     .link_btn:hover, .btn_sub:hover, .btn_btn:hover{
         border-color: transparent;
@@ -139,7 +139,7 @@ input:focus, button:focus{
         border: 1px solid map-get($color , "border_black" );
         border-radius: $border_radius_btn_ro;
         overflow:hidden;
-        transition: 0.4s ease-in-out;
+        transition: 0.2s ease-in-out;
     }
     .link_ro_w{
         position: relative;
@@ -185,23 +185,7 @@ input:focus, button:focus{
         left: 0%;
         opacity: 1;
     }
-
-//     <!-- submit按鈕樣式展示 -->
-//     <div class="submit_btn_box">
-//         <input type="submit" value="blue submit 按鈕">
-//         <input type="submit" value="red submit 按鈕">
-//         <input type="submit" value="brown submit 按鈕">
-//     </div>
-
-//     <hr>
-
-//     <!-- button按鈕樣式展示 -->
-//     <div class="btn_btn_box">
-//         <button class="btn_btn bl">blue button 按鈕</button>
-//         <button class="btn_btn rd">red button 按鈕</button>
-//         <button class="btn_btn br">brown button 按鈕</button>
-//     </div>
-// } 
+    
     /* 20px底線連結(按鈕)樣式樣示，注意，此字級為: 20px，大小如有變動需再調整 */
     
     /* 底線連結的底線的父層*/
@@ -228,7 +212,7 @@ input:focus, button:focus{
         bottom: -1px;
         background: map-get($color , "bg_white" );
         z-index: 3;
-        transition: 0.4s ease-in;
+        transition: 0.2s ease-in;
     }
     .link_under_line_w::after{
         content: "";
@@ -240,6 +224,6 @@ input:focus, button:focus{
         background: map-get($btn_color , "black" );
         z-index: 2;
         mix-blend-mode: difference;
-        transition: 0.4s ease-in;
+        transition: 0.2s ease-in;
     }
 }

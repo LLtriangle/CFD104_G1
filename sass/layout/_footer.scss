@@ -5,7 +5,7 @@ footer{
     padding-top: 60px;
     display: flex;
     justify-content: center;
-    background-image: url("../../img/footer_bg.png");
+    background-image: url("/img/footer_bg_full.png");
     background-size: cover;
     background-color: brown;
     height: 30vh;
@@ -39,6 +39,7 @@ footer{
 .footer_elements .go_top_btn{
     display: flex;
     justify-content: center;
+    padding-bottom: 150px;
 }
 .footer_elements .link_ro{
     width: 50px;

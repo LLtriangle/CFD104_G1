@@ -34,29 +34,47 @@
 .index_landing {
 
     display: flex;
-    background-color: map-get($color , "sub_brown" );
+    background-color: map-get($color , "cover" );
 
     /*index頁面 landing section 滿屏*/
     .full_img{
         width: 50vw;
         height: 100vh;
     }
-    /*index頁面 web_title 置中，margin-top = 50vh - (web_title.height/2) */
+    /*index頁面 web_title 置中，padding-top = 50vh - (web_title.height/2) */
     .web_title{
         text-align: center;
-        margin-top: calc(50vh - 121px);
+        padding-top: calc(50vh - 121px);
+        box-sizing: border-box;
     }
 
     .title_txt{
-        h1, p{
+        p{
             padding-bottom: 15px;
         }
     }
 
     .logo_img{
-        width: 100px;
-        height: 150px;
+        width: 180px;
+        height: 200px;
     }
+}
+
+/*登陸section .index_slogan*/
+.index_slogan{
+    height: 120vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .slogan{
+        max-width: 1200px;
+    }
+}
+
+/*服務section .index_plans*/
+.index_plans{
+    
 }
 
 /*手機板部分*/
@@ -73,19 +91,61 @@
             display: none;
         }
     }
-    /*服務section .index_plans*/
-
-    .index_plans{
+    /*登陸section .index_slogan*/
+    .index_slogan{
+        height: 120vh;
+        position: relative;
         display: flex;
-        flex-direction: column-reverse;
-        justify-content: space-around;
-        text-align: center;
+        flex-direction: column;
+
+        .slogan{
+            max-width: 1200px;
+            
+            h2{ padding-bottom: 60px; }
+        }   
+    }
+}
+    /*服務section .index_plans*/
+    .index_plans{
+     display: flex;
+     flex-direction: column-reverse;
     }
 
-}
 
 /*電腦版部分*/
 
 @media screen and (min-width:769px) {
+    /*登陸section .index_slogan*/
+    .index_slogan{
+
+        .slogan{
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            
+        }
+    }
+
+    /*服務section .index_plans*/
+    .index_plans{
+        // display: flex;
+        // justify-content: space-around;
+        height: 120vh;
+        .plans_img{
+            width: 50vw;
+            height: 60vh;
+            margin-top: auto;
+            flex-direction: row;
+        }
+        .plans_link{
+            padding-left: 10vw;
+            box-sizing: border-box;
+            margin: auto;
+    
+            li{
+                padding: 20px;
+            }
+        }
+    }
 
 }
