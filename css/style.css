@@ -6005,6 +6005,7 @@ table {
 /*其他共用*/
 * {
   font-family: 'Noto Serif TC', serif;
+  line-height: 1.6em;
 }
 
 html {
@@ -6016,12 +6017,14 @@ img {
 }
 
 h1 {
-  font-size: 44px;
+  font-size: 48px;
   font-weight: 700;
+  line-height: 1.6em;
 }
 
 h2 {
   font-size: 36px;
+  line-height: 1.6em;
 }
 
 h3 {
@@ -6029,7 +6032,11 @@ h3 {
 }
 
 h4 {
-  font-size: 14px;
+  font-size: 20px;
+}
+
+h5 {
+  font-size: 16px;
 }
 
 p {
@@ -6040,16 +6047,28 @@ a {
   text-decoration: none;
   color: #000;
   font-family: 'Noto Serif TC', serif;
+  font-size: 18px;
+}
+
+span {
+  font-size: 18px;
+}
+
+ul {
+  font-size: 18px;
+}
+
+li {
+  font-size: 14px;
+}
+
+button {
+  font-size: 20px;
 }
 
 /* 取消input 和 下拉是選單預設樣式 byLL */
-select,
-input {
-  -webkit-appearance: none;
-  /* Sdc2f02ri 和 Chrome，常用於iOS下移除內建樣式 */
-  -moz-appearance: none;
-  /* FireFox */
-  appearance: none;
+input[type=submit] {
+  display: none;
 }
 
 /* 卷軸 */
@@ -6273,7 +6292,7 @@ header {
           justify-content: center;
   width: 100vw;
   height: 100vh;
-  background-color: #f5dfb0;
+  background-color: #F3EEE2;
   z-index: 5;
   color: #fff;
 }
@@ -6385,7 +6404,7 @@ header {
 @media screen and (min-width: 769px) {
   /*header 容器*/
   .header_elements {
-    padding: 20px 50px 20px 70px;
+    padding: 20px 40px;
   }
   /*header_function menu 被點按，連結、選項有上往下，由右至左排列，電腦寬度足夠，六個選項分為一排*/
   .header_elements .menu_link_option {
@@ -6407,13 +6426,8 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background-image: url("../../img/footer_bg.png");
   background-size: cover;
   background-color: brown;
-  height: 30vh;
 }
 
 /*footer 容器*/
@@ -6422,6 +6436,14 @@ footer {
   width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  /*footer logo大小*/
+  /*footer icon大小*/
+  /*footer go top btn 大小*/
+  /*header_function menu 被點按，slogan 和 社群媒體相關資訊*/
+}
+
+.footer_elements .footer_cap {
+  width: 100vw;
 }
 
 .footer_elements .footer_info {
@@ -6430,12 +6452,10 @@ footer {
   display: flex;
 }
 
-/*footer logo大小*/
 .footer_elements .logo_img {
   width: 40px;
 }
 
-/*footer icon大小*/
 .footer_elements .footer_infos svg {
   height: 15px;
   fill: #2C2D48;
@@ -6446,7 +6466,6 @@ footer {
   fill: #2C2D48;
 }
 
-/*footer go top btn 大小*/
 .footer_elements .go_top_btn {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6454,6 +6473,7 @@ footer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  padding-bottom: 150px;
 }
 
 .footer_elements .link_ro {
@@ -6470,7 +6490,6 @@ footer {
   opacity: 1;
 }
 
-/*header_function menu 被點按，slogan 和 社群媒體相關資訊*/
 .footer_elements .menu_slogan_info {
   position: absolute;
   left: 5%;
@@ -6478,7 +6497,358 @@ footer {
   top: 60%;
 }
 
-.footer_elements .slogan, .fb a, .ig a, .phone {
+.footer_elements .slogan, .footer_elements .fb a, .footer_elements .ig a, .footer_elements .phone {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 10px;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.footer_elements .slogan {
+  font-size: 16px;
+}
+
+.footer_elements .fb p, .footer_elements .ig p, .footer_elements .phone p {
+  padding-left: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 12px;
+  font-size: 700;
+}
+
+.footer_elements .footer_info .col-4 {
+  padding-left: 40px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/*手機板部分*/
+/*電腦版部分*/
+/*header*/
+/*header css 設定*/
+/*手機板與電腦版共用部分*/
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+/*header 容器*/
+.header_elements {
+  max-width: 1200px;
+  width: 100%;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/*header logo大小*/
+.header_elements .logo {
+  z-index: 6;
+}
+
+.header_elements .logo_img {
+  width: 40px;
+}
+
+/*header icon大小*/
+.header_elements .header_function svg {
+  height: 30px;
+  fill: #2C2D48;
+}
+
+/*header icon，menu打開時呈現白色*/
+.header_elements .header_function.on svg {
+  fill: #fff;
+}
+
+/*header_function 容器*/
+.header_elements .header_function {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/*header_function 按鈕、連結，z-index是為了menu打開時還能浮在上面*/
+.header_elements .header_function .user, .cart, .menu_btns {
+  padding: 10px;
+  z-index: 6;
+}
+
+/*header_function menu 漢堡按鈕*/
+.header_elements .menu_btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  cursor: pointer;
+}
+
+/*header_function menu 漢堡按鈕 每層*/
+.header_elements .menu_btn {
+  margin: 3px;
+  background-color: #2C2D48;
+  display: block;
+  height: 2px;
+  width: 30px;
+  text-align: right;
+  border-radius: 10px;
+  z-index: 6;
+}
+
+/*header_function menu 漢堡按鈕 每層 menu打開時呈現白色*/
+.header_elements .header_function.on .menu_btn {
+  background-color: #fff;
+}
+
+/*header_function menu 未被點按*/
+.header_elements .menu_link {
+  padding-top: 80px;
+  position: fixed;
+  right: 100%;
+  top: 0%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #F3EEE2;
+  z-index: 5;
+  color: #fff;
+}
+
+/*header_function menu 被點按，連結、選項有上往下，由右至左排列*/
+.header_elements .menu_link.on {
+  right: 0%;
+  background-image: url("https://picsum.photos/768/700/?random=10");
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.3);
+  background-blend-mode: multiply;
+}
+
+.header_elements .menu_link_option_up, .menu_link_option_down {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  -webkit-writing-mode: vertical-lr;
+      -ms-writing-mode: tb-lr;
+          writing-mode: vertical-lr;
+}
+
+.header_elements .menu_link_option li {
+  padding: 20px 40px;
+}
+
+.header_elements .menu_link_option li a {
+  font-size: 28px;
+  height: 100%;
+  display: block;
+  color: #fff;
+}
+
+/*header_function menu 被點按，slogan 和 社群媒體相關資訊*/
+.header_elements .menu_slogan_info {
+  position: absolute;
+  left: 5%;
+  width: 20vw;
+  top: 60%;
+}
+
+.header_elements .menu_slogan_info .slogan, .fb a, .ig a, .phone {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 10px;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.header_elements .menu_slogan_info .slogan {
+  font-size: 16px;
+}
+
+.header_elements .menu_slogan_info .fb p, .header_elements .menu_slogan_info .ig p, .header_elements .menu_slogan_info .phone p {
+  padding-left: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 12px;
+  color: #fff;
+  font-size: 700;
+}
+
+.header_elements .menu_slogan_info svg {
+  fill: #fff;
+  width: 18px;
+}
+
+/*手機板部分*/
+@media screen and (max-width: 768px) {
+  /*header 容器*/
+  .header_elements {
+    padding: 20px 5px;
+  }
+  /*header_function menu 被點按，連結、選項有上往下，由右至左排列，因手機寬度，六個選項分為上下兩排*/
+  .header_elements .menu_link_option {
+    display: block;
+  }
+  /*header_function menu 被點按，slogan 和 社群媒體相關資訊*/
+  .header_elements .menu_slogan_info {
+    position: absolute;
+    width: 100vw;
+    left: 0;
+    top: 80%;
+    height: 5vh;
+  }
+  .header_elements .menu_slogan_info .slogan {
+    display: none;
+  }
+  .header_elements .menu_info_list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+}
+
+/*電腦版部分*/
+@media screen and (min-width: 769px) {
+  /*header 容器*/
+  .header_elements {
+    padding: 20px 40px;
+  }
+  /*header_function menu 被點按，連結、選項有上往下，由右至左排列，電腦寬度足夠，六個選項分為一排*/
+  .header_elements .menu_link_option {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+  }
+}
+
+/*footer*/
+/*footer css 設定*/
+/*手機板與電腦版共用部分*/
+footer {
+  padding-top: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-size: cover;
+  background-color: brown;
+}
+
+/*footer 容器*/
+.footer_elements {
+  max-width: 1200px;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /*footer logo大小*/
+  /*footer icon大小*/
+  /*footer go top btn 大小*/
+  /*header_function menu 被點按，slogan 和 社群媒體相關資訊*/
+}
+
+.footer_elements .footer_cap {
+  width: 100vw;
+}
+
+.footer_elements .footer_info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.footer_elements .logo_img {
+  width: 40px;
+}
+
+.footer_elements .footer_infos svg {
+  height: 15px;
+  fill: #2C2D48;
+}
+
+.footer_elements .logo_shaped {
+  height: 15px;
+  fill: #2C2D48;
+}
+
+.footer_elements .go_top_btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 150px;
+}
+
+.footer_elements .link_ro {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.footer_elements .link_ro.bl:hover::before {
+  background-color: #8c96a8;
+  border-color: #8c96a8;
+  top: -120%;
+  left: -120%;
+  opacity: 1;
+}
+
+.footer_elements .menu_slogan_info {
+  position: absolute;
+  left: 5%;
+  width: 20vw;
+  top: 60%;
+}
+
+.footer_elements .slogan, .footer_elements .fb a, .footer_elements .ig a, .footer_elements .phone {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6519,19 +6889,7 @@ footer {
 }
 
 /*電腦版&手機按鈕共用設定*/
-/*input預設標籤樣式清除*/
-input, button {
-  border: none;
-  -webkit-appearance: none;
-          appearance: none;
-  -moz-appearance: none;
-}
-
-/*input標籤聚焦不出現預設邊框:*/
-input:focus, button:focus {
-  outline: none;
-}
-
+/*input預設標籤樣式清除 先註解 有需要用到再打開 LL*/
 /*按鈕內容不換行，按鈕才不會被切斷*/
 .link_btn {
   white-space: nowrap;
@@ -6632,8 +6990,8 @@ input:focus, button:focus {
   /* input 和 button的按鈕樣式 */
   .link_btn, .btn_sub, .btn_btn {
     border: 1px solid;
-    -webkit-transition: 0.4s ease-in;
-    transition: 0.4s ease-in;
+    -webkit-transition: 0.2s ease-in;
+    transition: 0.2s ease-in;
   }
   .link_btn:hover, .btn_sub:hover, .btn_btn:hover {
     border-color: transparent;
@@ -6656,8 +7014,8 @@ input:focus, button:focus {
     border: 1px solid #000;
     border-radius: 50%;
     overflow: hidden;
-    -webkit-transition: 0.4s ease-in-out;
-    transition: 0.4s ease-in-out;
+    -webkit-transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
   }
   .link_ro_w {
     position: relative;
@@ -6731,8 +7089,8 @@ input:focus, button:focus {
     bottom: -1px;
     background: #fff;
     z-index: 3;
-    -webkit-transition: 0.4s ease-in;
-    transition: 0.4s ease-in;
+    -webkit-transition: 0.2s ease-in;
+    transition: 0.2s ease-in;
   }
   .link_under_line_w::after {
     content: "";
@@ -6744,8 +7102,8 @@ input:focus, button:focus {
     background: #000;
     z-index: 2;
     mix-blend-mode: difference;
-    -webkit-transition: 0.4s ease-in;
-    transition: 0.4s ease-in;
+    -webkit-transition: 0.2s ease-in;
+    transition: 0.2s ease-in;
   }
 }
 /*# sourceMappingURL=style.css.map */

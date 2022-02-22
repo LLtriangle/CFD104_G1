@@ -1,5 +1,6 @@
 *{
     font-family: 'Noto Serif TC', serif;
+	line-height: 1.6em;
 }
 html{
     --main-color: #2C2D48;
@@ -8,33 +9,50 @@ img{
     vertical-align: middle;
 }
 h1{
-	font-size: 44px;
+	font-size: $font_size_h1;
 	font-weight: 700;
+	line-height: 1.6em;
 }
 h2{
-  	font-size: 36px;
+  	font-size: $font_size_h2;
+	line-height: 1.6em;
 }
 h3{
-  	font-size: 24px;
+  	font-size: $font_size_h3;
 }
 h4{
-  	font-size: 14px;
+  	font-size: $font_size_h4;
+}
+h5{
+	font-size: $font_size_h5;
 }
 p{
-  	font-size: 18px;
+  	font-size: $font_size_p;
 }
 a{
   	text-decoration: none;
 	color: map-get($font_color , "black" );
 	font-family: 'Noto Serif TC', serif;
+	font-size: $font_size_a;
+}
+span{
+	font-size: $font_size_span;
+}
+ul{
+	font-size: $font_size_ul;
+}
+li{
+	font-size: $font_size_li;
+}
+button{
+	font-size: $font_size_btn;
 }
 
 /* 取消input 和 下拉是選單預設樣式 byLL */
-select,
-input {
-    -webkit-appearance: none;  /* Sdc2f02ri 和 Chrome，常用於iOS下移除內建樣式 */
-    -moz-appearance: none;     /* FireFox */
-    appearance: none;
+//  
+
+input[type = submit]{
+	display: none;
 }
 
 /* 卷軸 */
