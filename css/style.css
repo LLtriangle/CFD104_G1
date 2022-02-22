@@ -6731,13 +6731,14 @@ footer {
   .link_under_line_w::before {
     content: "";
     position: absolute;
-    width: 100%;
+    width: 85%;
     height: 7px;
     bottom: -1px;
     background: #fff;
+    border-top: 1px solid #000;
     z-index: 3;
-    -webkit-transition: 0.2s ease-in;
-    transition: 0.2s ease-in;
+    -webkit-transition: 0.4s ease-in;
+    transition: 0.4s ease-in;
   }
   .link_under_line_w::after {
     content: "";
@@ -6745,12 +6746,12 @@ footer {
     left: 0;
     bottom: -1px;
     width: 0%;
-    height: 7px;
-    background: #000;
+    height: 12px;
+    background: #fff;
     z-index: 2;
     mix-blend-mode: difference;
-    -webkit-transition: 0.2s ease-in;
-    transition: 0.2s ease-in;
+    -webkit-transition: 0.4s ease-in;
+    transition: 0.4s ease-in;
   }
 }
 /*# sourceMappingURL=style.css.map */
