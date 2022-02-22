@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @@include('layout/head.html')
+    <title>會員專區</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    @@include('layout/header.html')
+    <main>
+        <div class="container card">
+            <div class="changBtn">
+                <button class="btn_sub">登入</button>
+                <button class="btn_sub">註冊</button>
+            </div>
+            <div class="under">
+                <div class="login">
+                    <h2>登入</h2>
+                    <form>
+                        <label class="userid">
+                            <p>帳號 
+                                <span></span>
+                            </p> 
+                            <input type="text" name="userid" maxlength="10" minlength="6">
+                        </label> 
+                        <label class="psd">
+                            <p>密碼 <span></span>
+                            </p> 
+                            <input type="password" name="psd" maxlength="10" minlength="6">
+                        </label> 
+                        <div>
+                            <button type="button" class="nc-btn o-5">忘記密碼了嗎 ?
+    
+                            </button>
+                        </div> 
+                        <div>
+                            <button id="login" type="button" class="btn_sub">登入</button>
+                        </div>
+                    </form>
+                </div> 
+                <div class="signup">
+                    <h2>註冊</h2>
+                    <form action="">
+                        <label class="name">
+                            <p>姓名 <span>*</span>
+                            </p> 
+                            <input type="text" name="name" maxlength="20">
+                        </label>
+                        <label class="email">
+                            <p>email <span>*</span>
+                            </p> 
+                            <input type="email" name="email">
+                        </label> 
+                        <label class="userid">
+                            <p>帳號 <span>*</span>
+                            </p> 
+                            <input type="text" name="userid" maxlength="10" minlength="6">
+                        </label> 
+                        <label class="psd">
+                            <p>密碼 <span>*</span>
+                            </p> 
+                            <input type="password" name="psd" maxlength="10" minlength="6">
+                        </label> 
+                        <label class="cfmPsd">
+                            <p>確認密碼 <span>*</span></p>
+                            <input type="password" name="cfmPsd" maxlength="10">
+                        </label> 
+                        <div>
+                            <button id="signup" type="button" class="btn_sub">
+                                確定註冊
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+        </div>
+    </main>
+    
+</body>
+</html>

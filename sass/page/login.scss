@@ -1,0 +1,26 @@
+.container{
+    position: relative;
+    margin: 90px 100px 10px 100px;
+    .under{
+    /* margin: auto; */
+    display: flex;
+    justify-content:center;
+    }
+    .login,.signup{
+    /* margin: 50px; */
+    box-sizing: border-box;
+    padding: 80px 12%;
+    background-color:rgba(255, 218, 185, 0.473);
+    border: 2px solid #d6aa81;
+    border-radius: 20px;
+    }
+    h2{
+        line-height: 2;
+    }
+    p{
+        line-height: 2;
+    }
+}
+
+
+
