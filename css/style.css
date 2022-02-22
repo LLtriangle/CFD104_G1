@@ -6890,6 +6890,17 @@ footer {
 
 /*電腦版&手機按鈕共用設定*/
 /*input預設標籤樣式清除 先註解 有需要用到再打開 LL*/
+input, button {
+  border: none;
+  -webkit-appearance: none;
+          appearance: none;
+  -moz-appearance: none;
+}
+
+input:focus, button:focus {
+  outline: none;
+}
+
 /*按鈕內容不換行，按鈕才不會被切斷*/
 .link_btn {
   white-space: nowrap;

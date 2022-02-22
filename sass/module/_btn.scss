@@ -6,16 +6,16 @@
 /*電腦版&手機按鈕共用設定*/
 
 /*input預設標籤樣式清除 先註解 有需要用到再打開 LL*/
-// input, button{
-//     border: none;
-//     appearance: none;
-//     -moz-appearance: none;
-//     // background-color: map-get($color , "border_bl" );
-// }
+input, button{
+    border: none;
+    appearance: none;
+    -moz-appearance: none;
+    // background-color: map-get($color , "border_bl" );
+}
 // /*input標籤聚焦不出現預設邊框:*/
-// input:focus, button:focus{
-//     outline: none;
-// }
+input:focus, button:focus{
+    outline: none;
+}
 
 
 /*按鈕內容不換行，按鈕才不會被切斷*/

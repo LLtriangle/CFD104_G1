@@ -176,29 +176,34 @@
                     <!-- 姓名 -->
                     <div class="form_item">
                         <h3>姓名</h3>
-                        <input type="text" v-model="name">
+                        <input type="text" v-model="name" placeholder="請輸入姓名">
                     </div>
                     <!-- 電話 -->
                     <div class="form_item">
                         <h3>電話</h3>
-                        <input type="text" v-model="tel">
+                        <input type="text" v-model="tel"  placeholder="請輸入電話">
                     </div>
                     <!-- email -->
                     <div class="form_item">
                         <h3>email</h3>
-                        <input type="email" v-model="email">
+                        <input type="email" v-model="email" placeholder="請輸入email">
                     </div>
                     <!-- 地址 -->
                     <div class="form_item">
                         <h3>地址</h3>
-                        <!-- <div id="twzipcode"></div> -->
+                        <select name="市" v-model="selectedCity" @change="changeCity">
+                            <option v-for="City in Citys">{{City}}</option>
+                        </select>
+                        <select name="區" v-model="selectedArea" @change="changeCity">
+                            <option v-for="Area in Areas">{{Area}}</option>
+                        </select>
                         <input type="text" placeholder="請輸入地址">
                         <p id="add"></p>
                     </div>
                     <!-- 需求 -->
                     <div class="form_item">
                         <h3>需求</h3>
-                        <textarea name="" id="" cols="50" rows="5"></textarea>
+                        <textarea cols="50" rows="5"></textarea>
                     </div>
                     <!-- 上傳照片 -->
                     <div class="form_item upload_pics">
@@ -384,9 +389,21 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
             selectedEmp: '',
             tel: '',
             email: '',
-            
+            Citys: ["台北市","新北市","基隆市","桃園市"],
+            Areas: '',
         },
         methods: {
+            changeCity(){
+                    if(this.selectedCity === "台北市"){
+                        return this.Areas = ["中正區","大同區","中山區","松山區","大安區","萬華區","信義區","士林區","北投區","內湖區","南港區","文山區"];
+                    }else if(this.selectedCity === "新北市"){
+                        return this.Areas = ["萬里區","金山區","板橋區","汐止區","深坑區","石碇區","瑞芳區","平溪區","雙溪區","貢寮區","新店區","坪林區","烏來區","永和區","中和區","土城區","三峽區","樹林區","鶯歌區","三重區","新莊區","泰山區","林口區","蘆洲區","五股區","八里區","淡水區","三芝區","石門區"];
+                    }else if(this.selectedCity === "基隆市"){
+                        return this.Areas = ["仁愛區","信義區","中正區","中山區","安樂區","暖暖區","七堵區"];
+                    }else{
+                        return this.Areas = ["中壢區","平鎮區","龍潭區","楊梅區","新屋區","觀音區","桃園區","龜山區","八德區","大溪區","復興區","大園區","蘆竹區"];
+                    }
+                }  
         },
         computed: {
             total() {
@@ -404,22 +421,5 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
             
         },
     });
-</script>
-<script>
-$(document).ready(function(){
-    $("#twzipcode").twzipcode({
-        zipcodeIntoDistrict: true, // 郵遞區號自動顯示在區別選單中
-        css: ["county", "district"], // 自訂 "城市"、"地別" class 名稱 
-        onCountySelect: function() {
-            //county = $("select[name='county']").val();  // 取縣市的值
-            $add = $("#add");
-            $add.innerText = county;
-        },
-        onDistrictSelect: function() {//  選擇鄉鎮市區後執行
-            district = $("select[name='district']").val();  // 取鄉鎮市區的值
-        },  
-    });
-});
-
 </script>
 </html>
