@@ -17,12 +17,21 @@
                 }
             }
             .txt{
+                &:hover p{
+                    line-height: 1.5em;
+                }
                 h4{
                     color: map-get($color , "sub_blue");
                     text-align: center;
                     padding: 15px 0 10px;
                 }
+                p{
+                    line-height: 0em;
+                    transition: .5s;
+                    overflow: hidden;
+                }
                 a{
+                    line-height: 1.5em;
                     margin-top: 20px;
                 }
             }

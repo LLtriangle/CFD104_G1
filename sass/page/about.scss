@@ -44,7 +44,7 @@ section{
 
 
 .about_team{
-    margin: 150px 10px;
+    margin: 200px 10px;
     display: flex;
     .circle_big_img{
         width: 60%;
@@ -54,12 +54,20 @@ section{
             background-color: #fff;
             width: 600px;
             height: 600px;
-            border: #d6aa81 100px solid;
+            border: #d6aa81 70px solid;
             border-radius: 50%;
             position: absolute;
-            top: -20px;
+            top: -50px;
             left: -320px;
             z-index: -1;
+        }
+        .change_img{
+            img{
+
+                border: 2px solid black;
+                border-radius: 20px;
+            }
+            // overflow: hidden;
         }
         .change_img:nth-of-type(3){
             margin-top: 400px;

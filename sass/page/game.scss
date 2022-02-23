@@ -1,4 +1,9 @@
 @import  "../base/color";
+
+
+// .text_result{
+//     display: block;
+// }
 .text_ill{
     // display: none;
     .welcome{
@@ -9,7 +14,7 @@
         border-radius: 30px;
         border: 2px solid map-get($color, 'main');
         background-color: map-get($color, 'plain');
-        margin: auto;
+        margin: auto; 
         margin-top: 80px;
 
         position: absolute;
@@ -336,7 +341,18 @@
         width: 120%;
         position: absolute;
         z-index: 2;
-        top: 70%;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%,50%);
+        &:first-child{
+            transform: translate(-50%,-270%);
+            z-index: -1;
+        }
+    }
+    button{
+        position: absolute;
+        z-index: 2;
+        bottom: 5%;
         left: 50%;
         transform: translate(-50%);
     }
@@ -373,13 +389,13 @@
             padding: 30px;
         }
         .result{
+            padding: 5px 20px calc((100vw - 40px) * 0.6 * (544 / 1158) );
+            background-color: map-get($color, 'plain');
             >h3{
                 font-weight: 700;
                 margin-top: 30px;
                 border-top: 2px dashed map-get($color, 'main');
             }
-            padding: 5px 20px;
-            background-color: map-get($color, 'plain');
             .evaluate{
                 margin: 30px 0;
                 div{
@@ -455,8 +471,8 @@
                     width: 660px;
                     margin: auto;
                     .push_product{
-                        margin: 0 15px 200px;
-                        width: 200px;
+                        margin: 0 15px 20px;
+                        width: 220px;
                         .txt{
                             padding: 20px;
                             line-height: 1.5em;
@@ -505,7 +521,16 @@
     }
     .text_result{
         .typewriter{
-            top: 60%;
+            transform: translate(-50%,70%);
+            &:first-child{
+                transform: translate(-50%,-162%);
+                z-index: -1;
+            }
+        }
+        .paper{
+            .result{
+                padding: 5px 20px calc((100vw - 40px) * 1.2 * 0.3 * (544 / 1158) );
+            }
         }
     }
 }
@@ -560,6 +585,7 @@
         height: calc(100vh - 160px);
         .paper{
             .result{
+                padding: 5px 20px 150px;
                 .evaluate{
                     >div:last-child{
                         display: flex;
