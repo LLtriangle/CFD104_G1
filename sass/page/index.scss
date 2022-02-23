@@ -27,7 +27,7 @@
     /*index頁面 landing section 滿屏*/
     .full_img{
         width: 50vw;
-        height: 100vh;
+        height: 120vh;
     }
     /*index頁面 web_title 置中，padding-top = 50vh - (web_title.height/2) */
     .web_title{
@@ -93,81 +93,142 @@
 /*煩惱section .index_needs*/
 .index_needs{
     background-color: #9E9A8E;
+    position: relative;
 
     h2{
         text-align: center;
-        padding: 10vh 0;
+        padding-top: 10vh;
     }
 
     .bubble {
-        height: 40vh;
-        width: 80%;
         min-width: 200px;
         background: map-get($color , "plain" );
         display: block;
         border-radius: 20px;
-        font-size: 24px;
         text-align: center;
-        margin: 10vh 10vw 0 10vw;
+        margin: 10vh 10vw 0vh 10vw;
         box-sizing: border-box;
         position: relative;
-
-        
+        z-index: 1;
     }
 
-    ul:nth-child(n+2){
-        li{
-            
+    ul li:last-child{
+        .bubble {
+            margin-bottom: 10vh;
+        }
+    }
+
+    li{
+        display: flex;
+    }
+
+    ul li:nth-child(1n){
+        justify-content: left;
+
+        .pointer{
+            width: 0;
+            height: 0;
+            border-left: 3vh solid transparent;
+            border-right: 5vh solid transparent;
+            border-top: 10vh solid map-get($color , "plain" );
+            position: absolute;
+            transform: rotate(-240deg);
         }
     }
     
-    .pointer:nth-child(n+1) {
-        // height: 10vh;
-        // width: 10vw;
-        // background: map-get($color , "plain" );
-        // transform: rotate(45deg);
-        // border-radius: 6px;
-        // position: relative;
-        // right: 2vw;
-        // bottom: -1vh;
-
-        width: 0;
-        height: 0;
-        border-left: 3vh solid transparent;
-        border-right: 5vh solid transparent;
-        border-top: 10vh solid map-get($color , "plain" );
-        position: absolute;
-        top: 8vh;
-        right: -3vw;
-        transform: rotate(-120deg);
+    ul li:nth-child(2n){
+        justify-content: right;
+        
+        .pointer{
+            width: 0;
+            height: 0;
+            border-left: 3vh solid transparent;
+            border-right: 5vh solid transparent;
+            border-top: 10vh solid map-get($color , "plain" );
+            position: absolute;
+            transform: rotate(-120deg);
+        }
     }
 
-    // .pointer {
-    //     // height: 10vh;
-    //     // width: 10vw;
-    //     // background: map-get($color , "plain" );
-    //     // transform: rotate(45deg);
-    //     // border-radius: 6px;
-    //     // position: relative;
-    //     // right: 2vw;
-    //     // bottom: -1vh;
+    .needs_btns{
+        position: absolute;
+        display: flex;
+        justify-content: space-around;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 50;
+        width: 50vw;
 
-    //     width: 0;
-    //     height: 0;
-    //     border-left: 3vh solid transparent;
-    //     border-right: 5vh solid transparent;
-    //     border-top: 10vh solid map-get($color , "plain" );
-    //     position: absolute;
-    //     top: 8vh;
-    //     left: -3vw;
-    //     transform: rotate(-120deg);
-    // }
+        a{
+            margin: 20px;
+        }
+    }
     
 }
 
 /*預約流程section .index_progress*/
 .index_progress{
-    height: 100vh;
+    padding: 100px 40px;
+    // height: 120vh;
+    box-sizing: border-box;
+    h2{
+        padding: 60px 0;
+    }
+
+    ul{
+        width: 80vw;
+        padding: 20px 0px;
+        margin: auto;
+    }
+
+    li{
+        display: flex;
+        padding-bottom: 100px;
+    }
+
+    a{
+        display: flex;
+
+        svg{
+            position: relative;
+            fill: map-get($color , "bg_white" );
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &:hover .progress_icon{
+            background-color: plum;
+        }
+
+        &:hover svg{
+            fill: map-get($color , "sub_brown" );
+        }
+    }
+
+    .progress_icon{
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: pink;
+        transition: .4s;
+    }
+
+    .progress_txt{
+        h3, p{
+            padding: 20px 0;
+        }
+    }
+
+}
+
+/*活動消息section .index_news*/
+.index_news{
+    .news_items{
+        display: flex;
+    }
+
 }
 
 /*手機板部分*/
@@ -179,7 +240,7 @@
         
         .web_title{
             text-align: center;
-            height: 100vh;
+            height: 120vh;
         }
 
         .full_img{
@@ -189,7 +250,7 @@
 
     /*登陸section .index_slogan*/
     .index_slogan{
-        height: 100vh;
+        height: 120vh;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -205,7 +266,7 @@
     }
     /*服務section .index_plans*/
     .index_plans{
-        height: 80vh;
+        height: 120vh;
         flex-direction: column-reverse;
         justify-content: center;
         position: relative;
@@ -241,6 +302,82 @@
             }
         }
     }
+
+    /*煩惱section .index_needs*/
+    .index_needs{
+        background-color: #9E9A8E;
+
+        h2{
+            text-align: center;
+        }
+
+        .bubble {
+            height: 20vh;
+            width: 100%;
+            margin-top: 10vh;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        li{
+            display: flex;
+        }
+
+        ul li:nth-child(1n){
+            justify-content: left;
+
+            .pointer{
+                top: 8vh;
+                right: 72vw;
+            }
+        }
+        
+        ul li:nth-child(2n){
+            justify-content: right;
+            
+            .pointer{
+                top: 8vh;
+                right: -6vw;
+            }
+        }
+        
+        
+    }
+
+    /*預約流程section .index_progress*/
+    .index_progress{
+        padding: 60px 10px;
+        
+
+        .progress_icon{
+            width: 100px;
+            height: 100px;
+            margin: auto;
+        }
+
+        .progress_txt{
+            width: 50%;
+            padding-left: 40px;
+        }
+
+        svg{
+            width: 50px;
+        }
+    }
+
+    /*活動消息section .index_news*/
+    .index_news{
+
+        .news_img{
+            display: none;
+        }
+
+        .news_cupon{
+            display: flex;
+        }
+
+        
+    }
 }
     
     
@@ -255,9 +392,12 @@
             max-width: 1200px;
             display: flex;
             justify-content: center;
-            padding: 20px;
+            padding: 40px;
             margin: auto;
             overflow: hidden;
+            h2{
+                margin: auto;
+            }
             
             h2, p{
                 animation: blur_word;
@@ -302,4 +442,132 @@
 
     }
 
+    /*煩惱section .index_needs*/
+    .index_needs{
+        background-color: #9E9A8E;
+        
+
+        h2{
+            text-align: center;
+        }
+
+        .bubble {
+            height: 30vh;
+            min-width: 200px;
+        }
+
+        ul li:nth-child(1n){
+
+            .bubble {
+                width: 40%;
+            }
+
+            .pointer{
+                top: 8vh;
+                right: 96%;
+            }
+        }
+        
+        ul li:nth-child(2n){
+
+            .bubble {
+                width: 30%;
+            }
+
+            .pointer{
+                top: 10vh;
+                left: 95%;
+            }
+        }
+        
+        .needs_btns{
+            
+            a{
+                margin: 20px;
+                box-sizing: border-box;
+                font-size: 36px;
+                padding: 20px;
+            }
+        }
+        
+    }
+
+    /*預約流程section .index_progress*/
+    .index_progress{
+
+        .progress_icon{
+            width: 200px;
+            height: 200px;
+        }
+
+        .progress_txt{
+            width: 50vw;
+            padding-left: 40px;
+            margin: auto;
+        }
+
+        ul{
+            width: 80vw;
+            padding: 0 40px;
+            position: relative;
+        }
+
+        li{
+            position: relative;
+            z-index: 2;
+        }
+
+        ul li:nth-child(2){
+            justify-content: right;
+        }
+
+        ul li:nth-child(2){
+            justify-content: space-between;
+            
+            a{
+                flex-direction: row-reverse;
+                justify-content: space-between;
+                flex-grow: 1;
+                
+                .progress_txt{
+                    margin: 0;
+                    width: 50vw;
+                }
+            }
+        }
+
+        svg{
+            width: 100px;
+        }
+
+        // .svg_line_45deg, .svg_line_315deg{
+        //     position: absolute;
+        //     width: 40%;
+        //     transform: rotate(80deg);
+        //     top: 0;
+        //     left: 10%;
+        //     z-index: 0;
+        // }
+
+        // .svg_line_45deg{
+        //     transform: rotate(80deg);
+        // }
+
+        // .svg_line_315deg{
+        //     transform: rotate(10deg);
+        // }
+    }
+
+    /*活動消息section .index_news*/
+    .index_news{
+
+        .news_cupon{
+            display: none;
+        }
+
+        
+    }
+
 }
+
+
