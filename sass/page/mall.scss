@@ -20,6 +20,13 @@
         }
     }
 }
+.mall_nextpagebtn{
+    display: flex;
+    justify-content: center;
+    .btn_btn.bl{
+        margin: 0 5px;
+    }
+}
 // 桌機版
 @media (min-width: 1200px) {
     .mall_btn{
@@ -43,11 +50,4 @@
             }
         }
     }        
-    .mall_nextpagebtn{
-        display: flex;
-        justify-content: center;
-        .btn_btn.bl{
-            margin: 0 5px;
-        }
-    }
 }
