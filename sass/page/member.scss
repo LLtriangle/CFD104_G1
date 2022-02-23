@@ -1,3 +1,5 @@
+@import '../base/color';
+@import '../module/btn';
 input{
     font-size: 14px;
 }
@@ -175,6 +177,7 @@ input{
                     padding-left: 20px;
                     padding-bottom: 60px;
                     position: relative;
+                    z-index: -1;
                     button{
                         position: absolute;
                         right: 10px;
