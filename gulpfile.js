@@ -6,10 +6,12 @@ const {
     watch
 } = require('gulp');
 
+
 function missionA(cb) {
     console.log('missionA');
     cb();
 }
+
 
 function missionB(cb) {
     console.log('missionB');
@@ -19,11 +21,16 @@ function missionB(cb) {
 exports.async = series(missionB , missionA); // 先執行 missionA 在執行missionB
 exports.sync =   parallel(missionA , missionB); //兩個任務同時執行
 
+
 function copy(){
      return src('html/a.html').pipe(dest('./'))// 由html/a.html 搬到 ./
 }
 
 exports.c = copy // 任務執行
+
+
+
+
 
 const fileinclude = require('gulp-file-include');
 
@@ -41,18 +48,9 @@ exports.w = function watchs() {
     watch(['html/*.html', 'html/**/*.html'], includeHTML);
 }
 
+
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
-<<<<<<< HEAD
-// 上線用
-function ugjs(){
-    return src('js/*.js')
-    .pipe(uglify())
-    .pipe(rename({
-        extname: '.min.js',
-    }))
-    .pipe(dest('./'));
-=======
 
 // 上線用
 function ugjs(){
@@ -62,53 +60,10 @@ function ugjs(){
      extname : '.min.js'
    }))
    .pipe(dest('./'));
->>>>>>> mg
 }
 
 exports.js = ugjs
 
-<<<<<<< HEAD
-
-const cleanCSS = require('gulp-clean-css');
-
-function cleanC() {
-    return src('css/*.css') // 來源
-    .pipe(cleanCSS()) // 壓縮
-    .pipe(rename({
-        extname: '.min.css',
-    }))
-    .pipe(dest('css')) // 目的地
-}
-
-
-var concat = require('gulp-concat');
-
-function concatcss(){
-    return src('css/*.css')
-    .pipe(concat('all.css'))
-    .pipe(dest('css/all/'))
-}
-
-exports.allcss  = concatcss;
-
-
-// sass編譯
-const sass = require('gulp-sass')(require('sass'));
-
-function sassstyle() {
-    return src('./sass/*.scss')
-        .pipe(sass.sync().on('error', sass.logError))
-        .pipe(dest('./assets/css'));
-}
-
-exports.scss  = sassstyle;
-
-
-// 組合任務
-exports.all = series(ugjs,cleanC)
-
-// exports.css = cleanC
-=======
 //壓縮css 
 const cleanCSS = require('gulp-clean-css');
 
@@ -145,9 +100,14 @@ function sassstyle() {
 
 exports.scss = sassstyle;
 
+
+
+
+
+
 // 組合任務
 
 exports.all = series(ugjs ,cleanC)
 
+
 // exports.css = cleanC
->>>>>>> mg
