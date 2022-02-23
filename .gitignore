@@ -1,12 +1,3 @@
 node_modules
 css
-about.html
-activity.html
-cart.html
-game.html
-index.html
-mall.html
-member.html
-product.html
-reserve.html
-service.html
+*.html

@@ -23,6 +23,7 @@
 	<script src="https://kit.fontawesome.com/120f989b39.js" crossorigin="anonymous"></script>
     <title>遊戲</title>
     <link rel="stylesheet" href="css/game.css">
+    <script src="js/game.js"></script>
 </head>
 <body>
     <!-- <header></header> -->
@@ -144,18 +145,6 @@
             </div>
         </section>
 
-        <!-- 關閉說明視窗 -->
-        <script>
-            function switch_light(e){ //燈箱開關
-                $(this).parent().css('display','none');
-            };
-
-            $(document).ready(function(){
-                $('.text_ill button').click(switch_light);
-            });
-        </script>
-
-
         <!-- 遊戲 -->
         <section class="text_game">
             <div class="pull">
@@ -240,86 +229,11 @@
             </div>
         </section>
         
-        <!-- 遊戲拖曳 -->
-        <!-- 動態寬度 -->
-        <script>
-            $(function () {
-                // 開關門
-                $('#door').on('click',function(){
-                    $('#door').toggleClass('open');
-                    $('#pull_arrow').css('display','none');
-                });
-
-                // 點擊放置
-                $('.pullbox_group .pullbox').on('click',function(){
-                    if(!($(this).html()) && $('.item_group input:checked').length) {
-                        // 條件:位置為空，且有選擇物品
-                        $(this).append($('.item_group input:checked').parent());
-                    }else if($(this).html()){
-                        // 條件:位置上已有物品
-                        $(this).children().prependTo($('.item_group'));
-                    };
-                    
-                    // 送出按鈕disabled切換
-                    if($('.item_group label').length==0) {
-                        $('#finish').attr('disabled',false);
-                    }else if($('.item_group label').length>0){
-                        $('#finish').attr('disabled',true);
-                    };
-                });
-
-                // $('.item_group input').on('change',function(){
-                //     // 條件:有選擇物品
-                //     if($('.item_group input:checked').length >= 0){
-                //         $('#open_trashcan').attr('disabled',true);
-                //     }else{
-                //         $('#open_trashcan').attr('disabled',false);
-                //     };
-                // });
-
-                // 點擊垃圾桶
-                $('#trashcan').on('click',function(){
-                    if($('.item_group input:checked').length > 0) {
-                        // 條件:有選擇物品，丟進垃圾桶
-                        $('#trashcan ul').append(
-                            $('<li/>').append($('.item_group input:checked').parent())
-                        );
-                    }else{
-                        $('#open_trashcan').attr('disabled',false);
-                    };
-                    // 送出按鈕disabled切換
-                    if($('.item_group label').length==0) {
-                        $('#finish').attr('disabled',false);
-                        $('#finish').addClass('rd');
-                        $('#finish').removeClass('bl');
-                    }else if($('.item_group label').length>0){
-                        $('#finish').attr('disabled',true);
-                        $('#finish').addClass('bl');
-                        $('#finish').removeClass('rd');
-                    };
-                });
-                // 點擊垃圾
-                $('.garbage li').on('click',function(){
-                    $(this).children().prependTo($('.item_group'));
-                    $(this).remove();
-                });
-            });
-        </script>
-        
-        <!-- 跳出測驗結果 -->
-        <script>
-            function open_result(e){ //燈箱開關
-                $(".text_result").css('display','block');
-            };
-
-            $(document).ready(function(){
-                $('#finish').click(open_result);
-            });
-        </script>
-        
         <!-- 測驗結果 -->
         <section class="text_result">
+            <img class="typewriter" src="img/game_typewriter.png" alt="打字機">
             <img class="typewriter" src="img/game_typewriter-01.png" alt="打字機">
+            <button id="again" class="btn_sub rd">再玩一次</button>
             <div class="paper">
                 <h2>測驗結果</h2>
                 <div class="result">
