@@ -6,16 +6,16 @@
 /*電腦版&手機按鈕共用設定*/
 
 /*input預設標籤樣式清除 先註解 有需要用到再打開 LL*/
-// input, button{
-//     border: none;
-//     appearance: none;
-//     -moz-appearance: none;
-//     // background-color: map-get($color , "border_bl" );
-// }
+input, button{
+    border: none;
+    appearance: none;
+    -moz-appearance: none;
+    // background-color: map-get($color , "border_bl" );
+}
 // /*input標籤聚焦不出現預設邊框:*/
-// input:focus, button:focus{
-//     outline: none;
-// }
+input:focus, button:focus{
+    outline: none;
+}
 
 
 /*按鈕內容不換行，按鈕才不會被切斷*/
@@ -207,12 +207,13 @@
     .link_under_line_w::before{
         content: "";
         position: absolute;
-        width: 100%;
+        width: 85%;
         height: 7px;
         bottom: -1px;
         background: map-get($color , "bg_white" );
+        border-top: 1px solid map-get($btn_color , "black" );
         z-index: 3;
-        transition: 0.2s ease-in;
+        transition: 0.4s ease-in;
     }
     .link_under_line_w::after{
         content: "";
@@ -220,10 +221,10 @@
         left: 0;
         bottom: -1px;
         width: 0%;
-        height: 7px;
-        background: map-get($btn_color , "black" );
+        height: 12px;
+        background: map-get($color , "bg_white" );
         z-index: 2;
         mix-blend-mode: difference;
-        transition: 0.2s ease-in;
+        transition: 0.4s ease-in;
     }
 }
