@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @@include('layout/head.html')
+    <title>會員登入</title>
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" href="css/style.css"> 
+    
+  </head>
+  <body>
+    @@include('layout/header.html')
+    <main>
+      <!-- 註冊 -->
+        <div class="container signup_container" id="signup_container">
+            <form class="form" id="a-form">
+            <h2 class="form_title title">註冊</h2>
+            <div class="form_icons">
+                <img class="form_icon" src="" alt="">
+                <img class="form_icon" src="">
+                <img class="form_icon" src="">
+                </div>
+                <span class="form_span">使用郵箱免費註冊會員</span>
+            <input class="form_input" type="text" placeholder="姓名">
+            <input class="form_input" type="text" placeholder="Email">
+            <input class="form_input" type="password" placeholder="密碼">
+            <button class="form_button button submit">註冊</button>
+            </form>
+        </div>
+        <!-- 登入 -->
+        <div class="container login_container" id="login_container">
+            <form class="form" id="b-form" method="" action="">
+                <h2 class="form_title title">登入</h2>
+                <div class="form_icons"><img class="form_icon" src="" alt=""><img class="form_icon" src="">
+                    <img class="form_icon" src="">
+                </div>
+                <span class="form_span">使用您的郵箱登入</span>
+                <input class="form_input" type="text" placeholder="Email">
+                <input class="form_input" type="password" placeholder="密碼"><a class="form_link">忘記您的密碼?</a>
+                <button class="form_button button submit">登入</button>
+            </form>
+        </div>
+
+      <!-- 上面的覆蓋頁 -->
+      <div class="switch" id="switch-cnt">
+            <div class="switch_circle"></div>
+            <div class="switch_circle switch_circle--t"></div>
+            <div class="switch_container" id="switch-c1">
+                <h2 class="switch_title title">歡迎訪客 !</h2>
+                <p class="switch_description description">目前想不到內容的小標</p>
+                <button class="switch_button button switch-btn">登入</button>
+            </div>
+            <div class="switch_container is-hidden" id="switch-c2">
+                <h2 class="switch_title title">親愛的會員 !</h2>
+                <p class="switch_description description">享受你獨家的整理服務吧</p>
+                <button class="switch_button button switch-btn">註冊</button>
+            </div>
+       </div>
+    </main>
+    <script src="js/login.js"></script>
+  </body>
+</html>
