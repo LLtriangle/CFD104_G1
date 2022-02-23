@@ -26,21 +26,25 @@
             .txt{
                 padding: 10px 15px;
             }
-            input{
-                width: 70%;
-                height: 30px;
-                background-color: #f3f3ed;
-                border: 2px solid #d6aa81;
-                text-align: center;
-                margin: 0 0 15px 15px ;
-                border-radius: 8px 0 0 8px;
-            }
-            button{
-                margin: 0 0 0 -4px;
-                height: 36px;
-                width: 50px;
-                color: #fff;
-                background-color:map-get($btn_color,'orange') ;
+            .copy{
+                display: flex;
+                justify-content: center;
+                input{
+                    width: 70%;
+                    height: 30px;
+                    background-color: #f3f3ed;
+                    border: 2px solid #d6aa81;
+                    text-align: center;
+                    margin: 0 0 15px 15px ;
+                    border-radius: 8px 0 0 8px;
+                }
+                button{
+                    margin: 0 0 0 -4px;
+                    height: 36px;
+                    width: 20%;
+                    color: #fff;
+                    background-color:map-get($btn_color,'orange') ;
+                }
             }
         }
     }
@@ -112,7 +116,7 @@
                 button{
                     margin: 0 0 0 -4px;
                     height: 36px;
-                    width: 50px;
+                    width: 20%;
                     color: #fff;
                     background-color:map-get($btn_color,'orange') ;
                 }
@@ -192,7 +196,7 @@
                 button{
                     margin: 0 0 0 -4px;
                     height: 36px;
-                    width: 50px;
+                    width: 20%;
                     color: #fff;
                     background-color:map-get($btn_color,'orange') ;
                 }

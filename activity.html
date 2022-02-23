@@ -138,8 +138,10 @@
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit praesentium maiores, quia consequuntur laboriosam deleniti a illo excepturi tempore.
                         </p> 
                         </div>
-                        <input id="textArea" value="22HAPPYMDAY">
-                        <button onclick="copyToClipBoard('textArea')">複製</button>
+                        <div class="copy">
+                            <input id="textArea" value="22HAPPYMDAY">
+                            <button onclick="copyToClipBoard('textArea')">複製</button>
+                        </div>
                 </div>
                 <div class="acti_item">
                     <div class="img">
@@ -151,8 +153,10 @@
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit praesentium maiores, quia consequuntur laboriosam deleniti a illo excepturi tempore.
                         </p> 
                     </div>                        
-                        <input id="textArea2" value="2022HAPPY88">
-                        <button onclick="copyToClipBoard('textArea2')">複製</button>     
+                        <div class="copy">
+                            <input id="textArea2" value="2022HAPPY88">
+                            <button onclick="copyToClipBoard('textArea2')">複製</button>
+                        </div>  
                 </div>
                 <div class="acti_item">
                     <div class="img">
@@ -164,8 +168,10 @@
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit praesentium maiores, quia consequuntur laboriosam deleniti a illo excepturi tempore.
                         </p> 
                     </div>                        
-                        <input type="text" value="22SOEASYEVD" readonly id="textAreas3"/>
-                        <button onclick="copyToClipBoard('textAreas3')">複製</button>
+                        <div class="copy">
+                            <input type="text" value="22SOEASYEVD" readonly id="textAreas3"/>
+                            <button onclick="copyToClipBoard('textAreas3')">複製</button>
+                        </div>
                 </div>
                 
             </div>
@@ -221,7 +227,7 @@
 
     <footer>
     <div class="footer_elements">
-        <img class="footer_cap" src="../../img/footer_bg.png" alt="">
+        <img class="footer_cap" src="../../img/footer_bg_white.png" alt="">
         <div class="col-12 go_top_btn">
             <div class="link_ro bl" style="width: 100%;">  
                 <div class="link_ro_l">
@@ -279,7 +285,7 @@
         content.select();
         document.execCommand('copy');
 
-        alert("Copied!");
+        alert("已複製!");
         }
     </script>
 </body>

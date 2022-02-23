@@ -1,6 +1,9 @@
 @import  "../base/var";
 @import  "../base/color";
 
+li{
+    list-style: none;
+}
 
 button{
     padding: $btn_padding;
@@ -12,6 +15,9 @@ button{
     &:hover{
         background-color: map-get($btn_color, 'brown') ;
     }
+    &:focus{
+        outline: none;
+    }
 }
 .container{
     max-width: 820px; 
@@ -22,7 +28,8 @@ button{
     color: map-get($color, 'main');
     .progress{
         overflow: hidden;
-        margin-bottom: -2px; /* hide bottom border */
+        margin-bottom: -2px;
+         /* hide bottom border */
         margin-left: 24px;
         a{
             float: left;
@@ -70,9 +77,6 @@ table.creditCard{
 .form_item{
     margin: 20px auto; 
     display: flex;
-    h3{
-        margin-right: 2rem;
-    }
 }
 .choose_plan{
     display: flex;
@@ -80,9 +84,9 @@ table.creditCard{
         cursor: pointer;
     }
     li{
-        list-style: none;
         margin: 10px 20px;
     }
+
 }
 .choose_emp{
     display: flex;
@@ -100,40 +104,41 @@ table.creditCard{
 
 
 // 更改input[type=radio]樣式
-.radio-label {
-    position: relative;
-    padding-left: 2rem;
-}
+// .radio-label {
+//     position: relative;
+//     padding-left: 2rem;
+// }
 /* 自定義樣式的span */
-.radio-button {
-    height: 1rem;
-    width: 1rem;
-    border: 1px solid map-get($btn_color, 'brown');
-    border-radius: 50%;
-    display: inline-block;
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-  .radio-button::after { /* 中間點點 */
-    content: "";
-    display: block;
-    height: 0.8rem;
-    width: 0.8rem;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: map-get($btn_color, 'brown');
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .radio-input:checked ~ .radio-label .radio-button::after {
+// .radio-button {
+//     height: 1rem;
+//     width: 1rem;
+//     border: 1px solid map-get($btn_color, 'brown');
+//     border-radius: 50%;
+//     display: inline-block;
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//   }
+/* 中間點點 */
+//   .radio-button::after { 
+//     content: "";
+//     display: block;
+//     height: 0.8rem;
+//     width: 0.8rem;
+//     border-radius: 50%;
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     background-color: map-get($btn_color, 'brown');
+//     opacity: 0;
+//     transition: opacity 0.3s;
+//   }
+//   .radio-input:checked ~ .radio-label .radio-button::after {
+//     opacity: 1;
+//   }
     /* 選中radio時 才顯示中間點點 */
-    opacity: 1;
-  }
-
+    
 // 更改input[type=text]樣式
 input[type=text],input[type=email]{
     box-shadow: -1px -1px 3px map-get($btn_color, 'brown');
@@ -141,19 +146,22 @@ input[type=text],input[type=email]{
     border-radius: 10px;
     background-color: map-get($color , "plain" );
     &:focus{
-        box-shadow: -1px -1px 3px 1px map-get($btn_color, 'brown');
+        box-shadow: -1px -1px 3px map-get($color, 'main');
     }
 }
 
 
-// 月曆
+// 選擇日期
+.choose_date{
+    display: unset;
+}
 /* 月曆外觀 */
 #calendari {
     margin: 20px 0;
     position: relative;
     overflow: hidden;
+    min-width: 500px;
     height: 400px;
-    width: 602px;
     font-size: 14px;
     box-shadow: 0px 1px 4px rgba(0,0,0,0.4);
 }
@@ -162,7 +170,7 @@ input[type=text],input[type=email]{
     .actiu{
     border-collapse: collapse;
     table-layout: fixed;
-    width: 600px;
+    min-width: 500px;
     height: 400px;
     box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
     background-color: #fff;
@@ -288,5 +296,73 @@ td > span:hover {
     background: rgba(0,0,0,0.2);
     cursor: pointer;
 }
-// button:hover { cursor: pointer; }
-button:focus { outline: none; }
+
+// 時段
+.calendar_time{
+    display: flex;
+    justify-content: center;
+    
+    .time_period{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .time_item{
+            border: 2px solid black;
+            width: 100px;
+            height: 100px;
+        }
+    }
+}
+
+
+
+
+// 上傳照片
+.upload_pics{
+    .your_pics{
+        width: 150px;
+        label{
+            display: block;
+            #myImage{
+               max-width: 150px;
+               cursor: pointer;
+            }
+        }
+    }
+}
+
+
+// 下拉式選單樣式
+select{
+    border: none;
+    box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
+    border-radius: 10px;
+    padding: 5px;
+    &:focus{
+        outline: none;
+        box-shadow: 1px 1px 5px map-get($color, 'main');
+    }
+}
+
+.choose_add select{
+    margin-right: 10px;
+}
+// textarea更改樣式
+textarea {
+    outline: none;
+    border: none;
+    box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
+    &:focus{
+        box-shadow: 1px 1px 5px map-get($color, 'main');
+    }
+}
+
+// 信用卡種類
+.card_li{ // td
+    display: flex;
+    li{
+        label{
+            cursor: pointer;
+        }
+    }
+}

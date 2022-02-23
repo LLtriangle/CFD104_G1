@@ -70,7 +70,7 @@
                         <!-- 整理師介紹 -->
                         <div class="emp_info" v-show="emp_info">
                             <img src="">
-                            <p>{{selectedEmp}}</p>
+                            <!-- <p>{{selectedEmp}}</p> -->
                         </div>
                     </div>
 
@@ -78,8 +78,16 @@
                     <!-- 選擇日期 -->
                     <div class="form_item choose_date">
                         <h3>選擇日期</h3>
-                        <!-- 月曆 -->
-                        <div id="calendari"></div>
+                        <div class="calendar_time">
+                            <!-- 月曆 -->
+                            <div id="calendari"></div>
+                            <!-- 挑時段 -->
+                            <div class="time_period">
+                                <div class="time_item">上午9-12點</div>
+                                <div class="time_item">下午15-17點</div>
+                                <div class="time_item">晚上18-21點</div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- 姓名 -->
@@ -98,16 +106,17 @@
                         <input type="email" v-model="email" placeholder="請輸入email">
                     </div>
                     <!-- 地址 -->
-                    <div class="form_item">
+                    <div class="form_item choose_add">
                         <h3>地址</h3>
                         <select name="市" v-model="selectedCity" @change="changeCity">
+                            <option value="" disabled>選擇縣市</option>
                             <option v-for="City in Citys">{{City}}</option>
                         </select>
                         <select name="區" v-model="selectedArea" @change="changeCity">
+                            <option value="" disabled>選擇區域</option>
                             <option v-for="Area in Areas">{{Area}}</option>
                         </select>
                         <input type="text" placeholder="請輸入地址">
-                        <p id="add"></p>
                     </div>
                     <!-- 需求 -->
                     <div class="form_item">
@@ -118,7 +127,10 @@
                     <div class="form_item upload_pics">
                         <p>上傳照片讓我們了解您想改善的空間<br>(最多上傳3張,僅支援格式 jpg /png)</p>
                         <div class="your_pics">
-
+                            <input type="file" name="upFile" id="upFile" style="display: none;" accept="image/jpeg, image/png"  multiple>
+                            <label for="upFile">
+                                <img src="https://cdn-icons.flaticon.com/png/512/4131/premium/4131814.png?token=exp=1645519641~hmac=35680c842a09e7fd00e144c3c7acc9d7" id="myImage">
+                            </label>
 
                         </div>
                     </div>
@@ -130,18 +142,54 @@
             <div v-if="activetab ==='2'" class="tabcontent">
                 <table class="creditCard">
                     <tr>
-                        <td>信用卡:</td>
-                        <td colspan="2">
-                            <input type="radio" name="payment" value="Visa" id="visa" />Visa &nbsp;
-                            <input type="radio" name="payment" value="Master Card" />Master Card &nbsp;
-                            <input type="radio" name="payment" value="American Express" />American Express &nbsp;
-                            <input type="radio" name="payment" value="Discover" />Discover <br />
-                            <label>Card Number:</label>
-                            <input type="text" name="cardNumber" id="cardNum" size="30" value="" v-model="credit_card" maxlength="16"
-                                onblur="ValidateCreditCardNumber()" /></td>
+                        <td>
+                            <h3>信用卡種類</h3>
+                        </td>
+                        
+                        <td class="card_li">
+                            <li>
+                                <input type="radio" v-model="payment" value="Visa" id="visa" class="radio-input">
+                                <label for="visa" class="radio-label">
+                                    <span class="radio-button"></span>
+                                    Visa
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" v-model="payment" value="Master Card" id="masterCard"  class="radio-input">
+                                <label for="masterCard" class="radio-label">
+                                    <span  class="radio-button"></span>
+                                    Master Card
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" v-model="payment" value="American Express" id="AE"  class="radio-input">
+                                <label for="AE" class="radio-label">
+                                    <span class="radio-button"></span>
+                                    American Express
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" v-model="payment" value="Discover" id="discover"  class="radio-input">
+                                <label for="discover" class="radio-label">
+                                    <span  class="radio-button"></span>
+                                    Discover
+                                </label>
+                            </li>
+                        </td>
                     </tr>
+
                     <tr>
-                        <td>信用卡到期日:</td>
+                        <td>
+                            <h3>信用卡卡號</h3>
+                        </td>
+                        <td>
+                            <input type="text" name="cardNumber" id="cardNum" size="30" value="" v-model="credit_card" maxlength="16"
+                                onblur="ValidateCreditCardNumber()" />
+                        </td>
+                    </tr>
+                            
+                    <tr>
+                        <td>信用卡到期日</td>
                         <td>
                             <select name="年" v-model="selectedYear">
                                 <option v-for="year in years">{{year}}年</option>
@@ -154,11 +202,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>收貨人姓名:</td>
+                        <td>預約人姓名</td>
                         <td><input type="text" v-model="name"></td>
                     </tr>
                     <tr>
-                        <td rowspan="2">收貨地址:</td>
+                        <td rowspan="2">預約地址</td>
                         <td><input size="25" v-model="address1"></td>
                     </tr>
                     <tr>
@@ -207,6 +255,7 @@
 @@include('layout/footer.html')           
 </body>
 <script>
+    // 信用卡驗證
     function ValidateCreditCardNumber(){
 
 var ccNum = document.getElementById("cardNum").value;
@@ -219,15 +268,19 @@ var discovRegEx = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
 
 if (visaRegEx.test(ccNum) === false ){ // Visa validation
    alert("信用卡卡號錯誤");
+   return;
     }
 if (mastercardRegEx.test(ccNum) === false){ // MasterCard validation
-    alert("信用卡卡號錯誤");  
+    alert("信用卡卡號錯誤"); 
+    return; 
     }
 if(amexpRegEx.test(ccNum) === false){ // Amex  validation
     alert("信用卡卡號錯誤");  
+    return; 
     }  
 if (discovRegEx.test(ccNum) === false){ // Discover validation
     alert("信用卡卡號錯誤"); 
+    return; 
     }
 }
 </script>
@@ -251,6 +304,11 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
             email: '',
             Citys: ["台北市","新北市","基隆市","桃園市"],
             Areas: '',
+            selectedArea: '',
+            selectedCity: '',
+            payment: '',
+            years: [2022,2023,2024,2025,2026,2027,2028,2029,2030],
+            
         },
         methods: {
             changeCity(){
@@ -281,5 +339,20 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
             
         },
     });
+</script>
+<script>
+    let upFile = document.getElementById("upFile");
+    let myImage = document.getElementById("myImage");
+    
+window.addEventListener("load", function() {
+    upFile.onchange=function(e){ //選檔案:change事件
+        let file = e.target.files[0]; //找物件
+        let reader = new FileReader(); //reader讀物件
+        reader.onload = function(){  //讀完發生onload事件 結果在result裡
+            myImage.src = reader.result;
+        }
+        reader.readAsDataURL(file);
+    }
+});
 </script>
 </html>
