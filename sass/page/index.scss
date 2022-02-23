@@ -11,12 +11,16 @@
 /*其他共用*/
 @import  "../base/universal";
 
+//小尺寸section高度
+$small_part_h: 90vh;
+
 /*css設定部分*/
 
 /*手機板與電腦版共用部分*/
 
 .index{
     width: 100%;
+    overflow: hidden;
 }
 
 /*登陸section .index_landing*/
@@ -68,6 +72,7 @@
 /*服務section .index_plans*/
 .index_plans{
     display: flex;
+    height: $small_part_h;
     
     h2{
         padding-bottom: 20px;
@@ -170,21 +175,17 @@
 /*預約流程section .index_progress*/
 .index_progress{
     padding: 100px 40px;
-    // height: 120vh;
     box-sizing: border-box;
-    h2{
-        padding: 60px 0;
-    }
 
     ul{
         width: 80vw;
-        padding: 20px 0px;
+        // padding: 60px 0px 20px 0;
         margin: auto;
     }
 
     li{
         display: flex;
-        padding-bottom: 100px;
+        // padding-bottom: 40px;
     }
 
     a{
@@ -217,7 +218,7 @@
 
     .progress_txt{
         h3, p{
-            padding: 20px 0;
+            padding: 10px 0;
         }
     }
 
@@ -225,16 +226,129 @@
 
 /*活動消息section .index_news*/
 .index_news{
+    height: $small_part_h;
+
     .news_items{
         display: flex;
+        align-items: center;
     }
 
+    .news{
+        box-sizing: border-box;
+    }
+
+    h3{
+        padding: 20px 0;
+    }
+
+}
+
+/*專欄文章section .index_columns*/
+.index_columns{
+    height: $small_part_h;
+
+    .column_content{
+        margin: auto;
+        .column{
+            padding-top: 20px;
+
+            p{
+                padding-top: 10px;
+            }
+        }
+    }
+
+    .columns_more{
+        display: flex;
+        justify-content: right;
+    }
+
+    .img_bar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span{
+            margin: 0 15px 0 0;
+            width: 100px;
+            height: 300px;
+            display: block;
+            box-sizing: border-box;
+            background-image: url(https://picsum.photos/600/300/?random=1);
+            animation: auto;
+
+            @keyframes auto {
+                
+            }
+        }
+
+
+        .img_part_1{
+            background-position: 0%;
+        }
+        .img_part_2{
+            background-position: 25%;
+        }
+        .img_part_3{
+            background-position: 50%;
+        }
+        .img_part_4{
+            background-position: 75%;
+        }
+        .img_part_5{
+            background-position: 100%;
+        }
+    }
+
+}
+
+/*熱門商品section .index_hot_sales*/
+.index_hot_sales{
+    padding: 0 40px;
+    ul{
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-around;
+
+        li{
+            position: relative;
+
+            .product_bg{
+                width: 120%;
+                height: 400px;
+                position: relative;
+                background-color: map-get($color , "sub_blue" );
+            }
+            
+
+            a{
+                position: relative;
+                
+                .hs_item{
+                    position: relative;
+                    top: -50%;
+                    left: 50%;
+                    z-index: 10;
+                }
+            }
+        }
+    }
+
+    .hs_more{
+        display: flex;
+        justify-content: right;
+    }
 }
 
 /*手機板部分*/
 
 @media screen and (max-width:768px) {
-    
+
+    /*手機板section h2置中(除了服務方案)*/
+    h2{
+        text-align: center;
+    }
+
     /*登陸section .index_landing*/
     .index_landing {
         
@@ -259,6 +373,9 @@
         .slogan{
             max-width: 1200px;
             
+            h2{
+                text-align: left;
+            }
             h2, p{
                 padding: 20px;
             }
@@ -266,12 +383,12 @@
     }
     /*服務section .index_plans*/
     .index_plans{
-        height: 120vh;
         flex-direction: column-reverse;
         justify-content: center;
         position: relative;
 
         h2{
+            text-align: left;
             padding-left: 20px;
         }
 
@@ -299,6 +416,7 @@
             svg{
                 width: 20px;
                 fill: map-get($color , "main" );
+                padding-left: 20px;
             }
         }
     }
@@ -306,10 +424,6 @@
     /*煩惱section .index_needs*/
     .index_needs{
         background-color: #9E9A8E;
-
-        h2{
-            text-align: center;
-        }
 
         .bubble {
             height: 20vh;
@@ -347,8 +461,7 @@
     /*預約流程section .index_progress*/
     .index_progress{
         padding: 60px 10px;
-        
-
+    
         .progress_icon{
             width: 100px;
             height: 100px;
@@ -372,10 +485,31 @@
             display: none;
         }
 
-        .news_cupon{
-            display: flex;
+        .news{
+            padding: 20px 10px 0 10px;
         }
 
+        .new{
+            position: relative;
+        }
+
+    }
+
+    /*專欄文章section .index_columns*/
+    .index_columns{
+        flex-direction: column;
+        margin: 0 3px;
+        padding-right: 10px;
+        padding-left: 10px;
+
+        .img_bar{
+            margin: auto;
+            padding-top: 20px;
+
+            span{
+                height: 200px;
+            }
+        }
         
     }
 }
@@ -421,7 +555,6 @@
 
     /*服務section .index_plans*/
     .index_plans{
-        height: 120vh;
 
         .plans_link, .plans_view{
             margin: auto;
@@ -446,10 +579,6 @@
     .index_needs{
         background-color: #9E9A8E;
         
-
-        h2{
-            text-align: center;
-        }
 
         .bubble {
             height: 30vh;
@@ -560,12 +689,41 @@
 
     /*活動消息section .index_news*/
     .index_news{
+        position: relative;
 
-        .news_cupon{
-            display: none;
+        h2{
+            position: absolute;
+            top: -10%;
+            left: 10vw;
+            letter-spacing: 1.5em;
+
         }
 
-        
+        .news_img{
+            width: 50vw;
+            max-height: 60vh;
+        }
+
+        ul{
+            padding-left: 5vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+    }
+
+    /*專欄文章section .index_columns*/
+    .index_columns{
+        display: flex;
+        padding: 0 40px;
+
+        .img_bar{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 10vw;
+        }
     }
 
 }
