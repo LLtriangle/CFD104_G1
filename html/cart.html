@@ -65,8 +65,8 @@
                         <td colspan="3"><input type="text"></td>
                     </tr>
                     <tr>
-                        <td><button>繼續購物</button></td>
-                        <td><button v-on:click="activetab='2'">下一步</button></td>
+                        <td colspan="3"><button>繼續購物</button></td>
+                        <td colspan="3"><button v-on:click="activetab='2'">下一步</button></td>
                     </tr>
                 </table>
             </div>
@@ -75,24 +75,29 @@
                     <tr>
                         <td colspan="3">信用卡:</td>
                         <td colspan="5">
-                            <input type="radio" v-model="payment" value="Visa" id="visa" class="radio-input"><label
-                                for="visa" class="radio-label"><span class="radio-button"></span>Visa</label>
-                            <input type="radio" v-model="payment" value="Master Card" id="Master Card"
-                                class="radio-input"><label for="Master Card" class="radio-label"><span
-                                    class="radio-button"></span>Master Card</label>
-                            <input type="radio" v-model="payment" value="American Express" id="American Express"
-                                class="radio-input"><label for="American Express" class="radio-label"><span
-                                    class="radio-button"></span>American Express</label>
-                            <input type="radio" v-model="payment" value="Discover" id="Discover"
-                                class="radio-input"><label for="Discover" class="radio-label"><span
-                                    class="radio-button"></span>Discover</label></td>
+                            <li>
+                                <input type="radio" v-model="payment" value="Visa" id="visa" class="radio-input"><label
+                                    for="visa" class="radio-label"><span class="radio-button"></span>Visa</label></li>
+                            <li>
+                                <input type="radio" v-model="payment" value="Master Card" id="Master Card"
+                                    class="radio-input"><label for="Master Card" class="radio-label"><span
+                                        class="radio-button"></span>Master Card</label></li>
+                            <li>
+                                <input type="radio" v-model="payment" value="American Express" id="American Express"
+                                    class="radio-input"><label for="American Express" class="radio-label"><span
+                                        class="radio-button"></span>American Express</label></li>
+                            <li>
+                                <input type="radio" v-model="payment" value="Discover" id="Discover"
+                                    class="radio-input"><label for="Discover" class="radio-label"><span
+                                        class="radio-button"></span>Discover</label></li>
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="3">
                             <label>Card Number:</label></td>
-                        <td colspan="5">
+                        <td colspan="4">
                             <input type="text" name="cardNumber" id="cardNum" size="30" value="" v-model="credit_card"
-                                maxlength="16" onblur="ValidateCreditCardNumber()" /></td>
+                                maxlength="16" onblur="ValidateCreditCardNumber()" /></td><td><input type="text" size="3" maxlength="3"></td>
                     </tr>
                     <tr>
                         <td colspan="3">信用卡到期日:</td>
@@ -114,20 +119,19 @@
                     <tr>
                         <td colspan="3">收貨地址:</td>
                         <td><select name="市" v-model="selectedCity" @change="changeCity">
-                                <option value="" disabled>請選擇</option>
+                                <option value="" disabled>選擇縣市</option>
                                 <option v-for="City in Citys">{{City}}</option>
                             </select></td>
                         <td><select name="區" v-model="selectedArea" @change="changeCity">
-                                <option value="" disabled>請選擇</option>
+                                <option value="" disabled>選擇區域</option>
                                 <option v-for="Area in Areas">{{Area}}</option>
                             </select></td>
                         <td><input type="text" v-model="address"></td>
                     </tr>
                     <tr>
                         <td colspan="3"><button v-on:click="activetab='1'">返回</button>
-                        <td></td>
-                        </td colspan="3">
-                        <td><button v-on:click="activetab='3'">下一步</button></td>
+                        </td>
+                        <td colspan="3"><button v-on:click="activetab='3'">下一步</button></td>
                     </tr>
                 </table>
             </div>
@@ -157,8 +161,8 @@
                         <td>{{total}}</td>
                     </tr>
                     <tr>
-                        <td><button v-on:click="activetab='2'">返回</button></td>
-                        <td><button>送出</button></td>
+                        <td colspan="3"><button v-on:click="activetab='2'">返回</button></td>
+                        <td colspan="3"><button>送出</button></td>
                     </tr>
                 </table>
             </div>
@@ -215,7 +219,7 @@
                 price: 3200,
                 image: 'SoEazy.png',
                 isDisabled: true,
-                years: [2020, 2021, 2022, 2023]
+                years: [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
             },
             methods: {
                 countNum(x) {
