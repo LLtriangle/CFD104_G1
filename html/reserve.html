@@ -8,7 +8,9 @@
     
     <link rel="stylesheet" href="css/cart.css">
     <link rel="stylesheet" href="css/reserve.css">
+    <link rel="stylesheet" href="css/calendar.css">
     <script src="js/reserve.js"></script>
+    <script src="js/calendar.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
      
@@ -29,40 +31,66 @@
                 <!-- 預約表單 -->
                 <form>
                     <!-- 選擇方案 -->
+                    <h3>選擇方案</h3>
                     <div class="form_item choose_plan">
-                        <h3>選擇方案</h3>
                         <div class="plan_li">
                             <li>
                                 <input type="radio" v-model="plan" value="到府一對一教學" id="plan0" class="radio-input">
                                 <label for="plan0" class="radio-label">
                                     <span class="radio-button"></span>
-                                    到府一對一教學
+                                    <p>到府一對一教學</p>
                                 </label>
                             </li>
                             <li>
                                 <input type="radio" v-model="plan" value="空間整理收納" id="plan1" class="radio-input">
                                 <label for="plan1" class="radio-label">
                                     <span class="radio-button"></span>
-                                    空間整理收納
+                                    <p>空間整理收納</p>
                                 </label>
                             </li>
                             <li>
                                 <input type="radio" v-model="plan" value="搬家前後物品上下架" id="plan2" class="radio-input">
                                 <label for="plan2" class="radio-label">
                                     <span class="radio-button"></span>
-                                    搬家前後物品上下架
+                                    <p>搬家前後物品上下架</p>
                                 </label>
                             </li>
                         </div>
                         <!-- 方案介紹 -->
-                        <div class="plan_info" v-show="plan_info">
-                            <div class="plan_txt plan_t">
+                        <div class="plan_info" v-show="plan0_info">
+                            <div class="plan_txt">
                                 <h4>｜適合對象｜</h4>
                                 <p>#平日愛整理收納，想了解更多整理達人收納術。</p>
                                 <p>#希望有整理師現場帶領和調整一個適合自己的整理方式。</p>
                                 <p>#協助與室內設計師溝通適合的收納空間規劃。</p>
                                 <h4>｜方案特色｜</h4>
                                 <p>以一個範圍教學完流程後，可嘗試自行完成其他區域。</p>
+                                <h4>｜方案價格｜</h4>
+                                <p class="plan_price">{{price}}元/hr</p>
+                            </div>
+                        </div>
+                        <div class="plan_info" v-show="plan1_info">
+                            <div class="plan_txt">
+                                <h4>｜適合對象｜</h4>
+                                <p>#需要施作完整區域。</p>
+                                <p>#需要專業整理收納師陪伴。</p>
+                                <p>#有決心展開新的生活面貌。</p>
+                                <p>#沒有時間、沒有耐心、不想動手。</p>
+                                <h4>｜方案特色｜</h4>
+                                <p>整理收納師全程專業引導與施作。客製化空間改造。</p>
+                                <h4>｜方案價格｜</h4>
+                                <p class="plan_price">{{price}}元/hr</p>
+                            </div>
+                        </div>
+                        <div class="plan_info" v-show="plan2_info">
+                            <div class="plan_txt">
+                                <h4>｜適合對象｜</h4>
+                                <p>#搬家前物品段捨離、打包裝箱。</p>
+                                <p>#搬家後定位收納整理。</p>
+                                <h4>｜方案特色｜</h4>
+                                <p>建議客戶先行取捨，物品越多耗時越長!</p>
+                                <h4>｜方案價格｜</h4>
+                                <p class="plan_price">{{price}}元/hr</p>
                             </div>
                         </div>
                     </div>
@@ -90,9 +118,24 @@
                             <div id="calendari"></div>
                             <!-- 挑時段 -->
                             <div class="time_period">
-                                <div class="time_item">上午9-12點</div>
-                                <div class="time_item">下午15-17點</div>
-                                <div class="time_item">晚上18-21點</div>
+                                <input type="radio" v-model="period" value="上午9-12點" id="period_1">
+                                <label for="period_1">
+                                    <div class="time_item">
+                                        <p>上午<br>9-12點</p>
+                                    </div>
+                                </label>
+                                <input type="radio" v-model="period" value="下午14-17點" id="period_2">
+                                <label for="period_2">
+                                    <div class="time_item">
+                                        <p>下午<br>14-17點</p>
+                                    </div>
+                                </label>
+                                <input type="radio" v-model="period" value="晚上18-21點" id="period_3">
+                                <label for="period_3">
+                                    <div class="time_item">
+                                        <p>晚上<br>18-21點</p>
+                                    </div>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -105,12 +148,7 @@
                     <!-- 電話 -->
                     <div class="form_item">
                         <h3>電話</h3>
-                        <input type="text" v-model="tel"  placeholder="請輸入電話">
-                    </div>
-                    <!-- email -->
-                    <div class="form_item">
-                        <h3>email</h3>
-                        <input type="email" v-model="email" placeholder="請輸入email">
+                        <input type="text" v-model="tel"  placeholder="請輸入電話" required>
                     </div>
                     <!-- 地址 -->
                     <div class="form_item choose_add">
@@ -123,7 +161,7 @@
                             <option value="" disabled>選擇區域</option>
                             <option v-for="Area in Areas">{{Area}}</option>
                         </select>
-                        <input type="text" placeholder="請輸入地址">
+                        <input type="text" placeholder="請輸入地址" required>
                     </div>
                     <!-- 需求 -->
                     <div class="form_item">
@@ -132,13 +170,16 @@
                     </div>
                     <!-- 上傳照片 -->
                     <div class="form_item upload_pics">
-                        <p>上傳照片讓我們了解您想改善的空間<br>(最多上傳3張,僅支援格式 jpg /png)</p>
-                        <div class="your_pics">
-                            <input type="file" name="upFile" id="upFile" style="display: none;" accept="image/jpeg, image/png"  multiple>
-                            <label for="upFile">
-                                <img src="https://cdn-icons.flaticon.com/png/512/4131/premium/4131814.png?token=exp=1645519641~hmac=35680c842a09e7fd00e144c3c7acc9d7" id="myImage">
-                            </label>
-
+                        <p>
+                            上傳照片讓我們了解您想改善的空間
+                            <span>(最多上傳3張,僅支援格式 jpg /png)</span>
+                        </p>
+                        <div class="your_pics" id="your_pics">
+                            <div id="div_myimgs"></div>
+                            <div id="div_upload">
+                                <input type="file" name="upFile" id="upFile" style="display: none;" accept="image/jpeg, image/png"  multiple>
+                                <label for="upFile"></label>
+                            </div>
                         </div>
                     </div>
                 
@@ -246,7 +287,7 @@
                     </tr>
                     <tr>
                         <td>預約整理師</td>
-                        <td>{{emp}}</td>
+                        <td>{{selectedEmp}}</td>
                     </tr>
                     
                     <tr>
@@ -301,21 +342,19 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
             credit_card: '',
             plan: '到府一對一教學',//預設
             name:'',
-            coupon:'',
+            price: 1000,
             count: 1,
-            price: 3200,
             image: 'images/3341.gif',
             emps: ["麻里不會","末牛子","潔癖子","由收easy安排"],
             selectedEmp: '',
             tel: '',
-            email: '',
             Citys: ["台北市","新北市","基隆市","桃園市"],
             Areas: '',
             selectedArea: '',
             selectedCity: '',
             payment: '',
             years: [2022,2023,2024,2025,2026,2027,2028,2029,2030],
-            
+            period:'',
         },
         methods: {
             changeCity(){
@@ -337,25 +376,44 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
             product() {
                 return parseInt(this.count)
             },
-            plan_info() {
-                return this.plan;
+            plan0_info() {
+                if(this.plan === '到府一對一教學'){
+                    return true
+                }
+            },
+            plan1_info() {
+                if(this.plan === '空間整理收納'){
+                    return true
+                }
+            },
+            plan2_info() {
+                if(this.plan === '搬家前後物品上下架'){
+                    return true
+                }
             },
             emp_info() {
                 return this.selectedEmp;           
             },
-            
+            total() {
+                return this.price*3;
+            }
         },
     });
 </script>
 <script>
     let upFile = document.getElementById("upFile");
-    let myImage = document.getElementById("myImage");
+    let your_pics = document.getElementById("your_pics");
+    let div_myimgs = document.getElementById("div_myimgs");
     
 window.addEventListener("load", function() {
     upFile.onchange=function(e){ //選檔案:change事件
         let file = e.target.files[0]; //找物件
         let reader = new FileReader(); //reader讀物件
         reader.onload = function(){  //讀完發生onload事件 結果在result裡
+            // 生成img
+            let myImage = document.createElement('img');
+            
+            div_myimgs.appendChild(myImage);
             myImage.src = reader.result;
         }
         reader.readAsDataURL(file);
