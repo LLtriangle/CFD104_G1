@@ -185,8 +185,8 @@ function createCalendar(){
                 if(actual.getMonth() !== data.getMonth() )
                     td.className = 'fora';
                 // ------------------新增
-                if(actual.getDate()-2 <= data.getDate() && actual.getMonth() === data.getMonth())
-                    td.className = 'fora';
+                // if(actual.getDate()-2 <= data.getDate() && actual.getMonth() === data.getMonth())
+                //     td.className = 'fora';
     
                 // today=今天
                 if(data.getDate() == actual.getDate() &&
@@ -200,7 +200,7 @@ function createCalendar(){
                 
                 // 三時段皆滿
                 if(re_index == 3){
-                    td.classList.add('fora');
+                    td.classList.add('full');
                 }
     
                 actual.setDate(actual.getDate()+1);
@@ -213,9 +213,11 @@ function createCalendar(){
                     if(tds[i].className.indexOf('fora') == -1 && tds[i].className.indexOf('today') == -1){
                         tds[i].onclick=function(){
                             // td加上被選到的效果
-                            tds[i].classList.add("selected");
+                            // console.log(i);
+                            // 抓裡面的日期
+
                             // 顯示早中晚預約btn
-    
+                            
                         }  
                     }
                     

@@ -3,6 +3,7 @@
 // 載入照片
 function uploadFile(){
 
+    let div_upload = document.getElementById("div_upload");
     let upFile = document.getElementById("upFile");
     let your_pics = document.getElementById("your_pics");
     let div_myimgs = document.getElementById("div_myimgs");
@@ -30,14 +31,21 @@ function uploadFile(){
             delete_btn.onclick = delete_mypic;
             // 刪除照片
             function delete_mypic(e){
-                console.log(e.nextSibling) 
+                let div_img = e.target.parentNode; 
+                div_img.remove();
+                if(myimgs.length == 2){
+                    your_pics.appendChild(div_upload);
+                }
             };
 
             img.src = reader.result;
     
             let myimgs = document.getElementsByClassName("myimg");
+
+            
+            // console.log(myimgs.length);
             if(myimgs.length == 3){
-                upFile.style.display="none";
+                div_upload.remove()
             }
     
         }

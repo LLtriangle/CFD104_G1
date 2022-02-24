@@ -531,17 +531,6 @@ $section_margin_top: 60px;
             @include PC{
                 flex-direction: row-reverse;   
             }
-            // .progress_icon{
-            //     background-color: map-get($color , "sub_blue" );
-            // }
-
-            // &:hover .progress_icon{
-            //     background-color: map-get($color , "bg_white" );
-            // }
-    
-            &:hover svg{
-                // fill: map-get($color , "sub_blue" );
-            }
             @include PC{
                 .progress_txt{
                     padding-left: 0px;
