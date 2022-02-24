@@ -115,9 +115,18 @@
     <div id="tabs" class="container">
         <!-- 進度條 -->
         <div class="progress">
-            <a v-bind:class="[ activetab === '1' ? 'active' : '' ]">預約表單</a>
-            <a v-bind:class="[ activetab === '2' ? 'active' : '' ]">訂金付款</a>
-            <a v-bind:class="[ activetab === '3' ? 'active' : '' ]">服務預約明細</a>
+            <a v-bind:class="[ activetab === '1' ? 'active' : '' ]" v-on:click="activetab='1'">
+                <img src="img/reserve_contract.png" alt=""> 
+                預約表單
+            </a>
+            <a v-bind:class="[ activetab === '2' ? 'active' : '' ]">
+                <img src="img/reserve_credit-card.png" alt="">
+                訂金付款
+            </a>
+            <a v-bind:class="[ activetab === '3' ? 'active' : '' ]">
+                <img src="img/reserve_receipt.png" alt="">
+                服務預約明細
+            </a>
         </div>
 
         <div class="content">
@@ -275,7 +284,7 @@
                             <div id="div_upload">
                                 <input type="file" name="upFile" id="upFile" style="display: none;" accept="image/jpeg, image/png"  multiple>
                                 <label for="upFile">
-                                    + 上傳照片
+                                    <img src="img/reserve_upload.png" alt="">
                                 </label>
                             </div>
                         </div>
@@ -547,24 +556,5 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
         },
     });
 </script>
-<script>
-    let upFile = document.getElementById("upFile");
-    let your_pics = document.getElementById("your_pics");
-    let div_myimgs = document.getElementById("div_myimgs");
-    
-window.addEventListener("load", function() {
-    upFile.onchange=function(e){ //選檔案:change事件
-        let file = e.target.files[0]; //找物件
-        let reader = new FileReader(); //reader讀物件
-        reader.onload = function(){  //讀完發生onload事件 結果在result裡
-            // 生成img
-            let myImage = document.createElement('img');
-            
-            div_myimgs.appendChild(myImage);
-            myImage.src = reader.result;
-        }
-        reader.readAsDataURL(file);
-    }
-});
-</script>
+
 </html>
