@@ -9,14 +9,14 @@
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
-        position: relative;
+        justify-content: center;
         h3{
             display: inline-block;
             width: 100%;
         }
         .acti_item{
-            width: calc(75%-50px);
-            margin: 25px 80px;
+            width: calc(75% - 50px);
+            margin: 25px auto;
             border-radius: 10px;
             border: 1px solid #ddd;
             overflow: hidden;
