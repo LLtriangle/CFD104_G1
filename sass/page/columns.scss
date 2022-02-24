@@ -16,19 +16,28 @@
     }
     .item{
         display: flex;
+        padding: 0 50px 10px 50px;
         .item_img{
             width: 50px;
             border-radius: 50%;
             overflow: hidden;
         }
+        .name{
+            padding: 10px 0 10px 15px;
+        }
 
     }
     p{
-        padding: 30px;
+        padding: 0 30px;
     }
     
 }
-
+h3{
+    padding: 30px;
+}
+h4{
+    padding: 15px;
+}
 @media screen and(min-width:768px){
     .activity{
         max-width: 1200px;
