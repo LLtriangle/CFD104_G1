@@ -11,6 +11,7 @@
 /*其他共用*/
 @import  "../base/universal";
 
+
 //rwd變數
 @mixin pad{
     @media(max-width:767px){
@@ -491,7 +492,7 @@ $section_margin_top: 60px;
             }
             
             top: 50%;
-            left: 50%;
+            left: 55%;
             transform: rotate(-45deg) translate(0, -70%);
         }
 
@@ -501,6 +502,13 @@ $section_margin_top: 60px;
 
         &:hover svg{
             fill: map-get($color , "sub_brown" );
+        }
+    }
+
+    /*.index_progress 第一個icon 置中*/
+    ul li:nth-child(1){
+        svg{
+            left: 50%;
         }
     }
 
@@ -538,9 +546,6 @@ $section_margin_top: 60px;
 /*活動消息section .index_news*/
 .index_news{
     position: relative;
-    // @include pad{    
-    //     padding: $middle_pad;
-    // }
 
     /*.index_news 手機版 壓色塊*/
     @include pad{
@@ -564,7 +569,7 @@ $section_margin_top: 60px;
     h2{
         @include PC{
             position: absolute;
-            top: 5%;
+            top: 8%;
             left: 15%;
             letter-spacing: 1.5em;
         }
@@ -610,31 +615,58 @@ $section_margin_top: 60px;
 
     @include PC{
         display: flex;  
-        padding: 0 0 0 10%;    
+        padding: 0 0 0 40px;    
     }
 
     .column_content{
+        @include PC{
+            padding-right: 40px;
+        }
+        
+        margin: auto;
+        box-sizing: border-box;
+
         .column{
+            @include pad{
+                padding: $middle_pad;
+            }
             padding-top: 20px;
 
             p{
                 padding-top: 10px;
             }
+
         }
+
     }
 
     .columns_more{
         display: flex;
         justify-content: right;
+        @include pad{
+            padding-right: 10%;
+            padding-top: 5%;
+        }
     }
 
     .img_bar{
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: $middle_pad;
+        @include pad{
+            padding-top: 10%;
+        }
 
         span{
-            margin: 0 15px 0 0;
+            @include PC{
+                margin: 0 15px 0 0;
+            }
+
+            @include pad{
+                margin: 0 7px;
+            }
+            
             width: 100px;
             height: 300px;
             display: block;
