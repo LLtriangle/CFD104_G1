@@ -131,6 +131,7 @@
                     width: 20%;
                     color: #fff;
                     background-color:map-get($btn_color,'orange') ;
+                    cursor: pointer;
                 }
             }
             .acti_item:nth-child(odd){
