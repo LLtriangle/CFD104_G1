@@ -25,17 +25,20 @@
             }
             .txt{
                 padding: 10px 15px;
+                p:nth-child(3n){
+                    color: map-get($font_color ,'blue' );
+                }
             }
             .copy{
                 display: flex;
                 justify-content: center;
                 input{
-                    width: 70%;
+                    width: 75%;
                     height: 30px;
                     background-color: #f3f3ed;
                     border: 2px solid #d6aa81;
                     text-align: center;
-                    margin: 0 0 15px 15px ;
+                    margin: 0 0 15px 0px ;
                     border-radius: 8px 0 0 8px;
                 }
                 button{
@@ -63,8 +66,17 @@
                 width: 45%;
                 display: flex;
                 flex-direction: column;
-                
                 position: relative;
+                .item_img{
+                    border-radius: 50%;
+                    overflow: hidden;
+                }
+                .item{
+                    display: flex;
+                    .name{
+                        padding:10px 10px;
+                    }
+                }
                 a{
                     position: absolute;
                     bottom: 30px;
