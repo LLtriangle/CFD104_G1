@@ -403,7 +403,8 @@ $section_margin_top: 60px;
 /*預約流程section .index_progress*/
 .index_progress{
     max-width: $max_w;
-    margin: $section_margin_top;
+    margin: auto;
+    margin-top: $section_margin_top;
     box-sizing: border-box;
     justify-content: space-between;
     
@@ -449,15 +450,16 @@ $section_margin_top: 60px;
     /*.index_progress 圖示底色*/
     .progress_icon{
         
-        @include pad{
-            width: 80px;
-            height: 80px;
-        }
+        // @include pad{
+        //     // width: 80px;
+        //     // height: 80px;
+        // }
         
         @include PC{
             width: 120px;
             height: 120px;   
         }
+
         background-color: map-get($color , "sub_brown" );
         transition: .4s;
         border-radius: 10px;
@@ -492,14 +494,14 @@ $section_margin_top: 60px;
         box-sizing: border-box;
 
         svg{
-            position: relative;
             fill: map-get($color , "bg_white" );
-
+            
             @include pad{
                 width: 40px;
             }
-
+            
             @include PC{
+                position: relative;
                 width: 80px;     
             }
             
@@ -531,17 +533,7 @@ $section_margin_top: 60px;
             @include PC{
                 flex-direction: row-reverse;   
             }
-            // .progress_icon{
-            //     background-color: map-get($color , "sub_blue" );
-            // }
 
-            // &:hover .progress_icon{
-            //     background-color: map-get($color , "bg_white" );
-            // }
-    
-            &:hover svg{
-                // fill: map-get($color , "sub_blue" );
-            }
             @include PC{
                 .progress_txt{
                     padding-left: 0px;
@@ -557,7 +549,10 @@ $section_margin_top: 60px;
 
 /*活動消息section .index_news*/
 .index_news{
-    position: relative;
+    @include pad(){
+        position: relative;
+    }
+    margin-top: $section_margin_top;
 
     /*.index_news 手機版 壓色塊*/
     @include pad{
@@ -575,15 +570,6 @@ $section_margin_top: 60px;
         h2, .news_items{
             position: relative;
             z-index: 5;
-        }
-    }
-    
-    h2{
-        @include PC{
-            position: absolute;
-            top: 8%;
-            left: 15%;
-            letter-spacing: 1.5em;
         }
     }
 
@@ -622,18 +608,15 @@ $section_margin_top: 60px;
 
 /*專欄文章section .index_columns*/
 .index_columns{
-    height: $small_part_h;
     margin-top: $section_margin_top;
-
+    
     @include PC{
+        height: $small_part_h;
         display: flex;  
         padding: 0 0 0 40px;    
     }
 
     .column_content{
-        @include PC{
-            padding-right: 40px;
-        }
         
         margin: auto;
         box-sizing: border-box;
@@ -641,6 +624,7 @@ $section_margin_top: 60px;
         .column{
             @include pad{
                 padding: $middle_pad;
+                padding-top: 10px;
             }
             padding-top: 20px;
 
@@ -656,18 +640,18 @@ $section_margin_top: 60px;
         display: flex;
         justify-content: right;
         @include pad{
-            padding-right: 10%;
-            padding-top: 5%;
+            padding-right: 10vw;
+            padding-top: 5vh;
         }
     }
 
     .img_bar{
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: start;
         padding: $middle_pad;
         @include pad{
-            padding-top: 10%;
+            padding-top: 5vh;
         }
 
         span{
@@ -691,7 +675,6 @@ $section_margin_top: 60px;
             }
         }
 
-
         .img_part_1{
             background-position: 0%;
         }
@@ -711,37 +694,97 @@ $section_margin_top: 60px;
 
 }
 
-// /*專欄文章section .index_columns*/
-// .index_columns{
-//     flex-direction: column;
-//     margin: 0 3px;
-//     padding-right: 10px;
-//     padding-left: 10px;
+/*QAsection .index_qa*/
+.index_qa{
+    margin-top: 60px;
+    padding: 20px;
+    h2{
+        padding: 0 60px 30px;
+    }
+    .quesion{
+        max-width: 1100px;
+        margin: 10px auto;
+        padding: 5px 60px 5px 15px;
+        border-radius: 10px;
+        border: 2px dashed map-get($color , "sub_blue");
+        position: relative;
+        input{
+            display: none;
+            &:checked{
+                ~label{
+                    h3{
+                        &::after{
+                            transform: translate(-2px,-50%) rotate(180deg);
+                        }
+                    }
+                }
+                ~ p{
+                    line-height: 1.5em;
+                }
+            }
+        }
+        label{
+            h3{
+                padding: 10px 0;
+                font-size: 24px;
+                width: 100%;
+                cursor: pointer;
+                &::before,
+                &::after{
+                    transition: .5s;
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    right: 10px;
+                    transform: translate(-2px,-50%) rotate(0deg);
+                    width: 20px;
+                    height: 3px;
+                    border-radius: 3px;
+                    background-color:  map-get($color,"sub_blue");
+                }
+                &::after{
+                    transform: translate(-2px,-50%) rotate(-90deg);
+                }
+            }
 
-//     .img_bar{
-//         margin: auto;
-//         padding-top: 20px;
 
-//         span{
-//             height: 200px;
-//         }
-//     }
-    
-// }
+        }
+        p{
+            line-height: 0em;
+            transition: .5s;
+            overflow: hidden;
+        }
+    }
+}
 
+/*熱門商品section .index_hot_sales*/
+.index_hot_sales{
+    margin-top: $section_margin_top;
+    padding: $middle_pad;
 
-// /*專欄文章section .index_columns*/
-// .index_columns{
-//     display: flex;
-//     padding: 0 40px;
+    /*.index_hot_sales*/
+    ul{
+        display: flex;
+        justify-content: space-around;
 
-//     .img_bar{
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//         padding-left: 10vw;
-//     }
-// }
+        li{
+            height: 50vh;
+            background-color: map-get($color , "cover" );
+            // position: relative;
+            // z-index: 20;
+
+            // &::after{
+            //     position: absolute;
+            //     top: -20vh;
+            //     content: "";
+            //     width: 70%;
+            //     height: 150%;
+            //     background-color: map-get($color , "cover" );
+            //     z-index: 0;
+            // }
+        }
+    }
+}
 
 
 
