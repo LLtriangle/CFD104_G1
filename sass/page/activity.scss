@@ -55,18 +55,25 @@
         .col{
             margin: 30px 0;
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
             .img{
-                width: 50%;
+                width: 100%;
                 img{
                     width: 100%;
                 }
             }
             .txt{
-                width: 45%;
+                width: 100%;
                 display: flex;
                 flex-direction: column;
                 position: relative;
+                p{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                }
                 .item_img{
                     border-radius: 50%;
                     overflow: hidden;
@@ -79,7 +86,7 @@
                 }
                 a{
                     position: absolute;
-                    bottom: 30px;
+                    bottom: -30px;
                     right: 0;
                     
                 }
@@ -144,28 +151,32 @@
             .col{
                 margin: 30px 0;
                 display: flex;
-                justify-content: space-between;
+                flex-wrap: nowrap;
+                // justify-content: space-between;
+                border: 1px solid #ddd;
                 .img{
-                    width: 550px;
+                    width: 40%;
                     img{
                         width: 100%;
                     }
                 }
                 .txt{
-                    width: 45%;
+                    width: 65%;
                     display: flex;
                     flex-direction: column;
                     position: relative;
+                    padding: 40px;
                     p{
                         overflow: hidden;
                         text-overflow: ellipsis;
                         display: -webkit-box;
                         -webkit-box-orient: vertical;
-                        -webkit-line-clamp: 4;
+                        -webkit-line-clamp: 2;
                     }
                     a{
                         position: absolute;
-                        bottom: 30px;
+                        padding: 0 20px;
+                        bottom: 10px;
                         right: 0;
                         
                     }
