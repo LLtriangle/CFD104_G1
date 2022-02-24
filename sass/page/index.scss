@@ -406,28 +406,40 @@ $section_margin_top: 60px;
     margin: $section_margin_top;
     box-sizing: border-box;
     justify-content: space-between;
-
-    ul{
-        position: relative;
-        @include pad{
-            &::before{
-                content: "";
-                height: 65%;
-                width: 5px;
-                position: absolute;
-                background-color: map-get($color , "sub_brown" );
-                top: 34px;
-                left: -10px;
-            }
-        }
-    }
-
+    
     li{
         @include PC{
             margin: 0 10% 0 10%;
         }
+        a{
+            align-items: center;
+        }
+        &:nth-child(2) a{
+            position: relative;
+            .progress_icon{
+                position: relative;
+                z-index: 1;
+            }
+            @include PC{
+                &::after,
+                &::before{
+                    content: "";
+                    height: 0;
+                    width: 50vw;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    border-bottom: 3px dashed map-get($color , "sub_blue" );
+                    transform: translate(-50%,-120px) rotate(18deg);
+                }
+                &::before{
+                    transform: translate(-50%,120px) rotate(-18deg);
+                    
+                }
+            }
+        }
     }
-
+        
     h2{
         text-align: center;
         padding-bottom: 60px;
@@ -519,16 +531,16 @@ $section_margin_top: 60px;
             @include PC{
                 flex-direction: row-reverse;   
             }
-            .progress_icon{
-                background-color: map-get($color , "sub_blue" );
-            }
+            // .progress_icon{
+            //     background-color: map-get($color , "sub_blue" );
+            // }
 
-            &:hover .progress_icon{
-                background-color: map-get($color , "bg_white" );
-            }
+            // &:hover .progress_icon{
+            //     background-color: map-get($color , "bg_white" );
+            // }
     
             &:hover svg{
-                fill: map-get($color , "sub_blue" );
+                // fill: map-get($color , "sub_blue" );
             }
             @include PC{
                 .progress_txt{
