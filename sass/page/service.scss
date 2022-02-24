@@ -62,6 +62,7 @@
     }
 }
 .serve_case{
+    margin-top: 60px;
     .case{
         display: flex;
         .pic{
@@ -81,6 +82,8 @@
     }
 }
 .serve_qa{
+    margin-top: 60px;
+    padding: 60px;
     background-color: map-get($color , "plain");
 }
 
