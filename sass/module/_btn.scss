@@ -125,12 +125,15 @@ input:focus, button:focus{
     }
     .link_btn.bl:hover, .btn_sub.bl:hover, .btn_btn.bl:hover{
         background-color: map-get($btn_color, "blue" );
+        color: map-get($font_color, "white" );
     }
     .link_btn.rd:hover, .btn_sub.rd:hover, .btn_btn.rd:hover{
         background-color: map-get($btn_color, "red" );
+        color: map-get($font_color, "white" );
     }
     .link_btn.br:hover, .btn_sub.br:hover, .btn_btn.br:hover{
         background-color: map-get($btn_color, "brown" );
+        color: map-get($font_color, "white" );
     }
     
     /* 圓形a連結的按鈕樣式 */

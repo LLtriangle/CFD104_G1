@@ -11,73 +11,184 @@
 /*其他共用*/
 @import  "../base/universal";
 
-//小尺寸section高度
+//rwd變數
+@mixin pad{
+    @media(max-width:767px){
+      @content;
+    }
+  }
+  
+  @mixin PC{
+    @media(min-width:768px){
+      @content;
+    }
+}
+
+//section寬高控制
 $small_part_h: 90vh;
+$full_part_h: 120vh;
+$max_w: 1200px;
+$middle_pad: 0px 10%;
+$left_pad: 0 2% 0 0;
+$right_pad: 0 0 0 2%;
+$word_pad: 10px;
+$section_margin_top: 60px;
+
 
 /*css設定部分*/
 
-/*手機板與電腦版共用部分*/
-
+/*index頁面*/
 .index{
     width: 100%;
     overflow: hidden;
-}
 
+    /*index頁面 手機板*/
+    @include pad{
+        /*手機板section h2置中(除了landing 和 服務方案)*/
+        h2{
+            text-align: center;
+        }
+    
+    }
+}
+  
+  
+  
 /*登陸section .index_landing*/
 .index_landing {
-    display: flex;
     background-color: map-get($color , "cover" );
 
-    /*index頁面 landing section 滿屏*/
-    .full_img{
-        width: 50vw;
-        height: 120vh;
+    /*index頁面 landing section 左側大圖與右側logo遮罩小圖並排*/
+    @include PC{
+        display: flex;
     }
-    /*index頁面 web_title 置中，padding-top = 50vh - (web_title.height/2) */
+
+    /*index頁面 web_title 置中，padding-top = 50vh - (web_title.height/2)，且滿屏 */
     .web_title{
         text-align: center;
         padding-top: calc(50vh - 200px);
         box-sizing: border-box;
+        height: 120vh;
     }
 
+    /*英文品牌名距離下方遮罩圖片*/
     .title_txt{
         p{
             padding-bottom: 15px;
         }
     }
 
+    /*logo形狀的遮罩圖片*/
     .logo_img{
         width: 180px;
         height: 200px;
+    }
+
+    .full_img{
+        /*手機板 landing section 左側大圖消失*/
+        @include pad{
+            display: none;
+        }
+
+        /*電腦版 landing section 左側大圖滿屏*/
+        @include PC{
+            width: 50vw;
+            height: $full_part_h;
+        }
     }
 }
 
 /*登陸section .index_slogan*/
 .index_slogan{
-    height: 120vh;
+     /*.index_slogan 遮罩圖片放大至全屏上*/
+    height: $full_part_h;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-sizing: border-box;
     background-image: url(https://picsum.photos/600/700/?random=1);
     background-size: cover;
     background-position: center center;
 
+    /*.index_slogan 遮罩圖片放大至全屏上的介紹文字*/
+    h2{
+        text-align: left;
+    }
+
+    /*.index_slogan 遮罩圖片放大至全屏上的介紹文字*/
     .slogan{
         max-width: 1200px;
         color: map-get($font_color , "white" );
+        padding: $middle_pad;
+
+        /*.index_slogan 電腦版 文字並排*/
+        @include PC{
+            display: flex;
+            justify-content: center;
+            margin: auto;
+            box-sizing: border-box;
+            overflow: hidden;
+
+            h2{
+                margin: auto;
+                box-sizing: border-box;
+            }
+
+            h2, p{
+                animation: blur_word;
+                animation-duration: 15s;
+                animation-delay: 2s;
+                @keyframes blur_word {
+                    0% {
+                        opacity: 0;
+                        filter: blur(12px);
+                        transform: scale(1.2, 1.2);
+                    }
+                    100% {
+                        opacity: 1;
+                        filter: blur(0px);
+                        transform: scale(1);
+                    }
+                }
+            }
+        }
+
+        /*.index_slogan 手機版 文字間padding*/
+        @include pad{
+            h2, p{
+                padding: $word_pad;
+            }
+        }
+        
     }
 }
 
 /*服務section .index_plans*/
 .index_plans{
-    display: flex;
-    height: $small_part_h;
-    
-    h2{
-        padding-bottom: 20px;
+    position: relative;
+
+    /*.index_plans 手機版 壓色塊*/
+    @include pad{
+        &::before{
+            content: "";
+            width: 35%;
+            height: 100%;
+            background-color: map-get($color , "sub_yellow" );
+            position: absolute;
+            z-index: 0;
+        }
     }
-    
+
+    /*.index_plans 電腦版 90%屏 圖片與選項並排*/
+    @include PC{
+        display: flex;
+        height: $small_part_h;
+        margin: $section_margin_top;
+        margin-left: 0;
+        box-sizing: border-box;
+    }
+
     .plans_link, .plans_view{
 
         li{
@@ -88,85 +199,201 @@ $small_part_h: 90vh;
             }
         }
     }
-    
-    .plans_img{
-        width: 50vw;
-        height: 60vh;
+
+    .plans_link{
+        /*.index_plans 手機版 服務區塊置中 選項置右*/
+        @include pad{   
+            margin: 25% 0;
+            position: relative;
+            z-index: 2;
+            box-sizing: border-box;
+
+            h2{
+                text-align-last: left;
+            }
+
+            li{
+                text-align: right;
+            }
+        }
+
+        /*.index_plans 電腦版 選項與配圖間隔 整個區塊置中*/
+        @include PC{
+            padding-left: 10vw;
+            box-sizing: border-box;
+            margin: auto;
+            box-sizing: border-box;
+        }
     }
+
+    .plans_view{
+        /*.index_plans 手機版 配圖消失*/
+        @include pad{
+            display: none;      
+        }
+
+        /*.index_plans 電腦版 配圖 置中*/
+        @include PC{
+            margin: auto;
+            box-sizing: border-box;
+
+            img{
+                text-align: left;
+                width: 50vw;
+                height: 60vh;
+            }   
+        }
+    }
+
+    svg{
+        @include pad{
+            width: 25px;
+        }
+
+        @include PC{
+            display: none;       
+        }
+    }
+    
+    h2, li{
+        padding: $word_pad;
+    }
+    
 }
 
 /*煩惱section .index_needs*/
 .index_needs{
-    background-color: #9E9A8E;
+    background-color: map-get($color , "bg_pink" );
     position: relative;
+    padding: 60px 0;
 
     h2{
         text-align: center;
-        padding-top: 10vh;
+        padding: $word_pad;
     }
 
+    /*.index_needs 對話泡泡 樣式*/
     .bubble {
-        min-width: 200px;
+        height: 200px;
+
+        @include pad{
+            width: 100%;
+        }
+        
         background: map-get($color , "plain" );
         display: block;
         border-radius: 20px;
         text-align: center;
         margin: 10vh 10vw 0vh 10vw;
+
+        @include PC{
+            margin-top: 20vh;
+        }
+
         box-sizing: border-box;
         position: relative;
         z-index: 1;
-    }
+        box-sizing: border-box;
 
-    ul li:last-child{
-        .bubble {
-            margin-bottom: 10vh;
+        /*.index_needs 對話泡泡 文字不可超出範圍*/
+        p{
+            max-height: 200px;
+            padding: $section_margin_top;
+            font-size: $font_size_h4;
+            box-sizing: border-box;
         }
     }
 
+    /*.index_needs 對話泡泡 左右左右排*/
     li{
         display: flex;
     }
 
+    /*.index_needs 對話泡泡 三角形(border排的) 共用*/
+    .pointer{
+        width: 0;
+        height: 0;
+        bottom: 20px;
+        border-left: 3vh solid transparent;
+        border-right: 5vh solid transparent;
+        border-top: 10vh solid map-get($color , "plain" );
+        position: absolute;
+    }
+
+    /*.index_needs 單數對話泡泡 左排*/
     ul li:nth-child(1n){
         justify-content: left;
+        
+        .bubble{
+            width: 600px;
+            box-shadow: 2px 3px 6px #aaa;
+        }
 
         .pointer{
-            width: 0;
-            height: 0;
-            border-left: 3vh solid transparent;
-            border-right: 5vh solid transparent;
-            border-top: 10vh solid map-get($color , "plain" );
-            position: absolute;
+            right: 580px;
             transform: rotate(-240deg);
+
+            @include pad{
+                right: 92%;
+            }
         }
     }
     
+    /*.index_needs 雙數對話泡泡 右排*/
     ul li:nth-child(2n){
         justify-content: right;
         
+        .bubble{
+            width: 550px;
+            box-shadow: -2px 3px 6px #aaa;
+        }
+
         .pointer{
-            width: 0;
-            height: 0;
-            border-left: 3vh solid transparent;
-            border-right: 5vh solid transparent;
-            border-top: 10vh solid map-get($color , "plain" );
-            position: absolute;
+            right: -20px;
             transform: rotate(-120deg);
         }
     }
 
     .needs_btns{
-        position: absolute;
-        display: flex;
-        justify-content: space-around;
-        top:50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 50;
-        width: 50vw;
-
+        
         a{
-            margin: 20px;
+            background-color: map-get($btn_color , "brown" );
+            color: map-get($btn_color , "white" );
+            border-color: map-get($btn_color , "brown" );
+            
+            @include PC{
+                padding: 25px;
+                font-size: $font_size_h3;
+            }
+        }
+        
+        /*.index_needs 電腦版 按鈕固定section最下方*/
+        @include pad{
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+            z-index: 50;
+            width: 50vw;
+        }
+        /*.index_needs 電腦版 按鈕固定畫面中央*/
+        @include PC{
+            position: absolute;
+            display: flex;
+            justify-content: space-evenly;
+            top:50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 50;
+            width: 50vw;
+        }
+        .go_reserve{
+            @include pad{
+                margin-right: 20%;
+                box-sizing: border-box;
+            }
         }
     }
     
@@ -174,33 +401,102 @@ $small_part_h: 90vh;
 
 /*預約流程section .index_progress*/
 .index_progress{
-    padding: 100px 40px;
+    max-width: $max_w;
+    margin: $section_margin_top;
     box-sizing: border-box;
+    justify-content: space-between;
 
     ul{
-        width: 80vw;
-        // padding: 60px 0px 20px 0;
-        margin: auto;
+        position: relative;
+        @include pad{
+            &::before{
+                content: "";
+                height: 65%;
+                width: 5px;
+                position: absolute;
+                background-color: map-get($color , "sub_brown" );
+                top: 34px;
+                left: -10px;
+            }
+        }
     }
 
     li{
-        display: flex;
-        // padding-bottom: 40px;
+        @include PC{
+            margin: 0 10% 0 10%;
+        }
+    }
+
+    h2{
+        text-align: center;
+        padding-bottom: 60px;
+    }
+
+
+    /*.index_progress 圖示底色*/
+    .progress_icon{
+        
+        @include pad{
+            width: 80px;
+            height: 80px;
+        }
+        
+        @include PC{
+            width: 120px;
+            height: 120px;   
+        }
+        background-color: map-get($color , "sub_brown" );
+        transition: .4s;
+        border-radius: 10px;
+        transform: rotate(45deg);
+    }
+
+    .progress_txt{
+        margin: auto;
+
+        @include pad{
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+
+        @include PC{
+            width: 50%;
+        }
+
+        padding-left: 40px;
+
+        h3, p{
+            padding: 10px 0;
+        }
     }
 
     a{
-        display: flex;
+        @include PC{
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        box-sizing: border-box;
 
         svg{
             position: relative;
             fill: map-get($color , "bg_white" );
+
+            @include pad{
+                width: 40px;
+            }
+
+            @include PC{
+                width: 80px;     
+            }
+            
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: rotate(-45deg) translate(0, -70%);
         }
 
         &:hover .progress_icon{
-            background-color: plum;
+            background-color: map-get($color , "bg_white" );
         }
 
         &:hover svg{
@@ -208,25 +504,75 @@ $small_part_h: 90vh;
         }
     }
 
-    .progress_icon{
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        background-color: pink;
-        transition: .4s;
+    ul li:nth-child(2){
+        a{
+            margin: 20vh 0;
+
+            @include PC{
+                flex-direction: row-reverse;   
+            }
+            .progress_icon{
+                background-color: map-get($color , "sub_blue" );
+            }
+
+            &:hover .progress_icon{
+                background-color: map-get($color , "bg_white" );
+            }
+    
+            &:hover svg{
+                fill: map-get($color , "sub_blue" );
+            }
+            @include PC{
+                .progress_txt{
+                    padding-left: 0px;
+                }  
+            }
+            
+        }
+        
     }
 
-    .progress_txt{
-        h3, p{
-            padding: 10px 0;
-        }
-    }
 
 }
 
 /*活動消息section .index_news*/
 .index_news{
-    height: $small_part_h;
+    position: relative;
+    // @include pad{    
+    //     padding: $middle_pad;
+    // }
+
+    /*.index_news 手機版 壓色塊*/
+    @include pad{
+        &::before{
+            content: "";
+            width: 50%;
+            height: 80%;
+            right: 0%;
+            top: 20%;
+            background-color: map-get($color , "sub_blue" );
+            position: absolute;
+            z-index: 0;
+        }
+
+        h2, .news_items{
+            position: relative;
+            z-index: 5;
+        }
+    }
+    
+    h2{
+        @include PC{
+            position: absolute;
+            top: 5%;
+            left: 15%;
+            letter-spacing: 1.5em;
+        }
+    }
+
+    h3{
+        padding: 20px 0;
+    }
 
     .news_items{
         display: flex;
@@ -235,10 +581,24 @@ $small_part_h: 90vh;
 
     .news{
         box-sizing: border-box;
+        padding: $word_pad;
+
+        @include PC{
+            padding-left: 10vw;       
+        }
     }
 
-    h3{
-        padding: 20px 0;
+    .news_img{
+        /*.index_news 手機版 配圖消失*/
+        @include pad{
+            display: none;
+        }
+
+        @include PC{
+            text-align: left;
+            width: 50vw;
+            height: 60vh;
+        }
     }
 
 }
@@ -246,9 +606,14 @@ $small_part_h: 90vh;
 /*專欄文章section .index_columns*/
 .index_columns{
     height: $small_part_h;
+    margin-top: $section_margin_top;
+
+    @include PC{
+        display: flex;  
+        padding: 0 0 0 10%;    
+    }
 
     .column_content{
-        margin: auto;
         .column{
             padding-top: 20px;
 
@@ -302,430 +667,856 @@ $small_part_h: 90vh;
 
 }
 
-/*熱門商品section .index_hot_sales*/
-.index_hot_sales{
-    padding: 0 40px;
-    ul{
-        padding-top: 20px;
-        display: flex;
-        justify-content: space-around;
+// /*專欄文章section .index_columns*/
+// .index_columns{
+//     flex-direction: column;
+//     margin: 0 3px;
+//     padding-right: 10px;
+//     padding-left: 10px;
 
-        li{
-            position: relative;
+//     .img_bar{
+//         margin: auto;
+//         padding-top: 20px;
 
-            .product_bg{
-                width: 120%;
-                height: 400px;
-                position: relative;
-                background-color: map-get($color , "sub_blue" );
-            }
-            
+//         span{
+//             height: 200px;
+//         }
+//     }
+    
+// }
 
-            a{
-                position: relative;
+
+// /*專欄文章section .index_columns*/
+// .index_columns{
+//     display: flex;
+//     padding: 0 40px;
+
+//     .img_bar{
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         padding-left: 10vw;
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// /*手機板與電腦版共用部分*/
+
+// .index{
+//     width: 100%;
+//     overflow: hidden;
+// }
+
+// /*登陸section .index_landing*/
+// .index_landing {
+//     display: flex;
+//     background-color: map-get($color , "cover" );
+
+//     /*index頁面 landing section 滿屏*/
+//     .full_img{
+//         width: 50vw;
+//         height: 100vh;
+//     }
+//     /*index頁面 web_title 置中，padding-top = 50vh - (web_title.height/2) */
+//     .web_title{
+//         text-align: center;
+//         padding-top: calc(50vh - 200px);
+//         box-sizing: border-box;
+//     }
+
+//     .title_txt{
+//         p{
+//             padding-bottom: 15px;
+//         }
+//     }
+
+//     .logo_img{
+//         width: 180px;
+//         height: 200px;
+//     }
+// }
+
+// /*登陸section .index_slogan*/
+// .index_slogan{
+//     height: 120vh;
+//     position: relative;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     background-image: url(https://picsum.photos/600/700/?random=1);
+//     background-size: cover;
+//     background-position: center center;
+
+//     .slogan{
+//         max-width: 1200px;
+//         color: map-get($font_color , "white" );
+//     }
+// }
+
+// /*服務section .index_plans*/
+// .index_plans{
+//     display: flex;
+//     height: $small_part_h;
+    
+//     h2{
+//         padding-bottom: 20px;
+//     }
+    
+//     .plans_link, .plans_view{
+
+//         li{
+//             padding: 24px;
+
+//             span{
+//                 font-size: $font_size_h3;
+//             }
+//         }
+//     }
+    
+//     .plans_img{
+//         width: 50vw;
+//         height: 60vh;
+//     }
+// }
+
+// /*煩惱section .index_needs*/
+// .index_needs{
+//     background-color: #9E9A8E;
+//     position: relative;
+
+//     h2{
+//         text-align: center;
+//         padding-top: 10vh;
+//     }
+
+//     .bubble {
+//         min-width: 200px;
+//         background: map-get($color , "plain" );
+//         display: block;
+//         border-radius: 20px;
+//         text-align: center;
+//         margin: 10vh 10vw 0vh 10vw;
+//         box-sizing: border-box;
+//         position: relative;
+//         z-index: 1;
+//     }
+
+//     ul li:last-child{
+//         .bubble {
+//             margin-bottom: 10vh;
+//         }
+//     }
+
+//     li{
+//         display: flex;
+//     }
+
+//     ul li:nth-child(1n){
+//         justify-content: left;
+
+//         .pointer{
+//             width: 0;
+//             height: 0;
+//             border-left: 3vh solid transparent;
+//             border-right: 5vh solid transparent;
+//             border-top: 10vh solid map-get($color , "plain" );
+//             position: absolute;
+//             transform: rotate(-240deg);
+//         }
+//     }
+    
+//     ul li:nth-child(2n){
+//         justify-content: right;
+        
+//         .pointer{
+//             width: 0;
+//             height: 0;
+//             border-left: 3vh solid transparent;
+//             border-right: 5vh solid transparent;
+//             border-top: 10vh solid map-get($color , "plain" );
+//             position: absolute;
+//             transform: rotate(-120deg);
+//         }
+//     }
+
+//     .needs_btns{
+//         position: absolute;
+//         display: flex;
+//         justify-content: space-around;
+//         top:50%;
+//         left: 50%;
+//         transform: translate(-50%, -50%);
+//         z-index: 50;
+//         width: 50vw;
+
+//         a{
+//             margin: 20px;
+//         }
+//     }
+    
+// }
+
+// /*預約流程section .index_progress*/
+// .index_progress{
+//     max-width: $max_w;
+//     padding: 100px 40px;
+//     box-sizing: border-box;
+
+//     ul{
+//         width: 80vw;
+//         // padding: 60px 0px 20px 0;
+//         margin: auto;
+//     }
+
+//     li{
+//         display: flex;
+//         // padding-bottom: 40px;
+//     }
+
+//     a{
+//         display: flex;
+
+//         svg{
+//             position: relative;
+//             fill: map-get($color , "bg_white" );
+//             top: 50%;
+//             left: 50%;
+//             transform: translate(-50%, -50%);
+//         }
+
+//         &:hover .progress_icon{
+//             background-color: plum;
+//         }
+
+//         &:hover svg{
+//             fill: map-get($color , "sub_brown" );
+//         }
+//     }
+
+//     .progress_icon{
+//         width: 200px;
+//         height: 200px;
+//         border-radius: 50%;
+//         background-color: pink;
+//         transition: .4s;
+//     }
+
+//     .progress_txt{
+//         h3, p{
+//             padding: 10px 0;
+//         }
+//     }
+
+// }
+
+// /*活動消息section .index_news*/
+// .index_news{
+//     height: $small_part_h;
+
+//     .news_items{
+//         display: flex;
+//         align-items: center;
+//     }
+
+//     .news{
+//         box-sizing: border-box;
+//     }
+
+//     h3{
+//         padding: 20px 0;
+//     }
+
+// }
+
+// /*專欄文章section .index_columns*/
+// .index_columns{
+//     height: $small_part_h;
+
+//     .column_content{
+//         margin: auto;
+//         .column{
+//             padding-top: 20px;
+
+//             p{
+//                 padding-top: 10px;
+//             }
+//         }
+//     }
+
+//     .columns_more{
+//         display: flex;
+//         justify-content: right;
+//     }
+
+//     .img_bar{
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+
+//         span{
+//             margin: 0 15px 0 0;
+//             width: 100px;
+//             height: 300px;
+//             display: block;
+//             box-sizing: border-box;
+//             background-image: url(https://picsum.photos/600/300/?random=1);
+//             animation: auto;
+
+//             @keyframes auto {
                 
-                .hs_item{
-                    position: relative;
-                    top: -50%;
-                    left: 50%;
-                    z-index: 10;
-                }
-            }
-        }
-    }
+//             }
+//         }
 
-    .hs_more{
-        display: flex;
-        justify-content: right;
-    }
-}
 
-/*手機板部分*/
+//         .img_part_1{
+//             background-position: 0%;
+//         }
+//         .img_part_2{
+//             background-position: 25%;
+//         }
+//         .img_part_3{
+//             background-position: 50%;
+//         }
+//         .img_part_4{
+//             background-position: 75%;
+//         }
+//         .img_part_5{
+//             background-position: 100%;
+//         }
+//     }
 
-@media screen and (max-width:768px) {
+// }
 
-    /*手機板section h2置中(除了服務方案)*/
-    h2{
-        text-align: center;
-    }
+// /*熱門商品section .index_hot_sales*/
+// .index_hot_sales{
+//     padding: 0 20px 0 60px;
 
-    /*登陸section .index_landing*/
-    .index_landing {
+
+//     .hs_more{
+//         display: flex;
+//         justify-content: right;
+//     }
+// }
+
+// /*手機板部分*/
+
+// @media screen and (max-width:768px) {
+
+//     /*手機板section h2置中(除了服務方案)*/
+//     h2{
+//         text-align: center;
+//     }
+
+//     /*登陸section .index_landing*/
+//     .index_landing {
         
-        .web_title{
-            text-align: center;
-            height: 120vh;
-        }
+//         .web_title{
+//             text-align: center;
+//             height: 120vh;
+//         }
 
-        .full_img{
-            display: none;
-        }
-    }
+//         .full_img{
+//             display: none;
+//         }
+//     }
 
-    /*登陸section .index_slogan*/
-    .index_slogan{
-        height: 120vh;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        box-sizing: border-box;
+//     /*登陸section .index_slogan*/
+//     .index_slogan{
+//         height: 120vh;
+//         position: relative;
+//         display: flex;
+//         flex-direction: column;
+//         box-sizing: border-box;
 
-        .slogan{
-            max-width: 1200px;
+//         .slogan{
+//             max-width: 1200px;
             
-            h2{
-                text-align: left;
-            }
-            h2, p{
-                padding: 20px;
-            }
-        }   
-    }
-    /*服務section .index_plans*/
-    .index_plans{
-        flex-direction: column-reverse;
-        justify-content: center;
-        position: relative;
+//             h2{
+//                 text-align: left;
+//             }
+//             h2, p{
+//                 padding: 20px;
+//             }
+//         }   
+//     }
+//     /*服務section .index_plans*/
+//     .index_plans{
+//         flex-direction: column-reverse;
+//         justify-content: center;
+//         position: relative;
 
-        h2{
-            text-align: left;
-            padding-left: 20px;
-        }
+//         h2{
+//             text-align: left;
+//             padding-left: 20px;
+//         }
 
-        .plans_link{
-            position: relative;
-        }
+//         .plans_link{
+//             position: relative;
+//         }
 
-        .plans_view{
-            height: 45vh;
-            position: absolute;
-            bottom: 0%;
-            background: 
-            linear-gradient(to bottom, rgba(255,255,255,1),
-                rgba(255,255,255,0)),url(https://picsum.photos/600/700/?random=1) center bottom no-repeat;
-            background-repeat: no-repeat;
-        }
+//         .plans_view{
+//             height: 45vh;
+//             position: absolute;
+//             bottom: 0%;
+//             background: 
+//             linear-gradient(to bottom, rgba(255,255,255,1),
+//                 rgba(255,255,255,0)),url(https://picsum.photos/600/700/?random=1) center bottom no-repeat;
+//             background-repeat: no-repeat;
+//         }
 
-        .plans_img{
-            display: none;
-        }
+//         .plans_img{
+//             display: none;
+//         }
 
-        li{
-            text-align: right;
+//         li{
+//             text-align: right;
 
-            svg{
-                width: 20px;
-                fill: map-get($color , "main" );
-                padding-left: 20px;
-            }
-        }
-    }
+//             svg{
+//                 width: 20px;
+//                 fill: map-get($color , "main" );
+//                 padding-left: 20px;
+//             }
+//         }
+//     }
 
-    /*煩惱section .index_needs*/
-    .index_needs{
-        background-color: #9E9A8E;
+//     /*煩惱section .index_needs*/
+//     .index_needs{
+//         background-color: #9E9A8E;
 
-        .bubble {
-            height: 20vh;
-            width: 100%;
-            margin-top: 10vh;
-            box-sizing: border-box;
-            position: relative;
-        }
+//         .bubble {
+//             height: 20vh;
+//             width: 100%;
+//             margin-top: 10vh;
+//             box-sizing: border-box;
+//             position: relative;
+//         }
 
-        li{
-            display: flex;
-        }
+//         li{
+//             display: flex;
+//         }
 
-        ul li:nth-child(1n){
-            justify-content: left;
+//         ul li:nth-child(1n){
+//             justify-content: left;
 
-            .pointer{
-                top: 8vh;
-                right: 72vw;
-            }
-        }
+//             .pointer{
+//                 top: 8vh;
+//                 right: 72vw;
+//             }
+//         }
         
-        ul li:nth-child(2n){
-            justify-content: right;
+//         ul li:nth-child(2n){
+//             justify-content: right;
             
-            .pointer{
-                top: 8vh;
-                right: -6vw;
-            }
-        }
+//             .pointer{
+//                 top: 8vh;
+//                 right: -6vw;
+//             }
+//         }
         
         
-    }
+//     }
 
-    /*預約流程section .index_progress*/
-    .index_progress{
-        padding: 60px 10px;
+//     /*預約流程section .index_progress*/
+//     .index_progress{
+//         padding: 60px 10px;
     
-        .progress_icon{
-            width: 100px;
-            height: 100px;
-            margin: auto;
-        }
+//         .progress_icon{
+//             width: 100px;
+//             height: 100px;
+//             margin: auto;
+//         }
 
-        .progress_txt{
-            width: 50%;
-            padding-left: 40px;
-        }
+//         .progress_txt{
+//             width: 50%;
+//             padding-left: 40px;
+//         }
 
-        svg{
-            width: 50px;
-        }
-    }
+//         svg{
+//             width: 50px;
+//         }
+//     }
 
-    /*活動消息section .index_news*/
-    .index_news{
+//     /*活動消息section .index_news*/
+//     .index_news{
 
-        .news_img{
-            display: none;
-        }
+//         .news_img{
+//             display: none;
+//         }
 
-        .news{
-            padding: 20px 10px 0 10px;
-        }
+//         .news{
+//             padding: 20px 10px 0 10px;
+//         }
 
-        .new{
-            position: relative;
-        }
+//         .new{
+//             position: relative;
+//         }
 
-    }
+//     }
 
-    /*專欄文章section .index_columns*/
-    .index_columns{
-        flex-direction: column;
-        margin: 0 3px;
-        padding-right: 10px;
-        padding-left: 10px;
+//     /*專欄文章section .index_columns*/
+//     .index_columns{
+//         flex-direction: column;
+//         margin: 0 3px;
+//         padding-right: 10px;
+//         padding-left: 10px;
 
-        .img_bar{
-            margin: auto;
-            padding-top: 20px;
+//         .img_bar{
+//             margin: auto;
+//             padding-top: 20px;
 
-            span{
-                height: 200px;
-            }
-        }
+//             span{
+//                 height: 200px;
+//             }
+//         }
         
-    }
-}
+//     }
+
+    
+// }
     
     
 
-/*電腦版部分*/
+// /*電腦版部分*/
 
-@media screen and (min-width:769px) {
-    /*登陸section .index_slogan*/
-    .index_slogan{
+// @media screen and (min-width:769px) {
+//     /*登陸section .index_slogan*/
+//     .index_slogan{
 
-        .slogan{
-            max-width: 1200px;
-            display: flex;
-            justify-content: center;
-            padding: 40px;
-            margin: auto;
-            overflow: hidden;
-            h2{
-                margin: auto;
-            }
+//         .slogan{
+//             max-width: 1200px;
+//             display: flex;
+//             justify-content: center;
+//             padding: 40px;
+//             margin: auto;
+//             overflow: hidden;
+//             h2{
+//                 margin: auto;
+//             }
             
-            h2, p{
-                animation: blur_word;
-                animation-duration: 15s;
-                animation-delay: 2s;
-                @keyframes blur_word {
-                    0% {
-                        opacity: 0;
-                        filter: blur(12px);
-                        transform: scale(1.2, 1.2);
-                    }
-                    100% {
-                        opacity: 1;
-                        filter: blur(0px);
-                        transform: scale(1);
-                    }
-                }
-            }
-        }
-    }
+//             h2, p{
+//                 animation: blur_word;
+//                 animation-duration: 15s;
+//                 animation-delay: 2s;
+//                 @keyframes blur_word {
+//                     0% {
+//                         opacity: 0;
+//                         filter: blur(12px);
+//                         transform: scale(1.2, 1.2);
+//                     }
+//                     100% {
+//                         opacity: 1;
+//                         filter: blur(0px);
+//                         transform: scale(1);
+//                     }
+//                 }
+//             }
+//         }
+//     }
 
-    /*服務section .index_plans*/
-    .index_plans{
+//     /*服務section .index_plans*/
+//     .index_plans{
 
-        .plans_link, .plans_view{
-            margin: auto;
-        }
-        .plans_link{
-            padding-left: 5vw;
-            box-sizing: border-box;
-        }
+//         .plans_link, .plans_view{
+//             margin: auto;
+//         }
+//         .plans_link{
+//             padding-left: 5vw;
+//             box-sizing: border-box;
+//         }
 
         
-        li{
-            white-space: nowrap;
-            letter-spacing: .3em;
-            svg{
-                display: none;
-            }
-        }
+//         li{
+//             white-space: nowrap;
+//             letter-spacing: .3em;
+//             svg{
+//                 display: none;
+//             }
+//         }
 
-    }
+//     }
 
-    /*煩惱section .index_needs*/
-    .index_needs{
-        background-color: #9E9A8E;
+//     /*煩惱section .index_needs*/
+//     .index_needs{
+//         background-color: #9E9A8E;
         
 
-        .bubble {
-            height: 30vh;
-            min-width: 200px;
-        }
+//         .bubble {
+//             height: 30vh;
+//             min-width: 200px;
+//         }
 
-        ul li:nth-child(1n){
+//         ul li:nth-child(1n){
 
-            .bubble {
-                width: 40%;
-            }
+//             .bubble {
+//                 width: 40%;
+//             }
 
-            .pointer{
-                top: 8vh;
-                right: 96%;
-            }
-        }
+//             .pointer{
+//                 top: 8vh;
+//                 right: 96%;
+//             }
+//         }
         
-        ul li:nth-child(2n){
+//         ul li:nth-child(2n){
 
-            .bubble {
-                width: 30%;
-            }
+//             .bubble {
+//                 width: 30%;
+//             }
 
-            .pointer{
-                top: 10vh;
-                left: 95%;
-            }
-        }
+//             .pointer{
+//                 top: 10vh;
+//                 left: 95%;
+//             }
+//         }
         
-        .needs_btns{
+//         .needs_btns{
             
-            a{
-                margin: 20px;
-                box-sizing: border-box;
-                font-size: 36px;
-                padding: 20px;
-            }
-        }
+//             a{
+//                 margin: 20px;
+//                 box-sizing: border-box;
+//                 font-size: 36px;
+//                 padding: 20px;
+//             }
+//         }
         
-    }
+//     }
 
-    /*預約流程section .index_progress*/
-    .index_progress{
+//     /*預約流程section .index_progress*/
+//     .index_progress{
 
-        .progress_icon{
-            width: 200px;
-            height: 200px;
-        }
+//         .progress_icon{
+//             width: 200px;
+//             height: 200px;
+//         }
 
-        .progress_txt{
-            width: 50vw;
-            padding-left: 40px;
-            margin: auto;
-        }
+//         .progress_txt{
+//             width: 50vw;
+//             padding-left: 40px;
+//             margin: auto;
+//         }
 
-        ul{
-            width: 80vw;
-            padding: 0 40px;
-            position: relative;
-        }
+//         ul{
+//             width: 80vw;
+//             padding: 0 40px;
+//             position: relative;
+//         }
 
-        li{
-            position: relative;
-            z-index: 2;
-        }
+//         li{
+//             position: relative;
+//             z-index: 2;
+//         }
 
-        ul li:nth-child(2){
-            justify-content: right;
-        }
+//         ul li:nth-child(2){
+//             justify-content: right;
+//         }
 
-        ul li:nth-child(2){
-            justify-content: space-between;
+//         ul li:nth-child(2){
+//             justify-content: space-between;
             
-            a{
-                flex-direction: row-reverse;
-                justify-content: space-between;
-                flex-grow: 1;
+//             a{
+//                 flex-direction: row-reverse;
+//                 justify-content: space-between;
+//                 flex-grow: 1;
                 
-                .progress_txt{
-                    margin: 0;
-                    width: 50vw;
-                }
-            }
-        }
+//                 .progress_txt{
+//                     margin: 0;
+//                     width: 50vw;
+//                 }
+//             }
+//         }
 
-        svg{
-            width: 100px;
-        }
+//         svg{
+//             width: 100px;
+//         }
 
-        // .svg_line_45deg, .svg_line_315deg{
-        //     position: absolute;
-        //     width: 40%;
-        //     transform: rotate(80deg);
-        //     top: 0;
-        //     left: 10%;
-        //     z-index: 0;
-        // }
+//         // .svg_line_45deg, .svg_line_315deg{
+//         //     position: absolute;
+//         //     width: 40%;
+//         //     transform: rotate(80deg);
+//         //     top: 0;
+//         //     left: 10%;
+//         //     z-index: 0;
+//         // }
 
-        // .svg_line_45deg{
-        //     transform: rotate(80deg);
-        // }
+//         // .svg_line_45deg{
+//         //     transform: rotate(80deg);
+//         // }
 
-        // .svg_line_315deg{
-        //     transform: rotate(10deg);
-        // }
-    }
+//         // .svg_line_315deg{
+//         //     transform: rotate(10deg);
+//         // }
+//     }
 
-    /*活動消息section .index_news*/
-    .index_news{
-        position: relative;
+//     /*活動消息section .index_news*/
+//     .index_news{
+//         position: relative;
 
-        h2{
-            position: absolute;
-            top: -10%;
-            left: 10vw;
-            letter-spacing: 1.5em;
+//         h2{
+//             position: absolute;
+//             top: -10%;
+//             left: 10vw;
+//             letter-spacing: 1.5em;
 
-        }
+//         }
 
-        .news_img{
-            width: 50vw;
-            max-height: 60vh;
-        }
+//         .news_img{
+//             width: 50vw;
+//             max-height: 60vh;
+//         }
 
-        ul{
-            padding-left: 5vw;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-        }
+//         ul{
+//             padding-left: 5vw;
+//             display: flex;
+//             flex-direction: column;
+//             justify-content: space-around;
+//         }
 
-    }
+//     }
 
-    /*專欄文章section .index_columns*/
-    .index_columns{
-        display: flex;
-        padding: 0 40px;
+//     /*專欄文章section .index_columns*/
+//     .index_columns{
+//         display: flex;
+//         padding: 0 40px;
 
-        .img_bar{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-left: 10vw;
-        }
-    }
+//         .img_bar{
+//             display: flex;
+//             align-items: center;
+//             justify-content: center;
+//             padding-left: 10vw;
+//         }
+//     }
 
-}
+// }
 
 
