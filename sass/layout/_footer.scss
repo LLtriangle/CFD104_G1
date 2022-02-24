@@ -5,7 +5,6 @@ footer{
     margin-top: 60px;
 }
 
-
 /*footer 容器*/
 .footer_elements{
     width: 100%;
@@ -87,7 +86,9 @@ footer{
                     align-items: center;
                     padding: 10px;
                     margin: 10px 0;
-                    border-bottom: 1px solid map-get($color , "main" );
+                    &:not(:last-child){
+                        border-bottom: 1px solid map-get($color , "main" );
+                    }
                 }
                 a{
                     display: flex;
@@ -105,10 +106,8 @@ footer{
                     width: 30px;
                     // fill: map-get($color , "main" );
                 }
-                /*footer icon大小*/
             }
         }
-
     }
 }
 .copyright{
@@ -119,14 +118,70 @@ footer{
 }
 
 
-
-/*手機板部分*/
-@media screen and (max-width:768px) {
-    
-}
-
 /*電腦版部分*/
 
-@media screen and (min-width:769px) {
+@media screen and (min-width:768px) {
+    .footer_elements{
+        width: 100%;
+        .go_top{
+            height: 100px;
+            padding-top: 30px;
+            box-sizing: border-box;
+            width: 100%;
+            background: url('../img/footer_bg_white.png') no-repeat center/100% 100%;
+            .link_ro{
+                display: block;
+                margin: auto;
+                height: 70px;
+                width: 70px;
+                padding: 15px;
+            }
+        }
 
+        .footer_info{
+            padding: 0 0 20px;
+            width: 100%;
+            flex-direction: row;
+            /*footer logo大小*/
+            >div{
+                width: calc(100% / 3);
+                max-width: 320px;
+            }
+
+            .logo_slogan{
+                p{
+                    color: map-get($color , "sub_blue" );
+                }
+            }
+
+            .reserve{
+                .go_reserve{
+                    background: linear-gradient(0deg,transparent 17%,map-get($color,"sub_blue" ) 17%,map-get($color,"sub_blue" ) 65%,transparent 65%);
+                    .logo_shaped{
+                        width: 90px;
+                    }
+                    p{
+                        font-size: 24px;
+                    }
+                }
+            }
+
+            .footer_infos {
+                .footer_info_list{
+                    li{
+                        margin: 0;
+                    }
+                    a{
+                        font-size: 18px;
+                    }
+                    p{
+                        font-size: 18px;
+                    }
+                    svg{
+                        width: 20px;
+                    }
+                }
+            }
+        }
+    }
 }

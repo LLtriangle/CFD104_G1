@@ -6,7 +6,7 @@ h3{
 }
 .prod_con{
     margin: auto;
-    margin-bottom: 50px;
+    margin-top: 25px;
     // display: flex;
     // flex-wrap: wrap;
     .prod_row{
@@ -28,6 +28,7 @@ h3{
             }
             .prod_price{
                 margin-top: 20px;
+                margin-bottom: -30px;
             }
         }
         .largeimg{
@@ -61,7 +62,7 @@ h3{
     .prod_derow{
         width: 100%;
         justify-content: space-between;
-        display: flex;
+        // display: flex;
         margin: 50px 0px;
         .prod_warpper{
             width: 100%;
@@ -75,7 +76,7 @@ h3{
                 display: block;
                 margin: auto;
                 h3{
-                    margin-top: 120px;
+                    margin-top: 20px;
                     line-height: 2;
                 }
                 p{
@@ -85,8 +86,11 @@ h3{
             }
         }
     }
+    #derow_change{
+        flex-direction: row-reverse;
+    }
     .prod_sprow{
-        width: 80%;
+        width: 90%;
         margin: auto;
         img{
             width: 100%;
@@ -95,20 +99,40 @@ h3{
     }
     .prod_rerow{
         width: 100%;
-        display: flex;
-        margin-top: 20px;
+        // display: flex;
+        margin-top: -50px;
         .prod_reitem{
-            width: 25%;
-            margin: 10px 10px;
-            .prod_btn{
-                width: 3%;
+            // width: 80%;
+            margin: 20px 20px ;
+            .btn_btn_box{
+                padding: 10px 10px 10px 30px;
+                justify-content: center;
+            }            
+            .btn_xshidden{
+                visibility: hidden;
             }
             img{
                 width: 100%;
+                // overflow: hidden;
+                border-radius: 10px 10px 0 0;
             }
             h3{
-                margin: 10px 0px;
+                // margin: 10px 0px;
+                // padding: 15px 0 10px;
+                text-align: start;
+                margin-left: 10px;
             }
+            p{
+                text-align: start;
+                margin-left: 10px;
+                margin-bottom: 10px;
+            }
+        }
+        .reitem_goods{
+            border: 2px solid map-get($color, 'main');
+            border-radius: 10px;
+            background-color: map-get($color, 'bg_white');
+            position: relative;
         }
     }
 } 
@@ -225,6 +249,9 @@ h3{
                 }
             }
         }
+        #derow_change{
+            flex-direction: row-reverse;
+        }
         .prod_sprow{
             width: 80%;
             margin: auto;
@@ -239,16 +266,39 @@ h3{
             margin-top: 20px;
             .prod_reitem{
                 width: 25%;
-                margin: 10px 10px;
-                .prod_btn{
-                    width: 3%;
+                margin: auto 10px ;
+                // .prod_btn{
+                //     // width: 3%;
+                // }
+                .btn_btn_box{
+                    padding: 20px 20px 20px 60px;
+                    justify-content: center;
+                }
+                .btn_xshidden{
+                    visibility: visible;
                 }
                 img{
                     width: 100%;
+                    // overflow: hidden;
+                    border-radius: 10px 10px 0 0;
                 }
                 h3{
-                    margin: 10px 0px;
+                    // margin: 10px 0px;
+                    // padding: 15px 0 10px;
+                    text-align: start;
+                    margin-left: 10px;
+                    font-size: 16px;
                 }
+                p{
+                    text-align: start;
+                    margin-left: 10px;
+                }
+            }
+            .reitem_goods{
+                border: 2px solid map-get($color, 'main');
+                border-radius: 10px;
+                background-color: map-get($color, 'bg_white');
+                position: relative;
             }
         }
     }        
