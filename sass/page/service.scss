@@ -61,7 +61,29 @@
         }
     }
 }
+.serve_case{
+    margin-top: 60px;
+    .case{
+        display: flex;
+        .pic{
+            width: 50%;
+            position: relative;
+            img{
+                width: 100%;
+            }
+            img:last-child{
+                width: 50vw;
+                position: absolute;
+                left: 0;
+                top: 5px;
+                transform: rotate(-5deg);
+            }
+        }
+    }
+}
 .serve_qa{
+    margin-top: 60px;
+    padding: 60px;
     background-color: map-get($color , "plain");
 }
 

@@ -6,7 +6,9 @@ body{
 li{
     list-style: none;
 }
-
+h3{
+    font-size: $font_size_h3;
+}
 button{
     padding: $btn_padding;
     border-radius: $border_radius_btn;
@@ -104,43 +106,6 @@ table.creditCard{
         display: flex;
     }
 }
-
-
-// 更改input[type=radio]樣式
-// .radio-label {
-//     position: relative;
-//     padding-left: 2rem;
-// }
-/* 自定義樣式的span */
-// .radio-button {
-//     height: 1rem;
-//     width: 1rem;
-//     border: 1px solid map-get($btn_color, 'brown');
-//     border-radius: 50%;
-//     display: inline-block;
-//     position: absolute;
-//     left: 0;
-//     top: 0;
-//   }
-/* 中間點點 */
-//   .radio-button::after { 
-//     content: "";
-//     display: block;
-//     height: 0.8rem;
-//     width: 0.8rem;
-//     border-radius: 50%;
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     background-color: map-get($btn_color, 'brown');
-//     opacity: 0;
-//     transition: opacity 0.3s;
-//   }
-//   .radio-input:checked ~ .radio-label .radio-button::after {
-//     opacity: 1;
-//   }
-    /* 選中radio時 才顯示中間點點 */
     
 // 更改input[type=text]樣式
 input[type=text],input[type=email]{
