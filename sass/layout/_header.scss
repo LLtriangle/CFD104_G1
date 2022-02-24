@@ -16,111 +16,273 @@
 /*手機板與電腦版共用部分*/
 
 /*header 容器*/
-.header_flex{
+header{
+    position: fixed;
+    width: 100vw;
+    z-index: 100;
+    background-color: #ffffffaa;
+    top: 0;
+}
+
+.header_elements{
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    // background-color: #fff;
+    border-radius: 0 0 25px 25px;
+    z-index: 100;
 
-    .header_elements{
-        max-width: 1200px;
-        width: 100%;
-        position: fixed;
+    @include pad{
+        padding: 10px 10px 0 10px;  
+    }
+
+    @include PC{
+        padding: 10px 40px 0 40px;
+    }
+
+    /*header logo大小*/
+    .logo{
         display: flex;
-        justify-content: space-between;
-        box-sizing: border-box;
-        background-color: #fff;
-        z-index: 100;
+        align-items: center;
+        z-index: 120;
+        padding: 10px;
+    }
 
-        @include pad{
-            padding: 10px 10px 0 10px;  
+    .logo_img{
+        width: 40px;
+        transition: 1s;
+
+        &.none{
+            width: 75px;
+        }
+    }
+
+    .logo.on{
+        .logo_img{
+            filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(278deg) brightness(104%) contrast(102%);
+            transform: scale(1.5);
+            transform-origin: top left;
+
+            &.none{
+                transform: scale(1);
+            }
+            
+        }
+
+        .none{
+            opacity: 0;
         }
 
         @include PC{
-            padding: 10px 40px 0 40px;
+            .logo_img{
+                transform: scale(3);
+                transform-origin: top left;
+                &.none{
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+
+    /*header_function menu未打開時*/
+    .header_function{
+        /*header_function menu 三個btn*/
+        display: flex;
+
+        /*header icon大小*/
+        svg{
+            height: 25px;
+            fill: map-get($color , "main" );
+            transition: 1s;
         }
 
-        /*header logo大小*/
-        .logo{
+        /*header_function 按鈕、連結，z-index是為了menu打開時還能浮在上面、讓鈕垂直置中*/
+        .user, .cart, .menu_btn{
             display: flex;
             align-items: center;
+            position: relative;
             z-index: 120;
+        }
+
+        .user, .cart, .menu_btns{
             padding: 10px;
         }
 
-        .logo_img{
-            width: 40px;
+        /*header_function menu 漢堡按鈕 每層*/
+        .menu_btns{
+            cursor: pointer;
         }
 
-        /*header_function menu未打開時*/
-        .header_function{
-            /*header_function menu 三個btn*/
+        .menu_btn{
+            margin: 6px;
+            background-color: map-get($color , "main" );
+            display: block;
+            height: 3px;
+            width: 30px;
+            text-align: right;
+            border-radius: 10px;
+            transition: .5s;
+            box-sizing: border-box;
+            transition: 1s;
+        }
+
+        .menu_link{
+            padding-top: 80px;
+            position: fixed;
+            left: 100%;
+            top: 0%;
             display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+            background-color: map-get($color , "cover" );
+            color: #fff;
+            transition: 1s;
+            background-image: url("https://picsum.photos/768/700/?random=10");
+            background-size: cover;
+            // 透明度 0.6 的黑色半透明遮罩
+            background-color: rgba(0, 0, 0, .3);
+            // 設置背景混和模式為相乘模式
+            background-blend-mode: multiply;
 
-            /*header icon大小*/
-            svg{
-                height: 25px;
-                fill: map-get($color , "main" );
-                transition: 1s;
+            .menu_link_option{
+
+                /*header_function menu 被點按，連結、選項有上往下，由右至左排列，因手機寬度，六個選項分為上下兩排*/
+                @include pad{
+                    display: block;
+                }
+
+                /*header_function menu 被點按，連結、選項有上往下，由右至左排列，電腦寬度足夠，六個選項分為一排*/
+                @include PC{
+                    display: flex;
+                    flex-direction: row-reverse;
+                }
+
+                .menu_link_option_up,  .menu_link_option_down{
+                    display: flex;
+                    flex-direction: column-reverse;
+                    writing-mode: vertical-lr;
+                }
+
+                li{
+                    padding: 20px;
+
+                    a{
+                        font-size: 28px;
+                        height: 100%;
+                        display: block;
+                        color: #fff;
+                        letter-spacing: .2em;
+                        position: relative;
+                    }
+
+                    .index_link::before, .service_link::before, .mall_link::before, .activity_link::before, .about_link::before, .game_link::before{
+                        font-size: 6px;
+                        text-transform: uppercase;
+                        position: absolute;
+                        letter-spacing: .1em;
+                        right: -55%;
+                        font-family: sans-serif;
+
+                    }
+
+                    .index_link::before{
+                        content: "index";
+                    }
+                    .service_link::before{
+                        content: "service";
+                    }
+
+                    .mall_link::before{
+                        content: "mall";
+                    }
+
+                    .activity_link::before{
+                        content: "activity";
+                    }
+
+                    .about_link::before{
+                        content: "about";
+                    }
+
+                    .game_link::before{
+                        content: "game";
+                    }
+                }
             }
 
-            /*header_function 按鈕、連結，z-index是為了menu打開時還能浮在上面、讓鈕垂直置中*/
-            .user, .cart, .menu_btn{
-                display: flex;
-                align-items: center;
-                position: relative;
-                z-index: 120;
+            /*header_function menu 被點按，slogan 和 社群媒體相關資訊*/
+            .menu_slogan_info{
+                position: absolute;
+                left: 5%;
+                width: 20vw;
+                top: 50%;
+
+                /*header_function menu 被點按，手機版社群媒體相關資訊置底 分布*/
+                @include pad{
+                    position: absolute;
+                    width: 100vw;
+                    left: 0;
+                    top: 80%;
+                    height: 5vh;
+
+                    .menu_info_list{
+                        display: flex;
+                        justify-content: space-around;
+                    }
+                }
+
+                svg{
+                    fill: #fff;
+                    width: 18px;
+                }
+
+                .slogan, .fb a, .ig a, .phone{
+                    display: flex;
+                    padding-top: 10px;
+                    justify-content: flex-start;
+
+                    p{
+                        padding-left: 5px;
+                        display: flex;
+                        align-items: center;
+                        font-size: 12px;
+                        color: #fff;
+                        font-size: 700;
+                    }
+                }
+
+                .slogan{
+                    font-size: 16px;
+
+                    @include pad{
+                        display: none;
+                    }
+                }
             }
-
-            .user, .cart, .menu_btns{
-                padding: 10px;
-            }
-
-            /*header_function menu 漢堡按鈕 每層*/
-            .menu_btns{
-                cursor: pointer;
-            }
-
-            .menu_btn{
-                margin: 6px;
-                background-color: map-get($color , "main" );
-                display: block;
-                height: 3px;
-                width: 30px;
-                text-align: right;
-                border-radius: 10px;
-                transition: .5s;
-                box-sizing: border-box;
-                transition: 1s;
-            }
-
-            .menu_link{
-                padding-top: 80px;
-                position: fixed;
-                left: 100%;
-                top: 0%;
-                display: flex;
-                flex-direction: row-reverse;
-                justify-content: center;
-                width: 100vw;
-                height: 100vh;
-                background-color: map-get($color , "cover" );
-                color: #fff;
-                transition: 1s;
-            }
-
-
         }
 
-        /*header icon，menu打開時*/
-        .header_function.on{
 
-            
+    }
 
-            /*header icon、漢堡按鈕，menu打開時呈現白色*/
-            svg, .menu_btn{
-                fill: #fff;
-                transition: 1s;
-            }
-            /*header icon，menu 漢堡按鈕 每層 menu打開時變x*/
+    /*header icon，menu打開時*/
+    .header_function.on{
+
+        
+
+        /*header icon、漢堡按鈕，menu打開時呈現白色*/
+        svg, .menu_btn{
+            fill: #fff;
+            transition: 1s;
+        }
+        /*header icon，menu 漢堡按鈕 每層 menu打開時變x*/
+
+        .menu_btns{
+            overflow: hidden;
+
             .menu_btn{
                 transition: 1s;
             }
@@ -137,196 +299,12 @@
             .menu_btn.mid{
                 transform: translateX(500%);
             }
-
-            /*header_function menu 被點按，連結、選項有上往下，由右至左排列*/
-            .menu_link.on{
-                left: 0%;
-                background-image: url("https://picsum.photos/768/700/?random=10");
-                background-size: cover;
-                // 透明度 0.6 的黑色半透明遮罩
-                background-color: rgba(0, 0, 0, .3);
-                // 設置背景混和模式為相乘模式
-                background-blend-mode: multiply;
-
-                .menu_link_option{
-
-                    /*header_function menu 被點按，連結、選項有上往下，由右至左排列，因手機寬度，六個選項分為上下兩排*/
-                    @include pad{
-                        display: block;
-                    }
-
-                    /*header_function menu 被點按，連結、選項有上往下，由右至左排列，電腦寬度足夠，六個選項分為一排*/
-                    @include PC{
-                        display: flex;
-                        flex-direction: row-reverse;
-                    }
-
-                    .menu_link_option_up,  .menu_link_option_down{
-                        display: flex;
-                        flex-direction: column-reverse;
-                        writing-mode: vertical-lr;
-                    }
-
-                    li{
-                        padding: 20px;
-    
-                        a{
-                            font-size: 28px;
-                            height: 100%;
-                            display: block;
-                            color: #fff;
-                            letter-spacing: .2em;
-                        }
-
-                        // .index_link{
-
-                        // }
-                        // .service_link{
-
-                        // }
-
-                        // .products_link{
-
-                        // }
-
-                        // .activity_link{
-
-                        // }
-
-                        // .about_link{
-
-                        // }
-
-                        // .game_link{
-
-                        // }
-                    }
-                }
-
-                
-                /*header_function menu 被點按，slogan 和 社群媒體相關資訊*/
-                .menu_slogan_info{
-                    position: absolute;
-                    left: 5%;
-                    width: 20vw;
-                    top: 50%;
-
-                    /*header_function menu 被點按，手機版社群媒體相關資訊置底 分布*/
-                    @include pad{
-                        position: absolute;
-                        width: 100vw;
-                        left: 0;
-                        top: 80%;
-                        height: 5vh;
-
-                        .menu_info_list{
-                            display: flex;
-                            justify-content: space-around;
-                        }
-                    }
-
-                    svg{
-                        fill: #fff;
-                        width: 18px;
-                    }
-
-                    .slogan, .fb a, .ig a, .phone{
-                        display: flex;
-                        padding-top: 10px;
-                        justify-content: flex-start;
-
-                        p{
-                            padding-left: 5px;
-                            display: flex;
-                            align-items: center;
-                            font-size: 12px;
-                            color: #fff;
-                            font-size: 700;
-                        }
-                    }
-
-                    .slogan{
-                        font-size: 16px;
-
-                        @include pad{
-                            display: none;
-                        }
-                    }
-
-                    /*header_function menu 被點按，slogan 和 社群媒體相關資訊*/
-                    //     .header_elements .menu_slogan_info{
-                    //         position: absolute;
-                    //         width: 100vw;
-                    //         left: 0;
-                    //         top: 80%;
-                    //         height: 5vh;
-                    //     }
-                    //     .header_elements .menu_slogan_info .slogan{
-                    //         display: none;
-                    //     }
-                    //     .header_elements .menu_info_list{
-                    //         display: flex;
-                    //         justify-content: space-around;
-                    //     }
-                }
-            }
         }
         
+        /*header_function menu 被點按，連結、選項有上往下，由右至左排列*/
+        .menu_link.on{
+            left: 0%;
+        }
     }
-}
-
-
-
-
-// // .header_function.on{
-// //     .menu_btn{
-// //         margin: -1px;
-// //     }
     
-// //     
-// // } 
-
-
-
-// /*手機板部分*/
-// @media screen and (max-width:768px) {
-//     /*header 容器*/
-//     .header_elements{
-//         padding: 20px 5px;
-//     }
-
-//     /*header_function menu 被點按，連結、選項有上往下，由右至左排列，因手機寬度，六個選項分為上下兩排*/
-//     .header_elements .menu_link_option{
-//         display: block;
-//     }
-
-//     /*header_function menu 被點按，slogan 和 社群媒體相關資訊*/
-//     .header_elements .menu_slogan_info{
-//         position: absolute;
-//         width: 100vw;
-//         left: 0;
-//         top: 80%;
-//         height: 5vh;
-//     }
-//     .header_elements .menu_slogan_info .slogan{
-//         display: none;
-//     }
-//     .header_elements .menu_info_list{
-//         display: flex;
-//         justify-content: space-around;
-//     }
-// }
-
-// /*電腦版部分*/
-// @media screen and (min-width:769px) {
-//     /*header 容器*/
-//     .header_elements{
-//         padding: 20px 40px;
-//     }
-
-//     /*header_function menu 被點按，連結、選項有上往下，由右至左排列，電腦寬度足夠，六個選項分為一排*/
-//     .header_elements .menu_link_option{
-//         display: flex;
-//         flex-direction: row-reverse;
-//     }
-// }
+}
