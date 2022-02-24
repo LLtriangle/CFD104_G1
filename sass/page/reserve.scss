@@ -211,16 +211,21 @@ input[type=text],input[type=email]{
         margin-bottom: 20px;
     }
     .your_pics{
-        width: 150px;
-        height: 150px;
         display: flex;
-        label{
-            border: 2px dotted map-get($color , 'main' );
-            display: block;
-            // background-color : red;
-            cursor: pointer;
-            width: 150px;
-            height: 150px;
+        #div_myimgs{
+            display: flex;
+            img{ // 上傳的照片
+                margin: 0 10px;
+            }
+        }
+        #div_upload{
+            label{
+                border: 2px dotted map-get($color , 'main' );
+                display: block;
+                cursor: pointer;
+                width: 150px;
+                height: 150px;
+            }
         }
     }
 }
