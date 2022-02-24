@@ -1,0 +1,164 @@
+/* 月曆外觀 */
+#calendari {
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+    height: 450px;
+    width: 620px;
+    font-size: 14px;
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.4);
+}
+/* table的class=actiu */
+#calendari table{
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 620px;
+    height: 400px;
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(0);
+    transition: all 0.4s ease;
+}
+#calendari table.actiu {
+    transform: translateX(0px)top;
+}
+#calendari table.inactiu {
+    transition: all 0.3s 0.01s ease;
+}
+#calendari table.next_m {
+    transform: translateX(-299px);
+}
+#calendari table.last_m {
+    transform: translateX(300px);
+}
+td,th {
+    text-align: center;
+    background-color: #fff;
+}
+
+tr:first-child th {
+    font-size: 20px;
+    font-weight: bold;
+    border-left: none;
+    border-top: none;
+}
+td:last-child, th:last-child {
+  border-right: none;
+}
+
+th {
+    padding: 10px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-right: 1px solid rgba(0,0,0,0.1);
+    background-color: rgb(223, 190, 155);
+    color: #fff;
+    text-shadow: 0px -1px 0px rgba(0,0,0,0.2);
+    font-weight: bolder;
+}
+/* 年份 */
+th .any {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    text-shadow: none;
+    color: rgba(0,0,0,0.4);
+}
+/* 星期列 */
+tr:nth-child(2) th {
+    padding: 5px;
+}
+td {
+    height: 60px;
+    padding: 0;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+/* 放時段的div */
+td div>div:nth-child(2) {
+    display: flex;
+    justify-content: space-evenly;
+}
+/* 所有日期 */
+td div>div:first-child span {
+    font-family: "Oswald", sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+    display: block;
+    border: 2px solid transparent;
+    transition: border 0.3s ease;
+}
+/* 六日 日期 */
+td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
+    color: rgb(231, 16, 16);
+}
+/* 早中晚文字 */
+td>div div:nth-child(2) span{
+    font-size: 8px;
+    font-weight: bold;
+    color: rgb(44, 39, 39);
+    width: 15px;
+    height: 15px;
+    padding: 3px;
+    background-color: rgba(207, 188, 174, 0.712);
+    border-radius: 50%;
+} 
+/* 被預約的時段 */
+td>div div:nth-child(2) span.reserved {
+    background-color: rgb(221, 221, 221);
+    opacity: 0.5;
+}
+
+/* 今天的日期td */
+td.today { 
+    cursor: not-allowed;/* today不能被點擊 */
+    /* box-sizing: border-box; */
+    background: rgba(226, 195, 158, 0.698);
+}
+/* 今天後三天的日期td */
+td.t_add3 {
+    border: 2px solid rgba(0,0,0,0.1);
+}
+/* 非此月 */
+td.fora {
+    opacity: 0.3;
+    cursor: not-allowed; /* fora不能被點擊 */
+}
+td:hover {
+    background: rgba(223, 186, 143, 0.698);
+    color: #fff;
+}
+/* 被選到的效果 */
+td.selected {
+    
+}
+
+/* 按鈕 */
+.boto-next, .boto-prev {
+    background: rgba(0,0,0,0.1);
+    color: #fff;
+    font-family: inherit;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: inherit;
+    padding: 7px;
+    line-height: 1px;
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+}
+.boto-next { right: 10px; padding-left: 13px; }
+.boto-prev { left: 10px; padding-right: 13px;}
+.boto-next:hover,
+.boto-prev:hover {
+    background: rgba(0,0,0,0.2);
+}
+button:hover { cursor: pointer; }
+button:focus { outline: none; }
