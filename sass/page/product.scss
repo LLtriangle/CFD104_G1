@@ -1,56 +1,255 @@
 @import  "../base/color";
 // 手機版
-.container{
-    max-width: 1200px;
-    display: flex;
-    flex-wrap: wrap;
-    // box-sizing: border-box;
+h3{
+    line-height: 2;
+    margin-left: 40px;
+}
+.prod_con{
+    margin: auto;
+    margin-bottom: 50px;
+    // display: flex;
+    // flex-wrap: wrap;
     .prod_row{
-        // margin: 10px;
+        width: 100%;
+        justify-content: space-between;
+        // display: flex;
+        // flex-wrap: wrap;
+
+        // flex-direction: row-reverse;
+        //排列順序交換
+        .prod_txt{
+            margin-top: 10px;
+            h3{
+                line-height: 2;
+            }
+            p{
+                line-height: 1.5;
+                margin: 0px 20px;
+            }
+            .prod_price{
+                margin-top: 20px;
+            }
+        }
+        .largeimg{
+            // width: 600px;
+            margin: 10px 0px;
+            img{
+                width: 100%;
+            } 
+        }
         .prod_item{
-            margin: 10px;
-            width: calc(100% - 20px);
+        justify-content: space-between;
+        display: flex;
+        // flex-wrap: wrap;
+        width: 100%;
+            .smallimg{
+                width: calc(100% / 3 - 20px);
+            }
             .prod_img{
+                margin: 10px 0px;
+                overflow: hidden;
+                // width: calc(25% - 20px);
                 img{
                     width: 100%;
                 }
             }
         }
+        .prod_btn{
+            margin-top: 10px;
+        }
     }
-}
-.prod_txt{
-    margin: 0 20px;
-}
-.prod_btn{
-    display: flex;
-    justify-content: center;
-    .btn_btn.bl{
-        margin: 0 5px;
+    .prod_derow{
+        width: 100%;
+        justify-content: space-between;
+        display: flex;
+        margin: 50px 0px;
+        .prod_warpper{
+            width: 100%;
+            img{
+                width: 90%;
+                display: block;
+                margin: auto;
+            }
+            .prod_txt{
+                width: 90%;
+                display: block;
+                margin: auto;
+                h3{
+                    margin-top: 120px;
+                    line-height: 2;
+                }
+                p{
+                    line-height: 1.5;
+                    text-align: justify;
+                }
+            }
+        }
     }
-}
-// 桌機版
-// @media (min-width: 1200px) {
-//     .container{
-//         max-width: 1200px;
-//         margin: auto;
-//         display: flex;
-//         flex-wrap: wrap;
-//         // box-sizing: border-box;
-//         .prod_item{
-//             margin: 10px;
-//             width: calc(25% - 20px);
-//             .prod_img{
-//                 img{
-//                     width: 100%;
-//                 }
+    .prod_sprow{
+        width: 80%;
+        margin: auto;
+        img{
+            width: 100%;
+            margin: 50px 0px;
+        }
+    }
+    .prod_rerow{
+        width: 100%;
+        display: flex;
+        margin-top: 20px;
+        .prod_reitem{
+            width: 25%;
+            margin: 10px 10px;
+            .prod_btn{
+                width: 3%;
+            }
+            img{
+                width: 100%;
+            }
+            h3{
+                margin: 10px 0px;
+            }
+        }
+    }
+} 
+// .prod_con{
+//     max-width: 1200px;
+//     display: flex;
+//     flex-wrap: wrap;
+//     // box-sizing: border-box;
+//     .prod_row{
+//         // margin: 10px;
+//         // display: flex;
+//         .prod_img{
+//             img{
+//                 width: 100%;
 //             }
-//         }
-//     }        
-//     .prod_nextpagebtn{
-//         display: flex;
-//         justify-content: center;
-//         .btn_btn.bl{
-//             margin: 0 5px;
-//         }
+//         }  
 //     }
 // }
+// .prod_txt{
+//     margin: 0 20px;
+// }
+// .prod_btn{
+//     display: flex;
+//     justify-content: center;
+//     .btn_btn.bl{
+//         margin: 0 5px;
+//     }
+// }
+//桌機版
+@media (min-width: 1200px) {
+    h3{
+        line-height: 2;
+        margin-left: 40px;
+    }
+    .prod_con{
+        max-width: 1200px;
+        margin: auto;
+        margin-bottom: 150px;
+        display: flex;
+        flex-wrap: wrap;
+        // box-sizing: border-box;
+        .prod_row{
+            width: 50%;
+            justify-content: space-between;
+            // display: flex;
+            // flex-wrap: wrap;
+
+            // flex-direction: row-reverse;
+            //排列順序交換
+            .prod_txt{
+                margin-top: 100px;
+                h3{
+                    line-height: 2;
+                }
+                p{
+                    line-height: 1.5;
+                }
+                .prod_price{
+                    margin-top: 20px;
+                }
+            }
+            .largeimg{
+                width: 600px;
+                margin: 20px 0px;
+                img{
+                    width: 100%;
+                } 
+            }
+            .prod_item{
+            justify-content: space-between;
+            display: flex;
+            // flex-wrap: wrap;
+            width: 100%;
+                .smallimg{
+                    width: calc(100% / 3 - 20px);
+                }
+                .prod_img{
+                    margin: 10px 0px;
+                    overflow: hidden;
+                    // width: calc(25% - 20px);
+                    img{
+                        width: 100%;
+                    }
+                }
+            }
+            .prod_btn{
+                margin-top: 100px;
+            }
+        }
+        .prod_derow{
+            width: 100%;
+            justify-content: space-between;
+            display: flex;
+            margin: 50px 0px;
+            .prod_warpper{
+                width: 50%;
+                img{
+                    width: 90%;
+                    display: block;
+                    margin: auto;
+                }
+                .prod_txt{
+                    width: 90%;
+                    display: block;
+                    margin: auto;
+                    h3{
+                        margin-top: 120px;
+                        line-height: 2;
+                    }
+                    p{
+                        line-height: 1.5;
+                        text-align: justify;
+                    }
+                }
+            }
+        }
+        .prod_sprow{
+            width: 80%;
+            margin: auto;
+            img{
+                width: 100%;
+                margin: 50px 0px;
+            }
+        }
+        .prod_rerow{
+            width: 100%;
+            display: flex;
+            margin-top: 20px;
+            .prod_reitem{
+                width: 25%;
+                margin: 10px 10px;
+                .prod_btn{
+                    width: 3%;
+                }
+                img{
+                    width: 100%;
+                }
+                h3{
+                    margin: 10px 0px;
+                }
+            }
+        }
+    }        
+}

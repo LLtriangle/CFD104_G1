@@ -40,7 +40,7 @@ function includeHTML() {
             prefix: '@@',
             basepath: '@file'
         }))
-        .pipe(dest('./dist'));
+        .pipe(dest('./'));
 }
 
 //watch files
@@ -48,101 +48,66 @@ exports.w = function watchs() {
     watch(['html/*.html', 'html/**/*.html'], includeHTML);
 }
 
-//2.js
-//上線用---> uglify、改為min檔
+
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 
+// 上線用
 function ugjs(){
-    return src ('js/*.js')
-    .pipe(babel({
-        presets: ['@babel/env']
-    })) //es6 -> es5
-    .pipe(uglify()) //先uglify 壓縮
-    .pipe(rename({
-        extname : '.min.js' //加上副檔名
-    }))
-    .pipe(dest('./dist/js')); //將檔案放到跟目錄下
+   return src('js/*.js')
+   .pipe(uglify())
+   .pipe(rename({
+     extname : '.min.js'
+   }))
+   .pipe(dest('./'));
 }
 
-// exports.js = ugjs
+exports.js = ugjs
 
-//css 壓縮
+//壓縮css 
 const cleanCSS = require('gulp-clean-css');
 
-function cleanC() {
-    return src('css/*.css') //來源
-    .pipe(cleanCSS()) //壓縮
-    .pipe(dest('css/min')) //目的地
+function cleanC(){
+  return  src('css/*.css')//來源
+  .pipe(cleanCSS())// 壓縮css
+  .pipe(rename({
+     extname : '.min.css'
+   }))
+  .pipe(dest('css')) // 目的地
 }
 
-// exports.css = cleanC
-
-//合併css
+// 合併css
 
 var concat = require('gulp-concat');
 
 function concatCss(){
-    return src('css/*.css')
-    .pipe(concat('all.css'))
-    .pipe(dest('css/all/'))
+   return src('css/*.css').pipe(concat('all.css')).pipe(dest('css/all/'))
 }
 
-exports.allcss  = concatCss;
+exports.allcss = concatCss
 
-//3.sass編譯
+// sass編譯
+
 const sass = require('gulp-sass')(require('sass'));
 
 
 function sassstyle() {
     return src('./sass/*.scss')
         .pipe(sass.sync().on('error', sass.logError))
-        .pipe(dest('./dist/css'));
+        .pipe(cleanCSS())// 壓縮css
+        .pipe(dest('./assets/css'));
 }
 
-exports.scss  = sassstyle;
-
-//組合任務
-
-exports.all = series(ugjs, cleanC)
-
-//圖片搬家
-function mv_img(){
-    return src('imag/*.*').pipe(dest('dist/images'))
-}
-
-//4.瀏覽器同步
-const browserSync = require('browser-sync');
-const reload = browserSync.reload;
-
-function browser(done) {
-    browserSync.init({
-        server: {
-            baseDir: "./",
-            index: "index.html"
-        },
-        port: 3000
-    });
-    done();
-    watch(['html/*.html', 'html/**/*.html'], includeHTML).on('change', reload);
-    watch(['js/*.js', 'js/**/*.js'], ugjs).on('change', reload);
-    watch(['sass/*.scss', 'sass/**/*.scss'], sassstyle).on('change', reload);
-    watch();
-}
+exports.scss = sassstyle;
 
 
-exports.default  = series(paeallel(mv_img, includeHTML, ugjs, sassstyle), browser);
 
-//圖片壓縮 (上線用)
 
-const imagemin = require('gulp-imagemin');
 
-function min_images(){
-    return src('img/*.*')
-    .pipe(imagemin([
-        imagemin.mozjpeg({quality: 70, progressive: true}) // 壓縮品質      quality越低 -> 壓縮越大 -> 品質越差 
-    ]))
-    .pipe(dest('dist/images'))
-}
 
-exports.img = min_images;
+// 組合任務
+
+exports.all = series(ugjs ,cleanC)
+
+
+// exports.css = cleanC
