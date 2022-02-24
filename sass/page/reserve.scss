@@ -58,6 +58,9 @@ button{
             color: map-get($color, 'blue');
             cursor: default;
             }
+            img{
+                width: 30px;
+            }
         }
     }
 }
@@ -214,17 +217,38 @@ input[type=text],input[type=email]{
         display: flex;
         #div_myimgs{
             display: flex;
-            img{ // 上傳的照片
+            div{
+                position: relative;
+                display: flex;
+                align-items: center;
+                width: 200px;
                 margin: 0 10px;
+                border: 2px dotted map-get($color , 'main' );
+                img{ // 上傳的照片
+                    width: 100%;
+                }
+                .delete_btn{
+                    position: absolute;
+                    z-index: 1;
+                    top: 10px;
+                    right: 10px;
+                    font-family: "Oswald", sans-serif;
+                }
             }
         }
         #div_upload{
             label{
                 border: 2px dotted map-get($color , 'main' );
-                display: block;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 cursor: pointer;
-                width: 150px;
-                height: 150px;
+                width: 200px;
+                height: 200px;
+                overflow: hidden;
+                img{
+                    width: 50%;
+                }
             }
         }
     }

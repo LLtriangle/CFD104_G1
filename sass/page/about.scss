@@ -1,3 +1,5 @@
+@import  "../base/var";
+@import "../base/color";
 section{
     margin: 60px auto;
 }
@@ -47,7 +49,7 @@ section{
     box-sizing: border-box;
     padding: 90px 0px 60px 0px;
     display: flex;
-    background-color: #F3EEE2;
+    background-color: map-get($color, "cover");
     .circle_big_img{
         width: 60%;
         position: relative;
@@ -56,7 +58,7 @@ section{
             background-color: rgba(255, 255, 255, 0);
             width: 600px;
             height: 600px;
-            border: #d6aa81 70px solid;
+            border: map-get($color, "ub_brown") 70px solid;
             border-radius: 50%;
             position: absolute;
             top: -50px;
@@ -89,7 +91,7 @@ section{
         h3{
             padding: 10px;
             margin-bottom: 10px;
-            background-color: #d6aa81;
+            
         }
         p{
             line-height: 2;
@@ -103,7 +105,7 @@ section{
                 width: 500px;
                 /* overflow: hidden; */
                 position: relative;
-                border: 1px solid #d6aa81;
+                border: 1px solid #fff;
                 position: relative;
                 overflow: hidden;
                 border-radius: 20px;
@@ -119,7 +121,7 @@ section{
                     left: 0;
                     bottom: 0;
                     width: 100%;
-                    background-color: #d6aa81;
+                    background-color: #fff;
                     box-sizing: border-box;
                     padding: 0px 5px 5px 5px;
                 }
@@ -144,18 +146,17 @@ section{
                         right: 28%;
                         box-sizing: border-box;
                         padding-top: 10px;
-                        color: #fff;
+                        color: map-get($color, "bg");
                         height: 80px;
                         width: 80px;
                         font-size: 25px;
                         text-align: center;
                         // margin: 90px 20px 20px 58px;
                         display: inline-block;
-                        border: #fff 1px solid;
+                        border: map-get($color, "bg") 1px solid;
                         border-radius: 50%;
                     }
-                    
-                  }
+                }
             }
         }
     }
@@ -173,7 +174,7 @@ section{
         width: 50%;
         h3{
             padding: 10px;
-            background-color: #d6aa81;
+        
         }
     }
     .con_right{
@@ -186,7 +187,7 @@ section{
             margin: auto;
             width: 400px;
             height: 200px;
-            background-color: #d6aa81;
+            background-color: map-get($color, "ub_brown");
       
         } 
     }
