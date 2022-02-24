@@ -80,12 +80,14 @@ function calendari(widget, data)
     boto_prev.className = 'boto-prev';
     //左按鈕圖案
     boto_prev.innerHTML = '◀';
+    boto_prev.type = "button";
 
     var boto_next = document.createElement('button');
     //右按鈕className
     boto_next.className = 'boto-next';
     //右按鈕圖案
     boto_next.innerHTML = '▶';
+    boto_next.type = "button";
 
     title.appendChild(boto_prev);
     title.appendChild(document.createElement('span')).innerHTML = 
@@ -216,7 +218,7 @@ function calendari(widget, data)
                         tds[i].classList.add("selected");
                         // 顯示早中晚預約btn
 
-                        
+                        alert("選到")
                     }  
                 }
                 
