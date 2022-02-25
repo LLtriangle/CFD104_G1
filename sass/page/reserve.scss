@@ -36,7 +36,8 @@ button{
         margin-bottom: -2px;
          /* hide bottom border */
         margin-left: 24px;
-        a{
+        a{  
+            width: 26%;
             float: left;
             cursor: pointer;
             padding: 12px 24px;
@@ -235,7 +236,7 @@ input[type=text],input[type=email]{
         }
         #div_upload{
             label{
-                border: 2px dotted map-get($color , 'main' );
+                border: 2px dotted rgb(168, 168, 168);
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -244,7 +245,8 @@ input[type=text],input[type=email]{
                 height: 200px;
                 overflow: hidden;
                 img{
-                    width: 50%;
+                    width: 20%;
+                    opacity: 0.3;
                 }
             }
         }

@@ -1,17 +1,14 @@
 @import  "../base/color";
 
 
-// .text_result{
-//     display: block;
-// }
 .text_ill{
-    // display: none;
+    display: none;
     .welcome{
         max-width: 980px;
         box-sizing: border-box;
         width: calc(100vw - 40px);
         height: calc(100vh - 100px);
-        border-radius: 30px;
+        border-radius: 20px;
         border: 2px solid map-get($color, 'main');
         background-color: map-get($color, 'plain');
         margin: auto; 
@@ -56,7 +53,7 @@
         box-sizing: border-box;
         width: calc(100vw - 40px);
         height: calc(100vh - 100px);
-        border-radius: 30px;
+        border-radius: 20px;
         border: 2px solid map-get($color, 'main');
         background-color: #f3f3eddd;
         margin: auto;
@@ -99,9 +96,9 @@
     }
     .txt{
         margin: 30px 0;
-        p{
-            line-height: 1.5em;
-        }
+        // p{
+        //     // line-height: 1.5em;
+        // }
     }
 }
 
@@ -109,7 +106,7 @@
     box-sizing: border-box;
     width: calc(100vw - 40px);
     height: calc(100vh - 100px);
-    border-radius: 30px;
+    border-radius: 20px;
     border: 2px solid map-get($color, 'main');
     background-color: map-get($color, 'main');
     margin: auto;
@@ -319,13 +316,17 @@
         }
     }
 }
-.text_result{
+
+.text_ill{
     display: none;
+}
+.text_result{
+    // display: none;
     max-width: 980px;
     box-sizing: border-box;
     width: calc(100vw - 40px);
     height: calc(100vh - 100px);
-    border-radius: 30px;
+    border-radius: 20px;
     border: 2px solid map-get($color, 'main');
     background-color: #2C2D48aa;
     margin: auto;
@@ -375,7 +376,7 @@
                 position: absolute;
                 bottom: -10px;
                 left: 50%;
-                border-radius: 3px;
+                // border-radius: 3px;
                 transform: translate(-50%);
                 background-color: map-get($color, 'cover');
             }
@@ -410,11 +411,11 @@
                         width: 100%;
                     }
                 }
-                .txt{
-                    p{
-                        line-height: 1.5em;
-                    }
-                }
+                // .txt{
+                //     p{
+                //         // line-height: 1.5em;
+                //     }
+                // }
             }
             .push_product,
             .push_service{
@@ -442,7 +443,7 @@
                         z-index: -1;
                         top: 50%;
                         left: 0;
-                        border-radius: 0 30px 30px 0;
+                        border-radius: 0 50px 50px 0;
                         transform: translate(0 ,-50%);
                         background-color: map-get($color, 'main');
                     }
@@ -455,7 +456,7 @@
                     padding: 0 20px 20px;
                     p{
                         text-align: center;
-                        line-height: 1.5em;
+                        // line-height: 1.5em;
                     }
                     a{
                         display: inline-block;
@@ -475,7 +476,7 @@
                         width: 220px;
                         .txt{
                             padding: 20px;
-                            line-height: 1.5em;
+                            // line-height: 1.5em;
                             height: 180px;
                             display: flex;
                             justify-content: space-between;
