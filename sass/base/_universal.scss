@@ -19,30 +19,38 @@ h2{
 }
 h3{
   	font-size: $font_size_h3;
+	  line-height: 1.6em;
 }
 h4{
   	font-size: $font_size_h4;
+	  line-height: 1.6em;
 }
 h5{
 	font-size: $font_size_h5;
+	line-height: 1.6em;
 }
 p{
   	font-size: $font_size_p;
+	line-height: 1.6em;
 }
 a{
   	text-decoration: none;
 	color: map-get($font_color , "black" );
 	font-family: 'Noto Serif TC', serif;
 	font-size: $font_size_a;
+	line-height: 1.6em;
 }
 span{
 	font-size: $font_size_span;
+	line-height: 1.6em;
 }
 ul{
 	font-size: $font_size_ul;
+	line-height: 1.6em;
 }
 li{
 	font-size: $font_size_li;
+	line-height: 1.6em;
 }
 button{
 	font-size: $font_size_btn;
@@ -98,8 +106,8 @@ input[type = submit]{
 	content: "";
 	display: block;
 	margin-top: 10px;
-	height: 3px;
-	width: 100px;
+	height: 1px;
+	width: 225px;
 	background-color: #2C2D48;
 }
 .uni_banner p{

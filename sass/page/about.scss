@@ -1,3 +1,5 @@
+@import  "../base/var";
+@import "../base/color";
 section{
     margin: 60px auto;
 }
@@ -47,7 +49,7 @@ section{
     box-sizing: border-box;
     padding: 90px 0px 60px 0px;
     display: flex;
-    background-color: #F3EEE2;
+    background-color: map-get($color, "cover");
     .circle_big_img{
         width: 60%;
         position: relative;
@@ -56,7 +58,7 @@ section{
             background-color: rgba(255, 255, 255, 0);
             width: 600px;
             height: 600px;
-            border: #d6aa81 70px solid;
+            border: 70px solid map-get($color,"sub_blue");
             border-radius: 50%;
             position: absolute;
             top: -50px;
@@ -67,24 +69,19 @@ section{
             position: absolute;
             right: 50%;
             top: 50%;
-            transform: translate(50%, -50%);
-            z-index: 3;
+            transform: translate(50%, -60%);
+            z-index: 2;
+            width: 300px;
+            height: 500px;
+            border-radius: 20px;
+            box-shadow: 80px 50px 10px 2px #4b4a4986;
             img{
-                border: 2px solid black;
                 border-radius: 20px;
+                width: 120%;
             }
-            // overflow: hidden;
+           
         }
-        // .change_img:nth-of-type(3){
-        //     margin-top: 400px;
-        // }
-        // .change_img:nth-of-type(even){
-        //     position: absolute;
-        //     right: 25%;
-        // }
-        // .change_img:nth-of-type(odd){
-        //     margin-left: -50px;
-        // }
+        
     }
 
     .introduce{
@@ -93,10 +90,11 @@ section{
         h3{
             padding: 10px;
             margin-bottom: 10px;
-            background-color: #d6aa81;
+            
         }
         p{
             line-height: 2;
+            margin-left: 20px;
         }
         .circle_small_card{
             display: flex;
@@ -107,10 +105,10 @@ section{
                 width: 500px;
                 /* overflow: hidden; */
                 position: relative;
-                border: 1px solid #d6aa81;
-                border-radius: 20px;
                 position: relative;
                 overflow: hidden;
+                border-radius: 20px;
+                box-shadow: 10px 10px 15px 1px rgba(0, 0, 0, 0.329);
                 img{
                     width: 100%;
                     max-width: 100%;
@@ -122,9 +120,12 @@ section{
                     left: 0;
                     bottom: 0;
                     width: 100%;
-                    background-color: #d6aa81;
+                    background-color: map-get($color, "sub_blue");
                     box-sizing: border-box;
                     padding: 0px 5px 5px 5px;
+                    p{
+                        color: map-get($color, "bg");
+                    }
                 }
                 &:hover .black_hov{
                     top: 0;
@@ -138,19 +139,26 @@ section{
                     left: 0;
                     bottom: 0;
                     right: 0;
-                    background-color: rgba(0, 0, 0, 0.678);
+                    background-color: rgba(255,255,255,0.1);;
+                    backdrop-filter: blur(5px);
                     transition:.5s;
                     p{
-                        color: #fff;
+                        position:absolute;
+                        top:40%;
+                        right: 28%;
+                        box-sizing: border-box;
+                        padding-top: 10px;
+                        color: map-get($color, "bg");
+                        height: 80px;
+                        width: 80px;
                         font-size: 25px;
                         text-align: center;
-                        margin: 90px 20px 20px 58px;
+                        // margin: 90px 20px 20px 58px;
                         display: inline-block;
-                        border: #fff 1px solid;
+                        border: map-get($color, "bg") 1px solid;
                         border-radius: 50%;
                     }
-                    
-                  }
+                }
             }
         }
     }
@@ -168,7 +176,7 @@ section{
         width: 50%;
         h3{
             padding: 10px;
-            background-color: #d6aa81;
+        
         }
     }
     .con_right{
@@ -181,7 +189,7 @@ section{
             margin: auto;
             width: 400px;
             height: 200px;
-            background-color: #d6aa81;
+            background-color: map-get($color, "sub_brown");
       
         } 
     }

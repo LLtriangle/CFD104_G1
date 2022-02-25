@@ -58,6 +58,9 @@ button{
             color: map-get($color, 'blue');
             cursor: default;
             }
+            img{
+                width: 30px;
+            }
         }
     }
 }
@@ -111,9 +114,9 @@ table.creditCard{
             box-shadow: 1px 1px 2px map-get($color , 'sub_blue' );
             padding: 10px;
             box-sizing: border-box;
-            h4{
+            // h4{
 
-            }
+            // }
             p{
                 padding-left: 2rem;
                 font-size: 14px;
@@ -134,10 +137,6 @@ table.creditCard{
 
 .choose_emp{
     display: flex;
-    select{
-        // width: 150px;
-        // height: 30px;
-    }
 }
 .form_item.upload_pics{
     display: block;
@@ -183,6 +182,7 @@ input[type=text],input[type=email]{
         label{
             cursor: pointer;
             .time_item{
+                border: none;
                 width: 80px;
                 height: 80px;
                 margin: 5px;
@@ -211,16 +211,42 @@ input[type=text],input[type=email]{
         margin-bottom: 20px;
     }
     .your_pics{
-        width: 150px;
-        height: 150px;
         display: flex;
-        label{
-            border: 2px dotted map-get($color , 'main' );
-            display: block;
-            // background-color : red;
-            cursor: pointer;
-            width: 150px;
-            height: 150px;
+        #div_myimgs{
+            display: flex;
+            div{
+                position: relative;
+                display: flex;
+                align-items: center;
+                width: 200px;
+                margin: 0 10px;
+                border: 2px dotted map-get($color , 'main' );
+                img{ // 上傳的照片
+                    width: 100%;
+                }
+                .delete_btn{
+                    position: absolute;
+                    z-index: 1;
+                    top: 10px;
+                    right: 10px;
+                    font-family: "Oswald", sans-serif;
+                }
+            }
+        }
+        #div_upload{
+            label{
+                border: 2px dotted map-get($color , 'main' );
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                width: 200px;
+                height: 200px;
+                overflow: hidden;
+                img{
+                    width: 50%;
+                }
+            }
         }
     }
 }
