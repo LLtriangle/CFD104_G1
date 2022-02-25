@@ -165,7 +165,8 @@ h3{
 @media (min-width: 1200px) {
     h3{
         line-height: 2;
-        margin-left: 40px;
+        margin: auto;
+        max-width: 1200px;
     }
     .prod_con{
         max-width: 1200px;
@@ -186,6 +187,7 @@ h3{
                 margin-top: 100px;
                 h3{
                     line-height: 2;
+                    padding-left: 20px;
                 }
                 p{
                     line-height: 1.5;
