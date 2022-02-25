@@ -6,7 +6,9 @@
 //     position: relative;
     
 // }
-
+.mem_txt{
+    
+}
 input{
     font-size: 14px;
 }
@@ -20,6 +22,11 @@ input{
     border: #d6aa81 1px solid;
     // color: opacity($color: #000000);
 }
+th{
+    height: 100px;
+    margin: auto;
+}
+
 @media  screen and (max-width:768px){
     main{
         margin-top: 80px;
@@ -163,7 +170,7 @@ input{
             flex-direction: row;
             .data_mem{
                 display: flex;
-                
+                height: 90%;
                 // justify-content: space-between;
                 .icon_edit{
                     .mem_icon{
@@ -184,6 +191,7 @@ input{
                     width: 60%;
                     border: #d6aa81 2px solid;
                     background: #fff;
+                    border-collapse: separate;
                     border-radius: 20px;
                     margin: 20px 50px;
                     line-height: 3;
@@ -192,6 +200,9 @@ input{
                     padding-bottom: 60px;
                     position: relative;
                     // z-index: -1;
+                    p{
+                        margin-top: 40px;
+                    }
                     button{
                         position: absolute;
                         right: 10px;

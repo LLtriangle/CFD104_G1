@@ -21,6 +21,15 @@ footer{
             height: 70px;
             width: 70px;
             padding: 15px;
+            background-color: #fff;
+            &:hover{
+                background-color: map-get($color , "sub_blue" );
+            }
+        }
+        @media screen and (min-width: 769px){
+            .link_ro:hover::before {
+                content: none;
+            }
         }
     }
 
@@ -36,8 +45,6 @@ footer{
         >div{
             box-sizing: border-box;
             width: calc(100vw - 40px);
-            // width: 33.333333%;
-            // max-width: 320px;
             padding: 20px;
         }
         
@@ -58,20 +65,21 @@ footer{
 
         .reserve{
             .go_reserve{
-                background: linear-gradient(0deg,transparent 25%,map-get($color,"sub_blue" ) 25%,map-get($color,"sub_blue" ) 65%,transparent 65%);
+                // background: linear-gradient(0deg,transparent 25%,map-get($color,"sub_blue" ) 25%,map-get($color,"sub_blue" ) 65%,transparent 65%);
+                background: url('../img/SoEazy_house.png') no-repeat center/auto 100%;
                 display: block;
-                position: relative;
-                .logo_shaped{
-                    display: block;
-                    width: 50vw;
-                    margin: auto;
+                height: 200px;
+                &:hover{
+                    background: url('../img/SoEazy_house_simple.png') no-repeat center/auto 100%;
+                    p{
+                        color: map-get($color,"plain" );
+                    }
                 }
                 p{
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%,-30%);
-                    color: map-get($color,"plain" );
+                    display: block;
+                    text-align: center;
+                    padding-top: 100px;
+                    color: map-get($color,"main" );
                     font-size: 36px;
                 }
             }
@@ -128,7 +136,9 @@ footer{
             padding-top: 30px;
             box-sizing: border-box;
             width: 100%;
+            background-color: map-get($color,"plain");
             background: url('../img/footer_bg_white.png') no-repeat center/100% 100%;
+            background-blend-mode: lighten;
             .link_ro{
                 display: block;
                 margin: auto;
@@ -154,17 +164,14 @@ footer{
                 }
             }
 
-            .reserve{
-                .go_reserve{
-                    background: linear-gradient(0deg,transparent 17%,map-get($color,"sub_blue" ) 17%,map-get($color,"sub_blue" ) 65%,transparent 65%);
-                    .logo_shaped{
-                        width: 90px;
-                    }
-                    p{
-                        font-size: 24px;
-                    }
-                }
-            }
+            // .reserve{
+            //     .go_reserve{
+            //         // background: linear-gradient(0deg,transparent 17%,map-get($color,"sub_blue" ) 17%,map-get($color,"sub_blue" ) 65%,transparent 65%);
+            //         p{
+            //             font-size: 24px;
+            //         }
+            //     }
+            // }
 
             .footer_infos {
                 .footer_info_list{
