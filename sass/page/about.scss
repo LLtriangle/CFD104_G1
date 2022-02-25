@@ -58,7 +58,7 @@ section{
             background-color: rgba(255, 255, 255, 0);
             width: 600px;
             height: 600px;
-            border: map-get($color, "ub_brown") 70px solid;
+            border: 70px solid map-get($color,"sub_blue");
             border-radius: 50%;
             position: absolute;
             top: -50px;
@@ -76,7 +76,6 @@ section{
             border-radius: 20px;
             box-shadow: 80px 50px 10px 2px #4b4a4986;
             img{
-                border: 2px solid "cover";
                 border-radius: 20px;
                 width: 120%;
             }
@@ -95,6 +94,7 @@ section{
         }
         p{
             line-height: 2;
+            margin-left: 20px;
         }
         .circle_small_card{
             display: flex;
@@ -105,7 +105,6 @@ section{
                 width: 500px;
                 /* overflow: hidden; */
                 position: relative;
-                border: 1px solid #fff;
                 position: relative;
                 overflow: hidden;
                 border-radius: 20px;
@@ -121,9 +120,12 @@ section{
                     left: 0;
                     bottom: 0;
                     width: 100%;
-                    background-color: #fff;
+                    background-color: map-get($color, "sub_blue");
                     box-sizing: border-box;
                     padding: 0px 5px 5px 5px;
+                    p{
+                        color: map-get($color, "bg");
+                    }
                 }
                 &:hover .black_hov{
                     top: 0;
@@ -187,7 +189,7 @@ section{
             margin: auto;
             width: 400px;
             height: 200px;
-            background-color: map-get($color, "ub_brown");
+            background-color: map-get($color, "sub_brown");
       
         } 
     }
