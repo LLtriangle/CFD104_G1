@@ -1,57 +1,85 @@
-// 未完成:拖曳物件、撿垃圾、結果判斷
+// 未完成:拖曳物件、結果判斷
+function init() {
+    // 拖放物件
+    // $('.item_group img').draggable({
+    //     // cursor: 'grabbing',
+    //     // opacity: .5,
+    //     // revert: true,
+    //     // start(event){
+    //     //     event.addClass('selected');
+    //     // },
+        
+    // });
+    // $('#garbage').droppable({
+    //     activate: function( event, ui ) {
+    //         console.log(event.currentSrc());
+    //         // console.log(ui.draggable);
+    //     },
+    // });
 
-$(function () {
-    // 開關門
-    function openDoor(){
-        $('#door').toggleClass('open');
-        $('#pull_arrow').css('display','none');
+    // 點選物件
+    function itemClick(){
+        $(this).toggleClass('selected');
     };
-    $('#door').on('click',openDoor);
-    $('#pull_arrow').on('click',openDoor);
+    $('.item_group img').on('click',itemClick);
+
+    // 送出按鈕disabled切換
+    function finishButton(){
+        console.log(0);
+        if($('.item_group img').length == 0) {
+            $('#finish').attr('disabled',false);
+        }else if($('.item_group img').length > 0){
+            $('#finish').attr('disabled',true);
+        };
+    };
 
     // 點擊放置
     $('.pullbox_group .pullbox').on('click',function(){
-        if(!($(this).html()) && $('.item_group input:checked').length) {
+        if(!($(this).html()) && $('.item_group img.selected').length) {
             // 條件:位置為空，且有選擇物品
-            $(this).append($('.item_group input:checked').parent());
+            $(this).append($('.item_group img.selected'));
         }else if($(this).html()){
             // 條件:位置上已有物品
             $(this).children().prependTo($('.item_group'));
         };
-        
-        // 送出按鈕disabled切換
-        if($('.item_group label').length==0) {
-            $('#finish').attr('disabled',false);
-        }else if($('.item_group label').length>0){
-            $('#finish').attr('disabled',true);
-        };
+        finishButton();   // 送出按鈕disabled切換
     });
 
-    // 點擊垃圾桶
-    $('#trashcan').on('click',function(){
-        if($('.item_group input:checked').length > 0) {
-            // 條件:有選擇物品，丟進垃圾桶
-            $('#trashcan ul').append(
-                $('<li/>').append($('.item_group input:checked').parent())
-            );
+    // 點擊衣櫃
+    function openWardrobe(){
+        if($('.item_group img.selected').length > 0) {
+            // 條件:有選擇物品，收進衣櫃
+            $('#wardrobe #hiding').append($('.item_group img.selected'));
         }else{
-            $('#open_trashcan').attr('disabled',false);
+            $('#wardrobe').toggleClass('open');
+            $('#pull_arrow').css('display','none');
         };
-        // 送出按鈕disabled切換
-        if($('.item_group label').length==0) {
-            $('#finish').attr('disabled',false);
-        }else if($('.item_group label').length>0){
-            $('#finish').attr('disabled',true);
+        finishButton();   // 送出按鈕disabled切換
+    };
+    $('#wardrobe > img').on('click',openWardrobe);
+    $('#pull_arrow').on('click',openWardrobe);
+
+    // 點擊垃圾桶
+    $('#trashcan .pic').on('click',function(){
+        if($('.item_group img.selected').length > 0) {
+            // 條件:有選擇物品，丟進垃圾桶
+            $('#trashcan #garbage').append($('.item_group img.selected'));
+        }else{
+            $('#trashcan').toggleClass('open');
         };
-        $('.item_group label input:checked').prop('checked',false);
+        finishButton();   // 送出按鈕disabled切換
+    });
+
+    // 點擊收納物
+    $(document).on('click','#hiding img',function(e){
+        $(this).prependTo($('.item_group'));
+        // $('.item_group label img.selected').prop('checked',false);
     });
 
     // 點擊垃圾
-    $(document).on('click','.garbage li',function(e){
-        $(this).children().prependTo($('.item_group'));
-        $(this).remove();
-        $('.item_group label input:checked').prop('checked',false);
-        e.stopPropagation();    //阻斷蔓延
+    $(document).on('click','#garbage img',function(e){
+        $(this).prependTo($('.item_group'));
+        // $('.item_group label img.selected').prop('checked',false);
     });
     
     // 開始測驗，關閉說明視窗
@@ -69,52 +97,44 @@ $(function () {
         $(".text_ill .intr").css('display','block');
         $(".text_result").css('display','none');
         $('#finish').attr('disabled',true);
-        $('.pullbox_group .pullbox').children().appendTo($('.item_group'));
-        $('.garbage li').children().appendTo($('.item_group'));
-        $('.garbage li').remove();
+        $('.pullbox_group .pullbox img').appendTo($('.item_group'));
+        $('#garbage img').appendTo($('.item_group'));
+        $('#hiding img').appendTo($('.item_group'));
     };
     $('#again').on('click',open_ill);
 
-});
+    // 拖放物件
 
-// 拖曳失敗
-// function init(){
-//     // 先跟HTML產生關聯，再建事件聆聽功能
-//     leftbox = document.getElementById('leftbox');
-//     image = document.getElementById('image');
-//     rightbox = document.getElementById('rightbox');
-  
-//     $('label').on('dragstart',startDrag);
-//     $('label').on('dragend',endDrag);
+    // leftbox = document.querySelector('.item_group');
+    // image = document.querySelector('.item_group img');
+    // pullboxs = document.querySelectorAll('.pullbox_group .pullbox');
+    // console.log(pullboxs);
+    // console.log(pullboxs[1]);
+
+    // image.addEventListener('dragstart',startDrag);
+    // image.addEventListener('dragend',endDrag);
     
-//     $('.trashcan').on('dragenter',function(e){e.preventDefault();});
-//     $('.pullbox_group .pullbox').on('dragenter',function(e){e.preventDefault();});
-//     $('.trashcan').on('dragover',function(e){e.preventDefault();});
-//     $('.pullbox_group .pullbox').on('dragover',function(e){e.preventDefault();});
-//     $('.trashcan').on('drop',droppedtrash);
-//     $('.pullbox_group .pullbox').on('drop',dropped);
-//   };
-  
-//   function startDrag(e){
-//     let data = `${e}`;
-//     e.dataTransfer.setData('label',data);
-//   };
-  
-//   function endDrag(e){
-//     // image.style.visibility = 'hidden';
-//     // e.target.style.visibility = 'hidden';
-//     // e.target.style.display = 'none';
-//   };
-  
-//   function droppedtrash(e){
-//     e.preventDefault();
-//     $(this).children('.garbage').append(`<li>${e.dataTransfer.getData('label')}</li>`);
-//   };
-//   function dropped(e){
-//     e.preventDefault();
-//     $(this).append(e.dataTransfer.getData('label'));
-//   };
-  
-//   window.addEventListener("load",init,false);
-  
-  
+    // pullboxs[0].addEventListener('dragenter',function(e){e.preventDefault();});
+    // pullboxs[0].addEventListener('dragover',function(e){e.preventDefault();});
+    // pullboxs[0].addEventListener('drop',dropped);
+
+    // function startDrag(e){
+    //     // let data = '<img src="https://picsum.photos/225/225/?random=10">';
+    //     e.dataTransfer.setData('picsum',e.target.id);
+    //     console.log(e.target.src);
+    // };
+
+    // function endDrag(e){
+    //     // image.style.visibility = 'hidden';
+    //     // e.target.style.visibility = 'hidden';
+    //     // e.target.style.display = 'none';
+    // };
+
+    // function dropped(e){
+    //     e.preventDefault();
+    //     console.log(this);
+    //     $(this).append($(`#${e.dataTransfer.getData('picsum')}`));
+    // };
+
+};
+window.addEventListener("load",init,false);

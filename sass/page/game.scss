@@ -2,7 +2,7 @@
 
 
 .text_ill{
-    display: none;
+    // display: none;
     .welcome{
         max-width: 980px;
         box-sizing: border-box;
@@ -120,166 +120,178 @@
         .pullbox_group{
             box-sizing: border-box;
             width: 100%;
-            min-width: calc((100vh - 100px) * 0.8 * (170 / 108));
+            min-width: calc((100vh - 100px) * 0.8 * (3 / 2));
             height: 100%;
-            background: url('../img/game_room_nodoor.png') no-repeat center/auto 100%;
+            background: url('../img/game_room_nodoor01.png') no-repeat center/auto 100%;
             position: relative;
+            z-index: 1;
             .pullbox{
                 width: calc((100vh - 100px) * 0.8 * 0.125);
                 height: calc((100vh - 100px) * 0.8 * 0.125);
                 box-sizing: border-box;
-                padding: 5px;
+                padding: 10px;
                 background: url("../img/game_pullbox.png") center/cover ;
                 border-radius: 10px;
                 position: absolute;
                 left: 50%;
-                label{
-                    width: calc((100vh - 100px) * 0.2 - 20px);
-                    input{
-                        display: none;
-                    }
-                    img{
-                        width: 100%;
-                    }
+                top: 50%;
+                z-index: 5;
+                img{
+                    width: 100%;
                 }
-                &:nth-child(1){
-                    top: 17%;
-                    transform: translate(-160%,0);}
-                &:nth-child(2){
-                    top: 11%;
-                    transform: translate(-65%,0);}
-                &:nth-child(3){
-                    top: 5%;
-                    transform: translate(30%,0);}
-                &:nth-child(4){
-                    top: 57%;
-                    transform: translate(-85%,0);}
-                &:nth-child(5){
-                    top: 13%;
-                    transform: translate(-318%,0);}
-                &:nth-child(6){
-                    top: 28%;
-                    transform: translate(-365%,0);}
-                &:nth-child(7){
-                    top: 43%;
-                    transform: translate(-318%,0);}
-                &:nth-child(8){
-                    top: 58%;
-                    transform: translate(-365%,0);}
-                &:nth-child(9){
-                    top: 55%;
-                    transform: translate(250%,0);}
-                &:nth-child(10){
-                    top: 65%;
-                    transform: translate(110%,0);}
-                &:nth-child(11){
-                    top: 70%;
-                    transform: translate(-250%,0);}
-                &:nth-child(12){
-                    top: 25%;
-                    transform: translate(20%,0);}
-                &:nth-child(13){
-                    top: 33%;
-                    transform: translate(-120%,0);}
+                // 左
+                &:nth-child(1){transform: translate(-380%,-110%);}
+                &:nth-child(2){transform: translate(-330%,-210%);}
+                &:nth-child(3){transform: translate(-180%,-360%);}
+                &:nth-child(4){transform: translate(-530%,80%);}
+                &:nth-child(5){transform: translate(-130%,110%);}
+                &:nth-child(6){transform: translate(-260%,90%);}
+                // 右
+                &:nth-child(7){transform: translate(290%,25%);}
+                &:nth-child(8){transform: translate(390%,85%);}
+                &:nth-child(9){transform: translate(190%,-20%);}
+                &:nth-child(10){transform: translate(265%,170%);}
             }
-            #door{
-                height: 76%;
-                position: absolute;
-                top: 4%;
-                left: 50%;
-                transform: translate(-203%,0);
-                transition: .5s ease-in;
-                &.open{
-                    top: 14%;
+            #wardrobe{
+                #door1,
+                #door2{
+                    height: 46%;
+                    position: absolute;
                     left: 50%;
-                    transform: translate(-280%,0);
+                    transition: .5s ease-in;
+                }
+                #door1{
+                    z-index: 0;
+                    top: 6.4%;
+                    transform-origin:right;
+                    transform: translate(-62%,0) scaleX(1) skewY(0deg);
+                    
+                }
+                #door2{
+                    z-index: 2;
+                    top: 12.2%;
+                    transform-origin:left;
+                    transform: translate(-153%,0) scaleX(1) skewY(0deg);
+                }
+                #hiding{
+                    width: calc(100% - 400px);
+                    max-width: 400px;
+                    position: absolute;
+                    top: 20%;
+                    left: 47%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: start;
+                    overflow: hidden;
+                    transition: .8s;
+                    >img{
+                        box-sizing: border-box;
+                        opacity: 0;
+                        width: 0px;
+                        background: url("../img/game_pullbox.png") center/cover ;
+                        display: inline-block;
+                        transition: .8s;
+                        margin: 0px;
+                    }
+                }
+                &.open{
+                    #door1{
+                        left: 50%;
+                        transform: translate(-62.5%,0) scaleX(-.7) skewY(-10deg);
+                    }
+                    #door2{
+                        left: 50%;
+                        transform: translate(-154%,0) scaleX(1) skewY(45deg);
+                    }
+                    #hiding{
+                        >img{
+                            padding: 10px;
+                            opacity: 1;
+                            width: 70px;
+                            margin: 10px 10px 0 0;
+                        }
+                    }
                 }
             }
+            #bed{
+                height: 34.2%;
+                position: absolute;
+                top: 53.4%;
+                left: 50%;
+                z-index: 3;
+                transform: translate(-82.5%,0);
+            }
+            
             #pull_arrow{
-                width: calc((100vh - 100px) * 0.1 );
+                width: calc((100vh - 100px) * 0.06 );
                 position: absolute;
                 z-index: 2;
-                top: 42%;
+                top: 37%;
                 left: 50%;
-                transform: translate(-320%,0) rotate(-120deg);
+                transform: translate(-130%,0);
                 animation: pull_arrow .5s infinite alternate;
             }
         }
     }
-    #open_trashcan{
-        display: none;
-        &:checked + #trashcan{
-            .garbage{
-                // width: 0;
-                li{
-                    opacity: 1;
-                    width: 60px;
-                    margin-right: 10px;
-                }
+    
+    #trashcan{
+        z-index: 2;
+        height: 80px;
+        position: absolute;
+        bottom: calc(20% + 10px);
+        left: 10px;
+        .pic img{
+            height: 100%;
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            transition: .5s;
+        }
+        #garbage{
+            width: calc(100vw - 180px);
+            max-width: 700px;
+            position: absolute;
+            bottom: 0px;
+            left: 80px;
+            display: flex;
+            flex-wrap: wrap-reverse;
+            justify-content: start;
+            overflow: hidden;
+            transition: .5s;
+            >img{
+                box-sizing: border-box;
+                opacity: 0;
+                width: 0px;
+                background: url("../img/game_pullbox.png") center/cover ;
+                display: inline-block;
+                transition: .5s;
+                margin: 0px;
             }
+        }
+        &.open{
             .pic img{
                 &:first-child{
                     bottom: 15px;
                     left: 5px;
                     transform: rotate(-30deg);
                 }
-           }
-        }
-    }
-    #trashcan{
-        // width: calc((100vw - 180px));
-        height: 80px;
-        position: absolute;
-        bottom: calc(20% + 10px);
-        left: 10px;
-        .pic {
-            display: inline-block;
-            img{
-                height: 100%;
-                position: absolute;
-                bottom: 0px;
-                left: 0;
-                transition: .5s;
             }
-        }
-        .garbage{
-            margin-left: 80px;
-            display: inline-block;
-            display: flex;
-            flex-wrap: wrap;
-            max-width: calc(100vw - 180px);
-            justify-content: start;
-            overflow: hidden;
-            transition: .5s;
-            li{
-                opacity: 0;
-                width: 0px;
-                transition: .5s;
-                display: inline-block;
-                margin: 0px;
-                label{
-                    background: url("../img/game_pullbox.png") center/cover ;
-                    width: 60px;
-                    display: inline-block;
-                }
-                input{
-                    display: none;
-                }
-                img{
-                    box-sizing: border-box;
-                    width: 100%;
+            #garbage{
+                >img{
                     padding: 10px;
-                    position: relative;
+                    opacity: 1;
+                    width: 70px;
+                    margin: 10px 10px 0 0;
                 }
             }
         }
     }
+
     .push{
         width: 100%;
         height: 20%;
-        overflow: auto;
+        // overflow: hidden;
         background-color: map-get($color, 'plain');
-        // position: relative;
         .item_group{
             height: 100%;
             display: flex;
@@ -287,24 +299,18 @@
             justify-content: start;
             align-content: start;
             flex-wrap: wrap;
-            label{
-                width: calc((100vh - 120px) * 0.2 - 20px);
+            img{
+                // cursor: grab;
+                width: calc((100vh - 120px) * 0.2 - 40px);
                 margin: 10px;
+                padding: 10px;
                 display: inline-block;
-                input{
-                    display: none;
-                }
-                img{
-                    box-sizing: border-box;
-                    width: 100%;
-                    padding: 10px;
-                    position: relative;
-                }
-                input:checked + img{
+                &.selected{
                     background: url("../img/game_focus.png") center/cover ;
                 }
             }
             input{
+                z-index: 2;
                 position: absolute;
                 bottom: 5vh;
                 left: 50%;
@@ -321,7 +327,7 @@
     display: none;
 }
 .text_result{
-    // display: none;
+    display: none;
     max-width: 980px;
     box-sizing: border-box;
     width: calc(100vw - 40px);
@@ -411,11 +417,6 @@
                         width: 100%;
                     }
                 }
-                // .txt{
-                //     p{
-                //         // line-height: 1.5em;
-                //     }
-                // }
             }
             .push_product,
             .push_service{
@@ -476,7 +477,6 @@
                         width: 220px;
                         .txt{
                             padding: 20px;
-                            // line-height: 1.5em;
                             height: 180px;
                             display: flex;
                             justify-content: space-between;
@@ -557,9 +557,6 @@
                 .pullbox{
                     width: calc((100vh - 150px) * 0.125);
                     height: calc((100vh - 150px) * 0.125);
-                }
-                #pull_arrow{
-                    transform: translate(-350%,0) rotate(-120deg);
                 }
             }
         }
