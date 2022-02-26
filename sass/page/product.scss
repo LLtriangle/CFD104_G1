@@ -30,6 +30,12 @@ h3{
                 margin-top: 20px;
                 margin-bottom: -30px;
             }
+            .prod_amount{
+                margin-top: 40px;
+                display: flex;
+                height: 10px;
+                justify-content: flex-end;
+            }
         }
         .largeimg{
             // width: 600px;
@@ -56,7 +62,7 @@ h3{
             }
         }
         .prod_btn{
-            margin-top: 10px;
+            margin-top: 80px;
         }
     }
     .prod_derow{
@@ -194,6 +200,12 @@ h3{
                 }
                 .prod_price{
                     margin-top: 20px;
+                }            
+                .prod_amount{
+                    margin-top: 60px;
+                    display: flex;
+                    height: 40px;
+                    justify-content: end;
                 }
             }
             .largeimg{
@@ -210,6 +222,9 @@ h3{
             width: 100%;
                 .smallimg{
                     width: calc(100% / 3 - 20px);
+                    .small{
+                        cursor: pointer;
+                    }
                 }
                 .prod_img{
                     margin: 10px 0px;
@@ -221,7 +236,10 @@ h3{
                 }
             }
             .prod_btn{
-                margin-top: 100px;
+                // margin-top: 100px;
+                button{
+                    cursor: pointer;
+                }
             }
         }
         .prod_derow{
@@ -275,6 +293,9 @@ h3{
                 .btn_btn_box{
                     padding: 20px 20px 20px 60px;
                     justify-content: center;
+                    .btn_btn{
+                        cursor: pointer;
+                    }
                 }
                 .btn_xshidden{
                     visibility: visible;
