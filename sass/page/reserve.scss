@@ -115,9 +115,7 @@ table.creditCard{
             box-shadow: 1px 1px 2px map-get($color , 'sub_blue' );
             padding: 10px;
             box-sizing: border-box;
-            // h4{
 
-            // }
             p{
                 padding-left: 2rem;
                 font-size: 14px;
@@ -138,6 +136,15 @@ table.creditCard{
 
 .choose_emp{
     display: flex;
+    .emp_info{
+        display: flex;
+        text-align: center;
+        .emp_pic{
+            width: 50px;
+            border-radius: 50%;
+        }
+
+    }
 }
 .form_item.upload_pics{
     display: block;
@@ -147,26 +154,24 @@ table.creditCard{
 }
     
 // 更改input[type=text]樣式
-input[type=text],input[type=email]{
-    border: 0.3px solid map-get($btn_color, 'brown');
-    box-shadow: 2px 2px map-get($btn_color, 'brown');
-    padding: 5px;
-    border-radius: 10px;
-    background-color: map-get($color , "plain" );
-    &:focus{
-        box-shadow: -1.5px -1.5px map-get($color, 'main');
-        border: 0.3px solid map-get($color, 'main');
-    }
-}
+// input[type=text],input[type=email]{
+//     border: 0.3px solid map-get($btn_color, 'brown');
+//     box-shadow: 2px 2px map-get($btn_color, 'brown');
+//     padding: 5px;
+//     border-radius: 10px;
+//     background-color: map-get($color , "plain" );
+//     &:focus{
+//         box-shadow: -1.5px -1.5px map-get($color, 'main');
+//         border: 0.3px solid map-get($color, 'main');
+//     }
+// }
 
 
 // 選擇日期
 .choose_date{
     display: unset;
-}
-
-// 時段
-.calendar_time{
+    // 月曆
+    .calendar_time{
     display: flex;
     justify-content: space-between;
     
@@ -203,7 +208,33 @@ input[type=text],input[type=email]{
         }
 
     }
+    }
+    // 顯示預約時間
+    .time_panel{
+        display: flex;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.479);
+        box-shadow: 1px 1px 2px map-get($color , 'sub_blue' );
+        padding: 10px;
+        box-sizing: border-box;
+        div{
+            display: flex;
+            width: 50%;
+            // justify-content: center;
+            p{
+                &:first-child{
+                    font-weight: 800;
+                }
+                &:last-child{
+                    margin-left: 50px;
+                }
+            }
+        }
+    }
 }
+
+
+
 
 
 // 上傳照片
