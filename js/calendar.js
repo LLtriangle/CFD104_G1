@@ -140,9 +140,6 @@ function createCalendar(){
                 var full_img = document.createElement('img');
                 full_img.className = "full_img"
                 full_img.src = "img/soeasy_full.png"
-                // var input = document.createElement('input');
-                // input.type= "radio";
-                // td.appendChild(input);
     
                 td.appendChild(div_flex);
                 // 加入span
@@ -162,17 +159,37 @@ function createCalendar(){
                 span.innerHTML = actual.getDate();
     
                 // 早中晚加入文字
-                morning.innerText = "早";
-                afternoon.innerText = "中";
-                night.innerText = "晚";
-    
+                if($(window).width()<830){
+                    morning.innerText = "";
+                    afternoon.innexrText = "";
+                    night.innerText = "";
+                }else{
+                    morning.innerText = "早";
+                    afternoon.innerText = "中";
+                    night.innerText = "晚";
+                };
+
+                // RWD 改變視窗大小
+                window.onresize=function(){
+                    // console.log(morning.innerText);
+                    if( $(window).width()<830){
+                        morning.innerText = "";
+                        afternoon.innerText = "";
+                        night.innerText = "";
+                    }else{
+                        morning.innerText = "早";
+                        afternoon.innerText = "中";
+                        night.innerText = "晚";
+                    };
+                };
+
                 // 隨機
                 var arr = Math.round(Math.random());
                 var re_index = 0;
                 if (arr==1) {
                     morning.classList.add("reserved");
                     re_index++;
-                }
+                };
                 
                 arr = Math.round(Math.random());
                 if (arr==1) {
@@ -253,7 +270,7 @@ function createCalendar(){
                 let periods = document.querySelectorAll(".period");
                 var selectedPeriod;
                 for(let i=0; i<periods.length; i++){
-                    if(periods[i].className.indexOf('reserved') == -1){
+                    if(periods[i].className.indexOf('reserved') == -1 && $(window).width()>830){
                         periods[i].onclick = function(){
                             let period = periods[i].innerText;
                             if(period=="早"){
@@ -263,7 +280,6 @@ function createCalendar(){
                             }else if(period=="晚"){
                                 selectedPeriod = '晚上18-21點';
                             }
-                            // console.log(selectedPeriod);
                             document.getElementById("selectedPeriod").innerText = selectedPeriod;
                         }
                     }
