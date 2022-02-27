@@ -126,7 +126,7 @@ table.creditCard{
         }
     }
 }
-
+// 方案價格
 .plan_price{
     color: map-get($font_color , 'red' );
     font-weight: 900;
@@ -136,6 +136,9 @@ table.creditCard{
 
 .choose_emp{
     display: flex;
+    select{
+        height: 100%
+    }
     .emp_info{
         display: flex;
         text-align: center;
@@ -143,7 +146,6 @@ table.creditCard{
             width: 50px;
             border-radius: 50%;
         }
-
     }
 }
 .form_item.upload_pics{
@@ -298,8 +300,13 @@ select{
     }
 }
 // 選地址
-.choose_add select{
-    margin-right: 10px;
+.choose_add{
+    div{
+        display: flex;
+        select{
+            margin-right: 10px;
+        }
+    }
 }
 // textarea更改樣式
 textarea {
@@ -317,6 +324,67 @@ textarea {
     li{
         label{
             cursor: pointer;
+        }
+    }
+}
+
+
+// RWD
+
+@media screen and (max-width: 830px) {
+    .form_item{
+        margin-bottom: 20px;
+    }
+    input{
+        width: 100%;
+        margin: 10px auto;
+        box-sizing: border-box;
+    }
+    select{
+        margin: 10px auto;
+        width: 100%;
+    }
+    .choose_plan .plan_li{
+        margin-bottom: 10px;
+        li{
+        margin: 0;
+        padding: 0;
+        }
+    } 
+    .form_item.choose_plan{
+        display: unset;
+        .plan_info{
+            min-width: 100%;
+            .plan_txt{
+                margin-bottom: 20px;
+            }
+        }
+    }
+    .form_item.choose_emp,.input_name,.input_tel,.input_need{
+        display: unset;
+
+    }
+    .form_item.choose_add{
+        display: unset;
+        div{
+            display: unset;
+        }
+    }
+    textarea{
+        width: 100%;
+    }
+    .container{
+        width: 100%;
+        min-width: unset;
+        .progress{
+            margin-left:0;
+            a{  
+                width:100%;
+                box-sizing: border-box;
+                img{
+                    width: 20px;
+                }
+            }
         }
     }
 }
