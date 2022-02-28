@@ -137,10 +137,9 @@ function createCalendar(){
                 var morning = document.createElement('span');
                 var afternoon = document.createElement('span');
                 var night = document.createElement('span');
-                // 增加input
-                // var input = document.createElement('input');
-                // input.type= "radio";
-                // td.appendChild(input);
+                var full_img = document.createElement('img');
+                full_img.className = "full_img"
+                full_img.src = "img/soeasy_full.png"
     
                 td.appendChild(div_flex);
                 // 加入span
@@ -149,6 +148,9 @@ function createCalendar(){
                 // 加入div
                 div_flex.appendChild(div);
                 // div裡加入三個時間段
+                morning.classList.add("period");
+                afternoon.classList.add("period");
+                night.classList.add("period");
                 div.appendChild(morning);
                 div.appendChild(afternoon);
                 div.appendChild(night);
@@ -157,40 +159,67 @@ function createCalendar(){
                 span.innerHTML = actual.getDate();
     
                 // 早中晚加入文字
-                morning.innerText = "早";
-                afternoon.innerText = "中";
-                night.innerText = "晚";
-    
+                if($(window).width()<830){
+                    morning.innerText = "";
+                    afternoon.innexrText = "";
+                    night.innerText = "";
+                }else{
+                    morning.innerText = "早";
+                    afternoon.innerText = "中";
+                    night.innerText = "晚";
+                };
+
+                // RWD 改變視窗大小
+                window.onresize=function(){
+                    // console.log(morning.innerText);
+                    if( $(window).width()<830){
+                        morning.innerText = "";
+                        afternoon.innerText = "";
+                        night.innerText = "";
+                    }else{
+                        morning.innerText = "早";
+                        afternoon.innerText = "中";
+                        night.innerText = "晚";
+                    };
+                };
+
                 // 隨機
                 var arr = Math.round(Math.random());
                 var re_index = 0;
                 if (arr==1) {
-                    morning.className = 'reserved';
+                    morning.classList.add("reserved");
+                    re_index++;
+                };
+                
+                arr = Math.round(Math.random());
+                if (arr==1) {
+                    afternoon.classList.add("reserved");
                     re_index++;
                 }
                 
                 arr = Math.round(Math.random());
                 if (arr==1) {
-                    afternoon.className = 'reserved';
-                    re_index++;
-                }
-                
-                arr = Math.round(Math.random());
-                if (arr==1) {
-                    night.className = 'reserved';
+                    night.classList.add("reserved");
                     re_index++;
                 }
     
                 // fora=非此月
                 if(actual.getMonth() !== data.getMonth() )
                     td.className = 'fora';
-                // ------------------新增
-                // if(actual.getDate()-2 <= data.getDate() && actual.getMonth() === data.getMonth())
+                // ------------------新增 今天以前不能被點擊
+                
+                let dp = new Date();
+                let month00 = dp.getMonth(); // 現在月份
+                if(actual.getDate() <= data.getDate() && actual.getMonth() <= month00){
+                    td.className = 'fora';
+                }
+                // if(actual.getMonth() < month00){
                 //     td.className = 'fora';
+                // }
     
                 // today=今天
                 if(data.getDate() == actual.getDate() &&
-                data.getMonth() == actual.getMonth())
+                data.getMonth() == month00)
                 td.className = 'today';
                 
                 // t_add3=今天後三天
@@ -201,8 +230,17 @@ function createCalendar(){
                 // 三時段皆滿
                 if(re_index == 3){
                     td.classList.add('full');
+                    td.appendChild(full_img);
                 }
-    
+
+                // 這個月以前不能回去 boto_prev disable
+                // console.log(data.getMonth()); // 1 二月
+                // console.log(month00); // 1 二月
+                if(data.getMonth() == month00){
+                    boto_prev.disabled = true;
+                    boto_prev.style.opacity = 0.3;
+                }
+
                 actual.setDate(actual.getDate()+1);
                 fila.appendChild(td);
     
@@ -210,39 +248,65 @@ function createCalendar(){
                 
                 let tds = document.querySelectorAll("#calendari td");
                 for(let i=0; i<tds.length; i++){
-                    if(tds[i].className.indexOf('fora') == -1 && tds[i].className.indexOf('today') == -1){
-                        tds[i].onclick=function(){
-                            // td加上被選到的效果
-                            // console.log(i);
+                    if(tds[i].className.indexOf('fora') == -1 && tds[i].className.indexOf('today') == -1 && tds[i].className.indexOf('full') == -1){
+                        tds[i].onclick=function(e){
                             // 抓裡面的日期
-
-                            // 顯示早中晚預約btn
+                            // tds[i] 是這個被點到的格子
+                            // data.getDate() 是今天的日期
+                            // actual.getMonth() 月曆上顯示的月份!!
+                            let selectedYear = data.getFullYear(); // 年
+                            let selectedMonth = actual.getMonth(); // 月
+                            let selectedDay = tds[i].childNodes[0].childNodes[0].innerText; // 日
+                            let selectedDate = `${selectedYear}年${selectedMonth}月${selectedDay}日`
+                            document.getElementById("selectedDate").innerText = selectedDate;
+                            
+                            // console.log(e.target);
                             
                         }  
                     }
                     
                 }
+
+                let periods = document.querySelectorAll(".period");
+                var selectedPeriod;
+                for(let i=0; i<periods.length; i++){
+                    if(periods[i].className.indexOf('reserved') == -1 && $(window).width()>830){
+                        periods[i].onclick = function(){
+                            let period = periods[i].innerText;
+                            if(period=="早"){
+                                selectedPeriod = '早上9-12點';
+                            }else if(period=="中"){
+                                selectedPeriod = '下午14-17點';
+                            }else if(period=="晚"){
+                                selectedPeriod = '晚上18-21點';
+                            }
+                            document.getElementById("selectedPeriod").innerText = selectedPeriod;
+                        }
+                    }
+                }
             }
-    
+            
             e.appendChild(fila);
         }
-    
+        
         setTimeout(function() {
             e.className = 'actiu';
             original.className +=
             diff === 0 ? ' last_m' : ' next_m';
         }, 20);
-    
+        
         original.className = 'inactiu';
-    
+        
         setTimeout(function() {
             var inactius = document.getElementsByClassName('inactiu');
             for(var i = 0; i < inactius.length; i++)
-                widget.removeChild(inactius[i]);
+            widget.removeChild(inactius[i]);
         }, 1000);
-    
+        
     }
     
     calendari(document.getElementById('calendari'), new Date());
-    }
-    window.addEventListener('load',createCalendar);
+}
+window.addEventListener('load',createCalendar);
+// 加上選到的效果
+// tds[i].classList.add("selected");

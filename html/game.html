@@ -37,20 +37,19 @@
                     <img src="https://cdn-icons-png.flaticon.com/128/64/64797.png">
                     <img src="https://cdn-icons-png.flaticon.com/512/128/128236.png">
                 </div>
-                <div class="pic">
-                    <img src="https://cdn-icons-png.flaticon.com/128/64/64791.png">
-                    <img src="https://cdn-icons-png.flaticon.com/512/35/35444.png">
-                </div>
                 <div class="txt">
-                    <p>點選物件放置在框線中，或丟棄於垃圾桶。</p>
+                    <p>點選物件再點擊框線即可放置物品。</p>
                 </div>
                 <div class="pic">
                     <img src="https://cdn-icons-png.flaticon.com/512/57/57213.png">
+                    <img src="https://cdn-icons-png.flaticon.com/128/64/64797.png">
+                    <img src="https://cdn-icons-png.flaticon.com/512/35/35444.png">
                 </div>
                 <div class="txt">
-                    <p>點選物件放置在框線中，或丟棄於垃圾桶。</p>
+                    <p>點擊垃圾桶可以丟棄物品。</p>
                 </div>
-                <button class="btn_btn rd">開始測驗</button>
+                <button class="btn_btn rd">前往臥室</button>
+                <button class="btn_btn rd" disabled>前往廚房</button>
             </div>
         </section>
 
@@ -58,86 +57,82 @@
         <section class="text_game">
             <div class="pull">
                 <div class="pullbox_group">
-                    <div class="pullbox"></div>
-                    <div class="pullbox"></div>
-                    <div class="pullbox"></div>
-                    <div class="pullbox"></div>
-                    <div class="pullbox"></div>
-                    <div class="pullbox"></div>
-                    <div class="pullbox"></div>
-                    <div class="pullbox"></div>
-                    <div class="pullbox"></div>
-                    <div class="pullbox"></div>
-                    <div class="pullbox"></div>
-                    <div class="pullbox"></div>
-                    <div class="pullbox"></div>
-                    <img id="door" src="img/game_room_door.png">
-                    <img id="pull_arrow" src="https://cdn-icons-png.flaticon.com/512/64/64797.png">
+                    <div class="pullbox" ondrop="drop(e)" ondragover="allowDrop(e)"></div>
+                    <div class="pullbox" ondrop="drop(e)" ondragover="allowDrop(e)"></div>
+                    <div class="pullbox" ondrop="drop(e)" ondragover="allowDrop(e)"></div>
+                    <div class="pullbox" ondrop="drop(e)" ondragover="allowDrop(e)"></div>
+                    <div class="pullbox" ondrop="drop(e)" ondragover="allowDrop(e)"></div>
+                    <div class="pullbox" ondrop="drop(e)" ondragover="allowDrop(e)"></div>
+                    <div class="pullbox" ondrop="drop(e)" ondragover="allowDrop(e)"></div>
+                    <div class="pullbox" ondrop="drop(e)" ondragover="allowDrop(e)"></div>
+                    <div class="pullbox" ondrop="drop(e)" ondragover="allowDrop(e)"></div>
+                    <div class="pullbox" ondrop="drop(e)" ondragover="allowDrop(e)"></div>
+                    <!-- 衣櫃 -->
+                    <div id="wardrobe" ondrop="drop(e)" ondragover="allowDrop(e)">
+                        <img id="door1" src="img/game_room_door01.png">
+                        <img id="door2" src="img/game_room_door02.png">
+                        <div id="hiding"></div>
+                    </div>
+                    <img id="bed" src="img/game_room_bed.png">
+                    <img id="pull_arrow" src="https://cdn-icons-png.flaticon.com/512/158/158787.png">
                 </div>
             </div>
 
-            <input type="checkbox" id="open_trashcan">
-            <label id="trashcan" for="open_trashcan">
+
+            <!-- 垃圾桶 -->
+            <div id="trashcan" ondrop="dropTrashcan(e)" ondragover="allowDrop(e)">
                 <div class="pic">
                     <img src="img/game_trashcan1.png">
                     <img src="img/game_trashcan0.png">
                 </div>
-                <ul class="garbage">
-                    <!-- <li></li> -->
-                </ul>
-            </label>
+                <div id="garbage"></div>
+            </div>
                     
             <div class="push">
-                <div class="item_group">
-                    <label>
-                        <input type="radio" name="item">
-                        <img src="https://cdn-icons-png.flaticon.com/128/57/57377.png" alt="">
-                    </label>
-                    <label>
-                        <input type="radio" name="item">
-                        <img src="https://cdn-icons-png.flaticon.com/128/57/57274.png" alt="">
-                    </label>
-                    <label>
-                        <input type="radio" name="item">
-                        <img src="https://cdn-icons-png.flaticon.com/512/57/57350.png" alt="">
-                    </label>
-                    <label>
-                        <input type="radio" name="item">
-                        <img src="https://cdn-icons-png.flaticon.com/128/57/57337.png" alt="">
-                    </label>
-                    <label>
-                        <input type="radio" name="item">
-                        <img src="https://cdn-icons-png.flaticon.com/128/58/58000.png" alt="">
-                    </label>
-                    <label>
-                        <input type="radio" name="item">
-                        <img src="https://cdn-icons-png.flaticon.com/128/58/58188.png" alt="">
-                    </label>
-                    <label>
-                        <input type="radio" name="item">
-                        <img src="https://cdn-icons-png.flaticon.com/128/53/53616.png" alt="">
-                    </label>
-                    <!-- <label>
-                        <input type="radio" name="item">
-                        <img src="https://cdn-icons-png.flaticon.com/512/57/57392.png" alt="">
-                    </label> -->
-                    <label>
-                        <input type="radio" name="item">
-                        <img src="https://cdn-icons-png.flaticon.com/128/57/57363.png" alt="">
-                    </label>
-                    <label>
-                        <input type="radio" name="item">
-                        <img src="https://cdn-icons-png.flaticon.com/128/35/35489.png" alt="">
-                    </label>
-                    <label>
-                        <input type="radio" name="item">
-                        <img src="https://cdn-icons-png.flaticon.com/512/288/288686.png" alt="">
-                    </label>
+                <div class="item_group" ondrop="drop(e)" ondragover="allowDrop(e)">
+                    <img id="room_item01" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/128/57/57377.png">
+                    <img id="room_item02" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/128/57/57274.png">
+                    <img id="room_item03" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/512/57/57350.png">
+                    <img id="room_item04" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/128/57/57337.png">
+                    <img id="room_item05" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/128/58/58000.png">
+                    <img id="room_item06" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/128/58/58188.png">
+                    <img id="room_item07" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/128/53/53616.png">
+                    <img id="room_item08" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/128/57/57363.png">
+                    <img id="room_item09" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/128/35/35489.png">
+                    <img id="room_item10" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/512/288/288686.png">
                     <input id="finish" class="btn_sub rd" type="button" value="完成放置" disabled>
                 </div>
             </div>
         </section>
         
+        <!-- <script>
+            // MDN
+            // https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/getData
+            // 跨區域拖放受限，失敗原因 : 
+            // https://stackoverflow.com/questions/11927309/html5-dnd-datatransfer-setdata-or-getdata-not-working-in-every-browser-except-fi
+            
+            // function allowDrop(allowdropevent) {
+            //     allowdropevent.preDefault();
+            // }
+            
+            // function drag(dragevent) {
+            //     dragevent.dataTransfer.setData("text", dragevent.target.id);
+            // }
+            
+            // function drop(dropevent) {
+            //     dropevent.preDefault();
+            //     var data = dropevent.dataTransfer.getData("text");
+            //     dropevent.target.appendChild(document.getElementById(data));
+            // }
+            
+            // function dropTrashcan(e) {
+            //     e.preDefault();
+            //     var data = e.dataTransfer.getData("imgSrc");
+            //     e.target.lastChild.appendChild(document.getElementById(data));
+            // }
+        </script> -->
+
+
         <!-- 測驗結果 -->
         <section class="text_result">
             <img class="typewriter" src="img/game_typewriter.png" alt="打字機">
