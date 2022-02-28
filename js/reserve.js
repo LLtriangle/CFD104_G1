@@ -7,7 +7,7 @@ function uploadFile(){
     let upFile = document.getElementById("upFile");
     let your_pics = document.getElementById("your_pics");
     let div_myimgs = document.getElementById("div_myimgs");
-    
+    let file_label_rwd = document.getElementById("file_label_rwd"); 
     upFile.onchange=function(e){ //選檔案:change事件
         let file = e.target.files[0]; //找物件
         let reader = new FileReader(); //reader讀物件
@@ -33,19 +33,24 @@ function uploadFile(){
             function delete_mypic(e){
                 let div_img = e.target.parentNode; 
                 div_img.remove();
+
                 if(myimgs.length == 2){
                     your_pics.appendChild(div_upload);
-                }
+                };
+                if(myimgs.length == 2 && $(window).width()<830){
+                    your_pics.insertBefore(file_label_rwd,div_myimgs);
+                };
+
             };
 
             img.src = reader.result;
     
             let myimgs = document.getElementsByClassName("myimg");
 
-            
             // console.log(myimgs.length);
             if(myimgs.length == 3){
                 div_upload.remove()
+                file_label_rwd.remove()
             }
     
         }
