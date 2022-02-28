@@ -6,6 +6,7 @@
 //     position: relative;
     
 // }
+// 會員資料開始-----------------------------------------------------
 .mem_txt{
     
 }
@@ -27,6 +28,7 @@ th{
     margin: auto;
 }
 
+// 手機-------------------------------
 @media  screen and (max-width:768px){
     main{
         margin-top: 80px;
@@ -40,7 +42,7 @@ th{
             .mem_icon{
                 // margin: auto;
                 text-align: center;
-                margin: 20px 5px;
+                margin: auto;
                 width: 80px;
                 img{
                     width: 100%;
@@ -53,17 +55,65 @@ th{
                 margin: auto;
             }
             .data_button{
-                display: flex;
+                // display: flex;
                 text-align: center;
                 flex-wrap: wrap;
                 line-height: 2;
-                a{
-                    display: block;
-                    margin: auto;
-                    font-size: 16px;
-                    line-height: 1.5;
-                    margin: auto 10px;
+                input{
+                    display: none;
+                    &:checked{
+                        ~label{
+                            
+                        }
+                        ~.con_data{
+                            line-height: 1.5em;
+                            a{
+                                display: block;
+                            }
+                        }
+                    }
                 }
+                label{
+                    .mem{
+                        display: flex;
+                        padding: 10px 0;
+                        font-size: 24px;
+                        width: 100%;
+                        cursor: pointer;
+                        // &::before,
+                        // &::after{
+                        //     transition: .5s;
+                        //     content: '';
+                        //     position: absolute;
+                        //     top: 50%;
+                        //     right: 10px;
+                        //     transform: translate(-2px,-50%) rotate(0deg);
+                        //     width: 20px;
+                        //     height: 3px;
+                        //     border-radius: 3px;
+                        //     background-color:  map-get($color,"sub_blue");
+                        // }
+                        // &::after{
+                        //     transform: translate(-2px,-50%) rotate(-90deg);
+                        // }
+                    }
+                    
+                }
+
+                .con_data{
+                    line-height: 0em;
+                    transition: .5s;
+                    overflow: hidden;
+
+                    a{
+                        display: none;
+                        margin: auto;
+                        font-size: 16px;
+                        line-height: 1.5;
+                        margin: auto 10px;
+                    }
+                }
+                
             }
         }
         .data_con{
@@ -92,6 +142,7 @@ th{
                 }
                 .mem_txt{
                     width: 80%;
+                    // height: 400px;
                     border: #d6aa81 2px solid;
                     background: #fff;
                     border-radius: 20px;
@@ -103,9 +154,31 @@ th{
                     position: relative;
                     button{
                         position: absolute;
-                        right: 10px;
-                        bottom: 10px;
+                        right: 0;
+                        // bottom: 0;
                     }
+                    .item_box{
+                        
+                        label{
+                            margin: 20px auto;
+                            
+                        }
+                        .gender{
+                            display: flex;
+                            ul{
+                                li{
+                                    display: inline-block;
+                                    label{
+                                        span{
+                                            bottom: 0;
+                                            margin: auto;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
                 }
             }
         }
@@ -115,7 +188,7 @@ th{
 
 
 
-
+// 桌機-------------------------------
 @media  screen and (min-width:768px){
     main{
         display: flex;
@@ -174,7 +247,7 @@ th{
                 // justify-content: space-between;
                 .icon_edit{
                     .mem_icon{
-                        margin: 20px 50px;
+                        margin: 20px 40px;
                         width: 200px;
                         img{
                             width: 100%;
@@ -193,7 +266,7 @@ th{
                     background: #fff;
                     border-collapse: separate;
                     border-radius: 20px;
-                    margin: 20px 50px;
+                    margin: auto;
                     line-height: 3;
                     box-sizing: border-box;
                     padding-left: 20px;
@@ -208,6 +281,24 @@ th{
                         right: 10px;
                         bottom: 10px;
                     }
+                    .gender{
+                        margin-top: 40px;
+                        display: flex;
+                        p{
+                            margin-top: 0;
+                        }
+                        ul{
+                            li{
+                                display: inline-block;
+                                label{
+                                    span{
+                                        bottom: 0;
+                                        margin: auto;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -216,4 +307,452 @@ th{
 
 }
 
+// 會員資料結束-----------------------------------------------------
+
+// 商品訂單開始-----------------------------------------------------
+.memberOrder {
+    margin: auto;
+    box-sizing: border-box;
+    padding: 30px;
+    width: 90%;
+    &:first-child {
+    }
+    .memberOrderContent {
+        // table-layout:fixed;
+        width: 100%;
+        border: solid 1px map-get($color, "sub_brown");
+        border-collapse: collapse;
+        .memberGrid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            .memberReceiverID {
+                //詳細資料
+                color: map-get(btn_color, "deep_blue");
+                cursor: pointer;
+            }
+        }
+    }
+
+
+}
+
+ /* 第一行 */
+.memberGrid1,
+.memberGrid2,
+.memberGrid3,
+.memberGrid4,
+.memberGrid5,
+.memberGrid6,
+.memberGrid7,
+.memberGrid8 {
+    background-color: map-get($color, "sub_brown");
+    color: #fff;
+    padding: 7px 0 7px 0;
+    padding-left: 10px;
+}
+
+ /* 第二行 */
+.memberGrid9,
+.memberGrid10,
+.memberGrid11,
+.memberGrid12,
+.memberGrid13,
+.memberGrid14,
+.memberGrid15,
+.memberGrid16 {
+    background-color: #f8f0e0;
+    color: map-get($color, "sub_brown");
+    padding: 15px 0 15px 0;
+    padding-left: 10px;
+}
+
+
+/* 收貨進度=================== */
+
+.memberProgressAll {
+    display: flex;
+    border: solid 1px map-get($color, "sub_brown");
+    margin-top: -2px;
+    width: 100%;
+    .dot_box{
+        margin: auto;
+    }
+    
+}
+
+.memberProgressAll>div {
+    /* border: 1px solid red; */
+    padding: 10px 5% 10px 5%;
+}
+
+
+/* 進度條 */
+
+.memberProgressAll div .memberProgressDot {
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.memberProgressAll div .memberProgressDot div {
+    position: relative;
+    /* 給dot_check定位 */
+}
+
+
+/* 進度小點 */
+
+.memberProgressAll div .memberProgressDot div:nth-child(2n+1) {
+    width: 12px;
+    height: 12px;
+    /* background-image: url(../images/member/checkcircle.png); */
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 3.5px solid map-get($color, "sub_blue"); 
+    background-color: #fff;
+    border-radius: 50px;
+}
+
+.memberUnchecked {
+    border-radius: 50px;
+    border: 3.5px solid map-get($color, "sub_blue");
+    background-color: #fff;
+}
+
+
+/* 進度線條 */
+
+.memberProgressAll>div:first-child {
+    width: 80%;
+    /* border: 1px solid black; */
+}
+
+.memberProgressAll div .memberProgressDot div:nth-child(2n) {
+    width: 33%;
+    height: 2px;
+    background-color:map-get($color, "sub_blue");
+}
+
+ /* .memberProgressAll div .memberProgressDot div.memberLineCheck { */
+     /* background-color: #f7c242; */
+ /* } */
+
+
+/* 進度文字 */
+
+.memberProgressAll div .memberProgressWord {
+    color: map-get($color, "sub_blue");
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: space-between;
+    margin-left: -25px;
+    margin-right: -25px;
+}
+
+
+/* 再次購買 */
+
+.memberProgressAll>div:last-child {
+    display: flex;
+    flex-direction: column;
+}
+
+.memberProgressAll div .memberBuyAgain {
+    margin: 0 auto;
+    display: block;
+    width: 80px;
+    height: 22px;
+    font-size: 10px;
+    border-radius: 25px;
+    background-color: map-get($color, "main");
+    color: #f0ebe9;
+    border: none;
+    align-self: center;
+     /* margin-right: 28px; */
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.memberProgressAll div .noshow {
+    display: none;
+}
+
+
+/* 明細鈕 */
+
+// .memberProgressAll div .memberOpenDetail {
+//     margin: 0 auto;
+//     display: block;
+//     width: 80px;
+//     height: 22px;
+//     font-size: 10px;
+//     border-radius: 25px;
+//     background-color: #172852;
+//     color: #f0ebe9;
+//     border: none;
+//     align-self: center;
+//      /* margin-right: 28px; */
+//     cursor: pointer;
+// }
+
+// .memberProgressAll div .close_detail {
+//     background-color: #647bb5;
+// }
+
+/* 訂單明細==================== */
+.memberOrderDetail {
+    width: 100%;
+    border: solid 1px map-get($color, "sub_blue");
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 0;
+}
+ /* 第一行 */
+.memberOrderDetail .memberOrderD1{
+    background-color: map-get($color, "sub_blue");
+    color: #fff;
+    padding: 5px 0 5px 10px;
+}
+
+.memberOrderDetail .memberOrderD1 div:nth-child(1){
+    /* width: 30%; */
+   width: 260px;
+   min-width: 150px;
+   display: inline-block;
+}
+.memberOrderDetail .memberOrderD1 div:nth-child(2){
+    /* width: 10%; */
+   width: 100px;
+   display: inline-block;
+}
+.memberOrderDetail .memberOrderD1 div:nth-child(3){
+    /* width: 10%; */
+   width: 100px;
+   display: inline-block;
+}
+
+ /* 第二行 */
+.memberOrderDetail .memberOrderD2{
+    display: flex;
+    padding: 5px 5px 5px 10px;
+}
+.memberOrderDetail .memberOrderD2{
+    
+
+} 
+
+.memberOrderDetail .memberOrderD2 img{
+    max-width: 50px;
+}
+.memberOrderDetail .memberOrderD2 div{
+    padding-top: 19px;
+}
+.memberOrderDetail .memberOrderD2 div:nth-child(2){
+    padding-left: 10px;
+    width: 215px;
+    min-width: 105px;
+}
+.memberOrderDetail .memberOrderD2 div:nth-child(3){
+    width: 100px;
+}
+
+
+/* 收件人詳細資訊============= */
+
+// .receiverDetail {
+//     display: none;
+//     /* border: 1px solid red; */
+//     width: 430px;
+//     height: 260px;
+//     position: fixed;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     border-radius: 10px;
+//     box-shadow: 0px 10px 32px 0 rgba(23, 40, 82, 0.6);
+//     background-color: #fff;
+//     z-index: 920;
+// }
+
+// .receiverDetail div {
+//     padding: 20px 0 0px 0;
+// }
+
+// .receiverDetail div p {
+//     /* border: 1px solid blue; */
+//     text-align: center;
+//     padding: 0;
+//     margin: 0;
+//     margin-bottom: 10px;
+// }
+
+// .receiverDetail div p input {
+//     width: 250px;
+//     /* margin-bottom: 10px; */
+//     padding: 10px;
+//     border-radius: 5px;
+//     background-color: #f0ebe9;
+//     border: none;
+//     color: #172852;
+// }
+
+// .receiverDetail>button {
+//     margin: 0 auto;
+//     /* @include btn(); */
+//     margin-top: 25px;
+// }
+
+
+/* rwd */
+@media  screen and (max-width:768px) {
+    .memberAll {
+        width: 75%;
+        margin: 0 auto;
+    }
+    // 訂單查詢表格
+    .memberOrder .memberOrderContent {
+        .memberGrid {
+            grid-template-columns: repeat(4, 1fr);
+            // grid-auto-flow:發現前面有空位的話，就去補他
+            grid-auto-flow: dense;
+        }
+        .memberGrid5 {
+            grid-column: 1;
+            grid-row: 3;
+        }
+        .memberGrid6 {
+            grid-column: 2;
+            grid-row: 3;
+        }
+        .memberGrid7 {
+            grid-column: 3;
+            grid-row: 3;
+        }
+        .memberGrid8 {
+            grid-column: 4;
+            grid-row: 3;
+        }
+    }
+    // 收藏商品管理
+    .memberPart5 {
+        .memberLikePack {
+            width: calc((100% - 75px)/4);
+            
+        }
+        .memberLikePack:nth-child(5n+1) {
+            margin-left: 20px;
+        }
+        .memberLikePack:nth-child(4n+1) {
+            margin-left: 0;
+        }
+
+        .memberFavoriteName{
+                display: none;
+                position: absolute;
+                padding-top: 42%;
+                top: 0;
+                left: 0;
+                text-align: center;
+                width: 100%;
+                height: 100%;
+                color: #172852;
+                background-color: rgba(255,255,255,.5);
+                // &:hover{
+                //     display: block;
+                // }
+            }
+    }
+    // 標題改為滑動的方式
+    .memberLine {
+        overflow-x: auto;
+        height: 40px;
+        h4 {
+            white-space: nowrap;
+            border-bottom: 2px solid #cba89a;
+            padding-bottom: 7px;
+            margin-right: 15px;
+            margin-left: 5%;
+            margin-right: 5%;
+            flex: 0;
+        }
+        h4:first-child {
+            margin-left: 0;
+        }
+        .underLine{
+            display: none;
+        }
+        // 點擊後底線變色
+        .mClicked{
+            border-bottom: 2px solid #172852;
+        }
+    }
+    .memberLine::-webkit-scrollbar {
+        display: none
+    }
+}
+@media  screen and (max-width:575px) {
+    .memberAll {
+        width: 90%;
+        
+        // 手機版本標題改為滑動的方式
+        // 會員資料表格
+        .memberPart1 {
+            .label input {
+                width: 270px;
+            }
+        }
+        // 訂單查詢 進度條
+        .memberProgressAll {
+            >div:first-child {
+                margin-left: 5%;
+            }
+            flex-direction: column;
+            div .memberProgressWord {
+                margin-left: 0;
+            }
+            div .memberProgressDot {
+                margin-left: 25px;
+            }
+        }
+
+        // 訂單查詢 明細
+        .memberOrderDetail .memberOrderD1{
+            span:nth-child(1){
+                width: 200px;
+                min-width: 150px;
+                display: inline-block;
+            }
+            span:nth-child(2){
+                width: 60px;
+                display: inline-block;
+            }
+        } 
+        .memberOrderDetail .memberOrderD2{
+            div:nth-child(2){
+                width: 155px;
+                min-width: 105px;
+            }
+            div:nth-child(3){
+                width: 60px;
+            }
+        }
+
+        // 收藏商品管理
+        .memberPart5 {
+            .memberLikePack {
+                width: calc((100% - 25px)/2);
+            }
+            .memberLikePack:nth-child(5n+1) {
+                margin-left: 20px;
+            }
+            .memberLikePack:nth-child(4n+1) {
+                margin-left: 20px;
+            }
+            .memberLikePack:nth-child(2n+1) {
+                margin-left: 0;
+            }
+        }
+    }
+}
 
