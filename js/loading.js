@@ -1,4 +1,4 @@
-
+$(document).ready(function(){
     gsap.from('#left_bottom_box',{
         x: 20,
         y: -150,
@@ -39,7 +39,8 @@
         opacity:0,
         // repeat: -1,
     });
-    
+});
+
 window.addEventListener('load',function(){
     $('#loading_box').delay(4000).slideUp(1000);
-},false);
+});
