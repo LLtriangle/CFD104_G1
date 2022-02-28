@@ -118,11 +118,20 @@ footer{
         }
     }
 }
+
 .copyright{
     background-color: map-get($color , "main" );
     color: map-get($color , "sub_blue" );
     text-align: center;
     font-size: 14px;
+    padding: 3px 20px;
+    p,a{
+        font-size: 14px;
+        color: map-get($color,'plain');
+    }
+    a{
+        color: map-get($color,'sub_blue');
+    }
 }
 
 
@@ -191,4 +200,5 @@ footer{
             }
         }
     }
+    
 }
