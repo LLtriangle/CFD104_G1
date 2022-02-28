@@ -108,6 +108,9 @@ h3{
         width: 100%;
         // display: flex;
         margin-top: -50px;
+        .reitem_btn{
+            visibility: hidden;
+        }
         .prod_reitem{
             // width: 80%;
             margin: 20px 20px ;
@@ -323,6 +326,7 @@ h3{
             .reitem_btn{
                 width: 8%;
                 margin: auto;
+                visibility: visible;
             }
             .reitem_goods{
                 border: 2px solid map-get($color, 'main');
