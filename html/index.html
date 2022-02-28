@@ -200,13 +200,9 @@
         <!-- 活動消息section -->
         <section class="index_news">
             <div class="news_items">
-<<<<<<< HEAD
                 <div class="col-md-6 news_img">
                     <img src="../img/index_sale.jpeg" alt="" >
                 </div>
-=======
-                <img class="col-md-6 news_img" src="https://picsum.photos/600/700/?random=1" alt="">
->>>>>>> dev
                 <ul class="col-md-6 news">
                     <h2>活動消息</h2>
                     <li>
@@ -358,6 +354,21 @@
                 pin: false, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
                 scrub: false, // 物件動畫根據卷軸捲動程度跑
                 toggleClass: {targets: ".plans_img", className: "active"}, // 增加移除的class，class名稱須為字串
+                markers: true, // 顯示標記
+            }
+        });
+
+        gsap.to(".index_needs .needs_bubles .bubble._1", {
+            duration: 2,
+            scrollTrigger: {
+                trigger: ".index_needs", //觸發的物件
+                scale: 200,
+                delay: -1.5,
+                start: "top center", // (物件開始位置, 卷軸開始位置) top center bottom px
+                // end: "+=500", //(物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
+                pin: false, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
+                scrub: false, // 物件動畫根據卷軸捲動程度跑
+                toggleClass: {targets: ".news_img", className: "active"}, // 增加移除的class，class名稱須為字串
                 markers: true, // 顯示標記
             }
         });
