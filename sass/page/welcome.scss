@@ -1,0 +1,109 @@
+@import  "../base/var";
+@import  "../base/color";
+
+.welcome{
+    background: url('../img/welcome01.png') no-repeat center/cover;
+    background-color: map-get($color,'plain');
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    h1{
+        color: map-get($color,'main');
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%) rotate(30deg);
+        text-align: center;
+    }
+    a{
+        display: block;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        border: 1px solid map-get($color,'main');
+        background-color: map-get($color,'plain');
+        border-radius: 50%;
+        position: absolute;
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.051),
+                    0px 0px 7.2px rgba(0, 0, 0, 0.073), 0px 0px 13.6px rgba(0, 0, 0, 0.09),
+                    0px 0px 24.3px rgba(0, 0, 0, 0.107), 0px 0px 45.5px rgba(0, 0, 0, 0.129);
+        //             0px 0px 109px rgba(0, 0, 0, 0.18);
+        &.frontSide{
+            top: 50%;
+            right: 50%;
+            transform: translate(100%,-150%) rotate(30deg);
+        }
+        &.backSide{
+            bottom: 50%;
+            left: 50%;
+            transform: translate(-100%,150%) rotate(30deg);
+        }
+        h2{
+            padding-block: 72px;
+            transition: .5s;
+        }
+        &::after,
+        &::before{
+            content: '';
+            box-sizing: border-box;
+            width: 20px;
+            height: 20px;
+            left: 0;
+            top: 50%;
+            background-color: map-get($color,'main');
+            display: block;
+            position: absolute;
+            animation: rowling 5s infinite linear;
+            border-radius: 50%;
+            transform-origin: 100px 0px;
+            transform: translate(-50%,-50%);
+            transition: .5s;
+        }
+        // &::after{
+        //     // animation: paleing 5s infinite linear;
+        //     height: 40px;
+        //     background-color: transparent;
+        //     background: linear-gradient(30deg,map-get($color,'plain') 30%,transparent 100%);
+        //     transform: translate(-50%,-125%);
+        //     border-radius: 0;
+        // }
+        &:hover{
+            h2{
+                transform: scale(1.3);
+            }
+            &::before{
+                background-color: map-get($color,'plain');
+                border: 1px solid map-get($color,'main');
+            }
+        }
+    }
+}
+@keyframes rowling{
+    0%{
+        transform:rotate(0deg) translate(-50%,-50%);
+    }
+    100%{
+        transform:rotate(360deg) translate(-50%,-50%);
+    }
+}
+@keyframes paleing{
+    0%{
+        transform:rotate(0deg) translate(-50%,-125%);
+    }
+    100%{
+        transform:rotate(360deg) translate(-50%,-125%);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .welcome{
+        a{
+            &.frontSide{
+                transform: translate(150%,-120%) rotate(30deg);
+            }
+            &.backSide{
+                transform: translate(-150%,120%) rotate(30deg);
+            }
+        }
+    }
+}

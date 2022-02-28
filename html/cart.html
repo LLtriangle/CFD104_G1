@@ -35,7 +35,17 @@
                         <td></td>
                         <td>小計</td>
                     </tr>
-                    <tr v-if="product">
+
+                    <tr v-for="(item, index) in list">
+                        <td><img :src="image"></td>
+                        <td>{{item.price}}</td>
+                        <td><button @click="countNum(-1,index)" :disabled="item.isDisabled">-</button></td>
+                        <td>{{item.count}}</td>
+                        <td><button @click="countNum(1,index)">+</button></td>
+                        <td>{{total(item.price, item.count)}}</td>
+                        <td><button @click="countNum(0,index)">刪除</button></td>
+                    </tr>
+                    <!-- <tr v-if="product">
                         <td><img :src="image"></td>
                         <td>{{price}}</td>
                         <td><button @click="countNum(-1)" :disabled="isDisabled">-</button></td>
@@ -43,7 +53,7 @@
                         <td><button @click="countNum(1)">+</button></td>
                         <td>{{total}}</td>
                         <td><button @click="count=0">刪除</button></td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td colspan="2">送貨及物流資訊</td>
                     </tr>
@@ -96,6 +106,7 @@
                         <td colspan="3" class="left">
                             <input type="text" name="cardNumber" id="cardNum" size="30" v-model="credit_card"
                                 @change="ValidateCreditCardNumber(credit_card)" maxlength="16" /></td>
+                            <td><img :src="[cCard ==='Visa' ? credit_card_png[0] : credit_card_png[1]]" alt="credit_card"></td>
                     </tr>
                     <tr>
                         <td colspan="3">信用卡到期日:</td>
@@ -171,39 +182,19 @@
     </div>
 
     <script>
-        // function ValidateCreditCardNumber(num) {
-
-        //     // var ccNum = document.getElementById("cardNum").value;
-        //     var ccNum = num;
-        //     var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
-        //     var mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
-        //     var amexpRegEx = /^(?:3[47][0-9]{13})$/;
-        //     var discovRegEx = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
-
-
-        //     if (visaRegEx.test(ccNum) === false) { // Visa validation
-        //         alert("信用卡資料有誤");
-        //         return;
-        //     }
-        //     if (mastercardRegEx.test(ccNum) === false) { // MasterCard validation
-        //         alert("信用卡資料有誤");
-        //         return;
-        //     }
-        //     if (amexpRegEx.test(ccNum) === false) { // Amex  validation
-        //         alert("信用卡資料有誤");
-        //         return;
-        //     }
-        //     if (discovRegEx.test(ccNum) === false) { // Discover validation
-        //         alert("信用卡資料有誤");
-        //         return;
-        //     }
-        // }
-    </script>
-    <script>
         new Vue({
             el: '#tabs',
             data: {
                 activetab: '1',
+                list: [
+                    {
+                    image: 'SoEazy.png',
+                    count: 1,
+                    price: 3200,
+                    disabled: false,
+                    },
+                ],
+                // next: false,
                 message: '',
                 Citys: ["台北市", "新北市", "基隆市", "桃園市"],
                 Areas: '',
@@ -218,9 +209,7 @@
                 payment: '',
                 name: '',
                 coupon: 0,
-                count: 1,
-                price: 3200,
-                image: 'SoEazy.png',
+                credit_card_png: ['img/visa.png','img/mastercard.png'],
                 isDisabled: true,
                 years: [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
             },
@@ -247,30 +236,19 @@
                             alert("信用卡資料有誤");
                         }
                     }
-
-                    // if (visaRegEx.test(ccNum) === false) { // Visa validation
-                    //     alert("信用卡資料有誤");
-                    //     return;
-                    // }
-                    // if (mastercardRegEx.test(ccNum) === false) { // MasterCard validation
-                    //     alert("信用卡資料有誤");
-                    //     return;
-                    // }
-                    // if (amexpRegEx.test(ccNum) === false) { // Amex  validation
-                    //     alert("信用卡資料有誤");
-                    //     return;
-                    // }
-                    // if (discovRegEx.test(ccNum) === false) { // Discover validation
-                    //     alert("信用卡資料有誤");
-                    //     return;
-                    // }
                 },
-                countNum(x) {
-                    this.count += x;
-                    if (this.count != 1) {
-                        this.isDisabled = false
+                nextPage1() {
+
+                },
+                nextPage2() {
+
+                },
+                countNum(x, index) {
+                    this.list[index].count += x;
+                    if (this.list[index].count != 1) {
+                        this.list[index].isDisabled = false
                     } else {
-                        this.isDisabled = true
+                        this.list[index].isDisabled = true
                     }
                 },
                 clickHandler(num) {
@@ -295,12 +273,15 @@
                             "大溪區", "復興區", "大園區", "蘆竹區"
                         ];
                     }
-                }
+                },
+                total(price, count) {
+                    return parseInt(price) * parseInt(count)
+                },
             },
             computed: {
-                total() {
-                    return parseInt(this.price) * parseInt(this.count)
-                },
+                // total() {
+                //     return parseInt(this.price) * parseInt(this.count)
+                // },
                 product() {
                     return parseInt(this.count)
                 },

@@ -277,3 +277,16 @@ input:focus, button:focus{
     /* 選中radio時 才顯示中間點點 */
     opacity: 1;
   }
+
+// 更改input[type=text],input[type=email]樣式
+input[type=text],input[type=email]{
+    border: 0.3px solid map-get($btn_color, 'brown');
+    box-shadow: 2px 2px map-get($btn_color, 'brown');
+    padding: 5px;
+    border-radius: 10px;
+    background-color: map-get($color , "plain" );
+    &:focus{
+        box-shadow: -1.5px -1.5px map-get($color, 'main');
+        border: 0.3px solid map-get($color, 'main');
+    }
+}

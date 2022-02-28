@@ -5,17 +5,16 @@
     margin: 20px 0;
     position: relative;
     overflow: hidden;
-    height: 450px;
-    width: 620px;
+    width: 100%;
+    height: 540px;
     font-size: 14px;
     box-shadow: 0px 1px 4px rgba(0,0,0,0.4);
 }
 /* table的class=actiu */
 #calendari table{
-    border-collapse: collapse;
     table-layout: fixed;
-    width: 620px;
-    height: 400px;
+    width: 100%;
+    height: 100%;
     box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
     background-color: #fff;
     position: absolute;
@@ -23,6 +22,7 @@
     left: 0;
     transform: translateX(0);
     transition: all 0.4s ease;
+    border-collapse: separate;
 }
 #calendari table.actiu {
     transform: translateX(0px)top;
@@ -36,12 +36,12 @@
 #calendari table.last_m {
     transform: translateX(300px);
 }
-td,th {
+#calendari td,th {
     text-align: center;
     background-color: #fff;
 }
-
-tr:first-child th {
+// 年份月份列
+#calendari tr:first-child th {
     font-size: 20px;
     font-weight: bold;
     border-left: none;
@@ -51,41 +51,43 @@ td:last-child, th:last-child {
   border-right: none;
 }
 
-th {
+#calendari th {
     padding: 10px;
     border-top: 1px solid rgba(0,0,0,0.1);
     border-right: 1px solid rgba(0,0,0,0.1);
     background-color: rgb(223, 190, 155);
     color: #fff;
     text-shadow: 0px -1px 0px rgba(0,0,0,0.2);
-    font-weight: bolder;
+    // font-weight: 900;
 }
 /* 年份 */
-th .any {
+#calendari th .any {
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 900;
     display: block;
     text-shadow: none;
-    color: rgba(0,0,0,0.4);
+    color: rgba(0, 0, 0, 0.582);
 }
 /* 星期列 */
-tr:nth-child(2) th {
+#calendari tr:nth-child(2) th {
     padding: 5px;
 }
-td {
+// 所有td
+#calendari td {
     height: 60px;
-    padding: 0;
+    padding: 0.3em 0.4em;
     cursor: pointer;
     border: 1px solid #ddd;
     box-sizing: border-box;
+    position: relative;
 }
 /* 放時段的div */
-td div>div:nth-child(2) {
+#calendari td div>div:nth-child(2) {
     display: flex;
     justify-content: space-evenly;
 }
 /* 所有日期 */
-td div>div:first-child span {
+#calendari td div>div:first-child span {
     font-family: "Oswald", sans-serif;
     font-size: 20px;
     font-weight: bolder;
@@ -95,98 +97,120 @@ td div>div:first-child span {
 }
 /* 六日 日期 */
 td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
-    color: rgb(231, 16, 16);
-}
-/* 早中晚文字 */
-td>div div:nth-child(2) span{
-    font-size: 8px;
-    font-weight: bold;
-    color: rgb(44, 39, 39);
-    width: 15px;
-    height: 15px;
-    padding: 3px;
-    background-color: rgba(207, 188, 174, 0.712);
-    border-radius: 50%;
-} 
-/* 被預約的時段 */
-td>div div:nth-child(2) span.reserved {
-    background-color: rgb(221, 221, 221);
-    opacity: 0.5;
+    color: #82002D;
 }
 
 /* 今天的日期td */
-td.today { 
+#calendari td.today { 
     cursor: not-allowed;/* today不能被點擊 */
-    /* box-sizing: border-box; */
     background: rgba(226, 195, 158, 0.698);
 }
 /* 今天後三天的日期td */
-td.t_add3 {
-    border: 2px solid rgba(0,0,0,0.1);
-}
+
 /* 非此月 */
-td.fora {
+#calendari td.fora {
     opacity: 0.3;
     cursor: not-allowed; /* fora不能被點擊 */
 }
 // 預約已滿
-td.full{
+#calendari td.full{
     cursor: not-allowed; /* full不能被點擊 */
-    position: relative;
     overflow: hidden;
-    opacity: 0.3;
-    &:before{
-        content: '';
-        opacity: 1;
-        z-index: 3;
-        font-size: 20px;
-        font-weight: 900;
+    img.full_img{
         position: absolute;
-    }
-    &:after{
-        content: '';
-        z-index: 3;
-        width: 300px;
-        height: 10px;
-        transform: rotate(35deg);
-        position: absolute;
-        background-color: red;
-        // top:-50px;
-        // right: -30px;
-        opacity: 1;
+        left: calc(50% - 25px);
+        right: 0;
+        top:calc(50% - 23px);
+        bottom: 0;
+        width: 50px;
     }
 }
-td:hover {
-    background: rgba(223, 186, 143, 0.698);
+
+#calendari td:hover {
+    // border: 1px solid #82002D;
+    background-color: #f5dfb0de;
+    transform: scale(1.1);
+    z-index: 999;
 }
 /* 被選到的效果 */
-// td.selected {
-//     border: 3px solid map-get($color , 'main' );   
-// }
+#calendari td.selected {
+    background-color: #f5dfb0de;
+    transform: scale(1.1);
+    }
+    
+    /* 按鈕 */
+    .boto-next, .boto-prev {
+        background: rgba(0,0,0,0.1);
+        color: #fff;
+        font-family: inherit;
+        border: none;
+        font-size: 16px;
+        font-weight: bold;
+        text-shadow: inherit;
+        padding: 7px;
+        line-height: 1px;
+        height: 30px;
+        width: 30px;
+        vertical-align: middle;
+        border-radius: 50%;
+        position: absolute;
+        top: 15px;
+    }
+    .boto-next { right: 10px; padding-left: 13px; }
+    .boto-prev { left: 10px; padding-right: 13px;}
+    .boto-next:hover,
+    .boto-prev:hover {
+        background: #00000033;
+    }
+    button:hover { cursor: pointer; }
+    button:focus { outline: none; }
+    
+    /* 早中晚文字 */
+    span.period {
+        font-size: 8px;
+        font-weight: bold;
+        color: rgb(44, 39, 39);
+        width: 15px;
+        height: 15px;
+        padding: 3px;
+        background-color: rgba(207, 188, 174, 0.712);
+        border-radius: 50%;
+        border: 2px solid transparent;
+        &:hover{
+            border: 2px solid #82002D;
+        }
+    } 
+    /* 被預約的時段 */
+    td>div div:nth-child(2) span.reserved {
+        background-color: rgb(221, 221, 221);
+        opacity: 0.5;
+        border: 2px solid transparent;
+    }
 
-/* 按鈕 */
-.boto-next, .boto-prev {
-    background: rgba(0,0,0,0.1);
-    color: #fff;
-    font-family: inherit;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    text-shadow: inherit;
-    padding: 7px;
-    line-height: 1px;
-    height: 30px;
-    width: 30px;
-    vertical-align: middle;
-    border-radius: 50%;
-    position: absolute;
-    top: 15px;
+
+@media screen and (max-width: 768px) {
+    #calendari {
+        height: 470px;
+    }
+    span.period {
+        width: 5px;
+        height: 5px;
+        padding: 0;
+        &:hover{
+            border: 2px solid transparent;
+        }
+    }
 }
-.boto-next { right: 10px; padding-left: 13px; }
-.boto-prev { left: 10px; padding-right: 13px;}
-.boto-next:hover,
-.boto-prev:hover {
-    background: rgba(0,0,0,0.2);
-}
-button:hover { cursor: pointer; }
-button:focus { outline: none; }
+
+// font-size: 8px;
+// font-weight: bold;
+// color: rgb(44, 39, 39);
+// width: 15px;
+// height: 15px;
+// padding: 3px;
+// background-color: rgba(207, 188, 174, 0.712);
+// border-radius: 50%;
+// border: 2px solid transparent;
+// &:hover{
+//     border: 2px solid #82002D;
+// }
