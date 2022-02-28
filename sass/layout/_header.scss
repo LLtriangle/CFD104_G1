@@ -140,8 +140,10 @@ header{
             background-color: map-get($color , "cover" );
             color: #fff;
             transition: 1s;
-            background-image: url("https://picsum.photos/768/700/?random=10");
+            // background-image: url("../../img/header_menu_bg.jpeg");
+            background-image: url("../../img/header_menu_bg_2.jpeg");
             background-size: cover;
+            background-position: center;
             // 透明度 0.6 的黑色半透明遮罩
             background-color: rgba(0, 0, 0, .3);
             // 設置背景混和模式為相乘模式
