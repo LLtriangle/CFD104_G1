@@ -186,6 +186,7 @@ function createCalendar(){
                 // 隨機
                 var arr = Math.round(Math.random());
                 var re_index = 0;
+                
                 if (arr==1) {
                     morning.classList.add("reserved");
                     re_index++;
@@ -248,9 +249,9 @@ function createCalendar(){
                 
                 let tds = document.querySelectorAll("#calendari td");
                 for(let i=0; i<tds.length; i++){
+
                     if(tds[i].className.indexOf('fora') == -1 && tds[i].className.indexOf('today') == -1 && tds[i].className.indexOf('full') == -1){
                         tds[i].onclick=function(e){
-                            // 抓裡面的日期
                             // tds[i] 是這個被點到的格子
                             // data.getDate() 是今天的日期
                             // actual.getMonth() 月曆上顯示的月份!!
@@ -259,16 +260,61 @@ function createCalendar(){
                             let selectedDay = tds[i].childNodes[0].childNodes[0].innerText; // 日
                             let selectedDate = `${selectedYear}年${selectedMonth}月${selectedDay}日`
                             document.getElementById("selectedDate").innerText = selectedDate;
-                            
-                            // console.log(e.target);
-                            
-                        }  
+
+                            // --------- 
+                            let span_m = tds[i].firstChild.lastChild.firstChild; // 早的狀態
+                            let span_a = tds[i].firstChild.lastChild.childNodes[1]; // 中的狀態
+                            let span_n = tds[i].firstChild.lastChild.lastChild; // 晚的狀態
+                            let time_items = document.getElementsByClassName("time_item"); // 陣列
+
+                            if(span_m.classList.contains("reserved") == true){
+                                let period_1 = document.getElementById("period_1"); // 早的input
+                                period_1.disabled = true;
+                                time_items[0].style.opacity = "0.3";
+                            }else{
+                                period_1.disabled = false;
+                                time_items[0].style.opacity = "1";
+                            };
+                            if(span_a.classList.contains("reserved") == true){
+                                // console.log(time_items[0]);
+                                let period_2 = document.getElementById("period_2"); // 中的input
+                                period_2.disabled = true;
+                                time_items[1].style.opacity = "0.3";
+                            }else{
+                                period_2.disabled = false;
+                                time_items[1].style.opacity = "1";
+                            };
+                            if(span_n.classList.contains("reserved") == true){
+                                let period_3 = document.getElementById("period_3"); // 晚的input
+                                period_3.disabled = true;
+                                time_items[2].style.opacity = "0.3";
+                            }else{
+                                period_3.disabled = false;
+                                time_items[2].style.opacity = "1";
+                            };
+
+
+                        };  
                     }
                     
-                }
+                    // tds[i].onclick=function(){
+                    // 先抓到此格位的morning狀態
+  
+                            
+                                // period_1.disabled = true;
+                            
+                                var period_2 = document.getElementById("period_2"); // 中的input
+                                var period_3 = document.getElementById("period_3"); // 晚的input
 
+                            
+                        
+                    // };
+                    
+                }
+                // periods為早中晚三個span
                 let periods = document.querySelectorAll(".period");
-                var selectedPeriod;
+                var selectedPeriod; // 選擇的時段
+
                 for(let i=0; i<periods.length; i++){
                     if(periods[i].className.indexOf('reserved') == -1 && $(window).width()>830){
                         periods[i].onclick = function(){
@@ -282,7 +328,7 @@ function createCalendar(){
                             }
                             document.getElementById("selectedPeriod").innerText = selectedPeriod;
                         }
-                    }
+                    };
                 }
             }
             
