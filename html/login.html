@@ -13,8 +13,13 @@
   <body>
     @@include('layout/header.html')
     <main>
+        <!-- rwd專屬 -->
+        <div class="lo_or_si">
+            <button class="rwd_button" id="si_box">註冊</button>
+            <button class="rwd_button" id="lo_box">登入</button>
+        </div>
       <!-- 註冊 -->
-        <div class="container signup_container" id="signup_container">
+        <div class="container signup_container" id="signup_container" >
             <form class="form" id="a-form">
             <h2 class="form_title title">註冊</h2>
             <div class="form_icons">
@@ -60,5 +65,24 @@
        </div>
     </main>
     <script src="js/login.js"></script>
+
+    <script>
+        var sibox = document.getElementById("si_box");//註冊
+
+        var lobox = document.getElementById("lo_box");//登入
+
+        sibox.onclick = function(){
+            signup_container.style="display:block";
+            login_container.style="display:none";
+        };
+
+        lobox.onclick = function(){
+            login_container.style="display:block";
+            signup_container.style="display:none";
+        }
+
+            
+
+    </script>
   </body>
 </html>

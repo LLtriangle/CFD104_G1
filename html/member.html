@@ -12,37 +12,54 @@
 <body>
     @@include('layout/header.html')
     <main>
+        <!-- 會員功能欄開始 ---------------------------->
         <section class="data_column">
-            <div class="mem_icon">
+            <!-- <div class="mem_icon">
                 <img src="https://picsum.photos/100/100/?random=33">
-            </div>
-            <div class="id">
+            </div> -->
+            <!-- <div class="id">
                 <p>王雪碧</p>
                 <p>G1G1_cfd104</p>
-            </div>
+            </div> -->
+            <!-- 功能欄--各細項 data_button ------------------>
             <div class="data_button">
-                <a href="">會員資料</a><br>
-                <a href="">商品訂單</a><br>
-                <a href="">服務預約</a><br>
-                <a href="">收藏清單</a><br>
-                <a href="">登出</a>
+                <input type="checkbox" id="m_data">
+                <label for="m_data" class="id">
+                    <div class="mem">
+                        <div class="mem_icon">
+                            <img src="https://picsum.photos/100/100/?random=33">
+                        </div>
+                        <div class="mem_p">
+                            <p>王雪碧</p>
+                            <p>G1G1_cfd104</p>
+                        </div>
+                    </div>
+                </label>
+                <div class="con_data">
+                    <a href="">會員資料</a><br>
+                    <a href="">商品訂單</a><br>
+                    <a href="">服務預約</a><br>
+                    <a href="">收藏清單</a><br>
+                    <a href="">登出</a>
+                </div>
             </div>
         </section>
+        <!-- 會員功能欄結束 ---------------------------->
+
+        <!-- 會員資料顯示開始 -------------------------->
         <section class="data_con">
+            <!-- 資料區的頭上槓槓 -->
             <div class="title_color"></div>
+            <!-- 資料區的內容盒子 data_mem------------------>
             <div class="data_mem">
                 <div class="icon_edit">
                     <div class="mem_icon">
                         <img src="https://picsum.photos/100/100/?random=33">
-                    
                     </div>
                     <button class="btn_btn bl">
                         編輯大頭貼
                     </button>
                 </div>
-
-
-
                 <!-- 氣氣氣table -->
                 <!-- <table class="mem_txt">
                     <tbody>
@@ -99,45 +116,55 @@
                     </tbody>
                 </table> -->
                 
+                
                 <!-- 不是table -->
                 <div class="mem_txt">
-                    <label><p>姓名 &emsp; &emsp;：
-                        <input class='member_name' type="text" value='王雪碧'></p>
-                    </label>
-
-                    <div class='gender'><p>性別 &emsp; &emsp;：</p>
-                        <ul>
-                            <li>
-                                <input class='radio-input' name='gender' type="radio" id="male" value='male'>
-                                <label for="male" class="radio-label"><span class="radio-button"></span>男性</label>
-                            </li>
-                            <li>
-                                <input class='radio-input' name='gender' type="radio" id="female" value='female' checked>
-                                <label for="female" class="radio-label"><span class="radio-button"></span>女性</label>
-                            </li>
-                            <li>
-                                <input class='radio-input' name='gender' type="radio" id="other" value='other'>
-                                <label for="other" class="radio-label"><span class="radio-button"></span>其他</label>
-                            </li>
-                        </ul>
-                        
+                    <div class="item_box">
+                        <label><p>姓名 &emsp; &emsp;：
+                            <input class='member_name' type="text" value='王雪碧'></p>
+                        </label>
                     </div>
-                    <label><p>帳號 &emsp; &emsp;：
-                        <input class='mem_id' disabled type="email" value='G1G1_cfd104'></p>
-                    </label>
-                    <label><p>連絡電話&ensp;：
-                        <input type="text" value='0912345678'></p>
-                    </label>
-                    <label><p>連絡地址&ensp;：
-                        <input class='memberLeft memberAdr' type="text" value="桃園市中壢區"></p>
-                    </label>
+
+                    <div class="item_box">
+                        <div class='gender'><p>性別 &emsp; &emsp;：</p>
+                            <ul>
+                                <li>
+                                    <input class='radio-input' name='gender' type="radio" id="male" value='male'>
+                                    <label for="male" class="radio-label"><span class="radio-button"></span>男性</label>
+                                </li>
+                                <li>
+                                    <input class='radio-input' name='gender' type="radio" id="female" value='female' checked>
+                                    <label for="female" class="radio-label"><span class="radio-button"></span>女性</label>
+                                </li>
+                                <li>
+                                    <input class='radio-input' name='gender' type="radio" id="other" value='other'>
+                                    <label for="other" class="radio-label"><span class="radio-button"></span>其他</label>
+                                </li>
+                            </ul>
+                        
+                        </div>
+                    </div>
+                    <div class="item_box">
+                        <label><p>帳號 &emsp; &emsp;：
+                            <input class='mem_id' disabled type="email" value='G1G1_cfd104'></p>
+                        </label>
+                    </div>
+                    <div class="item_box">
+                        <label><p>連絡電話&ensp;：
+                            <input type="text" value='0912345678'></p>
+                        </label>
+                    </div>
+                    <div class="item_box">
+                        <label><p>連絡地址&ensp;：
+                            <input class='memberLeft memberAdr' type="text" value="桃園市中壢區"></p>
+                        </label>
+                    </div>
                     
                     <button type="submit" class="btn_sub br">儲存修改</button>
-                        
                 </div>
             </div>
         </section>
-
+        <!-- 會員資料顯示結束 -------------------------->
     </main>
     
 </body>

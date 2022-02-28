@@ -28,7 +28,8 @@
 //section寬高控制
 $small_part_h: 90vh;
 $full_part_h: 120vh;
-$max_w: 1200px;
+$max_w_s: 1200px;
+$max_w_l:1900px;
 $middle_pad: 0px 10%;
 $left_pad: 0 2% 0 0;
 $right_pad: 0 0 0 2%;
@@ -58,6 +59,7 @@ $section_margin_top: 60px;
 /*登陸section .index_landing*/
 .index_landing {
     background-color: map-get($color , "cover" );
+    height: 100vh;
 
     /*index頁面 landing section 左側大圖與右側logo遮罩小圖並排*/
     @include PC{
@@ -94,7 +96,7 @@ $section_margin_top: 60px;
         /*電腦版 landing section 左側大圖滿屏*/
         @include PC{
             width: 50vw;
-            height: $full_part_h;
+            height: 100vh;
         }
     }
 }
@@ -238,10 +240,41 @@ $section_margin_top: 60px;
             margin: auto;
             box-sizing: border-box;
 
-            img{
+            .plans_img{
+                position: relative;
                 text-align: left;
                 width: 50vw;
                 height: 60vh;
+
+                &::after{
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    right: 0;
+                    background-color: map-get($color , "bg_white" );
+                    transition: .6s;
+                    // map-get($color , "bg_white" )
+                }
+
+                &.active::after{
+                    content: "";
+                    position: absolute;
+                    width: 0%;
+                    height: 100%;
+                    top: 0;
+                    right: 0;
+                    background-color: map-get($color , "bg_white" );
+                    // map-get($color , "bg_white" )
+                }
+
+
+
+                img{
+                    width: 50vw;
+                    height: 60vh; 
+                }
             }   
         }
     }
@@ -264,137 +297,294 @@ $section_margin_top: 60px;
 
 /*煩惱section .index_needs*/
 .index_needs{
-    background-color: map-get($color , "bg_pink" );
+    background-color: map-get($color , "cover" );
+    padding: $middle_pad;
+    padding-top: 60px;
     position: relative;
-    padding: 60px 0;
+
+    /*.index_needs 手機版 寬不讓自患行 高涵蓋所有對話bubble*/
+    @include pad{
+        padding: 20px 5% 60px 5%;
+        height: 160vh;
+    }
+
+    /*.index_needs 電腦版 bubble絕對定位，所以此section 相對定位不讓bubble飛出去*/
+    @include PC{
+        position: relative;
+        height: 220vh;
+        li{
+            position: relative;
+            @include pad{
+                
+            }
+        }
+    }
 
     h2{
         text-align: center;
-        padding: $word_pad;
+        @include PC{    
+            padding: $word_pad;
+        }
+        margin-top: 60px;
     }
 
     /*.index_needs 對話泡泡 樣式*/
     .bubble {
         height: 200px;
+        width: 30%;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        margin-top: 5vh;
+        box-sizing: border-box;
 
+        @include pad{  
+            height: 18vh;   
+            position: relative;
+             /*.index_needs 手機版  文字置中*/
+            padding: 4vw;
+        }
+
+        /*.index_needs 電腦版  bubble絕對定位要隨著scroll出現*/
+        @include PC{     
+            position: absolute;
+        }
+
+        /*.index_needs 對話泡泡 外框*/
+        background: map-get($color , "sub_blue" );
+        border-radius: 4em;
+
+        /*.index_needs 對話泡泡 手機板占80%*/
         @include pad{
             width: 100%;
+            padding: 0 20px;
         }
+
         
-        background: map-get($color , "plain" );
-        display: block;
-        border-radius: 20px;
-        text-align: center;
-        margin: 10vh 10vw 0vh 10vw;
-
-        @include PC{
-            margin-top: 20vh;
-        }
-
-        box-sizing: border-box;
-        position: relative;
-        z-index: 1;
-        box-sizing: border-box;
-
-        /*.index_needs 對話泡泡 文字不可超出範圍*/
-        p{
-            max-height: 200px;
-            padding: $section_margin_top;
-            font-size: $font_size_h4;
-            box-sizing: border-box;
-        }
     }
 
-    /*.index_needs 對話泡泡 左右左右排*/
-    li{
-        display: flex;
+    /*.index_needs bubble 置中*/
+    ul{
+        max-width: 1200px;
+        margin: auto;
     }
-
-    /*.index_needs 對話泡泡 三角形(border排的) 共用*/
-    .pointer{
-        width: 0;
-        height: 0;
-        bottom: 20px;
-        border-left: 3vh solid transparent;
-        border-right: 5vh solid transparent;
-        border-top: 10vh solid map-get($color , "plain" );
-        position: absolute;
-    }
-
-    /*.index_needs 單數對話泡泡 左排*/
-    ul li:nth-child(1n){
-        justify-content: left;
-        
+   
+    /*.index_needs 電腦版 bubble pointer 方向*/
+    ul li:nth-child(2n-1){
         .bubble{
-            width: 600px;
-            box-shadow: 2px 3px 6px #aaa;
-        }
+            margin-left: 10px;
+            &:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                width: 0;
+                height: 0;
+                border: 2.025em solid transparent;
+                border-right-color: map-get($color , "sub_blue" );
+                border-left: 0;
+                border-top: 0;
+                margin-top: -1.012em;
+                margin-left: -2.025em;
 
-        .pointer{
-            right: 580px;
-            transform: rotate(-240deg);
-
-            @include pad{
-                right: 92%;
+                @include pad{
+                    margin-left: -1.8em;
+                }
             }
         }
     }
-    
-    /*.index_needs 雙數對話泡泡 右排*/
+
     ul li:nth-child(2n){
-        justify-content: right;
-        
         .bubble{
-            width: 550px;
-            box-shadow: -2px 3px 6px #aaa;
+            margin-left: -10px;
+            &:after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 50%;
+                width: 0;
+                height: 0;
+                border: 2.025em solid transparent;
+                border-left-color: map-get($color , "sub_blue" );
+                border-right: 0;
+                border-top: 0;
+                margin-top: -1.012em;
+                margin-right: -2.025em;
+
+                @include pad{
+                    margin-right: -1.8em;
+                }
+            }
         }
 
-        .pointer{
-            right: -20px;
-            transform: rotate(-120deg);
+    }
+
+    ul li:last-child{
+        .bubble{
+            margin-left: 0;
+            &:after {
+                content: '';
+                position: absolute;
+                top: 105%;
+                left: 50%;
+                width: 0;
+                height: 0;
+                border: 2.025em solid transparent;
+                border-top-color: map-get($color , "sub_blue" );
+                border-bottom: 0;
+                margin-left: -2.025em;
+                margin-bottom: -2.025em;
+            }
         }
     }
 
+    /*.index_needs 手機板 bubble pointer 方向*/
+    @include PC{
+        .bubble._1{
+            top: -7rem;
+            left: -3rem;
+            &:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                width: 0;
+                height: 0;
+                border: 2.025em solid transparent;
+                border-right-color: map-get($color , "sub_blue" );
+                border-left: 0;
+                border-top: 0;
+                margin-top: -1.012em;
+                margin-left: -2.025em;
+            }
+        }
+        .bubble._2{
+            top: -4rem;
+            left: 37rem;
+            &:after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 50%;
+                width: 0;
+                height: 0;
+                border: 2.025em solid transparent;
+                border-left-color: map-get($color , "sub_blue" );
+                border-right: 0;
+                border-top: 0;
+                margin-top: -1.012em;
+                margin-right: -2.025em;
+            }
+        }
+        .bubble._3{
+            top: 6rem;
+            left: -4rem;
+            &:after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                height: 0;
+                border: 2.025em solid transparent;
+                border-top-color: map-get($color , "sub_blue" );
+                border-bottom: 0;
+                border-left: 0;
+                margin-left: -1.012em;
+                margin-bottom: -2.025em;
+            }
+            
+        }
+        .bubble._4{
+            top: 7rem;
+            left: 36rem;
+            &:after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                height: 0;
+                border: 2.025em solid transparent;
+                border-top-color: map-get($color , "sub_blue" );
+                border-bottom: 0;
+                border-right: 0;
+                margin-left: 10.8em;
+                margin-bottom: -2.025em;
+            }
+        }
+        .bubble._5{
+            top: 10rem;
+            left: 16rem;
+            &:after {
+                content: '';
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                width: 0;
+                height: 0;
+                border: 2.025em solid transparent;
+                border-top-color: map-get($color , "sub_blue" );
+                border-bottom: 0;
+                margin-left: -2.025em;
+                margin-bottom: -2.025em;
+            }
+        }  
+    }
+
+    
     .needs_btns{
         
         a{
             background-color: map-get($btn_color , "brown" );
             color: map-get($btn_color , "white" );
-            border-color: map-get($btn_color , "brown" );
             
             @include PC{
-                padding: 25px;
+                padding: 15px;
                 font-size: $font_size_h3;
             }
         }
         
-        /*.index_needs 電腦版 按鈕固定section最下方*/
+        /*.index_needs 手機版 按鈕固定section最下方*/
         @include pad{
             position: relative;
             display: flex;
             justify-content: space-around;
-            top: 100%;
+            top: 5%;
             left: 50%;
             transform: translate(-50%, 50%);
             z-index: 50;
             width: 50vw;
+            a{
+                border: 1px solid map-get($color , "sub_brown" );
+            }
+            
         }
         /*.index_needs 電腦版 按鈕固定畫面中央*/
         @include PC{
             position: absolute;
             display: flex;
-            justify-content: space-evenly;
-            top:50%;
-            left: 50%;
+            justify-content: space-around;
+            top: 300px;
+            left: 50vw;
             transform: translate(-50%, -50%);
             z-index: 50;
-            width: 50vw;
+            width: 30vw;
         }
         .go_reserve{
             @include pad{
-                margin-right: 20%;
+                margin-right: 20px;
                 box-sizing: border-box;
+                box-shadow: $btn_box_shadow;
+                // background-color: map-get($btn_color, "red" );
             }
+        }
+
+        @include pad{
+         .go_game{
+            box-shadow: $btn_box_shadow;
+            // background-color: map-get($btn_color, "blue" );
+         }       
         }
     }
     
@@ -402,44 +592,48 @@ $section_margin_top: 60px;
 
 /*預約流程section .index_progress*/
 .index_progress{
-    max-width: $max_w;
+    max-width: $max_w_s;
     margin: auto;
     margin-top: $section_margin_top;
     box-sizing: border-box;
     justify-content: space-between;
-    
-    li{
-        @include PC{
-            margin: 0 10% 0 10%;
-        }
-        a{
-            align-items: center;
-        }
-        &:nth-child(2) a{
-            position: relative;
-            .progress_icon{
-                position: relative;
-                z-index: 1;
-            }
+
+    @include PC{
+        
+        li{
             @include PC{
-                &::after,
-                &::before{
-                    content: "";
-                    height: 0;
-                    width: 50vw;
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    border-bottom: 3px dashed map-get($color , "sub_blue" );
-                    transform: translate(-50%,-120px) rotate(18deg);
+                margin: 0 10% 0 10%;
+            }
+            a{
+                align-items: center;
+            }
+            &:nth-child(2) a{
+                position: relative;
+                .progress_icon{
+                    position: relative;
+                    z-index: 1;
                 }
-                &::before{
-                    transform: translate(-50%,120px) rotate(-18deg);
-                    
+                @include PC{
+                    &::after,
+                    &::before{
+                        content: "";
+                        height: 0;
+                        width: 50vw;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        border-bottom: 3px dashed map-get($color , "sub_blue" );
+                        transform: translate(-50%,-120px) rotate(18deg);
+                    }
+                    &::before{
+                        transform: translate(-50%,120px) rotate(-18deg);
+                        
+                    }
                 }
             }
         }
     }
+    
         
     h2{
         text-align: center;
@@ -449,21 +643,26 @@ $section_margin_top: 60px;
 
     /*.index_progress 圖示底色*/
     .progress_icon{
-        
-        // @include pad{
-        //     // width: 80px;
-        //     // height: 80px;
-        // }
+        background-color: map-get($color , "sub_brown" );
+        transition: .4s;
+        border-radius: 10px;
+        transform: rotate(45deg);
+
+        @include pad{
+            width: 60px;
+            height: 60px;
+            margin: auto;
+            
+        }
+        @include pad{
+            width: 60px;
+            height: 60px
+        }
         
         @include PC{
             width: 120px;
             height: 120px;   
         }
-
-        background-color: map-get($color , "sub_brown" );
-        transition: .4s;
-        border-radius: 10px;
-        transform: rotate(45deg);
     }
 
     .progress_txt{
@@ -472,13 +671,13 @@ $section_margin_top: 60px;
         @include pad{
             padding-top: 20px;
             padding-bottom: 40px;
+            padding-right: 20px;
+            padding-left: 20px;
         }
 
         @include PC{
             width: 50%;
         }
-
-        padding-left: 40px;
 
         h3, p{
             padding: 10px 0;
@@ -497,6 +696,7 @@ $section_margin_top: 60px;
             fill: map-get($color , "bg_white" );
             
             @include pad{
+                position: relative;
                 width: 40px;
             }
             
@@ -548,6 +748,8 @@ $section_margin_top: 60px;
 
 /*活動消息section .index_news*/
 .index_news{
+    max-width: $max_w_l;
+
     @include pad(){
         position: relative;
     }
@@ -591,6 +793,39 @@ $section_margin_top: 60px;
     }
 
     .news_img{
+        position: relative;
+        text-align: left;
+        width: 50vw;
+        height: 60vh;
+
+        &::after{
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            right: 0;
+            background-color: map-get($color , "bg_white" );
+            transition: .6s;
+            // map-get($color , "bg_white" )
+        }
+
+        &.active::after{
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            top: 0;
+            right: 0;
+            background-color: map-get($color , "bg_white" );
+            // map-get($color , "bg_white" )
+        }
+
+        img{
+            width: 50vw;
+            height: 60vh; 
+        }
+
         /*.index_news 手機版 配圖消失*/
         @include pad{
             display: none;
@@ -598,15 +833,16 @@ $section_margin_top: 60px;
 
         @include PC{
             text-align: left;
-            width: 50vw;
-            height: 60vh;
         }
-    }
+
+    }   
 
 }
 
 /*專欄文章section .index_columns*/
 .index_columns{
+    max-width: $max_w_l;
+    margin: auto;
     margin-top: $section_margin_top;
     
     @include PC{
@@ -616,7 +852,6 @@ $section_margin_top: 60px;
     }
 
     .column_content{
-        
         margin: auto;
         box-sizing: border-box;
 
@@ -638,9 +873,10 @@ $section_margin_top: 60px;
     .columns_more{
         display: flex;
         justify-content: right;
+        padding-top: 5vh;
+
         @include pad{
             padding-right: 10vw;
-            padding-top: 5vh;
         }
     }
 
@@ -649,6 +885,7 @@ $section_margin_top: 60px;
         align-items: center;
         justify-content: start;
         padding: $middle_pad;
+
         @include pad{
             padding-top: 5vh;
         }
@@ -663,7 +900,7 @@ $section_margin_top: 60px;
             }
             
             width: 100px;
-            height: 300px;
+            height: 250px;
             display: block;
             box-sizing: border-box;
             background-image: url(https://picsum.photos/600/300/?random=1);
@@ -695,10 +932,13 @@ $section_margin_top: 60px;
 
 /*QAsection .index_qa*/
 .index_qa{
+    max-width: $max_w_l;
+    margin: auto;
     margin-top: 60px;
-    padding: 20px;
+    padding: $middle_pad;
+    
     h2{
-        padding: 0 60px 30px;
+        padding-bottom: 30px;
     }
     .quesion{
         max-width: 1100px;
@@ -758,32 +998,237 @@ $section_margin_top: 60px;
 
 /*熱門商品section .index_hot_sales*/
 .index_hot_sales{
+    max-width: $max_w_l;
+    margin: auto;
     margin-top: $section_margin_top;
-    padding: $middle_pad;
+    margin-bottom: 120px;
+
+
+    
+        h2{
+            @include pad{
+                padding-bottom: 120px;
+            }
+
+            @include PC{
+                padding-bottom: 60px;
+            }
+        }
+    
+
+    @include PC{
+        padding: $middle_pad;    
+    }
+    
 
     /*.index_hot_sales*/
+
     ul{
         display: flex;
         justify-content: space-around;
+        position: relative;
+
+        @include pad{
+            padding: 0 20px;
+        }
 
         li{
-            height: 50vh;
             background-color: map-get($color , "cover" );
-            // position: relative;
-            // z-index: 20;
+            position: relative;
+            
+            h3,p{
+                position: relative;
+                padding: 20px 0;
+                top: 80px;
+            }
 
-            // &::after{
-            //     position: absolute;
-            //     top: -20vh;
-            //     content: "";
-            //     width: 70%;
-            //     height: 150%;
-            //     background-color: map-get($color , "cover" );
-            //     z-index: 0;
-            // }
+            h3{
+                z-index: 6;
+
+                @include PC{
+                    font-size: 20px;
+                }
+            }
+
+            p{
+                text-align: right;
+            }
+
+            .hs_img_box{
+                position: relative;
+                width: 250px;
+                height: 250px;
+                left: 60px;
+                top: 60px;
+            }
+
+            &::after{
+                content: "";
+                position: absolute;
+                width: 10rem;
+                height: .5rem;
+                top: 370px;
+                left: 10px;
+                background-color: map-get($color , "sub_yellow" );
+                z-index: 0;
+            }
+
+            @include pad{
+                width: 100vw;
+                height: 45vh;
+                margin-bottom: 120px;
+                position: relative;
+
+                &::after{
+                    content: "";
+                    position: absolute;
+                    width: 45vw;
+                    height: 1rem;
+                    top: 32vh;
+                    left: 10vw;
+                    background-color: map-get($color , "sub_yellow" );
+                    z-index: 0;
+                }
+
+                .hs_img_box{
+                    position: absolute;
+                    top: -40px;
+                    left: 10vw;
+                    width: 200px;
+                    height: 200px;
+                }
+
+                h3,p{
+                    position: absolute;
+                }
+
+                h3{
+                    top: 25vh;
+                    left: 10vw;
+                }
+
+                p{
+                    top: 35vh;
+                    right: 10vw;
+                }
+            }
+
+            @include PC{
+                height: 550px;
+                width: 220px;
+                margin: 20px;
+            }
+            
         }
     }
+
+    ul li:nth-child(2){
+
+        @include pad{
+            .hs_img_box{
+                left: 40vw;
+            }
+        }
+
+        @include PC{
+            position: relative;
+            top: -100px;
+        }
+    }
+    
+    .hs_more{
+        display: flex;
+        justify-content: right;
+        
+        @include pad{
+            padding-right: 10vw;
+        }
+    }
+
+    @include pad{
+        ul li:last-child{
+         margin-bottom: 20px;
+        } 
+    }
+
+    
 }
+
+/*.index_needs 舊版 bubble pointer 方向*/  
+    //     background: map-get($color , "plain" );
+    //     display: block;
+    //     border-radius: 20px;
+    //     text-align: center;
+    //     margin: 10vh 10vw 0vh 10vw;
+
+    //     @include PC{
+    //         margin-top: 20vh;
+    //     }
+
+    //     box-sizing: border-box;
+    //     position: relative;
+    //     z-index: 1;
+    //     box-sizing: border-box;
+
+    //     /*.index_needs 對話泡泡 文字不可超出範圍*/
+    //     p{
+    //         max-height: 200px;
+    //         padding: $section_margin_top;
+    //         font-size: $font_size_h4;
+    //         box-sizing: border-box;
+    //     }
+    // }
+
+    // /*.index_needs 對話泡泡 左右左右排*/
+    // li{
+    //     display: flex;
+    // }
+
+    // /*.index_needs 對話泡泡 三角形(border排的) 共用*/
+    // .pointer{
+    //     width: 0;
+    //     height: 0;
+    //     bottom: 20px;
+    //     border-left: 3vh solid transparent;
+    //     border-right: 5vh solid transparent;
+    //     border-top: 10vh solid map-get($color , "plain" );
+    //     position: absolute;
+    // }
+
+    // /*.index_needs 單數對話泡泡 左排*/
+    // ul li:nth-child(1n){
+    //     justify-content: left;
+        
+    //     .bubble{
+    //         width: 600px;
+    //         box-shadow: 2px 3px 6px #aaa;
+    //     }
+
+    //     .pointer{
+    //         right: 580px;
+    //         transform: rotate(-240deg);
+
+    //         @include pad{
+    //             right: 92%;
+    //         }
+    //     }
+    // }
+    
+    // /*.index_needs 雙數對話泡泡 右排*/
+    // ul li:nth-child(2n){
+    //     justify-content: right;
+        
+    //     .bubble{
+    //         width: 550px;
+    //         box-shadow: -2px 3px 6px #aaa;
+    //     }
+
+    //     .pointer{
+    //         right: -20px;
+    //         transform: rotate(-120deg);
+    //     }
+    // }
+
 
 
 

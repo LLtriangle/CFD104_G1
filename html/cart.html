@@ -43,7 +43,7 @@
                         <td>{{item.count}}</td>
                         <td><button @click="countNum(1,index)">+</button></td>
                         <td>{{total(item.price, item.count)}}</td>
-                        <td><button @click="count=0">刪除</button></td>
+                        <td><button @click="countNum(0,index)">刪除</button></td>
                     </tr>
                     <!-- <tr v-if="product">
                         <td><img :src="image"></td>
@@ -194,6 +194,7 @@
                     disabled: false,
                     },
                 ],
+                // next: false,
                 message: '',
                 Citys: ["台北市", "新北市", "基隆市", "桃園市"],
                 Areas: '',
@@ -235,6 +236,12 @@
                             alert("信用卡資料有誤");
                         }
                     }
+                },
+                nextPage1() {
+
+                },
+                nextPage2() {
+
                 },
                 countNum(x, index) {
                     this.list[index].count += x;
