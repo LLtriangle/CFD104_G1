@@ -113,8 +113,11 @@
                         </td>
                         <td colspan="3" class="left">
                             <input type="text" name="cardNumber" id="cardNum" size="30" v-model="credit_card"
-                                @change="ValidateCreditCardNumber(credit_card)" maxlength="16" /></td>
-                            <td><img class="card_img" :src="[cCard ==='Visa' ? credit_card_png[0] : credit_card_png[1]]" alt="credit_card"></td>
+                                @change="ValidateCreditCardNumber(credit_card)" maxlength="16" />
+                        </td>
+                        <td>
+                            <img class="card_img" :src="[cCard ==='Visa' ? credit_card_png[0] : credit_card_png[1]]" alt="credit_card">
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="3">信用卡到期日:</td>
