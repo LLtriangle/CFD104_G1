@@ -200,7 +200,7 @@
         <!-- 活動消息section -->
         <section class="index_news">
             <div class="news_items">
-                <img src="https://picsum.photos/600/700/?random=1" alt="" class="col-md-6 news_img">
+                <img class="col-md-6 news_img" src="https://picsum.photos/600/700/?random=1" alt="">
                 <ul class="col-md-6 news">
                     <h2>活動消息</h2>
                     <li>
@@ -322,22 +322,45 @@
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
+        // ScrollTrigger.matchMedia({
+        //     // 跟設定css 一樣  如果畫面不小於 992px 執行
+        //     "(min-width: 992px)": () => { 執行內容 },
+        //     // 畫面不小於 768px 執行
+        //     "(min-width: 768px)": () => { 執行內容 },
+        //     // 不管畫面大小，我都執行
+        //     "all": () => { 執行內容 },
+        // });
 
         // gsap.to(".index_plans .plans_img", {
         //     scale: 0,
         // });
         
         gsap.to(".index_plans .plans_img", {
-            duration: 1,
+            duration: 2,
             scrollTrigger: {
-                trigger: ".index_plans", //觸發得物件
-                // (物件開始位置, 卷軸開始位置) top center bottom px
-                start: "top top", 
-                //(物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
-                end: "+=300", 
-                pin: true, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
-                scrub: true, // 物件動畫根據卷軸捲動程度跑
-                addClass: {targets: ".plans_img", className: "active"}, // 增加移除的class，class名稱須為字串
+                trigger: ".index_plans", //觸發的物件
+                scale: 200,
+                delay: -1.5,
+                start: "top center", // (物件開始位置, 卷軸開始位置) top center bottom px
+                // end: "+=500", //(物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
+                pin: false, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
+                scrub: false, // 物件動畫根據卷軸捲動程度跑
+                toggleClass: {targets: ".plans_img", className: "active"}, // 增加移除的class，class名稱須為字串
+                markers: true, // 顯示標記
+            }
+        });
+
+        gsap.to(".index_news", {
+            duration: 2,
+            scrollTrigger: {
+                trigger: ".index_news", //觸發的物件
+                scale: 200,
+                delay: -1.5,
+                start: "top center", // (物件開始位置, 卷軸開始位置) top center bottom px
+                // end: "+=500", //(物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
+                pin: false, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
+                scrub: false, // 物件動畫根據卷軸捲動程度跑
+                toggleClass: {targets: ".plans_img", className: "active"}, // 增加移除的class，class名稱須為字串
                 markers: true, // 顯示標記
             }
         });
