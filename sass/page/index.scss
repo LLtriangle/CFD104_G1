@@ -110,9 +110,13 @@ $section_margin_top: 60px;
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
-    background-image: url(https://picsum.photos/600/700/?random=1);
+    background-image: url(../img/index_landing_s.jpeg);
     background-size: cover;
     background-position: center center;
+    // 透明度 0.6 的黑色半透明遮罩
+    background-color: rgba(0, 0, 0, .3);
+    // 設置背景混和模式為相乘模式
+    background-blend-mode: multiply;
 
     /*.index_slogan 遮罩圖片放大至全屏上的介紹文字*/
     h2{
@@ -311,7 +315,7 @@ $section_margin_top: 60px;
     /*.index_needs 電腦版 bubble絕對定位，所以此section 相對定位不讓bubble飛出去*/
     @include PC{
         position: relative;
-        height: 220vh;
+        height: 120vh;
         li{
             position: relative;
             @include pad{
@@ -749,11 +753,11 @@ $section_margin_top: 60px;
 /*活動消息section .index_news*/
 .index_news{
     max-width: $max_w_l;
-
-    @include pad(){
-        position: relative;
-    }
+    position: relative;
     margin-top: $section_margin_top;
+    height: 90vh;
+    display: flex;
+    align-items: center;
 
     /*.index_news 手機版 壓色塊*/
     @include pad{
@@ -778,18 +782,17 @@ $section_margin_top: 60px;
         padding: 20px 0;
     }
 
-    .news_items{
-        display: flex;
-        align-items: center;
-    }
-
     .news{
         box-sizing: border-box;
-        padding: $word_pad;
+        padding: $word_pad; 
 
         @include PC{
             padding-left: 10vw;       
         }
+    }
+
+    .news_items{
+        display: flex;
     }
 
     .news_img{
@@ -797,6 +800,7 @@ $section_margin_top: 60px;
         text-align: left;
         width: 50vw;
         height: 60vh;
+        margin: auto;
 
         &::after{
             content: "";
@@ -831,6 +835,7 @@ $section_margin_top: 60px;
             display: none;
         }
 
+        /*.index_news 電腦版 配圖 置中*/
         @include PC{
             text-align: left;
         }
@@ -844,11 +849,11 @@ $section_margin_top: 60px;
     max-width: $max_w_l;
     margin: auto;
     margin-top: $section_margin_top;
+    height: 90vh;
     
     @include PC{
-        height: $small_part_h;
         display: flex;  
-        padding: 0 0 0 40px;    
+        padding: 0 0 0 10%;    
     }
 
     .column_content{
@@ -903,11 +908,81 @@ $section_margin_top: 60px;
             height: 250px;
             display: block;
             box-sizing: border-box;
-            background-image: url(https://picsum.photos/600/300/?random=1);
-            animation: auto;
+            background-image: url(../../img/column_longimg.jpeg);
+            background-position-y: 0;
+            background-size: contain;
+            background-size: 400% auto;
+            transition: 0.8s ease-in;
+            animation: imgInner1 60.0s normal forwards infinite;
 
-            @keyframes auto {
-                
+            // @include pad{
+            //     background-size: 1000%;
+            // }
+
+            @keyframes imgInner1 {
+                0% {
+                    background-position-y: 0;
+                }
+                7% {
+                    background-position-y: 0;
+                }
+                10% {
+                    background-position-y: 25%;
+                }
+                17% {
+                    background-position-y: 25%;
+                }
+                20% {
+                    background-position-y: 50%;
+                }
+                27% {
+                    background-position-y: 50%;
+                }
+                30% {
+                    background-position-y: 75%;
+                }
+                37% {
+                    background-position-y: 75%;
+                }
+                40% {
+                    background-position-y: 100%;
+                }
+                47% {
+                    background-position-y: 100%;
+                }
+                50% {
+                    background-position-y: 125%;
+                }
+                57% {
+                    background-position-y: 125%;
+                }
+                60% {
+                    background-position-y: 150%;
+                }
+                67% {
+                    background-position-y: 150%;
+                }
+                70% {
+                    background-position-y: 175%;
+                }
+                77% {
+                    background-position-y: 175%;
+                }
+                80% {
+                    background-position-y: 200%;
+                }
+                87% {
+                    background-position-y: 200%;
+                }
+                90% {
+                    background-position-y: 225%;
+                }
+                97% {
+                    background-position-y: 225%;
+                }
+                100% {
+                    background-position-y: 250%;
+                }
             }
         }
 
@@ -916,36 +991,47 @@ $section_margin_top: 60px;
         }
         .img_part_2{
             background-position: 25%;
+            transition: 0.8s 0.2s ease-in;
+            animation: imgInner1 60.0s normal forwards infinite;
+            animation-delay: 0.15s;
         }
         .img_part_3{
             background-position: 50%;
+            transition: 0.8s 0.4s ease-in;
+            animation: imgInner1 60.0s normal forwards infinite;
+            animation-delay: 0.3s;
         }
         .img_part_4{
             background-position: 75%;
+            transition: 0.8s 0.6s ease-in;
+            animation: imgInner1 60.0s normal forwards infinite;
+            animation-delay: 0.45s;
         }
         .img_part_5{
             background-position: 100%;
+            transition: 0.8s 0.8s ease-in;
+            animation: imgInner1 60.0s normal forwards infinite;
+            animation-delay: 0.6s;
         }
     }
 
 }
 
 /*QAsection .index_qa*/
+
 .index_qa{
     max-width: $max_w_l;
     margin: auto;
     margin-top: 60px;
     padding: $middle_pad;
+    height: 90vh;
     
-    h2{
-        padding-bottom: 30px;
-    }
     .quesion{
         max-width: 1100px;
         margin: 10px auto;
         padding: 5px 60px 5px 15px;
-        border-radius: 10px;
-        border: 2px dashed map-get($color , "sub_blue");
+        // border-radius: 10px;
+        border-bottom: 1px solid map-get($color , "sub_blue");
         position: relative;
         input{
             display: none;
@@ -967,7 +1053,6 @@ $section_margin_top: 60px;
                 padding: 10px 0;
                 font-size: 24px;
                 width: 100%;
-                cursor: pointer;
                 &::before,
                 &::after{
                     transition: .5s;
@@ -1002,8 +1087,7 @@ $section_margin_top: 60px;
     margin: auto;
     margin-top: $section_margin_top;
     margin-bottom: 120px;
-
-
+    height: 90vh;
     
         h2{
             @include pad{
@@ -1054,12 +1138,23 @@ $section_margin_top: 60px;
                 text-align: right;
             }
 
+            &:hover img{
+                transform: scale(1.07);
+                transition: 0.5s cubic-bezier(0.63, 0.37, 0.26, 0.99);
+            } 
+
             .hs_img_box{
                 position: relative;
                 width: 250px;
                 height: 250px;
                 left: 60px;
                 top: 60px;
+                overflow: hidden;
+
+                img{
+                    transition: .5s;
+                    width: 100%;
+                }
             }
 
             &::after{
