@@ -171,11 +171,35 @@ header{
 
                     a{
                         font-size: 28px;
-                        height: 100%;
+                        // height: 100%;
                         display: block;
                         color: #fff;
                         letter-spacing: .2em;
                         position: relative;
+                        display: inline-block;
+
+                        &::after{
+                            content: "";
+                            width: 2px;
+                            height: 0%;
+                            top: 0;
+                            left: -4px;
+                            opacity: .5;
+                            background-color: #fff;
+                            position: absolute;
+                            transition: .5s;
+                        }
+
+                        &:hover::after{
+                            content: "";
+                            width: 2px;
+                            height: 100%;
+                            top: 0;
+                            left: -4px;
+                            opacity: .5;
+                            background-color: #fff;
+                            position: absolute;
+                        }
                     }
 
                     .index_link::before, .service_link::before, .mall_link::before, .activity_link::before, .about_link::before, .game_link::before{
@@ -185,6 +209,10 @@ header{
                         letter-spacing: .1em;
                         right: -55%;
                         font-family: sans-serif;
+
+                        @include pad{
+                            font-size: 12px; 
+                        }
 
                     }
 
@@ -225,7 +253,7 @@ header{
                     position: absolute;
                     width: 100vw;
                     left: 0;
-                    top: 80%;
+                    top: 75%;
                     height: 5vh;
 
                     .menu_info_list{
@@ -269,9 +297,7 @@ header{
 
     /*header icon，menu打開時*/
     .header_function.on{
-
         
-
         /*header icon、漢堡按鈕，menu打開時呈現白色*/
         svg, .menu_btn{
             fill: #fff;
