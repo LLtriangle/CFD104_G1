@@ -1,4 +1,4 @@
-window.addEventListener('load',function(){
+
     gsap.from('#left_bottom_box',{
         x: 20,
         y: -150,
@@ -39,5 +39,7 @@ window.addEventListener('load',function(){
         opacity:0,
         // repeat: -1,
     });
+    
+window.addEventListener('load',function(){
     $('#loading_box').delay(4000).slideUp(1000);
 },false);
