@@ -59,7 +59,7 @@ $section_margin_top: 60px;
 /*登陸section .index_landing*/
 .index_landing {
     background-color: map-get($color , "cover" );
-    height: 400vh;
+    height: 100vh;
 
     /*index頁面 landing section 左側大圖與右側logo遮罩小圖並排*/
     @include PC{
@@ -253,7 +253,8 @@ $section_margin_top: 60px;
                     height: 100%;
                     top: 0;
                     right: 0;
-                    background-color: pink;
+                    background-color: map-get($color , "bg_white" );
+                    transition: .6s;
                     // map-get($color , "bg_white" )
                 }
 
@@ -264,7 +265,7 @@ $section_margin_top: 60px;
                     height: 100%;
                     top: 0;
                     right: 0;
-                    background-color: pink;
+                    background-color: map-get($color , "bg_white" );
                     // map-get($color , "bg_white" )
                 }
 

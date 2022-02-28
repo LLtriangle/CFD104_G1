@@ -19,7 +19,7 @@
 header{
     position: fixed;
     width: 100vw;
-    z-index: 100;
+    z-index: 800;
     background-color: #ffffffaa;
     top: 0;
 }
@@ -31,7 +31,7 @@ header{
     justify-content: space-between;
     // background-color: #fff;
     border-radius: 0 0 25px 25px;
-    z-index: 100;
+    z-index: 800;
 
     @include pad{
         padding: 10px 10px 0 10px;  
