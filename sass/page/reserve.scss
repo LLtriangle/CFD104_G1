@@ -172,44 +172,83 @@ table.creditCard{
 // 選擇日期
 .choose_date{
     display: unset;
-    // 月曆
-    .calendar_time{
-    display: flex;
-    justify-content: space-between;
-    
-    .time_period{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        input:checked + label .time_item{
-            border: 3px solid map-get($color , 'blue' );
-            p{
-                font-weight: 900;
-            }
-        }
-        label{
+    h3{
+        position: relative;
+        span.more_info{
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;   
+            top: 25%;
+            left: 120px;
+            font-size: 15px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgb(204, 187, 130);
             cursor: pointer;
-            .time_item{
-                border: none;
-                width: 80px;
-                height: 80px;
-                margin: 5px;
-                text-align: center;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background-color:#dfbe9baf;
-                box-sizing: border-box;
-                p{  
-                    box-sizing: border-box;
-                    font-size: 12px;
-                    padding: 10px;
-                    font-weight: 600;
+            &::after{
+                content: '點擊日期與時段選擇，僅接受今日之後的預約，每次施作以三小時為單位。';
+                opacity: 0;
+                width: 300px;
+                position: absolute;
+                font-size: 12px;
+                top: 5px;
+                left: 30px;
+                z-index: 1;
+                line-height: 1.5;
+                border-radius: 10px;
+                border-top-left-radius: 0;
+                background-color: rgba(236, 231, 214, 0.719);
+                box-shadow: 0px 0px 3px map-get($color , 'sub_blue' );
+                padding: 5px;
+            }
+            &:hover::after{
+                opacity: 1;
                 }
             }
-        }
-
     }
+    // 月曆
+    .calendar_time{
+    // display: flex;
+    // justify-content: space-between;
+    
+        .time_period{
+            display: none;
+            justify-content: space-around;
+            input{
+                display: none;
+            }
+            input:checked + label .time_item{
+                border: 3px solid #82002D;
+                p{
+                    font-weight: 900;
+                }
+            }
+            label{
+                cursor: pointer;
+                .time_item{
+                    border: 3px solid transparent;
+                    border-radius: 50%;
+                    width: 80px;
+                    height: 80px;
+                    margin: 5px;
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color:#DDCFC5;
+                    box-sizing: border-box;
+                    p{  
+                        box-sizing: border-box;
+                        font-size: 12px;
+                        padding: 10px;
+                        font-weight: 600;
+                    }
+                }
+            }
+
+        }
     }
     // 顯示預約時間
     .time_panel{
@@ -222,7 +261,6 @@ table.creditCard{
         div{
             display: flex;
             width: 50%;
-            // justify-content: center;
             p{
                 &:first-child{
                     font-weight: 800;
@@ -255,6 +293,7 @@ table.creditCard{
                 width: 200px;
                 margin: 0 10px;
                 border: 2px dotted map-get($color , 'main' );
+                border-radius: 5px;
                 img{ // 上傳的照片
                     width: 100%;
                 }
@@ -270,6 +309,7 @@ table.creditCard{
         #div_upload{
             label{
                 border: 2px dotted rgb(168, 168, 168);
+                border-radius: 5px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -277,6 +317,11 @@ table.creditCard{
                 width: 200px;
                 height: 200px;
                 overflow: hidden;
+                &:hover img{
+                    transform: scale(1.5);
+                    transition: .5s ease-in-out;
+                }
+                // 上傳照片的icon
                 img{
                     width: 20%;
                     opacity: 0.3;
@@ -317,7 +362,21 @@ textarea {
         box-shadow: 1px 1px 5px map-get($color, 'main');
     }
 }
-
+.btn_div{
+    display: flex;
+    align-items: center;
+}
+.btn_div.page1{
+    justify-content: right;
+    width: 100%;
+    .total{
+        font-size: 30px;
+        // margin-left: 30px;
+    }
+    button{
+        margin-left: 50px;
+    }
+}
 // 信用卡種類
 .card_li{ // td
     display: flex;
@@ -379,11 +438,26 @@ textarea {
         .progress{
             margin-left:0;
             a{  
-                width:100%;
+                font-size: 15px;
+                width:calc(100%/3);
                 box-sizing: border-box;
                 img{
                     width: 20px;
                 }
+            }
+        }
+    }
+    .choose_date h3 span.more_info::after{
+        width: 150px;
+    }
+    .choose_date {
+        .calendar_time .time_period{
+            display: flex;
+        }
+        .time_panel{
+            display: block;
+            div{
+                width: 100%;
             }
         }
     }

@@ -200,7 +200,7 @@
         <!-- 活動消息section -->
         <section class="index_news">
             <div class="news_items">
-                <img src="https://picsum.photos/600/700/?random=1" alt="" class="col-md-6 news_img">
+                <img class="col-md-6 news_img" src="https://picsum.photos/600/700/?random=1" alt="">
                 <ul class="col-md-6 news">
                     <h2>活動消息</h2>
                     <li>
@@ -350,10 +350,10 @@
             }
         });
 
-        gsap.to(".index_plans .plans_img", {
+        gsap.to(".index_news", {
             duration: 2,
             scrollTrigger: {
-                trigger: ".index_plans", //觸發的物件
+                trigger: ".index_news", //觸發的物件
                 scale: 200,
                 delay: -1.5,
                 start: "top center", // (物件開始位置, 卷軸開始位置) top center bottom px

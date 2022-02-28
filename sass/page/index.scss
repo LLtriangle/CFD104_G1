@@ -793,6 +793,39 @@ $section_margin_top: 60px;
     }
 
     .news_img{
+        position: relative;
+        text-align: left;
+        width: 50vw;
+        height: 60vh;
+
+        &::after{
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            right: 0;
+            background-color: map-get($color , "bg_white" );
+            transition: .6s;
+            // map-get($color , "bg_white" )
+        }
+
+        &.active::after{
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            top: 0;
+            right: 0;
+            background-color: map-get($color , "bg_white" );
+            // map-get($color , "bg_white" )
+        }
+
+        img{
+            width: 50vw;
+            height: 60vh; 
+        }
+
         /*.index_news 手機版 配圖消失*/
         @include pad{
             display: none;
@@ -800,10 +833,9 @@ $section_margin_top: 60px;
 
         @include PC{
             text-align: left;
-            width: 50vw;
-            height: 60vh;
         }
-    }
+
+    }   
 
 }
 
