@@ -8,9 +8,11 @@
     width: 100vw;
     height: 100vh;
     h1{
+        font-size: 34px;
+        width: 100%;
         color: map-get($color,'main');
         position: absolute;
-        top: 40%;
+        top: 35%;
         left: 50%;
         transform: translate(-50%,-50%) rotate(30deg);
         text-align: center;
@@ -29,14 +31,14 @@
                     0px 0px 24.3px rgba(0, 0, 0, 0.107), 0px 0px 45.5px rgba(0, 0, 0, 0.129);
         //             0px 0px 109px rgba(0, 0, 0, 0.18);
         &.frontSide{
-            top: 40%;
+            top: 35%;
             right: 50%;
-            transform: translate(100%,-140%) rotate(30deg);
+            transform: translate(100%,-130%) rotate(30deg);
         }
         &.backSide{
-            bottom: 60%;
+            bottom: 65%;
             left: 50%;
-            transform: translate(-100%,140%) rotate(30deg);
+            transform: translate(-100%,130%) rotate(30deg);
         }
         h2{
             padding-block: 72px;
@@ -115,11 +117,17 @@
 
 @media screen and (min-width: 768px) {
     .welcome{
+        h1{
+            font-size: 48px;
+            top: 40%;
+        }
         a{
             &.frontSide{
+                top: 40%;
                 transform: translate(150%,-120%) rotate(30deg);
             }
             &.backSide{
+                bottom: 60%;
                 transform: translate(-150%,120%) rotate(30deg);
             }
         }
