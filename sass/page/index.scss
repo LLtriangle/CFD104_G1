@@ -355,7 +355,7 @@ $section_margin_top: 60px;
         }
 
         /*.index_needs 對話泡泡 外框*/
-        background: map-get($color , "sub_blue" );
+        background: map-get($color , "bg_white" );
         border-radius: 4em;
 
         /*.index_needs 對話泡泡 手機板占80%*/
@@ -385,7 +385,7 @@ $section_margin_top: 60px;
                 width: 0;
                 height: 0;
                 border: 2.025em solid transparent;
-                border-right-color: map-get($color , "sub_blue" );
+                border-right-color: map-get($color , "bg_white" );
                 border-left: 0;
                 border-top: 0;
                 margin-top: -1.012em;
@@ -409,7 +409,7 @@ $section_margin_top: 60px;
                 width: 0;
                 height: 0;
                 border: 2.025em solid transparent;
-                border-left-color: map-get($color , "sub_blue" );
+                border-left-color: map-get($color , "bg_white" );
                 border-right: 0;
                 border-top: 0;
                 margin-top: -1.012em;
@@ -434,7 +434,7 @@ $section_margin_top: 60px;
                 width: 0;
                 height: 0;
                 border: 2.025em solid transparent;
-                border-top-color: map-get($color , "sub_blue" );
+                border-top-color: map-get($color , "bg_white" );
                 border-bottom: 0;
                 margin-left: -2.025em;
                 margin-bottom: -2.025em;
@@ -455,7 +455,7 @@ $section_margin_top: 60px;
                 width: 0;
                 height: 0;
                 border: 2.025em solid transparent;
-                border-right-color: map-get($color , "sub_blue" );
+                border-right-color: map-get($color , "bg_white" );
                 border-left: 0;
                 border-top: 0;
                 margin-top: -1.012em;
@@ -473,7 +473,7 @@ $section_margin_top: 60px;
                 width: 0;
                 height: 0;
                 border: 2.025em solid transparent;
-                border-left-color: map-get($color , "sub_blue" );
+                border-left-color: map-get($color , "bg_white" );
                 border-right: 0;
                 border-top: 0;
                 margin-top: -1.012em;
@@ -491,7 +491,7 @@ $section_margin_top: 60px;
                 width: 0;
                 height: 0;
                 border: 2.025em solid transparent;
-                border-top-color: map-get($color , "sub_blue" );
+                border-top-color: map-get($color , "bg_white" );
                 border-bottom: 0;
                 border-left: 0;
                 margin-left: -1.012em;
@@ -510,7 +510,7 @@ $section_margin_top: 60px;
                 width: 0;
                 height: 0;
                 border: 2.025em solid transparent;
-                border-top-color: map-get($color , "sub_blue" );
+                border-top-color: map-get($color , "bg_white" );
                 border-bottom: 0;
                 border-right: 0;
                 margin-left: 10.8em;
@@ -528,7 +528,7 @@ $section_margin_top: 60px;
                 width: 0;
                 height: 0;
                 border: 2.025em solid transparent;
-                border-top-color: map-get($color , "sub_blue" );
+                border-top-color: map-get($color , "bg_white" );
                 border-bottom: 0;
                 margin-left: -2.025em;
                 margin-bottom: -2.025em;
@@ -618,20 +618,27 @@ $section_margin_top: 60px;
                     z-index: 1;
                 }
                 @include PC{
+                    &.active::before{
+                        content: "";
+                        width: 50vw;
+                        transform: translate(-50%,120px) rotate(-18deg);
+                    }
+                    &.active::after{
+                        content: "";
+                        width: 50vw;
+                    }
+                    
+
                     &::after,
                     &::before{
                         content: "";
                         height: 0;
-                        width: 50vw;
+                        width: 0;
                         position: absolute;
                         top: 50%;
                         left: 50%;
                         border-bottom: 3px dashed map-get($color , "sub_blue" );
                         transform: translate(-50%,-120px) rotate(18deg);
-                    }
-                    &::before{
-                        transform: translate(-50%,120px) rotate(-18deg);
-                        
                     }
                 }
             }
@@ -850,6 +857,7 @@ $section_margin_top: 60px;
     margin: auto;
     margin-top: $section_margin_top;
     height: 90vh;
+    // background-color: map-get($color , "sub_brown" );
     
     @include PC{
         display: flex;  
@@ -1024,7 +1032,7 @@ $section_margin_top: 60px;
     margin: auto;
     margin-top: 60px;
     padding: $middle_pad;
-    height: 90vh;
+    min-height: 90vh;
     
     .quesion{
         max-width: 1100px;
@@ -1087,7 +1095,7 @@ $section_margin_top: 60px;
     margin: auto;
     margin-top: $section_margin_top;
     margin-bottom: 120px;
-    height: 90vh;
+    min-height: 90vh;
     
         h2{
             @include pad{
