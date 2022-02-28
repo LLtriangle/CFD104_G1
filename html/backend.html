@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後台</title>
+    <link rel="stylesheet" href="css/backend.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title"></ion-icon>主頁</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="accessibility-outline"></ion-icon></span>
+                        <span class="title">員工管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <span class="title">會員管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="cart-outline"></ion-icon></span>
+                        <span class="title">商品管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="receipt-outline"></ion-icon></span>
+                        <span class="title">訂單管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="file-tray-stacked-outline"></ion-icon></span>
+                        <span class="title">服務管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="mail-open-outline"></ion-icon></span>
+                        <span class="title">消息管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">登出</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- main -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <!-- search -->
+                <div class="search">
+                    <label for="">
+                        <input type="text" placeholder="Search">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+                <!-- userImg -->
+                <div class="user">
+                    <img src="img/logo_img.png" alt="user">
+                </div>
+            </div>
+
+            <!-- cards -->
+            <div class="card_box">
+                <div class="card">
+                    <div>
+                        <div class="numbers">8,808</div>
+                        <div class="card_name">瀏覽人數</div>
+                    </div>
+                    <div class="icon_bx">
+                        <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="numbers">1,090</div>
+                        <div class="card_name">銷售數量</div>
+                    </div>
+                    <div class="icon_bx">
+                        <ion-icon name="cart-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="numbers">$9,999</div>
+                        <div class="card_name">銷售金額</div>
+                    </div>
+                    <div class="icon_bx">
+                        <ion-icon name="cash-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="numbers">1,504</div>
+                        <div class="card_name">完成個案</div>
+                    </div>
+                    <div class="icon_bx">
+                        <ion-icon name="file-tray-stacked-outline"></ion-icon>
+                    </div>
+                </div>
+            </div>
+
+            <div class="details">
+                <!-- order details list -->
+                <div class="recent_orders">
+                    <div class="card_header">
+                        <h2>最近購買</h2>
+                        <a href="#" class="btn">全部</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>訂單</td>
+                                <td>價格</td>
+                                <td>付款方式</td>
+                                <td>狀態</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>訂單1</td>
+                                <td>$1200</td>
+                                <td>Visa</td>
+                                <td><span class="status pending">送貨中</span></td>
+                            </tr>
+                            <tr>
+                                <td>訂單2</td>
+                                <td>$1200</td>
+                                <td>Visa</td>
+                                <td><span class="status return">退貨</span></td>
+                            </tr>
+                            <tr>
+                                <td>訂單3</td>
+                                <td>$1200</td>
+                                <td>Visa</td>
+                                <td><span class="status inprogress">進行中</span></td>
+                            </tr>
+                            <tr>
+                                <td>訂單4</td>
+                                <td>$1200</td>
+                                <td>Visa</td>
+                                <td><span class="status delivered">已送達</span></td>
+                            </tr>
+                            <tr>
+                                <td>訂單5</td>
+                                <td>$1200</td>
+                                <td>Visa</td>
+                                <td><span class="status delivered">已送達</span></td>
+                            </tr>
+                            <tr>
+                                <td>訂單6</td>
+                                <td>$1200</td>
+                                <td>Visa</td>
+                                <td><span class="status delivered">已送達</span></td>
+                            </tr>
+                            <tr>
+                                <td>訂單7</td>
+                                <td>$1200</td>
+                                <td>Visa</td>
+                                <td><span class="status delivered">已送達</span></td>
+                            </tr>
+                            <tr>
+                                <td>訂單8</td>
+                                <td>$1200</td>
+                                <td>Visa</td>
+                                <td><span class="status delivered">已送達</span></td>
+                            </tr>
+                            <tr>
+                                <td>訂單9</td>
+                                <td>$1200</td>
+                                <td>Visa</td>
+                                <td><span class="status delivered">已送達</span></td>
+                            </tr>
+                            <tr>
+                                <td>訂單10</td>
+                                <td>$1200</td>
+                                <td>Visa</td>
+                                <td><span class="status delivered">已送達</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- New Customers -->
+                <div class="recent_customers">
+                    <div class="card_header">
+                        <h2>新會員</h2>
+                    </div>
+                    <table>
+                        <tr>
+                            <td class="customers_td"><div class="img_bx"><img src="img/logo_img.png" alt="new_customers"></div></td>
+                            <td><h4>Amos<br><span>新竹</span></h4></td>
+                        </tr>
+                        <tr>
+                            <td class="customers_td"><div class="img_bx"><img src="img/logo_img.png" alt="new_customers"></div></td>
+                            <td><h4>Amos<br><span>新竹</span></h4></td>
+                        </tr>
+                        <tr>
+                            <td class="customers_td"><div class="img_bx"><img src="img/logo_img.png" alt="new_customers"></div></td>
+                            <td><h4>Amos<br><span>新竹</span></h4></td>
+                        </tr>
+                        <tr>
+                            <td class="customers_td"><div class="img_bx"><img src="img/logo_img.png" alt="new_customers"></div></td>
+                            <td><h4>Amos<br><span>新竹</span></h4></td>
+                        </tr>
+                        <tr>
+                            <td class="customers_td"><div class="img_bx"><img src="img/logo_img.png" alt="new_customers"></div></td>
+                            <td><h4>Amos<br><span>新竹</span></h4></td>
+                        </tr>
+                        <tr>
+                            <td class="customers_td"><div class="img_bx"><img src="img/logo_img.png" alt="new_customers"></div></td>
+                            <td><h4>Amos<br><span>新竹</span></h4></td>
+                        </tr>
+                        <tr>
+                            <td class="customers_td"><div class="img_bx"><img src="img/logo_img.png" alt="new_customers"></div></td>
+                            <td><h4>Amos<br><span>新竹</span></h4></td>
+                        </tr>
+                        <tr>
+                            <td class="customers_td"><div class="img_bx"><img src="img/logo_img.png" alt="new_customers"></div></td>
+                            <td><h4>Amos<br><span>新竹</span></h4></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        // MenuToggle
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+
+        toggle.onclick = function(){
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+
+        //add hovered class in selected list item
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink(){
+            list.forEach((item) =>
+            item.classList.remove('hovered'));
+            item.classList.add('hovered');
+        }
+        list.forEach((item) =>
+        item.addEventListener('mouseover',activeLink));
+        
+    </script>
+</body>
+</html>
