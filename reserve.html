@@ -124,7 +124,7 @@
             </a>
             <a v-bind:class="[ activetab === '3' ? 'active' : '' ]" @click="clickHandler(3)">
                 <img src="img/reserve_receipt.png" alt="">
-                服務預約明細
+                預約明細
             </a>
         </div>
 
@@ -216,12 +216,16 @@
 
                     <!-- 選擇日期 -->
                     <div class="form_item choose_date">
-                        <h3>選擇日期</h3>
+                        <h3>選擇日期
+                           <span class="more_info">i
+                            </span>
+                        </h3>
+                        
                         <div class="calendar_time">
                             <!-- 月曆 -->
                             <div id="calendari"></div>
                             <!-- 挑時段 -->
-                            <!-- <div class="time_period">
+                            <div class="time_period">
                                 <input type="radio" v-model="period" value="上午9-12點" id="period_1">
                                 <label for="period_1">
                                     <div class="time_item">
@@ -240,8 +244,9 @@
                                         <p>晚上<br>18-21點</p>
                                     </div>
                                 </label>
-                            </div> -->
+                            </div>
                         </div>
+                        <!-- 顯示挑選時間 -->
                         <div class="time_panel">
                             <div>
                                 <p>｜預約日期</p>
@@ -249,7 +254,7 @@
                             </div>
                             <div>
                                 <p>｜預約時段</p>
-                                <p id="selectedPeriod"></p>
+                                <p id="selectedPeriod">{{period}}</p>
                             </div>
                         </div>
                     </div>
@@ -303,53 +308,33 @@
                         </div>
                     </div>
                 
+                    <div class="btn_div page1">
+                        <p class="plan_price total">${{total}}</p>
+                        <button v-on:click="activetab='2'" type="button">下一步</button>  
+                    </div>  
 
                 </form>
-                <button v-on:click="activetab='2'" type="button">下一步</button>    
             </div>
+
+
             <div v-if="activetab ==='2'" class="tabcontent">
+
                 <table class="creditCard">
                     <tr>
+                        <td colspan="3">
+                            <label>信用卡卡號:</label></td>
                         <td>
-                            <h3>信用卡種類</h3>
+                            <select name="信用卡" v-model="cCard">
+                                <option value="Visa" id="visa">Visa</option>
+                                <option value="Mastercard" id="mastercard">Mastercard</option>
+                            </select>
                         </td>
-                        
-                        <td class="card_li">
-                            <li>
-                                <input type="radio" v-model="payment" value="Visa" id="visa" class="radio-input">
-                                <label for="visa" class="radio-label">
-                                    <span class="radio-button"></span>
-                                    Visa
-                                </label>
-                            </li>
-                            <li>
-                                <input type="radio" v-model="payment" value="Master Card" id="masterCard"  class="radio-input">
-                                <label for="masterCard" class="radio-label">
-                                    <span  class="radio-button"></span>
-                                    Master Card
-                                </label>
-                            </li>
-                            <li>
-                                <input type="radio" v-model="payment" value="American Express" id="AE"  class="radio-input">
-                                <label for="AE" class="radio-label">
-                                    <span class="radio-button"></span>
-                                    American Express
-                                </label>
-                            </li>
-                            <li>
-                                <input type="radio" v-model="payment" value="Discover" id="discover"  class="radio-input">
-                                <label for="discover" class="radio-label">
-                                    <span  class="radio-button"></span>
-                                    Discover
-                                </label>
-                            </li>
-                        </td>
+                        <td colspan="3" class="left">
+                            <input type="text" name="cardNumber" id="cardNum" size="30" v-model="credit_card"
+                                @change="ValidateCreditCardNumber(credit_card)" maxlength="16" /></td>
                     </tr>
 
                     <tr>
-                        <td>
-                            <h3>信用卡卡號</h3>
-                        </td>
                         <td>
                             <input type="text" name="cardNumber" id="cardNum" size="30" value="" v-model="credit_card" maxlength="16"
                                 onblur="ValidateCreditCardNumber()" />
@@ -379,14 +364,15 @@
                     </tr>
                     <tr>
                         <td><input size="25" v-model="address2"></td>
-                    </tr>
-                    <tr>
-                        <td><button v-on:click="activetab='1'" type="button">返回</button>
-                        <td></td></td>
-                        <td><button v-on:click="activetab='3'" type="button">下一步</button></td>
-                    </tr>
+                    </tr>                                      
                 </table>
+                <div class="btn_div">
+                    <button v-on:click="activetab='1'" type="button">返回</button>
+                    <button v-on:click="activetab='3'" type="button">下一步</button>
+                </div>
             </div>
+
+
             <div v-if="activetab ==='3'" class="tabcontent">
                 <table>
                     <tr>
@@ -786,11 +772,11 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
                         return this.Areas = ["中壢區","平鎮區","龍潭區","楊梅區","新屋區","觀音區","桃園區","龜山區","八德區","大溪區","復興區","大園區","蘆竹區"];
                     }
                 },
-                clickHandler(num) {
-                    if (num <= this.activetab) {
-                        this.activetab = `${num}`
-                    }
-                },  
+            clickHandler(num) {
+                if (num <= this.activetab) {
+                    this.activetab = `${num}`
+                }
+            },
         },
         computed: {
             plan0_info() {
@@ -813,11 +799,11 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
             },
             total() {
                 if(this.plan === '到府一對一教學'){
-                    return price0*3
+                    return this.price0*3
                 }else if(this.plan === '空間整理收納'){
-                    return price1*3
+                    return this.price1*3
                 }else if(this.plan === '搬家前後物品上下架'){
-                    return price2*3
+                    return this.price2*3
                 }
             },
         },
