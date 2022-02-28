@@ -42,7 +42,9 @@
         <!-- 服務section -->
         <section class="index_plans">
             <div class="col-12 col-md-6 plans_view">
-                <img class="plans_img selected" src="https://picsum.photos/600/700/?random=1" alt="plans display img">
+                <div class="plans_img selected">
+                    <img  src="https://picsum.photos/600/700/?random=1" alt="plans display img">
+                </div>
             </div>
             <div class="col-12 col-md-6 plans_link">
                 <h2>服務方案</h2>
@@ -74,7 +76,42 @@
         <!-- 煩惱section -->
         <section class="index_needs">
             <h2>你是否有這些煩惱?</h2>
+            <!-- 重新改樣式 -->
             <ul class="needs_bubles">
+                <li>
+                    <div class="bubble _1">
+                        <p>小孩房間亂糟糟，整理完沒多久又亂了...</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="bubble _2">
+                        <p>下班太累了，但家裡又太亂根本不能好好休息...</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="bubble _3">
+                        <p>翻了一下衣櫃，這些衣服是哪裡冒出來的?</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="bubble _4">
+                        <p>買了一堆收納品，但我根本不會收納QQ</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="bubble _5">
+                        <p>翻了一下衣櫃，這些衣服是哪裡冒出來的?</p>
+                    </div>
+                </li>
+                <!-- <li>
+                    <div class="bubble">
+                        <p>買了一堆收納品，但我根本不會收納QQ</p>
+                        <div class="pointer"></div>
+                    </div>
+                </li> -->
+            </ul>
+            <!-- 重新改樣式===留存原設定 -->
+            <!-- <ul class="needs_bubles">
                 <li>
                     <div class="bubble">
                         <p>小孩房間亂糟糟，整理完沒多久又亂了...</p>
@@ -111,7 +148,7 @@
                         <div class="pointer"></div>
                     </div>
                 </li>
-            </ul>
+            </ul> -->
             <div class="needs_btns">
                 <a class="go_reserve link_btn rd" href="link_reserve">馬上預約!</a>
                 <a class="go_game link_btn bl" href="link_game">還在猶豫?</a>
@@ -238,29 +275,35 @@
         <!-- 熱門商品section -->
         <section class="index_hot_sales">
             <h2>熱門商品</h2>
-            <ul>
-                <li class="col-4 colmd-12">
+            <ul class="row">
+                <li class="col-12 col-md-4">
                     <div class="product_bg right"></div>
                     <a class="hs_link" href="link_product">
-                        <img class="hs_item" src="https://picsum.photos/200/200/?random=10" alt="">
-                        <h3>商品名稱</h3>
-                        <p>$價格</p>
+                        <img class="hs_img_box" src="https://picsum.photos/200/200/?random=10" alt="">
+                        <h3>格調漩渦 <br> 壁掛式時鐘</h3>
+                        <p>
+                            NT$ 1,099
+                        </p>
                     </a>
                 </li>
-                <li class="col-4 colmd-12">
+                <li class="col-12 col-md-4">
                     <div class="product_bg middle"></div>
                     <a class="hs_link" href="link_product">
-                        <img class="hs_item" src="https://picsum.photos/200/200/?random=10" alt="">
-                        <h3>商品名稱</h3>
-                        <p>$價格</p>
+                        <img class="hs_img_box" src="https://picsum.photos/200/200/?random=10" alt="">
+                        <h3>白日夢海綿架</h3>
+                        <p>
+                            NT$ 490
+                        </p>
                     </a>
                 </li>
-                <li class="col-4 colmd-12">
+                <li class="col-12 col-md-4">
                     <div class="product_bg left"></div>
                     <a class="hs_link" href="link_product">
-                        <img class="hs_item" src="https://picsum.photos/200/200/?random=10" alt="">
-                        <h3>商品名稱</h3>
-                        <p>$價格</p>
+                        <img class="hs_img_box" src="https://picsum.photos/200/200/?random=10" alt="">
+                        <h3>小麋鹿木掛架</h3>
+                        <p>
+                            NT$ 1,480
+                        </p>
                     </a>
                 </li>
             </ul>
@@ -272,6 +315,34 @@
 
     <!-- <footer></footer> -->
     @@include('layout/footer.html')
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // gsap.to(".index_plans .plans_img", {
+        //     scale: 0,
+        // });
+        
+        gsap.to(".index_plans .plans_img", {
+            duration: 1,
+            scrollTrigger: {
+                trigger: ".index_plans", //觸發得物件
+                // (物件開始位置, 卷軸開始位置) top center bottom px
+                start: "top top", 
+                //(物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
+                end: "+=300", 
+                pin: true, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
+                scrub: true, // 物件動畫根據卷軸捲動程度跑
+                addClass: {targets: ".plans_img", className: "active"}, // 增加移除的class，class名稱須為字串
+                markers: true, // 顯示標記
+            }
+        });
+
+    </script>
     
 </body>
 </html>
