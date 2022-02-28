@@ -77,6 +77,9 @@
                 .item_img{
                     border-radius: 50%;
                     overflow: hidden;
+                    img{
+                        width: 50px;
+                    }
                 }
                 .item{
                     display: flex;
@@ -260,6 +263,7 @@
                         right: 0;
                         
                     }
+                    
                 }
             }
             .col:nth-child(even){
