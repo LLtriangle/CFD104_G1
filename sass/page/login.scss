@@ -1,19 +1,5 @@
 @import  "../base/var";
 @import "../base/color";
-
-/*input預設標籤樣式清除 先註解 有需要用到再打開 LL*/
-input, button{
-  border: none;
-  appearance: none;
-  -moz-appearance: none;
-  // background-color: map-get($color , "border_bl" );
-}
-// /*input標籤聚焦不出現預設邊框:*/
-input:focus, button:focus{
-  outline: none;
-}
-
-
 *,
 *::after,
 *::before {
@@ -22,25 +8,43 @@ input:focus, button:focus{
   box-sizing: border-box;
   user-select: none;
 }
+
+
+.form_icons{
+  display: none;
+}
+
+.si_box{
+  transform: scale(1.1);
+}
+
 // 手機
 @media  screen and (max-width:768px){
   .lo_or_si{
     margin: auto;
     position: absolute;
     display: inline-block;
-    top: -7%;
-    left: 2%;
+    top: -8%;
+    left: 6%;
     button{
-      width: 150px;
+      width: 100px;
+      padding-bottom: 10px;
+      padding-top: 10px;
       border-radius: 10px 10px 0 0;
       cursor: pointer;
+      &:first-child{
+        background-color: map-get($color,"sub_yellow");
+      }
+      // &:last-child{
+      //   background-color: map-get($color,"sub_yellow");
+      // }
     }
   }
   main {
     position: relative;
     width: 80%;
     height: 500px;
-    padding: 25px;
+    // padding: 25px;
     // border: 2px dashed #ddd;
     border-radius: 12px;
     // overflow: hidden;
@@ -59,24 +63,51 @@ input:focus, button:focus{
     align-items: center;
     position: absolute;
     top: 0;
-    width: 50%;
+    width: 100%;
     height: 100%;
     padding: 25px;
-    background-color: #ecf0f3;
+    border-radius: 12px;
+    background-color: map-get($color, "sub_brown");
     transition: 1.25s;
   }
   .login_container{
     display: none;
+    background-color: map-get($btn_color, "blue");
   }
   .switch{
     display: none;
   }
-  
+   
 }
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
 
 
 // 桌機
 @media  screen and (min-width:768px){
+  .form_button.button.submit{
+    border: 1px solid map-get($color, "sub_brown")  ;
+    border-width: 2px;
+    transition: 0.2s ease-in;
+    padding: 1px 15px;
+    border-radius: 25px;
+  }
+  .form_button.button.submit:hover{
+    background-color:map-get($color, "sub_brown") ;
+    color: #fff;
+  }
+  .switch_button.button.switch-btn{
+    border-radius: 25px;
+    padding: 2px 15px;
+  }
+
   .lo_or_si{
     display: none;
   }
