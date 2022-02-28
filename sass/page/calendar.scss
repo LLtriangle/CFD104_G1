@@ -126,7 +126,8 @@ td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
     }
 }
 
-#calendari td:hover {
+#calendari td:hover,
+#calendari td:focus {
     // border: 1px solid #82002D;
     background-color: #f5dfb0de;
     transform: scale(1.1);

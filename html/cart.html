@@ -14,7 +14,7 @@
 <body>
 
     <!-- <header></header> -->
-    <!-- @@include('layout/header.html') -->
+    @@include('layout/header.html')
 
     <div id="tabs" class="container">
 
@@ -42,7 +42,7 @@
                         <td><button @click="countNum(-1,index)" :disabled="item.isDisabled">-</button></td>
                         <td>{{item.count}}</td>
                         <td><button @click="countNum(1,index)">+</button></td>
-                        <td>{{total(item.price, item.count)}}</td>
+                        <td>{{(item.price* item.count)}}</td>
                         <td><button @click="countNum(0,index)">刪除</button></td>
                     </tr>
                     <!-- <tr v-if="product">
@@ -63,7 +63,7 @@
                                     class="radio-button"></span>宅配</label></td>
                         <td></td>
                         <td></td>
-                        <td>80</td>
+                        <td>70</td>
                     </tr>
                     <tr>
                         <td class="left" colspan="3"><input type="radio" v-model="delivery" value="7-11超商取貨付款"
@@ -71,7 +71,7 @@
                                     class="radio-button"></span>7-11超商取貨付款</label></td>
                         <td></td>
                         <td></td>
-                        <td>70</td>
+                        <td>80</td>
                     </tr>
                     <tr>
                         <td class="left" colspan="3"><input type="radio" v-model="delivery" value="全家超商取貨付款" id="plan3"
@@ -79,14 +79,22 @@
                                     class="radio-button"></span>全家超商取貨付款</label></td>
                         <td></td>
                         <td></td>
-                        <td>70</td>
+                        <td>90</td>
                     </tr>
                     <tr>
                         <td colspan="2">優惠碼輸入:</td>
-                        <td colspan="3"><input type="text" maxlength="11"></td>
-                        <td>{{coupon}}</td>
+                        <td colspan="3">
+                            <input type="text" maxlength="11" v-model="coupon"
+                            @change="" placeholder="請輸入折扣碼">
+                        </td>
+                        <td colspan="2" class="left" >{{show_coupon}}</td>
+                    </tr>
+                    <tr>
+                        <td>總金額</td>
+                        <td>{{total_all}}</td>
                     </tr>
                 </table>
+
                 <div class="space">
                     <button>繼續購物</button>
                     <button v-on:click="activetab='2'">下一步</button>
@@ -170,7 +178,7 @@
                     </tr>
                     <tr>
                         <td>總金額:</td>
-                        <td>{{total}}</td>
+                        <td>{{total_all}}</td>
                     </tr>
                 </table>
                 <div class="space">
@@ -208,7 +216,7 @@
                 delivery: '宅配',
                 payment: '',
                 name: '',
-                coupon: 0,
+                coupon: '',
                 credit_card_png: ['img/visa.png','img/mastercard.png'],
                 isDisabled: true,
                 years: [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
@@ -274,16 +282,55 @@
                         ];
                     }
                 },
-                total(price, count) {
-                    return parseInt(price) * parseInt(count)
-                },
+                // total(price, count) {
+                //     return parseInt(price) * parseInt(count)
+                // },
             },
             computed: {
-                // total() {
-                //     return parseInt(this.price) * parseInt(this.count)
-                // },
-                product() {
-                    return parseInt(this.count)
+                total_all(){               
+                    if(this.coupon === "b"){
+                        return (this.list[0].price*this.list[0].count)*(this.param)+this.fee;
+                    }else if(this.coupon === "a" || this.coupon === "c"){
+                        return (this.list[0].price*this.list[0].count)+(this.param)+this.fee;
+                    }
+                    else{
+                        return this.list[0].price*this.list[0].count+this.fee;
+                    }
+                },
+
+                // 運費
+                fee() {
+                    if(this.delivery === "宅配"){
+                        return 70
+                    }else if(this.delivery === "7-11超商取貨付款"){
+                        return 80
+                    }else if(this.delivery === "全家超商取貨付款"){
+                        return 90
+                    }
+                },
+                // 折扣碼顯示
+                show_coupon(){
+                    if(this.coupon === "a"){
+                        return "折扣100元"
+                    }else if(this.coupon === "b"){
+                        return "8折"
+                    }else if(this.coupon === "c"){
+                        return "折扣90元"
+                    }else if(this.coupon === ""){
+                        return ""
+                    }else{
+                        return "無效"
+                    }
+                },
+                // 折扣參數
+                param(){
+                    if(this.coupon === "a"){
+                        return -100
+                    }else if(this.coupon === "b"){
+                        return 0.8
+                    }else if(this.coupon === "c"){
+                        return -90
+                    }
                 },
             },
         });
