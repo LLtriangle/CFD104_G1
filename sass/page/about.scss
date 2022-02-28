@@ -290,22 +290,23 @@ screen and (max-width:992px)
                 border-radius: 20px;
                 box-shadow: 0px 10px 32px rgba(23, 40, 82, .6);
                 margin: auto;
+                position: relative;
                 &::before,
                 &::after{
                     cursor: pointer;
                     transition: .5s;
                     content: '';
                     position: absolute;
-                    top: 35%;
-                    right: 100px;
-                    transform: translate(-2px,-50%) rotate(45deg);
+                    top: 0;
+                    right: 0;
+                    transform: translate(-20px,30px) rotate(45deg);
                     width: 25px;
                     height: 3px;
                     border-radius: 3px;
                     background-color:  map-get($color,"sub_blue");
                 }
                 &::after{
-                    transform: translate(-2px,-50%) rotate(-45deg);
+                    transform: translate(-20px,30px) rotate(-45deg);
                 }
                 h3{
                     box-sizing: border-box;
