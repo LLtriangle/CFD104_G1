@@ -461,4 +461,13 @@ textarea {
             }
         }
     }
+
+    .form_item.upload_pics{
+        display: block;
+        .your_pics{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
 }

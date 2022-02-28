@@ -121,6 +121,7 @@ button{
     max-width: 820px; 
     min-width: 420px;
     margin: 40px auto;
+    margin-top: 92px; // 推header
     font-family: $font_family;
     font-size: 0.9em;
     color: map-get($color, 'main');
