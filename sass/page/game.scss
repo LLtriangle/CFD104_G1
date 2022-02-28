@@ -2,7 +2,6 @@
 
 
 .text_ill{
-    // display: none;
     .welcome{
         max-width: 980px;
         box-sizing: border-box;
@@ -68,21 +67,29 @@
         text-align: center;
         overflow: hidden;
         .pic{
-            &:nth-of-type(1) img:nth-of-type(2){
+            img:nth-of-type(2){
                 transform: rotate(90deg);
             }
-            &:nth-of-type(4) img{
-                box-sizing: border-box;
-                width: 60px;
-                padding: 5px;
-                background: url("../img/game_pullbox.png") center/cover ;
-            }
+            // &:nth-of-type(4) img{
+            //     box-sizing: border-box;
+            //     width: 60px;
+            //     padding: 5px;
+            //     background: url("../img/game_pullbox.png") center/cover ;
+            // }
         }
         button{
             position: absolute;
             left: 50%;
             bottom: 20px;
-            transform: translate(-50%);
+            transform: translate(-150%);
+            &:last-child{
+                transform: translate(50%);
+            }
+            &:disabled{
+                background-color: #aaa;
+                border: 1px solid #888;
+                color: #ddd;
+            }
         }
     }
     .pic{
@@ -323,9 +330,9 @@
     }
 }
 
-.text_ill{
-    display: none;
-}
+// .text_ill{
+//     display: none;
+// }
 .text_result{
     display: none;
     max-width: 980px;
