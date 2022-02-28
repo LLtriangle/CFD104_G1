@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @@include('layout/head.html')
+    <title>商品訂單</title>
+    <link rel="stylesheet" href="/css/member.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    @@include('layout/header.html')
+    <main>
+        <!-- 會員功能欄開始 ---------------------------->
+        <section class="data_column">
+            
+            <!-- 功能欄--各細項 data_button ------------------>
+            <div class="data_button">
+                <input type="checkbox" id="m_data">
+                <label for="m_data" class="id">
+                    <div class="mem">
+                        <div class="mem_icon">
+                            <img src="https://picsum.photos/100/100/?random=33">
+                        </div>
+                        <div class="mem_p">
+                            <p>王雪碧</p>
+                            <p>G1G1_cfd104</p>
+                        </div>
+                    </div>
+                </label>
+                <div class="con_data">
+                    <a href="">會員資料</a><br>
+                    <a href="">商品訂單</a><br>
+                    <a href="">服務預約</a><br>
+                    <a href="">收藏清單</a><br>
+                    <a href="">登出</a>
+                </div>
+            </div>
+        </section>
+        <!-- 會員功能欄結束 ---------------------------->
+
+        <!-- 會員資料顯示開始 -------------------------->
+        <section class="data_con">
+            <!-- 資料區的頭上槓槓 -->
+            <div class="title_color"></div>
+            <!-- 資料區的內容盒子 data_mem------------------>
+            <div class="data_mem">
+                <!-- <h3>商品訂單</h3> -->
+                <div class="memberOrder">
+                    <div class="memberOrderContent">
+                        <div class="memberGrid">
+                            <div class="memberGrid1">訂單編號</div>
+                            <div class="memberGrid2">日期</div>
+                            <div class="memberGrid3">金額</div>
+                            <div class="memberGrid4">付款方式</div>
+                            <div class="memberGrid5">付款狀態</div>
+                            <div class="memberGrid6">貨運狀態</div>
+                            <div class="memberGrid7">訂單狀態</div>
+                            <div class="memberGrid8">收件人資訊</div>
+                            <div class="memberGrid9"> 20220228 </div>
+                            <div class="memberGrid10"> 2022-02-28 </div>
+                            <div class="memberGrid11"> $111 </div>
+                            <div class="memberGrid12"> 取貨付款 </div>
+                            <div class="memberGrid13"> 已付款 </div>
+                            <div class="memberGrid14"> 已出貨 </div>
+                            <div class="memberGrid15"> 已完成 </div>
+                            <div class="memberGrid16 memberReceiverID">詳細資訊</div>
+                        </div>
+                    </div>
+            
+                    <div class="memberProgressAll">
+                        <div class="dot_box">
+                            <!-- 訂單進度點點 -->
+                            <div class="memberProgressDot">
+                                <div>
+
+                                </div>
+                                <div class="memberProgressDot_even1"></div>
+                                <div class="memberProgressDot_odd1"></div>
+                                <div class="memberProgressDot_even2"></div>
+                                <div class="memberProgressDot_odd2"></div>
+                                <div class="memberProgressDot_even3"></div>
+                                <div class="memberProgressDot_odd3 memberUnchecked"></div>
+                            </div>
+                            <!-- 訂單進度 -->
+                            <div class="memberProgressWord">
+                                <div class="memberWordCheck1">收到訂單</div>
+                                <div class="memberWordCheck2">訂單確認</div>
+                                <div class="memberWordCheck3">商品出貨</div>
+                                <div class="memberWordCheck4">商品送達</div>
+                            </div>
+                        </div>
+                        <!-- <div>
+                            <button class="memberOpenDetail">查看明細</button>
+                        </div> -->
+                    </div>
+                    <div class="memberOrderDetailHere">
+                        <div class="memberOrderDetailAll">
+                            <div class="memberOrderDetail">
+                                <div class="memberOrderD1">
+                                    <div>商品名稱</div>
+                                    <div>數量</div>
+                                    <div>價格</div>
+                                </div>
+                                <div class="memberOrderD2">
+                                    <img src="https://picsum.photos/40/40/?random=10">
+                                    <div>白日夢海綿架</div>
+                                    <div>1件</div>
+                                    <div>$490</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="memberOrderDetailAll">
+                            <div class="memberOrderDetail">
+                                <div class="memberOrderD1">
+                                    <div>商品名稱</div>
+                                    <div>數量</div>
+                                    <div>價格</div>
+                                </div>
+                                <div class="memberOrderD2">
+                                    <img src="https://picsum.photos/40/40/?random=12">
+                                    <div>小麋鹿木掛架</div>
+                                    <div>1件</div>
+                                    <div>$1480</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- <div class="receiverDetail" style="display: none;">
+                        <div>
+                            <p>收件人姓名：<input disabled="" type="text" value=" 1 " style="border: 2px solid transparent;"></p>
+                            <p>收件人電話：<input disabled="" type="text" value=" 1 " style="border: 2px solid transparent;"></p>
+                            <p>收件人地址：<input disabled="" type="text" value=" 1 " style="border: 2px solid transparent;"></p>
+                        </div>
+                        <button class="">確認</button>
+                    </div> -->
+                
+                </div>
+
+                
+            </div>
+        </section>
+        <!-- 會員資料顯示結束 -------------------------->
+    </main>
+    
+</body>
+</html>
