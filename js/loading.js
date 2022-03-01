@@ -4,7 +4,7 @@ $(document).ready(function(){
         y: -150,
         delay: 0,
         rotation: 90,
-        duration: 3,
+        duration: 2,
         ease: "bounce.out",
         opacity:0,
         // repeat: -1,
@@ -12,9 +12,9 @@ $(document).ready(function(){
     gsap.from('#left_up_box',{
         x: -10,
         y: -190,
-        delay: .6,
+        delay: .4,
         rotation: -50,
-        duration: 3,
+        duration: 2,
         ease: "bounce.out",
         opacity:0,
         // repeat: -1,
@@ -22,9 +22,9 @@ $(document).ready(function(){
     gsap.from('#right_bottom_box',{
         x: -30,
         y: -220,
-        delay: .3,
+        delay: .2,
         rotation: -50,
-        duration: 3,
+        duration: 2,
         ease: "bounce.out",
         opacity:0,
         // repeat: -1,
@@ -32,9 +32,9 @@ $(document).ready(function(){
     gsap.from('#right_up_box',{
         x: 10,
         y: -250,
-        delay: 1,
+        delay: .8,
         rotation: -90,
-        duration: 3,
+        duration: 2,
         ease: "bounce.out",
         opacity:0,
         // repeat: -1,
@@ -42,5 +42,5 @@ $(document).ready(function(){
 });
 
 window.addEventListener('load',function(){
-    $('#loading_box').delay(4000).slideUp(1000);
+    $('#loading_box').delay(1500).slideUp(700);
 });

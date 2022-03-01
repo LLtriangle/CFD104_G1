@@ -1,8 +1,11 @@
 @import  "../base/color";
 // 手機版
 h3{
-    line-height: 2;
-    margin-left: 40px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+p{
+    padding-top: 10px;
 }
 .prod_con{
     margin: auto;
@@ -10,12 +13,6 @@ h3{
     padding-top: 40px;
     .prod_row{
         width: 100%;
-        
-        // display: flex;
-        // flex-wrap: wrap;
-
-        // flex-direction: row-reverse;
-        //排列順序交換
         .prod_txt{
             margin: 10px auto 0 auto;
             p{
@@ -65,7 +62,6 @@ h3{
             }
         }
         .largeimg{
-            // width: 600px;
             margin: 10px 0px;
             img{
                 width: 100%;
@@ -74,7 +70,6 @@ h3{
         .prod_item{
         justify-content: space-between;
         display: flex;
-        // flex-wrap: wrap;
         width: 100%;
             .smallimg{
                 width: calc(100% / 3 - 20px);
@@ -82,7 +77,6 @@ h3{
             .prod_img{
                 margin: 10px 0px;
                 overflow: hidden;
-                // width: calc(25% - 20px);
                 img{
                     width: 100%;
                 }
@@ -92,10 +86,10 @@ h3{
             margin-top: 80px;
         }
     }
+    // 商品介紹
     .prod_derow{
         width: 100%;
         justify-content: space-between;
-        // display: flex;
         margin: 50px 0px;
         .prod_warpper{
             width: 100%;
@@ -110,10 +104,8 @@ h3{
                 margin: auto;
                 h3{
                     margin-top: 20px;
-                    line-height: 2;
                 }
                 p{
-                    line-height: 1.5;
                     text-align: justify;
                 }
             }
@@ -122,6 +114,7 @@ h3{
     #derow_change{
         flex-direction: row-reverse;
     }
+    // 商品規格
     .prod_sprow{
         width: 90%;
         margin: auto;
@@ -129,16 +122,21 @@ h3{
             width: 100%;
             margin: 50px 0px;
         }
+        .img_com{
+            display: none;
+        }
+        .img_cell{
+            display: block;
+        }
     }
+    // 推薦商品
     .prod_rerow{
         width: 100%;
-        // display: flex;
         margin-top: -50px;
         .reitem_btn{
             visibility: hidden;
         }
         .prod_reitem{
-            // width: 80%;
             margin: 20px 20px ;
             .btn_btn_box{
                 padding: 10px 10px 10px 30px;
@@ -149,12 +147,9 @@ h3{
             }
             img{
                 width: 100%;
-                // overflow: hidden;
                 border-radius: 10px 10px 0 0;
             }
             h3{
-                // margin: 10px 0px;
-                // padding: 15px 0 10px;
                 text-align: start;
                 margin-left: 10px;
             }
@@ -172,35 +167,19 @@ h3{
         }
     }
 } 
-// .prod_con{
-//     max-width: 1200px;
-//     display: flex;
-//     flex-wrap: wrap;
-//     // box-sizing: border-box;
-//     .prod_row{
-//         // margin: 10px;
-//         // display: flex;
-//         .prod_img{
-//             img{
-//                 width: 100%;
-//             }
-//         }  
-//     }
-// }
-// .prod_txt{
-//     margin: 0 20px;
-// }
-// .prod_btn{
-//     display: flex;
-//     justify-content: center;
-//     .btn_btn.bl{
-//         margin: 0 5px;
-//     }
-// }
+.pointer{
+    cursor: pointer;
+}
+.htop1{
+    font-size: 32px;
+}
+.htop2{
+    font-size: 32px;
+}
+
 //桌機版
 @media (min-width: 1200px) {
     h3{
-        line-height: 2;
         margin: auto;
         max-width: 1200px;
     }
@@ -210,7 +189,6 @@ h3{
         margin-bottom: 150px;
         display: flex;
         flex-wrap: wrap;
-        // box-sizing: border-box;
         padding-top: 60px;
         .prod_row{
             width: calc(50% );
@@ -218,12 +196,10 @@ h3{
             .prod_txt{
                 padding: 30px;
                 h3{
-                    // line-height: 2;
                     padding-left: 20px;
                 }
                 p{
-                    margin-top: 50px;
-                    // line-height: 1.5;
+                    margin-top: 40px;
                 }
                 .prod_price{
                     margin-top: 20px;
@@ -231,13 +207,9 @@ h3{
                 .prod_amount{
                     padding: 20px;
                     display: flex;
-                    // height: 40px;
                     justify-content: flex-start;
                     p{
                         margin-top: 10px;
-                        // font-weight: normal;
-                        // padding-top: 10px;
-                        // padding-right: 20px;
                     }
                     input[type=text]{
                         background-color: #fff;
@@ -247,8 +219,6 @@ h3{
                     input[type=button]{
                         background-color: #fff;
                         border: 1px solid;
-                        // border: 1px solid map-get($color, "border" );
-                        // transition: 0.2s ease-in;
                         box-shadow: none;
                         border-radius: 50%;
                         font-size: 20px;
@@ -268,8 +238,11 @@ h3{
                 }
             }
             .btn_btn_box{
-                padding: 0 100px;
+                padding: 10px 40px;
                 margin-top: 20px;
+                button{
+                    margin-left: 20px;
+                }
             }
             .largeimg{
                 width: 600px;
@@ -281,7 +254,6 @@ h3{
             .prod_item{
             justify-content: space-between;
             display: flex;
-            // flex-wrap: wrap;
             width: 100%;
                 .smallimg{
                     width: calc(100% / 3 - 20px);
@@ -292,7 +264,6 @@ h3{
                 .prod_img{
                     margin: 10px 0px;
                     overflow: hidden;
-                    // width: calc(25% - 20px);
                     img{
                         width: 100%;
                     }
@@ -305,6 +276,7 @@ h3{
                 }
             }
         }
+        // 商品介紹
         .prod_derow{
             width: 100%;
             justify-content: space-between;
@@ -312,6 +284,7 @@ h3{
             margin: 50px 0px;
             .prod_warpper{
                 width: 50%;
+                margin-top: -60px;
                 img{
                     width: 90%;
                     display: block;
@@ -335,25 +308,30 @@ h3{
         #derow_change{
             flex-direction: row-reverse;
         }
+        // 商品規格
         .prod_sprow{
             width: 80%;
             margin: auto;
+            margin-top: -60px;
             img{
                 width: 100%;
                 margin: 50px 0px;
             }
+            .img_com{
+                display: block;
+            }
+            .img_cell{
+                display: none;
+            }
         }
+        // 推薦商品
         .prod_rerow{
             width: 100%;
             display: flex;
-            margin-top: 20px;
+            margin-top: -10px;
             .prod_reitem{
                 width: calc(100% / 4 - 20px);
                 margin: auto 10px;
-                // .prod_btn{
-                //     // width: 3%;
-                // }
-                
                 .btn_btn_box{
                     padding: 15px;
                     margin: auto;
@@ -368,12 +346,9 @@ h3{
                 }
                 img{
                     width: 100%;
-                    // overflow: hidden;
                     border-radius: 10px 10px 0 0;
                 }
                 h3{
-                    // margin: 10px 0px;
-                    // padding: 15px 0 10px;
                     text-align: start;
                     margin-left: 10px;
                     font-size: 16px;
@@ -405,4 +380,14 @@ h3{
             }
         }
     }        
+}
+.htop1{
+    font-size: 34px;
+    margin-top: 50px;
+    margin-bottom: -30px;
+}
+.htop2{
+    font-size: 34px;
+    margin-top: 40px;
+    margin-bottom: -20px;
 }
