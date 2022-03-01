@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @@include('layout/head.html')
     <title>關於我們</title>
-    <link rel="stylesheet" href="/css/about.css">
     <link rel="stylesheet" href="OwlCarousel/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="OwlCarousel/assets/owl.theme.default.min.css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
+    <link rel="stylesheet" href="/css/about.css">
 </head>
 <body>
     @@include('layout/header.html')
@@ -27,11 +28,11 @@
 			</div>
 			<div>
 				<div class="pic">
-					<img src="https://picsum.photos/750/400/?random=10" alt="banner圖">
+					<img src="img/about.jpg" alt="banner圖">
 				</div>
 				<div class="txt">
-					<p>收easy - 收納東西好easy</p>
-					<p>有了收easy 從此生活 So easy</p>
+					<p>努力用心，為您服務</p>
+					<p>您的始終滿意是我們的執着追求</p>
 				</div>
 			</div>
 		</section>
@@ -48,17 +49,17 @@
                     <p>假文二號來報到了</p>
                     <p>假文三號到,四號睡過頭了</p>
                     <p>我是假文五號,下午想請假,四號下午會來</p>
-                    <p>A說B在說謊，</p>
+                    <!-- <p>A說B在說謊，</p>
                     <p>B 說 C 在說謊，</p>
                     <p>C 說 A、B 都在說謊。</p>
-                    <p>請問到底誰在說謊？</p>
+                    <p>請問到底誰在說謊？</p> -->
                 </div>
                 <div class="small_img owl-carousel owl-theme">
-                    <div class="item" ><img src="https://picsum.photos/300/180/?random=10"></div>
-                    <div class="item"><img src="https://picsum.photos/300/180/?random=11"></div>
-                    <div class="item"><img src="https://picsum.photos/300/180/?random=12"></div>
-                    <div class="item"><img src="https://picsum.photos/300/180/?random=13"></div>
-                    <div class="item"><img src="https://picsum.photos/300/180/?random=14"></div>
+                    <div class="item" ><img src="img/about_belief_1.jpg"></div>
+                    <div class="item"><img src="img/index_landing.jpg"></div>
+                    <div class="item"><img src="img/index_fold.jpeg"></div>
+                    <div class="item"><img src="img/index_shirt.jpeg"></div>
+                    <div class="item"><img src="img/index_suit.jpeg"></div>
                     
                 </div>
                 
@@ -74,73 +75,94 @@
         </section>
         <!-- 我們的團隊 -->
         <section class="about_team">
-            <h3 class="phone_title">｜團隊整理師｜</h3>
-            <div class="circle_big_img" id="mem_1">
-                <div class="circle">我是藏起來的圈圈</div>
-                <!-- <div class="change_img">
-                    <img src="img/Kurinachan_3.jpg">
+            <h3 class="teams_title">｜團隊整理師｜</h3>
+            
+            <div class="circle_big_img" id="container">
+                <div class="left_right">
+                    <!-- 左按鈕 -->
+                    <a class="left" href="">
+                        <img src="https://cdn-icons-png.flaticon.com/512/892/892512.png" alt="left">
+                    </a>
+                    <!-- 右按鈕 -->
+                    <a class="right" href="">
+                        <img src="https://cdn-icons-png.flaticon.com/512/892/892528.png" alt="right">
+                    </a>
                 </div>
-                <div class="change_img">
-                    <img src="img/Nikuchan.jpg">
-                </div> -->
-                <div class="change_img">
-                    <img src="img/Marishimasen.jpg">
+                <div class="circle">我是藏起來的圈圈</div>
+                <!-- 桌機的秀大圖 -->
+                <div class="large">
+                    <img src="img/Kurinachan_3.jpg"  id="large">
+                </div>
+                <!-- rwd整理師的大圖 -->
+                <div class="img_box">
+                    <div class="change_img b-tab active"  id="mem_1">
+                        <img src="img/Kurinachan_3.jpg">
+                    </div>
+                    <div class="change_img b-tab"  id="mem_2">
+                        <img src="img/Nikuchan.jpg">
+                    </div>
+                    <div class="change_img b-tab"  id="mem_3">
+                        <img src="img/Marishimasen.jpg">
+                    </div>
                 </div>
             </div>
             <!-- 整理師基本介紹 -->
             <div class="introduce" id="lightBox" >
-                <div class="introduce_txt b-tab active" id="cancel">
+                <div v-if="emp1" class="introduce_txt b-tab active" id="cancel">
                     <h3>｜整理師 : 麻里不會｜</h3>
                     <p>日本甚麼甚麼收納協會1級認證</p>
                     <p>個人風格：重視效率與利用行為科學打造容易做到的整理收納</p>
                     <p>專長領域：企業與倉儲整理收納術、個人行為規劃整合</p>
+                    
                 </div>
-                <div class="introduce_txt b-tab" id="cancel">
+                <div v-if="emp2" class="introduce_txt b-tab" id="cancel">
                     <h3>｜整理師 : 末牛子｜</h3>
                     <p>日本甚麼甚麼收納協會1級認證</p>
                     <p>個人風格：重視效率與利用行為科學打造容易做到的整理收納</p>
                     <p>專長領域：企業與倉儲整理收納術、個人行為規劃整合</p>
                 </div>
-                <div class="introduce_txt b-tab" id="cancel" >
+                <div v-if="emp3" class="introduce_txt b-tab" id="cancel" >
                     <h3>｜整理師 : 潔癖子｜</h3>
                     <p>日本甚麼甚麼收納協會1級認證</p>
                     <p>個人風格：重視效率與利用行為科學打造容易做到的整理收納</p>
                     <p>專長領域：企業與倉儲整理收納術、個人行為規劃整合</p>
                 </div>
-                <div class="circle_small_card">
+
+                <!-- 桌機小圖 -->
+                <div class="circle_small_card small">
                     <div class="introduce_card">
                         <div class="card_img">
-                            <img src="img/Kurinachan_3.jpg">
+                            <img src="img/Kurinachan_3.jpg"/>>
                         </div>
                         <div class="card_txt">
                             <p>麻里不會</p>
                             <!-- <span>日本甚麼甚麼收納協會1級認證</span> -->
                         </div>
-                        <a href="#orange" class="black_hov b-nav-tab active" data-tab="orange">
+                        <a @click="emp1=true,emp2=false,emp3=false" href="#orange" class="black_hov b-nav-tab active" data-tab="orange">
                             <p>More</p>
                         </a>
                     </div>
                     <div class="introduce_card">
                         <div class="card_img">
-                            <img src="img/Nikuchan.jpg">
+                            <img src="img/Nikuchan.jpg"/>>
                         </div>
                         <div class="card_txt">
                             <p>末牛子</p>
                             <!-- <span>日本甚麼甚麼收納協會1級認證</span> -->
                         </div>
-                        <a href="#green" class="black_hov b-nav-tab" data-tab="green">
+                        <a @click="emp1=false,emp2=true,emp3=false" href="#green" class="black_hov b-nav-tab" data-tab="green">
                             <p>More</p>
                         </a>
                     </div>
                     <div class="introduce_card">
                         <div class="card_img">
-                            <img src="img/Marishimasen.jpg">
+                            <img src="img/Marishimasen.jpg"/>>
                         </div>
                         <div class="card_txt">
                             <p>潔癖子</p>
                             <!-- <span>日本甚麼甚麼收納協會1級認證</span> -->
                         </div>
-                        <a href="#blue" class="black_hov b-nav-tab" data-tab="blue">
+                        <a @click="emp1=false,emp2=false,emp3=true" href="#blue" class="black_hov b-nav-tab" data-tab="blue">
                             <p>More</p>
                         </a>
                     </div>
@@ -154,11 +176,11 @@
                 <h3>｜聯絡資訊｜</h3>
                 <div class="address">
                     <p>聯絡地址:</p>
-                    <span>xxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+                    <span>320桃園市中壢區復興路46號8樓</span>
                 </div>
                 <div class="phone">
                     <p>聯絡電話:</p>
-                    <span>xxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+                    <span>(02) 8847-6565</span>
                 </div>
                 <div class="email">
                     <p>聯絡信箱:</p>
@@ -198,7 +220,7 @@
 
             var can = document.getElementById("cancel");//裡面的取消
 
-            var out = document.getElementById("mem_1");//外面的點擊圖片,點下喊出燈箱的辣個
+            var out = document.getElementById("mem_1","mem_2","mem_3");//外面的點擊圖片,點下喊出燈箱的辣個
 
             out.onclick = function(){
                 libox.style="display:block";
@@ -211,7 +233,7 @@
         </script>
 
         <!-- 介紹切換 -->
-        <script>
+        <!-- <script>
             function Tabs() {
                 var bindAll = function() {
                     var menuElements = document.querySelectorAll('[data-tab]');
@@ -240,9 +262,45 @@
 
             var connectTabs = new Tabs();
 
+        </script> -->
+
+
+        <!-- 大整理師切換圖 -->
+        <script>
+            function showLarge(e){
+                // let small = e.target;
+                // document.getElementById("large").src = small.src;
+                // console.log($(this).parent().children('.card_img').children().attr('src'));
+                $("#large").attr('src',$(this).parent().children('.card_img').children().attr('src'));
+            }
+
+            function init(){
+                let smalls = document.querySelectorAll(".small .introduce_card .black_hov");//要有小數點
+                for(let i=0;i<smalls.length;i++){
+                    smalls[i].onclick = showLarge;
+                }
+            }
+            window.addEventListener("load", init, false);
         </script>
 
-        
+        <!-- rwd左右切圖 -->
+        <script>
+            
+
+        </script>
+
+        <!-- 切換介紹 -->
+        <script>
+            new Vue({
+                el:'#lightBox',
+                data:{
+                    emp1:true, // 預設
+                    emp2:false, // 預設
+                    emp3:false, // 預設
+                }
+                
+            });
+        </script>
     </main>
 
     @@include('layout/footer.html')
