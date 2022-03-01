@@ -133,7 +133,6 @@ table.creditCard{
 }
 
 
-
 .choose_emp{
     display: flex;
     select{
@@ -154,7 +153,7 @@ table.creditCard{
         display: flex;
     }
 }
-    
+
 // 更改input[type=text]樣式
 // input[type=text],input[type=email]{
 //     border: 0.3px solid map-get($btn_color, 'brown');
@@ -338,14 +337,32 @@ table.creditCard{
 
 // 下拉式選單樣式
 select{
+    font-size: initial;
+    background-color: white;
     border: none;
     box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
     border-radius: 10px;
     padding: 5px;
+    min-width: 150px;
+    // reset
+    -webkit-appearance: none;  /* Safari 和 Chrome，常用於iOS下移除內建樣式 */
+    -moz-appearance: none;     /* FireFox */
+    appearance: none;
+    // 加上下拉三角形
+    background-image: url("img/arrow.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: calc(100% - 20px);
+    background-size: 0.9rem 0.9rem;
+
     &:focus{
         outline: none;
         box-shadow: 1px 1px 5px map-get($color, 'main');
     }
+}
+
+input,textarea{
+    font-size: initial;
 }
 // 選地址
 .choose_add{
@@ -436,7 +453,33 @@ textarea {
             }
         }
     }
-
+}
+// 信用卡
+.payment{
+    margin: 30px auto;
+    width: 100%;
+    .ccard{
+        width: 100%;
+        .c_pic{
+            width: 20%;
+        }
+        .table_ccard{
+            width: 80%;
+            box-sizing: border-box;
+            margin-left: 30px;
+            div{
+                margin: 20px 0;
+                h4{
+                    font-size: 18px;
+                    min-width: 108px;
+                    margin-right: 10px;
+                }
+                select{
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
 }
 
 // RWD
