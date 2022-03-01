@@ -55,6 +55,7 @@ th{
                 margin: auto;
             }
             .data_button{
+                margin: auto;
                 // display: flex;
                 text-align: center;
                 flex-wrap: wrap;
@@ -63,7 +64,9 @@ th{
                     display: none;
                     &:checked{
                         ~label{
-                            
+                            .up_down{
+                                transform:rotate(0deg);
+                            }
                         }
                         ~.con_data{
                             line-height: 1.5em;
@@ -80,18 +83,27 @@ th{
                         font-size: 24px;
                         width: 100%;
                         cursor: pointer;
-                        // &::before,
-                        // &::after{
+                        .up_down{
+                            margin-top: 30px;
+                            margin-left: 10px;
+                            width: 30px;
+                            height: 30px;
+                            transition: .5s;
+                            transform:rotate(180deg);
+                        }
+                        // &::before
+                        // {
                         //     transition: .5s;
                         //     content: '';
                         //     position: absolute;
-                        //     top: 50%;
-                        //     right: 10px;
-                        //     transform: translate(-2px,-50%) rotate(0deg);
-                        //     width: 20px;
-                        //     height: 3px;
-                        //     border-radius: 3px;
-                        //     background-color:  map-get($color,"sub_blue");
+                        //     top: 120px;
+                        //     right: 118px;
+                        //     transform: translate(-2px,-50%) rotate(45deg);
+                        //     border:1px solid black;
+                        //     border-width: 0 2px 2px 0;
+                        //     display: inline-block;
+                        //     padding: 10px;
+                            
                         // }
                         // &::after{
                         //     transform: translate(-2px,-50%) rotate(-90deg);
@@ -154,11 +166,12 @@ th{
                     position: relative;
                     button{
                         position: absolute;
-                        right: 0;
+                        right: 3%;
                         // bottom: 0;
+                        padding: 4px 10px;
                     }
                     .item_box{
-                        
+                        margin: 15px 0px;
                         label{
                             margin: 20px auto;
                             
@@ -229,7 +242,15 @@ th{
                 }
             }
         }
-        
+        .data_button{
+            .id{
+                .mem{
+                    .up_down{
+                        display: none;
+                    }
+                }
+            }
+        }
         .data_con{
             width: 70%;
             height: calc(100vh - 100px);
@@ -270,7 +291,7 @@ th{
                     line-height: 3;
                     box-sizing: border-box;
                     padding-left: 20px;
-                    padding-bottom: 60px;
+                    padding-bottom: 90px;
                     position: relative;
                     // z-index: -1;
                     p{
