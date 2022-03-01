@@ -256,24 +256,25 @@ screen and (max-width:992px)
         
         .circle_big_img{
             width: 60%;
-            .left_right{
-                .left{
-                    img{
-                        position:absolute;
-                        width: 50px;
-                        height: 50px;
-                        top: 50%;
-                        left: 5%;
-                    }
+            .btn_mem{
+                min-width: 300px;
+                position:absolute;
+                top: 90%;
+                left: 50%;
+                transform: translate(-50%, 0%);
+                .rwd_mem_1{
+                    width: 100px;
+                    height: 50px;
                 }
-                .right{
-                    img{
-                        position:absolute;
-                        width: 50px;
-                        height: 50px;
-                        top: 50%;
-                        right: 5%;
-                    }
+                .rwd_mem_2{
+                    // position:absolute;
+                    width: 90px;
+                    height: 50px;
+                }
+                .rwd_mem_3{
+                    // position:absolute;
+                    width: 90px;
+                    height: 50px;
                 }
     
             }
@@ -294,17 +295,17 @@ screen and (max-width:992px)
                 
                 @keyframes picpic{
                     0%{
-                        transform: scale(.9);
+                        transform: scale(.8);
                     }
                     50%{
-                        transform: scale(1);
+                        transform: scale(.9);
                     }
                     100%{
-                        transform: scale(.9);
+                        transform: scale(.8);
                     }
                 }
                 img{
-                    animation-duration: 5s;
+                    animation-duration: 10s;
                     animation-name: picpic;
                     animation-iteration-count:infinite;
                     border-radius: 20px;
@@ -413,7 +414,7 @@ screen and (max-width:992px)
         max-width: 100%;
         }
     }
-    .left_right{
+    .btn_mem{
         display: none;
     }
     .txt_box{
