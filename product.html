@@ -28,6 +28,7 @@
 	<script src="https://kit.fontawesome.com/120f989b39.js" crossorigin="anonymous"></script>
 	<!-- 綠超人 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
     <title>商品內頁</title>
 
     <link rel="stylesheet" href="css/style.css">
@@ -84,7 +85,7 @@
                         </ul>
                     </div>
                     <div class="menu_slogan_info">
-                        <p class="slogan">收納整理不再是煩惱，收Easy 幫你找回理想生活</p>
+                        <p class="menu_slogan">收納整理不再是煩惱，收Easy 幫你找回理想生活</p>
                         <div class="menu_infos">
                             <ul class="menu_info_list">
                                 <li class="menu_info fb">
@@ -136,6 +137,27 @@
 		<div class="pic"><img src="img/SoEazy.png" alt=""></div>
     </div> -->
 </header>
+
+<!-- <script>
+    //header 下滑消失，上滑出現
+    gsap.registerPlugin(ScrollTrigger);
+
+    let showAnim = gsap.from("header", { 
+        yPercent: -100,
+        paused: true,
+        duration: 0.2
+        }).progress(1);
+
+        ScrollTrigger.create({
+        start: "top top",
+        end: 99999,
+        onUpdate: (self) => {
+            self.direction === -1 ? showAnim.play() : showAnim.reverse()
+        }
+    });
+    
+</script> -->
+
 
 
     <!-- 橫幅 -->
