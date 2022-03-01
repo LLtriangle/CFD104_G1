@@ -353,7 +353,7 @@ header{
     #loading_svg {
         width: 100vw;
         height: 100vh;
-        animation: svgOut .5s 5s;
+        animation: svgOut .5s 3.2s;
         animation-fill-mode: forwards;
         polyline,
         line{
@@ -401,7 +401,7 @@ header{
         top: 50%;
         transform: translate(-52% ,-43.2%);
         opacity: 0;
-        animation: picIn 2s 4.5s;
+        animation: picIn .5s 3s;
         animation-fill-mode: forwards;
         img{
             width: 100%;
