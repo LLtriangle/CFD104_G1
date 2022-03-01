@@ -32,6 +32,7 @@ function uploadFile(){
             // 刪除照片
             function delete_mypic(e){
                 let div_img = e.target.parentNode; 
+                // console.log(e.target);
                 div_img.remove();
 
                 if(myimgs.length == 2){

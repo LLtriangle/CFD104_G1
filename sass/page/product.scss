@@ -86,6 +86,7 @@ p{
             margin-top: 80px;
         }
     }
+    // 商品介紹
     .prod_derow{
         width: 100%;
         justify-content: space-between;
@@ -113,6 +114,7 @@ p{
     #derow_change{
         flex-direction: row-reverse;
     }
+    // 商品規格
     .prod_sprow{
         width: 90%;
         margin: auto;
@@ -120,7 +122,14 @@ p{
             width: 100%;
             margin: 50px 0px;
         }
+        .img_com{
+            display: none;
+        }
+        .img_cell{
+            display: block;
+        }
     }
+    // 推薦商品
     .prod_rerow{
         width: 100%;
         margin-top: -50px;
@@ -267,6 +276,7 @@ p{
                 }
             }
         }
+        // 商品介紹
         .prod_derow{
             width: 100%;
             justify-content: space-between;
@@ -298,6 +308,7 @@ p{
         #derow_change{
             flex-direction: row-reverse;
         }
+        // 商品規格
         .prod_sprow{
             width: 80%;
             margin: auto;
@@ -306,7 +317,14 @@ p{
                 width: 100%;
                 margin: 50px 0px;
             }
+            .img_com{
+                display: block;
+            }
+            .img_cell{
+                display: none;
+            }
         }
+        // 推薦商品
         .prod_rerow{
             width: 100%;
             display: flex;
