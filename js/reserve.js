@@ -41,6 +41,7 @@ function uploadFile(){
                 if(myimgs.length == 2 && $(window).width()<830){
                     your_pics.insertBefore(file_label_rwd,div_myimgs);
                 };
+                document.getElementById("d_pic_img").src = "";
 
             };
 
@@ -58,8 +59,6 @@ function uploadFile(){
                 // 第二頁 顯示照片第一張在明細
                 // console.log(document.getElementById("d_pic_img").src);
                 document.getElementById("d_pic_img").src = myimgs[0].src;
-                // dp_img.src = myimgs[0].src;
-                // document.getElementsByClassName("d_pic")[0].appendChild(dp_img);
             }
         }
         reader.readAsDataURL(file);
