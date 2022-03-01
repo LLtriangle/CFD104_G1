@@ -274,12 +274,12 @@
                     <div class="center"><h3>付款資訊</h3></div>
                     <div class="ccard flex">
                         <div class="c_pic center">
-                            <img src="img/visa.gif">
+                            <img :src="ccard_src">
                         </div>
                         <div class="table_ccard">
                             <div class="flex">
-                                <h4 class="center">信用卡卡號</h4>
-                                <select name="信用卡" v-model="cCard">
+                                <h4 class="left">信用卡卡號</h4>
+                                <select name="信用卡" v-model="cCard" @change="change_src">
                                     <option value="Visa" id="visa">Visa</option>
                                     <option value="Mastercard" id="mastercard">Mastercard</option>
                                 </select>
@@ -287,12 +287,12 @@
                                 @change="ValidateCreditCardNumber(credit_card)" maxlength="16" />
                             </div>
                             <div class="flex">
-                                <h4 class="center">驗證碼</h4>
+                                <h4 class="left">驗證碼</h4>
                                 <input type="text" maxlength="3" size="9">
                                 
                             </div>
                             <div class="flex">
-                                <h4 class="center">信用卡到期日</h4>
+                                <h4 class="left">信用卡到期日</h4>
                                 <select name="年" v-model="selectedYear">
                                     <option v-for="year in years">{{year}}年</option>
                                 </select>
@@ -301,7 +301,7 @@
                                 </select>
                             </div>
                             <div class="flex">
-                                <h4 class="center">付款金額</h4>
+                                <h4 class="left">付款金額</h4>
                                 <p class="price">{{total}}</p>
                             </div>
                         </div>
@@ -313,7 +313,8 @@
                         <ion-icon name="arrow-back-outline"></ion-icon>
                         返回
                     </button>
-                    <button class="center" v-on:click="activetab='3'" type="button">下一步<ion-icon name="arrow-forward-outline"></ion-icon>
+                    <button class="center" v-on:click="activetab='3'" type="button"  id="submit">確認付款
+                    <!-- <ion-icon name="arrow-forward-outline"></ion-icon> -->
                         
                     </button>
                 </div>
@@ -322,7 +323,7 @@
 
             <div v-show="activetab ==='3'" class="tabcontent">
                 <div class="details">
-                    <div class="center"><h3>預約資訊</h3></div>
+                    <div class="center"><h3>預約明細</h3></div>
                     <div class="datails_info flex">
                         <table class="d_table">
                             <tr>
@@ -346,11 +347,11 @@
                             </tr>
                             <tr>
                                 <td>預約日期</td>
-                                <td id="showDate"></td>
+                                <td>{{dataDate}}</td>
                             </tr>
                             <tr>
                                 <td>預約時段</td>
-                                <td id="showPeriod">{{period}}</td>
+                                <td>{{dataTime}}</td>
                             </tr>
                             <tr v-show="need">
                                 <td>需求</td>
@@ -360,22 +361,33 @@
                                 <td>價格</td>
                                 <td>{{total}}</td>
                             </tr>
+                            <tr>
+                                <td>信用卡種類</td>
+                                <td>{{cCard}}</td>
+                            </tr>
+                            <tr>
+                                <td>信用卡號碼</td>
+                                <td>{{credit_card}}</td>
+                            </tr>
                         </table>
                         <div class="d_pic center" id="d_pic">
                             <img id="d_pic_img" src="https://picsum.photos/300/200/?random=10">
-                    
                         </div>
                     </div>
                 </div>
                         
-                <div class="btn_div between">
-                    <button class="center" v-on:click="activetab='2'" type="button">
-                        <ion-icon name="arrow-back-outline"></ion-icon>返回
-                    </button>
-                    <button type="button" id="submit">送出</button>
+                <div class="btn_div between" style="margin: 30px auto;">
+                    <a href="mall.html">
+                        <button class="center" type="button">
+                            <!-- <ion-icon name="arrow-back-outline"></ion-icon> -->
+                            前往商城
+                        </button>
+                    </a>
+                    <a href="index.html"><button type="button">回到首頁</button></a>
                 </div>
                 
             </div>
+            
         </div>
 
     </div>
@@ -389,7 +401,6 @@
     function $id(id){
         return document.getElementById(id);
     }; 
-    // console.log($id("cardNum"));
 
     let vm = new Vue({
         el: '#tabs',
@@ -419,10 +430,11 @@
             // myimg:'',
             dataTime: null,
             dataDate: null,
+            ccard_src:'',
         },
         watch: {
             credit_card(nVal, oVal) {
-                console.log(nVal, oVal);
+                // console.log(nVal, oVal);
                 // this.ValidateCreditCardNumber(nVal);
             },
         },
@@ -678,15 +690,15 @@
         // },
         methods: {
             getData() {
-                // console.log('getData')
+                // 網頁版成功
                 this.dataDate = document.getElementById('selectedDate').innerText;
-                
-                if (window.innerWidth>830){
-                    this.dataTime = document.getElementById('selectedPeriod').innerText
-                }else{
-                    this.dataTime = this.period
-                }
-
+                this.dataTime = document.getElementById('selectedPeriod').innerText
+                console.log(window.innerWidth);
+                // if (window.innerWidth>830){
+                //     this.dataTime = document.getElementById('selectedPeriod').innerText
+                // }else{
+                //     this.dataTime = this.period
+                // }
             },
             ValidateCreditCardNumber(num) {
                 var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
@@ -696,7 +708,7 @@
                 if (this.cCard === 'Visa') {
                     if (!(visaRegEx.test(num))) {
                         alert("信用卡資料有誤");
-                        // cardNum.select();
+                        document.getElementById("cardNum").select();
                         return;
                     }
                 } else {
@@ -750,12 +762,13 @@
                     return this.price2*3
                 }
             },
-            // showDate(){
-            //     return $id("selectedDate").innerText;
-            // },
-            // showPeriod(){
-            //     return $id("selectedPeriod").innerText;
-            // },
+            change_src(){
+                if(this.cCard === 'Visa'){
+                    this.ccard_src='img/visa.gif'
+                }else if(this.cCard === 'Mastercard'){
+                    this.ccard_src='img/mstercard.gif'
+                }
+            }
         },
     });
 

@@ -284,10 +284,9 @@ function createCalendar(){
 
                             if($(window).width()>830){
                                 document.getElementById("showPeriod").innerText = document.getElementById("selectedPeriod").innerText;
-                            }
-                            // console.log(document.getElementById("selectedPeriod").innerText)
 
-                            vm.getData(); // Vue
+                                vm.getData();  
+                            }
                         };  
                     }
                     
@@ -308,7 +307,7 @@ function createCalendar(){
                                 selectedPeriod = '晚上18-21點';
                             }
                             document.getElementById("selectedPeriod").innerText = selectedPeriod;
-                            vm.getData(); // Vue
+                            vm.getData();
                         }
                     };
                 }
@@ -340,7 +339,9 @@ function changeSpan(){
         $('td > div div:nth-child(2) span').css('color','transparent');
     }else{
         $('td > div div:nth-child(2) span').css('color','black');
-    };              
+    };
+                
+
 }
 window.addEventListener('load',createCalendar);
 window.addEventListener('resize',changeSpan);

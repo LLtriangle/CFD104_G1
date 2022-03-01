@@ -336,34 +336,33 @@ table.creditCard{
 
 
 // 下拉式選單樣式
-select{
-    font-size: initial;
-    background-color: white;
-    border: none;
-    box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
-    border-radius: 10px;
-    padding: 5px;
-    min-width: 150px;
-    // reset
-    -webkit-appearance: none;  /* Safari 和 Chrome，常用於iOS下移除內建樣式 */
-    -moz-appearance: none;     /* FireFox */
-    appearance: none;
-    // 加上下拉三角形
-    background-image: url("../img/arrow.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position-x: calc(100% - 10px);
-    background-size: 0.9rem 0.9rem;
+//  select{
+//     font-size: initial;
+//     background-color: white;
+//     border: none;
+//     box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
+//     border-radius: 10px;
+//     padding: 5px;
+//     min-width: 150px;
+//     -webkit-appearance: none;  /* Safari 和 Chrome，常用於iOS下移除內建樣式 */
+//     -moz-appearance: none;     /* FireFox */
+//     appearance: none;
+//     // 加上下拉三角形
+//     background-image: url("../img/arrow.png");
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     background-position-x: calc(100% - 10px);
+//     background-size: 0.9rem 0.9rem;
 
-    &:focus{
-        outline: none;
-        box-shadow: 1px 1px 5px map-get($color, 'main');
-    }
-}
+//     &:focus{
+//         outline: none;
+//         box-shadow: 1px 1px 5px map-get($color, 'main');
+//     }
+// } 
 
-input,textarea{
-    font-size: initial;
-}
+// input,textarea{
+//     font-size: initial;
+// }
 // 選地址
 .choose_add{
     div{
@@ -423,6 +422,11 @@ textarea {
 .center{
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+.left{
+    display: flex;
+    justify-content: left;
     align-items: center;
 }
 
@@ -644,8 +648,11 @@ textarea {
             width: 100%;
             display: block;
             .c_pic{
-                width: 50%;
-                margin: 0 auto;
+                margin-top: 10px;
+                width: 100%;
+                img{
+                    width: 50%;
+                }
             }
             .table_ccard{
                 width: 100%;
