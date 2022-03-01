@@ -197,22 +197,35 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="OwlCarousel/owl.carousel.min.js"></script>
         <script>
+            // $('.owl-carousel').owlCarousel({
+                // loop:true,
+                // margin:10,
+                // nav:true,
+                // responsive:{
+                //     0:{
+                //         items:1
+                //     },
+                //     600:{
+                //         items:3
+                //     },
+                //     1000:{
+                //         items:5
+                //     }
+                // }
+            // })
             $('.owl-carousel').owlCarousel({
+                items:1,
+                // margin:10,
+                autoHeight:true,
                 loop:true,
                 margin:10,
-                nav:true,
-                responsive:{
-                    0:{
-                        items:1
-                    },
-                    600:{
-                        items:3
-                    },
-                    1000:{
-                        items:5
-                    }
-                }
-            })
+                autoWidth:true,
+                items:4
+            });
+            AutoHeight.Defaults = {
+                autoHeight: false,
+                autoHeightClass: 'owl-height'
+            };
         </script>
         <!-- rwd的整理師介紹燈箱 -->
         <script>

@@ -1,5 +1,16 @@
 @import  "../base/var";
 @import "../base/color";
+
+// 輪播圖-----------------------
+.small_img{
+    .item{
+        img{
+            max-height:300px ;
+            // max-width: 500px;
+        }
+    }
+}
+
 // 整理師介紹--------------------
 .b-tab {
     // padding: 20px;
@@ -22,7 +33,6 @@
 .owl-dots{
     display: none;
 }
-
 
 
 section{
@@ -419,7 +429,7 @@ screen and (max-width:992px)
             right: -30%;
             bottom: 0;
             display: flex;
-            
+            cursor: e-resize;
             img{
                 // margin-right: 10px;
             }
