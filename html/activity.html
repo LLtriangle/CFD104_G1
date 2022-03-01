@@ -7,6 +7,8 @@
     @@include('layout/head.html')
     <link rel="stylesheet" href="css/activity.css">
     <title>活動與專欄</title>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     @@include('layout/header.html')
@@ -47,7 +49,7 @@
                         </div>
                         <div class="copy">
                             <input id="textArea" value="22HAPPYMDAY"  readonly>
-                            <button onclick="copyToClipBoard('textArea')">複製</button>
+                            <button onclick="copyToClipBoard('textArea')"><span>複製</span></button>
                         </div>
                 </div>
                 <div class="acti_item">
@@ -63,7 +65,7 @@
                     </div>                        
                         <div class="copy">
                             <input id="textArea2" value="2022HAPPY88" readonly>
-                            <button onclick="copyToClipBoard('textArea2')">複製</button>
+                            <button onclick="copyToClipBoard('textArea2')"><span>複製</span></button>
                         </div>  
                 </div>
                 <div class="acti_item">
@@ -79,7 +81,7 @@
                     </div>                        
                         <div class="copy">
                             <input value="22SOEASYEVD" readonly id="textAreas3"/>
-                            <button onclick="copyToClipBoard('textAreas3')">複製</button>
+                            <button onclick="copyToClipBoard('textAreas3')"><span>複製</span></button>
                         </div>
                 </div>
                 
@@ -201,5 +203,6 @@
         alert("已複製!");
         }
     </script>
+    
 </body>
 </html>
