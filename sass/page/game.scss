@@ -48,6 +48,9 @@
                 transform: translate(150%,-50%);
             }
         }
+        button{
+            cursor: pointer;
+        }
     }
     .intr{
         max-width: 980px;
@@ -72,14 +75,9 @@
             img:nth-of-type(2){
                 transform: rotate(90deg);
             }
-            // &:nth-of-type(4) img{
-            //     box-sizing: border-box;
-            //     width: 60px;
-            //     padding: 5px;
-            //     background: url("../img/game_pullbox.png") center/cover ;
-            // }
         }
         button{
+            cursor: pointer;
             position: absolute;
             left: 50%;
             bottom: 20px;
@@ -88,6 +86,7 @@
                 transform: translate(20%);
             }
             &:disabled{
+                cursor: not-allowed;
                 background-color: #aaa;
                 border: 1px solid #888;
                 color: #ddd;
@@ -143,6 +142,7 @@
                 top: 50%;
                 z-index: 5;
                 img{
+                    cursor: pointer;
                     width: 100%;
                 }
                 // 左
@@ -161,6 +161,7 @@
             #wardrobe{
                 #door1,
                 #door2{
+                    cursor: pointer;
                     height: 46%;
                     position: absolute;
                     left: 50%;
@@ -191,6 +192,7 @@
                     overflow: hidden;
                     transition: .8s;
                     >img{
+                        cursor: pointer;
                         box-sizing: border-box;
                         opacity: 0;
                         width: 0px;
@@ -229,6 +231,7 @@
             }
             
             #pull_arrow{
+                cursor: pointer;
                 width: calc((100vh - 100px) * 0.06 );
                 position: absolute;
                 z-index: 2;
@@ -247,6 +250,7 @@
         bottom: calc(20% + 10px);
         left: 10px;
         .pic img{
+            cursor: pointer;
             height: 100%;
             position: absolute;
             bottom: 0px;
@@ -265,6 +269,7 @@
             overflow: hidden;
             transition: .5s;
             >img{
+                cursor: pointer;
                 box-sizing: border-box;
                 opacity: 0;
                 width: 0px;
@@ -306,7 +311,7 @@
             align-content: start;
             flex-wrap: wrap;
             img{
-                // cursor: grab;
+                cursor: pointer;
                 width: calc((100vh - 120px) * 0.2 - 40px);
                 margin: 10px;
                 padding: 10px;
@@ -363,6 +368,7 @@
         }
     }
     button{
+        cursor: pointer;
         position: absolute;
         z-index: 2;
         bottom: 5%;
@@ -604,7 +610,6 @@
                         display: flex;
                         align-items: center;
                         .pic{
-                            // display: inline-block;
                             width: 300px;
                         }
                         .txt{

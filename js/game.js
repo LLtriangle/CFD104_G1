@@ -89,32 +89,8 @@ function init() {
     };
     $('.text_ill button').on('click',switch_light);
 
-    // 完成放置，做判斷，跳出測驗結果
+    // 完成放置，做判斷(vue)，跳出測驗結果
     function open_result(){
-        // 判斷人格
-        // if( $('#hiding img').length==1 && $('#garbage img').length<=1 ){
-        //     // 蝴蝶:「豐富視覺＋簡易收納」「東西要是收起來，我就會忘記它們的存在！」
-        //     alert('蝴蝶');
-        //     $('#app > input').attr('value','蝴蝶');
-            
-        // }else if( $('#hiding img').length<=5 && $('#garbage img').length<=1 ){
-        //     // 蜜蜂:「豐富視覺＋詳盡收納」「以後可能會用到啊！」
-        //     alert('蜜蜂');
-        //     $('#app > input').attr('value','蜜蜂');
-            
-        // }else if( $('#hiding img').length>=5 && $('#garbage img').length<=3 ){
-        //     // 瓢蟲:「簡潔視覺＋簡易收納」「那些帳單、藥罐、小東西通通都要收起來，眼不見為淨！」
-        //     alert('瓢蟲');
-        //     $('#app > input').attr('value','瓢蟲');
-            
-        // }else{
-        //     // 蟋蟀:「簡潔視覺＋詳盡收納」「追求完美」
-        //     alert('蟋蟀');
-        //     $('#app > input').attr('value','蟋蟀');
-
-        // };
-
-        // 跳出測驗結果
         $(".text_result").css('display','block');
     };
     $('#finish').on('click',open_result);
@@ -122,6 +98,7 @@ function init() {
     // 再來一次，跳出說明視窗(遊玩方法)，物品歸位
     function open_ill(){
         $(".text_ill .intr").slideToggle(1000,'easeOutBounce');
+        $('.text_result .paper').scrollTop(0);
         $(".text_result").css('display','none');
         $('#finish').attr('disabled',true);
         $('.pullbox_group .pullbox img').appendTo($('#item_group'));

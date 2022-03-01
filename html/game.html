@@ -227,57 +227,6 @@
 
     </main>
 
-    <!-- <script>
-        const bus = new Vue();
-
-        Vue.component('finish-button',{
-            // template: `<button> Add </button>`,
-            template: `<input id="finish" @click="judge" class="btn_sub rd" type="button" value="完成放置" disabled>`,
-            methods: {
-                judge(){
-                    if( $('#hiding img').length==1 && $('#garbage img').length<=1 ){
-                        alert('蝴蝶');
-                        bus.$emit('abc',this.personality='蝴蝶');   // 自訂事件
-                    }else if( $('#hiding img').length<=5 && $('#garbage img').length<=1 ){
-                        alert('蜜蜂');
-                        bus.$emit('abc',this.personality='蜜蜂');   // 自訂事件
-                    }else if( $('#hiding img').length>=5 && $('#garbage img').length<=3 ){
-                        alert('瓢蟲');
-                        bus.$emit('abc',this.personality='瓢蟲');   // 自訂事件
-                    }else{
-                        alert('蟋蟀');
-                        bus.$emit('abc',this.personality='蟋蟀');   // 自訂事件
-                    };
-                },
-                // 2 額外增加的，可以不用寫
-                data() {
-                    return {
-                        personality: '',
-                    };
-                },
-            },
-        });
-
-        Vue.component('result-get',{
-            template: `<input type="text" v-model="personality" value="蝴蝶" hidden>`,
-            data() {
-                return {
-                    yourpersonality: '',
-                };
-            },
-            // 在 mounted() 時聆聽該事件
-            mounted() {
-                bus.$on('abc',(personality) => {
-                    yourpersonality = personality;
-                    alert(yourpersonality);
-                });
-            },
-        });
-        // ===================================
-        new Vue({
-            el:'#app',
-        });
-    </script> -->
     <script>
         const bus = new Vue();
 
@@ -344,7 +293,6 @@
                     }else if(personality=='蟋蟀'){
                         this.yourpersonality=this.cricket;
                     };
-                    console.log(this.yourpersonality);
                 });
             },
         });
