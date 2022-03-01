@@ -4,7 +4,7 @@
     <!-- 初始設定，請自行修改title，及添加js連結 -->
     @@include('layout/head.html')
     <!-- 先連上index.css看效果開發 -->
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="css/index.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <title>首頁</title>
 </head>
@@ -17,7 +17,7 @@
         <!-- 登陸section -->
         <section class="index_landing">
             <div class="col-md-6 full_view">
-            <img class="full_img aut_change" src="../img/index_landing.jpg" alt="full display img">
+            <img class="full_img aut_change" src="img/index_landing.jpg" alt="full display img">
             </div>
             <div class="col-12 col-md-6 logo_view">
                 <div class="web_title">
@@ -25,7 +25,7 @@
                         <h1>收Easy</h1>
                         <p>So easy</p>
                     </div>
-                    <img class="logo_img aut_change" src="../img/index_landing_s.jpeg" alt="logo-shaped  display img">
+                    <img class="logo_img aut_change" src="img/index_landing_s.jpeg" alt="logo-shaped  display img">
                 </div>
             </div>
         </section>
@@ -36,14 +36,13 @@
                 <h2 class="col-md-6">收納整理不再是煩惱，<br>收Easy 幫你找回理想生活</h2>
                 <p class="col-md-6">父親哪些幫我作出便利商店活動你想，專區幫助分為貿易一面出版有效，基隆商務監督試驗要有，斑竹半年點此總部，商機尚未當然。作出便利商店活動你想，專區幫助分為貿易一面出版有效，基隆商務監督試驗要有，斑竹半年點此總部，商機尚未當然。作出便利商店活動你想，專區幫助分為貿易一面出版有效，基隆商務監督試驗要有，斑竹半年點此總部，商機尚未當然。</p>
             </div>
-            <!-- <img class="full_img aut_change" src="https://fakeimg.pl/50x100/200" alt="full display img"> -->
         </section>
 
         <!-- 服務section -->
         <section class="index_plans">
             <div class="col-12 col-md-6 plans_view">
                 <div class="plans_img selected">
-                    <img  src="../img/index_fold.jpeg" alt="plans display img">
+                    <img  src="img/index_fold.jpeg" alt="plans display img">
                 </div>
             </div>
             <div class="col-12 col-md-6 plans_link">
@@ -78,77 +77,32 @@
             <h2>你是否有這些煩惱?</h2>
             <!-- 重新改樣式 -->
             <ul class="needs_bubles">
-                <li>
-                    <div class="bubble _1">
+                <li id="bubble_1">
+                    <div class="bubble _1 ">
                         <p>小孩房間亂糟糟，整理完沒多久又亂了...</p>
                     </div>
                 </li>
-                <li>
-                    <div class="bubble _2">
+                <li id="bubble_2">
+                    <div class="bubble _2 ">
                         <p>下班太累了，但家裡又太亂根本不能好好休息...</p>
                     </div>
                 </li>
-                <li>
-                    <div class="bubble _3">
+                <li id="bubble_3">
+                    <div class="bubble _3 ">
                         <p>翻了一下衣櫃，這些衣服是哪裡冒出來的?</p>
                     </div>
                 </li>
-                <li>
-                    <div class="bubble _4">
+                <li id="bubble_4">
+                    <div class="bubble _4 ">
                         <p>買了一堆收納品，但我根本不會收納QQ</p>
                     </div>
                 </li>
-                <li>
-                    <div class="bubble _5">
+                <li id="bubble_5">
+                    <div class="bubble _5 ">
                         <p>翻了一下衣櫃，這些衣服是哪裡冒出來的?</p>
                     </div>
                 </li>
-                <!-- <li>
-                    <div class="bubble">
-                        <p>買了一堆收納品，但我根本不會收納QQ</p>
-                        <div class="pointer"></div>
-                    </div>
-                </li> -->
             </ul>
-            <!-- 重新改樣式===留存原設定 -->
-            <!-- <ul class="needs_bubles">
-                <li>
-                    <div class="bubble">
-                        <p>小孩房間亂糟糟，整理完沒多久又亂了...</p>
-                        <div class="pointer"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="bubble">
-                        <p>下班太累了，但家裡又太亂根本不能好好休息...</p>
-                        <div class="pointer"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="bubble">
-                        <p>翻了一下衣櫃，這些衣服是哪裡冒出來的?</p>
-                        <div class="pointer"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="bubble">
-                        <p>買了一堆收納品，但我根本不會收納QQ</p>
-                        <div class="pointer"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="bubble">
-                        <p>翻了一下衣櫃，這些衣服是哪裡冒出來的?</p>
-                        <div class="pointer"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="bubble">
-                        <p>買了一堆收納品，但我根本不會收納QQ</p>
-                        <div class="pointer"></div>
-                    </div>
-                </li>
-            </ul> -->
             <div class="needs_btns">
                 <a class="go_reserve link_btn rd" href="reserve.html">馬上預約!</a>
                 <a class="go_game link_btn bl" href="game.html">還在猶豫?</a>
@@ -170,7 +124,6 @@
                         </div>
                     </a>
                 </li>
-                <!-- <img class="svg_line_45deg" src="../img/index_svg_line_45deg.svg" alt=""> -->
                 <li>
                     <a class="services_link" href="reserve.html">
                         <div class="progress_icon">
@@ -182,7 +135,6 @@
                         </div>
                     </a>
                 </li>
-                <!-- <img class="svg_line_315deg" src="../img/index_svg_line_45deg.svg" alt=""> -->
                 <li>
                     <a class="services_link" href="about.html">
                         <div class="progress_icon">
@@ -201,7 +153,7 @@
         <section class="index_news">
             <div class="news_items">
                 <div class="col-md-6 news_img">
-                    <img src="../img/index_sale.jpeg" alt="" >
+                    <img src="img/index_sale.jpeg" alt="" >
                 </div>
                 <ul class="col-md-6 news">
                     <h2>活動消息</h2>
@@ -244,7 +196,6 @@
                 <span class="img_part_2"></span>
                 <span class="img_part_3"></span>
                 <span class="img_part_4"></span>
-                <span class="img_part_5"></span>
             </div>
         </section>
 
@@ -289,7 +240,7 @@
                     <div class="product_bg right"></div>
                     <a class="hs_link" href="product.html">
                         <div class="hs_img_box">
-                            <img src="../img/index_product_1.png" alt="">
+                            <img src="img/index_product_1.png" alt="">
                         </div>
                         <h3>格調漩渦 <br> 壁掛式時鐘</h3>
                         <p>
@@ -301,7 +252,7 @@
                     <div class="product_bg middle"></div>
                     <a class="hs_link" href="product.html">
                         <div class="hs_img_box">
-                            <img src="../img/index_product_2.jpg" alt="">
+                            <img src="img/index_product_2.jpg" alt="">
                         </div>
                         <h3>白日夢海綿架</h3>
                         <p>
@@ -313,7 +264,7 @@
                     <div class="product_bg left"></div>
                     <a class="hs_link" href="product.html">
                         <div class="hs_img_box">
-                            <img src="../img/index_product_3.png" alt="">
+                            <img src="img/index_product_3.png" alt="">
                         </div>
                         <h3>小麋鹿木掛架</h3>
                         <p>
@@ -350,99 +301,102 @@
         // gsap.to(".index_plans .plans_img", {
         //     scale: 0,
         // });
-        
+
+         //登陸section 圖片隨滾輪放大
+         const landing_tl = gsap.timeline({
+            scrollTrigger: {
+                width: 100,
+                trigger: ".index_landing", 
+                start: "center center", 
+                pin: true,
+                scrub: true, 
+                markers: false,
+            }
+         });
+
+        //  landing_tl.to(".logo_img.aut_change", {scale: 50, duration: 2,})
+
+        //登陸section slogan 文字由模糊轉清晰
+        const slogan_tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".index_slogan", 
+                start: "center center", 
+                pin: true,
+                scrub: true, 
+                markers: false,
+            }
+         });
+         slogan_tl.from(".slogan", {opacity: 0,scale: 1.2, blur: 2})
+         slogan_tl.to(".slogan", {opacity: 1, scale: 1, blur: 0})
+
+        //服務section 圖片隨滾輪出現
         gsap.to(".index_plans .plans_img", {
-            duration: 2,
+            duration: 3,
             scrollTrigger: {
                 trigger: ".index_plans", //觸發的物件
-                scale: 200,
-                delay: -1.5,
                 start: "top center", // (物件開始位置, 卷軸開始位置) top center bottom px
-                // end: "+=500", //(物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
                 pin: false, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
                 scrub: false, // 物件動畫根據卷軸捲動程度跑
                 toggleClass: {targets: ".plans_img", className: "active"}, // 增加移除的class，class名稱須為字串
-                markers: true, // 顯示標記
             }
         });
 
-        gsap.to(".index_needs .needs_bubles .bubble._1", {
-            duration: 2,
-            scrollTrigger: {
-                trigger: ".index_needs", //觸發的物件
-                left: -20000,
-                delay: -1.5,
-                start: "top center", // (物件開始位置, 卷軸開始位置) top center bottom px
-                // end: "+=500", //(物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
-                pin: false, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
-                scrub: false, // 物件動畫根據卷軸捲動程度跑
-                toggleClass: {targets: ".news_img", className: "active"}, // 增加移除的class，class名稱須為字串
-                markers: true, // 顯示標記
-            }
-        });
-
-        gsap.to(".index_progress a::before a::after", {
-            duration: 2,
-            scrollTrigger: {
-                trigger: ".index_progress", //觸發的物件
-                scale: 200,
-                delay: -1.5,
-                start: "top center", // (物件開始位置, 卷軸開始位置) top center bottom px
-                // end: "+=500", //(物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
-                pin: false, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
-                scrub: false, // 物件動畫根據卷軸捲動程度跑
-                toggleClass: {targets: ".index_progress~a", className: "active"}, // 增加移除的class，class名稱須為字串
-                markers: true, // 顯示標記
-            }
-        });
-
+        // 活動消息section 圖片隨滾輪出現
         gsap.to(".index_news .news_img", {
-            duration: 2,
+            duration: 3,
             scrollTrigger: {
                 trigger: ".index_news", //觸發的物件
-                scale: 200,
-                delay: -1.5,
                 start: "top center", // (物件開始位置, 卷軸開始位置) top center bottom px
                 // end: "+=500", //(物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
                 pin: false, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
                 scrub: false, // 物件動畫根據卷軸捲動程度跑
                 toggleClass: {targets: ".news_img", className: "active"}, // 增加移除的class，class名稱須為字串
-                markers: true, // 顯示標記
             }
         });
 
-    </script>
+        
+        //煩惱section bubble
+        const bubbles_tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".index_needs", 
+                start: "top center", 
+                pin: false,
+                scrub: true, 
+                markers: false,
+            }
+         });
+         
+         bubbles_tl.from("#bubble_1", {x: -10000})
+         bubbles_tl.from("#bubble_2", {x: 10000})
+         bubbles_tl.from("#bubble_3", {x: -10000})
+         bubbles_tl.from("#bubble_4", {x: 10000})
+         bubbles_tl.from("#bubble_5", {x: -10000})
 
-    <script>
-        new Vue({
-        el: "#app",
-        data: () => ({
-            showHeader: true,
-            lastScrollPosition: 0,
-            scrollOffset: 40,
-        }),
-        mounted() {
-            this.lastScrollPosition = window.pageYOffset
-            window.addEventListener('scroll', this.onScroll)
-        },
-        beforeDestroy() {
-            window.removeEventListener('scroll', this.onScroll)
-        },
-        methods: {
-            // Toggle if navigation is shown or hidden
-            onScroll() {
-            if (window.pageYOffset < 0) {
-                return
-            }
-            if (Math.abs(window.pageYOffset - this.lastScrollPosition) < this.scrollOffset) {
-                return
-            }
-            this.showHeader = window.pageYOffset < this.lastScrollPosition
-            this.lastScrollPosition = window.pageYOffset
-            },
-        }
-        });
+         bubbles_tl.to("#bubble_1", {x: 100, duration: .5,})
+         
+         bubbles_tl.to("#bubble_2", {x: -100, duration: .5,})
+         
+         bubbles_tl.to("#bubble_3", {x: 100, duration: .5,})
+         
+         bubbles_tl.to("#bubble_4", {x: -100, duration: .5,})
+         
+         bubbles_tl.to("#bubble_5", {x: 100, duration: .5,})
+
+        //  bubbles_tl.to(".go_reserve", {background-color})
+
+        //預約流程section
+        // const progress_tl = gsap.timeline({
+        //     scrollTrigger: {
+        //         trigger: ".index_progress", 
+        //         start: "top center", 
+        //         pin: false,
+        //         scrub: true, 
+        //         markers: false,
+        //     }
+        //  });
+        //  progress_tl.from("a::after", {width: 0, duration: .5})
+        //  progress_tl.to("a::after", {width: 100, duration: .5})
+
     </script>
-    
 </body>
 </html>
