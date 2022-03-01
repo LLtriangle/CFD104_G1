@@ -159,30 +159,14 @@ function createCalendar(){
                 span.innerHTML = actual.getDate();
     
                 // 早中晚加入文字
-                if($(window).width()<830){
-                    morning.innerText = "";
-                    afternoon.innexrText = "";
-                    night.innerText = "";
+                morning.innerText = "早";
+                afternoon.innerText = "中";
+                night.innerText = "晚";
+                if( $(window).width()<=830){
+                    $('td > div div:nth-child(2) span').css('color','transparent');
                 }else{
-                    morning.innerText = "早";
-                    afternoon.innerText = "中";
-                    night.innerText = "晚";
+                    $('td > div div:nth-child(2) span').css('color','black');
                 };
-
-                // RWD 改變視窗大小
-                window.onresize=function(){
-                    // console.log(morning.innerText);
-                    if( $(window).width()<830){
-                        morning.innerText = "";
-                        afternoon.innerText = "";
-                        night.innerText = "";
-                    }else{
-                        morning.innerText = "早";
-                        afternoon.innerText = "中";
-                        night.innerText = "晚";
-                    };
-                };
-
                 // 隨機
                 var arr = Math.round(Math.random());
                 var re_index = 0;
@@ -297,7 +281,11 @@ function createCalendar(){
                             };
 
                             document.getElementById("showDate").innerText = document.getElementById("selectedDate").innerText;
-                            document.getElementById("showPeriod").innerText = document.getElementById("selectedPeriod").innerText;
+
+                            if($(window).width()>830){
+                                document.getElementById("showPeriod").innerText = document.getElementById("selectedPeriod").innerText;
+
+                            }
                         };  
                     }
                     
@@ -344,6 +332,16 @@ function createCalendar(){
     
     calendari(document.getElementById('calendari'), new Date());
 }
+function changeSpan(){
+    if( $(window).width()<=830){
+        $('td > div div:nth-child(2) span').css('color','transparent');
+    }else{
+        $('td > div div:nth-child(2) span').css('color','black');
+    };
+                
+
+}
 window.addEventListener('load',createCalendar);
+window.addEventListener('resize',changeSpan);
 // 加上選到的效果
 // tds[i].classList.add("selected");
