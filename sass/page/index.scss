@@ -85,6 +85,7 @@ $section_margin_top: 60px;
     .logo_img{
         width: 180px;
         height: 200px;
+        clip-path: polygon(50% 0%, 100% 26%, 100% 100%, 0 100%, 0 26%);
     }
 
     .full_img{
@@ -142,23 +143,32 @@ $section_margin_top: 60px;
                 box-sizing: border-box;
             }
 
-            h2, p{
-                animation: blur_word;
-                animation-duration: 15s;
-                animation-delay: 2s;
-                @keyframes blur_word {
-                    0% {
-                        opacity: 0;
-                        filter: blur(12px);
-                        transform: scale(1.2, 1.2);
-                    }
-                    100% {
-                        opacity: 1;
-                        filter: blur(0px);
-                        transform: scale(1);
-                    }
-                }
-            }
+            // h2,p{
+            //     opacity: 1;
+            //     // filter: blur(12px);
+            //     // transform: scale(1.2, 1.2);
+            //     // opacity: 0;
+            //     filter: blur(0px);
+            //     transform: scale(1);
+            // }
+
+            // h2, p{
+            //     animation: blur_word;
+            //     animation-duration: 15s;
+            //     animation-delay: 2s;
+            //     @keyframes blur_word {
+            //         0% {
+            //             opacity: 0;
+            //             filter: blur(12px);
+            //             transform: scale(1.2, 1.2);
+            //         }
+            //         100% {
+            //             opacity: 1;
+            //             filter: blur(0px);
+            //             transform: scale(1);
+            //         }
+            //     }
+            // }
         }
 
         /*.index_slogan 手機版 文字間padding*/
@@ -302,296 +312,201 @@ $section_margin_top: 60px;
 /*煩惱section .index_needs*/
 .index_needs{
     background-color: map-get($color , "cover" );
-    padding: $middle_pad;
     padding-top: 60px;
-    position: relative;
+    margin-top: 60px;
 
-    /*.index_needs 手機版 寬不讓自患行 高涵蓋所有對話bubble*/
     @include pad{
-        padding: 20px 5% 60px 5%;
-        height: 160vh;
+        padding-top: 20px;
+        ul{
+            padding: $middle_pad;
+        }  
     }
-
-    /*.index_needs 電腦版 bubble絕對定位，所以此section 相對定位不讓bubble飛出去*/
     @include PC{
-        position: relative;
-        height: 120vh;
-        li{
-            position: relative;
-            @include pad{
-                
-            }
-        }
+        padding: $middle_pad;  
     }
 
     h2{
         text-align: center;
-        @include PC{    
-            padding: $word_pad;
-        }
-        margin-top: 60px;
-    }
-
-    /*.index_needs 對話泡泡 樣式*/
-    .bubble {
-        height: 200px;
-        width: 30%;
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        margin-top: 5vh;
-        box-sizing: border-box;
-
-        @include pad{  
-            height: 18vh;   
-            position: relative;
-             /*.index_needs 手機版  文字置中*/
-            padding: 4vw;
-        }
-
-        /*.index_needs 電腦版  bubble絕對定位要隨著scroll出現*/
-        @include PC{     
-            position: absolute;
-        }
-
-        /*.index_needs 對話泡泡 外框*/
-        background: map-get($color , "bg_white" );
-        border-radius: 4em;
-
-        /*.index_needs 對話泡泡 手機板占80%*/
         @include pad{
-            width: 100%;
-            padding: 0 20px;
+            padding-top: 20px;
         }
-
-        
-    }
-
-    /*.index_needs bubble 置中*/
-    ul{
-        max-width: 1200px;
-        margin: auto;
-    }
-   
-    /*.index_needs 電腦版 bubble pointer 方向*/
-    ul li:nth-child(2n-1){
-        .bubble{
-            margin-left: 10px;
-            &:after {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 50%;
-                width: 0;
-                height: 0;
-                border: 2.025em solid transparent;
-                border-right-color: map-get($color , "bg_white" );
-                border-left: 0;
-                border-top: 0;
-                margin-top: -1.012em;
-                margin-left: -2.025em;
-
-                @include pad{
-                    margin-left: -1.8em;
-                }
-            }
+        @include PC{    
+            padding-top: 60px;
         }
     }
 
-    ul li:nth-child(2n){
-        .bubble{
-            margin-left: -10px;
-            &:after {
-                content: '';
-                position: absolute;
-                right: 0;
-                top: 50%;
-                width: 0;
-                height: 0;
-                border: 2.025em solid transparent;
-                border-left-color: map-get($color , "bg_white" );
-                border-right: 0;
-                border-top: 0;
-                margin-top: -1.012em;
-                margin-right: -2.025em;
-
-                @include pad{
-                    margin-right: -1.8em;
-                }
-            }
-        }
-
-    }
-
-    ul li:last-child{
-        .bubble{
-            margin-left: 0;
-            &:after {
-                content: '';
-                position: absolute;
-                top: 105%;
-                left: 50%;
-                width: 0;
-                height: 0;
-                border: 2.025em solid transparent;
-                border-top-color: map-get($color , "bg_white" );
-                border-bottom: 0;
-                margin-left: -2.025em;
-                margin-bottom: -2.025em;
-            }
-        }
-    }
-
-    /*.index_needs 手機板 bubble pointer 方向*/
     @include PC{
-        .bubble._1{
-            top: -7rem;
-            left: -3rem;
-            &:after {
-                content: '';
+        ul{
+            max-width: 1200px;
+            margin: auto;
+            position: relative;
+        }
+
+        ul li:nth-child(2n-1){
+            // left: -100%;
+            &::after{
+                content: "";
                 position: absolute;
                 left: 0;
                 top: 50%;
                 width: 0;
                 height: 0;
-                border: 2.025em solid transparent;
+                border: 90px solid transparent;
                 border-right-color: map-get($color , "bg_white" );
                 border-left: 0;
                 border-top: 0;
-                margin-top: -1.012em;
-                margin-left: -2.025em;
+                z-index: 0;
             }
         }
-        .bubble._2{
-            top: -4rem;
-            left: 37rem;
-            &:after {
-                content: '';
-                position: absolute;
-                right: 0;
-                top: 50%;
-                width: 0;
-                height: 0;
-                border: 2.025em solid transparent;
-                border-left-color: map-get($color , "bg_white" );
-                border-right: 0;
-                border-top: 0;
-                margin-top: -1.012em;
-                margin-right: -2.025em;
-            }
-        }
-        .bubble._3{
-            top: 6rem;
-            left: -4rem;
-            &:after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                width: 0;
-                height: 0;
-                border: 2.025em solid transparent;
-                border-top-color: map-get($color , "bg_white" );
-                border-bottom: 0;
-                border-left: 0;
-                margin-left: -1.012em;
-                margin-bottom: -2.025em;
-            }
-            
-        }
-        .bubble._4{
-            top: 7rem;
-            left: 36rem;
-            &:after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                width: 0;
-                height: 0;
-                border: 2.025em solid transparent;
-                border-top-color: map-get($color , "bg_white" );
-                border-bottom: 0;
-                border-right: 0;
-                margin-left: 10.8em;
-                margin-bottom: -2.025em;
-            }
-        }
-        .bubble._5{
-            top: 10rem;
-            left: 16rem;
-            &:after {
-                content: '';
-                position: absolute;
-                top: 100%;
-                left: 50%;
-                width: 0;
-                height: 0;
-                border: 2.025em solid transparent;
-                border-top-color: map-get($color , "bg_white" );
-                border-bottom: 0;
-                margin-left: -2.025em;
-                margin-bottom: -2.025em;
-            }
-        }  
-    }
 
     
-    .needs_btns{
+        ul li:nth-child(2n){
+            display: flex;
+            flex-direction: row-reverse;
+            // right: -100%;
+            
+            &::after{
+                content: "";
+                position: absolute;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                width: 0;
+                height: 0;
+                border: 90px solid transparent;
+                border-left-color: map-get($color , "bg_white" );
+                border-right: 0;
+                border-top: 0;
+                z-index: 0;
+            }
+        }
+    
+        li{
+            position: relative;
+
+            .bubble{
+                width: 500px;
+                height: 250px;
+                border-radius: 50px;
+                margin:  30px 60px ;
+                background-color: map-get($color , "bg_white" );
+                position: relative;
+                z-index: 2;
         
+                p{
+                    padding: 40px;
+                }
+            }
+
+            
+        }
+
+        
+    }
+
+    @include pad{
+        ul{
+            max-width: 1200px;
+            margin: auto;
+            position: relative;
+        }
+
+        ul li:nth-child(2n-1){
+            &::after{
+                content: "";
+                position: absolute;
+                left: -10%;
+                top: 50%;
+                width: 0;
+                height: 0;
+                border: 60px solid transparent;
+                border-right-color: map-get($color , "bg_white" );
+                border-left: 0;
+                border-top: 0;
+                z-index: 0;
+            }
+        }
+
+    
+        ul li:nth-child(2n){
+            
+            &::after{
+                content: "";
+                position: absolute;
+                position: absolute;
+                right: -10%;
+                top: 50%;
+                width: 0;
+                height: 0;
+                border: 60px solid transparent;
+                border-left-color: map-get($color , "bg_white" );
+                border-right: 0;
+                border-top: 0;
+                z-index: 0;
+            }
+        }
+    
+        li{
+            position: relative;
+
+            .bubble{
+                width: 80vw;
+                height: 150px;
+                border-radius: 50px;
+                margin: 20px 0;
+                background-color: map-get($color , "bg_white" );
+                position: relative;
+                z-index: 2;
+        
+                p{
+                    padding: 40px;
+                }
+            }
+
+
+            
+        }
+        
+    }
+    
+    .needs_btns{
+        @include pad{
+            max-width: 400px;
+        }
+        display: flex;
+        justify-content: center;
+                
         a{
             background-color: map-get($btn_color , "brown" );
             color: map-get($btn_color , "white" );
-            
-            @include PC{
-                padding: 15px;
-                font-size: $font_size_h3;
-            }
-        }
-        
-        /*.index_needs 手機版 按鈕固定section最下方*/
-        @include pad{
-            position: relative;
-            display: flex;
-            justify-content: space-around;
-            top: 5%;
-            left: 50%;
-            transform: translate(-50%, 50%);
-            z-index: 50;
-            width: 50vw;
-            a{
-                border: 1px solid map-get($color , "sub_brown" );
-            }
-            
-        }
-        /*.index_needs 電腦版 按鈕固定畫面中央*/
-        @include PC{
-            position: absolute;
-            display: flex;
-            justify-content: space-around;
-            top: 300px;
-            left: 50vw;
-            transform: translate(-50%, -50%);
-            z-index: 50;
-            width: 30vw;
-        }
-        .go_reserve{
+
             @include pad{
-                margin-right: 20px;
-                box-sizing: border-box;
-                box-shadow: $btn_box_shadow;
-                // background-color: map-get($btn_color, "red" );
+                margin: 30px 0;
             }
+
+            @include PC{
+                margin: 60px 20px;
+            }
+            border: 1px solid map-get($color , "sub_brown" );
+            
         }
 
-        @include pad{
-         .go_game{
+        .go_reserve{
+            box-sizing: border-box;
             box-shadow: $btn_box_shadow;
-            // background-color: map-get($btn_color, "blue" );
-         }       
+        }
+
+        .go_game{
+            box-shadow: $btn_box_shadow;
+        }     
+                
+        @include pad{
+            .go_reserve{
+                margin-right: 20px;
+            }
         }
     }
-    
+
 }
 
 /*預約流程section .index_progress*/
@@ -618,17 +533,6 @@ $section_margin_top: 60px;
                     z-index: 1;
                 }
                 @include PC{
-                    &.active::before{
-                        content: "";
-                        width: 50vw;
-                        transform: translate(-50%,120px) rotate(-18deg);
-                    }
-                    &.active::after{
-                        content: "";
-                        width: 50vw;
-                    }
-                    
-
                     &::after,
                     &::before{
                         content: "";
@@ -639,6 +543,16 @@ $section_margin_top: 60px;
                         left: 50%;
                         border-bottom: 3px dashed map-get($color , "sub_blue" );
                         transform: translate(-50%,-120px) rotate(18deg);
+                    }
+
+                    &::before{
+                        content: "";
+                        width: 50vw;
+                        transform: translate(-50%,120px) rotate(-18deg);
+                    }
+                    &::after{
+                        content: "";
+                        width: 50vw;
                     }
                 }
             }
@@ -897,15 +811,18 @@ $section_margin_top: 60px;
         display: flex;
         align-items: center;
         justify-content: start;
-        padding: $middle_pad;
 
         @include pad{
             padding-top: 5vh;
         }
 
+        @include PC{
+            padding: $middle_pad;
+        }
+
         span{
             @include PC{
-                margin: 0 15px 0 0;
+                margin: 0 0 0 15px;
             }
 
             @include pad{
@@ -918,7 +835,9 @@ $section_margin_top: 60px;
             box-sizing: border-box;
             background-image: url(../../img/column_longimg.jpeg);
             background-position-y: 0;
-            background-size: contain;
+            @include pad{
+                background-size: 500% auto; 
+            }
             background-size: 400% auto;
             transition: 0.8s ease-in;
             animation: imgInner1 60.0s normal forwards infinite;
@@ -998,29 +917,29 @@ $section_margin_top: 60px;
             background-position: 0%;
         }
         .img_part_2{
-            background-position: 25%;
+            background-position: 33.333%;
             transition: 0.8s 0.2s ease-in;
             animation: imgInner1 60.0s normal forwards infinite;
             animation-delay: 0.15s;
         }
         .img_part_3{
-            background-position: 50%;
+            background-position: 66.666%;
             transition: 0.8s 0.4s ease-in;
             animation: imgInner1 60.0s normal forwards infinite;
             animation-delay: 0.3s;
         }
         .img_part_4{
-            background-position: 75%;
+            background-position: 99.999%;
             transition: 0.8s 0.6s ease-in;
             animation: imgInner1 60.0s normal forwards infinite;
             animation-delay: 0.45s;
         }
-        .img_part_5{
-            background-position: 100%;
-            transition: 0.8s 0.8s ease-in;
-            animation: imgInner1 60.0s normal forwards infinite;
-            animation-delay: 0.6s;
-        }
+        // .img_part_5{
+        //     background-position: 0%;
+        //     transition: 0.8s 0.8s ease-in;
+        //     animation: imgInner1 60.0s normal forwards infinite;
+        //     animation-delay: 0.6s;
+        // }
     }
 
 }

@@ -97,3 +97,22 @@
 		<div class="pic"><img src="img/SoEazy.png" alt=""></div>
     </div> -->
 </header>
+
+<script>
+    //header 下滑消失，上滑出現
+    gsap.registerPlugin(ScrollTrigger);
+    const showAnim = gsap.from('header', { 
+        yPercent: -100,
+        paused: true,
+        duration: 0.2
+        }).progress(1);
+    
+        ScrollTrigger.create({
+        start: "top top",
+        end: 99999,
+        onUpdate: (self) => {
+            self.direction === -1 ? showAnim.play() : showAnim.reverse()
+        }
+    });
+</script>
+
