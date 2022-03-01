@@ -12,7 +12,7 @@
     <!-- <header></header> -->
     @@include('layout/header.html')
 
-    <main class="index">
+    <main class="index" id="app">
         
         <!-- 登陸section -->
         <section class="index_landing">
@@ -272,6 +272,13 @@
 				</label>
 				<p>好問題，問就是要。</p>
 			</div>
+            <div class="quesion">
+				<input type="checkbox" id="Q4">
+				<label for="Q4">
+					<h3>整理師服務時，屋主一定要在家嗎？</h3>
+				</label>
+				<p>不需要。除了第一次服務時，我們希望客戶在場告知個人的居家習慣外，爾後我們的服務員可以在客戶外出前到宅開始服務，此時客戶即可外出，待服務員完成工作後，以電話撥打給您，告知已完成工作並自行將門關上後離開。</p>
+			</div>
 		</section>
         
         <!-- 熱門商品section -->
@@ -329,6 +336,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
 
     <script>
+        // gsap.registerPlugin(CSSRulePlugin);
         gsap.registerPlugin(ScrollTrigger);
         // ScrollTrigger.matchMedia({
         //     // 跟設定css 一樣  如果畫面不小於 992px 執行
@@ -362,13 +370,28 @@
             duration: 2,
             scrollTrigger: {
                 trigger: ".index_needs", //觸發的物件
-                scale: 200,
+                left: -20000,
                 delay: -1.5,
                 start: "top center", // (物件開始位置, 卷軸開始位置) top center bottom px
                 // end: "+=500", //(物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
                 pin: false, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
                 scrub: false, // 物件動畫根據卷軸捲動程度跑
                 toggleClass: {targets: ".news_img", className: "active"}, // 增加移除的class，class名稱須為字串
+                markers: true, // 顯示標記
+            }
+        });
+
+        gsap.to(".index_progress a::before a::after", {
+            duration: 2,
+            scrollTrigger: {
+                trigger: ".index_progress", //觸發的物件
+                scale: 200,
+                delay: -1.5,
+                start: "top center", // (物件開始位置, 卷軸開始位置) top center bottom px
+                // end: "+=500", //(物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
+                pin: false, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
+                scrub: false, // 物件動畫根據卷軸捲動程度跑
+                toggleClass: {targets: ".index_progress~a", className: "active"}, // 增加移除的class，class名稱須為字串
                 markers: true, // 顯示標記
             }
         });
@@ -388,6 +411,37 @@
             }
         });
 
+    </script>
+
+    <script>
+        new Vue({
+        el: "#app",
+        data: () => ({
+            showHeader: true,
+            lastScrollPosition: 0,
+            scrollOffset: 40,
+        }),
+        mounted() {
+            this.lastScrollPosition = window.pageYOffset
+            window.addEventListener('scroll', this.onScroll)
+        },
+        beforeDestroy() {
+            window.removeEventListener('scroll', this.onScroll)
+        },
+        methods: {
+            // Toggle if navigation is shown or hidden
+            onScroll() {
+            if (window.pageYOffset < 0) {
+                return
+            }
+            if (Math.abs(window.pageYOffset - this.lastScrollPosition) < this.scrollOffset) {
+                return
+            }
+            this.showHeader = window.pageYOffset < this.lastScrollPosition
+            this.lastScrollPosition = window.pageYOffset
+            },
+        }
+        });
     </script>
     
 </body>
