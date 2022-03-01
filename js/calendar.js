@@ -219,10 +219,13 @@ function createCalendar(){
                 // }
     
                 // today=今天
-                if(data.getDate() == actual.getDate() &&
-                data.getMonth() == month00)
-                td.className = 'today';
-                
+                // 1 == 1
+                // month00 = 2
+                // data.getMonth() = 2
+                if(data.getDate() == actual.getDate() && actual.getMonth() == month00){
+                    td.className = 'today';
+                }
+                // console.log(actual.getMonth())
                 // t_add3=今天後三天
                 if(data.getDate() == actual.getDate()-3 &&
                 data.getMonth() == actual.getMonth())
@@ -293,22 +296,10 @@ function createCalendar(){
                                 time_items[2].style.opacity = "1";
                             };
 
-
+                            document.getElementById("showDate").innerText = document.getElementById("selectedDate").innerText;
+                            document.getElementById("showPeriod").innerText = document.getElementById("selectedPeriod").innerText;
                         };  
                     }
-                    
-                    // tds[i].onclick=function(){
-                    // 先抓到此格位的morning狀態
-  
-                            
-                                // period_1.disabled = true;
-                            
-                                var period_2 = document.getElementById("period_2"); // 中的input
-                                var period_3 = document.getElementById("period_3"); // 晚的input
-
-                            
-                        
-                    // };
                     
                 }
                 // periods為早中晚三個span

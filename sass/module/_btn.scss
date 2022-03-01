@@ -4,7 +4,7 @@
 @import  "../base/var";
 
 /* 所有不同種類的按鈕區域(分開按鈕用) */
-.link_btn_box, .submit_btn_box, .btn_btn_box, .link_ro_box, .link_ro_sl_box, .link_under_line_box, .link_bs_btn, .bs_btn_box{padding: 50px;}
+// .link_btn_box, .submit_btn_box, .btn_btn_box, .link_ro_box, .link_ro_sl_box, .link_under_line_box, .link_bs_btn, .bs_btn_box{padding: 50px;}
 
 /*電腦版&手機按鈕共用設定*/
 
@@ -278,7 +278,7 @@ input:focus, button:focus{
     opacity: 1;
   }
 
-// 更改input[type=text],input[type=email]樣式
+// 更改input[type=text],input[type=email],input[type=password]樣式
 input[type=text],input[type=email],input[type=password]{
     border: 0.3px solid map-get($btn_color, 'brown');
     box-shadow: 2px 2px map-get($btn_color, 'brown');

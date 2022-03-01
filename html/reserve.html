@@ -36,7 +36,7 @@
         </div>
 
         <div class="content">
-            <div v-if="activetab ==='1'" class="tabcontent">
+            <div v-show="activetab ==='1'" class="tabcontent">
                 <!-- 預約表單 -->
                 <form>
                     <!-- 選擇方案 -->
@@ -44,21 +44,21 @@
                     <div class="form_item choose_plan">
                         <div class="plan_li">
                             <li>
-                                <input type="radio" v-model="plan" value="到府一對一教學" id="plan0" class="radio-input">
+                                <input type="radio" v-model="plan" value="到府一對一教學" id="plan0" class="radio-input" hidden>
                                 <label for="plan0" class="radio-label">
                                     <span class="radio-button"></span>
                                     <p>到府一對一教學</p>
                                 </label>
                             </li>
                             <li>
-                                <input type="radio" v-model="plan" value="空間整理收納" id="plan1" class="radio-input">
+                                <input type="radio" v-model="plan" value="空間整理收納" id="plan1" class="radio-input" hidden>
                                 <label for="plan1" class="radio-label">
                                     <span class="radio-button"></span>
                                     <p>空間整理收納</p>
                                 </label>
                             </li>
                             <li>
-                                <input type="radio" v-model="plan" value="搬家前後物品上下架" id="plan2" class="radio-input">
+                                <input type="radio" v-model="plan" value="搬家前後物品上下架" id="plan2" class="radio-input" hidden>
                                 <label for="plan2" class="radio-label">
                                     <span class="radio-button"></span>
                                     <p>搬家前後物品上下架</p>
@@ -113,11 +113,6 @@
                                 <option v-for="emp in emps">{{emp}}</option>
                             </select>
                         </div>
-                        <!-- 整理師介紹 -->
-                        <!-- <div class="emp_info" v-show="emp_info">
-                            <img class="emp_pic" src="img/emp1.jpg">
-                            <p class="emp_name">{{selectedEmp}}</p>
-                        </div> -->
                     </div>
 
 
@@ -157,7 +152,7 @@
                         <div class="time_panel">
                             <div>
                                 <p>｜預約日期</p>
-                                <p id="selectedDate"></p> 
+                                <p id="selectedDate"></p>
                             </div>
                             <div>
                                 <p>｜預約時段</p>
@@ -169,12 +164,12 @@
                     <!-- 姓名 -->
                     <div class="form_item input_name">
                         <h3>姓名</h3>
-                        <input type="text" v-model="name" placeholder="請輸入姓名" required>
+                        <input type="text" v-model.trim="name" placeholder="請輸入姓名" required>
                     </div>
                     <!-- 電話 -->
                     <div class="form_item input_tel">
                         <h3>電話</h3>
-                        <input type="text" v-model="tel"  placeholder="請輸入電話" required>
+                        <input type="text" v-model="tel"  placeholder="請輸入電話" maxlength="10" required>
                     </div>
                     <!-- 地址 -->
                     <div class="form_item choose_add">
@@ -188,13 +183,13 @@
                                 <option value="" disabled>選擇區域</option>
                                 <option v-for="Area in Areas">{{Area}}</option>
                             </select>
-                            <input type="text" placeholder="請輸入地址" required>
+                            <input type="text" placeholder="請輸入地址" required v-model.trim="address">
                         </div>
                     </div>
                     <!-- 需求 -->
                     <div class="form_item input_need">
                         <h3>需求</h3>
-                        <textarea cols="50" rows="5"></textarea>
+                        <textarea cols="50" rows="5" v-model="need"></textarea>
                     </div>
                     <!-- 上傳照片 -->
                     <div class="form_item upload_pics">
@@ -227,63 +222,100 @@
             </div>
 
 
-            <div v-if="activetab ==='2'" class="tabcontent">
+            <div v-show="activetab ==='2'" class="tabcontent">
+                <div class="details">
+                    <div class="center"><h3>預約資訊</h3></div>
+                    <div class="datails_info flex">
+                        <table class="d_table">
+                            <tr>
+                                <td>姓名</td>
+                                <td>{{name}}</td>
+                            </tr>
+                            <tr>
+                                <td>電話</td>
+                                <td>{{tel}}</td>
+                            </tr>
+                            <tr>
+                                <td>地址</td><td>{{selectedCity}} {{selectedArea}} {{address}}</td>
+                            </tr>
+                            <tr>
+                                <td>預約方案</td>
+                                <td>{{plan}}</td>
+                            </tr>
+                            <tr>
+                                <td>整理師</td>
+                                <td>{{selectedEmp}}</td>
+                            </tr>
+                            <tr>
+                                <td>預約日期</td>
+                                <td id="showDate"></td>
+                            </tr>
+                            <tr>
+                                <td>預約時段</td>
+                                <td id="showPeriod">{{period}}</td>
+                            </tr>
+                            <tr v-show="need">
+                                <td>需求</td>
+                                <td>{{need}}</td>
+                            </tr>
+                            <tr>
+                                <td>價格</td>
+                                <td>{{total}}</td>
+                            </tr>
+                        </table>
+                        <div class="d_pic center" id="d_pic">
+                            <img id="d_pic_img" src="https://picsum.photos/300/200/?random=10">
+                    
+                        </div>
+                    </div>
+                </div>
 
-                <table class="creditCard">
-                    <tr>
-                        <td colspan="3">
-                            <label>信用卡卡號:</label></td>
-                        <td>
-                            <select name="信用卡" v-model="cCard">
-                                <option value="Visa" id="visa">Visa</option>
-                                <option value="Mastercard" id="mastercard">Mastercard</option>
-                            </select>
-                        </td>
-                        <td colspan="3" class="left">
-                            <input type="text" name="cardNumber" id="cardNum" size="30" v-model="credit_card"
-                                @change="ValidateCreditCardNumber(credit_card)" maxlength="16" /></td>
-                    </tr>
+                <div>
+                    <div class="center"><h3>付款資訊</h3></div>
+                    <div>
+                        <table class="creditCard">
+                            <tr>
+                                <td>信用卡卡號</td>
+                                <td>
+                                    <select name="信用卡" v-model="cCard">
+                                        <option value="Visa" id="visa">Visa</option>
+                                        <option value="Mastercard" id="mastercard">Mastercard</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" name="cardNumber" id="cardNum" v-model="credit_card"
+                                        @change="ValidateCreditCardNumber(credit_card)" maxlength="16" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>驗證碼</td>
+                                <td><input type="text" max="3"></td>
+                            </tr>
+                            <tr>
+                                <td>信用卡到期日</td>
+                                <td>
+                                    <select name="年" v-model="selectedYear">
+                                        <option v-for="year in years">{{year}}年</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="月份"  v-model="selectedMonth">
+                                        <option v-for="month in 12">{{month}}月</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
 
-                    <tr>
-                        <td>
-                            <input type="text" name="cardNumber" id="cardNum" size="30" value="" v-model="credit_card" maxlength="16"
-                                onblur="ValidateCreditCardNumber()" />
-                        </td>
-                    </tr>
-                            
-                    <tr>
-                        <td>信用卡到期日</td>
-                        <td>
-                            <select name="年" v-model="selectedYear">
-                                <option v-for="year in years">{{year}}年</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="月份"  v-model="selectedMonth" @change="changeDays">
-                                <option v-for="month in 12">{{month}}月</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>預約人姓名</td>
-                        <td><input type="text" v-model="name"></td>
-                    </tr>
-                    <tr>
-                        <td rowspan="2">預約地址</td>
-                        <td><input size="25" v-model="address1"></td>
-                    </tr>
-                    <tr>
-                        <td><input size="25" v-model="address2"></td>
-                    </tr>                                      
-                </table>
-                <div class="btn_div">
+                <div class="btn_div between">
                     <button v-on:click="activetab='1'" type="button">返回</button>
                     <button v-on:click="activetab='3'" type="button">下一步</button>
                 </div>
             </div>
 
 
-            <div v-if="activetab ==='3'" class="tabcontent">
+            <div v-show="activetab ==='3'" class="tabcontent">
                 <table>
                     <tr>
                         <td>信用卡明細</td>
@@ -305,12 +337,13 @@
                         <td>預約整理師</td>
                         <td>{{selectedEmp}}</td>
                     </tr>
-                    
-                    <tr>
-                        <td><button v-on:click="activetab='2'" type="button">返回</button></td>
-                        <td><button>送出</button></td>
-                    </tr>
                 </table>
+                        
+                <div class="btn_div between">
+                    <button v-on:click="activetab='2'" type="button">返回</button>
+                    <button type="button">送出</button>
+                </div>
+                
             </div>
         </div>
 
@@ -318,37 +351,13 @@
 <!-- <footer></footer> -->
 @@include('layout/footer.html')           
 </body>
+
 <script>
-    // 信用卡驗證
-    function ValidateCreditCardNumber(){
+    function $id(id){
+        return document.getElementById(id);
+    }; 
+    // console.log($id("cardNum"));
 
-var ccNum = document.getElementById("cardNum").value;
-
-var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
-var mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
-var amexpRegEx = /^(?:3[47][0-9]{13})$/;
-var discovRegEx = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/; 
-
-
-if (visaRegEx.test(ccNum) === false ){ // Visa validation
-   alert("信用卡卡號錯誤");
-   return;
-    }
-if (mastercardRegEx.test(ccNum) === false){ // MasterCard validation
-    alert("信用卡卡號錯誤"); 
-    return; 
-    }
-if(amexpRegEx.test(ccNum) === false){ // Amex  validation
-    alert("信用卡卡號錯誤");  
-    return; 
-    }  
-if (discovRegEx.test(ccNum) === false){ // Discover validation
-    alert("信用卡卡號錯誤"); 
-    return; 
-    }
-}
-</script>
-<script>
     new Vue({
         el: '#tabs',
         data: {
@@ -359,7 +368,6 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
             price0: 800, // 方案0價格
             price1: 1000, // 方案1價格
             price2: 900, // 方案2價格
-            count: 1,
             emps: ["麻里不會","末牛子","潔癖子","由收easy安排"],
             selectedEmp: '',
             tel: '',
@@ -367,9 +375,21 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
             Areas: '',
             selectedArea: '',
             selectedCity: '',
+            address: '',
             payment: '',
             years: [2022,2023,2024,2025,2026,2027,2028,2029,2030],
             period:'',
+            need:'',
+            cCard: 'Visa',
+            selectedYear: '',
+            selectedMonth: '',
+            // myimg:'',
+        },
+        watch: {
+            credit_card(nVal, oVal) {
+                console.log(nVal, oVal);
+                // this.ValidateCreditCardNumber(nVal);
+            },
         },
         // created() {
         //     // function createCalendar(){
@@ -622,6 +642,23 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
         // // window.addEventListener('load',createCalendar);
         // },
         methods: {
+            ValidateCreditCardNumber(num) {
+                var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+                var mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
+                // console.log((visaRegEx.test(num))) // 驗證
+                // console.log(cardNum);
+                if (this.cCard === 'Visa') {
+                    if (!(visaRegEx.test(num))) {
+                        alert("信用卡資料有誤");
+                        // cardNum.select();
+                        return;
+                    }
+                } else {
+                    if (!mastercardRegEx.test(num)) {
+                        alert("信用卡資料有誤");
+                    }
+                }
+            },
             changeCity(){
                     if(this.selectedCity === "台北市"){
                         return this.Areas = ["中正區","大同區","中山區","松山區","大安區","萬華區","信義區","士林區","北投區","內湖區","南港區","文山區"];
@@ -667,8 +704,15 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
                     return this.price2*3
                 }
             },
+            // showDate(){
+            //     return $id("selectedDate").innerText;
+            // },
+            // showPeriod(){
+            //     return $id("selectedPeriod").innerText;
+            // },
         },
     });
+
 </script>
 
 </html>

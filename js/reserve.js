@@ -26,7 +26,7 @@ function uploadFile(){
             let delete_btn = document.createElement('button');
             delete_btn.type = "button";
             delete_btn.className = "delete_btn";
-            delete_btn.innerText = 'X';
+            delete_btn.innerText = '×';
             div.appendChild(delete_btn);
             delete_btn.onclick = delete_mypic;
             // 刪除照片
@@ -44,24 +44,49 @@ function uploadFile(){
             };
 
             img.src = reader.result;
-    
+            
+            // 上傳的照片
             let myimgs = document.getElementsByClassName("myimg");
 
-            // console.log(myimgs.length);
             if(myimgs.length == 3){
                 div_upload.remove()
                 file_label_rwd.remove()
             }
-    
+            if(myimgs.length != 0){
+
+                // 第二頁 顯示照片第一張在明細
+                // console.log(document.getElementById("d_pic_img").src);
+                document.getElementById("d_pic_img").src = myimgs[0].src;
+                // dp_img.src = myimgs[0].src;
+                // document.getElementsByClassName("d_pic")[0].appendChild(dp_img);
+            }
         }
         reader.readAsDataURL(file);
     }
 
-}
+};
 
+// function showMyImg(){
+//         let myimgs = document.getElementsByClassName("myimg"); //陣列
+//         console.log(myimgs.length);
+//         if(myimgs.length != 0){
+//         };
+        // 上傳的照片
+        // 第二頁 顯示照片第一張在明細
+        // console.log(myimgs[0].src);
+        // let dp_img = document.createElement('img');
+        // dp_img.src = myimgs[0].src;
+        // document.getElementsByClassName("d_pic")[0].appendChild(dp_img);
+// }
+ 
 
 function init(){
     uploadFile();
 }
 
 window.addEventListener('load',init);
+
+
+
+// ----------
+
