@@ -45,7 +45,7 @@
                         </ul>
                     </div>
                     <div class="menu_slogan_info">
-                        <p class="slogan">收納整理不再是煩惱，收Easy 幫你找回理想生活</p>
+                        <p class="menu_slogan">收納整理不再是煩惱，收Easy 幫你找回理想生活</p>
                         <div class="menu_infos">
                             <ul class="menu_info_list">
                                 <li class="menu_info fb">
@@ -98,15 +98,16 @@
     </div>
 </header>
 
-<script>
+<!-- <script>
     //header 下滑消失，上滑出現
     gsap.registerPlugin(ScrollTrigger);
-    const showAnim = gsap.from('header', { 
+
+    let showAnim = gsap.from("header", { 
         yPercent: -100,
         paused: true,
         duration: 0.2
         }).progress(1);
-    
+
         ScrollTrigger.create({
         start: "top top",
         end: 99999,
@@ -114,5 +115,6 @@
             self.direction === -1 ? showAnim.play() : showAnim.reverse()
         }
     });
-</script>
+    
+</script> -->
 
