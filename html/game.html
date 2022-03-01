@@ -11,7 +11,7 @@
     <!-- <header></header> -->
     @@include('layout/header.html')
 
-    <main>
+    <main id="app">
         <!-- 測驗說明 -->
         <section class="text_ill">
             <div class="welcome">
@@ -89,7 +89,7 @@
             </div>
                     
             <div class="push">
-                <div class="item_group" ondrop="drop(e)" ondragover="allowDrop(e)">
+                <div id="item_group" ondrop="drop(e)" ondragover="allowDrop(e)">
                     <img id="room_item01" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/128/57/57377.png">
                     <img id="room_item02" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/128/57/57274.png">
                     <img id="room_item03" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/512/57/57350.png">
@@ -100,7 +100,8 @@
                     <img id="room_item08" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/128/57/57363.png">
                     <img id="room_item09" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/128/35/35489.png">
                     <img id="room_item10" draggable="true" ondragstart="drag(e)" src="https://cdn-icons-png.flaticon.com/512/288/288686.png">
-                    <input id="finish" class="btn_sub rd" type="button" value="完成放置" disabled>
+                    <!-- <input id="finish" @click="judge" class="btn_sub rd" type="button" value="完成放置" disabled> -->
+                    <finish-button></finish-button>
                 </div>
             </div>
         </section>
@@ -134,7 +135,9 @@
 
 
         <!-- 測驗結果 -->
-        <section class="text_result">
+        <section class="text_result" id="result">
+            <!-- <input type="text" v-model="personality" value="蝴蝶" hidden> -->
+            <!-- <result-get></result-get> -->
             <img class="typewriter" src="img/game_typewriter.png" alt="打字機">
             <img class="typewriter" src="img/game_typewriter-01.png" alt="打字機">
             <button id="again" class="btn_sub rd">再玩一次</button>
@@ -143,22 +146,20 @@
                 <div class="result">
                     <div class="evaluate bee">
                         <div class="txt">
-                            <h3>你是蜜蜂人！</h3>
-                            <p>你偏好讓所有事物在眼前自成秩序，並深信它們都能物盡其用。</p>
-                            <p>你比較喜歡：「豐富視覺＋詳盡收納」</p>
+                            <h3>你是{{yourpersonality[0]}}人！</h3>
+                            <p class="text-wrapper">{{yourpersonality[1]}}</p>
+                            <p class="text-wrapper">{{yourpersonality[2]}}</p>
                         </div>
                         <div>
                             <div class="pic">
-                                <img src="img/game_bee.png">
+                                <img :src='yourpersonality[5]'>
+                                <!-- <img :src="img/game_bee.png"> -->
                             </div>
                             <div class="txt">
                                 <h3>｜人格魅力｜</h3>
-                                <p>你做事有條理，也有強盛的行動力，容易對手作DIY有熱情，生活過得充實精彩！</p>
+                                <p class="text-wrapper">{{yourpersonality[3]}}</p>
                                 <h3>｜收納難題｜</h3>
-                                <p>「我的興趣很多，導致東西也很多！」
-                                    忙碌的小蜜蜂被嗜好圍繞雖然幸福，但是空間也因此被各種器材用品塞爆。
-                                    又因為常常想著「以後可能會用到啊！」結果割捨不下任何東西，只好通通堆在自己身邊。
-                                    很想要找出完美的收納方式，但可能會先被雜物淹沒……</p>
+                                <p class="text-wrapper">{{yourpersonality[4]}}</p>
                             </div>
                         </div>
                     </div>
@@ -226,5 +227,127 @@
 
     </main>
 
+    <!-- <script>
+        const bus = new Vue();
+
+        Vue.component('finish-button',{
+            // template: `<button> Add </button>`,
+            template: `<input id="finish" @click="judge" class="btn_sub rd" type="button" value="完成放置" disabled>`,
+            methods: {
+                judge(){
+                    if( $('#hiding img').length==1 && $('#garbage img').length<=1 ){
+                        alert('蝴蝶');
+                        bus.$emit('abc',this.personality='蝴蝶');   // 自訂事件
+                    }else if( $('#hiding img').length<=5 && $('#garbage img').length<=1 ){
+                        alert('蜜蜂');
+                        bus.$emit('abc',this.personality='蜜蜂');   // 自訂事件
+                    }else if( $('#hiding img').length>=5 && $('#garbage img').length<=3 ){
+                        alert('瓢蟲');
+                        bus.$emit('abc',this.personality='瓢蟲');   // 自訂事件
+                    }else{
+                        alert('蟋蟀');
+                        bus.$emit('abc',this.personality='蟋蟀');   // 自訂事件
+                    };
+                },
+                // 2 額外增加的，可以不用寫
+                data() {
+                    return {
+                        personality: '',
+                    };
+                },
+            },
+        });
+
+        Vue.component('result-get',{
+            template: `<input type="text" v-model="personality" value="蝴蝶" hidden>`,
+            data() {
+                return {
+                    yourpersonality: '',
+                };
+            },
+            // 在 mounted() 時聆聽該事件
+            mounted() {
+                bus.$on('abc',(personality) => {
+                    yourpersonality = personality;
+                    alert(yourpersonality);
+                });
+            },
+        });
+        // ===================================
+        new Vue({
+            el:'#app',
+        });
+    </script> -->
+    <script>
+        const bus = new Vue();
+
+        Vue.component('finish-button',{
+            // template: `<button> Add </button>`,
+            template: `<input id="finish" @click="judge" class="btn_sub rd" type="button" value="完成放置" disabled>`,
+            methods: {
+                judge(){
+                    if( $('#hiding img').length==1 && $('#garbage img').length<=1 ){
+                        bus.$emit('abc',this.personality='蝴蝶');   // 自訂事件
+                    }else if( $('#hiding img').length<=5 && $('#garbage img').length<=1 ){
+                        bus.$emit('abc',this.personality='蜜蜂');   // 自訂事件
+                    }else if( $('#hiding img').length>=5 && $('#garbage img').length<=3 ){
+                        bus.$emit('abc',this.personality='瓢蟲');   // 自訂事件
+                    }else{
+                        bus.$emit('abc',this.personality='蟋蟀');   // 自訂事件
+                    };
+                },
+                // 2 額外增加的，可以不用寫
+                data() {
+                    return {
+                        personality: '',
+                    };
+                },
+            },
+        });
+
+        new Vue({
+            el:'#app',
+            data() {
+                return {
+                    yourpersonality: '',
+                    butterfly:['蝴蝶',
+                    '用得到的、喜愛的物件都要在眼前一覽無遺，你才會感到安心。',
+                    '你比較喜歡：「豐富視覺＋簡易收納」',
+                    '你思考活躍、創意十足、著眼於大處，做事時樂在當下，珍惜和物品的感情連結。',
+                    '你總是覺得，「東西要是收起來，我就會忘記它們的存在！」結果物品四處散亂堆積，櫃子、抽屜反而空空如也。\n你可能常被人認為懶惰、任空間亂七八糟，但那只是因為市面上的收納用品不符合你的習慣。\n既然東西要擺出來才安心，就讓自己當個被心愛物品圍繞的蝴蝶人吧！','img/game_butterfly.png'],
+                    ladybug:['瓢蟲',
+                    '你能從宏觀角度掌握事物全貌，整潔有序，經手過的空間美得能拍網美照！',
+                    '你比較喜歡：「簡潔視覺＋簡易收納」',
+                    '你做事有條理，也有強盛的行動力，容易對手作DIY有熱情，生活過得充實精彩！',
+                    '「那些帳單、藥罐、小東西通通都要收起來，眼不見為淨！」\n瓢蟲人的家看似整潔，其實他們有著難以啟齒的秘密──那些看不見的抽屜、櫃子早就大爆炸一團亂了！\n結果老是找不到要用的東西，每天都在跟雜物玩捉迷藏……要仔細整理真的很困難！','img/game_ladybug.png'],
+                    bee:['蜜蜂',
+                    '你偏好讓所有事物在眼前自成秩序，並深信它們都能物盡其用。',
+                    '你比較喜歡：「豐富視覺＋詳盡收納」',
+                    '你做事有條理，也有強盛的行動力，容易對手作DIY有熱情，生活過得充實精彩！',
+                    '「我的興趣很多，導致東西也很多！」忙碌的小蜜蜂被嗜好圍繞雖然幸福，但是空間也因此被各種器材用品塞爆。\n又因為常常想著「以後可能會用到啊！」結果割捨不下任何東西，只好通通堆在自己身邊。\n很想要找出完美的收納方式，但可能會先被雜物淹沒……','img/game_bee.png'],
+                    cricket:['蟋蟀',
+                    '俐落有序、細節準則是你的人生信仰，你只用「正確方式」做事。',
+                    '你比較喜歡：「簡潔視覺＋詳盡收納」',
+                    '你擅長分析、注重細節、條理分明，任何事交給有責任感的你，絕對讓人放心！',
+                    '市面上的收納用品根本是為蟋蟀人設計的，許多專業整理師也都是這個類型。\n但是你太追求完美，甚至覺得沒做好還不如完全別做，整理收納容易一拖再拖，反而更容易堆積物品，尤其文件是你難攻克的大魔王。\n請放下自我懷疑，並接受你天生的收納整理能力。','img/game_cricket.png'],
+                };
+            },
+            // 在 mounted() 時聆聽該事件
+            mounted() {
+                bus.$on('abc',(personality) => {
+                    if(personality=='蝴蝶'){
+                        this.yourpersonality=this.butterfly;
+                    }else if(personality=='瓢蟲'){
+                        this.yourpersonality=this.ladybug;
+                    }else if(personality=='蜜蜂'){
+                        this.yourpersonality=this.bee;
+                    }else if(personality=='蟋蟀'){
+                        this.yourpersonality=this.cricket;
+                    };
+                    console.log(this.yourpersonality);
+                });
+            },
+        });
+    </script>
 </body>
 </html>

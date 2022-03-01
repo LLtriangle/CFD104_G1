@@ -7,6 +7,8 @@
     @@include('layout/head.html')
     <link rel="stylesheet" href="css/activity.css">
     <title>活動與專欄</title>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     @@include('layout/header.html')
@@ -25,7 +27,7 @@
 			</div>
 			<div>
 				<div class="pic">
-					<img src="../img/act_banner.png" alt="banner圖">
+					<img src="img/act_banner.png" alt="banner圖">
 				</div>
 				
 			</div>
@@ -47,7 +49,7 @@
                         </div>
                         <div class="copy">
                             <input id="textArea" value="22HAPPYMDAY"  readonly>
-                            <button onclick="copyToClipBoard('textArea')">複製</button>
+                            <button onclick="copyToClipBoard('textArea')"><span>複製</span></button>
                         </div>
                 </div>
                 <div class="acti_item">
@@ -63,7 +65,7 @@
                     </div>                        
                         <div class="copy">
                             <input id="textArea2" value="2022HAPPY88" readonly>
-                            <button onclick="copyToClipBoard('textArea2')">複製</button>
+                            <button onclick="copyToClipBoard('textArea2')"><span>複製</span></button>
                         </div>  
                 </div>
                 <div class="acti_item">
@@ -79,7 +81,7 @@
                     </div>                        
                         <div class="copy">
                             <input value="22SOEASYEVD" readonly id="textAreas3"/>
-                            <button onclick="copyToClipBoard('textAreas3')">複製</button>
+                            <button onclick="copyToClipBoard('textAreas3')"><span>複製</span></button>
                         </div>
                 </div>
                 
@@ -88,12 +90,12 @@
                 <h2>專欄</h2>
                 <div class="col">
                     <div class="img">
-                        <img src="../img/prod_box_no02.jpg">
+                        <img src="img/prod_box_no02.jpg">
                     </div>
                     <div class="txt">
                         <h3>「別讓你的生活，過得毫無意識」堆積收納箱不叫整理，而是惡性囤積</h3>
                          <div class="item">
-                            <div class="item_img"><img src="../img/logo_act.jpg"></div>
+                            <div class="item_img"><img src="img/logo_act.jpg"></div>
                             <div class="name">SOEASY</div>
                         </div>
                         <p>住家坪數小的購物狂家裡，想必一定是塞滿東西，如果又崇尚 IKEA 或是無印良品的簡約風，那一定會有不少收納家具或抽屜，至少我們家是這樣沒錯。實際上，那些捨不得丟的、裝在收納盒裡的東西，可能放了幾年都沒動過。
@@ -109,12 +111,12 @@
                 </div>
                 <div class="col">
                     <div class="img">
-                        <img src="../img/service_01.jpg">
+                        <img src="img/service_01.jpg">
                     </div>
                     <div class="txt">
                         <h3>極簡主義實踐心法：理智把關，只買自己百分之百喜歡的物品</h3>
                          <div class="item">
-                            <div class="item_img"><img src="../img/logo_act.jpg"></div>
+                            <div class="item_img"><img src="img/logo_act.jpg"></div>
                             <div class="name">SOEASY</div>
                         </div>
                         <p>
@@ -155,12 +157,12 @@
                 </div>
                 <div class="col">
                     <div class="img">
-                        <img src="../img/prod_box_no02.jpg">
+                        <img src="img/prod_box_no02.jpg">
                     </div>
                     <div class="txt">
                         <h3>「東西不是通通放到整理箱就叫整理」達人教您收納大法</h3>
                         <div class="item">
-                            <div class="item_img"><img src="../img/logo_act.jpg"></div>
+                            <div class="item_img"><img src="img/logo_act.jpg"></div>
                             <div class="name">SOEASY</div>
                         </div>
                         <p>當我把各種多餘的東西清掉之後，留下的空的收納箱，大大小小至少有 20 多個，真的是太驚人了，這不免讓我再一次反省自己真的太會亂買。因為很愛買，又懶得整理，看到家居雜誌上那種清爽潔淨的生活空間，就腦波弱的買了一堆收納箱及整理架，試圖讓家裡看起來整齊一點，效果當然沒有雜誌上那樣高雅簡潔。</p>
@@ -170,12 +172,12 @@
                 </div>
                 <div class="col">
                     <div class="img">
-                        <img src="../img/column_01.jpg">
+                        <img src="img/column_01.jpg">
                     </div>
                     <div class="txt">
                         <h3>家裡太小，想騰出更多收納空間你一定要知道的段捨離大法</h3>
                          <div class="item">
-                            <div class="item_img"><img src="../img/logo_act.jpg"></div>
+                            <div class="item_img"><img src="img/logo_act.jpg"></div>
                             <div class="name">SOEASY</div>
                         </div>
                         <p>相信不少人都有同樣的問題，實際上這不叫整理收納，而是惡性囤積。我們現在是租屋而居，在小小的空間內堆滿收納盒，真正生活的空間越來越小，那到底是付租金給人住，還是給貨物住呢？真正有效果的收納，不外乎計畫性消費和不浪費，不僅能達到室內美觀簡潔的目標，還可以減少家庭支出和家務負擔，更不用擔心不知道東西收去哪兒了。</p>
@@ -201,5 +203,6 @@
         alert("已複製!");
         }
     </script>
+    
 </body>
 </html>

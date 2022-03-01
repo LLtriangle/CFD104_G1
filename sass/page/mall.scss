@@ -4,12 +4,15 @@
     display: flex;
     justify-content: center;
     max-width: 100%;
+    padding-top: 20px;
+    .btn_btn{
+        cursor: pointer;
+    }
 }
 .container{
     max-width: 1200px;
     display: flex;
     flex-wrap: wrap;
-    // box-sizing: border-box;
     .mall_item{
         margin: 30px 10px;
         width: calc(50% - 20px);
@@ -35,11 +38,13 @@
     justify-content: center;
     .btn_btn.bl{
         margin: 0 5px;
+        cursor: pointer;
     }
 }
 // 桌機版
 @media (min-width: 1200px) {
     .mall_btn{
+        padding-top: 30px;
         .btn_btn{
             margin: 0px 30px;
         }
@@ -49,7 +54,6 @@
         margin: auto;
         display: flex;
         flex-wrap: wrap;
-        // box-sizing: border-box;
         .mall_item{
             margin: 40px 10px;
             width: calc(25% - 20px);
@@ -57,7 +61,6 @@
                 img{
                     width: 100%;
                 }
-
             }               
             h3{
                 margin-left: 10px;
