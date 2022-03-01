@@ -28,22 +28,32 @@
             <div v-if="activetab ==='1'" class="tabcontent">
                 <table>
                     <tr>
-                        <td>商品詳情</td>
-                        <td>單價</td>
+                        <td>
+                            <h3>商品詳情</h3>
+                        </td>
+                        <td>
+                            <h3>單價</h3>
+                        </td>
                         <td></td>
-                        <td>數量</td>
+                        <td>
+                            <h3>數量</h3>
+                        </td>
                         <td></td>
-                        <td>小計</td>
+                        <td>
+                            <h3>小計</h3>
+                        </td>
                     </tr>
 
                     <tr v-for="(item, index) in list">
-                        <td><img :src="image"></td>
-                        <td>{{item.price}}</td>
+                        <td><img :src="item.image" class="product"></td>
+                        <td>$ {{item.price}}</td>
                         <td><button @click="countNum(-1,index)" :disabled="item.isDisabled" class="add">-</button></td>
                         <td>{{item.count}}</td>
                         <td><button @click="countNum(1,index)" class="add">+</button></td>
-                        <td>{{(item.price* item.count)}}</td>
-                        <td><button @click="countNum(0,index)" class="add"><ion-icon name="trash-outline"></ion-icon></button></td>
+                        <td>$ {{(item.price* item.count)}}</td>
+                        <td><button class="add" @click="del_btn(index)">
+                                <ion-icon name="trash-outline"></ion-icon>
+                            </button></td>
                     </tr>
                     <!-- <tr v-if="product">
                         <td><img :src="image"></td>
@@ -57,8 +67,7 @@
                     <tr>
                         <td colspan="2">優惠碼輸入:</td>
                         <td colspan="3">
-                            <input type="text" maxlength="11" v-model="coupon"
-                            @change="" placeholder="請輸入折扣碼">
+                            <input type="text" maxlength="11" v-model.trim="coupon" @change="" placeholder="請輸入折扣碼">
                         </td>
                         <td colspan="2" rowspan="2">{{show_coupon}}</td>
                     </tr>
@@ -72,7 +81,7 @@
                                     class="radio-button"></span>宅配</label></td>
                         <td></td>
                         <td></td>
-                        <td>70</td>
+                        <td>$ 100</td>
                     </tr>
                     <tr>
                         <td class="left" colspan="3"><input type="radio" v-model="delivery" value="7-11超商取貨付款"
@@ -80,7 +89,7 @@
                                     class="radio-button"></span>7-11超商取貨付款</label></td>
                         <td></td>
                         <td></td>
-                        <td>80</td>
+                        <td>$ 90</td>
                     </tr>
                     <tr>
                         <td class="left" colspan="3"><input type="radio" v-model="delivery" value="全家超商取貨付款" id="plan3"
@@ -88,18 +97,21 @@
                                     class="radio-button"></span>全家超商取貨付款</label></td>
                         <td></td>
                         <td></td>
-                        <td>90</td>
+                        <td>$ 80</td>
                     </tr>
                     <tr>
                         <td colspan="2">總金額</td>
                         <td colspan="3"></td>
-                        <td>{{total_all}}</td>
+                        <td>$ {{total_all}}</td>
                     </tr>
                 </table>
 
                 <div class="space">
-                    <button><ion-icon name="arrow-back-outline"></ion-icon>繼續購物</button>
-                    <button v-on:click="activetab='2'">下一步<ion-icon name="arrow-forward-outline"></ion-icon></button>
+                    <button class="center"><a href="product.html">
+                            <ion-icon name="arrow-back-outline"></ion-icon>繼續購物
+                        </a></button>
+                    <button v-on:click="activetab='2'" class="center">下一步<ion-icon name="arrow-forward-outline">
+                        </ion-icon></button>
                 </div>
             </div>
             <div v-if="activetab ==='2'" class="tabcontent">
@@ -114,11 +126,12 @@
                             </select>
                         </td>
                         <td colspan="3" class="left">
-                            <input type="text" name="cardNumber" id="cardNum" size="30" v-model="credit_card"
+                            <input type="text" name="cardNumber" id="cardNum" size="30" v-model.number="credit_card"
                                 @change="ValidateCreditCardNumber(credit_card)" maxlength="16" />
                         </td>
                         <td>
-                            <img class="card_img" :src="[cCard ==='Visa' ? credit_card_png[0] : credit_card_png[1]]" alt="credit_card">
+                            <img class="card_img" :src="[cCard ==='Visa' ? credit_card_png[0] : credit_card_png[1]]"
+                                alt="credit_card">
                         </td>
                     </tr>
                     <tr>
@@ -136,15 +149,15 @@
                             </select>
                         </td>
                         <td>驗證碼:</td>
-                        <td><input type="text" size="3" maxlength="3"></td>
+                        <td><input type="text" size="3" maxlength="3" v-model.number="test"></td>
                     </tr>
                     <tr>
                         <td colspan="3">收貨人姓名:</td>
-                        <td colspan="2"><input type="text" v-model="name"></td>
+                        <td colspan="2"><input type="text" v-model.trim="name"></td>
                     </tr>
                     <tr>
                         <td colspan="3">收貨地址:</td>
-                        <td><select name="市" v-model="selectedCity" @change="changeCity">
+                        <td><select name="市" v-model.trim="selectedCity" @change="changeCity">
                                 <option value="" disabled>選擇縣市</option>
                                 <option v-for="City in Citys">{{City}}</option>
                             </select></td>
@@ -152,12 +165,15 @@
                                 <option value="" disabled>選擇區域</option>
                                 <option v-for="Area in Areas">{{Area}}</option>
                             </select></td>
-                        <td colspan="3"><input type="text" v-model="address"></td>
+                        <td colspan="3"><input type="text" v-model.trim="address"></td>
                     </tr>
                 </table>
                 <div class="space">
-                    <button v-on:click="activetab='1'"><ion-icon name="arrow-back-outline"></ion-icon>返回</button>
-                    <button v-on:click="activetab='3'">下一步<ion-icon name="arrow-forward-outline"></ion-icon></button>
+                    <button class="center" v-on:click="activetab='1'">
+                        <ion-icon name="arrow-back-outline"></ion-icon>返回
+                    </button>
+                    <button class="center" @click="nextHandler(2)">下一步<ion-icon name="arrow-forward-outline">
+                        </ion-icon></button>
                 </div>
             </div>
             <div v-if="activetab ==='3'" class="tabcontent">
@@ -180,11 +196,13 @@
                     </tr>
                     <tr>
                         <td class="left">總金額:</td>
-                        <td>{{total_all}}</td>
+                        <td>$ {{total_all}}</td>
                     </tr>
                 </table>
                 <div class="space">
-                    <button v-on:click="activetab='2'"><ion-icon name="arrow-back-outline"></ion-icon>返回</button><button>送出<ion-icon name="arrow-forward-outline"></ion-icon></button>
+                    <button class="center" v-on:click="activetab='2'">
+                        <ion-icon name="arrow-back-outline"></ion-icon>返回
+                    </button><button class="center">送出<ion-icon name="arrow-forward-outline"></ion-icon></button>
                 </div>
             </div>
         </div>
@@ -192,24 +210,50 @@
     </div>
 
     <script>
+        function init() {
+            var del_btn_icon = document.getElementsByClassName("del_btn_icon");
+            var del_btn = document.getElementsByClassName("del_btn");
+            for (i = 0; i < del_btn.length; i++) {
+                del_btn_icon[i].addEventListener('click', delete_mypic_icon);
+                del_btn[i].addEventListener('click', delete_mypic);
+            }
+
+            function delete_mypic_icon(e) {
+                let div_img_icon = e.target.parentNode;
+                // console.log(div_img_icon.parentNode.parentNode)
+                div_img_icon.parentNode.parentNode.remove();
+            }
+
+            function delete_mypic(e) {
+                let div_img = e.target.parentNode;
+                // console.log(div_img.parentNode)
+                div_img.parentNode.remove();
+            };
+        }
+        window.addEventListener("load", init)
         new Vue({
             el: '#tabs',
             data: {
                 activetab: '1',
-                list: [
-                    {
-                    image: 'img/SoEazy.png',
+                list: [{
+                    image: 'img/prod_box_no01-1.jpg',
                     count: 1,
-                    price: 3200,
+                    price: 1680,
                     disabled: false,
-                    },
-                ],
-                // next: false,
+                    key: '00001',
+                }, {
+                    image: 'img/prod_box_no01-1.jpg',
+                    count: 1,
+                    price: 3080,
+                    disabled: false,
+                    key: '00002',
+                }, ],
                 message: '',
                 Citys: ["台北市", "新北市", "基隆市", "桃園市"],
                 Areas: '',
                 selectedYear: '',
                 selectedMonth: '',
+                test: '',
                 selectedCity: '',
                 selectedArea: '',
                 address: '',
@@ -219,7 +263,7 @@
                 payment: '',
                 name: '',
                 coupon: '',
-                credit_card_png: ['img/visa.png','img/mastercard.png'],
+                credit_card_png: ['img/visa.png', 'img/mastercard.png'],
                 isDisabled: true,
                 years: [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
             },
@@ -230,6 +274,16 @@
                 },
             },
             methods: {
+                del_btn(index){
+                    this.list.splice(index,1)
+                },
+                getList() {
+                    let list = localStorage.getItem('list');
+                    if (list) this.list = JSON.parse(list);
+                },
+                setList() {
+                    localStorage.setItem('list', JSON.stringify(this.list));
+                },
                 ValidateCreditCardNumber(num) {
 
                     // var ccNum = document.getElementById("cardNum").value;
@@ -238,20 +292,16 @@
                     var mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
                     console.log((visaRegEx.test(num)))
                     if (this.cCard === 'Visa') {
-                        if (!(visaRegEx.test(num))) {
-                            alert("信用卡資料有誤");
-                        }
+                        // if (!(visaRegEx.test(num))) {
+                        //     return (visaRegEx.test(num))
+                        // }
+                        return (visaRegEx.test(num))
                     } else {
-                        if (!mastercardRegEx.test(num)) {
-                            alert("信用卡資料有誤");
-                        }
+                        // if (!mastercardRegEx.test(num)) {
+                        //     alert("信用卡資料有誤");
+                        // }
+                        return (!mastercardRegEx.test(num))
                     }
-                },
-                nextPage1() {
-
-                },
-                nextPage2() {
-
                 },
                 countNum(x, index) {
                     this.list[index].count += x;
@@ -260,10 +310,21 @@
                     } else {
                         this.list[index].isDisabled = true
                     }
+                    this.se;
+                    tList()
                 },
                 clickHandler(num) {
                     if (num <= this.activetab) {
                         this.activetab = `${num}`
+                    }
+                },
+                nextHandler(num) {
+                    let credit_valid = this.ValidateCreditCardNumber(this.credit_card);
+                    if (num == 2) {
+                        if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test || !
+                            this.name || !this.selectedCity || !this.selectedArea || !this.address || !
+                            credit_valid) alert("資料不完整");
+                        else this.activetab = `${num + 1}`
                     }
                 },
                 changeCity() {
@@ -284,56 +345,60 @@
                         ];
                     }
                 },
-                // total(price, count) {
-                //     return parseInt(price) * parseInt(count)
-                // },
             },
             computed: {
-                total_all(){               
-                    if(this.coupon === "2022HAPPY88"){
-                        return (this.list[0].price*this.list[0].count)*(this.param)+this.fee;
-                    }else if(this.coupon === "22HAPPYMDAY" || this.coupon === "22SOEASYEVD"){
-                        return (this.list[0].price*this.list[0].count)+(this.param)+this.fee;
+                total_all() {
+                    let a = this.list;
+                    let b = 0;
+                    for (let i = 0; i < a.length; i++) {
+                        if (this.coupon === "2022HAPPY88") {
+                            return (this.list[i].price * this.list[i].count) * (this.param) + this.fee;
+                        } else if (this.coupon === "22HAPPYMDAY" || this.coupon === "22SOEASYEVD") {
+                            return (this.list[i].price * this.list[i].count) + (this.param) + this.fee;
+                        } else {
+                            b += this.list[i].price * this.list[i].count + this.fee;
+                        }
                     }
-                    else{
-                        return this.list[0].price*this.list[0].count+this.fee;
-                    }
+                    return b;
                 },
 
                 // 運費
                 fee() {
-                    if(this.delivery === "宅配"){
-                        return 70
-                    }else if(this.delivery === "7-11超商取貨付款"){
-                        return 80
-                    }else if(this.delivery === "全家超商取貨付款"){
+                    if (this.delivery === "宅配") {
+                        return 100
+                    } else if (this.delivery === "7-11超商取貨付款") {
                         return 90
+                    } else if (this.delivery === "全家超商取貨付款") {
+                        return 80
                     }
                 },
                 // 折扣碼顯示
-                show_coupon(){
-                    if(this.coupon === "22HAPPYMDAY"){
+                show_coupon() {
+                    if (this.coupon === "22HAPPYMDAY") {
                         return "折扣1000元"
-                    }else if(this.coupon === "2022HAPPY88"){
+                    } else if (this.coupon === "2022HAPPY88") {
                         return "全部商品打88折"
-                    }else if(this.coupon === "22SOEASYEVD"){
+                    } else if (this.coupon === "22SOEASYEVD") {
                         return "折扣900元"
-                    }else if(this.coupon === ""){
+                    } else if (this.coupon === "") {
                         return ""
-                    }else{
+                    } else {
                         return "折扣碼無效"
                     }
                 },
                 // 折扣參數
-                param(){
-                    if(this.coupon === "22HAPPYMDAY"){
+                param() {
+                    if (this.coupon === "22HAPPYMDAY") {
                         return -1000
-                    }else if(this.coupon === "2022HAPPY88"){
+                    } else if (this.coupon === "2022HAPPY88") {
                         return 0.88
-                    }else if(this.coupon === "22SOEASYEVD"){
+                    } else if (this.coupon === "22SOEASYEVD") {
                         return -900
                     }
                 },
+            },
+            mounted() {
+                this.getList();
             },
         });
     </script>

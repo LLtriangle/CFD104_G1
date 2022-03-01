@@ -168,10 +168,6 @@ table{
     border-radius: 15px;
     // width: 25px;
 }
-.md{
-    position: relative;
-    top: 2px;
-}
 .tabcontent {
     background-color: map-get($color , "plain" );
     padding: 30px 50px;
@@ -190,6 +186,9 @@ table{
         text-align: center;
         padding: 0.3em 0.4em;
         color: map-get($color, 'plain_blue');
+        .product{
+            height: 50px;
+        }
         .left{
             text-align: left;
         }
@@ -212,12 +211,6 @@ table{
         margin: 10px 20px;
     }
 
-}
-.form_item.upload_pics{
-    display: block;
-    .your_pics{
-        display: flex;
-    }
 }
     
 // 更改input[type=text]樣式
@@ -266,7 +259,11 @@ textarea {
         }
     }
 }
-
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .card_img{
     max-width: 50px;
     max-height: 30px;
