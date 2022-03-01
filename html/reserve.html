@@ -36,7 +36,7 @@
         </div>
 
         <div class="content">
-            <div v-if="activetab ==='1'" class="tabcontent">
+            <div v-show="activetab ==='1'" class="tabcontent">
                 <!-- 預約表單 -->
                 <form>
                     <!-- 選擇方案 -->
@@ -152,7 +152,7 @@
                         <div class="time_panel">
                             <div>
                                 <p>｜預約日期</p>
-                                <p id="selectedDate"></p> 
+                                <p id="selectedDate"></p>
                             </div>
                             <div>
                                 <p>｜預約時段</p>
@@ -164,12 +164,12 @@
                     <!-- 姓名 -->
                     <div class="form_item input_name">
                         <h3>姓名</h3>
-                        <input type="text" v-model="name" placeholder="請輸入姓名" required>
+                        <input type="text" v-model.trim="name" placeholder="請輸入姓名" required>
                     </div>
                     <!-- 電話 -->
                     <div class="form_item input_tel">
                         <h3>電話</h3>
-                        <input type="text" v-model="tel"  placeholder="請輸入電話" required>
+                        <input type="text" v-model="tel"  placeholder="請輸入電話" maxlength="10" required>
                     </div>
                     <!-- 地址 -->
                     <div class="form_item choose_add">
@@ -183,7 +183,7 @@
                                 <option value="" disabled>選擇區域</option>
                                 <option v-for="Area in Areas">{{Area}}</option>
                             </select>
-                            <input type="text" placeholder="請輸入地址" required v-model="address">
+                            <input type="text" placeholder="請輸入地址" required v-model.trim="address">
                         </div>
                     </div>
                     <!-- 需求 -->
@@ -222,9 +222,9 @@
             </div>
 
 
-            <div v-if="activetab ==='2'" class="tabcontent">
+            <div v-show="activetab ==='2'" class="tabcontent">
                 <div class="details">
-                    <div class="center"><h3>預約明細</h3></div>
+                    <div class="center"><h3>預約資訊</h3></div>
                     <div class="datails_info flex">
                         <table class="d_table">
                             <tr>
@@ -248,55 +248,66 @@
                             </tr>
                             <tr>
                                 <td>預約日期</td>
-                                <td>{{showDate}}</td>
+                                <td id="showDate"></td>
                             </tr>
                             <tr>
                                 <td>預約時段</td>
-                                <td>{{showPeriod}}</td>
+                                <td id="showPeriod">{{period}}</td>
                             </tr>
                             <tr v-show="need">
                                 <td>需求</td>
                                 <td>{{need}}</td>
                             </tr>
+                            <tr>
+                                <td>價格</td>
+                                <td>{{total}}</td>
+                            </tr>
                         </table>
-                        <div class="d_pic" id="d_pic">
-                            <img src="img/SoEazy.png" alt="">
+                        <div class="d_pic center" id="d_pic">
+                            <img id="d_pic_img" src="https://picsum.photos/300/200/?random=10">
                     
                         </div>
                     </div>
                 </div>
 
-                <table class="creditCard">
-                    <tr>
-                        <td>
-                            <label>信用卡卡號:</label>
-                        </td>
-                        <td>
-                            <select name="信用卡" v-model="cCard">
-                                <option value="Visa" id="visa">Visa</option>
-                                <option value="Mastercard" id="mastercard">Mastercard</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="text" name="cardNumber" id="cardNum" size="30" v-model="credit_card"
-                                @change="ValidateCreditCardNumber(credit_card)" maxlength="16" />
-                        </td>
-                    </tr>
-                            
-                    <tr>
-                        <td>信用卡到期日</td>
-                        <td>
-                            <select name="年" v-model="selectedYear">
-                                <option v-for="year in years">{{year}}年</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="月份"  v-model="selectedMonth" @change="changeDays">
-                                <option v-for="month in 12">{{month}}月</option>
-                            </select>
-                        </td>
-                    </tr>                                    
-                </table>
+                <div>
+                    <div class="center"><h3>付款資訊</h3></div>
+                    <div>
+                        <table class="creditCard">
+                            <tr>
+                                <td>信用卡卡號</td>
+                                <td>
+                                    <select name="信用卡" v-model="cCard">
+                                        <option value="Visa" id="visa">Visa</option>
+                                        <option value="Mastercard" id="mastercard">Mastercard</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" name="cardNumber" id="cardNum" v-model="credit_card"
+                                        @change="ValidateCreditCardNumber(credit_card)" maxlength="16" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>驗證碼</td>
+                                <td><input type="text" max="3"></td>
+                            </tr>
+                            <tr>
+                                <td>信用卡到期日</td>
+                                <td>
+                                    <select name="年" v-model="selectedYear">
+                                        <option v-for="year in years">{{year}}年</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="月份"  v-model="selectedMonth">
+                                        <option v-for="month in 12">{{month}}月</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
                 <div class="btn_div between">
                     <button v-on:click="activetab='1'" type="button">返回</button>
                     <button v-on:click="activetab='3'" type="button">下一步</button>
@@ -304,7 +315,7 @@
             </div>
 
 
-            <div v-if="activetab ==='3'" class="tabcontent">
+            <div v-show="activetab ==='3'" class="tabcontent">
                 <table>
                     <tr>
                         <td>信用卡明細</td>
@@ -357,7 +368,6 @@
             price0: 800, // 方案0價格
             price1: 1000, // 方案1價格
             price2: 900, // 方案2價格
-            count: 1,
             emps: ["麻里不會","末牛子","潔癖子","由收easy安排"],
             selectedEmp: '',
             tel: '',
@@ -370,6 +380,9 @@
             years: [2022,2023,2024,2025,2026,2027,2028,2029,2030],
             period:'',
             need:'',
+            cCard: 'Visa',
+            selectedYear: '',
+            selectedMonth: '',
             // myimg:'',
         },
         watch: {
@@ -691,15 +704,15 @@
                     return this.price2*3
                 }
             },
-            showDate(){
-                return $id("selectedDate").innerText;
-            },
-            showPeriod(){
-                return $id("selectedPeriod").innerText;
-
-            },
+            // showDate(){
+            //     return $id("selectedDate").innerText;
+            // },
+            // showPeriod(){
+            //     return $id("selectedPeriod").innerText;
+            // },
         },
     });
+
 </script>
 
 </html>
