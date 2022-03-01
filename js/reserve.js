@@ -26,7 +26,7 @@ function uploadFile(){
             let delete_btn = document.createElement('button');
             delete_btn.type = "button";
             delete_btn.className = "delete_btn";
-            delete_btn.innerText = 'X';
+            delete_btn.innerText = '×';
             div.appendChild(delete_btn);
             delete_btn.onclick = delete_mypic;
             // 刪除照片
@@ -55,9 +55,8 @@ function uploadFile(){
             if(myimgs.length != 0){
 
                 // 第二頁 顯示照片第一張在明細
-                // console.log(document.getElementById("d_pic"));
-                console.log(document.getElementsByClassName("btn_div"));
-                // let dp_img = document.createElement('img');
+                // console.log(document.getElementById("d_pic_img").src);
+                document.getElementById("d_pic_img").src = myimgs[0].src;
                 // dp_img.src = myimgs[0].src;
                 // document.getElementsByClassName("d_pic")[0].appendChild(dp_img);
             }
