@@ -269,11 +269,44 @@
                         </div>
                     </div>
                 </div>
-
-                <div>
+                
+                <div class="payment">
                     <div class="center"><h3>付款資訊</h3></div>
-                    <div>
-                        <table class="creditCard">
+                    <div class="ccard flex">
+                        <div class="c_pic center">
+                            <img src="https://assets.dryicons.com/uploads/icon/svg/6411/b85e2b5a-9e91-458c-8ba3-11297ac31510.svg">
+                    
+                        </div>
+                        <div class="table_ccard">
+                            <div class="flex">
+                                <h4>信用卡卡號</h4>
+                                <select name="信用卡" v-model="cCard">
+                                    <option value="Visa" id="visa">Visa</option>
+                                    <option value="Mastercard" id="mastercard">Mastercard</option>
+                                </select>
+                                <input type="text" name="cardNumber" id="cardNum" v-model="credit_card"
+                                @change="ValidateCreditCardNumber(credit_card)" maxlength="16" />
+                            </div>
+                            <div class="flex">
+                                <h4>驗證碼</h4>
+                                <input type="text" maxlength="3" size="9">
+                                
+                            </div>
+                            <div class="flex">
+                                <h4>信用卡到期日</h4>
+                                <select name="年" v-model="selectedYear">
+                                    <option v-for="year in years">{{year}}年</option>
+                                </select>
+                                <select name="月份"  v-model="selectedMonth">
+                                    <option v-for="month in 12">{{month}}月</option>
+                                </select>
+                            </div>
+                            <div class="flex">
+                                <h4>付款金額</h4>
+                                <p class="price">{{total}}</p>
+                            </div>
+                        </div>
+                        <!-- <table class="table_ccard">
                             <tr>
                                 <td>信用卡卡號</td>
                                 <td>
@@ -289,7 +322,7 @@
                             </tr>
                             <tr>
                                 <td>驗證碼</td>
-                                <td><input type="text" max="3"></td>
+                                <td><input type="text" maxlength="3"></td>
                             </tr>
                             <tr>
                                 <td>信用卡到期日</td>
@@ -304,13 +337,18 @@
                                     </select>
                                 </td>
                             </tr>
-                        </table>
+                        </table> -->
                     </div>
                 </div>
 
                 <div class="btn_div between">
-                    <button v-on:click="activetab='1'" type="button">返回</button>
-                    <button v-on:click="activetab='3'" type="button">下一步</button>
+                    <button class="center" v-on:click="activetab='1'" type="button">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                        返回
+                    </button>
+                    <button class="center" v-on:click="activetab='3'" type="button">下一步<ion-icon name="arrow-forward-outline"></ion-icon>
+                        
+                    </button>
                 </div>
             </div>
 
@@ -340,8 +378,10 @@
                 </table>
                         
                 <div class="btn_div between">
-                    <button v-on:click="activetab='2'" type="button">返回</button>
-                    <button type="button">送出</button>
+                    <button class="center" v-on:click="activetab='2'" type="button">
+                        <ion-icon name="arrow-back-outline"></ion-icon>返回
+                    </button>
+                    <button type="button" id="submit">送出</button>
                 </div>
                 
             </div>
@@ -349,7 +389,9 @@
 
     </div>
 <!-- <footer></footer> -->
-@@include('layout/footer.html')           
+@@include('layout/footer.html')  
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>         
 </body>
 
 <script>
