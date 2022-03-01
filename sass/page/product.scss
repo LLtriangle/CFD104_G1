@@ -8,34 +8,60 @@ h3{
     margin: auto;
     margin-top: 25px;
     padding-top: 40px;
-    // display: flex;
-    // flex-wrap: wrap;
     .prod_row{
         width: 100%;
-        justify-content: space-between;
+        
         // display: flex;
         // flex-wrap: wrap;
 
         // flex-direction: row-reverse;
         //排列順序交換
         .prod_txt{
-            margin-top: 10px;
-            h3{
-                line-height: 2;
-            }
+            margin: 10px auto 0 auto;
             p{
-                line-height: 1.5;
                 margin: 0px 20px;
             }
             .prod_price{
                 margin-top: 20px;
-                margin-bottom: -30px;
+                font-size: 24px;
             }
             .prod_amount{
-                margin-top: 40px;
+                padding: 20px;
+                margin-top: 20px;
                 display: flex;
-                height: 10px;
-                justify-content: flex-end;
+                p{
+                    padding-top: 10px;
+                    padding-right: 20px;
+                }
+                .prod_minbtn{
+                    padding: 10px;
+                    input[type=text]{
+                        background-color: #fff;
+                        border: none;
+                        box-shadow: none;
+                    }
+                    input[type=button]{
+                        background-color: #fff;
+                        border: 1px solid;
+                        border-radius: 50%;
+                        font-size: 20px;
+                        padding: 10px 20px;
+                    }
+                    input[type=button]:hover{
+                        background-color: map-get($btn_color, "blue" );
+                        color: map-get($font_color, "white" );
+                        cursor: pointer;
+                    }
+                    .qtybox{
+                        width: 50px;
+                        text-align: center;
+                        outline: none;
+                        font-size: 18px;
+                    }
+                    .btn_btn_box{
+                        padding: 10px 10px 10px 30px;
+                    }
+                }
             }
         }
         .largeimg{
@@ -187,31 +213,63 @@ h3{
         // box-sizing: border-box;
         padding-top: 60px;
         .prod_row{
-            width: 50%;
+            width: calc(50% );
             justify-content: space-between;
-            // display: flex;
-            // flex-wrap: wrap;
-
-            // flex-direction: row-reverse;
-            //排列順序交換
             .prod_txt{
-                margin-top: 100px;
+                padding: 30px;
                 h3{
-                    line-height: 2;
+                    // line-height: 2;
                     padding-left: 20px;
                 }
                 p{
-                    line-height: 1.5;
+                    margin-top: 50px;
+                    // line-height: 1.5;
                 }
                 .prod_price{
                     margin-top: 20px;
                 }            
                 .prod_amount{
-                    margin-top: 60px;
+                    padding: 20px;
                     display: flex;
-                    height: 40px;
-                    justify-content: end;
+                    // height: 40px;
+                    justify-content: flex-start;
+                    p{
+                        margin-top: 10px;
+                        // font-weight: normal;
+                        // padding-top: 10px;
+                        // padding-right: 20px;
+                    }
+                    input[type=text]{
+                        background-color: #fff;
+                        border: none;
+                        box-shadow: none;
+                    }
+                    input[type=button]{
+                        background-color: #fff;
+                        border: 1px solid;
+                        // border: 1px solid map-get($color, "border" );
+                        // transition: 0.2s ease-in;
+                        box-shadow: none;
+                        border-radius: 50%;
+                        font-size: 20px;
+                        padding: 10px 20px;
+                    }
+                    input[type=button]:hover{
+                        background-color: map-get($btn_color, "blue" );
+                        color: map-get($font_color, "white" );
+                        cursor: pointer;
+                    }
+                    .qtybox{
+                        width: 50px;
+                        text-align: center;
+                        outline: none;
+                        font-size: 18px;
+                    }
                 }
+            }
+            .btn_btn_box{
+                padding: 0 100px;
+                margin-top: 20px;
             }
             .largeimg{
                 width: 600px;
@@ -295,9 +353,10 @@ h3{
                 // .prod_btn{
                 //     // width: 3%;
                 // }
+                
                 .btn_btn_box{
-                    padding: 20px 20px 20px 60px;
-                    // margin: 0px;
+                    padding: 15px;
+                    margin: auto;
                     justify-content: center;
                     .btn_btn{
                         cursor: pointer;

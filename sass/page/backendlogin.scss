@@ -1,0 +1,20 @@
+@import  "../base/color";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.login_container{
+    display: flex;
+    justify-content: center;
+    background: map-get($color, 'yellow');
+    height: 100vh;
+    text-align: center;
+    .form{
+        padding: 30px;
+        img{
+            max-width: 500px;
+        }
+    }
+}
