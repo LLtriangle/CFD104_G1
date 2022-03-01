@@ -1,6 +1,6 @@
 @import  "../base/var";
 @import  "../base/color";
-
+@import  "../base/universal";
 
 .activity{
     margin: 30px auto;
@@ -264,28 +264,6 @@
                         bottom: 30px;
                         right: 0;                        
                     }
-                    .moreprd:hover{
-                        color: #fff;
-                    }
-                    .moreprd::before {  
-                        transform: scaleX(0);
-                        transform-origin: bottom right;
-                      }
-                      .moreprd:hover::before {
-                        transform: scaleX(1);
-                        transform-origin: bottom left;
-                      }
-                      .moreprd::before {
-                        content: " ";
-                        display: block;
-                        position: absolute;
-                        top: 0; right: 0; bottom: 0; left: 0;
-                        inset: 0 0 0 0;
-                        background: rgb(0, 0, 0);
-                        z-index: -1;
-                        transition: transform .3s ease;
-                      }
-                    
                 }
             }
             .col:nth-child(even){
