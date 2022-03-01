@@ -156,6 +156,9 @@ td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
         border-radius: 50%;
         position: absolute;
         top: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .boto-next { right: 10px; padding-left: 13px; }
     .boto-prev { left: 10px; padding-right: 13px;}
@@ -189,7 +192,7 @@ td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
     }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 830px) {
     #calendari {
         height: 470px;
     }

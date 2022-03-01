@@ -5,7 +5,7 @@
     @@include('layout/head.html')
     <!-- 先連上index.css看效果開發 -->
     <link rel="stylesheet" href="css/index.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="js/index.js"></script>
     <title>首頁</title>
 </head>
 <body>
@@ -95,11 +95,6 @@
                 <li id="bubble_4">
                     <div class="bubble _4 ">
                         <p>買了一堆收納品，但我根本不會收納QQ</p>
-                    </div>
-                </li>
-                <li id="bubble_5">
-                    <div class="bubble _5 ">
-                        <p>翻了一下衣櫃，這些衣服是哪裡冒出來的?</p>
                     </div>
                 </li>
             </ul>
@@ -283,11 +278,10 @@
     @@include('layout/footer.html')
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
 
     <script>
-        // gsap.registerPlugin(CSSRulePlugin);
         gsap.registerPlugin(ScrollTrigger);
         // ScrollTrigger.matchMedia({
         //     // 跟設定css 一樣  如果畫面不小於 992px 執行
@@ -298,9 +292,42 @@
         //     "all": () => { 執行內容 },
         // });
 
-        // gsap.to(".index_plans .plans_img", {
-        //     scale: 0,
-        // });
+        //讓scroll trigger 可以使用blur
+        //this is just an example plugin that allows us to animate a "blur" property like gsap.to(target, {blur:10}) and it'll feed that value to this plugin which will do all the necessary calculations to add/update a blur() value in the CSS "filter" property (in browsers that support it). We wrap it in an iife just so that we can declare some local variables in a private scope at the top.
+        (function() {
+            const blurProperty = gsap.utils.checkPrefix("filter"),
+                    blurExp = /blur\((.+)?px\)/,
+                    getBlurMatch = target => (gsap.getProperty(target, blurProperty) || "").match(blurExp) || [];
+
+            gsap.registerPlugin({
+                name: "blur",
+                get(target) {
+                    return +(getBlurMatch(target)[1]) || 0;
+                },
+                init(target, endValue) {
+                    let data = this,
+                filter = gsap.getProperty(target, blurProperty),
+                endBlur = "blur(" + endValue + "px)",
+                match = getBlurMatch(target)[0],
+                index;
+            if (filter === "none") {
+                filter = "";
+            }
+            if (match) {
+                index = filter.indexOf(match);
+                endValue = filter.substr(0, index) + endBlur + filter.substr(index + match.length);
+            } else {
+                endValue = filter + endBlur;
+                filter += filter ? " blur(0px)" : "blur(0px)";
+            }
+            data.target = target; 
+            data.interp = gsap.utils.interpolate(filter, endValue); 
+                },
+                render(progress, data) {
+                    data.target.style[blurProperty] = data.interp(progress);
+                }
+            });
+        })();
 
          //登陸section 圖片隨滾輪放大
          const landing_tl = gsap.timeline({
@@ -314,7 +341,7 @@
             }
          });
 
-        //  landing_tl.to(".logo_img.aut_change", {scale: 50, duration: 2,})
+         landing_tl.to(".web_title", {scale: 1.2, duration: 2,})
 
         //登陸section slogan 文字由模糊轉清晰
         const slogan_tl = gsap.timeline({
@@ -333,11 +360,11 @@
         gsap.to(".index_plans .plans_img", {
             duration: 3,
             scrollTrigger: {
-                trigger: ".index_plans", //觸發的物件
-                start: "top center", // (物件開始位置, 卷軸開始位置) top center bottom px
-                pin: false, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
-                scrub: false, // 物件動畫根據卷軸捲動程度跑
-                toggleClass: {targets: ".plans_img", className: "active"}, // 增加移除的class，class名稱須為字串
+                trigger: ".index_plans",
+                start: "top center", 
+                pin: false, 
+                scrub: false,
+                toggleClass: {targets: ".plans_img", className: "active"},
             }
         });
 
@@ -345,12 +372,11 @@
         gsap.to(".index_news .news_img", {
             duration: 3,
             scrollTrigger: {
-                trigger: ".index_news", //觸發的物件
-                start: "top center", // (物件開始位置, 卷軸開始位置) top center bottom px
-                // end: "+=500", //(物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
-                pin: false, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
-                scrub: false, // 物件動畫根據卷軸捲動程度跑
-                toggleClass: {targets: ".news_img", className: "active"}, // 增加移除的class，class名稱須為字串
+                trigger: ".index_news",
+                start: "top center", 
+                pin: false, 
+                scrub: false,
+                toggleClass: {targets: ".news_img", className: "active"}, 
             }
         });
 
@@ -370,7 +396,6 @@
          bubbles_tl.from("#bubble_2", {x: 10000})
          bubbles_tl.from("#bubble_3", {x: -10000})
          bubbles_tl.from("#bubble_4", {x: 10000})
-         bubbles_tl.from("#bubble_5", {x: -10000})
 
          bubbles_tl.to("#bubble_1", {x: 100, duration: .5,})
          
@@ -379,24 +404,20 @@
          bubbles_tl.to("#bubble_3", {x: 100, duration: .5,})
          
          bubbles_tl.to("#bubble_4", {x: -100, duration: .5,})
-         
-         bubbles_tl.to("#bubble_5", {x: 100, duration: .5,})
 
-        //  bubbles_tl.to(".go_reserve", {background-color})
 
-        //預約流程section
-        // const progress_tl = gsap.timeline({
-        //     scrollTrigger: {
-        //         trigger: ".index_progress", 
-        //         start: "top center", 
-        //         pin: false,
-        //         scrub: true, 
-        //         markers: false,
-        //     }
-        //  });
-        //  progress_tl.from("a::after", {width: 0, duration: .5})
-        //  progress_tl.to("a::after", {width: 100, duration: .5})
+         const needs_btns_tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#bubble_4", 
+                start: "top center",
+                end: "center",
+                pin: false,
+                scrub: true, 
+                markers: true,
+            }
+         });
 
-    </script>
+         needs_btns_tl.to(".needs_btns", {scale: 1.5})
+    </script> -->
 </body>
 </html>
