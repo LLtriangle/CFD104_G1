@@ -13,7 +13,6 @@
     max-width: 1200px;
     display: flex;
     flex-wrap: wrap;
-    // box-sizing: border-box;
     .mall_item{
         margin: 30px 10px;
         width: calc(50% - 20px);
@@ -55,7 +54,6 @@
         margin: auto;
         display: flex;
         flex-wrap: wrap;
-        // box-sizing: border-box;
         .mall_item{
             margin: 40px 10px;
             width: calc(25% - 20px);

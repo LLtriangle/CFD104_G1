@@ -12,11 +12,7 @@ p{
     margin-top: 25px;
     padding-top: 40px;
     .prod_row{
-        width: 100%;   
-        // display: flex;
-        // flex-wrap: wrap;
-        // flex-direction: row-reverse;
-        //排列順序交換
+        width: 100%;
         .prod_txt{
             margin: 10px auto 0 auto;
             p{
@@ -66,7 +62,6 @@ p{
             }
         }
         .largeimg{
-            // width: 600px;
             margin: 10px 0px;
             img{
                 width: 100%;
@@ -75,7 +70,6 @@ p{
         .prod_item{
         justify-content: space-between;
         display: flex;
-        // flex-wrap: wrap;
         width: 100%;
             .smallimg{
                 width: calc(100% / 3 - 20px);
@@ -83,7 +77,6 @@ p{
             .prod_img{
                 margin: 10px 0px;
                 overflow: hidden;
-                // width: calc(25% - 20px);
                 img{
                     width: 100%;
                 }
@@ -96,7 +89,6 @@ p{
     .prod_derow{
         width: 100%;
         justify-content: space-between;
-        // display: flex;
         margin: 50px 0px;
         .prod_warpper{
             width: 100%;
@@ -111,10 +103,8 @@ p{
                 margin: auto;
                 h3{
                     margin-top: 20px;
-                    line-height: 2;
                 }
                 p{
-                    line-height: 1.5;
                     text-align: justify;
                 }
             }
@@ -133,13 +123,11 @@ p{
     }
     .prod_rerow{
         width: 100%;
-        // display: flex;
         margin-top: -50px;
         .reitem_btn{
             visibility: hidden;
         }
         .prod_reitem{
-            // width: 80%;
             margin: 20px 20px ;
             .btn_btn_box{
                 padding: 10px 10px 10px 30px;
@@ -150,12 +138,9 @@ p{
             }
             img{
                 width: 100%;
-                // overflow: hidden;
                 border-radius: 10px 10px 0 0;
             }
             h3{
-                // margin: 10px 0px;
-                // padding: 15px 0 10px;
                 text-align: start;
                 margin-left: 10px;
             }
@@ -177,18 +162,15 @@ p{
     cursor: pointer;
 }
 .htop1{
-    margin-top: 60px;
-    margin-bottom: -80px;
+    font-size: 32px;
 }
 .htop2{
-    margin-top: 50px;
-    margin-bottom: -60px;
+    font-size: 32px;
 }
 
 //桌機版
 @media (min-width: 1200px) {
     h3{
-        // line-height: 2;
         margin: auto;
         max-width: 1200px;
     }
@@ -198,7 +180,6 @@ p{
         margin-bottom: 150px;
         display: flex;
         flex-wrap: wrap;
-        // box-sizing: border-box;
         padding-top: 60px;
         .prod_row{
             width: calc(50% );
@@ -217,7 +198,6 @@ p{
                 .prod_amount{
                     padding: 20px;
                     display: flex;
-                    // height: 40px;
                     justify-content: flex-start;
                     p{
                         margin-top: 10px;
@@ -265,7 +245,6 @@ p{
             .prod_item{
             justify-content: space-between;
             display: flex;
-            // flex-wrap: wrap;
             width: 100%;
                 .smallimg{
                     width: calc(100% / 3 - 20px);
@@ -276,7 +255,6 @@ p{
                 .prod_img{
                     margin: 10px 0px;
                     overflow: hidden;
-                    // width: calc(25% - 20px);
                     img{
                         width: 100%;
                     }
@@ -350,12 +328,9 @@ p{
                 }
                 img{
                     width: 100%;
-                    // overflow: hidden;
                     border-radius: 10px 10px 0 0;
                 }
                 h3{
-                    // margin: 10px 0px;
-                    // padding: 15px 0 10px;
                     text-align: start;
                     margin-left: 10px;
                     font-size: 16px;
@@ -389,10 +364,12 @@ p{
     }        
 }
 .htop1{
+    font-size: 34px;
     margin-top: 50px;
-    margin-bottom: -40px;
+    margin-bottom: -30px;
 }
 .htop2{
+    font-size: 34px;
     margin-top: 40px;
-    margin-bottom: -30px;
+    margin-bottom: -20px;
 }
