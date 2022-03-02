@@ -56,9 +56,9 @@ section{
         margin: 20px 0px 20px 0px;
         position: relative;
         overflow: hidden;
-        width: 70%;
+        width: 45%;
         img{
-        width: 200%;
+        width: 250%;
         position: absolute;
         top: 0;
         left: 0;
@@ -93,7 +93,7 @@ section{
             line-height: 2;
             height: 550px;
             .txt_bg{
-                background-color:map-get($color, "sub_blue");
+                background-color:#d7dbe4;
                 max-width: 700px;
                 box-sizing: border-box;
                 padding: 10px 10px 60px 20px;
@@ -127,6 +127,12 @@ section{
 @media  screen and (max-width:768px),
 screen and (max-width:992px)
 {   
+    .big_img{
+        
+        h2{
+            line-height: 1em;
+        }
+    }
     // 輪播圖-----------------------
     .owl-stage-outer{
         right: -30px;
@@ -343,7 +349,7 @@ screen and (max-width:992px)
             margin: 20px 0px 20px 50px;
             width: 40%;
             img{
-            max-width: 100%;
+            max-width: 200%;
             }
             h2{
                

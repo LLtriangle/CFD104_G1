@@ -18,6 +18,24 @@
   transform: scale(1.1);
 }
 
+
+.form_button{
+  border-radius: 20px;
+  border: 2px solid map-get($color,"sub_brown");
+  box-sizing: border-box;
+  padding: 1px 12px;
+  &:hover{
+    background-color: map-get($color,"sub_brown");
+    color: #fff;
+  }
+}
+
+
+// 判定是否填寫正確格式
+// 難產中
+
+
+
 // 手機
 @media  screen and (max-width:768px){
   .lo_or_si{
@@ -115,13 +133,13 @@
     position: relative;
     width: 80%;
     max-width: 800px;
-    height: 400px;
+    height: 450px;
     padding: 25px;
     // border: 2px dashed #ddd;
     border-radius: 12px;
     overflow: hidden;
     margin:auto;
-    margin-top: 100px;
+    margin-top: 150px;
   }
   
   .container {
