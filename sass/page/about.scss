@@ -126,13 +126,16 @@ section{
 // 手機-------------------------------
 @media  screen and (max-width:768px),
 screen and (max-width:992px)
-{   
-    .big_img{
-        
-        h2{
-            line-height: 1em;
+{   .about_belief{
+        .big_img{
+            
+            h2{
+                line-height: 1em;
+                font-size: 120px;
+            }
         }
     }
+    
     // 輪播圖-----------------------
     .owl-stage-outer{
         right: -30px;
@@ -193,16 +196,28 @@ screen and (max-width:992px)
                 .rwd_mem_1{
                     width: 100px;
                     height: 50px;
+                    border: 2px solid map-get($color, "sub_brown");
+                    border-radius: 20px;
+                    color: #fff;
+                    background-color: map-get($color, "sub_brown");
                 }
                 .rwd_mem_2{
                     // position:absolute;
                     width: 90px;
                     height: 50px;
+                    border: 2px solid map-get($color, "sub_brown");;
+                    border-radius: 20px;
+                    color: #fff;
+                    background-color: map-get($color, "sub_brown");
                 }
                 .rwd_mem_3{
                     // position:absolute;
                     width: 90px;
                     height: 50px;
+                    border: 2px solid map-get($color, "sub_brown");;
+                    border-radius: 20px;
+                    color: #fff;
+                    background-color: map-get($color, "sub_brown");
                 }
     
             }
@@ -442,6 +457,15 @@ screen and (max-width:992px)
             p{
                 line-height: 2;
                 margin-left: 20px;
+            }
+            button{
+                margin-top: 10px;
+                margin-left: 400px;
+                border: 1px solid map-get($color, "sub_brown");
+                background-color:map-get($color, "sub_brown") ;
+                color: #fff;
+                border-radius: 20px;
+                padding: 0px 5px;
             }
             .circle_small_card{
                 display: flex;
