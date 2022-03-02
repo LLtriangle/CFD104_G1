@@ -72,6 +72,7 @@
     .case{
         display: flex;
         flex-direction: column;
+        margin: 50px 0;
         .pic{
             width: 80%;
             max-width: 500px;
@@ -96,6 +97,9 @@
         }
         .txt{
             padding: 50px 20px;
+            h3{
+                border-bottom: 1px solid map-get($color , "sub_brown");
+            }
         }
     }
 }
@@ -235,12 +239,12 @@
             flex-direction: row;
             align-items: center;
             max-width: 1200px;
-            margin: auto;
+            margin: 50px auto;
             .pic{
-                width: 50%;
+                width: 40%;
             }
             .txt{
-                width: 50%;
+                width: 60%;
                 padding: 20px 50px;
             }
         }
