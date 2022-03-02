@@ -1,4 +1,4 @@
-
+var next_btns = document.getElementsByClassName("next_btn");
 
 // 載入照片
 function uploadFile(){
@@ -87,6 +87,14 @@ function submitForm(){
 function init(){
     uploadFile();
     document.getElementById("submit").addEventListener('click',submitForm);
+    for(let i = 0; i<next_btns.length ; i++){
+        next_btns[i].onclick=function(){
+            // console.log(0);
+            $('html').animate({
+                scrollTop: 0,
+            }, 500);
+        }
+    }
 };
 
 

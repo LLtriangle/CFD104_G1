@@ -287,6 +287,7 @@ function createCalendar(){
 
                                 vm.getData();  
                             }
+                            vm.getData();
                         };  
                     }
                     
