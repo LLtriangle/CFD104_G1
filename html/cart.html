@@ -210,27 +210,27 @@
     </div>
 
     <script>
-        function init() {
-            var del_btn_icon = document.getElementsByClassName("del_btn_icon");
-            var del_btn = document.getElementsByClassName("del_btn");
-            for (i = 0; i < del_btn.length; i++) {
-                del_btn_icon[i].addEventListener('click', delete_mypic_icon);
-                del_btn[i].addEventListener('click', delete_mypic);
-            }
+        // function init() {
+        //     var del_btn_icon = document.getElementsByClassName("del_btn_icon");
+        //     var del_btn = document.getElementsByClassName("del_btn");
+        //     for (i = 0; i < del_btn.length; i++) {
+        //         del_btn_icon[i].addEventListener('click', delete_mypic_icon);
+        //         del_btn[i].addEventListener('click', delete_mypic);
+        //     }
 
-            function delete_mypic_icon(e) {
-                let div_img_icon = e.target.parentNode;
-                // console.log(div_img_icon.parentNode.parentNode)
-                div_img_icon.parentNode.parentNode.remove();
-            }
+        //     function delete_mypic_icon(e) {
+        //         let div_img_icon = e.target.parentNode;
+        //         // console.log(div_img_icon.parentNode.parentNode)
+        //         div_img_icon.parentNode.parentNode.remove();
+        //     }
 
-            function delete_mypic(e) {
-                let div_img = e.target.parentNode;
-                // console.log(div_img.parentNode)
-                div_img.parentNode.remove();
-            };
-        }
-        window.addEventListener("load", init)
+        //     function delete_mypic(e) {
+        //         let div_img = e.target.parentNode;
+        //         // console.log(div_img.parentNode)
+        //         div_img.parentNode.remove();
+        //     };
+        // }
+        // window.addEventListener("load", init)
         new Vue({
             el: '#tabs',
             data: {
