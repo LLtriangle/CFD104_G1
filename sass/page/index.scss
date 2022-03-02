@@ -460,7 +460,6 @@ $section_margin_top: 60px;
     
     .needs_btns{
         @include pad{
-            max-width: 400px;
             flex-direction: column;
         }
 
