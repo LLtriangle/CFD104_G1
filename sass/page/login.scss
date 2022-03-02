@@ -19,16 +19,7 @@
 }
 
 
-.form_button{
-  border-radius: 20px;
-  border: 2px solid map-get($color,"sub_brown");
-  box-sizing: border-box;
-  padding: 1px 12px;
-  &:hover{
-    background-color: map-get($color,"sub_brown");
-    color: #fff;
-  }
-}
+
 
 
 // 判定是否填寫正確格式
@@ -51,7 +42,7 @@
       border-radius: 10px 10px 0 0;
       cursor: pointer;
       &:first-child{
-        background-color: map-get($color,"sub_yellow");
+        background-color: map-get($color,"sub_brown");
       }
       // &:last-child{
       //   background-color: map-get($color,"sub_yellow");
@@ -110,6 +101,16 @@
 
 // 桌機
 @media  screen and (min-width:768px){
+  .form_button{
+    border-radius: 20px;
+    border: 2px solid map-get($color,"sub_brown");
+    box-sizing: border-box;
+    padding: 1px 12px;
+    &:hover{
+      background-color: map-get($color,"sub_brown");
+      color: #fff;
+    }
+  }
   .form_button.button.submit{
     border: 1px solid map-get($color, "sub_brown")  ;
     border-width: 2px;
@@ -216,7 +217,7 @@
   }
   #switch-c1{
     height: 100%;
-    background-color:cadetblue;
+    background-color: map-get($btn_color, "blue");
   }
   
   .switch_circle--t {
