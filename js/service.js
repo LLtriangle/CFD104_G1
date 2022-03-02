@@ -1,32 +1,29 @@
-var topices_left = document.getElementsByClassName("scroll-left_in");
-var topices_right = document.getElementsByClassName("scroll-right_in");
-
-window.addEventListener("scroll",function(){
-  for (let i=0; i<topices_right.length; i++){
-    if( topices_right[i].offsetTop > window.scrollY){
-      topices_right[i].style.opacity = '0';
-      topices_right[i].style.right = '-100vw';
-    }else{
-      topices_right[i].style.opacity = '1';
-      topices_right[i].style.right = '0';
-    }
-    if( topices_left[i].offsetTop > window.scrollY){
-      topices_left[i].style.opacity = '0';
-      topices_left[i].style.left = '-100vw';
-    }else{
-      topices_left[i].style.opacity = '1';
-      topices_left[i].style.left = '0';
-    };
-  };
-  
-  if(document.documentElement.scrollTop > document.getElementsByClassName("warning")[0].offsetTop){
-    document.getElementById("more_topic").classList.add('stop_moving');
-    document.querySelector('#more_topic').style.bottom = document.getElementsByClassName("warning")[0].offsetHeight - 5 + 'px';
-  }else if(document.documentElement.scrollTop > 1000){
-    document.getElementById("more_topic").classList.remove('stop_moving');
-    document.querySelector('#more_topic').style.bottom = "0px";
-    document.getElementById("more_topic").style.display = "block";
-  }else{
-    document.getElementById("more_topic").style.display = "none";
-  };
-},false);
+// 未完成 : 方案拖拉、案例分享動畫
+var box=$(".item_group");
+var body=$('body');
+var index=0;
+var x1;
+box.mousedown(function(){
+	index=1;       //滑鼠按下才能觸發onmousemove方法
+	var x=event.clientX;   //滑鼠點選的座標值，x
+	var left= this.style.left;
+	left=left.substr(0,left.length-2);  //去掉px
+	x1=parseInt(x-left);
+});
+box.mousemove(function(){
+	if(index===1){
+		this.style.left=event.clientX-x1+'px';
+		if(this.style.left.substr(0,this.style.left.length-2)<0){
+			this.style.left=0;
+		};
+		if(this.style.left.substr(0,this.style.left.length-2)>150){
+			this.style.left='150px';
+		};
+	}
+});
+box.mouseup(function(){
+	index=0;
+});
+body.mouseup(function(){
+	index=0;
+});
