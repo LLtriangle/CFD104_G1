@@ -2,14 +2,14 @@
 @import "../base/color";
 
 // 輪播圖-----------------------
-.small_img{
-    .item{
-        img{
-            max-height:300px ;
-            // max-width: 500px;
-        }
-    }
-}
+// .small_img{
+//     .item{
+//         img{
+//             max-height:250px ;
+//             // max-width: 500px;
+//         }
+//     }
+// }
 
 // 整理師介紹--------------------
 .b-tab {
@@ -44,33 +44,71 @@ section{
     overflow: hidden;
     width: 100%;
     // height: 100vw;
-    background-image: url("../img/about_2.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    // background-image: url("../img/about_2.png");
+    // background-repeat: no-repeat;
+    // background-position: center;
+    // background-size: cover;
     // opacity: 0.5;
-    
+
+
+    // about遮色片----------------
     .big_img{
-        margin: 20px 0px 20px 50px;
-        
+        margin: 20px 0px 20px 0px;
+        position: relative;
+        overflow: hidden;
+        width: 70%;
         img{
-        max-width: 100%;
+        width: 200%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
         }
-        
+        h2{
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100%;
+            height: 100%;
+            font-size: 150px;
+            text-align: center;
+            font-weight:1000;
+            // line-height:100vh;
+            /* 字全大寫 */
+            text-transform:uppercase;
+            background-color: #fff;
+            mix-blend-mode: screen;
+            writing-mode:vertical-lr;
+        }
     }
     .txt_box{
+        // background-color: aqua;
     //     margin: 20px 30px;
     //     margin-top: 100px;
     //     display: block;
     //     width: 100vw;
     //     position: relative;
+        
         .txt{
             line-height: 2;
             height: 550px;
-            h3{
-                margin-bottom: 10px;
+            .txt_bg{
+                background-color:map-get($color, "sub_blue");
+                max-width: 700px;
+                box-sizing: border-box;
+                padding: 10px 10px 60px 20px;
+                box-shadow: 50px -40px 0px 20px map-get($color, "main");
+                h3{
+                    margin-bottom: 10px;
+                    // color: #fff;
+                }
+                p{
+                    // color: #fff;
+                }
             }
+            
         }
+        
         
         // .small_img{
         //     position:absolute;
@@ -85,138 +123,22 @@ section{
 }
 
 
-
-// 關於我們------------------
-// .about_team{
-//     box-sizing: border-box;
-//     padding: 90px 0px 60px 0px;
-//     display: flex;
-//     background-color: map-get($color, "cover");
-//     position: relative;
-//     overflow: hidden;
-//     .circle{
-//         content: '';
-//         background-color: rgba(255, 255, 255, 0);
-//         width: 100%;
-//         height: 100%;
-//         border: 90px solid map-get($color,"sub_blue");
-//         border-radius: 50%;
-//         position: absolute;
-//         top: -70%;
-//         left: -60%;
-//         z-index: 1;
-//     }
-//     .circle_big_img{
-//         width: 60%;
-//         position: relative;
-        
-        
-        
-//         .change_img{
-//             position: absolute;
-//             right: 50%;
-//             top: 50%;
-//             transform: translate(50%, -60%);
-//             z-index: 2;
-//             width: 300px;
-//             height: 500px;
-//             border-radius: 20px;
-//             box-shadow: 80px 50px 10px 2px #4b4a4986;
-//             img{
-//                 border-radius: 20px;
-//                 width: 120%;
-//             }
-           
-//         }
-        
-//     }
-
-//     .introduce{
-//         width: 40%;
-//         margin-top: 50px;
-//         h3{
-//             padding: 10px;
-//             margin-bottom: 10px;
-            
-//         }
-//         p{
-//             line-height: 2;
-//             margin-left: 20px;
-//         }
-//         .circle_small_card{
-//             display: flex;
-//             margin-top: 120px;
-//             width: 100%;
-//             .introduce_card{
-//                 margin-right: 20px;
-//                 width: 500px;
-//                 /* overflow: hidden; */
-//                 position: relative;
-//                 position: relative;
-//                 overflow: hidden;
-//                 border-radius: 20px;
-//                 box-shadow: 10px 10px 15px 1px rgba(0, 0, 0, 0.329);
-//                 img{
-//                     width: 100%;
-//                     max-width: 100%;
-//                     max-height: 100%;
-//                     vertical-align:middle;
-//                 }
-//                 .card_txt{
-//                     position: absolute;
-//                     left: 0;
-//                     bottom: 0;
-//                     width: 100%;
-//                     background-color: map-get($color, "sub_blue");
-//                     box-sizing: border-box;
-//                     padding: 0px 5px 5px 5px;
-//                     p{
-//                         color: map-get($color, "bg");
-//                     }
-//                 }
-//                 &:hover .black_hov{
-//                     top: 0;
-//                   }
-//                 .black_hov{
-//                     display: block;
-//                     width: 100%;
-//                     /* height: 100vh; */
-//                     position: absolute;
-//                     top: 100%;
-//                     left: 0;
-//                     bottom: 0;
-//                     right: 0;
-//                     background-color: rgba(255,255,255,0.1);;
-//                     backdrop-filter: blur(5px);
-//                     transition:.5s;
-//                     p{
-//                         position:absolute;
-//                         top:40%;
-//                         right: 28%;
-//                         box-sizing: border-box;
-//                         padding-top: 10px;
-//                         color: map-get($color, "bg");
-//                         height: 80px;
-//                         width: 80px;
-//                         font-size: 25px;
-//                         text-align: center;
-//                         // margin: 90px 20px 20px 58px;
-//                         display: inline-block;
-//                         border: map-get($color, "bg") 1px solid;
-//                         border-radius: 50%;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
-
-
-
 // 手機-------------------------------
 @media  screen and (max-width:768px),
 screen and (max-width:992px)
 {   
+    // 輪播圖-----------------------
+    .owl-stage-outer{
+        right: -30px;
+    }
+    .small_img{
+        .item{
+            img{
+                max-height:150px ;
+                // max-width: 500px;
+            }
+        }
+    }
     .large{
         display: none;
     }
@@ -256,24 +178,25 @@ screen and (max-width:992px)
         
         .circle_big_img{
             width: 60%;
-            .left_right{
-                .left{
-                    img{
-                        position:absolute;
-                        width: 50px;
-                        height: 50px;
-                        top: 50%;
-                        left: 5%;
-                    }
+            .btn_mem{
+                min-width: 300px;
+                position:absolute;
+                top: 90%;
+                left: 50%;
+                transform: translate(-50%, 0%);
+                .rwd_mem_1{
+                    width: 100px;
+                    height: 50px;
                 }
-                .right{
-                    img{
-                        position:absolute;
-                        width: 50px;
-                        height: 50px;
-                        top: 50%;
-                        right: 5%;
-                    }
+                .rwd_mem_2{
+                    // position:absolute;
+                    width: 90px;
+                    height: 50px;
+                }
+                .rwd_mem_3{
+                    // position:absolute;
+                    width: 90px;
+                    height: 50px;
                 }
     
             }
@@ -294,17 +217,17 @@ screen and (max-width:992px)
                 
                 @keyframes picpic{
                     0%{
-                        transform: scale(.9);
+                        transform: scale(.8);
                     }
                     50%{
-                        transform: scale(1);
+                        transform: scale(.9);
                     }
                     100%{
-                        transform: scale(.9);
+                        transform: scale(.8);
                     }
                 }
                 img{
-                    animation-duration: 5s;
+                    animation-duration: 10s;
                     animation-name: picpic;
                     animation-iteration-count:infinite;
                     border-radius: 20px;
@@ -406,14 +329,29 @@ screen and (max-width:992px)
 
 // 桌機-------------------------------
 @media  screen and (min-width:992px){
-    .big_img{
-        margin: 20px 0px 20px 50px;
-        width: 70%;
-        img{
-        max-width: 100%;
+    // 輪播圖-----------------------
+    .small_img{
+        .item{
+            img{
+                max-height:250px ;
+                // max-width: 500px;
+            }
         }
     }
-    .left_right{
+    .about_belief{
+        .big_img{
+            margin: 20px 0px 20px 50px;
+            width: 40%;
+            img{
+            max-width: 100%;
+            }
+            h2{
+               
+            }
+        }
+    }
+    
+    .btn_mem{
         display: none;
     }
     .txt_box{
