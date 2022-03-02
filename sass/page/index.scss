@@ -231,7 +231,7 @@ $section_margin_top: 60px;
             margin: auto;
             box-sizing: border-box;
 
-            .plans_img{
+            .plans_img_box{
                 position: relative;
                 text-align: left;
                 width: 50vw;
@@ -262,9 +262,12 @@ $section_margin_top: 60px;
 
 
 
-                img{
+                .plans_img{
                     width: 50vw;
-                    height: 60vh; 
+                    height: 60vh;
+                    background-image: url(../img/index_fold.jpeg);
+                    background-size: cover;
+                    background-position: center;
                 }
             }   
         }
@@ -701,7 +704,7 @@ $section_margin_top: 60px;
         display: flex;
     }
 
-    .news_img{
+    .news_img_box{
         position: relative;
         text-align: left;
         width: 50vw;
@@ -731,9 +734,12 @@ $section_margin_top: 60px;
             // map-get($color , "bg_white" )
         }
 
-        img{
+        .news_img{
             width: 50vw;
             height: 60vh; 
+            background-image: url(../img/index_sale.jpeg);
+            background-size: cover;
+            background-position: center;
         }
 
         /*.index_news 手機版 配圖消失*/
@@ -784,14 +790,22 @@ $section_margin_top: 60px;
         }
 
     }
+    .column_link{
+        position: relative;
+    }
 
     .columns_more{
         display: flex;
         justify-content: right;
         padding-top: 5vh;
+        position: absolute;
+        padding: 0 20px;
+        right: 0;
+        bottom: -60px;
 
         @include pad{
             padding-right: 10vw;
+            bottom: -20px;
         }
     }
 
@@ -1136,10 +1150,18 @@ $section_margin_top: 60px;
             top: -100px;
         }
     }
+
+    .content{
+        position: relative;
+    }
     
     .hs_more{
         display: flex;
         justify-content: right;
+        position: absolute;
+        padding: 0 20px;
+        right: 0;
+        bottom: -60px;
         
         @include pad{
             padding-right: 10vw;
