@@ -358,7 +358,7 @@
                 
                     <div class="btn_div page1">
                         <p class="plan_price total">${{total}}</p>
-                        <button v-on:click="activetab='2'" type="button">下一步</button>  
+                        <button class="next_btn" v-on:click="activetab='2'" type="button">下一步</button>  
                     </div>  
 
                 </form>
@@ -425,12 +425,12 @@
                                     <option value="Visa" id="visa">Visa</option>
                                     <option value="Mastercard" id="mastercard">Mastercard</option>
                                 </select>
-                                <input type="text" name="cardNumber" id="cardNum" v-model.number="credit_card"
+                                <input type="text" name="cardNumber" id="cardNum" v-model="credit_card"
                                 @change="ValidateCreditCardNumber(credit_card)" maxlength="16" />
                             </div>
                             <div class="flex">
                                 <h4 class="left">驗證碼</h4>
-                                <input type="text" maxlength="3" size="9" v-model="test" @change="ValidateCreditCardNumber(credit_card)">
+                                <input type="text" maxlength="3" size="9" v-model.number="test">
                             </div>
                             <div class="flex">
                                 <h4 class="left">信用卡到期日</h4>
@@ -450,11 +450,11 @@
                 </div>
 
                 <div class="btn_div between">
-                    <button class="center" v-on:click="activetab='1'" type="button">
+                    <button class="center next_btn" v-on:click="activetab='1'" type="button">
                         <ion-icon name="arrow-back-outline"></ion-icon>
                         返回
                     </button>
-                    <button class="center" v-on:click="activetab='3'" type="button"  id="submit">確認付款
+                    <button class="next_btn center" v-on:click="activetab='3'" type="button"  id="submit">確認付款
                     <!-- <ion-icon name="arrow-forward-outline"></ion-icon> -->
                         
                     </button>
@@ -908,7 +908,6 @@
                         alert("信用卡資料有誤");
                     }
                 }
-                
             },
             changeCity(){
                     if(this.selectedCity === "台北市"){

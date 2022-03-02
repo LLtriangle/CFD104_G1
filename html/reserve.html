@@ -215,7 +215,7 @@
                 
                     <div class="btn_div page1">
                         <p class="plan_price total">${{total}}</p>
-                        <button v-on:click="activetab='2'" type="button">下一步</button>  
+                        <button class="next_btn" v-on:click="activetab='2'" type="button">下一步</button>  
                     </div>  
 
                 </form>
@@ -307,11 +307,11 @@
                 </div>
 
                 <div class="btn_div between">
-                    <button class="center" v-on:click="activetab='1'" type="button">
+                    <button class="center next_btn" v-on:click="activetab='1'" type="button">
                         <ion-icon name="arrow-back-outline"></ion-icon>
                         返回
                     </button>
-                    <button class="center" v-on:click="activetab='3'" type="button"  id="submit">確認付款
+                    <button class="next_btn center" v-on:click="activetab='3'" type="button"  id="submit">確認付款
                     <!-- <ion-icon name="arrow-forward-outline"></ion-icon> -->
                         
                     </button>

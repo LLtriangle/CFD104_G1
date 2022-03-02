@@ -599,7 +599,9 @@ textarea {
             }
             // 上傳照片的div
             #div_myimgs{
+                width: 100%;
                 display: flex;
+                overflow: hidden;
                 div{
                     width: 100px;
                     height: 100px;
