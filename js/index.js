@@ -67,10 +67,10 @@ $(window).on('load',function(){
                 start: "center center", 
                 pin: true,
                 scrub: true, 
-                markers: false,
+                markers: true,
             }
          });
-         slogan_tl.from(".slogan", {opacity: 0,scale: 1.2, blur: 2})
+         slogan_tl.from(".slogan", {opacity: 0,scale: 1.2, blur: 5})
          slogan_tl.to(".slogan", {opacity: 1, scale: 1, blur: 0})
 
         //服務section 圖片隨滾輪出現

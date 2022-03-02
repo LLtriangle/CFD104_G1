@@ -78,13 +78,19 @@ function uploadFile(){
         // dp_img.src = myimgs[0].src;
         // document.getElementsByClassName("d_pic")[0].appendChild(dp_img);
 // }
- 
+function submitForm(){
+    // console.log(document.getElementById("submit"))
+    alert("付款成功");
+};
 
 function init(){
     uploadFile();
-}
+    document.getElementById("submit").addEventListener('click',submitForm);
+};
+
 
 window.addEventListener('load',init);
+
 
 
 

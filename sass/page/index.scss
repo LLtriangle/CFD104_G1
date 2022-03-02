@@ -85,6 +85,9 @@ $section_margin_top: 60px;
     .logo_img{
         width: 180px;
         height: 200px;
+        background-image: url(../img/index_landing_s.jpeg);
+        margin: auto;
+        background-size: cover;
         clip-path: polygon(50% 0%, 100% 26%, 100% 100%, 0 100%, 0 26%);
     }
 
@@ -130,6 +133,7 @@ $section_margin_top: 60px;
         color: map-get($font_color , "white" );
         padding: $middle_pad;
 
+
         /*.index_slogan 電腦版 文字並排*/
         @include PC{
             display: flex;
@@ -142,33 +146,6 @@ $section_margin_top: 60px;
                 margin: auto;
                 box-sizing: border-box;
             }
-
-            // h2,p{
-            //     opacity: 1;
-            //     // filter: blur(12px);
-            //     // transform: scale(1.2, 1.2);
-            //     // opacity: 0;
-            //     filter: blur(0px);
-            //     transform: scale(1);
-            // }
-
-            // h2, p{
-            //     animation: blur_word;
-            //     animation-duration: 15s;
-            //     animation-delay: 2s;
-            //     @keyframes blur_word {
-            //         0% {
-            //             opacity: 0;
-            //             filter: blur(12px);
-            //             transform: scale(1.2, 1.2);
-            //         }
-            //         100% {
-            //             opacity: 1;
-            //             filter: blur(0px);
-            //             transform: scale(1);
-            //         }
-            //     }
-            // }
         }
 
         /*.index_slogan 手機版 文字間padding*/
@@ -851,13 +828,13 @@ $section_margin_top: 60px;
             }
             background-size: 400% auto;
             transition: 0.8s ease-in;
-            animation: imgInner1 60.0s normal forwards infinite;
+            animation: slideUpPic 40.0s normal forwards infinite;
 
             // @include pad{
             //     background-size: 1000%;
             // }
 
-            @keyframes imgInner1 {
+            @keyframes slideUpPic {
                 0% {
                     background-position-y: 0;
                 }
@@ -930,19 +907,16 @@ $section_margin_top: 60px;
         .img_part_2{
             background-position: 33.333%;
             transition: 0.8s 0.2s ease-in;
-            animation: imgInner1 60.0s normal forwards infinite;
             animation-delay: 0.15s;
         }
         .img_part_3{
             background-position: 66.666%;
             transition: 0.8s 0.4s ease-in;
-            animation: imgInner1 60.0s normal forwards infinite;
             animation-delay: 0.3s;
         }
         .img_part_4{
             background-position: 99.999%;
             transition: 0.8s 0.6s ease-in;
-            animation: imgInner1 60.0s normal forwards infinite;
             animation-delay: 0.45s;
         }
     }
