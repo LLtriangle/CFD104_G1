@@ -5,6 +5,9 @@
 .activity{
     margin: 30px auto;
     max-width: 1200px;
+    h2{
+        padding: 30px;
+    }
     .acti_news{
         display: flex;
         flex-wrap: wrap;
@@ -15,7 +18,7 @@
             width: 100%;
         }
         .acti_item{
-            width: calc(75% - 50px);
+            width: calc(100% - 50px);
             margin: 25px auto;
             border-radius: 10px;
             border: 1px solid #ddd;

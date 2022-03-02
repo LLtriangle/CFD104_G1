@@ -290,9 +290,11 @@ table.creditCard{
                 display: flex;
                 align-items: center;
                 width: 200px;
+                height: 200px;
                 margin: 0 10px;
-                border: 2px dotted map-get($color , 'main' );
+                border: 2px dashed map-get($color , 'main' );
                 border-radius: 5px;
+                overflow: hidden;
                 img{ // 上傳的照片
                     width: 100%;
                 }
@@ -310,7 +312,7 @@ table.creditCard{
         }
         #div_upload{
             label{
-                border: 2px dotted rgb(168, 168, 168);
+                border: 2px dashed rgb(168, 168, 168);
                 border-radius: 5px;
                 display: flex;
                 justify-content: center;
@@ -336,34 +338,33 @@ table.creditCard{
 
 
 // 下拉式選單樣式
-select{
-    font-size: initial;
-    background-color: white;
-    border: none;
-    box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
-    border-radius: 10px;
-    padding: 5px;
-    min-width: 150px;
-    // reset
-    -webkit-appearance: none;  /* Safari 和 Chrome，常用於iOS下移除內建樣式 */
-    -moz-appearance: none;     /* FireFox */
-    appearance: none;
-    // 加上下拉三角形
-    background-image: url("../img/arrow.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position-x: calc(100% - 10px);
-    background-size: 0.9rem 0.9rem;
+//  select{
+//     font-size: initial;
+//     background-color: white;
+//     border: none;
+//     box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
+//     border-radius: 10px;
+//     padding: 5px;
+//     min-width: 150px;
+//     -webkit-appearance: none;  /* Safari 和 Chrome，常用於iOS下移除內建樣式 */
+//     -moz-appearance: none;     /* FireFox */
+//     appearance: none;
+//     // 加上下拉三角形
+//     background-image: url("../img/arrow.png");
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     background-position-x: calc(100% - 10px);
+//     background-size: 0.9rem 0.9rem;
 
-    &:focus{
-        outline: none;
-        box-shadow: 1px 1px 5px map-get($color, 'main');
-    }
-}
+//     &:focus{
+//         outline: none;
+//         box-shadow: 1px 1px 5px map-get($color, 'main');
+//     }
+// } 
 
-input,textarea{
-    font-size: initial;
-}
+// input,textarea{
+//     font-size: initial;
+// }
 // 選地址
 .choose_add{
     div{
@@ -425,6 +426,11 @@ textarea {
     justify-content: center;
     align-items: center;
 }
+.left{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
 
 // 第二頁
 .details{
@@ -462,6 +468,9 @@ textarea {
         width: 100%;
         .c_pic{
             width: 20%;
+            img{
+                width: 100%;
+            }
         }
         .table_ccard{
             width: 80%;
@@ -581,7 +590,7 @@ textarea {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border: 2px dotted gray;
+                border: 2px dashed rgb(168, 168, 168);
                 border-radius: 5px;
                 opacity: 0.5;
                 img{
@@ -590,17 +599,12 @@ textarea {
             }
             // 上傳照片的div
             #div_myimgs{
+                width: 100%;
                 display: flex;
+                overflow: hidden;
                 div{
-                    position: relative;
-                    display: flex;
-                    align-items: center;
                     width: 100px;
                     height: 100px;
-                    border: 2px dotted map-get($color , 'main' );
-                    img{ // 上傳的照片
-                        width: 100%;
-                    }
                     button{
                         width: 30px;
                         height: 30px;
@@ -641,7 +645,11 @@ textarea {
             width: 100%;
             display: block;
             .c_pic{
-                width: 20%;
+                margin-top: 10px;
+                width: 100%;
+                img{
+                    width: 50%;
+                }
             }
             .table_ccard{
                 width: 100%;

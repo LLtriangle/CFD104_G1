@@ -352,7 +352,7 @@
                     let b = 0;
                     for (let i = 0; i < a.length; i++) {
                         if (this.coupon === "2022HAPPY88") {
-                            return (this.list[i].price * this.list[i].count) * (this.param) + this.fee;
+                            return Math.round((this.list[i].price * this.list[i].count) * (this.param))  + this.fee;
                         } else if (this.coupon === "22HAPPYMDAY" || this.coupon === "22SOEASYEVD") {
                             return (this.list[i].price * this.list[i].count) + (this.param) + this.fee;
                         } else {

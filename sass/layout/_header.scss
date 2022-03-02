@@ -140,8 +140,7 @@ header{
             background-color: map-get($color , "cover" );
             color: #fff;
             transition: 1s;
-            // background-image: url("../../img/header_menu_bg.jpeg");
-            background-image: url("../../img/header_menu_bg_2.jpeg");
+            background-image: url("../img/header_menu_bg_2.jpeg");
             background-size: cover;
             background-position: center;
             // 透明度 0.6 的黑色半透明遮罩
@@ -269,7 +268,7 @@ header{
                     width: 18px;
                 }
 
-                .slogan, .fb a, .ig a, .phone{
+                .menu_slogan, .fb a, .ig a, .phone{
                     display: flex;
                     padding-top: 10px;
                     justify-content: flex-start;
@@ -284,7 +283,7 @@ header{
                     }
                 }
 
-                .slogan{
+                .menu_slogan{
                     font-size: 16px;
 
                     @include pad{
@@ -343,7 +342,7 @@ header{
 #loading_box {
     position: fixed;
     width: 100vw;
-    height: 100vh;
+    height: 120vh;
     top: 0;
     left: 0;
     z-index: 900;

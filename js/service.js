@@ -1,32 +1,34 @@
-var topices_left = document.getElementsByClassName("scroll-left_in");
-var topices_right = document.getElementsByClassName("scroll-right_in");
-
-window.addEventListener("scroll",function(){
-  for (let i=0; i<topices_right.length; i++){
-    if( topices_right[i].offsetTop > window.scrollY){
-      topices_right[i].style.opacity = '0';
-      topices_right[i].style.right = '-100vw';
-    }else{
-      topices_right[i].style.opacity = '1';
-      topices_right[i].style.right = '0';
-    }
-    if( topices_left[i].offsetTop > window.scrollY){
-      topices_left[i].style.opacity = '0';
-      topices_left[i].style.left = '-100vw';
-    }else{
-      topices_left[i].style.opacity = '1';
-      topices_left[i].style.left = '0';
-    };
-  };
+$(window).on('load',function(){
   
-  if(document.documentElement.scrollTop > document.getElementsByClassName("warning")[0].offsetTop){
-    document.getElementById("more_topic").classList.add('stop_moving');
-    document.querySelector('#more_topic').style.bottom = document.getElementsByClassName("warning")[0].offsetHeight - 5 + 'px';
-  }else if(document.documentElement.scrollTop > 1000){
-    document.getElementById("more_topic").classList.remove('stop_moving');
-    document.querySelector('#more_topic').style.bottom = "0px";
-    document.getElementById("more_topic").style.display = "block";
-  }else{
-    document.getElementById("more_topic").style.display = "none";
-  };
-},false);
+	const case01 = gsap.timeline({
+		scrollTrigger:{
+			trigger: '.case01',
+			start: 'center center',
+			pin: true,
+			// markers:true,
+			scrub: true,
+		}
+	});
+	const case02 = gsap.timeline({
+		scrollTrigger:{
+			trigger: '.case02',
+			start: 'center center',
+			pin: true,
+			// markers:true,
+			scrub: true,
+		}
+	});
+	const case03 = gsap.timeline({
+		scrollTrigger:{
+			trigger: '.case03',
+			start: 'center center',
+			pin: true,
+			// markers:true,
+			scrub: true,
+		}
+	});
+	
+	case01.from('.case01 .pic img:last-child',{y:600});
+	case02.from('.case02 .pic img:last-child',{y:600});
+	case03.from('.case03 .pic img:last-child',{y:600});
+});
