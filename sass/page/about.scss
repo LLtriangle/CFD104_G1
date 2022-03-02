@@ -449,24 +449,27 @@ screen and (max-width:992px)
         .introduce{
             width: 50%;
             margin-top: 50px;
-            h3{
-                padding: 10px;
-                margin-bottom: 10px;
-                
+            .introduce_txt{
+                h3{
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    
+                }
+                p{
+                    line-height: 2;
+                    margin-left: 20px;
+                }
+                a{
+                    // margin-top: 30px;
+                    margin-left: 350px;
+                    border: 1px solid map-get($color, "sub_brown");
+                    background-color:map-get($color, "sub_brown") ;
+                    color: #fff;
+                    border-radius: 20px;
+                    padding: 0px 15px;
+                }
             }
-            p{
-                line-height: 2;
-                margin-left: 20px;
-            }
-            button{
-                margin-top: 10px;
-                margin-left: 400px;
-                border: 1px solid map-get($color, "sub_brown");
-                background-color:map-get($color, "sub_brown") ;
-                color: #fff;
-                border-radius: 20px;
-                padding: 0px 5px;
-            }
+            
             .circle_small_card{
                 display: flex;
                 margin-top: 120px;
