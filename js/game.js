@@ -85,13 +85,17 @@ function init() {
     // 開始測驗，關閉說明視窗
     function switch_light(e){
         // $(this).parent().css('display','none');
-        $(this).parent().slideToggle(800,'easeInCirc');
+        $(this).parent().slideToggle(500,'easeInCirc');
     };
     $('.text_ill button').on('click',switch_light);
 
     // 完成放置，做判斷(vue)，跳出測驗結果
     function open_result(){
         $(".text_result").css('display','block');
+        $(".text_result .typewriter").css('bottom','0');
+        $(".text_result .paper h2").animate({
+            marginTop: '10%',
+        },2000,'easeOutBack');
     };
     $('#finish').on('click',open_result);
 
@@ -99,6 +103,8 @@ function init() {
     function open_ill(){
         $(".text_ill .intr").slideToggle(1000,'easeOutBounce');
         $('.text_result .paper').scrollTop(0);
+        $(".text_result .typewriter").css('bottom','-50%');
+        $(".text_result .paper h2").css('margin-top','100%');
         $(".text_result").css('display','none');
         $('#finish').attr('disabled',true);
         $('.pullbox_group .pullbox img').appendTo($('#item_group'));

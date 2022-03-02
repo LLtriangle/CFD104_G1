@@ -81,10 +81,11 @@
             position: absolute;
             left: 50%;
             bottom: 20px;
-            transform: translate(-120%);
-            &:last-child{
-                transform: translate(20%);
-            }
+            transform: translate(-50%);
+            // transform: translate(-120%);
+            // &:last-child{
+            //     transform: translate(20%);
+            // }
             &:disabled{
                 cursor: not-allowed;
                 background-color: #aaa;
@@ -148,11 +149,11 @@
                 // 左
                 &:nth-child(1){transform: translate(-380%,-110%);}
                 &:nth-child(2){transform: translate(-330%,-210%);}
-                &:nth-child(3){transform: translate(-180%,-360%);}
-                &:nth-child(4){transform: translate(-530%,80%);}
-                &:nth-child(5){transform: translate(-130%,110%);}
-                &:nth-child(6){transform: translate(-260%,90%);}
+                &:nth-child(3){transform: translate(-530%,80%);}
+                &:nth-child(4){transform: translate(-130%,110%);}
+                &:nth-child(5){transform: translate(-260%,90%);}
                 // 右
+                &:nth-child(6){transform: translate(10%,30%);}
                 &:nth-child(7){transform: translate(290%,25%);}
                 &:nth-child(8){transform: translate(390%,85%);}
                 &:nth-child(9){transform: translate(190%,-20%);}
@@ -352,16 +353,17 @@
     position: absolute;
     z-index: 3;
     left: 50%;
-    top: -1px;
+    top: 0;
     transform: translate(-50%);
     overflow: hidden;
     .typewriter{
         width: 150%;
         position: absolute;
         z-index: 2;
-        bottom: 0;
+        bottom: -50px;
         left: 50%;
         transform: translate(-50%,60%);
+        transition: .5s;
         &:first-child{
             transform: translate(-50%,-216%);
             z-index: -1;
@@ -383,7 +385,7 @@
         h2{
             text-align: center;
             padding: 30px 0;
-            margin-top: 25%;
+            margin-top: 100%;
             background-color: map-get($color, 'plain');
             position: relative;
             &::before,

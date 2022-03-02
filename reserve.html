@@ -49,7 +49,7 @@
             </a>
         </div>
         <div class="header_function"> <!-- 點按時 加上class: on icon 顏色改變-->
-            <a class="user" href="member.html">
+            <a class="user" href="login.html">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/></svg>
             </a>
             <a class="cart" href="cart.html">
@@ -408,7 +408,6 @@
                         </table>
                         <div class="d_pic center" id="d_pic">
                             <img id="d_pic_img" src="https://picsum.photos/300/200/?random=10">
-                    
                         </div>
                     </div>
                 </div>
@@ -417,43 +416,24 @@
                     <div class="center"><h3>付款資訊</h3></div>
                     <div class="ccard flex">
                         <div class="c_pic center">
-<<<<<<< HEAD
                             <img :src="ccard_src">
                         </div>
                         <div class="table_ccard">
                             <div class="flex">
                                 <h4 class="left">信用卡卡號</h4>
                                 <select name="信用卡" v-model="cCard" @change="change_src">
-=======
-                            <img src="https://assets.dryicons.com/uploads/icon/svg/6411/b85e2b5a-9e91-458c-8ba3-11297ac31510.svg">
-                    
-                        </div>
-                        <div class="table_ccard">
-                            <div class="flex">
-                                <h4>信用卡卡號</h4>
-                                <select name="信用卡" v-model="cCard">
->>>>>>> LL
                                     <option value="Visa" id="visa">Visa</option>
                                     <option value="Mastercard" id="mastercard">Mastercard</option>
                                 </select>
-                                <input type="text" name="cardNumber" id="cardNum" v-model="credit_card"
+                                <input type="text" name="cardNumber" id="cardNum" v-model.number="credit_card"
                                 @change="ValidateCreditCardNumber(credit_card)" maxlength="16" />
                             </div>
                             <div class="flex">
-<<<<<<< HEAD
                                 <h4 class="left">驗證碼</h4>
-=======
-                                <h4>驗證碼</h4>
->>>>>>> LL
-                                <input type="text" maxlength="3" size="9">
-                                
+                                <input type="text" maxlength="3" size="9" v-model="test" @change="ValidateCreditCardNumber(credit_card)">
                             </div>
                             <div class="flex">
-<<<<<<< HEAD
                                 <h4 class="left">信用卡到期日</h4>
-=======
-                                <h4>信用卡到期日</h4>
->>>>>>> LL
                                 <select name="年" v-model="selectedYear">
                                     <option v-for="year in years">{{year}}年</option>
                                 </select>
@@ -462,11 +442,7 @@
                                 </select>
                             </div>
                             <div class="flex">
-<<<<<<< HEAD
                                 <h4 class="left">付款金額</h4>
-=======
-                                <h4>付款金額</h4>
->>>>>>> LL
                                 <p class="price">{{total}}</p>
                             </div>
                         </div>
@@ -478,12 +454,8 @@
                         <ion-icon name="arrow-back-outline"></ion-icon>
                         返回
                     </button>
-<<<<<<< HEAD
                     <button class="center" v-on:click="activetab='3'" type="button"  id="submit">確認付款
                     <!-- <ion-icon name="arrow-forward-outline"></ion-icon> -->
-=======
-                    <button class="center" v-on:click="activetab='3'" type="button">下一步<ion-icon name="arrow-forward-outline"></ion-icon>
->>>>>>> LL
                         
                     </button>
                 </div>
@@ -491,7 +463,6 @@
 
 
             <div v-show="activetab ==='3'" class="tabcontent">
-<<<<<<< HEAD
                 <div class="details">
                     <div class="center"><h3>預約明細</h3></div>
                     <div class="datails_info flex">
@@ -540,8 +511,8 @@
                                 <td>{{credit_card}}</td>
                             </tr>
                         </table>
-                        <div class="d_pic center" id="d_pic">
-                            <img id="d_pic_img" src="https://picsum.photos/300/200/?random=10">
+                        <div class="d_pic center">
+                            <img id="info_pic" src="https://picsum.photos/300/200/?random=10">
                         </div>
                     </div>
                 </div>
@@ -554,36 +525,6 @@
                         </button>
                     </a>
                     <a href="index.html"><button type="button">回到首頁</button></a>
-=======
-                <table>
-                    <tr>
-                        <td>信用卡明細</td>
-                        <td>{{credit_card}}</td>
-                    </tr>
-                    <tr>
-                        <td>預約人姓名</td>
-                        <td>{{name}}</td>
-                    </tr>
-                    <tr>
-                        <td>訂金金額</td>
-                        <td>{{total}}</td>
-                    </tr>
-                    <tr>
-                        <td>方案</td>
-                        <td>{{plan}}</td>
-                    </tr>
-                    <tr>
-                        <td>預約整理師</td>
-                        <td>{{selectedEmp}}</td>
-                    </tr>
-                </table>
-                        
-                <div class="btn_div between">
-                    <button class="center" v-on:click="activetab='2'" type="button">
-                        <ion-icon name="arrow-back-outline"></ion-icon>返回
-                    </button>
-                    <button type="button" id="submit">送出</button>
->>>>>>> LL
                 </div>
                 
             </div>
@@ -651,14 +592,8 @@
     function $id(id){
         return document.getElementById(id);
     }; 
-<<<<<<< HEAD
 
     let vm = new Vue({
-=======
-    // console.log($id("cardNum"));
-
-    new Vue({
->>>>>>> LL
         el: '#tabs',
         data: {
             activetab: '1',
@@ -681,10 +616,10 @@
             period:'',
             need:'',
             cCard: 'Visa',
+            test:'', // 驗證碼
             selectedYear: '',
             selectedMonth: '',
             // myimg:'',
-<<<<<<< HEAD
             dataTime: null,
             dataDate: null,
             ccard_src:'',
@@ -692,12 +627,6 @@
         watch: {
             credit_card(nVal, oVal) {
                 // console.log(nVal, oVal);
-=======
-        },
-        watch: {
-            credit_card(nVal, oVal) {
-                console.log(nVal, oVal);
->>>>>>> LL
                 // this.ValidateCreditCardNumber(nVal);
             },
         },
@@ -952,7 +881,6 @@
         // // window.addEventListener('load',createCalendar);
         // },
         methods: {
-<<<<<<< HEAD
             getData() {
                 // 網頁版成功
                 this.dataDate = document.getElementById('selectedDate').innerText;
@@ -964,8 +892,6 @@
                 //     this.dataTime = this.period
                 // }
             },
-=======
->>>>>>> LL
             ValidateCreditCardNumber(num) {
                 var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
                 var mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
@@ -974,11 +900,7 @@
                 if (this.cCard === 'Visa') {
                     if (!(visaRegEx.test(num))) {
                         alert("信用卡資料有誤");
-<<<<<<< HEAD
                         document.getElementById("cardNum").select();
-=======
-                        // cardNum.select();
->>>>>>> LL
                         return;
                     }
                 } else {
@@ -986,6 +908,7 @@
                         alert("信用卡資料有誤");
                     }
                 }
+                
             },
             changeCity(){
                     if(this.selectedCity === "台北市"){
@@ -1032,7 +955,6 @@
                     return this.price2*3
                 }
             },
-<<<<<<< HEAD
             change_src(){
                 if(this.cCard === 'Visa'){
                     this.ccard_src='img/visa.gif'
@@ -1045,17 +967,4 @@
 
 </script>
 <script src="js/calendar.js"></script>
-=======
-            // showDate(){
-            //     return $id("selectedDate").innerText;
-            // },
-            // showPeriod(){
-            //     return $id("selectedPeriod").innerText;
-            // },
-        },
-    });
-
-</script>
-
->>>>>>> LL
 </html>

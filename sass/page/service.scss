@@ -177,38 +177,41 @@
 }
 @media screen and (min-width: 768px) {
     .serve_plans{
-            overflow: hidden;
-        .item_group{
-            flex-direction: row;
-            justify-content: center;
-            width: 1200px;
-            .item{
-                padding-bottom: 0;
-                margin: 20px;
-                h3{
-                    // text-align: center;
-                    padding: 0;
-                    margin: 30px;
-                    background-color: transparent;
-                    color: map-get($color , "main");
-                }
-                &:nth-child(1){
-                    background-size: 100%;
-                }
-                &:nth-child(2){
-                    background-size: 100%;
-                }
-                &:nth-child(3){
-                    background-size: 100%;
-                }
-                .txt{
-                    border-radius: 10px;
-                    padding: 10px 30px 100px;
-                }
-                a{
-                    background-color: #ffffffaa;
-                    &:hover{
-                        background-color: map-get($color , "sub_red");
+        .scroll_group{
+
+            overflow: auto;
+            .item_group{
+                flex-direction: row;
+                justify-content: center;
+                width: 1200px;
+                .item{
+                    padding-bottom: 0;
+                    margin: 20px;
+                    h3{
+                        // text-align: center;
+                        padding: 0;
+                        margin: 30px;
+                        background-color: transparent;
+                        color: map-get($color , "main");
+                    }
+                    &:nth-child(1){
+                        background-size: 100%;
+                    }
+                    &:nth-child(2){
+                        background-size: 100%;
+                    }
+                    &:nth-child(3){
+                        background-size: 100%;
+                    }
+                    .txt{
+                        border-radius: 10px;
+                        padding: 10px 30px 100px;
+                    }
+                    a{
+                        background-color: #ffffffaa;
+                        &:hover{
+                            background-color: map-get($color , "sub_red");
+                        }
                     }
                 }
             }

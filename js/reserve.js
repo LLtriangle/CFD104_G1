@@ -42,6 +42,7 @@ function uploadFile(){
                     your_pics.insertBefore(file_label_rwd,div_myimgs);
                 };
                 document.getElementById("d_pic_img").src = "";
+                document.getElementById("info_pic").src = "";
 
             };
 
@@ -59,6 +60,7 @@ function uploadFile(){
                 // 第二頁 顯示照片第一張在明細
                 // console.log(document.getElementById("d_pic_img").src);
                 document.getElementById("d_pic_img").src = myimgs[0].src;
+                document.getElementById("info_pic").src = myimgs[0].src;
             }
         }
         reader.readAsDataURL(file);
@@ -79,8 +81,7 @@ function uploadFile(){
         // document.getElementsByClassName("d_pic")[0].appendChild(dp_img);
 // }
 function submitForm(){
-    // console.log(document.getElementById("submit"))
-    alert("付款成功");
+    // alert("付款成功");
 };
 
 function init(){
