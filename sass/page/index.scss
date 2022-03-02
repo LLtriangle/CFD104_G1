@@ -475,7 +475,8 @@ $section_margin_top: 60px;
             color: map-get($btn_color , "white" );
 
             @include pad{
-                margin: 16px 120px;
+                margin: auto;
+                margin-bottom: 20px;
             }
 
             @include PC{
