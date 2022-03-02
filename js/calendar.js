@@ -285,6 +285,7 @@ function createCalendar(){
                             if($(window).width()>830){
                                 document.getElementById("showPeriod").innerText = document.getElementById("selectedPeriod").innerText;
 
+                                vm.getData();  
                             }
                         };  
                     }
@@ -306,6 +307,7 @@ function createCalendar(){
                                 selectedPeriod = '晚上18-21點';
                             }
                             document.getElementById("selectedPeriod").innerText = selectedPeriod;
+                            vm.getData();
                         }
                     };
                 }

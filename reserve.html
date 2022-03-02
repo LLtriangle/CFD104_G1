@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="css/reserve.css">
     <link rel="stylesheet" href="css/calendar.css">
     <script src="js/reserve.js"></script>
-    <script src="js/calendar.js"></script>
+    <!-- <script src="js/calendar.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script> -->
      
@@ -49,7 +49,7 @@
             </a>
         </div>
         <div class="header_function"> <!-- 點按時 加上class: on icon 顏色改變-->
-            <a class="user" href="member.html">
+            <a class="user" href="login.html">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/></svg>
             </a>
             <a class="cart" href="cart.html">
@@ -114,21 +114,21 @@
         </div>
     </div>
     <!-- loading畫面 -->
-    <!-- <div id='loading_box'>
+    <div id='loading_box'>
         <svg id="loading_svg" viewbox="-300,-1000,600,2000" preserveAspectRatio="xMidYMid slice">
 			<polyline points="-50,-38 -50,30 50,30 50,-38"/>
 			<line x1="-89" y1="3" x2="-50" y2="-37">
 				<animateTransform attributeName="transform"
 					type="rotate"
 					values="0;200"
-					dur="1.5s" begin="2s" fill="freeze"
+					dur="1s" begin="1.5s" fill="freeze"
 					repeatCount="1"/>
 			</line>
 			<line x1="89" y1="3" x2="50" y2="-37">
 				<animateTransform attributeName="transform"
 					type="rotate"
 					values="0;-200"
-					dur="2s" begin="1.5s" fill="freeze"
+					dur="1s" begin="1.5s" fill="freeze"
 					repeatCount="1"/>
 			</line>
 			<rect x="-25" y="-10" width="20" height="20" id="left_bottom_box"/>
@@ -137,7 +137,7 @@
 			<polyline points=" 3,-27 26,-27  3,10" id="right_up_box"/>
 		</svg>
 		<div class="pic"><img src="img/SoEazy.png" alt=""></div>
-    </div> -->
+    </div>
 </header>
 
 <!-- <script>
@@ -179,7 +179,7 @@
         </div>
 
         <div class="content">
-            <div v-if="activetab ==='1'" class="tabcontent">
+            <div v-show="activetab ==='1'" class="tabcontent">
                 <!-- 預約表單 -->
                 <form>
                     <!-- 選擇方案 -->
@@ -187,21 +187,21 @@
                     <div class="form_item choose_plan">
                         <div class="plan_li">
                             <li>
-                                <input type="radio" v-model="plan" value="到府一對一教學" id="plan0" class="radio-input">
+                                <input type="radio" v-model="plan" value="到府一對一教學" id="plan0" class="radio-input" hidden>
                                 <label for="plan0" class="radio-label">
                                     <span class="radio-button"></span>
                                     <p>到府一對一教學</p>
                                 </label>
                             </li>
                             <li>
-                                <input type="radio" v-model="plan" value="空間整理收納" id="plan1" class="radio-input">
+                                <input type="radio" v-model="plan" value="空間整理收納" id="plan1" class="radio-input" hidden>
                                 <label for="plan1" class="radio-label">
                                     <span class="radio-button"></span>
                                     <p>空間整理收納</p>
                                 </label>
                             </li>
                             <li>
-                                <input type="radio" v-model="plan" value="搬家前後物品上下架" id="plan2" class="radio-input">
+                                <input type="radio" v-model="plan" value="搬家前後物品上下架" id="plan2" class="radio-input" hidden>
                                 <label for="plan2" class="radio-label">
                                     <span class="radio-button"></span>
                                     <p>搬家前後物品上下架</p>
@@ -256,11 +256,6 @@
                                 <option v-for="emp in emps">{{emp}}</option>
                             </select>
                         </div>
-                        <!-- 整理師介紹 -->
-                        <!-- <div class="emp_info" v-show="emp_info">
-                            <img class="emp_pic" src="img/emp1.jpg">
-                            <p class="emp_name">{{selectedEmp}}</p>
-                        </div> -->
                     </div>
 
 
@@ -312,12 +307,12 @@
                     <!-- 姓名 -->
                     <div class="form_item input_name">
                         <h3>姓名</h3>
-                        <input type="text" v-model="name" placeholder="請輸入姓名" required>
+                        <input type="text" v-model.trim="name" placeholder="請輸入姓名" required>
                     </div>
                     <!-- 電話 -->
                     <div class="form_item input_tel">
                         <h3>電話</h3>
-                        <input type="text" v-model="tel"  placeholder="請輸入電話" required>
+                        <input type="text" v-model="tel"  placeholder="請輸入電話" maxlength="10" required>
                     </div>
                     <!-- 地址 -->
                     <div class="form_item choose_add">
@@ -331,13 +326,13 @@
                                 <option value="" disabled>選擇區域</option>
                                 <option v-for="Area in Areas">{{Area}}</option>
                             </select>
-                            <input type="text" placeholder="請輸入地址" required>
+                            <input type="text" placeholder="請輸入地址" required v-model.trim="address">
                         </div>
                     </div>
                     <!-- 需求 -->
                     <div class="form_item input_need">
                         <h3>需求</h3>
-                        <textarea cols="50" rows="5"></textarea>
+                        <textarea cols="50" rows="5" v-model="need"></textarea>
                     </div>
                     <!-- 上傳照片 -->
                     <div class="form_item upload_pics">
@@ -346,6 +341,9 @@
                             <span>(最多上傳3張,僅支援格式 jpg /png)</span>
                         </p>
                         <div class="your_pics" id="your_pics">
+                            <label for="upFile" class="file_label_rwd" id="file_label_rwd">
+                                <img src="img/reserve_upload.png" alt="">
+                            </label>
                             <div id="div_myimgs">
                                 <!-- 這裡放照片 -->
                             </div>
@@ -367,91 +365,172 @@
             </div>
 
 
-            <div v-if="activetab ==='2'" class="tabcontent">
+            <div v-show="activetab ==='2'" class="tabcontent">
+                <div class="details">
+                    <div class="center"><h3>預約資訊</h3></div>
+                    <div class="datails_info flex">
+                        <table class="d_table">
+                            <tr>
+                                <td>姓名</td>
+                                <td>{{name}}</td>
+                            </tr>
+                            <tr>
+                                <td>電話</td>
+                                <td>{{tel}}</td>
+                            </tr>
+                            <tr>
+                                <td>地址</td><td>{{selectedCity}} {{selectedArea}} {{address}}</td>
+                            </tr>
+                            <tr>
+                                <td>預約方案</td>
+                                <td>{{plan}}</td>
+                            </tr>
+                            <tr>
+                                <td>整理師</td>
+                                <td>{{selectedEmp}}</td>
+                            </tr>
+                            <tr>
+                                <td>預約日期</td>
+                                <td id="showDate"></td>
+                            </tr>
+                            <tr>
+                                <td>預約時段</td>
+                                <td id="showPeriod">{{period}}</td>
+                            </tr>
+                            <tr v-show="need">
+                                <td>需求</td>
+                                <td>{{need}}</td>
+                            </tr>
+                            <tr>
+                                <td>價格</td>
+                                <td>{{total}}</td>
+                            </tr>
+                        </table>
+                        <div class="d_pic center" id="d_pic">
+                            <img id="d_pic_img" src="https://picsum.photos/300/200/?random=10">
+                    
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment">
+                    <div class="center"><h3>付款資訊</h3></div>
+                    <div class="ccard flex">
+                        <div class="c_pic center">
+                            <img :src="ccard_src">
+                        </div>
+                        <div class="table_ccard">
+                            <div class="flex">
+                                <h4 class="left">信用卡卡號</h4>
+                                <select name="信用卡" v-model="cCard" @change="change_src">
+                                    <option value="Visa" id="visa">Visa</option>
+                                    <option value="Mastercard" id="mastercard">Mastercard</option>
+                                </select>
+                                <input type="text" name="cardNumber" id="cardNum" v-model="credit_card"
+                                @change="ValidateCreditCardNumber(credit_card)" maxlength="16" />
+                            </div>
+                            <div class="flex">
+                                <h4 class="left">驗證碼</h4>
+                                <input type="text" maxlength="3" size="9">
+                                
+                            </div>
+                            <div class="flex">
+                                <h4 class="left">信用卡到期日</h4>
+                                <select name="年" v-model="selectedYear">
+                                    <option v-for="year in years">{{year}}年</option>
+                                </select>
+                                <select name="月份"  v-model="selectedMonth">
+                                    <option v-for="month in 12">{{month}}月</option>
+                                </select>
+                            </div>
+                            <div class="flex">
+                                <h4 class="left">付款金額</h4>
+                                <p class="price">{{total}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <table class="creditCard">
-                    <tr>
-                        <td colspan="3">
-                            <label>信用卡卡號:</label></td>
-                        <td>
-                            <select name="信用卡" v-model="cCard">
-                                <option value="Visa" id="visa">Visa</option>
-                                <option value="Mastercard" id="mastercard">Mastercard</option>
-                            </select>
-                        </td>
-                        <td colspan="3" class="left">
-                            <input type="text" name="cardNumber" id="cardNum" size="30" v-model="credit_card"
-                                @change="ValidateCreditCardNumber(credit_card)" maxlength="16" /></td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <input type="text" name="cardNumber" id="cardNum" size="30" value="" v-model="credit_card" maxlength="16"
-                                onblur="ValidateCreditCardNumber()" />
-                        </td>
-                    </tr>
-                            
-                    <tr>
-                        <td>信用卡到期日</td>
-                        <td>
-                            <select name="年" v-model="selectedYear">
-                                <option v-for="year in years">{{year}}年</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="月份"  v-model="selectedMonth" @change="changeDays">
-                                <option v-for="month in 12">{{month}}月</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>預約人姓名</td>
-                        <td><input type="text" v-model="name"></td>
-                    </tr>
-                    <tr>
-                        <td rowspan="2">預約地址</td>
-                        <td><input size="25" v-model="address1"></td>
-                    </tr>
-                    <tr>
-                        <td><input size="25" v-model="address2"></td>
-                    </tr>                                      
-                </table>
-                <div class="btn_div">
-                    <button v-on:click="activetab='1'" type="button">返回</button>
-                    <button v-on:click="activetab='3'" type="button">下一步</button>
+                <div class="btn_div between">
+                    <button class="center" v-on:click="activetab='1'" type="button">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                        返回
+                    </button>
+                    <button class="center" v-on:click="activetab='3'" type="button"  id="submit">確認付款
+                    <!-- <ion-icon name="arrow-forward-outline"></ion-icon> -->
+                        
+                    </button>
                 </div>
             </div>
 
 
-            <div v-if="activetab ==='3'" class="tabcontent">
-                <table>
-                    <tr>
-                        <td>信用卡明細</td>
-                        <td>{{credit_card}}</td>
-                    </tr>
-                    <tr>
-                        <td>預約人姓名</td>
-                        <td>{{name}}</td>
-                    </tr>
-                    <tr>
-                        <td>訂金金額</td>
-                        <td>{{total}}</td>
-                    </tr>
-                    <tr>
-                        <td>方案</td>
-                        <td>{{plan}}</td>
-                    </tr>
-                    <tr>
-                        <td>預約整理師</td>
-                        <td>{{selectedEmp}}</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><button v-on:click="activetab='2'" type="button">返回</button></td>
-                        <td><button>送出</button></td>
-                    </tr>
-                </table>
+            <div v-show="activetab ==='3'" class="tabcontent">
+                <div class="details">
+                    <div class="center"><h3>預約明細</h3></div>
+                    <div class="datails_info flex">
+                        <table class="d_table">
+                            <tr>
+                                <td>姓名</td>
+                                <td>{{name}}</td>
+                            </tr>
+                            <tr>
+                                <td>電話</td>
+                                <td>{{tel}}</td>
+                            </tr>
+                            <tr>
+                                <td>地址</td><td>{{selectedCity}} {{selectedArea}} {{address}}</td>
+                            </tr>
+                            <tr>
+                                <td>預約方案</td>
+                                <td>{{plan}}</td>
+                            </tr>
+                            <tr>
+                                <td>整理師</td>
+                                <td>{{selectedEmp}}</td>
+                            </tr>
+                            <tr>
+                                <td>預約日期</td>
+                                <td>{{dataDate}}</td>
+                            </tr>
+                            <tr>
+                                <td>預約時段</td>
+                                <td>{{dataTime}}</td>
+                            </tr>
+                            <tr v-show="need">
+                                <td>需求</td>
+                                <td>{{need}}</td>
+                            </tr>
+                            <tr>
+                                <td>價格</td>
+                                <td>{{total}}</td>
+                            </tr>
+                            <tr>
+                                <td>信用卡種類</td>
+                                <td>{{cCard}}</td>
+                            </tr>
+                            <tr>
+                                <td>信用卡號碼</td>
+                                <td>{{credit_card}}</td>
+                            </tr>
+                        </table>
+                        <div class="d_pic center" id="d_pic">
+                            <img id="d_pic_img" src="https://picsum.photos/300/200/?random=10">
+                        </div>
+                    </div>
+                </div>
+                        
+                <div class="btn_div between" style="margin: 30px auto;">
+                    <a href="mall.html">
+                        <button class="center" type="button">
+                            <!-- <ion-icon name="arrow-back-outline"></ion-icon> -->
+                            前往商城
+                        </button>
+                    </a>
+                    <a href="index.html"><button type="button">回到首頁</button></a>
+                </div>
+                
             </div>
+            
         </div>
 
     </div>
@@ -465,8 +544,8 @@
         <div class="col-12 footer_info">
             <div class="col-4 logo_slogan">
                 <div class="logo">
-                    <a class="logo_link" href="link_logo">
-                        <img class="logo_img" src="../../img/SoEazy.png" alt="">
+                    <a class="logo_link" href="index.html">
+                        <img class="logo_img" src="img/SoEazy.png" alt="">
                     </a>
                 </div>
                 <p>收納整理不再是煩惱</p>
@@ -500,45 +579,23 @@
             </div>
         </div>
         <div class="copyright">
-            <p>&copy;copyright 2022</p>
+                <p>&copy;copyright 2022 SoEazy CFD104-G1</p>
+                <p>本網站為緯育TibaMe_前端設計工程師班第73期學員專題成果作品，本平台僅供學習、展示之用。若有抵觸有關著作權，或有第三人主張侵害智慧財產權等情事，均由學員負法律上責任，緯育公司概不負責。若有侵權疑慮，您可以私訊<a href="https://www.facebook.com/TibaMe">[緯育TibaMe]</a>，後續會由專人協助處理。</p>
         </div>
     </div>
 </footer>
 
-           
+  
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>         
 </body>
+
 <script>
-    // 信用卡驗證
-    function ValidateCreditCardNumber(){
+    function $id(id){
+        return document.getElementById(id);
+    }; 
 
-var ccNum = document.getElementById("cardNum").value;
-
-var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
-var mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
-var amexpRegEx = /^(?:3[47][0-9]{13})$/;
-var discovRegEx = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/; 
-
-
-if (visaRegEx.test(ccNum) === false ){ // Visa validation
-   alert("信用卡卡號錯誤");
-   return;
-    }
-if (mastercardRegEx.test(ccNum) === false){ // MasterCard validation
-    alert("信用卡卡號錯誤"); 
-    return; 
-    }
-if(amexpRegEx.test(ccNum) === false){ // Amex  validation
-    alert("信用卡卡號錯誤");  
-    return; 
-    }  
-if (discovRegEx.test(ccNum) === false){ // Discover validation
-    alert("信用卡卡號錯誤"); 
-    return; 
-    }
-}
-</script>
-<script>
-    new Vue({
+    let vm = new Vue({
         el: '#tabs',
         data: {
             activetab: '1',
@@ -548,7 +605,6 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
             price0: 800, // 方案0價格
             price1: 1000, // 方案1價格
             price2: 900, // 方案2價格
-            count: 1,
             emps: ["麻里不會","末牛子","潔癖子","由收easy安排"],
             selectedEmp: '',
             tel: '',
@@ -556,9 +612,24 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
             Areas: '',
             selectedArea: '',
             selectedCity: '',
+            address: '',
             payment: '',
             years: [2022,2023,2024,2025,2026,2027,2028,2029,2030],
             period:'',
+            need:'',
+            cCard: 'Visa',
+            selectedYear: '',
+            selectedMonth: '',
+            // myimg:'',
+            dataTime: null,
+            dataDate: null,
+            ccard_src:'',
+        },
+        watch: {
+            credit_card(nVal, oVal) {
+                // console.log(nVal, oVal);
+                // this.ValidateCreditCardNumber(nVal);
+            },
         },
         // created() {
         //     // function createCalendar(){
@@ -811,6 +882,34 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
         // // window.addEventListener('load',createCalendar);
         // },
         methods: {
+            getData() {
+                // 網頁版成功
+                this.dataDate = document.getElementById('selectedDate').innerText;
+                this.dataTime = document.getElementById('selectedPeriod').innerText
+                console.log(window.innerWidth);
+                // if (window.innerWidth>830){
+                //     this.dataTime = document.getElementById('selectedPeriod').innerText
+                // }else{
+                //     this.dataTime = this.period
+                // }
+            },
+            ValidateCreditCardNumber(num) {
+                var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+                var mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
+                // console.log((visaRegEx.test(num))) // 驗證
+                // console.log(cardNum);
+                if (this.cCard === 'Visa') {
+                    if (!(visaRegEx.test(num))) {
+                        alert("信用卡資料有誤");
+                        document.getElementById("cardNum").select();
+                        return;
+                    }
+                } else {
+                    if (!mastercardRegEx.test(num)) {
+                        alert("信用卡資料有誤");
+                    }
+                }
+            },
             changeCity(){
                     if(this.selectedCity === "台北市"){
                         return this.Areas = ["中正區","大同區","中山區","松山區","大安區","萬華區","信義區","士林區","北投區","內湖區","南港區","文山區"];
@@ -856,8 +955,16 @@ if (discovRegEx.test(ccNum) === false){ // Discover validation
                     return this.price2*3
                 }
             },
+            change_src(){
+                if(this.cCard === 'Visa'){
+                    this.ccard_src='img/visa.gif'
+                }else if(this.cCard === 'Mastercard'){
+                    this.ccard_src='img/mstercard.gif'
+                }
+            }
         },
     });
-</script>
 
+</script>
+<script src="js/calendar.js"></script>
 </html>
