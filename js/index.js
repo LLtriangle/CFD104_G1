@@ -67,33 +67,33 @@ $(window).on('load',function(){
                 start: "center center", 
                 pin: true,
                 scrub: true, 
-                markers: true,
+                markers: false,
             }
          });
          slogan_tl.from(".slogan", {opacity: 0,scale: 1.2, blur: 5})
          slogan_tl.to(".slogan", {opacity: 1, scale: 1, blur: 0})
 
         //服務section 圖片隨滾輪出現
-        gsap.to(".index_plans .plans_img", {
+        gsap.to(".index_plans .plans_img_box", {
             duration: 3,
             scrollTrigger: {
                 trigger: ".index_plans",
                 start: "top center", 
                 pin: false, 
                 scrub: false,
-                toggleClass: {targets: ".plans_img", className: "active"},
+                toggleClass: {targets: ".plans_img_box", className: "active"},
             }
         });
 
         // 活動消息section 圖片隨滾輪出現
-        gsap.to(".index_news .news_img", {
+        gsap.to(".index_news .news_img_box", {
             duration: 3,
             scrollTrigger: {
                 trigger: ".index_news",
                 start: "top center", 
                 pin: false, 
                 scrub: false,
-                toggleClass: {targets: ".news_img", className: "active"}, 
+                toggleClass: {targets: ".news_img_box", className: "active"}, 
             }
         });
 
