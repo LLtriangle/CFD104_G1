@@ -263,7 +263,7 @@
                 payment: '',
                 name: '',
                 coupon: '',
-                credit_card_png: ['img/visa.png', 'img/mastercard.png'],
+                credit_card_png: ['img/visa.gif', 'img/mstercard.gif'],
                 isDisabled: true,
                 years: [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
             },
@@ -349,17 +349,17 @@
             computed: {
                 total_all() {
                     let a = this.list;
-                    let b = 0;
+                    let all = 0;
                     for (let i = 0; i < a.length; i++) {
                         if (this.coupon === "2022HAPPY88") {
                             return Math.round((this.list[i].price * this.list[i].count) * (this.param))  + this.fee;
                         } else if (this.coupon === "22HAPPYMDAY" || this.coupon === "22SOEASYEVD") {
                             return (this.list[i].price * this.list[i].count) + (this.param) + this.fee;
                         } else {
-                            b += this.list[i].price * this.list[i].count + this.fee;
+                            all += this.list[i].price * this.list[i].count + this.fee;
                         }
                     }
-                    return b;
+                    return all;
                 },
 
                 // 運費
