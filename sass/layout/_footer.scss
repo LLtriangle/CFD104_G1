@@ -24,6 +24,7 @@ footer{
             background-color: #fff;
             &:hover{
                 background-color: map-get($color , "sub_blue" );
+                color: map-get($color , "plain" );
             }
         }
         @media screen and (min-width: 769px){
