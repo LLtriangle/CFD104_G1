@@ -265,7 +265,6 @@
                         </table>
                         <div class="d_pic center" id="d_pic">
                             <img id="d_pic_img" src="https://picsum.photos/300/200/?random=10">
-                    
                         </div>
                     </div>
                 </div>
@@ -288,8 +287,7 @@
                             </div>
                             <div class="flex">
                                 <h4 class="left">驗證碼</h4>
-                                <input type="text" maxlength="3" size="9">
-                                
+                                <input type="text" maxlength="3" size="9" v-model.number="test">
                             </div>
                             <div class="flex">
                                 <h4 class="left">信用卡到期日</h4>
@@ -370,8 +368,8 @@
                                 <td>{{credit_card}}</td>
                             </tr>
                         </table>
-                        <div class="d_pic center" id="d_pic">
-                            <img id="d_pic_img" src="https://picsum.photos/300/200/?random=10">
+                        <div class="d_pic center">
+                            <img id="info_pic" src="https://picsum.photos/300/200/?random=10">
                         </div>
                     </div>
                 </div>
@@ -425,6 +423,7 @@
             period:'',
             need:'',
             cCard: 'Visa',
+            test:'', // 驗證碼
             selectedYear: '',
             selectedMonth: '',
             // myimg:'',

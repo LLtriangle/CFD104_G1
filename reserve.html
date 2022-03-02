@@ -408,7 +408,6 @@
                         </table>
                         <div class="d_pic center" id="d_pic">
                             <img id="d_pic_img" src="https://picsum.photos/300/200/?random=10">
-                    
                         </div>
                     </div>
                 </div>
@@ -426,13 +425,12 @@
                                     <option value="Visa" id="visa">Visa</option>
                                     <option value="Mastercard" id="mastercard">Mastercard</option>
                                 </select>
-                                <input type="text" name="cardNumber" id="cardNum" v-model="credit_card"
+                                <input type="text" name="cardNumber" id="cardNum" v-model.number="credit_card"
                                 @change="ValidateCreditCardNumber(credit_card)" maxlength="16" />
                             </div>
                             <div class="flex">
                                 <h4 class="left">驗證碼</h4>
-                                <input type="text" maxlength="3" size="9">
-                                
+                                <input type="text" maxlength="3" size="9" v-model="test" @change="ValidateCreditCardNumber(credit_card)">
                             </div>
                             <div class="flex">
                                 <h4 class="left">信用卡到期日</h4>
@@ -513,8 +511,8 @@
                                 <td>{{credit_card}}</td>
                             </tr>
                         </table>
-                        <div class="d_pic center" id="d_pic">
-                            <img id="d_pic_img" src="https://picsum.photos/300/200/?random=10">
+                        <div class="d_pic center">
+                            <img id="info_pic" src="https://picsum.photos/300/200/?random=10">
                         </div>
                     </div>
                 </div>
@@ -618,6 +616,7 @@
             period:'',
             need:'',
             cCard: 'Visa',
+            test:'', // 驗證碼
             selectedYear: '',
             selectedMonth: '',
             // myimg:'',
@@ -909,6 +908,7 @@
                         alert("信用卡資料有誤");
                     }
                 }
+                
             },
             changeCity(){
                     if(this.selectedCity === "台北市"){
