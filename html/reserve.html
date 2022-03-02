@@ -129,19 +129,19 @@
                             <!-- 挑時段 -->
                             <div class="time_period">
                                 <input type="radio" v-model="period" value="上午9-12點" id="period_1">
-                                <label for="period_1">
+                                <label @click="getData" for="period_1">
                                     <div class="time_item">
                                         <p>上午<br>9-12點</p>
                                     </div>
                                 </label>
                                 <input type="radio" v-model="period" value="下午14-17點" id="period_2">
-                                <label for="period_2">
+                                <label @click="getData" for="period_2">
                                     <div class="time_item">
                                         <p>下午<br>14-17點</p>
                                     </div>
                                 </label>
                                 <input type="radio" v-model="period" value="晚上18-21點" id="period_3">
-                                <label for="period_3">
+                                <label @click="getData" for="period_3">
                                     <div class="time_item">
                                         <p>晚上<br>18-21點</p>
                                     </div>
@@ -691,13 +691,11 @@
             getData() {
                 // 網頁版成功
                 this.dataDate = document.getElementById('selectedDate').innerText;
-                this.dataTime = document.getElementById('selectedPeriod').innerText
-                console.log(window.innerWidth);
-                // if (window.innerWidth>830){
-                //     this.dataTime = document.getElementById('selectedPeriod').innerText
-                // }else{
-                //     this.dataTime = this.period
-                // }
+                this.dataTime = document.getElementById('selectedPeriod').innerText;
+                // console.log(window.innerWidth);
+                if ($(window).width<=830){
+                    this.dataTime = this.period;
+                }
             },
             ValidateCreditCardNumber(num) {
                 var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
