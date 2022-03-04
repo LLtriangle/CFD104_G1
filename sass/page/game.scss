@@ -8,7 +8,7 @@
         max-width: 980px;
         box-sizing: border-box;
         width: calc(100vw - 40px);
-        height: calc(100vh - 100px);
+        height: calc(100vh - 130px);
         border-radius: 20px;
         border: 2px solid map-get($color, 'main');
         background-color: map-get($color, 'plain');
@@ -36,7 +36,7 @@
                 position: absolute;
                 left: 0;
                 top: 50%;
-                width: 50%;
+                width: 50px;
                 height: 3px;
                 border-radius: 5px;
                 transform: translate(-150%,-50%);
@@ -56,7 +56,7 @@
         max-width: 980px;
         box-sizing: border-box;
         width: calc(100vw - 40px);
-        height: calc(100vh - 100px);
+        height: calc(100vh - 130px);
         border-radius: 20px;
         border: 2px solid map-get($color, 'main');
         background-color: #f3f3eddd;
@@ -111,7 +111,7 @@
 .text_game{
     box-sizing: border-box;
     width: calc(100vw - 40px);
-    height: calc(100vh - 100px);
+    height: calc(100vh - 130px);
     border-radius: 20px;
     border: 2px solid map-get($color, 'main');
     background-color: map-get($color, 'main');
@@ -126,14 +126,14 @@
         .pullbox_group{
             box-sizing: border-box;
             width: 100%;
-            min-width: calc((100vh - 100px) * 0.8 * (3 / 2));
+            min-width: calc((100vh - 130px) * 0.8 * (3 / 2));
             height: 100%;
             background: url('../img/game_room_nodoor01.png') no-repeat center/auto 100%;
             position: relative;
             z-index: 1;
             .pullbox{
-                width: calc((100vh - 100px) * 0.8 * 0.125);
-                height: calc((100vh - 100px) * 0.8 * 0.125);
+                width: calc((100vh - 130px) * 0.8 * 0.125);
+                height: calc((100vh - 130px) * 0.8 * 0.125);
                 box-sizing: border-box;
                 padding: 10px;
                 background: url("../img/game_pullbox.png") center/cover ;
@@ -233,7 +233,7 @@
             
             #pull_arrow{
                 cursor: pointer;
-                width: calc((100vh - 100px) * 0.06 );
+                width: calc((100vh - 130px) * 0.06 );
                 position: absolute;
                 z-index: 2;
                 top: 37%;
@@ -334,6 +334,53 @@
         }
     }
 }
+main{
+    text-align: center;
+}
+label{
+    display: inline-block;
+    span{
+        display: inline-block;
+        position: relative;
+        padding: 5px 50px 5px 5px ;
+        &::after,
+        &::before{
+            content: '';
+            width: 40px;
+            height: 20px;
+            border-radius: 10px;
+            background-color: map-get($color, 'sub_blue');
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translate(-100% ,-50%);
+            border: 1px solid map-get($color, 'main');
+        }
+        &::after{
+            width: 18px;
+            height: 18px;
+            background-color: map-get($color, 'main');
+            border: none;
+            transform: translate(calc(-200% - 4px) ,-50%);
+            transition: .5s;
+        }
+    }
+    input{
+        display: none;
+        &:checked{
+            + span{
+                &::before{
+                    background-color: map-get($color, 'bg_pink');
+                    border: 1px solid map-get($color, 'sub_brown');
+                }
+                &::after{
+                    background-color: map-get($btn_color, 'orange');
+                    transform: translate(calc(-100% - 2px) ,-50%);
+                }
+            }
+        }
+    }
+}
 
 // .text_ill{
 //     display: none;
@@ -343,7 +390,7 @@
     max-width: 980px;
     box-sizing: border-box;
     width: calc(100vw - 40px);
-    height: calc(100vh - 100px);
+    height: calc(100vh - 130px);
     border-radius: 20px;
     border: 2px solid map-get($color, 'main');
     background-color: #2C2D48aa;
