@@ -553,7 +553,7 @@ p{
                 }
             }
             .reitem_goods{
-                border: 2px solid map-get($color, 'main');
+                border: 1px solid map-get($color, 'blue');
                 border-radius: 10px;
                 background-color: map-get($color, 'bg_white');
                 position: relative;
