@@ -1,7 +1,6 @@
+// const { notify } = require("browser-sync");
+
 function createCalendar(){
-
-
-
     var mesos = [
         'January',
         'February',
@@ -198,9 +197,6 @@ function createCalendar(){
                 if(actual.getDate() <= data.getDate() && actual.getMonth() <= month00){
                     td.className = 'fora';
                 }
-                // if(actual.getMonth() < month00){
-                //     td.className = 'fora';
-                // }
     
                 // today=今天
                 // 1 == 1
@@ -233,13 +229,15 @@ function createCalendar(){
                 fila.appendChild(td);
     
                 // -----註冊點擊事件
-                
                 let tds = document.querySelectorAll("#calendari td");
+
                 for(let i=0; i<tds.length; i++){
 
                     if(tds[i].className.indexOf('fora') == -1 && tds[i].className.indexOf('today') == -1 && tds[i].className.indexOf('full') == -1){
-                        tds[i].onclick=function(e){
+                        tds[i].onclick=function(){	
                             // tds[i] 是這個被點到的格子
+                            $('#calendari td').removeClass("active");
+                            $(this).addClass("active");
                             // data.getDate() 是今天的日期
                             // actual.getMonth() 月曆上顯示的月份!!
                             let selectedYear = data.getFullYear(); // 年
@@ -287,6 +285,7 @@ function createCalendar(){
 
                                 vm.getData();  
                             }
+
                             vm.getData();
                         };  
                     }
@@ -340,10 +339,9 @@ function changeSpan(){
         $('td > div div:nth-child(2) span').css('color','transparent');
     }else{
         $('td > div div:nth-child(2) span').css('color','black');
-    };
-                
-
+    };           
 }
+
 window.addEventListener('load',createCalendar);
 window.addEventListener('resize',changeSpan);
 // 加上選到的效果
