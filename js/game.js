@@ -86,6 +86,7 @@ function init() {
     // 點擊衣櫃內收納物
     $(document).on('click','#hiding img',function(e){
         $(this).prependTo($('#item_group'));
+        finishButton();   // 送出按鈕disabled切換
         if($('#wardrobe #hiding img').length == 0){
             // 條件:衣櫃是空的，顯示為空
             $('#wardrobe').addClass('empty');
@@ -95,6 +96,7 @@ function init() {
     // 點擊垃圾
     $(document).on('click','#garbage img',function(e){
         $(this).prependTo($('#item_group'));
+        finishButton();   // 送出按鈕disabled切換
         if($('#trashcan #garbage img').length == 0){
             // 條件:垃圾桶是空的，顯示為空
             $('#trashcan').addClass('empty');
