@@ -6,7 +6,7 @@
 //     position: relative;
     
 // }
-// 會員資料開始-----------------------------------------------------
+// 會員資料開始-------------------------------------------------
 .mem_txt{
     
 }
@@ -23,10 +23,10 @@ input{
     border: #d6aa81 1px solid;
     // color: opacity($color: #000000);
 }
-th{
-    height: 100px;
-    margin: auto;
-}
+
+.data_button .con_data a{
+    cursor: pointer; 
+} 
 
 // 手機-------------------------------
 @media  screen and (max-width:768px){
@@ -40,6 +40,7 @@ th{
             display: flex;
             
             .mem_icon{
+                display: none;
                 // margin: auto;
                 text-align: center;
                 margin: auto;
@@ -72,6 +73,7 @@ th{
                             line-height: 1.5em;
                             a{
                                 display: block;
+                                cursor: pointer; 
                             }
                         }
                     }
@@ -123,6 +125,7 @@ th{
                         font-size: 16px;
                         line-height: 1.5;
                         margin: auto 10px;
+                        cursor: pointer; 
                     }
                 }
                 
