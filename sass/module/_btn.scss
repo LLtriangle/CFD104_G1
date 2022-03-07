@@ -225,7 +225,7 @@ input:focus, button:focus{
         content: "";
         position: absolute;
         left: 0;
-        bottom: -1px;
+        bottom: 5px;
         width: 0%;
         height: 12px;
         background: map-get($color , "bg_white" );

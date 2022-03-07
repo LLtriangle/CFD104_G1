@@ -140,7 +140,7 @@ header{
             background-color: map-get($color , "cover" );
             color: #fff;
             transition: 1s;
-            background-image: url("../img/header_menu_bg_2.jpeg");
+            background-image: url("../img/header/header_menu_bg.jpg");
             background-size: cover;
             background-position: center;
             // 透明度 0.6 的黑色半透明遮罩
@@ -203,7 +203,7 @@ header{
                         }
                     }
 
-                    .index_link::before, .service_link::before, .mall_link::before, .activity_link::before, .about_link::before, .game_link::before{
+                    .home_link::before, .service_link::before, .mall_link::before, .activity_link::before, .about_link::before, .game_link::before{
                         font-size: 6px;
                         text-transform: uppercase;
                         position: absolute;
@@ -217,8 +217,8 @@ header{
 
                     }
 
-                    .index_link::before{
-                        content: "index";
+                    .home_link::before{
+                        content: "home";
                     }
                     .service_link::before{
                         content: "service";
