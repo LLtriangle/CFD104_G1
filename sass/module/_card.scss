@@ -14,18 +14,20 @@
 .prd_card{
     margin: 0 15px 20px;
     width: 220px;
-    max-width: 500px;
+    max-width: 200px;
+    height: 400px;
     border: 1px solid map-get($color, 'sub_blue');
     border-radius: 10px;
     background-color: map-get($color, 'bg_white');
     position: relative;
+    overflow: hidden;
     img{
-        width: 100%;
-        border-radius: 10px 10px 0 0;
+        height: 50%;
     }
     .txt{
         padding: 20px;
-        height: 180px;
+        height: 50%;
+        box-sizing: border-box;
         display: flex;
         justify-content: space-between;
         flex-direction: column;
