@@ -4,13 +4,14 @@
     white-space: pre-wrap;
 }
 .text_ill{
+    display: none;
     .welcome{
         max-width: 980px;
         box-sizing: border-box;
         width: calc(100vw - 40px);
         height: calc(100vh - 130px);
         border-radius: 20px;
-        border: 2px solid map-get($color, 'main');
+        border: 1px solid map-get($color, 'main');
         background-color: map-get($color, 'plain');
         margin: auto; 
         margin-top: 80px;
@@ -18,7 +19,7 @@
         position: absolute;
         z-index: 10;
         left: 50%;
-        top: -1px;
+        top: 0px;
         transform: translate(-50%);
         padding: 30px;
         text-align: center;
@@ -58,7 +59,7 @@
         width: calc(100vw - 40px);
         height: calc(100vh - 130px);
         border-radius: 20px;
-        border: 2px solid map-get($color, 'main');
+        border: 1px solid map-get($color, 'main');
         background-color: #f3f3eddd;
         margin: auto;
         margin-top: 80px;
@@ -66,7 +67,7 @@
         position: absolute;
         z-index: 5;
         left: 50%;
-        top: -1px;
+        top: 0px;
         transform: translate(-50%);
         padding: 30px;
         text-align: center;
@@ -113,7 +114,7 @@
     width: calc(100vw - 40px);
     height: calc(100vh - 130px);
     border-radius: 20px;
-    border: 2px solid map-get($color, 'main');
+    border: 1px solid map-get($color, 'main');
     background-color: map-get($color, 'main');
     margin: auto;
     margin-top: 80px;
@@ -128,7 +129,7 @@
             width: 100%;
             min-width: calc((100vh - 130px) * 0.8 * (3 / 2));
             height: 100%;
-            background: url('../img/game_room_nodoor01.png') no-repeat center/auto 100%;
+            background: url('../img/game_room.png') no-repeat center/auto 100%;
             position: relative;
             z-index: 1;
             .pullbox{
@@ -163,28 +164,39 @@
                 #door1,
                 #door2{
                     cursor: pointer;
-                    height: 46%;
+                    height: 40.4%;
                     position: absolute;
                     left: 50%;
                     transition: .5s ease-in;
                 }
                 #door1{
-                    z-index: 0;
-                    top: 6.4%;
+                    z-index: 1;
+                    top: 6.2%;
                     transform-origin:right;
-                    transform: translate(-62%,0) scaleX(1) skewY(0deg);
-                    
+                    transform: translate(-62%,0) scaleX(1) skewY(-29deg);
                 }
                 #door2{
                     z-index: 2;
-                    top: 12.2%;
+                    top: 18.6%;
                     transform-origin:left;
-                    transform: translate(-153%,0) scaleX(1) skewY(0deg);
+                    transform: translate(-156%,0) scaleX(1) skewY(-29deg);
+                }
+                #inside{
+                    cursor: pointer;
+                    position: absolute;
+                    height: 40%;
+                    width: 100px;
+                    top: 7.2%;
+                    left: 50%;
+                    transform-origin:right;
+                    transform: translate(-80%,0) scaleX(1) skewY(-29deg);
+                    z-index: 0;
                 }
                 #hiding{
                     width: calc(100% - 400px);
                     max-width: 400px;
                     position: absolute;
+                    z-index: 2;
                     top: 20%;
                     left: 47%;
                     display: flex;
@@ -204,13 +216,27 @@
                     }
                 }
                 &.open{
+                    &.empty::after{
+                        content: '空';
+                        font-size: 30px;
+                        line-height: 50px;
+                        position: absolute;
+                        top: 20%;
+                        left: 47%;
+                        padding: 10px;
+                        width: 50px;
+                        height: 50px;
+                        margin: 10px 10px 0 0;
+                        z-index: 3;
+                        background: url("../img/game_pullbox.png") center/cover ;
+                    }
                     #door1{
                         left: 50%;
-                        transform: translate(-62.5%,0) scaleX(-.7) skewY(-10deg);
+                        transform: translate(-62.5%,0) scaleX(-.7) skewY(-30deg);
                     }
                     #door2{
                         left: 50%;
-                        transform: translate(-154%,0) scaleX(1) skewY(45deg);
+                        transform: translate(-156%,0) scaleX(1) skewY(15deg);
                     }
                     #hiding{
                         >img{
@@ -230,7 +256,6 @@
                 z-index: 3;
                 transform: translate(-82.5%,0);
             }
-            
             #pull_arrow{
                 cursor: pointer;
                 width: calc((100vh - 130px) * 0.06 );
@@ -281,6 +306,20 @@
             }
         }
         &.open{
+            &.empty::after{
+                content: '空';
+                font-size: 30px;
+                line-height: 50px;
+                position: absolute;
+                top: 0;
+                left: 80px;
+                padding: 10px;
+                width: 50px;
+                height: 50px;
+                margin: 10px 10px 0 0;
+                z-index: 3;
+                background: url("../img/game_pullbox.png") center/cover ;
+            }
             .pic img{
                 &:first-child{
                     bottom: 15px;
@@ -302,7 +341,7 @@
     .push{
         width: 100%;
         height: 20%;
-        // overflow: hidden;
+        overflow: scroll;
         background-color: map-get($color, 'plain');
         #item_group{
             height: 100%;
@@ -382,9 +421,6 @@ label{
     }
 }
 
-// .text_ill{
-//     display: none;
-// }
 .text_result{
     display: none;
     max-width: 980px;
@@ -392,7 +428,7 @@ label{
     width: calc(100vw - 40px);
     height: calc(100vh - 130px);
     border-radius: 20px;
-    border: 2px solid map-get($color, 'main');
+    border: 1px solid map-get($color, 'main');
     background-color: #2C2D48aa;
     margin: auto;
     margin-top: 80px;
@@ -628,6 +664,9 @@ label{
             #item_group{
                 width: 100%;
                 flex-direction: row;
+                img{
+                    max-width: 100%;
+                }
                 input{
                     position: absolute;
                     bottom: 80px;
