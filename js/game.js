@@ -83,24 +83,24 @@ function init() {
     });
     
     // 開始測驗，關閉說明視窗
-    function switch_light(e){
+    function switchLight(e){
         // $(this).parent().css('display','none');
         $(this).parent().slideToggle(500,'easeInCirc');
     };
-    $('.text_ill button').on('click',switch_light);
+    $('.text_ill button').on('click',switchLight);
 
     // 完成放置，做判斷(vue)，跳出測驗結果
-    function open_result(){
+    function openResult(){
         $(".text_result").css('display','block');
         $(".text_result .typewriter").css('bottom','0');
         $(".text_result .paper h2").animate({
             marginTop: '10%',
         },2000,'easeOutBack');
     };
-    $('#finish').on('click',open_result);
+    $('#finish').on('click',openResult);
 
     // 再來一次，跳出說明視窗(遊玩方法)，物品歸位
-    function open_ill(){
+    function openIll(){
         $(".text_ill .intr").slideToggle(1000,'easeOutBounce');
         $('.text_result .paper').scrollTop(0);
         $(".text_result .typewriter").css('bottom','-50%');
@@ -112,8 +112,17 @@ function init() {
         $('#hiding img').appendTo($('#item_group'));
         $('#item_group img').removeClass('selected');
     };
-    $('#again').on('click',open_ill);
+    $('#again').on('click',openIll);
+    
+    // $('#control_txt').on('checked',closeTxt);
 
+
+    function selectAll() {
+        $('#item_group img').toggleClass('selected');
+    };
+
+    $('#select_all').on('change',selectAll);
+    
     // 拖放物件
 
     // leftbox = document.querySelector('#item_group');

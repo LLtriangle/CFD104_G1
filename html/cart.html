@@ -7,6 +7,7 @@
     <title>cart</title>
 
     <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/reserve.css">
 
 
 </head>
@@ -210,27 +211,27 @@
     </div>
 
     <script>
-        function init() {
-            var del_btn_icon = document.getElementsByClassName("del_btn_icon");
-            var del_btn = document.getElementsByClassName("del_btn");
-            for (i = 0; i < del_btn.length; i++) {
-                del_btn_icon[i].addEventListener('click', delete_mypic_icon);
-                del_btn[i].addEventListener('click', delete_mypic);
-            }
+        // function init() {
+        //     var del_btn_icon = document.getElementsByClassName("del_btn_icon");
+        //     var del_btn = document.getElementsByClassName("del_btn");
+        //     for (i = 0; i < del_btn.length; i++) {
+        //         del_btn_icon[i].addEventListener('click', delete_mypic_icon);
+        //         del_btn[i].addEventListener('click', delete_mypic);
+        //     }
 
-            function delete_mypic_icon(e) {
-                let div_img_icon = e.target.parentNode;
-                // console.log(div_img_icon.parentNode.parentNode)
-                div_img_icon.parentNode.parentNode.remove();
-            }
+        //     function delete_mypic_icon(e) {
+        //         let div_img_icon = e.target.parentNode;
+        //         // console.log(div_img_icon.parentNode.parentNode)
+        //         div_img_icon.parentNode.parentNode.remove();
+        //     }
 
-            function delete_mypic(e) {
-                let div_img = e.target.parentNode;
-                // console.log(div_img.parentNode)
-                div_img.parentNode.remove();
-            };
-        }
-        window.addEventListener("load", init)
+        //     function delete_mypic(e) {
+        //         let div_img = e.target.parentNode;
+        //         // console.log(div_img.parentNode)
+        //         div_img.parentNode.remove();
+        //     };
+        // }
+        // window.addEventListener("load", init)
         new Vue({
             el: '#tabs',
             data: {
@@ -263,7 +264,7 @@
                 payment: '',
                 name: '',
                 coupon: '',
-                credit_card_png: ['img/visa.png', 'img/mastercard.png'],
+                credit_card_png: ['img/visa.gif', 'img/mstercard.gif'],
                 isDisabled: true,
                 years: [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
             },
@@ -349,17 +350,17 @@
             computed: {
                 total_all() {
                     let a = this.list;
-                    let b = 0;
+                    let all = 0;
                     for (let i = 0; i < a.length; i++) {
                         if (this.coupon === "2022HAPPY88") {
                             return Math.round((this.list[i].price * this.list[i].count) * (this.param))  + this.fee;
                         } else if (this.coupon === "22HAPPYMDAY" || this.coupon === "22SOEASYEVD") {
                             return (this.list[i].price * this.list[i].count) + (this.param) + this.fee;
                         } else {
-                            b += this.list[i].price * this.list[i].count + this.fee;
+                            all += this.list[i].price * this.list[i].count + this.fee;
                         }
                     }
-                    return b;
+                    return all;
                 },
 
                 // 運費
