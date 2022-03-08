@@ -201,10 +201,10 @@ input:focus, button:focus{
         background: map-get($color , "bg_white" );
         z-index: 0;
     }
-    .link_under_line_l:hover span::after{
+    .link_under_line_l:hover h3::after{
         width: 100%;
     }
-    .link_under_line_l:hover span::before{
+    .link_under_line_l:hover h3::before{
         left: auto;
         right: 0;
         width: 0%;
@@ -225,7 +225,7 @@ input:focus, button:focus{
         content: "";
         position: absolute;
         left: 0;
-        bottom: -1px;
+        bottom: 5px;
         width: 0%;
         height: 12px;
         background: map-get($color , "bg_white" );

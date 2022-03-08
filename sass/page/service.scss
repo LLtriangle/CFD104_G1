@@ -25,17 +25,17 @@
                 background: url('../img/service_07.jpg') no-repeat bottom/100%;
             }
             h3{
-                background-color: map-get($color,"main");
+                background-color: map-get($color,"cover");
                 text-align: center;
                 padding: 30px 0 10px;
                 margin: 50px 0 -1px;
-                color: #ddd;
+                color: map-get($color,"main");
                 border-radius:10px 10px 0 0;
             }
             .txt{
                 padding: 10px 30px 80px;
-                background: linear-gradient(30deg, transparent 100px, map-get($color , "main") 0) left,
-                            linear-gradient(-30deg, transparent 100px, map-get($color , "main") 0) right;
+                background: linear-gradient(30deg, transparent 100px, map-get($color,"cover") 0) left,
+                            linear-gradient(-30deg, transparent 100px, map-get($color,"cover") 0) right;
                 background-size: calc(50% + 1px) 100%;
                 background-repeat: no-repeat;
                 h4{
@@ -45,7 +45,7 @@
                 }
                 p{
                     line-height: 1.5em;
-                    color: #ddd;
+                    color: map-get($color,"main");
                     text-align: start;
                     &:last-child{
                         text-align: center;
@@ -63,43 +63,119 @@
 }
 .serve_case{
     margin: 60px 0;
-    padding: 30px 0;
-    background-color: map-get($color , "plain");
+    height: 100vh;
+    // background-color: map-get($color , "plain");
     overflow: hidden;
     h2{
         padding: 30px 60px;
     }
     .case{
+        padding: 30px;
+        width: calc(100% - 40px);
+        height: calc(100vh - 160px);
+        box-sizing: border-box;
+        // border: 1px solid map-get($color , "main");
+        background-color: map-get($color , "cover");
+        // background-image: url('../img/memupupdowndown.png');
+        // background-size: 10px;
+        // background-blend-mode:overlay;
+        box-shadow: 0 0 5px 1px map-get($color , "sub_blue");
+        border-radius: 20px;
         display: flex;
         flex-direction: column;
-        margin: 50px 0;
+        align-items: center;
+        &:not(:first-child){
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%);
+        }
         .pic{
-            width: 80%;
-            max-width: 500px;
+            display: inline-block;
+            line-height: 0;
             position: relative;
-            margin: auto;
-            img{
+            width: 100%;
+            overflow: hidden;
+            >img{
                 width: 100%;
             }
-            img:last-child{
-                // width: 50vw;
+            .afterPic{
                 position: absolute;
-                left: 0;
-                top: 5px;
-                transform: rotate(-5deg);
+                top: 0px;
+                width: 0%;
+                max-width: 100%;
+                height: 100%;
+                border-right: 3px solid map-get($color , "bg");
+                overflow: hidden;
+                img{
+                    height: 100%;
+                }
+                &::after{
+                    content: '';
+                    height: 20px;
+                    width: 20px;
+                    border-radius: 50%;
+                    background-color: map-get($color , "bg");
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translate(50%,-50%);
+                }
             }
-        }
-        &:nth-child(odd){
-            img:last-child{
-                transform: rotate(5deg);
-
+            .handle{
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                background-color: map-get($color , "bg");
+                position: absolute;
+                top: 50%;
+                transform: translate(-50%,-50%);
+            }
+            .slowMove{
+                transition: .5s;
             }
         }
         .txt{
-            padding: 50px 20px;
+            position: relative;
+            background-color: map-get($color , "plain");
             h3{
                 border-bottom: 1px solid map-get($color , "sub_brown");
             }
+            .afterTxt{
+                position: absolute;
+                top: 0px;
+                left: 0;
+                height:0%;
+                max-height: 100%;
+                overflow: hidden;
+                background-color: map-get($color , "cover");
+                transition: 1s;
+                h3{
+                    color: map-get($color , "main");
+                    border-bottom: 1px solid map-get($color , "sub_red");
+                }
+            }
+        }
+        .bookmark{
+            position: absolute;
+            padding: 5px 50px 5px 20px;
+            top: 0;
+            opacity: .8;
+        }
+        &:nth-child(2) .bookmark{
+            right: 90px;
+            transform: rotate(86deg);
+            background:linear-gradient(-90deg,map-get($color ,"sub_inprogress") 30px,map-get($btn_color,"deep_blue") 30px);
+        }
+        &:nth-child(3) .bookmark{
+            right: 45px;
+            transform: rotate(82deg);
+            background:linear-gradient(-90deg,#f7b018 30px,map-get($color,"sub_pending") 30px);
+        }
+        &:nth-child(4) .bookmark{
+            right: 0%;
+            transform: rotate(88deg);
+            background:linear-gradient(-90deg,#87d10f 30px,map-get($color,"sub_success") 30px);
         }
     }
 }
@@ -170,8 +246,8 @@
         .item_group{
             .item{
                 .txt{
-                    background: linear-gradient(30deg, transparent 140px, map-get($color , "main") 0) left,
-                                linear-gradient(-30deg, transparent 140px, map-get($color , "main") 0) right;
+                    background: linear-gradient(30deg, transparent 140px, map-get($color , "cover") 0) left,
+                                linear-gradient(-30deg, transparent 140px, map-get($color , "cover") 0) right;
                     background-size: calc(50% + 1px) 100%;
                     background-repeat: no-repeat;
                 }
@@ -181,7 +257,7 @@
 }
 @media screen and (min-width: 768px) {
     .serve_plans{
-        .scroll_group{
+        // .scroll_group{
 
             overflow: auto;
             .item_group{
@@ -219,7 +295,7 @@
                     }
                 }
             }
-        }
+        // }
     }
     .serve_case{
         margin: 60px 0;
@@ -231,21 +307,43 @@
             max-width: 1200px;
         }
         .case{
+            height: calc(100vh - 200px);
             display: flex;
             flex-direction: row;
-            &:nth-child(odd){
-                flex-direction: row-reverse;
-            }
             flex-direction: row;
             align-items: center;
             max-width: 1200px;
             margin: 50px auto;
+            &:nth-child(odd){
+                flex-direction: row-reverse;
+            }
+            &:nth-child(even) .pic{
+                margin-right: 30px;
+            }
+            &:nth-child(odd) .pic{
+                margin-left: 30px;
+            }
             .pic{
-                width: 40%;
+                width: 50%;
             }
             .txt{
-                width: 60%;
-                padding: 20px 50px;
+                width: 50%;
+                // padding: 20px 50px;
+            }
+            &:nth-child(2) .bookmark{
+                right: auto;
+                left: 16%;
+                transform: rotate(85deg);
+            }
+            &:nth-child(3) .bookmark{
+                right: auto;
+                left: 8%;
+                transform: rotate(87deg);
+            }
+            &:nth-child(4) .bookmark{
+                right: auto;
+                left: 0%;
+                transform: rotate(83deg);
             }
         }
     }
@@ -268,7 +366,7 @@
                 border-radius: 10px;
                 margin: 20px;
                 padding-bottom: 50px;
-                height: 540px;
+                height: 550px;
                 position: relative;
                 overflow: hidden;
                 &:nth-child(1){
@@ -287,18 +385,18 @@
                         }
                         p{
                             line-height: 1.5em;
-                            color: #ddd;
+                            color: map-get($color , "main");
                         }
                     }
                 }
                 .txt{
                     transition: .5s;
-                    background: linear-gradient(30deg, transparent 100px, map-get($color , "main") 0) left,
-                                linear-gradient(-30deg, transparent 100px, map-get($color , "main") 0) right;
+                    background: linear-gradient(30deg, transparent 100px, map-get($color , "plain_blue") 0) left,
+                                linear-gradient(-30deg, transparent 100px, map-get($color , "plain_blue") 0) right;
                     background-size: calc(50% + 1px) 100%;
                     background-repeat: no-repeat;
                     h4{
-                        color: #ddd;
+                        color: map-get($color , "main");
                         text-align: center;
                         padding: 15px 0 10px;
                     }
@@ -311,5 +409,4 @@
             }
         }
     }
-
 }

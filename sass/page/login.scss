@@ -18,6 +18,15 @@
   transform: scale(1.1);
 }
 
+// 登入登出的input
+.login_container,.signup_container{
+  .form{
+    .form_button{
+      display: block;
+      font-size: 20pxs;
+    }
+  }  
+}
 
 
 

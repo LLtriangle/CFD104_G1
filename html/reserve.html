@@ -311,7 +311,7 @@
                         <ion-icon name="arrow-back-outline"></ion-icon>
                         返回
                     </button>
-                    <button class="next_btn center" v-on:click="activetab='3'" type="button"  id="submit">確認付款
+                    <button class="next_btn center" type="button"  id="submit" @click="nextHandler(2)">確認付款
                     <!-- <ion-icon name="arrow-forward-outline"></ion-icon> -->
                         
                     </button>
@@ -703,15 +703,26 @@
                 // console.log((visaRegEx.test(num))) // 驗證
                 // console.log(cardNum);
                 if (this.cCard === 'Visa') {
-                    if (!(visaRegEx.test(num))) {
+                    if ( !(visaRegEx.test(num))) {
                         alert("信用卡資料有誤");
                         document.getElementById("cardNum").select();
                         return;
                     }
-                } else {
+                } else if (this.cCard === 'Mastercard') {
                     if (!mastercardRegEx.test(num)) {
                         alert("信用卡資料有誤");
+                        document.getElementById("cardNum").select();
+                        return;
                     }
+                }
+            },
+            // 控制第二頁到第三頁
+            nextHandler(num) {
+                let credit_valid = this.ValidateCreditCardNumber(this.credit_card);
+                if (num == 2) {
+                    if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test || !this.credit_valid)
+                    alert("資料不完整");
+                    else this.activetab = `${num + 1}`
                 }
             },
             changeCity(){

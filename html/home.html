@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 初始設定，請自行修改title，及添加js連結 -->
+    @@include('layout/head.html')
+    <!-- 先連上home.css看效果開發 -->
+    <link rel="stylesheet" href="css/home.css">
+    <script src="js/home.js"></script>
+    <title>首頁</title>
+</head>
+<body>
+    <!-- <header></header> -->
+    @@include('layout/header.html')
+
+    <main class="home">
+        <!-- 登陸section -->
+        <section class="home_landing" id="landing"> 
+            <div class="full_view_box">
+                
+                <transition name="fade" mode="out-in" >
+                    <div class="full_view" :style="l_imgs[changeImg]" :key="changeImg"></div>
+                </transition>
+            </div>
+            <div class="logo_view">
+
+                <div class="side_title"></div>
+
+                <div class="web_title">
+                    <h1>收Easy</h1>
+                    <p>So easy</p>
+                </div>
+
+                <div class="logo_shape_img_box">
+                    <transition name="fade" mode="out-in">
+                        <div class="logo_shape_img" :style="s_imgs[changeImg]" :key="changeImg"></div>
+                    </transition>
+                </div>
+            </div>
+            <div class="img_progress">
+                <div class="img_progress_bar" ></div>
+            </div>
+        </section>
+
+        <!-- 服務section -->
+        <section class="home_plans">
+            <h2>服務方案</h2>
+            <div class="plans_link_box">
+                <ul class="col-12 plans_links">
+                    <li class="col-12 col-md-4 left">
+                        <a class="link_under_line_l" href="service.html">
+                            <span class="plans_img_box"><img src="../img/home/plans_teaching_6.jpg" alt=""></span>
+                            <div class="txt_box">
+                                <h3 class="link_under_line_w">到府一對一教學</h3>
+                                <br>
+                                <p>給想要掌握收納技巧，<br>長期保持美好生活環境的你。</p>
+
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
+                                <g id="Layer_1">
+                                 <title>Layer 1</title>
+                                 <path id="svg_1" d="m3.44159,27.16454" opacity="NaN" stroke="#000" fill="#fff"/>
+                                 <line stroke="#000" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_3" y2="23.14106" x2="50.42394" y1="23.14106" x1="-0.38462" fill="none"/>
+                                 <path stroke="#000" id="svg_4" d="m50.57692,23.52567l-15.53251,-15.20735" opacity="undefined" stroke-linecap="undefined" stroke-linejoin="undefined" fill="none"/>
+                                </g>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="col-12 col-md-4 mid">
+                        <a class="link_under_line_l" href="service.html">
+                            <span class="plans_img_box"><img src="../img/home/h_fold_tal.jpg" alt=""></span>
+                            <div class="txt_box">
+                                <h3 class="link_under_line_w">空間整理收納</h3>
+                                <br>
+                                <p>還給您最舒適的居家空間，<br>量身打造專屬您的空間規劃。</p>
+                            
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
+                                <g id="Layer_1">
+                                 <title>Layer 1</title>
+                                 <path id="svg_1" d="m3.44159,27.16454" opacity="NaN" stroke="#000" fill="#fff"/>
+                                 <line stroke="#000" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_3" y2="23.14106" x2="50.42394" y1="23.14106" x1="-0.38462" fill="none"/>
+                                 <path stroke="#000" id="svg_4" d="m50.57692,23.52567l-15.53251,-15.20735" opacity="undefined" stroke-linecap="undefined" stroke-linejoin="undefined" fill="none"/>
+                                </g>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="col-12 col-md-4 right">
+                        <a class="link_under_line_l" href="service.html">
+                            <span class="plans_img_box"><img src="../img/home/plans_packing_3.jpg" alt=""></span>
+                            <div class="txt_box">
+                                <h3 class="link_under_line_w">搬家前後物品上下架</h3>
+                                <br>
+                                <p>搬家前後的雜亂不再，<br>讓您體驗最愉快的搬家經驗。</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
+                                <g id="Layer_1">
+                                 <title>Layer 1</title>
+                                 <path id="svg_1" d="m3.44159,27.16454" opacity="NaN" stroke="#000" fill="#fff"/>
+                                 <line stroke="#000" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_3" y2="23.14106" x2="50.42394" y1="23.14106" x1="-0.38462" fill="none"/>
+                                 <path stroke="#000" id="svg_4" d="m50.57692,23.52567l-15.53251,-15.20735" opacity="undefined" stroke-linecap="undefined" stroke-linejoin="undefined" fill="none"/>
+                                </g>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 案例section -->
+        <section class="home_case">
+            <div class="rolling_case_img">
+                <ul>
+                    <li>
+                        <div class="img_box _1"></div>
+                    </li>
+                    <li>
+                        <div class="img_box _2"></div>
+                    </li>
+                    <li>
+                        <div class="img_box _3"></div>
+                    </li>
+                    <li>
+                        <div class="img_box _4"></div>
+                    </li>
+                    <li>
+                        <div class="img_box _5"></div>
+                    </li>
+                    <li>
+                        <div class="img_box _6"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="title">
+                    <img src="img/banner_roof.png" alt="屋頂">
+                    <h2>讓我們一起，<br>整理出美好的生活</h2>
+                </div>
+                <div class="content_txt">
+                    <p>
+                        收Easy致力於推廣專業的整理服務，為每個努力生活的人整理出能安心休憩的家。藉由整理，提升身心的健康，改變生活的樣貌。
+                        <br>
+                        <br>
+                        我們目前已服務超過一千個家庭迎接充滿生機的新生活，希望也能為您的生活帶來新氣象!
+                    
+                    </p>
+
+                    <div class="needs_btns">
+                        <a class="go_reserve link_btn rd" href="reserve.html">馬上預約!</a>
+                        <a class="go_game link_btn bl" href="game.html">還在猶豫?</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 流程section -->
+        <section class="home_progress">
+            <h2>預約流程</h2>
+            <ul>
+                <li>
+                    <a href="service.html">
+                        <div class="view _1">
+                            <h3>選擇服務</h3>
+                        </div>
+                        <!-- <p>依照您的需求，選擇最適合您的方案</p> -->
+                    </a>
+                </li>
+                <li>
+                    <a href="reserve.html">
+                        <div class="view _2">
+                            <h3>填寫表單</h3>
+                        </div>
+                        <!-- <p>讓我們了解您的需求，提供最貼心的服務</p> -->
+                    </a>
+                </li>
+                <li>
+                    <a href="about.html">
+                        <div class="view _3">
+                            <h3>到府服務</h3>
+                        </div>
+                        <!-- <p>用最專業的態度和最溫暖的心，為您服務</p> -->
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+
+
+        <!-- 活動消息section -->
+        <section class="index_news">
+            <div class="news_items">
+                <div class="col-md-6 news_img_box">
+                    <div class="news_img"></div>
+                </div>
+                <ul class="col-md-6 news">
+                    <h2>活動消息</h2>
+                    <li>
+                        <a href="activity.html">
+                            <h3> <span>01</span> 新春大優惠</h3>
+                            <p>到2/30前全館消費滿2000現折500 !折扣碼: 2022TIGERYEAR</p>
+                        </a>
+                    </li>
+                    <hr>
+                    <li>
+                        <a href="activity.html">
+                            <h3><span>02</span> 新春大優惠</h3>
+                            <p>到2/30前全館消費滿2000現折500 !折扣碼: 2022TIGERYEAR</p>
+                        </a>
+                    </li>
+                    <hr>
+                    <li>
+                        <a href="activity.html">
+                            <h3><span>03</span> 新春大優惠</h3>
+                            <p>到2/30前全館消費滿2000現折500 !折扣碼: 2022TIGERYEAR</p>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </section>
+ 
+        <!-- 專欄文章section -->
+        <section class="index_columns">
+            <div class="col-12 col-md-6 column_content">
+                <div class="column_link" href="activity.html">
+                    <h2>專欄文章</h2>
+                    <div class="column">
+                        <h3>過年一次大掃除</h3>
+                        <p>過年打掃好崩潰！每到年末，許多人都會在年假前一次性大掃除，但平時沒有段捨離，一次性的大型整理，一回神就會變成溫馨的回顧大會，從國小畢業紀念冊到最新的收藏品，整理結束後，櫃子依舊塞得滿滿的，靜靜等待明年被拿出來回顧...</p>
+                    </div>
+                    <a class="columns_more moreprd" href="activity.html">more...</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 img_bar">
+                <span class="img_part_1"></span>
+                <span class="img_part_2"></span>
+                <span class="img_part_3"></span>
+                <span class="img_part_4"></span>
+            </div>
+        </section>
+
+        <!-- Q&A section -->
+        <section class="index_qa">
+			<h2>Q&A</h2>
+			<div class="quesion">
+				<input type="checkbox" id="Q1" checked>
+				<label for="Q1">
+					<h3>什麼是整理師？跟清潔阿姨有什麼不一樣？</h3>
+				</label>
+				<p>笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑容滿面。</p>
+			</div>
+			<div class="quesion">
+				<input type="checkbox" id="Q2">
+				<label for="Q2">
+					<h3>你們的服務人員可以固定嗎？</h3>
+				</label>
+				<p>可以的，填寫表單時可以選擇您熟悉的整理師，選擇她/他的空檔時間為您服務喔!</p>
+			</div>
+			<div class="quesion">
+				<input type="checkbox" id="Q3">
+				<label for="Q3">
+					<h3>需不需要給服務員小費呢？</h3>
+				</label>
+				<p>好問題，問就是要。</p>
+			</div>
+            <div class="quesion">
+				<input type="checkbox" id="Q4">
+				<label for="Q4">
+					<h3>整理師服務時，屋主一定要在家嗎？</h3>
+				</label>
+				<p>不需要。除了第一次服務時，我們希望客戶在場告知個人的居家習慣外，爾後我們的服務員可以在客戶外出前到宅開始服務，此時客戶即可外出，待服務員完成工作後，以電話撥打給您，告知已完成工作並自行將門關上後離開。</p>
+			</div>
+		</section>
+        
+        <!-- 熱門商品section -->
+        <section class="index_hot_sales">
+            <h2>熱門商品</h2>
+            <div class="content">
+                <ul class="row">
+                    <li class="col-12 col-md-4">
+                        <div class="product_bg right"></div>
+                        <a class="hs_link" href="product.html">
+                            <div class="hs_img_box">
+                                <img src="img/index_product_1.png" alt="">
+                            </div>
+                            <h3>格調漩渦 <br> 壁掛式時鐘</h3>
+                            <p>
+                                NT$ 1,099
+                            </p>
+                        </a>
+                    </li>
+                    <li class="col-12 col-md-4">
+                        <div class="product_bg middle"></div>
+                        <a class="hs_link" href="product.html">
+                            <div class="hs_img_box">
+                                <img src="img/index_product_2.jpg" alt="">
+                            </div>
+                            <h3>白日夢海綿架</h3>
+                            <p>
+                                NT$ 490
+                            </p>
+                        </a>
+                    </li>
+                    <li class="col-12 col-md-4">
+                        <div class="product_bg left"></div>
+                        <a class="hs_link" href="product.html">
+                            <div class="hs_img_box">
+                                <img src="img/index_product_3.png" alt="">
+                            </div>
+                            <h3>小麋鹿木掛架</h3>
+                            <p>
+                                NT$ 1,480
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+                <a class="hs_more moreprd" href="mall.html">more...</a>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- <footer></footer> -->
+    @@include('layout/footer.html')
+
+
+
+    <script>
+        new Vue({
+            el: '#landing',
+            data: {
+                // img: "../img/index_choose.jpeg"
+                s_imgs: [
+                    {'background-image': 'url(' + "../img/home/landing_main_s.jpg" + ')'},
+
+                    {'background-image': 'url(' + "../img/home/w_choose.jpeg" + ')'},
+
+                    {'background-image': 'url(' +  "../img/home/shirt.jpeg" + ')'},
+
+                    {'background-image': 'url(' + "../img/home/h_fold_side.jpg" + ')'},
+                ],
+
+                l_imgs: [
+                    {'background-image': 'url(' + "../img/home/landing_main.jpg" + ')'},
+
+                    {'background-image': 'url(' + "../img/home/w_choose.jpeg" + ')'},
+
+                    {'background-image': 'url(' +  "../img/home/shirt.jpeg" + ')'},
+
+                    {'background-image': 'url(' + "../img/home/h_fold_side.jpg" + ')'},
+                ],
+
+                i: 0,
+                percent: 0,
+            },
+            methods: {
+                imgTime: function(){
+                    setInterval(this.imgOrder, 6000)
+                },
+
+                imgOrder:function(){
+                    this.i++;
+
+                    if(this.i == 4){
+                        this.i = 0;
+                    }
+
+                    // this.percent = this.i * 25;
+                },
+
+            },
+            computed: {
+                changeImg(){
+                    return  `${this.i}`; 
+                },
+                progressBar(){
+                    return `${this.i * 25}%`;
+                },
+
+            },
+
+            mounted:function(){    //生命週期  鉤子函數   掛載完成
+                this.imgTime()
+            },
+
+            watch: {  
+                //偵聽器: 主要用來偵聽 data 和 computed 的變化     
+            },
+        });
+
+        
+    </script>
+
+    <!-- <img src="../img/index_box.jpeg" alt="">
+        <img src="../img/index_choose.jpeg" alt="">
+        <img src="../img/index_fold.jpeg" alt="">
+        <img src="../img/index_plate_tal.jpeg" alt=""> -->
+
+<!-- window.onload = function(){
+    new Vue({
+        el:"#my",
+        data:{
+            img:["img/banner1.jpg",
+                "img/banner2.jpg",
+                "img/banner3.jpg",
+                "img/banner4.jpg",
+                "img/banner5.jpg"],
+            n:2
+        },
+        methods:{
+            fun:function(){
+                //setInterval(函數體,時間)
+                setInterval(this.play,2000)
+            },
+            play:function(){
+                this.n++;
+                if(this.n == this.img.length){
+                    this.n = 0;
+                }
+            }
+        },
+        mounted:function(){    //生命週期  鉤子函數   掛載完成
+            this.fun()
+        }
+    })
+} -->
+
+
+
+<!-- // fun:function(){
+    // //setInterval(函數體,時間)
+    // setInterval(this.play,2000)
+    // },
+    // play:function(){
+    //     this.n++;
+    //     if(this.n == this.img.length){
+    //         this.n = 0;
+    //     }
+    // } -->
+
+
+    
+
+    <!-- //             $('.iindex_p2-progressSolid').width(`${length}%`)
+    //     length += .7;
+    //     if (length >= 100) {
+    //         length = 0;
+    //         index += 1;
+    //         $('.index_p2_tickerContainer>h1').html(`${titleWord[index % 3]}`);
+    //         $('.index_p2_button>h2').text(`${titleWord[index % 3]}`);
+    //         $('.index_p2_pic>img').attr('src', `${itemPic[index % 3]}`)
+    //         $('.iindex_p2_right').css({
+    //             background: `url(${bgPic[index % 3]})`
+    //         });
+    //         $('.index_p2_left').css({
+    //             backgroundColor: `${bgColor[index % 3]}`
+    //         });
+    //     }
+    // }, 30); -->
+
+</body>
+</html>

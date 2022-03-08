@@ -1,7 +1,7 @@
 @import  "../base/var";
 @import "../base/color";
 
-// 輪播圖-----------------------
+// 輪播圖------------------
 // .small_img{
 //     .item{
 //         img{
@@ -11,7 +11,7 @@
 //     }
 // }
 
-// 整理師介紹--------------------
+// 整理師介紹---------------
 .b-tab {
     // padding: 20px;
     // border: 1px solid #000;
@@ -43,15 +43,9 @@ section{
     position: relative;
     overflow: hidden;
     width: 100%;
-    // height: 100vw;
-    // background-image: url("../img/about_2.png");
-    // background-repeat: no-repeat;
-    // background-position: center;
-    // background-size: cover;
-    // opacity: 0.5;
 
 
-    // about遮色片----------------
+    // about遮色片-----------
     .big_img{
         margin: 20px 0px 20px 0px;
         position: relative;
@@ -109,19 +103,12 @@ section{
             
         }
         
-        
-        // .small_img{
-        //     position:absolute;
-        //     right: 0;
-        //     bottom: 0;
-        //     display: flex;
-        //     img{
-        //         margin-right: 10px;
-        //     }
-        // }
     }
 }
 
+.bg_deep{
+    background-color: #ac8969;
+}
 
 // 手機-------------------------------
 @media  screen and (max-width:768px),
@@ -136,15 +123,16 @@ screen and (max-width:992px)
         }
     }
     
-    // 輪播圖-----------------------
+    // 輪播圖-------
     .owl-stage-outer{
-        right: -30px;
+        // right: -30px;
     }
     .small_img{
         .item{
             img{
-                max-height:150px ;
-                // max-width: 500px;
+                max-height:170px ;
+
+                max-width: 200px;
             }
         }
     }
@@ -174,7 +162,7 @@ screen and (max-width:992px)
     }
 
 
-    // 關於我們
+    // 關於我們-----
     
     .about_team{
         box-sizing: border-box;
@@ -195,16 +183,17 @@ screen and (max-width:992px)
                 transform: translate(-50%, 0%);
                 .rwd_mem_1{
                     width: 100px;
-                    height: 50px;
+                    height: 40px;
                     border: 2px solid map-get($color, "sub_brown");
                     border-radius: 20px;
                     color: #fff;
                     background-color: map-get($color, "sub_brown");
+                    // background-color: #b18b68;
                 }
                 .rwd_mem_2{
                     // position:absolute;
                     width: 90px;
-                    height: 50px;
+                    height: 40px;
                     border: 2px solid map-get($color, "sub_brown");;
                     border-radius: 20px;
                     color: #fff;
@@ -213,7 +202,7 @@ screen and (max-width:992px)
                 .rwd_mem_3{
                     // position:absolute;
                     width: 90px;
-                    height: 50px;
+                    height: 40px;
                     border: 2px solid map-get($color, "sub_brown");;
                     border-radius: 20px;
                     color: #fff;
@@ -235,16 +224,15 @@ screen and (max-width:992px)
                 max-height:400px;
                 border-radius: 20px;
                 box-shadow:none;
-                
                 @keyframes picpic{
                     0%{
-                        transform: scale(.8);
+                        transform: scale(.9);
                     }
                     50%{
                         transform: scale(.9);
                     }
                     100%{
-                        transform: scale(.8);
+                        transform: scale(.9);
                     }
                 }
                 img{
@@ -253,6 +241,23 @@ screen and (max-width:992px)
                     animation-iteration-count:infinite;
                     border-radius: 20px;
                     width: 100%;
+                }
+                .large_txt{
+                    animation-duration: 10s;
+                    animation-name: picpic;
+                    animation-iteration-count:infinite;
+                    position: absolute;
+                    bottom: -20%;
+                    background-color: rgba(255, 255, 255, 0.548);
+                    padding-bottom: 10px;
+                    a{
+                        margin-left: 60%;
+                        border: 1px solid #d6aa81;
+                        background-color: #d6aa81;
+                        color: #fff;
+                        border-radius: 20px;
+                        padding: 3px 15px;
+                    }
                 }
                
             }
@@ -315,7 +320,7 @@ screen and (max-width:992px)
         }
     }
 
-    // 聯絡資訊--------------------------
+    // 聯絡資訊-------
     .about_contact{
         // margin-top: 50px;
         // display: flex;
@@ -348,9 +353,46 @@ screen and (max-width:992px)
 
 }
 
+// 整理師按鈕調整----------------------
+@media  screen and (max-width:415px){
+    .about_team{
+        .circle_big_img{
+            .btn_mem{
+                top: 80%;
+            }
+            .img_box{
+                .change_img{
+                    .large_txt{
+                        animation-duration: 10s;
+                        animation-name: picpic;
+                        animation-iteration-count:infinite;
+                        position: absolute;
+                        bottom: 5%;
+                        background-color: rgba(255, 255, 255, 0.548);
+                        padding-bottom: 10px;
+                        a{
+                            margin-left: 60%;
+                            border: 1px solid #d6aa81;
+                            background-color: #d6aa81;
+                            color: #fff;
+                            border-radius: 20px;
+                            padding: 3px 15px;
+                        }
+                    }
+                }
+            }
+            
+        }
+
+    }
+    }
+
+
 // 桌機-------------------------------
 @media  screen and (min-width:992px){
-    // 輪播圖-----------------------
+
+
+    // 輪播圖-------
     .small_img{
         .item{
             img{
@@ -396,7 +438,7 @@ screen and (max-width:992px)
     }
 
 
-    // 關於我們
+    // 關於我們-------
     .about_team{
         box-sizing: border-box;
         padding: 90px 0px 60px 0px;
@@ -538,7 +580,7 @@ screen and (max-width:992px)
         }
     }
 
-    // 聯絡資訊--------------------------
+    // 聯絡資訊-------
     .about_contact{
         margin: auto;
         margin-top: 50px;

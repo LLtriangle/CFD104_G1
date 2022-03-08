@@ -42,5 +42,5 @@ $(document).ready(function(){
 });
 
 window.addEventListener('load',function(){
-    $('#loading_box').delay(1500).slideUp(700);
+    $('#loading_box').delay(500).slideUp(700);
 });
