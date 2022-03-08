@@ -25,17 +25,17 @@
                 background: url('../img/service_07.jpg') no-repeat bottom/100%;
             }
             h3{
-                background-color: map-get($color,"main");
+                background-color: map-get($color,"cover");
                 text-align: center;
                 padding: 30px 0 10px;
                 margin: 50px 0 -1px;
-                color: #ddd;
+                color: map-get($color,"main");
                 border-radius:10px 10px 0 0;
             }
             .txt{
                 padding: 10px 30px 80px;
-                background: linear-gradient(30deg, transparent 100px, map-get($color , "main") 0) left,
-                            linear-gradient(-30deg, transparent 100px, map-get($color , "main") 0) right;
+                background: linear-gradient(30deg, transparent 100px, map-get($color,"cover") 0) left,
+                            linear-gradient(-30deg, transparent 100px, map-get($color,"cover") 0) right;
                 background-size: calc(50% + 1px) 100%;
                 background-repeat: no-repeat;
                 h4{
@@ -45,7 +45,7 @@
                 }
                 p{
                     line-height: 1.5em;
-                    color: #ddd;
+                    color: map-get($color,"main");
                     text-align: start;
                     &:last-child{
                         text-align: center;
@@ -74,12 +74,12 @@
         width: calc(100% - 40px);
         height: calc(100vh - 160px);
         box-sizing: border-box;
-        border: 1px solid map-get($color , "main");
-        background-color: map-get($color , "plain");
-        background-image: url('../img/memupupdowndown.png');
-        background-size: 10px;
-        background-blend-mode:overlay;
-        box-shadow: 0 0 5px 0 map-get($color , "cover");
+        // border: 1px solid map-get($color , "main");
+        background-color: map-get($color , "cover");
+        // background-image: url('../img/memupupdowndown.png');
+        // background-size: 10px;
+        // background-blend-mode:overlay;
+        box-shadow: 0 0 5px 1px map-get($color , "sub_blue");
         border-radius: 20px;
         display: flex;
         flex-direction: column;
@@ -148,7 +148,7 @@
                 height:0%;
                 max-height: 100%;
                 overflow: hidden;
-                background-color: map-get($color , "plain");
+                background-color: map-get($color , "cover");
                 transition: 1s;
                 h3{
                     color: map-get($color , "main");
@@ -246,8 +246,8 @@
         .item_group{
             .item{
                 .txt{
-                    background: linear-gradient(30deg, transparent 140px, map-get($color , "main") 0) left,
-                                linear-gradient(-30deg, transparent 140px, map-get($color , "main") 0) right;
+                    background: linear-gradient(30deg, transparent 140px, map-get($color , "cover") 0) left,
+                                linear-gradient(-30deg, transparent 140px, map-get($color , "cover") 0) right;
                     background-size: calc(50% + 1px) 100%;
                     background-repeat: no-repeat;
                 }
@@ -385,18 +385,18 @@
                         }
                         p{
                             line-height: 1.5em;
-                            color: #ddd;
+                            color: map-get($color , "main");
                         }
                     }
                 }
                 .txt{
                     transition: .5s;
-                    background: linear-gradient(30deg, transparent 100px, map-get($color , "main") 0) left,
-                                linear-gradient(-30deg, transparent 100px, map-get($color , "main") 0) right;
+                    background: linear-gradient(30deg, transparent 100px, map-get($color , "plain_blue") 0) left,
+                                linear-gradient(-30deg, transparent 100px, map-get($color , "plain_blue") 0) right;
                     background-size: calc(50% + 1px) 100%;
                     background-repeat: no-repeat;
                     h4{
-                        color: #ddd;
+                        color: map-get($color , "main");
                         text-align: center;
                         padding: 15px 0 10px;
                     }
