@@ -140,6 +140,7 @@ p{
             margin: 20px 20px ;
             .btn_btn_box{
                 padding: 10px 10px 10px 30px;
+                display: flex;
                 justify-content: center;
             }            
             .btn_xshidden{
@@ -150,12 +151,10 @@ p{
                 border-radius: 10px 10px 0 0;
             }
             h3{
-                text-align: start;
-                margin-left: 10px;
+                text-align: center;
             }
             p{
-                text-align: start;
-                margin-left: 10px;
+                text-align: center;
                 margin-bottom: 10px;
             }
         }
@@ -319,6 +318,7 @@ p{
                 margin: 20px 20px ;
                 .btn_btn_box{
                     padding: 10px 10px 10px 30px;
+                    display: flex;
                     justify-content: center;
                 }            
                 .btn_xshidden{
@@ -329,12 +329,10 @@ p{
                     border-radius: 10px 10px 0 0;
                 }
                 h3{
-                    text-align: start;
-                    margin-left: 10px;
+                    text-align: center;
                 }
                 p{
-                    text-align: start;
-                    margin-left: 10px;
+                    text-align: center;
                     margin-bottom: 10px;
                 }
             }
@@ -513,8 +511,9 @@ p{
                 width: calc(100% / 4 - 20px);
                 margin: auto 10px;
                 .btn_btn_box{
-                    padding: 15px;
-                    margin: auto;
+                    padding: 10px 15px;
+                    margin: 0px auto;
+                    display: flex;
                     justify-content: center;
                     .btn_btn{
                         cursor: pointer;
@@ -529,13 +528,11 @@ p{
                     border-radius: 10px 10px 0 0;
                 }
                 h3{
-                    text-align: start;
-                    margin-left: 10px;
+                    text-align: center;
                     font-size: 16px;
                 }
                 p{
-                    text-align: start;
-                    margin-left: 10px;
+                    text-align: center;
                 }
             }
             .reitem_btn{
