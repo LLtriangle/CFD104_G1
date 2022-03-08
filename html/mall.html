@@ -12,20 +12,21 @@
     <link rel="stylesheet" href="css/mall.css">
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script> -->
 
-    <!-- <script type="text/javascript">
-        function showHideDiv(ele) {
+    <script type="text/javascript">
+        function showHideDiv(ele, cls) {
+            document.getElementsByClassName(cls)[0].style.display = 'none';
             var srcElement = document.getElementById(ele);
             if (srcElement != null) {
-                if (srcElement.style.display == "block") {
+                if (srcElement.style.display == "flex") {
                     srcElement.style.display = 'none';
                 }
                 else {
-                    srcElement.style.display = 'block';
+                    srcElement.style.display = 'flex';
                 }
                 return false;
             }
         }
-    </script> -->
+    </script>
 </head>
 
 <body>
@@ -378,94 +379,92 @@
                 </div>
             </div>
 
-            <!-- 展開的商品 17 -->
-            <div class="mall_item col-6 npimg">
-                <div class="mall_img">
-                    <a href="product.html">
-                        <img src="img/mall_cabinet_no01.jfif">
-                    </a>
-                </div>
-                <div class="mall_txt">
-                    <h3>
-                        <a href="product.html">
-                            北歐風純白床頭櫃
-                        </a>
-                    </h3>
-                    <p>
-                        NT $2,380
-                    </p>
-                </div>
+            <!-- <input type="button" value="看更多商品" class="mall_item col-12 btn_btn bl" onClick="showHideDiv('npimg')"/><br><br> -->
+            
+            <!-- 下一頁按鈕 -->
+            <div class="mall_item mall_nextpagebtn">
+                <input type="button" value="看更多商品" class="btn_btn bl js-btn-showmore" onClick="showHideDiv('npimg', 'js-btn-showmore')"/>
             </div>
 
-            <!-- 展開的商品 18 -->
-            <div class="mall_item col-6 npimg">
-                <div class="mall_img">
-                    <a href="product.html">
-                        <img src="img/mall_box_no01.jpg">
-                    </a>
-                </div>
-                <div class="mall_txt">
-                    <h3>
+            <div id="npimg">
+                <!-- 展開的商品 17 -->
+                <div class="mall_item col-6">
+                    <div class="mall_img">
                         <a href="product.html">
-                            衣物整理籃
+                            <img src="img/mall_cabinet_no01.jfif">
                         </a>
-                    </h3>
-                    <p>
-                        NT $380
-                    </p>
+                    </div>
+                    <div class="mall_txt">
+                        <h3>
+                            <a href="product.html">
+                                北歐風純白床頭櫃
+                            </a>
+                        </h3>
+                        <p>
+                            NT $2,380
+                        </p>
+                    </div>
                 </div>
+    
+                <!-- 展開的商品 18 -->
+                <div class="mall_item col-6">
+                    <div class="mall_img">
+                        <a href="product.html">
+                            <img src="img/mall_box_no01.jpg">
+                        </a>
+                    </div>
+                    <div class="mall_txt">
+                        <h3>
+                            <a href="product.html">
+                                衣物整理籃
+                            </a>
+                        </h3>
+                        <p>
+                            NT $380
+                        </p>
+                    </div>
+                </div>
+    
+                <!-- 展開的商品 19 -->
+                <div class="mall_item col-6">
+                    <div class="mall_img">
+                        <a href="product.html">
+                            <img src="img/mall_cabinet_no05.jfif">
+                        </a>
+                    </div>
+                    <div class="mall_txt">
+                        <h3>
+                            <a href="product.html">
+                                多功能用餐儲物桌
+                            </a>
+                        </h3>
+                        <p>
+                            NT $2,680
+                        </p>
+                    </div>
+                </div>
+            
+                <!-- 展開的商品 20 -->
+                <div class="mall_item col-6">
+                    <div class="mall_img">
+                        <a href="product.html">
+                            <img src="img/mall_wccombination_no01.jfif">
+                        </a>
+                    </div>
+                    <div class="mall_txt">
+                        <h3>
+                            <a href="product.html">
+                                浴廁專用防水儲物櫃
+                            </a>
+                        </h3>
+                        <p>
+                            NT $3,880
+                        </p>
+                    </div>
+                </div> 
             </div>
 
-            <!-- 展開的商品 19 -->
-            <div class="mall_item col-6 npimg">
-                <div class="mall_img">
-                    <a href="product.html">
-                        <img src="img/mall_cabinet_no05.jfif">
-                    </a>
-                </div>
-                <div class="mall_txt">
-                    <h3>
-                        <a href="product.html">
-                            多功能用餐儲物桌
-                        </a>
-                    </h3>
-                    <p>
-                        NT $2,680
-                    </p>
-                </div>
-            </div>
-        
-            <!-- 展開的商品 20 -->
-            <div class="mall_item col-6 npimg">
-                <div class="mall_img">
-                    <a href="product.html">
-                        <img src="img/mall_wccombination_no01.jfif">
-                    </a>
-                </div>
-                <div class="mall_txt">
-                    <h3>
-                        <a href="product.html">
-                            浴廁專用防水儲物櫃
-                        </a>
-                    </h3>
-                    <p>
-                        NT $3,880
-                    </p>
-                </div>
-            </div>
         </div>
-
-        <!-- 下一頁按鈕 -->
-        <div class="btn_btn_box mall_nextpagebtn">
-            <button class="btn_btn bl">
-                看更多商品
-            </button>
-        </div> 
-
-        <!-- <input type="button" value="Show/Hide" onClick="showHideDiv('divMsg')"/><br><br>
-        <div id="divMsg" style="background-color: #006969; color: #ffffff; height: 200px; width: 200px; text-align: center; display:none">
-            <b>Hello friends, <br>How are you?</b>
-        </div> -->
 
     </section>
                     
