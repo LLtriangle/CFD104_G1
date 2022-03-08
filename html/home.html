@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 初始設定，請自行修改title，及添加js連結 -->
+    @@include('layout/head.html')
+    <!-- 先連上home.css看效果開發 -->
+    <link rel="stylesheet" href="css/home.css">
+    <script src="js/home.js"></script>
+    <title>首頁</title>
+</head>
+<body>
+    <!-- <header></header> -->
+    @@include('layout/header.html')
+
+    <main class="home">
+        <!-- 登陸section -->
+        <section class="home_landing" id="landing"> 
+            <div class="full_view_box">
+                
+                <transition name="fade" mode="out-in" >
+                    <div class="full_view" :style="l_imgs[changeImg]" :key="changeImg"></div>
+                </transition>
+            </div>
+            <div class="logo_view">
+
+                <div class="side_title"></div>
+
+                <div class="web_title">
+                    <h1>收Easy</h1>
+                    <p>So easy</p>
+                </div>
+
+                <div class="logo_shape_img_box">
+                    <transition name="fade" mode="out-in">
+                        <div class="logo_shape_img" :style="s_imgs[changeImg]" :key="changeImg"></div>
+                    </transition>
+                </div>
+            </div>
+            <div class="img_progress">
+                <div class="img_progress_bar" ></div>
+            </div>
+        </section>
+
+        <!-- 服務section -->
+        <section class="home_plans">
+            <h2>服務方案</h2>
+            <div class="plans_link_box">
+                <ul class="col-12 plans_links">
+                    <li class="col-12 col-md-4 left">
+                        <a class="link_under_line_l" href="service.html">
+                            <span class="plans_img_box"><img src="../img/home/plans_teaching_6.jpg" alt=""></span>
+                            <div class="txt_box">
+                                <span class="link_under_line_w">到府一對一教學</span>
+                                <br>
+                                <p>給想要掌握收納技巧，<br>長期保持美好生活環境的你。</p>
+
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
+                                <g id="Layer_1">
+                                 <title>Layer 1</title>
+                                 <path id="svg_1" d="m3.44159,27.16454" opacity="NaN" stroke="#000" fill="#fff"/>
+                                 <line stroke="#000" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_3" y2="23.14106" x2="50.42394" y1="23.14106" x1="-0.38462" fill="none"/>
+                                 <path stroke="#000" id="svg_4" d="m50.57692,23.52567l-15.53251,-15.20735" opacity="undefined" stroke-linecap="undefined" stroke-linejoin="undefined" fill="none"/>
+                                </g>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="col-12 col-md-4 mid">
+                        <a class="link_under_line_l" href="service.html">
+                            <span class="plans_img_box"><img src="../img/home/h_fold_tal.jpg" alt=""></span>
+                            <div class="txt_box">
+                                <span class="link_under_line_w">空間整理收納</span>
+                                <br>
+                                <p>還給您最舒適的居家空間，<br>量身打造專屬您的空間規劃。</p>
+                            
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
+                                <g id="Layer_1">
+                                 <title>Layer 1</title>
+                                 <path id="svg_1" d="m3.44159,27.16454" opacity="NaN" stroke="#000" fill="#fff"/>
+                                 <line stroke="#000" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_3" y2="23.14106" x2="50.42394" y1="23.14106" x1="-0.38462" fill="none"/>
+                                 <path stroke="#000" id="svg_4" d="m50.57692,23.52567l-15.53251,-15.20735" opacity="undefined" stroke-linecap="undefined" stroke-linejoin="undefined" fill="none"/>
+                                </g>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="col-12 col-md-4 right">
+                        <a class="link_under_line_l" href="service.html">
+                            <span class="plans_img_box"><img src="../img/home/plans_packing_3.jpg" alt=""></span>
+                            <div class="txt_box">
+                                <span class="link_under_line_w">搬家前後物品上下架</span>
+                                <br>
+                                <p>搬家前後的雜亂不再，<br>讓您體驗最愉快的搬家經驗。</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
+                                <g id="Layer_1">
+                                 <title>Layer 1</title>
+                                 <path id="svg_1" d="m3.44159,27.16454" opacity="NaN" stroke="#000" fill="#fff"/>
+                                 <line stroke="#000" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_3" y2="23.14106" x2="50.42394" y1="23.14106" x1="-0.38462" fill="none"/>
+                                 <path stroke="#000" id="svg_4" d="m50.57692,23.52567l-15.53251,-15.20735" opacity="undefined" stroke-linecap="undefined" stroke-linejoin="undefined" fill="none"/>
+                                </g>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 案例section -->
+        <section class="home_case">
+            <div class="rolling_case_img">
+                <ul>
+                    <li>
+                        <div class="img_box _1"></div>
+                    </li>
+                    <li>
+                        <div class="img_box _2"></div>
+                    </li>
+                    <li>
+                        <div class="img_box _3"></div>
+                    </li>
+                    <li>
+                        <div class="img_box _4"></div>
+                    </li>
+                    <li>
+                        <div class="img_box _5"></div>
+                    </li>
+                    <li>
+                        <div class="img_box _6"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+                <div class="title">
+                    <img src="img/banner_roof.png" alt="屋頂">
+                    <h2>讓我們一起，<br>整理出美好的生活</h2>
+                </div>
+                <div class="content_txt">
+                    <p>
+                        收Easy致力於推廣專業的整理服務，為每個努力生活的人整理出能安心休憩的家。藉由整理，提升身心的健康，改變生活的樣貌。
+                        <br>
+                        <br>
+                        我們目前已服務超過一千個家庭迎接充滿生機的新生活，希望也能為您的生活帶來新氣象!
+                    
+                    </p>
+
+                    <div class="needs_btns">
+                        <a class="go_reserve link_btn rd" href="reserve.html">馬上預約!</a>
+                        <a class="go_game link_btn bl" href="game.html">還在猶豫?</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 流程section -->
+        <section class="home_progress">
+            <h2>預約流程</h2>
+            <ul>
+                <li>
+                    <div class="view">
+                        <h3>選擇服務</h3>
+                    </div>
+                    <p>依照您的需求，選擇最適合您的方案</p>
+                </li>
+                <li>
+                    <div class="view">
+                        <h3>填寫表單</h3>
+                    </div>
+                    <p>讓我們了解您的需求，提供最貼心的服務</p>
+                </li>
+                <li>
+                    <div class="view">
+                        <h3>到府服務</h3>
+                    </div>
+                    <p>用最專業的態度和最溫暖的心，為您服務</p>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- 希望抓的到 -->
+
+    <!-- <footer></footer> -->
+    @@include('layout/footer.html')
+
+
+
+    <script>
+        new Vue({
+            el: '#landing',
+            data: {
+                // img: "../img/index_choose.jpeg"
+                s_imgs: [
+                    {'background-image': 'url(' + "../img/home/landing_main_s.jpg" + ')'},
+
+                    {'background-image': 'url(' + "../img/home/w_choose.jpeg" + ')'},
+
+                    {'background-image': 'url(' +  "../img/home/shirt.jpeg" + ')'},
+
+                    {'background-image': 'url(' + "../img/home/h_fold_side.jpg" + ')'},
+                ],
+
+                l_imgs: [
+                    {'background-image': 'url(' + "../img/home/landing_main.jpg" + ')'},
+
+                    {'background-image': 'url(' + "../img/home/w_choose.jpeg" + ')'},
+
+                    {'background-image': 'url(' +  "../img/home/shirt.jpeg" + ')'},
+
+                    {'background-image': 'url(' + "../img/home/h_fold_side.jpg" + ')'},
+                ],
+
+                i: 0,
+                percent: 0,
+            },
+            methods: {
+                imgTime: function(){
+                    setInterval(this.imgOrder, 6000)
+                },
+
+                imgOrder:function(){
+                    this.i++;
+
+                    if(this.i == 4){
+                        this.i = 0;
+                    }
+
+                    // this.percent = this.i * 25;
+                },
+
+            },
+            computed: {
+                changeImg(){
+                    return  `${this.i}`; 
+                },
+                progressBar(){
+                    return `${this.i * 25}%`;
+                },
+
+            },
+
+            mounted:function(){    //生命週期  鉤子函數   掛載完成
+                this.imgTime()
+            },
+
+            watch: {  
+                //偵聽器: 主要用來偵聽 data 和 computed 的變化     
+            },
+        });
+
+        
+    </script>
+
+    <!-- <img src="../img/index_box.jpeg" alt="">
+        <img src="../img/index_choose.jpeg" alt="">
+        <img src="../img/index_fold.jpeg" alt="">
+        <img src="../img/index_plate_tal.jpeg" alt=""> -->
+
+<!-- window.onload = function(){
+    new Vue({
+        el:"#my",
+        data:{
+            img:["img/banner1.jpg",
+                "img/banner2.jpg",
+                "img/banner3.jpg",
+                "img/banner4.jpg",
+                "img/banner5.jpg"],
+            n:2
+        },
+        methods:{
+            fun:function(){
+                //setInterval(函數體,時間)
+                setInterval(this.play,2000)
+            },
+            play:function(){
+                this.n++;
+                if(this.n == this.img.length){
+                    this.n = 0;
+                }
+            }
+        },
+        mounted:function(){    //生命週期  鉤子函數   掛載完成
+            this.fun()
+        }
+    })
+} -->
+
+
+
+<!-- // fun:function(){
+    // //setInterval(函數體,時間)
+    // setInterval(this.play,2000)
+    // },
+    // play:function(){
+    //     this.n++;
+    //     if(this.n == this.img.length){
+    //         this.n = 0;
+    //     }
+    // } -->
+
+
+    
+
+    <!-- //             $('.iindex_p2-progressSolid').width(`${length}%`)
+    //     length += .7;
+    //     if (length >= 100) {
+    //         length = 0;
+    //         index += 1;
+    //         $('.index_p2_tickerContainer>h1').html(`${titleWord[index % 3]}`);
+    //         $('.index_p2_button>h2').text(`${titleWord[index % 3]}`);
+    //         $('.index_p2_pic>img').attr('src', `${itemPic[index % 3]}`)
+    //         $('.iindex_p2_right').css({
+    //             background: `url(${bgPic[index % 3]})`
+    //         });
+    //         $('.index_p2_left').css({
+    //             backgroundColor: `${bgColor[index % 3]}`
+    //         });
+    //     }
+    // }, 30); -->
+
+</body>
+</html>

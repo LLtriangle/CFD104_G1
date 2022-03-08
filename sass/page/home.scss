@@ -1,0 +1,541 @@
+// css基礎、共用設定
+
+/*reset*/
+@import  "../base/reset";
+/*變數*/
+@import  "../base/var";
+/*顏色*/
+@import  "../base/color";
+/*格線*/
+@import  "../bootstrap/scss/bootstrap";
+/*其他共用*/
+@import  "../base/universal";
+
+
+//rwd變數
+@mixin pad{
+    @media(max-width:767px){
+      @content;
+    }
+  }
+  
+  @mixin PC{
+    @media(min-width:768px){
+      @content;
+    }
+}
+
+//section寬高控制
+$small_part_h: 90vh;
+$full_part_h: 120vh;
+$max_w_s: 1200px;
+$max_w_l:1900px;
+$middle_pad: 60px 0;
+$left_pad: 0 2% 0 0;
+$right_pad: 0 0 0 2%;
+$word_pad: 10px;
+$section_margin_top: 60px;
+
+
+/*css設定部分*/
+
+
+/*home頁面*/
+*{
+    box-sizing: border-box;
+    h2{
+        transform: translateY(100px);
+        opacity: 0;
+
+        &.enter{
+            transform: translate(0, 0);
+            opacity: 1;
+            transition: transform .8s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        }
+
+    }
+}
+
+/*登陸section home_landing*/
+
+.home_landing{
+    height: 100vh;
+    position: relative;
+
+    @include pad{
+        height: 100vh;    
+    }
+
+    @include PC{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-areas: "full_view_box logo_view";
+    }
+
+    .img_progress{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 8px;
+        width: 100%;
+        background-color: #fff;
+
+        .img_progress_bar{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 8px;
+            width: 0%;
+            background-color: map-get($color , "sub_brown" );
+        }
+    }
+
+    .full_view_box{
+        background-image: url(../img/about.jpg);
+        background-position: left;
+        background-size: cover;
+
+        
+        .full_view{
+            // width: 50%;
+            // width: 0;
+            height: 100vh;
+            background-position: left;
+            background-size: cover;
+            // background-size: 100% 100%;
+
+            @include pad{
+                display: none;
+            }
+        }
+    }
+    
+    
+
+    .logo_view{
+        // width: 50%;
+        // width: 100%;
+        height: 100vh;
+        background-color: map-get($color , "cover" );
+
+        .side_title{
+            height: 100%;
+            position: absolute;
+            left: -24px;
+            top: 0%;
+            writing-mode: vertical-rl;
+            text-align: center;
+            z-index: 10;
+
+            &::after{
+                @include pad{
+                    font-size: 18vh;
+                }
+
+                content: "SO EASY";
+                font-family: 'Crimson Text', serif;
+                text-align: center;
+                font-size: 20vh;
+                letter-spacing: 0.1em;
+                line-height: 1em;
+                color: #fff;
+            }
+        }
+
+        .web_title{
+            padding-top: 100px;
+            padding-bottom: 40px;
+
+            h1, p{
+                text-align: center;
+            }
+        }
+
+        .logo_shape_img_box{
+            @include pad{
+                width: 260px;
+                height: 260px;   
+            }
+            width: 320px;
+            height: 320px;
+            margin: auto;
+            clip-path: polygon(50% 0%, 100% 26%, 100% 100%, 0 100%, 0 26%);
+            background-image: url(../img/about.jpg);
+            background-size: cover;
+
+            .logo_shape_img{
+                @include pad{
+                    width: 260px;
+                    height: 260px;   
+                }
+                width: 320px;
+                height: 320px;
+                margin: auto;
+                clip-path: polygon(50% 0%, 100% 26%, 100% 100%, 0 100%, 0 26%);
+                // border-radius: 25px;
+                background-size: cover;
+            }
+        }
+        
+    }
+
+    /* <transition name="fade">*/
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 1.5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+
+    .fade-enter, .fade-leave-to{
+        opacity: 0;
+    }
+    
+    .fade-enter-to, .fade-leave {
+        opacity: 1;
+    }
+    
+    
+}
+
+/*服務section home_landing*/
+
+.home_plans{
+    padding: $middle_pad;
+    padding-bottom: 160px;
+    max-width: $max_w_l;
+    margin: auto;
+
+    @include pad{
+        svg{
+            position: relative;
+            margin-left: 82%;
+            stroke: map-get($color , "main" );
+        }
+        
+    }
+
+    @include PC{
+       svg{
+           display: none;
+       }     
+    }
+
+    h2{
+        font-size: 48px;
+        padding: 60px 40px 0 40px;
+    }
+
+    .plans_link_box{
+        ul{
+            position: relative;
+            transition: transform .8s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+            @include PC{
+                padding-top: 50px;
+                padding-bottom: 160px;
+                display: flex;
+                
+                .left{
+                    &.enter{
+                        transition: transform .8s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+                    }
+                }
+                
+                .mid{
+                    top: 80px;
+
+                    &.enter{
+                        transition: transform 1.6s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+                    }
+                }
+    
+                .right{
+                    top: 160px;
+
+                    &.enter{
+                        transition: transform 2.4s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+                    }
+
+                    
+                }
+                
+            }
+
+            
+            
+        }
+
+        li{
+            position: relative;
+            height: 500px;
+            transform: translateY(100px);
+            opacity: 0;
+            
+            @include pad{
+                padding: 0 20px;
+                margin-top: 60px;
+                margin-bottom: 160px;
+            }
+
+            @include PC{
+                padding: 0 40px;
+            }
+
+            &.enter{
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+
+            a{
+                padding: 0;
+
+                .link_under_line_w{
+                    &::before{
+                        width: 100%;
+                    }
+                }
+
+                .plans_img_box{
+                    display: block;
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    overflow: hidden;
+
+                    img{
+                        position: absolute;
+                        width: 100%;
+                        height: auto;
+                        display: block;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+                .txt_box{
+                    position: relative;
+                    top: -28px;
+                    // padding-left: 20px;
+                    
+                    
+                    
+                    .link_under_line_w{
+                        position: relative;
+                        font-size: 32px;
+                        display: inline-block;
+                        background-color: map-get($color , "bg_white" );  
+    
+                        @include PC{
+                            font-size: 36px;    
+                        }
+                        
+                    }
+                }
+
+                p{
+                    padding-top: 10px;
+                }
+
+            }
+
+        }
+    }
+}
+
+/*案例section home_case*/
+
+.home_case{
+    background-color: map-get($color , "plain_blue" );
+    position: relative;
+    @include pad{
+        margin: 0;
+    }
+    @include PC{
+        margin: 200px 0;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include pad{
+        padding: 60px 10px;    
+    }
+
+    .rolling_case_img{
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+
+        @include PC{
+            top: -100px;
+        }
+        
+        ul{
+            // width: 6215%;
+            // // position: relative;
+            // // transition-duration: 80s;
+            // transition-timing-function: linear;
+            // transform: translate3d(-3960px, 0px, 0px);
+            display: flex;
+            align-items: center;
+
+            li{
+                position: relative;
+                height: auto;
+                animation: run 15s infinite;
+                margin: 0 20px;
+
+                .img_box{
+                    @include pad{
+                        width: 260px;
+                        height: 215px;  
+                    }
+
+                    @include PC{
+                        width: 500px;
+                        height: 400px;   
+                    }
+
+                    background-size: cover;
+                    background-position: center;
+
+                    &._1{
+                        background-image: url(../img/service_01.jpg);
+                    }
+                    &._2{
+                        background-image: url(../img/service_02.jpg);
+                    }
+                    &._3{
+                        background-image: url(../img/service_07.jpg);
+                    }
+                    &._4{
+                        background-image: url(../img/service_04.jpg);
+                    }
+                    &._5{
+                        background-image: url(../img/service_05.jpg);
+                    }
+                    &._6{
+                        background-image: url(../img/service_06.jpg);
+                    }
+                }
+
+                @keyframes run {
+                    0%{
+                        transform: translate3d(0px, 0px, 0px);
+                    }
+
+                    50%{
+                        transform: translate3d(-3960px, 0px, 0px);
+                    }
+
+                    100%{
+                        transform: translate3d(0px, 0px, 0px);
+                    }
+                }
+            }
+        }
+    }
+
+
+    .content{
+        max-width: $max_w_s;
+        padding: 20px;
+        background-color: map-get($color , "bg_white" );
+        position: relative;
+        @include PC{
+            top: -200px;
+        }
+        z-index: 3;
+        
+        
+        @include PC{
+            margin: 0 60px;
+            display: flex;
+            justify-content: space-between;
+            padding: 60px 80px;   
+        }
+
+        .title{
+            img{
+                width: 60%;
+            }
+            
+            h2{
+                padding-top: 20px;
+            }
+        }
+
+        .content_txt{
+            padding-top: 40px;
+            
+            @include PC{
+                padding: 40px;
+                padding-top: 60px;
+                width: 50%;
+            }
+
+            p{
+                transform: translateY(100px);
+                opacity: 0;
+
+                &.enter{
+                    transform: translate(0, 0);
+                    opacity: 1;
+                    transition: transform .8s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+                }
+            }
+
+            .needs_btns{
+                display: flex;
+                justify-content: space-around;
+                margin-top: 60px;
+            }
+
+        }
+
+    }
+}
+
+/*流程section home_progress*/
+.home_progress{
+    ul{
+        margin: auto;
+        max-width: $max_w_s;
+        
+        @include PC{
+            display: flex; 
+            justify-content: center;
+                  
+        }
+
+        li{
+            .view{
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                // clip-path: circle(50% at 50% 50%);
+                background-image: url(../img/service_07.jpg);
+
+                @include pad{
+                    width: 200px;
+                    height: 200px;    
+                }
+
+                &::before{
+                    content: "1";
+                    width: 100px;
+                    height: 100px;
+                    position: absolute;
+                    -webkit-text-stroke: 3px map-get($color , "sub_blue" );
+                    -webkit-text-fill-color: transparent;
+                    font-size: 120px;
+                }
+
+                h3{
+                    display: inline-block;
+                    text-align: center;margin: auto;
+                }
+            }
+        }
+    }
+}

@@ -5,7 +5,9 @@
     @@include('layout/head.html')
     <title>服務介紹</title>
 	<link rel="stylesheet" href="css/service.css">
-	<!-- <script src="OwlCarousel/owl.carousel.min.js"></script> -->
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/utils/Draggable.min.js"></script> -->
 	<script src="js/service.js"></script>
 </head>
 <body>
@@ -37,7 +39,7 @@
 
 		<section class="serve_plans">
 			<h2>服務方案介紹</h2>
-			<div class="scroll_group">
+			<!-- <div class="scroll_group"> -->
 				<div class="item_group owl-carousel owl-theme">
 					<div class="item">
 						<h3>到府一對一教學</h3>
@@ -93,44 +95,65 @@
 						<a href="reserve.html" class="link_btn rd">預約此方案</a>
 					</div>
 				</div>
-			</div>
+			<!-- </div> -->
 					
 		</section>
-				
+
 		<section class="serve_case">
 			<h2>案例分享</h2>
 			<div class="case case01">
 				<div class="pic">
-					<img src="img/serve_case01.jpg">
-					<img src="img/serve_case00.jpg">
+					<img class="content" src="img/serve_case01.jpg" draggable="false">
+					<div class="afterPic slowMove">
+						<img class="content" src="img/serve_case00.jpg" draggable="false">
+					</div>
+					<div class="handle slowMove"></div>
 				</div>
 				<div class="txt">
 					<h3>整理前</h3>
-					<!-- <h3>整理後</h3> -->
 					<p>【搬家物品打包】委託案例，因為是長期的定期居家清潔客戶，所以了解客戶的物品不算多，但有些物品是需要淘汰的，客戶委託前務必先進行斷捨離程序，可以避免後續的精神、時間損耗。</p>
+					<div class="afterTxt">
+						<h3>整理後</h3>
+						<p>屋主的物品量過多，當天在面臨取捨問題時，發現她已無力負擔，因為斷捨離本身也是對舒適圈的一場突破戰。</p>
+					</div>
 				</div>
+				<div class="bookmark">Case1</div>
 			</div>
 			<div class="case case02">
 				<div class="pic">
-					<img src="img/serve_case11.jpg">
-					<img src="img/serve_case10.jpg">
+					<img class="content" src="img/serve_case11.jpg" draggable="false">
+					<div class="afterPic slowMove">
+						<img class="content" src="img/serve_case10.jpg" draggable="false">
+					</div>
+					<div class="handle slowMove"></div>
 				</div>
 				<div class="txt">
 					<h3>整理前</h3>
-					<!-- <h3>整理後</h3> -->
-					<p>台灣人過敏兒多，但大多數人到結婚後依舊都跟長輩住在一起，許多家裏的罷設及空間並不是那麼自由，家裏堆積了非常多平時用不到但又無法丟掉的東西，提醒大家室內的空污比室外嚴重五倍，潮溼、霉菌、許多髒空氣都存在室內，且最容易囤積毒素的地方可是小孩房呢!</p>
+					<p>台灣人過敏兒多，但大多數人到結婚後依舊都跟長輩住在一起，許多家裏的罷設及空間並不是那麼自由，家裏堆積了非常多平時用不到但又無法丟掉的東西。</p>
+					<div class="afterTxt">
+						<h3>整理後</h3>
+						<p>提醒大家室內的空污比室外嚴重五倍，潮溼、霉菌、許多髒空氣都存在室內，且最容易囤積毒素的地方可是小孩房呢!</p>
+					</div>
 				</div>
+				<div class="bookmark">Case2</div>
 			</div>
 			<div class="case case03">
 				<div class="pic">
-					<img src="img/serve_case21.png">
-					<img src="img/serve_case20.png">
+					<img class="content" src="img/serve_case21.png" draggable="false">
+					<div class="afterPic slowMove">
+						<img class="content" src="img/serve_case20.png" draggable="false">
+					</div>
+					<div class="handle slowMove"></div>
 				</div>
 				<div class="txt">
 					<h3>整理前</h3>
-					<!-- <h3>整理後</h3> -->
-					<p>屋主的物品量過多，當天在面臨取捨問題時，發現她已無力負擔，因為斷捨離本身也是對舒適圈的一場突破戰。</p>
+					<p>【搬家物品打包】委託案例，因為是長期的定期居家清潔客戶，所以了解客戶的物品不算多，但有些物品是需要淘汰的，客戶委託前務必先進行斷捨離程序，可以避免後續的精神、時間損耗。</p>
+					<div class="afterTxt">
+						<h3>整理後</h3>
+						<p>屋主的物品量過多，當天在面臨取捨問題時，發現她已無力負擔，因為斷捨離本身也是對舒適圈的一場突破戰。</p>
+					</div>
 				</div>
+				<div class="bookmark">Case3</div>
 			</div>
 		</section>
 
