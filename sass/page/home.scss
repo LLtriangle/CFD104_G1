@@ -499,6 +499,15 @@ $section_margin_top: 60px;
 /*流程section home_progress*/
 .home_progress{
     ul{
+        margin: auto;
+        max-width: $max_w_s;
+        
+        @include PC{
+            display: flex; 
+            justify-content: center;
+                  
+        }
+
         li{
             .view{
                 width: 300px;
@@ -506,6 +515,11 @@ $section_margin_top: 60px;
                 border-radius: 50%;
                 // clip-path: circle(50% at 50% 50%);
                 background-image: url(../img/service_07.jpg);
+
+                @include pad{
+                    width: 200px;
+                    height: 200px;    
+                }
 
                 &::before{
                     content: "1";
