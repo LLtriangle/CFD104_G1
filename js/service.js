@@ -12,8 +12,10 @@ $(window).on('load',function(){
 	
 	serveCase.fromTo('.case01',{
 		y:150,
+		x:20,
 	},{
 		y:150,
+		x:20,
 	}).to('.case01 .pic .afterPic',{
 		width:500,
 	},">").to('.case01 .pic .handle',{
@@ -44,6 +46,7 @@ $(window).on('load',function(){
 		y:1000,
 	},{
 		y:150,
+		x:-20,
 	}).to('.case01',{
 		y:90,
 	},"<").to('.case02',{
