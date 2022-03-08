@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後台</title>
+    <link rel="stylesheet" href="css/backend.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title"></ion-icon>主頁</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="accessibility-outline"></ion-icon></span>
+                        <span class="title">員工管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <span class="title">會員管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="cart-outline"></ion-icon></span>
+                        <span class="title">商品管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="receipt-outline"></ion-icon></span>
+                        <span class="title">訂單管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="file-tray-stacked-outline"></ion-icon></span>
+                        <span class="title">服務管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="mail-open-outline"></ion-icon></span>
+                        <span class="title">活動管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="backend_columns.html">
+                        <span class="icon"><ion-icon name="mail-open-outline"></ion-icon></span>
+                        <span class="title">專欄管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">登出</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- main -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <!-- search -->
+                <div class="search">
+                    <label for="">
+                        <input type="text" placeholder="Search">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+                <!-- userImg -->
+                <div class="user">
+                    <img src="img/logo_img.png" alt="user">
+                </div>
+            </div>
+
+
+            <div class="details">
+                <!-- order details list -->
+                <div class="recent_orders">
+                    <div class="card_header">
+                        <h2>專欄管理</h2>
+                        <a href="#" class="btn">全部</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>標題</td>
+                                <td>時間</td>
+                                <td>狀態</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="backend_columns_art.html">訂單1</a></td>
+                                <td>2022/01/01</td>
+                                <td><span class="status pending">修改中</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">訂單2</a></td>
+                                <td>2022/01/01</td>
+                                <td><span class="status return">已下架</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">訂單3</a></td>
+                                <td>2022/01/01</td>
+                                <td><span class="status delivered">已上架</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">訂單4</a></td>
+                                <td>2022/01/01</td>
+                                <td><span class="status delivered">已上架</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">訂單5</a></td>
+                                <td>2022/01/01</td>
+                                <td><span class="status delivered">已上架</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">訂單6</a></td>
+                                <td>2022/01/01</td>
+                                <td><span class="status delivered">已上架</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">訂單7</a></td>
+                                <td>2022/01/01</td>
+                                <td><span class="status delivered">已上架</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">訂單8</a></td>
+                                <td>2022/01/01</td>
+                                <td><span class="status delivered">已上架</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">訂單9</a></td>
+                                <td>2022/01/01</td>
+                                <td><span class="status delivered">已上架</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">訂單1</a></td>
+                                <td>2022/01/01</td>
+                                <td><span class="status delivered">已上架</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        // MenuToggle
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+
+        toggle.onclick = function(){
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+
+        //add hovered class in selected list item
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink(){
+            list.forEach((item) =>
+            item.classList.remove('hovered'));
+            item.classList.add('hovered');
+        }
+        list.forEach((item) =>
+        item.addEventListener('mouseover',activeLink));
+        
+    </script>
+</body>
+</html>
