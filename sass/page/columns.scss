@@ -58,7 +58,9 @@
     .activity{
         max-width: 1200px;
         .img{
-            width: 100%;
+            width: 80%;
+            box-shadow: 2px 2px 10px #555;
+            margin: auto;
             img{
                 width: 100%;
             }
