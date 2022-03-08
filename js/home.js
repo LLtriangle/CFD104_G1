@@ -104,6 +104,8 @@ $(window).on('load',function(){
             }
         });
 
+        //  希望抓的到
+
         // const plans_tl =  gsap.timeline({
         //     duration: .3,
         //     scrollTrigger: {
