@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後台</title>
+    <link rel="stylesheet" href="css/backend.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title"></ion-icon>主頁</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="accessibility-outline"></ion-icon></span>
+                        <span class="title">員工管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <span class="title">會員管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="cart-outline"></ion-icon></span>
+                        <span class="title">商品管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="receipt-outline"></ion-icon></span>
+                        <span class="title">訂單管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="file-tray-stacked-outline"></ion-icon></span>
+                        <span class="title">服務管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="mail-open-outline"></ion-icon></span>
+                        <span class="title">活動管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="backend_columns.html">
+                        <span class="icon"><ion-icon name="mail-open-outline"></ion-icon></span>
+                        <span class="title">專欄管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">登出</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- main -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <!-- search -->
+                <div class="search">
+                    <label for="">
+                        <input type="text" placeholder="Search">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+                <!-- userImg -->
+                <div class="user">
+                    <img src="img/logo_img.png" alt="user">
+                </div>
+            </div>
+
+
+            <div class="details">
+                <!-- order details list -->
+                <div class="recent_orders">
+                    <div class="col_header">
+                        <h2>專欄管理</h2>
+                        <h3>
+                            <h3>專欄編號</h3><input type="text">
+                        </h3>
+                        <h3>作者</h3><input type="text">
+                        <h3>作者照片</h3><input type="file">
+                        <h3>標題</h3><input type="text">
+                        <h3>內文1</h3><textarea name="" id="" cols="30" rows="10"></textarea>
+                        <h3>內文2</h3><textarea name="" id="" cols="30" rows="10"></textarea>
+                        <h3>主要圖片</h3><input type="file">
+                        <h3>內文圖片</h3><input type="file">
+                        <h3>內文圖片</h3><input type="file">
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        // MenuToggle
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+
+        toggle.onclick = function(){
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+
+        //add hovered class in selected list item
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink(){
+            list.forEach((item) =>
+            item.classList.remove('hovered'));
+            item.classList.add('hovered');
+        }
+        list.forEach((item) =>
+        item.addEventListener('mouseover',activeLink));
+        
+    </script>
+</body>
+</html>
