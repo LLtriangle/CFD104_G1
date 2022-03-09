@@ -11,8 +11,8 @@ try{
     $cus->bindValue(":CUS_PSW", $datas["memPsw"]);
     $cus->execute();
 
-    if( $cus->rowCount()==0){
-        echo "查無此人";
+    if( $cus->rowCount()==0){ // 非會員
+        echo "查無此人"; // 傳回字串 xhr.responseText="查無此人"
     }else{ //登入成功
         //自資料庫中取回資料
         $cusRow = $cus->fetch(PDO::FETCH_ASSOC);

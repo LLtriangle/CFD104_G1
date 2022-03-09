@@ -30,10 +30,9 @@ let member={};
       //=====使用Ajax 回server端,取回登入者大頭貼, 放到header 
       let xhr = new XMLHttpRequest();
       xhr.onload = function(){
+        // 判斷是否為會員 
         member = JSON.parse(xhr.responseText);
-        console.log(member);
-        // document.getElementById("memName").innerText = member.memName;
-        // $id('spanLogin').innerHTML = '登出';     
+        console.log(member);   
       }
       xhr.open("post", "php/login.php", true);  
       xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
@@ -47,23 +46,13 @@ let member={};
     //   console.log(data_info);
       
     };
-    // 登出
-    function logout(){
-        let xhr = new XMLHttpRequest();
-        xhr.onload = function(){
-            console.log(123);         
-        }
-        xhr.open("get", "php/logout.php", true);
-        xhr.send(null);
-    };
 
     // 取得會員資料
     function getMemberInfo(){
       let xhr = new XMLHttpRequest();
       xhr.onload = function(){
-          console.log(xhr.responseText);
+        // console.log(xhr.responseText);
         member = JSON.parse(xhr.responseText);
-        console.log(member);
         // if(member.memId){
         //   document.getElementById("memName").innerText = member.memName;
         //   document.getElementById("spanLogin").innerText = "登出";          
@@ -80,9 +69,6 @@ let member={};
 
       //===設定btnLogin.onclick 事件處理程序是 sendForm
       $id('btnLogin').addEventListener("click",sendForm);
-
-      //===設定btnLoginCancel.onclick 事件處理程序是 cancelLogin
-      $id('btnLogout').onclick = logout;
 
     }; //window.onload
 

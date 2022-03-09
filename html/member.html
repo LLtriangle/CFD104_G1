@@ -303,7 +303,25 @@
             });
         </script>
         <script>
-            
+        function $id(id){
+            return document.getElementById(id);
+        };
+        // 登出
+        function logout(){        
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+                alert("確認登出?");
+                // 跳轉畫面       
+            }
+            xhr.open("get", "php/logout.php", true); // 清空session
+            xhr.send(null);
+        };
+
+        function init(){
+            $id('btnLogout').onclick = logout;
+        };
+
+        window.addEventListener("load",init);
         </script>
     
 </body>
