@@ -62,16 +62,24 @@ $section_margin_top: 60px;
 .home_landing{
     height: 100vh;
     position: relative;
+    display: flex;
 
     @include pad{
         height: 100vh;    
     }
 
-    @include PC{
-        display: grid;
-        grid-template-columns: 50% 50%;
-        grid-template-areas: "full_view_box logo_view";
+    // @include PC{
+    //     display: grid;
+    //     grid-template-columns: 50% 50%;
+    //     grid-template-areas: "full_view_box logo_view";
+    // }
+    .img_grow{
+        background-image: url(../img/about.jpg);
+        background-position: center;
+        background-size: cover;
     }
+
+    
 
     .img_progress{
         position: absolute;
@@ -96,6 +104,10 @@ $section_margin_top: 60px;
         background-position: left;
         background-size: cover;
 
+        @include PC{
+            width: 50vw;
+        }
+
         
         .full_view{
             // width: 50%;
@@ -114,10 +126,16 @@ $section_margin_top: 60px;
     
 
     .logo_view{
-        // width: 50%;
-        // width: 100%;
         height: 100vh;
         background-color: map-get($color , "cover" );
+
+        @include pad{
+            width: 100vw;
+        }
+
+        @include PC{
+            width: 50vw;
+        }
 
         .side_title{
             height: 100%;
@@ -146,6 +164,7 @@ $section_margin_top: 60px;
         .web_title{
             padding-top: 100px;
             padding-bottom: 40px;
+            margin: auto;
 
             h1, p{
                 text-align: center;
@@ -167,7 +186,7 @@ $section_margin_top: 60px;
             .logo_shape_img{
                 @include pad{
                     width: 260px;
-                    height: 260px;   
+                    height: 260px;
                 }
                 width: 320px;
                 height: 320px;
@@ -452,6 +471,7 @@ $section_margin_top: 60px;
         padding: 20px;
         background-color: map-get($color , "bg_white" );
         position: relative;
+
         @include PC{
             top: -200px;
         }
@@ -462,7 +482,7 @@ $section_margin_top: 60px;
             margin: 0 60px;
             display: flex;
             justify-content: space-between;
-            padding: 60px 80px;   
+            padding: 20px 80px;   
         }
 
         .title{
@@ -481,7 +501,7 @@ $section_margin_top: 60px;
             
             @include PC{
                 padding: 40px;
-                padding-top: 60px;
+                padding-top: 80px;
                 width: 50%;
             }
 

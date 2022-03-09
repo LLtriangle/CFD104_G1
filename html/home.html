@@ -13,15 +13,19 @@
     @@include('layout/header.html')
 
     <main class="home">
+        
         <!-- 登陸section -->
         <section class="home_landing" id="landing"> 
-            <div class="full_view_box">
-                
+            <!-- 用來scroll放大的圖片 -->
+            <div class="img_grow">
+                abc
+            </div>
+            <div class="col-md-6 full_view_box">
                 <transition name="fade" mode="out-in" >
                     <div class="full_view" :style="l_imgs[changeImg]" :key="changeImg"></div>
                 </transition>
             </div>
-            <div class="logo_view">
+            <div class="col-md-6 logo_view">
 
                 <div class="side_title"></div>
 
@@ -184,40 +188,42 @@
             </ul>
         </section>
 
-
-
         <!-- 活動消息section -->
         <section class="index_news">
-            <div class="news_items">
-                <div class="col-md-6 news_img_box">
-                    <div class="news_img"></div>
-                </div>
-                <ul class="col-md-6 news">
-                    <h2>活動消息</h2>
-                    <li>
-                        <a href="activity.html">
-                            <h3> <span>01</span> 新春大優惠</h3>
-                            <p>到2/30前全館消費滿2000現折500 !折扣碼: 2022TIGERYEAR</p>
-                        </a>
-                    </li>
-                    <hr>
-                    <li>
-                        <a href="activity.html">
-                            <h3><span>02</span> 新春大優惠</h3>
-                            <p>到2/30前全館消費滿2000現折500 !折扣碼: 2022TIGERYEAR</p>
-                        </a>
-                    </li>
-                    <hr>
-                    <li>
-                        <a href="activity.html">
-                            <h3><span>03</span> 新春大優惠</h3>
-                            <p>到2/30前全館消費滿2000現折500 !折扣碼: 2022TIGERYEAR</p>
-                        </a>
-                    </li>
-                    
-                </ul>
+        <div class="news_items">
+            <div class="col-md-6 news_img_box">
+                <div class="news_img"></div>
             </div>
-        </section>
+            <ul class="col-md-6 news">
+                <h2>活動消息</h2>
+                <li>
+                    <a href="activity.html">
+                        <h3> <span>01</span> 新春大優惠</h3>
+                        <p>到2/30前全館消費滿2000現折500 !折扣碼: 2022TIGERYEAR</p>
+                    </a>
+                </li>
+                <hr>
+                <li>
+                    <a href="activity.html">
+                        <h3><span>02</span> 新春大優惠</h3>
+                        <p>到2/30前全館消費滿2000現折500 !折扣碼: 2022TIGERYEAR</p>
+                    </a>
+                </li>
+                <hr>
+                <li>
+                    <a href="activity.html">
+                        <h3><span>03</span> 新春大優惠</h3>
+                        <p>到2/30前全館消費滿2000現折500 !折扣碼: 2022TIGERYEAR</p>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </section>
+
+
+
+       
  
         <!-- 專欄文章section -->
         <section class="index_columns">
