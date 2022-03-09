@@ -44,6 +44,7 @@ input{
                 margin: auto;
                 width: 80px;
                 img{
+                    object-fit: cover;
                     width: 80px;
                     height: 80px;
                     // width: 100%;
@@ -146,6 +147,7 @@ input{
                         max-width: 200px;
                         max-height: 200px;
                         img{
+                            object-fit: cover;
                             width: 200px;
                             height: 200px;
                             // width: 100%;
@@ -229,6 +231,7 @@ input{
                 margin: 20px 0px;
                 margin-top: 100px;
                 img{
+                    object-fit: cover;
                     width: 80px;
                     height: 80px;
                     border-radius: 50%;
@@ -280,6 +283,7 @@ input{
                         max-width: 200px;
                         max-height: 200px;
                         img{
+                            object-fit: cover;
                             width: 200px;
                             height: 200px;
                             // width: 100%;
