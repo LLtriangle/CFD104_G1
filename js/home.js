@@ -46,17 +46,66 @@ $(window).on('load',function(){
             });
         })();
 
-        //登陸section 圖片隨滾輪放大
-        // const landing_tl = gsap.timeline({
-        //     scrollTrigger: {
-        //         trigger: ".index_landing", 
-        //         start: "center center", 
-        //         end: "+=400",
-        //         pin: true,
-        //         scrub: true, 
-        //         markers: true,
-        //     }
-        // });
+        let ig = $('.img_grow');
+        let lg = $('.logo_shape_img_box');
+        ig[0].style.position = 'absolute';
+        ig[0].style.left = `${lg.offset().left}px`;
+        ig[0].style.top = `${lg.offset().top}px`;
+        // ig[0].style.height = `320px`;
+        // ig[0].style.width = `320px`;
+
+        let lg_w = $('.logo_shape_img_box').width();
+        let lg_h = $('.logo_shape_img_box').height();
+
+        console.log(lg_w);
+        console.log(lg_h);
+
+        let ig_w = $('.img_grow').width(lg_w);
+        let ig_h = $('.img_grow').height(lg_h);
+
+        console.log(ig_w);
+
+        $(window).on('resize', function() {
+            let ig_l = `${lg.offset().left}px`;
+            ig[0].style.left = ig_l;
+
+            let ig_t = `${lg.offset().top}px`;
+            ig[0].style.top = ig_t;
+
+            let ig_wh = lg_w / 2;
+            let ig_h = lg_h / 2;
+
+            // console.log(houseWidth);
+            // console.log(houseHeight);
+
+            // console.log("bgimg:", img_grow_width, img_grow_height);
+            // console.log();
+
+            // console.log(img_growLeft, img_growTop)
+        });
+
+        // ig[0].style.width =  houseWidth;
+        // ig[0].style.height = houseHeight;
+        
+        // ig[0].style.backgroundImage = 'url(../img/about.jpg)';
+        // ig[0].style.backgroundSize = 'cover';
+
+        
+
+
+
+
+        // 登陸section 圖片隨滾輪放大
+        const landing_tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".home_landing", 
+                start: "center center", 
+                // end: "+=400",
+                pin: true,
+                scrub: true, 
+                markers: true,
+            }
+        });
 
         // const landing_imed_tl = gsap.timeline({
         //     scrollTrigger: {
@@ -68,11 +117,25 @@ $(window).on('load',function(){
         //     }
         // });
 
-        // landing_tl.to(".logo_shape_img_box", {width:"100vw", height:"100vh", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",  duration: 2,})
-        // landing_tl.to(".full_view_box", {width:"0vw", duration: 2,})
-        // landing_tl.to(".web_title", {width:"0vw", height:"0vh", duration: 2,})
-        // // landing_tl.to(".index_landing", {position:"fixed", duration: 2,})
-        // landing_tl.to(".logo_shape_img", {display:"none"})
+        // landing_tl.to(".logo_shape_img_box", {
+        //     width:"100vw", 
+        //     height:"100vh", 
+        //     clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+        //     zIndex: 100,
+        //     duration: 2,
+        // })
+        landing_tl.to(".img_grow", {
+            width:"100vw", 
+            height:"100vh", 
+            left: "0",
+            top: "0",
+            zIndex: 50,
+            duration: 2,
+        })
+        landing_tl.to(".full_view_box", {width:"0vw", duration: 2,})
+        landing_tl.to(".web_title", {width:"0vw", height:"0vh", duration: 2,})
+        // landing_tl.to(".index_landing", {position:"fixed", duration: 2,})
+        landing_tl.to(".logo_shape_img", {display:"none"})
 
         gsap.to(".img_progress_bar", 6, {width: "100%", repeat: -1, repeatDelay: 1.2});
 
@@ -84,7 +147,7 @@ $(window).on('load',function(){
                 start: "top center", 
                 pin: false, 
                 scrub: false,
-                markers: true,
+                // markers: true,
                 toggleClass: {targets: [".home_plans h2", ".plans_links li"], className: "enter"},
                 once: "true",
             }
@@ -98,7 +161,7 @@ $(window).on('load',function(){
                 start: "top center", 
                 pin: false, 
                 scrub: false,
-                markers: true,
+                // markers: true,
                 toggleClass: {targets: [".home_case h2", ".content_txt p"],className: "enter"},
                 once: "true",
             }
