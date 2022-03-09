@@ -51,8 +51,7 @@ let member={};
     function logout(){
         let xhr = new XMLHttpRequest();
         xhr.onload = function(){
-            // $id('memName').innerHTML = '&nbsp';
-            // $id('spanLogin').innerHTML = '登入';          
+            console.log(123);         
         }
         xhr.open("get", "php/logout.php", true);
         xhr.send(null);
