@@ -30,8 +30,8 @@
                             <img src="https://picsum.photos/100/100/?random=33">
                         </div>
                         <div class="mem_p">
-                            <p>王雪碧</p>
-                            <p>G1G1_cfd104</p>
+                            <p class="cus_name"></p>
+                            <p class="email"></p>
                         </div>
                         <img src="img/memupupdowndown.png" alt="" class="up_down">
                     </div>
@@ -122,7 +122,7 @@
                 <div class="mem_txt">
                     <div class="item_box">
                         <label><p> &emsp; &emsp;姓名
-                            <input class='member_name' type="text" value='王雪碧'></p>
+                            <input class='member_name cus_name' type="text" ></p>
                         </label>
                     </div>
 
@@ -261,13 +261,15 @@
 
         <!-------------- 我是Vue分隔線 -------------->
         <script>
-            new Vue({
+            let vm = new Vue({
                 el:'#mem_data',
                 data:{
                     data:true, // 預設
                     p_order:false, // 預設
                     order:false, // 預設
-                }
+                    cusRow:[],
+                },
+
             });
         </script>
 

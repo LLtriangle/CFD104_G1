@@ -2,3 +2,4 @@ node_modules
 css
 package-lock.json
 *.html
+connect.php
