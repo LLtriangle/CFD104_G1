@@ -27,7 +27,7 @@ let member={};
     // }//showLoginForm
 
     function sendForm(){
-      //=====使用Ajax 回server端,取回登入者姓名, 放到頁面上 
+      //=====使用Ajax 回server端,取回登入者大頭貼, 放到header 
       let xhr = new XMLHttpRequest();
       xhr.onload = function(){
         member = JSON.parse(xhr.responseText);
@@ -39,26 +39,26 @@ let member={};
       xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
       
       let datas = {};
-      datas.memId = $id("memId").value;
-      datas.memPsw = $id("memPsw").value;
+      datas.memId = $id("memId").value; // 收到輸入框的會員帳號
+      datas.memPsw = $id("memPsw").value; // 收到輸入框的會員密碼
       
       let data_info = "json=" + JSON.stringify(datas);
       xhr.send(data_info);
-      console.log(data_info);
-      //將登入表單上的資料清空，並隱藏起來
-      //$id('lightBox').style.display = 'none';
-    //   $id('memId').value = '';
-    //   $id('memPsw').value = '';
+    //   console.log(data_info);
       
-    }
+    };
+    // 登出
+    function logout(){
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function(){
+            // $id('memName').innerHTML = '&nbsp';
+            // $id('spanLogin').innerHTML = '登入';          
+        }
+        xhr.open("get", "php/logout.php", true);
+        xhr.send(null);
+    };
 
-    // function cancelLogin(){
-    //   //將登入表單上的資料清空，並將燈箱隱藏起來
-    //   $id('lightBox').style.display = 'none';
-    //   $id('memId').value = '';
-    //   $id('memPsw').value = '';
-    // }
-
+    // 取得會員資料
     function getMemberInfo(){
       let xhr = new XMLHttpRequest();
       xhr.onload = function(){
@@ -79,15 +79,11 @@ let member={};
       //=========================取得會員資訊
       $id('btnLogin').addEventListener("click",getMemberInfo);
 
-      //===設定spanLogin.onclick 事件處理程序是 showLoginForm
-
-    //   $id('spanLogin').onclick = showLoginForm;
-
       //===設定btnLogin.onclick 事件處理程序是 sendForm
       $id('btnLogin').addEventListener("click",sendForm);
 
       //===設定btnLoginCancel.onclick 事件處理程序是 cancelLogin
-      //$id('btnLoginCancel').onclick = cancelLogin;
+      $id('btnLogout').onclick = logout;
 
     }; //window.onload
 
