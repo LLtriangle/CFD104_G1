@@ -22,7 +22,7 @@ $(window).on('load',function(){
 		left:500,
 	},"<").to('.case01 .txt .afterTxt',{
 		height:500,
-	},"<").fromTo('.case01 .bookmark',{
+	},">").fromTo('.case01 .bookmark',{
 		y:1000,
 	},{
 		y:-30,
@@ -38,7 +38,7 @@ $(window).on('load',function(){
 		left:500,
 	},"<").to('.case02 .txt .afterTxt',{
 		height:500,
-	},"<").fromTo('.case02 .bookmark',{
+	},">").fromTo('.case02 .bookmark',{
 		y:1000,
 	},{
 		y:-30,
@@ -57,7 +57,7 @@ $(window).on('load',function(){
 		left:500,
 	},"<").to('.case03 .txt .afterTxt',{
 		height:500,
-	},"<").fromTo('.case03 .bookmark',{
+	},">").fromTo('.case03 .bookmark',{
 		y:1000,
 	},{
 		y:-30,

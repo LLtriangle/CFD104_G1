@@ -137,7 +137,7 @@
         }
         .txt{
             position: relative;
-            background-color: map-get($color , "plain");
+            background-color: map-get($color , "cover");
             h3{
                 border-bottom: 1px solid map-get($color , "sub_brown");
             }
@@ -325,6 +325,11 @@
             }
             .pic{
                 width: 50%;
+                height: calc(100vh - 240px);
+                >img{
+                    width: auto;
+                    height: calc(100vh - 240px);
+                }
             }
             .txt{
                 width: 50%;
