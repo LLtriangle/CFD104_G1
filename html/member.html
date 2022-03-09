@@ -27,9 +27,7 @@
                 <label for="m_data" class="id">
                     <div class="mem">
                         <div class="mem_icon">
-                            <!-- <img src="https://picsum.photos/300/500/?random=33"> -->
-                            <!-- 要改成以下 -->
-                            <img :src="cus_pic"> 
+                            <img :src="cus_pic">
                         </div>
                         <div class="mem_p">
                             <!-- 名字 -->
@@ -45,7 +43,7 @@
                     <a @click="data=false,p_order=true">商品訂單</a><br>
                     <a @click="data=false,p_order=true">服務預約</a><br>
                     <a @click="data=false,p_order=true">收藏清單</a><br>
-                    <a href="login.html">登出</a>
+                    <a id="btnLogout">登出</a>
                 </div>
             </div>
         </section>
@@ -303,6 +301,9 @@
 
                 },
             });
+        </script>
+        <script>
+            
         </script>
     
 </body>
