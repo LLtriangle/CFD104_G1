@@ -28,10 +28,14 @@
                     <div class="mem">
                         <div class="mem_icon">
                             <img src="https://picsum.photos/100/100/?random=33">
+                            <!-- 要改成以下 -->
+                            <!-- <img :src="cus_pic"> --> 
                         </div>
                         <div class="mem_p">
-                            <p class="cus_name"></p>
-                            <p class="email"></p>
+                            <!-- 名字 -->
+                            <p>{{cusRow.CUS_NAME}}</p>
+                            <!-- email -->
+                            <p>{{cusRow.EMAIL}}</p>
                         </div>
                         <img src="img/memupupdowndown.png" alt="" class="up_down">
                     </div>
@@ -54,8 +58,8 @@
             <!-- 資料區的內容盒子 data_mem------------------>
             <div class="data_mem" v-if="data">
                 <div class="icon_edit">
-                    <div class="mem_icon">
-                        <img src="https://picsum.photos/100/100/?random=33">
+                    <div class="mem_icon" >
+                        <img :src="cus_pic">
                     </div>
                     <button class="btn_btn bl">
                         編輯大頭貼
@@ -115,14 +119,14 @@
                             </td>
                         </tr>
                     </tbody>
-                </table> -->
-                
+                </table> -->     
                 
                 <!-- 不是table -->
                 <div class="mem_txt">
                     <div class="item_box">
                         <label><p> &emsp; &emsp;姓名
-                            <input class='member_name cus_name' type="text" ></p>
+                            <input class='member_name cus_name' type="text" v-model="cusRow.CUS_NAME" >
+                           </p>
                         </label>
                     </div>
 
@@ -131,33 +135,35 @@
                             <ul>
                                 <li>
                                     <input class='radio-input' name='gender' type="radio" id="male" value='male'>
-                                    <label for="male" class="radio-label"><span class="radio-button"></span>男性</label>
+                                    <label for="male" class="radio-label">
+                                        <span class="radio-button"></span>
+                                        男性
+                                    </label>
                                 </li>
                                 <li>
-                                    <input class='radio-input' name='gender' type="radio" id="female" value='female' checked>
-                                    <label for="female" class="radio-label"><span class="radio-button"></span>女性</label>
+                                    <input class='radio-input' name='gender' type="radio" id="female" value='female'>
+                                    <label for="female" class="radio-label">
+                                        <span class="radio-button"></span>
+                                        女性
+                                    </label>
                                 </li>
-                                <!-- <li>
-                                    <input class='radio-input' name='gender' type="radio" id="other" value='other'>
-                                    <label for="other" class="radio-label"><span class="radio-button"></span>其他</label>
-                                </li> -->
                             </ul>
                         
                         </div>
                     </div>
                     <div class="item_box">
                         <label><p> &emsp; &emsp;帳號
-                            <input class='mem_id' disabled type="email" value='G1G1@gmail.com'></p>
+                            <input class='mem_id' disabled type="email" v-model='cusRow.EMAIL'></p>
                         </label>
                     </div>
                     <div class="item_box">
                         <label><p>&ensp;連絡電話
-                            <input type="text" value='0912345678'></p>
+                            <input type="text" v-model=cusRow.CUS_TEL></p>
                         </label>
                     </div>
                     <div class="item_box">
                         <label><p>&ensp;連絡地址
-                            <input class='memberLeft memberAdr' type="text" value="桃園市中壢區"></p>
+                            <input class='memberLeft memberAdr' type="text" v-model=cusRow.CUS_ADD></p>
                         </label>
                     </div>
                     
@@ -255,25 +261,48 @@
                 </div>
             </div>
         </section>
-        <!-- 會員資料顯示結束 -------------------------->
+        <!-- 會員資料顯示結束 ------------------------ -->
 
 
 
-        <!-------------- 我是Vue分隔線 -------------->
-        <script>
-            let vm = new Vue({
+    </main>
+    <!-- ------------ 我是Vue分隔線 ------------ -->
+        <script >
+            new Vue({
                 el:'#mem_data',
                 data:{
                     data:true, // 預設
                     p_order:false, // 預設
                     order:false, // 預設
-                    cusRow:[],
+                    cusRow:[{CUS_NO: '', EMAIL: '', CUS_NAME: '', CUS_TEL: '',SEX:''}],
+                    gender:'',
+                    cus_pic:'', // 大頭貼
                 },
+                methods: {
+                    getMemberInfo(){
+                        let xhr = new XMLHttpRequest();
+                        let thisVue = this;
+                        xhr.onload = function(){
+                            thisVue.cusRow = JSON.parse(xhr.responseText);
+                            console.log(thisVue.cusRow);
+                            thisVue.cus_pic = "img/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
+                            // console.log(thisVue.cus_pic);
+                            if(thisVue.cusRow.SEX == "女"){
+                                $('#female').prop('checked',true);
+                            }else{
+                                $('#male').prop('checked',true);
+                            }   
+                        }
+                        xhr.open("get", "php/getMemberInfo.php", true);
+                        xhr.send(null);
+                    },
+                },
+                mounted() {
+                    this.getMemberInfo();
 
+                },
             });
         </script>
-
-    </main>
     
 </body>
 </html>

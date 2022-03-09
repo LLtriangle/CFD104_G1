@@ -11,8 +11,8 @@ try{
     $cus->bindValue(":CUS_PSW", $datas["memPsw"]);
     $cus->execute();
 
-    if( $cus->rowCount()==0){ //查無此人
-        echo "exist";
+    if( $cus->rowCount()==0){
+        echo "查無此人";
     }else{ //登入成功
         //自資料庫中取回資料
         $cusRow = $cus->fetch(PDO::FETCH_ASSOC);
@@ -20,12 +20,21 @@ try{
         $_SESSION["EMAIL"] = $cusRow["EMAIL"];
         $_SESSION["CUS_NAME"] = $cusRow["CUS_NAME"];
         $_SESSION["CUS_TEL"] = $cusRow["CUS_TEL"];
+        $_SESSION["SEX"] = $cusRow["SEX"];
+        $_SESSION["CUS_ADD"] = $cusRow["CUS_ADD"];
+        $_SESSION["CUS_PIC"] = $cusRow["CUS_PIC"];
 
-        //送出登入者的姓名資料
-        //echo json_encode($cusRow);
-        //$result = ["memNo" => $cusRow["no"] ,"memId" => $cusRow["memId"], "memName" => $cusRow["memName"], "tel" => $cusRow["tel"]];
+        //送出會員資料
 
-        $result = ["CUS_NO" => $_SESSION["CUS_NO"] ,"EMAIL" => $_SESSION["EMAIL"], "CUS_NAME" => $_SESSION["CUS_NAME"], "CUS_TEL" => $_SESSION["CUS_TEL"]];
+        $result = [
+        "CUS_NO" => $_SESSION["CUS_NO"],
+        "EMAIL" => $_SESSION["EMAIL"], 
+        "CUS_NAME" => $_SESSION["CUS_NAME"],
+        "CUS_TEL" => $_SESSION["CUS_TEL"],
+        "SEX" => $_SESSION["SEX"],
+        "CUS_ADD" => $_SESSION["CUS_ADD"],
+        "CUS_PIC" => $_SESSION["CUS_PIC"],
+        ];
 
         echo json_encode($result); 
     }

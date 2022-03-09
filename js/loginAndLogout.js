@@ -62,8 +62,9 @@ let member={};
     function getMemberInfo(){
       let xhr = new XMLHttpRequest();
       xhr.onload = function(){
+          console.log(xhr.responseText);
         member = JSON.parse(xhr.responseText);
-        // console.log(member);
+        console.log(member);
         // if(member.memId){
         //   document.getElementById("memName").innerText = member.memName;
         //   document.getElementById("spanLogin").innerText = "登出";          
