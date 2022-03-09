@@ -27,10 +27,10 @@ let member={};
     // }//showLoginForm
 
     function sendForm(){
+    // 先做條件判斷 有會員帳號才跳轉 沒有顯示帳密錯誤
       //=====使用Ajax 回server端,取回登入者大頭貼, 放到header 
       let xhr = new XMLHttpRequest();
-      xhr.onload = function(){
-        // 判斷是否為會員 
+      xhr.onload = function(){ 
         member = JSON.parse(xhr.responseText);
         console.log(member);   
       }
@@ -43,7 +43,7 @@ let member={};
       
       let data_info = "json=" + JSON.stringify(datas);
       xhr.send(data_info);
-    //   console.log(data_info);
+      window.location.assign("member.html"); 
       
     };
 
@@ -65,7 +65,8 @@ let member={};
 
     function init(){
       //=========================取得會員資訊
-      $id('btnLogin').addEventListener("click",getMemberInfo);
+      getMemberInfo();
+    //   $id('btnLogin').addEventListener("click",getMemberInfo);
 
       //===設定btnLogin.onclick 事件處理程序是 sendForm
       $id('btnLogin').addEventListener("click",sendForm);

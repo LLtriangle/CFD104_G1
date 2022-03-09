@@ -311,7 +311,8 @@
             let xhr = new XMLHttpRequest();
             xhr.onload = function(){
                 alert("確認登出?");
-                // 跳轉畫面       
+                // 跳轉畫面
+                window.location.assign("home.html");       
             }
             xhr.open("get", "php/logout.php", true); // 清空session
             xhr.send(null);
