@@ -34,7 +34,7 @@ function init() {
     };
 
     // 點擊放置
-    $('.pullbox_group .pullbox').on('click',function(){
+    function pullItem(e){
         if(!($(this).html()) && $('#item_group img.selected').length) {
             // 條件:位置為空，且有選擇物品
             $(this).append($('#item_group img.selected'));
@@ -43,25 +43,27 @@ function init() {
             $(this).children().prependTo($('#item_group'));
         };
         finishButton();   // 送出按鈕disabled切換
-    });
+    };
+    $('.pullbox_group .pullbox').on('click',pullItem)
 
     // 點擊衣櫃
     function openWardrobe(){
         if($('#item_group img.selected').length > 0) {
             // 條件:有選擇物品，收進衣櫃
             $('#wardrobe #hiding').append($('#item_group img.selected'));
-            $('#wardrobe').removeClass('empty');
+            $('#wardrobe #inside').removeClass('empty');
         }else{
             // 條件:未選擇物品，打開衣櫃
             $('#wardrobe').toggleClass('open');
             $('#pull_arrow').css('display','none');
             if($('#wardrobe #hiding img').length == 0){
                 // 條件:衣櫃是空的，顯示為空
-                $('#wardrobe').addClass('empty');
+                $('#wardrobe #inside').addClass('empty');
             };
         };
         finishButton();   // 送出按鈕disabled切換
     };
+    // $('#wardrobe').on('click',openWardrobe);
     $('#wardrobe > img').on('click',openWardrobe);
     $('#wardrobe #inside').on('click',openWardrobe);
     $('#pull_arrow').on('click',openWardrobe);
@@ -89,7 +91,7 @@ function init() {
         finishButton();   // 送出按鈕disabled切換
         if($('#wardrobe #hiding img').length == 0){
             // 條件:衣櫃是空的，顯示為空
-            $('#wardrobe').addClass('empty');
+            $('#wardrobe #inside').addClass('empty');
         };
     });
 
@@ -123,6 +125,8 @@ function init() {
     function openIll(){
         $(".text_ill .intr").slideToggle(1000,'easeOutBounce'); // 跳出說明視窗
         $('#pull_arrow').css('display','block');    // 回復衣櫃上提示手指
+        $('#wardrobe').removeClass('open');         // 關上衣櫃
+        $('#trashcan').removeClass('open');         // 關上垃圾桶
         $('.text_result .paper').scrollTop(0);                  // 回復紙張捲動高度
         $(".text_result .paper h2").css('margin-top','100%');   // 回復紙張高度(animate可再次啟動)
         $(".text_result").css('display','none');    // 藏起測驗結果

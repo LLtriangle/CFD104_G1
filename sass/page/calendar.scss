@@ -2,11 +2,11 @@
 @import  "../base/color";
 /* 月曆外觀 */
 #calendari {
-    margin: 20px 0;
+    margin: 20px 0 10px 0;
     position: relative;
-    // overflow: hidden;
-    width: 100%;
-    height: 540px;
+    overflow: hidden;
+    width: 80%;
+    height: 480px;
     font-size: 14px;
     box-shadow: 0px 1px 4px rgba(0,0,0,0.4);
 }
@@ -52,7 +52,7 @@
 // }
 
 #calendari th {
-    padding: 10px;
+    padding: 5px;
     border-top: 1px solid rgba(0,0,0,0.1);
     border-right: 1px solid rgba(0,0,0,0.1);
     background-color: rgb(223, 190, 155);
@@ -74,10 +74,12 @@
 }
 // 所有td
 #calendari td {
-    height: 60px;
+    // height: 60px;
     padding: 0.3em 0.4em;
+    margin: 0 0.3em;
     cursor: pointer;
-    border: 2px solid rgba(170, 170, 170, 0.3);
+    // border: 2px solid rgba(170, 170, 170, 0.3);
+    border-radius: 10px;
     box-sizing: border-box;
     position: relative;
 }
@@ -94,6 +96,7 @@
     display: block;
     border: 2px solid transparent;
     transition: border 0.3s ease;
+    color: black;
 }
 /* 六日 日期 */
 td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
@@ -104,6 +107,7 @@ td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
 #calendari td.today { 
     cursor: not-allowed;/* today不能被點擊 */
     background: rgba(212, 195, 174, 0.4);
+    border-radius: 10px;
 }
 /* 今天後三天的日期td */
 
@@ -125,22 +129,18 @@ td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
         width: 50px;
     }
 }
-
+// td hover的效果
 #calendari td:hover,
 #calendari td:focus {
-    // background-color: #d6bb97b2;
     box-sizing: border-box;
+    // background-color: #cfa64b91;
     outline: 2px solid #82002D;
     z-index: 11;
-    transform: scale(1.1);
+    // transform: scale(1.1);
     transition: 0.2s ease-in-out;
-    border-radius: 5px;
+    border-radius: 10px;
 }
-/* 被選到的效果 */
-#calendari td.selected {
-    background-color: #f5dfb0de;
-    transform: scale(1.1);
-    }
+
     
     /* 按鈕 */
     .boto-next, .boto-prev {
@@ -174,18 +174,10 @@ td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
     
     /* 早中晚文字 */
     span.period {
-        font-size: 8px;
-        font-weight: bold;
-        color: rgb(44, 39, 39);
-        width: 15px;
-        height: 15px;
-        padding: 3px;
+        width: 8px;
+        height: 8px;
         background-color: rgba(207, 188, 174, 0.712);
         border-radius: 50%;
-        border: 2px solid transparent;
-        &:hover{
-            border: 2px solid #82002D;
-        }
     } 
     /* 被預約的時段 */
     td>div div:nth-child(2) span.reserved {
@@ -193,22 +185,53 @@ td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
         opacity: 0.5;
         border: 2px solid transparent;
     }
-
-
-@media screen and (max-width: 830px) {
-    #calendari {
-        height: 470px;
-    }
-    span.period {
-        width: 5px;
-        height: 5px;
-        padding: 0;
-        &:hover{
-            border: 2px solid transparent;
+    
+    // 早中晚input
+    .calendar_time{
+        display: flex;
+        // justify-content: space-between;
+        
+            .time_period{
+                width: 20%;
+                padding-top: 110px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+                input{
+                    display: none;
+                }
+                input:checked + label .time_item{
+                    border: 2px solid #82002D;
+                    p{
+                        font-weight: 900;
+                    }
+                }
+                label{
+                    cursor: pointer;
+                    .time_item{
+                        border: 3px solid transparent;
+                        border-radius: 50%;
+                        width: 80px;
+                        height: 80px;
+                        margin: 5px;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color:#DDCFC5;
+                        box-sizing: border-box;
+                        p{  
+                            box-sizing: border-box;
+                            font-size: 12px;
+                            padding: 10px;
+                            font-weight: 600;
+                        }
+                    }
+                }
+    
+            }
         }
-    }
-}
-
 // font-size: 8px;
 // font-weight: bold;
 // color: rgb(44, 39, 39);
@@ -222,9 +245,26 @@ td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
 //     border: 2px solid #82002D;
 // }
 
+// td被選取的效果
 #calendari td.active{
     outline: 2px solid #82002D;
-    transform: scale(1.1);
+    // transform: scale(1.1);
     z-index: 10;
-    border-radius: 5px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 830px) {
+    #calendari {
+        width: 100%;
+        height: 470px;
+    }
+    .calendar_time{
+        display: block;
+        .time_period{
+            flex-direction: row;
+            padding-top: 0px;
+            width: 100%;
+        }
+    }
+    
 }

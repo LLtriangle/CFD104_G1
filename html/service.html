@@ -14,7 +14,7 @@
     <!-- <header></header> -->
     @@include('layout/header.html')
 
-    <main>
+    <main id="plansApp">
         
         <section class="uni_banner">
 			<div>
@@ -37,109 +37,43 @@
 			</div>
 		</section>
 
-		<section class="serve_plans" id="plansApp">
+		<section class="serve_plans">
 			<h2>服務方案介紹</h2>
-			<!-- <div class="scroll_group"> -->
-				<div class="item_group">
-					<div class="item">
-						<h3>{{plansRows[0].PLAN_NAME}}</h3>
-						<div class="txt">
-							<h4>｜適合對象｜</h4>
-							<!-- <p>#平日愛整理收納，想了解更多整理達人收納術。</p> -->
-							<p class="text-wrapper">{{plansRows[0].PLAN_TA}}</p>
-							<h4>｜方案特色｜</h4>
-							<p class="text-wrapper">{{plansRows[0].PLAN_FEATURE}}</p>
-							<h4>｜方案價格｜</h4>
-							<p class="text-wrapper">NT ${{plansRows[0].PRICE}}/hr</p>
-						</div>
-						<a href="reserve.html" class="link_btn rd">預約此方案</a>
+			<div class="item_group">
+				<div class="item" v-for="plansRow in plansRows">
+					<h3>{{plansRow.PLAN_NAME}}</h3>
+					<div class="txt">
+						<h4>｜適合對象｜</h4>
+						<p class="text-wrapper">{{plansRow.PLAN_TA}}</p>
+						<h4>｜方案特色｜</h4>
+						<p class="text-wrapper">{{plansRow.PLAN_FEATURE}}</p>
+						<h4>｜方案價格｜</h4>
+						<p class="text-wrapper">NT ${{plansRow.PRICE}}/hr</p>
 					</div>
-				
-					<div class="item">
-						<h3>空間整理收納</h3>
-						<div class="txt">
-							<h4>｜適合對象｜</h4>
-							<p class="text-wrapper">{{plansRows[1].PLAN_TA}}</p>
-							<h4>｜方案特色｜</h4>
-							<p class="text-wrapper">{{plansRows[1].PLAN_FEATURE}}</p>
-							<h4>｜方案價格｜</h4>
-							<p class="text-wrapper">NT ${{plansRows[1].PRICE}}/hr</p>
-						</div>
-						<a href="reserve.html" class="link_btn rd">預約此方案</a>
-					</div>
-				
-					<div class="item">
-						<h3>搬家前後物品上下架</h3>
-						<div class="txt">
-							<h4>｜適合對象｜</h4>
-							<p class="text-wrapper">{{plansRows[2].PLAN_TA}}</p>
-							<h4>｜方案特色｜</h4>
-							<p class="text-wrapper">{{plansRows[2].PLAN_FEATURE}}</p>
-							<h4>｜方案價格｜</h4>
-							<p class="text-wrapper">NT ${{plansRows[2].PRICE}}/hr</p>
-						</div>
-						<a href="reserve.html" class="link_btn rd">預約此方案</a>
-					</div>
+					<a href="reserve.html" class="link_btn rd">預約此方案</a>
 				</div>
-			<!-- </div> -->
-					
+			</div>
 		</section>
 
 		<section class="serve_case">
 			<h2>案例分享</h2>
-			<div class="case case01">
+			<div v-for="casesRow in casesRows" :class="'case case0'+casesRow.CASE_NO">
 				<div class="pic">
-					<img class="content" src="img/serve_case01.jpg" draggable="false">
+					<img class="content" :src="'img/case/'+casesRow.BEFORE_IMG" draggable="false">
 					<div class="afterPic slowMove">
-						<img class="content" src="img/serve_case00.jpg" draggable="false">
+						<img class="content" :src="'img/case/'+casesRow.AFTER_IMG" draggable="false">
 					</div>
 					<div class="handle slowMove"></div>
 				</div>
 				<div class="txt">
 					<h3>整理前</h3>
-					<p>【搬家物品打包】委託案例，因為是長期的定期居家清潔客戶，所以了解客戶的物品不算多，但有些物品是需要淘汰的，客戶委託前務必先進行斷捨離程序，可以避免後續的精神、時間損耗。</p>
+					<p>{{casesRow.INFO_BEFORE}}</p>
 					<div class="afterTxt">
 						<h3>整理後</h3>
-						<p>屋主的物品量過多，當天在面臨取捨問題時，發現她已無力負擔，因為斷捨離本身也是對舒適圈的一場突破戰。</p>
+						<p>{{casesRow.INFO_AFTER}}</p>
 					</div>
 				</div>
-				<div class="bookmark">Case1</div>
-			</div>
-			<div class="case case02">
-				<div class="pic">
-					<img class="content" src="img/serve_case11.jpg" draggable="false">
-					<div class="afterPic slowMove">
-						<img class="content" src="img/serve_case10.jpg" draggable="false">
-					</div>
-					<div class="handle slowMove"></div>
-				</div>
-				<div class="txt">
-					<h3>整理前</h3>
-					<p>台灣人過敏兒多，但大多數人到結婚後依舊都跟長輩住在一起，許多家裏的罷設及空間並不是那麼自由，家裏堆積了非常多平時用不到但又無法丟掉的東西。</p>
-					<div class="afterTxt">
-						<h3>整理後</h3>
-						<p>提醒大家室內的空污比室外嚴重五倍，潮溼、霉菌、許多髒空氣都存在室內，且最容易囤積毒素的地方可是小孩房呢!</p>
-					</div>
-				</div>
-				<div class="bookmark">Case2</div>
-			</div>
-			<div class="case case03">
-				<div class="pic">
-					<img class="content" src="img/serve_case21.png" draggable="false">
-					<div class="afterPic slowMove">
-						<img class="content" src="img/serve_case20.png" draggable="false">
-					</div>
-					<div class="handle slowMove"></div>
-				</div>
-				<div class="txt">
-					<h3>整理前</h3>
-					<p>【搬家物品打包】委託案例，因為是長期的定期居家清潔客戶，所以了解客戶的物品不算多，但有些物品是需要淘汰的，客戶委託前務必先進行斷捨離程序，可以避免後續的精神、時間損耗。</p>
-					<div class="afterTxt">
-						<h3>整理後</h3>
-						<p>屋主的物品量過多，當天在面臨取捨問題時，發現她已無力負擔，因為斷捨離本身也是對舒適圈的一場突破戰。</p>
-					</div>
-				</div>
-				<div class="bookmark">Case3</div>
+				<div class="bookmark">Case{{casesRow.CASE_NO}}</div>
 			</div>
 		</section>
 
@@ -202,24 +136,32 @@
 		new Vue({
 			el:"#plansApp",
 			data:{
-				plansRows:[{PLAN_NO: '', PLAN_NAME: '', PLAN_TA: '', PLAN_FEATURE: '', PRICE: ''},{PLAN_NO: '', PLAN_NAME: '', PLAN_TA: '', PLAN_FEATURE: '', PRICE: ''},{PLAN_NO: '', PLAN_NAME: '', PLAN_TA: '', PLAN_FEATURE: '', PRICE: ''}]
+				plansRows:[{PLAN_NO: '', PLAN_NAME: '', PLAN_TA: '', PLAN_FEATURE: '', PRICE: ''},{PLAN_NO: '', PLAN_NAME: '', PLAN_TA: '', PLAN_FEATURE: '', PRICE: ''},{PLAN_NO: '', PLAN_NAME: '', PLAN_TA: '', PLAN_FEATURE: '', PRICE: ''}],
+				casesRows:[{CASE_NO: '', INFO_BEFORE: '', INFO_AFTER: '', BEFORE_IMG: '', AFTER_IMG: ''},{CASE_NO: '', INFO_BEFORE: '', INFO_AFTER: '', BEFORE_IMG: '', AFTER_IMG: ''},{CASE_NO: '', INFO_BEFORE: '', INFO_AFTER: '', BEFORE_IMG: '', AFTER_IMG: ''}],
 			},
 			methods: {
 				getPlans(){
 					let xhr = new XMLHttpRequest();
 					let thisVue = this;
-					console.log(1);
 					xhr.onload = function(){
-						console.log(JSON.parse(xhr.responseText));
-						console.log(2);
 						thisVue.plansRows = JSON.parse(xhr.responseText);
 					}
 					xhr.open("get", "php/getPlansList.php", true);
 					xhr.send(null);
-				}
+				},
+				getCases(){
+					let xhr = new XMLHttpRequest();
+					let thisVue = this;
+					xhr.onload = function(){
+						thisVue.casesRows = JSON.parse(xhr.responseText);
+					}
+					xhr.open("get", "php/getCasesList.php", true);
+					xhr.send(null);
+				},
 			},
 			mounted() {
-				this.getPlans()
+				this.getPlans();
+				this.getCases();
 			},
 		});
 		
