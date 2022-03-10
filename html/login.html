@@ -21,31 +21,34 @@
       <!-- 註冊 -->
         <div class="container signup_container" id="signup_container" >
             <form class="form" id="a-form">
-            <h2 class="form_title title">註冊</h2>
-            <div class="form_icons">
-                <img class="form_icon" src="" alt="">
-                <img class="form_icon" src="">
-                <img class="form_icon" src="">
+                <h2 class="form_title title">註冊</h2>
+                <div class="form_icons">
+                    <img class="form_icon" src="" alt="">
+                    <img class="form_icon" src="">
+                    <img class="form_icon" src="">
                 </div>
                 <span class="form_span">使用郵箱免費註冊會員</span><br>
+                <!-- 姓名 -->
+                <input class="form_input" type="text" placeholder="姓名" required="required" minlength="2"/><br>
+                <!-- 註冊帳號 -->
+                <input id="cusId" class="form_input" type="email" placeholder="E-mail" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/><br>
+                <!-- 註冊密碼 -->
+                <input class="form_input" type="password" placeholder="設定密碼(格式:含英數至少六個字元)" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$" required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('請輸入正確的密碼格式:含英數至少六個字元');"/><br>
 
-            <input class="form_input" type="text" placeholder="姓名" required="required" minlength="2"/><br>
-            <input class="form_input" type="email" placeholder="E-mail" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/><br>
-            <input class="form_input" type="password" placeholder="設定密碼(格式:含英數至少六個字元)" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$" required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('請輸入正確的密碼格式:含英數至少六個字元');"/><br>
-            <input type="button" class="form_button button" value="註冊">
+                <input type="button" class="form_button button" value="註冊">
             </form>
         </div>
         <!-- 登入 -->
         <div class="container login_container" id="login_container">
-            <form class="form" id="b-form" method="" action="">
+            <form class="form" id="b-form">
                 <h2 class="form_title title">登入</h2>
                 <div class="form_icons"><img class="form_icon" src="" alt=""><img class="form_icon" src="">
                     <img class="form_icon" src="">
                 </div>
                 <span class="form_span">使用您的郵箱登入</span><br>
-                <!-- 帳號 -->
+                <!-- 登入帳號 -->
                 <input id="memId" class="form_input" type="email" placeholder="E-mail" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/><br>
-                <!-- 密碼 -->
+                <!-- 登入密碼 -->
                 <input id="memPsw" class="form_input" type="password" placeholder="密碼" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$" required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('請輸入正確的密碼格式:含英數至少六個字元');"/><br>
                 <a class="form_link">忘記您的密碼?</a><br>
                 <!-- 登入 -->
