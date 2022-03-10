@@ -93,7 +93,7 @@
                         padding:10px 10px;
                     }
                 }
-                .more{
+                .moreprd{
                     position: absolute;
                     bottom: -30px;
                     right: 0;                    
@@ -163,7 +163,7 @@
                 padding: 15px 15px 15px 15px;
                 border: 1px solid #ddd;
                 .img{
-                    width: 40%;
+                    width: 100%;
                     img{
                         width: 100%;
                     }
@@ -181,7 +181,7 @@
                         -webkit-box-orient: vertical;
                         -webkit-line-clamp: 2;
                     }
-                    .more{
+                    .moreprd{
                         position: absolute;
                         padding: 0 20px;
                         bottom: 10px;
@@ -265,7 +265,7 @@
                     .moreprd{
                         position: absolute;
                         bottom: 30px;
-                        right: 0;                        
+                        right: 0;   
                     }
                 }
             }

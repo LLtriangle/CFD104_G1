@@ -29,35 +29,37 @@ let member={};
     function sendForm(){
     // 先做條件判斷 有會員帳號才跳轉 沒有顯示帳密錯誤
       //=====使用Ajax 回server端,取回登入者大頭貼, 放到header 
-      let xhr = new XMLHttpRequest();
-      xhr.onload = function(){ 
-        member = JSON.parse(xhr.responseText);
-        console.log(member);   
-      }
-      xhr.open("post", "php/login.php", true);  
-      xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-      
-      let datas = {};
-      datas.memId = $id("memId").value; // 收到輸入框的會員帳號
-      datas.memPsw = $id("memPsw").value; // 收到輸入框的會員密碼
-      
-      let data_info = "json=" + JSON.stringify(datas);
-      xhr.send(data_info);
-      window.location.assign("member.html"); 
-      
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function(){ 
+            // let ans = xhr.responseText;
+            member = JSON.parse(xhr.responseText);
+            if(member.CUS_NO == undefined){
+              alert("帳密錯誤");
+            }else{
+              // 成功
+                  
+              location.href="member.html";
+              console.log("======",member);  
+            }
+        };
+        xhr.open("post", "php/login.php", true);  
+        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+        
+        let datas = {};
+        datas.memId = $id("memId").value; // 收到輸入框的會員帳號
+        datas.memPsw = $id("memPsw").value; // 收到輸入框的會員密碼
+        
+        let data_info = "json=" + JSON.stringify(datas);
+        xhr.send(data_info);
+        // window.location.assign("member.html"); 
+        
     };
 
     // 取得會員資料
     function getMemberInfo(){
       let xhr = new XMLHttpRequest();
       xhr.onload = function(){
-        // console.log(xhr.responseText);
         member = JSON.parse(xhr.responseText);
-        // if(member.memId){
-        //   document.getElementById("memName").innerText = member.memName;
-        //   document.getElementById("spanLogin").innerText = "登出";          
-        // }
-
       }
       xhr.open("get", "php/getMemberInfo.php", true);
       xhr.send(null);
@@ -65,8 +67,8 @@ let member={};
 
     function init(){
       //=========================取得會員資訊
-      getMemberInfo();
-    //   $id('btnLogin').addEventListener("click",getMemberInfo);
+    //   getMemberInfo();
+      $id('btnLogin').addEventListener("click",getMemberInfo);
 
       //===設定btnLogin.onclick 事件處理程序是 sendForm
       $id('btnLogin').addEventListener("click",sendForm);
