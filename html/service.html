@@ -39,50 +39,20 @@
 
 		<section class="serve_plans" id="plansApp">
 			<h2>服務方案介紹</h2>
-			<!-- <div class="scroll_group"> -->
-				<div class="item_group">
-					<div class="item">
-						<h3>{{plansRows[0].PLAN_NAME}}</h3>
-						<div class="txt">
-							<h4>｜適合對象｜</h4>
-							<!-- <p>#平日愛整理收納，想了解更多整理達人收納術。</p> -->
-							<p class="text-wrapper">{{plansRows[0].PLAN_TA}}</p>
-							<h4>｜方案特色｜</h4>
-							<p class="text-wrapper">{{plansRows[0].PLAN_FEATURE}}</p>
-							<h4>｜方案價格｜</h4>
-							<p class="text-wrapper">NT ${{plansRows[0].PRICE}}/hr</p>
-						</div>
-						<a href="reserve.html" class="link_btn rd">預約此方案</a>
+			<div class="item_group">
+				<div class="item" v-for="plansRow in plansRows">
+					<h3>{{plansRow.PLAN_NAME}}</h3>
+					<div class="txt">
+						<h4>｜適合對象｜</h4>
+						<p class="text-wrapper">{{plansRow.PLAN_TA}}</p>
+						<h4>｜方案特色｜</h4>
+						<p class="text-wrapper">{{plansRow.PLAN_FEATURE}}</p>
+						<h4>｜方案價格｜</h4>
+						<p class="text-wrapper">NT ${{plansRow.PRICE}}/hr</p>
 					</div>
-				
-					<div class="item">
-						<h3>空間整理收納</h3>
-						<div class="txt">
-							<h4>｜適合對象｜</h4>
-							<p class="text-wrapper">{{plansRows[1].PLAN_TA}}</p>
-							<h4>｜方案特色｜</h4>
-							<p class="text-wrapper">{{plansRows[1].PLAN_FEATURE}}</p>
-							<h4>｜方案價格｜</h4>
-							<p class="text-wrapper">NT ${{plansRows[1].PRICE}}/hr</p>
-						</div>
-						<a href="reserve.html" class="link_btn rd">預約此方案</a>
-					</div>
-				
-					<div class="item">
-						<h3>搬家前後物品上下架</h3>
-						<div class="txt">
-							<h4>｜適合對象｜</h4>
-							<p class="text-wrapper">{{plansRows[2].PLAN_TA}}</p>
-							<h4>｜方案特色｜</h4>
-							<p class="text-wrapper">{{plansRows[2].PLAN_FEATURE}}</p>
-							<h4>｜方案價格｜</h4>
-							<p class="text-wrapper">NT ${{plansRows[2].PRICE}}/hr</p>
-						</div>
-						<a href="reserve.html" class="link_btn rd">預約此方案</a>
-					</div>
+					<a href="reserve.html" class="link_btn rd">預約此方案</a>
 				</div>
-			<!-- </div> -->
-					
+			</div>
 		</section>
 
 		<section class="serve_case">
@@ -208,10 +178,7 @@
 				getPlans(){
 					let xhr = new XMLHttpRequest();
 					let thisVue = this;
-					console.log(1);
 					xhr.onload = function(){
-						console.log(JSON.parse(xhr.responseText));
-						console.log(2);
 						thisVue.plansRows = JSON.parse(xhr.responseText);
 					}
 					xhr.open("get", "php/getPlansList.php", true);
