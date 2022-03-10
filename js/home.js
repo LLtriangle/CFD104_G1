@@ -10,7 +10,9 @@ $(window).on('load',function(){
         // });
 
         //讓scroll trigger 可以使用blur
+
         //this is just an example plugin that allows us to animate a "blur" property like gsap.to(target, {blur:10}) and it'll feed that value to this plugin which will do all the necessary calculations to add/update a blur() value in the CSS "filter" property (in browsers that support it). We wrap it in an iife just so that we can declare some local variables in a private scope at the top.
+
         (function() {
             const blurProperty = gsap.utils.checkPrefix("filter"),
                     blurExp = /blur\((.+)?px\)/,
@@ -46,6 +48,7 @@ $(window).on('load',function(){
             });
         })();
 
+        //landing section 最底下的圖片隨滾輪放大到全屏，先判斷位置(必須在房子形狀後)
         let ig = $('.img_grow');
         let lg = $('.logo_shape_img_box');
         ig[0].style.position = 'absolute';
@@ -91,11 +94,9 @@ $(window).on('load',function(){
         // ig[0].style.backgroundSize = 'cover';
 
         
-
-
-
-
         // 登陸section 圖片隨滾輪放大
+        
+        // 時間軸
         const landing_tl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".home_landing", 
@@ -107,23 +108,7 @@ $(window).on('load',function(){
             }
         });
 
-        // const landing_imed_tl = gsap.timeline({
-        //     scrollTrigger: {
-        //         trigger: ".index_landing", 
-        //         start: "center center", 
-        //         pin: true,
-        //         scrub: true, 
-        //         markers: true,
-        //     }
-        // });
-
-        // landing_tl.to(".logo_shape_img_box", {
-        //     width:"100vw", 
-        //     height:"100vh", 
-        //     clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-        //     zIndex: 100,
-        //     duration: 2,
-        // })
+        // 壓在房子底下的圖片放大到全屏，並用zindex蓋住landing所有部分
         landing_tl.to(".img_grow", {
             width:"100vw", 
             height:"100vh", 
@@ -132,16 +117,14 @@ $(window).on('load',function(){
             zIndex: 50,
             duration: 2,
         })
-        landing_tl.to(".full_view_box", {width:"0vw", duration: 2,})
-        landing_tl.to(".web_title", {width:"0vw", height:"0vh", duration: 2,})
-        // landing_tl.to(".index_landing", {position:"fixed", duration: 2,})
-        landing_tl.to(".logo_shape_img", {display:"none"})
 
-        gsap.to(".img_progress_bar", 6, {width: "100%", repeat: -1, repeatDelay: 1.2});
+
+        // landing換圖進度條，但目前不準，因為vue設定的關係，圖片載入有時間差
+        gsap.to(".img_progress_bar", 6, {width: "100%", repeat: -1, repeatDelay: 1.2}); 
 
         //服務section h2和圖片隨滾輪出現
         gsap.to(".home_plans .plans_links", {
-            duration: .3,
+            duration: .2,
             scrollTrigger: {
                 trigger: ".home_plans",
                 start: "top center", 
@@ -154,18 +137,122 @@ $(window).on('load',function(){
         });
 
         //案例section h2和p隨滾輪出現
-        gsap.to(".home_case h2", {
-            duration: .3,
+        gsap.to(".home_case .content", {
+            duration: .2,
             scrollTrigger: {
                 trigger: ".home_case",
                 start: "top center", 
                 pin: false, 
                 scrub: false,
                 // markers: true,
-                toggleClass: {targets: [".home_case h2", ".content_txt p"],className: "enter"},
+                toggleClass: {targets: [".home_case h2", ".content_txt p", ".needs_btns"],className: "enter"},
                 once: "true",
             }
         });
+
+        //流程section h2和p隨滾輪出現 虛線出現 敘述呈現打字效果
+        gsap.to(".home_progress", {
+            duration: .2,
+            scrollTrigger: {
+                trigger: ".home_progress",
+                start: "top center", 
+                pin: false, 
+                scrub: false,
+                markers: true,
+                toggleClass: {targets: [".home_progress h2", ".home_progress li"],className: "enter"},
+                once: "true",
+            }
+        });
+
+        
+        // var txt_count = 0;
+        // var txt = "依照您的需求，";
+        // var speed = 1000;
+
+        // function typeWriter() {
+        //     console.log("here");
+
+        //     if (txt_count < txt.length) {
+        //         console.log("here2");
+        //         $("#choose_p1").text(txt.charAt(txt_count));
+        //         txt_count++;
+        //         setTimeout(typeWriter, speed);
+        //     }
+        // }
+
+        //活動消息section h2和deco img 出現
+        gsap.to(".home_acti", {
+            duration: .2,
+            scrollTrigger: {
+                trigger: ".home_acti",
+                start: "top center", 
+                pin: false, 
+                scrub: false,
+                markers: true,
+                toggleClass: {targets: [".home_acti h2", ".home_acti .deco_img_box"],className: "enter"},
+                once: "true",
+            }
+        });
+
+        //專欄文章section h2出現
+        gsap.to(".home_columns", {
+            duration: .2,
+            scrollTrigger: {
+                trigger: ".home_columns",
+                start: "top center", 
+                pin: false, 
+                scrub: false,
+                markers: true,
+                toggleClass: {targets: [".home_columns h2"],className: "enter"},
+                once: "true",
+            }
+        });
+
+        //Q&A section h2 出現
+        gsap.to(".home_qa", {
+            duration: .2,
+            scrollTrigger: {
+                trigger: ".home_qa",
+                start: "top center", 
+                pin: false, 
+                scrub: false,
+                markers: true,
+                toggleClass: {targets: [".home_qa h2"],className: "enter"},
+                once: "true",
+            }
+        });
+
+        //熱門商品section h2和deco img 出現
+        gsap.to(".home_hot_sales", {
+            duration: .2,
+            scrollTrigger: {
+                trigger: ".home_hot_sales",
+                start: "top center", 
+                pin: false, 
+                scrub: false,
+                markers: true,
+                toggleClass: {targets: [".home_hot_sales h2"],className: "enter"},
+                once: "true",
+            }
+        });
+
+        let hs_items = gsap.utils.toArray(".home_hot_sales");
+
+        // gsap.to(hs_items, {
+        // xPercent: -100 * (hs_items.length - 1),
+        // ease: "none",
+        // scrollTrigger: {
+        //     trigger: ".home_hot_sales ul",
+        //     pin: true,
+        //     scrub: 1,
+        //     snap: 1 / (hs_items.length - 1),
+        //     marker: true,
+        //     // base vertical scrolling on how wide the container is so it feels more natural.
+        //     end: "+=3500",
+        // }
+        // });
+
+
 
         //  希望抓的到
 
