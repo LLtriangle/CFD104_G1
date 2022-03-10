@@ -33,8 +33,6 @@ button{
     color: map-get($color, 'main');
     .progress{
         overflow: hidden;
-        margin-bottom: -2px;
-         /* hide bottom border */
         margin-left: 24px;
         a{  
             width: 26%;
@@ -44,18 +42,19 @@ button{
             transition: background-color 0.2s;
             border: 1px solid #ccc;
             border-right: none;
-            background-color: map-get($color , "plain" );
+            border-bottom: none;
+            background-color:map-get($color , "plain" );
             border-radius: 10px 10px 0 0;
             font-weight: bold;
             &:last-child { 
             border-right: 1px solid #ccc;
             }
             &:hover {
-            background-color: #aaa;
+            background-color: map-get($color, 'yellow');
             color: map-get($color, 'yellow');
             }
             &.active {
-            background-color:map-get($btn_color, 'beige');;
+            background-color:rgba(221, 179, 140, 0.541);
             color: map-get($color, 'blue');
             cursor: default;
             }
@@ -74,9 +73,10 @@ table.creditCard{
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 4px 4px 8px #e1e1e1;
+    z-index: 1;
     td {
         padding: 0.3em 0.4em;
-        color: map-get($color, 'plain_blue');
+        // color: map-get($color, 'plain_blue');
     }
 }
 .data { width: 120px; }
@@ -207,48 +207,7 @@ table.creditCard{
                 }
             }
     }
-    // 月曆
-    .calendar_time{
-    // display: flex;
-    // justify-content: space-between;
-    
-        .time_period{
-            display: none;
-            justify-content: space-evenly;
-            input{
-                display: none;
-            }
-            input:checked + label .time_item{
-                border: 3px solid #82002D;
-                p{
-                    font-weight: 900;
-                }
-            }
-            label{
-                cursor: pointer;
-                .time_item{
-                    border: 3px solid transparent;
-                    border-radius: 50%;
-                    width: 80px;
-                    height: 80px;
-                    margin: 5px;
-                    text-align: center;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    background-color:#DDCFC5;
-                    box-sizing: border-box;
-                    p{  
-                        box-sizing: border-box;
-                        font-size: 12px;
-                        padding: 10px;
-                        font-weight: 600;
-                    }
-                }
-            }
 
-        }
-    }
     // 顯示預約時間
     .time_panel{
         display: flex;
@@ -335,36 +294,6 @@ table.creditCard{
     }
 }
 
-
-
-// 下拉式選單樣式
-//  select{
-//     font-size: initial;
-//     background-color: white;
-//     border: none;
-//     box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
-//     border-radius: 10px;
-//     padding: 5px;
-//     min-width: 150px;
-//     -webkit-appearance: none;  /* Safari 和 Chrome，常用於iOS下移除內建樣式 */
-//     -moz-appearance: none;     /* FireFox */
-//     appearance: none;
-//     // 加上下拉三角形
-//     background-image: url("../img/arrow.png");
-//     background-repeat: no-repeat;
-//     background-position: center;
-//     background-position-x: calc(100% - 10px);
-//     background-size: 0.9rem 0.9rem;
-
-//     &:focus{
-//         outline: none;
-//         box-shadow: 1px 1px 5px map-get($color, 'main');
-//     }
-// } 
-
-// input,textarea{
-//     font-size: initial;
-// }
 // 選地址
 .choose_add{
     div{
@@ -567,9 +496,6 @@ textarea {
         width: 150px;
     }
     .choose_date {
-        .calendar_time .time_period{
-            display: flex;
-        }
         .time_panel{
             display: block;
             margin: 10px auto;

@@ -12,7 +12,6 @@ function uploadFile(){
         let file = e.target.files[0]; //找物件
         let reader = new FileReader(); //reader讀物件
         reader.onload = function(){  //讀完發生onload事件 結果在result裡
-    
             // 生成div
             let div = document.createElement('div');
             div_myimgs.appendChild(div);
@@ -89,7 +88,6 @@ function init(){
     document.getElementById("submit").addEventListener('click',submitForm);
     for(let i = 0; i<next_btns.length ; i++){
         next_btns[i].onclick=function(){
-            // console.log(0);
             $('html').animate({
                 scrollTop: 0,
             }, 500);

@@ -157,35 +157,37 @@ function createCalendar(){
                 // span裡面放入日期
                 span.innerHTML = actual.getDate();
     
-                // 早中晚加入文字
-                morning.innerText = "早";
-                afternoon.innerText = "中";
-                night.innerText = "晚";
-                if( $(window).width()<=830){
-                    $('td > div div:nth-child(2) span').css('color','transparent');
-                }else{
-                    $('td > div div:nth-child(2) span').css('color','black');
-                };
+                // // 早中晚加入文字
+                // morning.innerText = "早";
+                // afternoon.innerText = "中";
+                // night.innerText = "晚";
+
+                // if( $(window).width()<=830){
+                //     $('td > div div:nth-child(2) span').css('color','transparent');
+                // }else{
+                //     $('td > div div:nth-child(2) span').css('color','black');
+                // };
+
                 // 隨機
-                var arr = Math.round(Math.random());
-                var re_index = 0;
+                // var arr = Math.round(Math.random());
+                // var re_index = 0;
                 
-                if (arr==1) {
-                    morning.classList.add("reserved");
-                    re_index++;
-                };
+                // if (arr==1) {
+                //     morning.classList.add("reserved");
+                //     re_index++;
+                // };
                 
-                arr = Math.round(Math.random());
-                if (arr==1) {
-                    afternoon.classList.add("reserved");
-                    re_index++;
-                }
+                // arr = Math.round(Math.random());
+                // if (arr==1) {
+                //     afternoon.classList.add("reserved");
+                //     re_index++;
+                // }
                 
-                arr = Math.round(Math.random());
-                if (arr==1) {
-                    night.classList.add("reserved");
-                    re_index++;
-                }
+                // arr = Math.round(Math.random());
+                // if (arr==1) {
+                //     night.classList.add("reserved");
+                //     re_index++;
+                // }
     
                 // fora=非此月
                 if(actual.getMonth() !== data.getMonth() )
@@ -199,23 +201,20 @@ function createCalendar(){
                 }
     
                 // today=今天
-                // 1 == 1
-                // month00 = 2
                 // data.getMonth() = 2
                 if(data.getDate() == actual.getDate() && actual.getMonth() == month00){
                     td.className = 'today';
                 }
-                // console.log(actual.getMonth())
                 // t_add3=今天後三天
-                if(data.getDate() == actual.getDate()-3 &&
-                data.getMonth() == actual.getMonth())
-                    td.classList.add('t_add3');
+                // if(data.getDate() == actual.getDate()-3 &&
+                // data.getMonth() == actual.getMonth())
+                //     td.classList.add('t_add3');
                 
                 // 三時段皆滿
-                if(re_index == 3){
-                    td.classList.add('full');
-                    td.appendChild(full_img);
-                }
+                // if(re_index == 3){
+                //     td.classList.add('full');
+                //     td.appendChild(full_img);
+                // }
 
                 // 這個月以前不能回去 boto_prev disable
                 // console.log(data.getMonth()); // 1 二月
@@ -328,7 +327,7 @@ function createCalendar(){
             var inactius = document.getElementsByClassName('inactiu');
             for(var i = 0; i < inactius.length; i++)
             widget.removeChild(inactius[i]);
-        }, 1000);
+        }, 500);
         
     }
     
