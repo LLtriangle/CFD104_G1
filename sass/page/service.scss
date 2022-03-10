@@ -1,4 +1,5 @@
 @import  "../base/color";
+
 .serve_plans{
     h2{
         text-align: center;
@@ -71,7 +72,7 @@
     }
     .case{
         padding: 30px;
-        width: calc(100% - 40px);
+        width: calc(100% - 80px);
         height: calc(100vh - 160px);
         box-sizing: border-box;
         // border: 1px solid map-get($color , "main");
@@ -307,7 +308,7 @@
             max-width: 1200px;
         }
         .case{
-            height: calc(100vh - 200px);
+            height: calc(100vh - 240px);
             display: flex;
             flex-direction: row;
             flex-direction: row;
@@ -325,10 +326,10 @@
             }
             .pic{
                 width: 50%;
-                height: calc(100vh - 240px);
+                height: calc(100vh - 300px);
                 >img{
                     width: auto;
-                    height: calc(100vh - 240px);
+                    height: calc(100vh - 300px);
                 }
             }
             .txt{

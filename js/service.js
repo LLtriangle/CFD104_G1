@@ -10,58 +10,52 @@ $(window).on('load',function(){
 		}
 	});
 	
-	serveCase.fromTo('.case01',{
+	serveCase
+	.fromTo('.case01',{
 		y:150,
-		x:20,
-	},{
+		x:20,},{
 		y:150,
-		x:20,
-	}).to('.case01 .pic .afterPic',{
-		width:500,
-	},">").to('.case01 .pic .handle',{
-		left:500,
-	},"<").to('.case01 .txt .afterTxt',{
-		height:500,
-	},">").fromTo('.case01 .bookmark',{
-		y:1000,
-	},{
-		y:-30,
-	}).fromTo('.case02',{
-		y:1000,
-	},{
+		x:20,})
+	.to('.case01 .pic .afterPic',{
+		width:500,},">")
+	.to('.case01 .pic .handle',{
+		left:500,},"<")
+	.to('.case01 .txt .afterTxt',{
+		height:500,},">")
+	.fromTo('.case01 .bookmark',{
+		y:1000,},{
+		y:-30,})
+	.fromTo('.case02',{
+		y:1000,},{
+		y:150,})
+	.to('.case01',{
+		y:120,},"<")
+	.to('.case02 .pic .afterPic',{
+		width:500,},">")
+	.to('.case02 .pic .handle',{
+		left:500,},"<")
+	.to('.case02 .txt .afterTxt',{
+		height:500,},">")
+	.fromTo('.case02 .bookmark',{
+		y:1000,},{
+		y:-30,})
+	.fromTo('.case03',{
+		y:1000,},{
 		y:150,
-	}).to('.case01',{
-		y:120,
-	},"<").to('.case02 .pic .afterPic',{
-		width:500,
-	},">").to('.case02 .pic .handle',{
-		left:500,
-	},"<").to('.case02 .txt .afterTxt',{
-		height:500,
-	},">").fromTo('.case02 .bookmark',{
-		y:1000,
-	},{
-		y:-30,
-	}).fromTo('.case03',{
-		y:1000,
-	},{
-		y:150,
-		x:-20,
-	}).to('.case01',{
-		y:90,
-	},"<").to('.case02',{
-		y:120,
-	},"<").to('.case03 .pic .afterPic',{
-		width:500,
-	},">").to('.case03 .pic .handle',{
-		left:500,
-	},"<").to('.case03 .txt .afterTxt',{
-		height:500,
-	},">").fromTo('.case03 .bookmark',{
-		y:1000,
-	},{
-		y:-30,
-	});
+		x:-20,})
+	.to('.case01',{
+		y:90,},"<")
+	.to('.case02',{
+		y:120,},"<")
+	.to('.case03 .pic .afterPic',{
+		width:500,},">")
+	.to('.case03 .pic .handle',{
+		left:500,},"<")
+	.to('.case03 .txt .afterTxt',{
+		height:500,},">")
+	.fromTo('.case03 .bookmark',{
+		y:1000,},{
+		y:-30,});
 
 
 // 前後對比與滑鼠位置
@@ -73,5 +67,4 @@ $(window).on('load',function(){
 		$(this).children('.afterPic').addClass('slowMove');
 		$(this).children('.handle').addClass('slowMove');
     });
-
 });

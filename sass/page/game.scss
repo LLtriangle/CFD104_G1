@@ -1,8 +1,5 @@
 @import  "../base/color";
 
-.text-wrapper {
-    white-space: pre-wrap;
-}
 .text_ill{
     // display: none;
     .welcome{
@@ -190,7 +187,7 @@
                     left: 50%;
                     transform-origin:right;
                     transform: translate(-80%,0) scaleX(1) skewY(-29deg);
-                    z-index: 0;
+                    z-index: 2;
                 }
                 #hiding{
                     width: calc(100% - 400px);
@@ -216,20 +213,6 @@
                     }
                 }
                 &.open{
-                    &.empty::after{
-                        content: '空';
-                        font-size: 30px;
-                        line-height: 50px;
-                        position: absolute;
-                        top: 20%;
-                        left: 47%;
-                        padding: 10px;
-                        width: 50px;
-                        height: 50px;
-                        margin: 10px 10px 0 0;
-                        z-index: 3;
-                        background: url("../img/game_pullbox.png") center/cover ;
-                    }
                     #door1{
                         left: 50%;
                         transform: translate(-62.5%,0) scaleX(-.7) skewY(-30deg);
@@ -237,6 +220,21 @@
                     #door2{
                         left: 50%;
                         transform: translate(-156%,0) scaleX(1) skewY(15deg);
+                    }
+                    #inside.empty::after{
+                        content: '空';
+                        font-size: 30px;
+                        line-height: 50px;
+                        position: absolute;
+                        top: 28.5%;
+                        left: 50%;
+                        padding: 10px;
+                        width: 50px;
+                        height: 50px;
+                        margin: 10px 10px 0 0;
+                        z-index: 3;
+                        transform: translate(7%,0) skewY(29deg);
+                        background: url("../img/game_pullbox.png") center/cover ;
                     }
                     #hiding{
                         >img{
