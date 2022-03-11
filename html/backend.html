@@ -2,66 +2,88 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" "">
+    <meta name="viewport" "evice-width, initial-scale=1.0">
     <title>後台</title>
     <link rel="stylesheet" href="css/backend.css">
+	<!-- .js連結-->
+	<script src="js/jquery.js"></script>
+  	<script src="js/jquery-ui.js"></script>
+  	<script src="js/vue.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="app">
         <div class="navigation">
             <ul>
                 <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                    <a @click="content('plan')">
+                        <span class="icon">
+                            <!-- <ion-icon name="home-outline"></ion-icon> -->
+                        </span>
                         <span class="title"></ion-icon>主頁</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="accessibility-outline"></ion-icon></span>
+                    <a @click="content('plan')">
+                        <span class="icon">
+                            <!-- <ion-icon name="accessibility-outline"></ion-icon> -->
+                        </span>
                         <span class="title">員工管理</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                    <a @click="content('plan')">
+                        <span class="icon">
+                            <!-- <ion-icon name="person-outline"></ion-icon> -->
+                        </span>
                         <span class="title">會員管理</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="cart-outline"></ion-icon></span>
+                    <a @click="content('plan')">
+                        <span class="icon">
+                            <!-- <ion-icon name="cart-outline"></ion-icon> -->
+                        </span>
                         <span class="title">商品管理</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="receipt-outline"></ion-icon></span>
+                    <a @click="content('plan')">
+                        <span class="icon">
+                            <!-- <ion-icon name="receipt-outline"></ion-icon> -->
+                        </span>
                         <span class="title">訂單管理</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="file-tray-stacked-outline"></ion-icon></span>
+                    <a @click="content('plan')">
+                        <span class="icon">
+                            <!-- <ion-icon name="file-tray-stacked-outline"></ion-icon> -->
+                        </span>
                         <span class="title">服務管理</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="mail-open-outline"></ion-icon></span>
+                    <a @click="content('plan')">
+                        <span class="icon">
+                            <!-- <ion-icon name="mail-open-outline"></ion-icon> -->
+                        </span>
                         <span class="title">活動管理</span>
                     </a>
                 </li>
                 <li>
                     <a href="backend_columns.html">
-                        <span class="icon"><ion-icon name="mail-open-outline"></ion-icon></span>
+                        <span class="icon">
+                            <!-- <ion-icon name="mail-open-outline"></ion-icon> -->
+                        </span>
                         <span class="title">專欄管理</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                    <a @click="content('plan')">
+                        <span class="icon">
+                            <!-- <ion-icon name="log-out-outline"></ion-icon> -->
+                        </span>
                         <span class="title">登出</span>
                     </a>
                 </li>
@@ -72,13 +94,13 @@
         <div class="main">
             <div class="topbar">
                 <div class="toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
+                    <!-- <ion-icon name="menu-outline"></ion-icon> -->
                 </div>
                 <!-- search -->
                 <div class="search">
                     <label for="">
                         <input type="text" placeholder="Search">
-                        <ion-icon name="search-outline"></ion-icon>
+                        <!-- <ion-icon name="search-outline"></ion-icon> -->
                     </label>
                 </div>
                 <!-- userImg -->
@@ -95,7 +117,7 @@
                         <div class="card_name">瀏覽人數</div>
                     </div>
                     <div class="icon_bx">
-                        <ion-icon name="eye-outline"></ion-icon>
+                        <!-- <ion-icon name="eye-outline"></ion-icon> -->
                     </div>
                 </div>
                 <div class="card">
@@ -104,7 +126,7 @@
                         <div class="card_name">銷售數量</div>
                     </div>
                     <div class="icon_bx">
-                        <ion-icon name="cart-outline"></ion-icon>
+                        <!-- <ion-icon name="cart-outline"></ion-icon> -->
                     </div>
                 </div>
                 <div class="card">
@@ -113,7 +135,7 @@
                         <div class="card_name">銷售金額</div>
                     </div>
                     <div class="icon_bx">
-                        <ion-icon name="cash-outline"></ion-icon>
+                        <!-- <ion-icon name="cash-outline"></ion-icon> -->
                     </div>
                 </div>
                 <div class="card">
@@ -122,16 +144,17 @@
                         <div class="card_name">完成個案</div>
                     </div>
                     <div class="icon_bx">
-                        <ion-icon name="file-tray-stacked-outline"></ion-icon>
+                        <!-- <ion-icon name="file-tray-stacked-outline"></ion-icon> -->
                     </div>
                 </div>
             </div>
 
             <div class="details">
-                <!-- order details list -->
+                <res-component></res-component>
+                <!-- order details list
                 <div class="recent_orders">
                     <div class="card_header">
-                        <h2>最近購買</h2>
+                        <h2>{{title}}</h2>
                         <a href="#" class="btn">全部</a>
                     </div>
                     <table>
@@ -208,7 +231,7 @@
                     </table>
                 </div>
 
-                <!-- New Customers -->
+                New Customers
                 <div class="recent_customers">
                     <div class="card_header">
                         <h2>新會員</h2>
@@ -247,7 +270,7 @@
                             <td><h4>Amos<br><span>新竹</span></h4></td>
                         </tr>
                     </table>
-                </div>
+                </div> -->
             </div>
 
         </div>
@@ -267,16 +290,87 @@
             main.classList.toggle('active');
         }
 
-        //add hovered class in selected list item
-        let list = document.querySelectorAll('.navigation li');
-        function activeLink(){
-            list.forEach((item) =>
-            item.classList.remove('hovered'));
-            item.classList.add('hovered');
-        }
-        list.forEach((item) =>
-        item.addEventListener('mouseover',activeLink));
+        // //add hovered class in selected list item
+        // let list = document.querySelectorAll('.navigation li');
+        // function activeLink(){
+        //     list.forEach((item) =>
+        //     item.classList.remove('hovered'));
+        //     item.classList.add('hovered');
+        // }
+        // list.forEach((item) =>
+        // item.addEventListener('mouseover',activeLink));
         
+        const bus = new Vue();
+        Vue.component('resComponent',{
+            template: `
+            <div class="recent_orders">
+                <div class="card_header">
+                    <h2>訂單狀態</h2>
+                    <a href="#" class="btn">全部</a>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>PLAN_NO</td>
+                            <td>PLAN_NAME</td>
+                            <td>PLAN_TA</td>
+                            <td>PLAN_FEATURE</td>
+                            <td>PRICE</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="resCol in resJSON">
+                            <td>{{resCol.PLAN_NO}}</td>
+                            <td>{{resCol.PLAN_NAME}}</td>
+                            <td>{{resCol.PLAN_TA}}</td>
+                            <td>{{resCol.PLAN_FEATURE}}</td>
+                            <td>{{resCol.PRICE}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>`,
+            data() {
+                return {
+                    resJSON:'',
+                }
+            },
+            methods: {
+                content(tableName) {
+                    var vueApp = this;
+                    // console.log(tableName);
+                    $.ajax({
+                        url: `php/backend_service.php`,   // 呼叫的檔案或網址列
+                        data: `data=${tableName}`,     // 傳送到 server 端的資料，會自動轉成字串形式
+                        type: 'GET',     // GET 或 POST
+                        dataType: 'json', // response 的資料格式，xml | html | script | json | jsonp | text
+                        success(res){
+                            // console.log(res);
+                            console.log(res[0]);
+                            vueApp.resJSON = res;
+                            // console.log(vueApp.resJSON);
+                            // console.log(vueApp.resJSON[0]);
+                            // console.log(vueApp.resJSON[0].PLAN_NAME);
+                            // bus.$emit('tableBus',vueApp.resJSON);   // 自訂事件
+                        },
+                        error(res){
+                            console.log('error');
+                            console.log(res);
+                        },
+                    });
+                },
+            },
+        });
+        
+
+
+
+		new Vue({
+			el:"#app",
+			data:{
+                // resJSON: '',
+			},
+		});
+
     </script>
 </body>
 </html>

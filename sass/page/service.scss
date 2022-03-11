@@ -92,6 +92,8 @@
             transform: translate(-50%);
         }
         .pic{
+            border: 1px solid map-get($color , "sub_blue");
+            border-radius: 10px;
             display: inline-block;
             line-height: 0;
             position: relative;
@@ -190,7 +192,6 @@
         max-width: 1100px;
         margin: 10px auto;
         padding: 5px 60px 5px 15px;
-        // border-radius: 10px;
         border-bottom: 1px solid map-get($color , "sub_blue");
         position: relative;
         input{
