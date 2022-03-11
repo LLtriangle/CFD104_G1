@@ -15,6 +15,7 @@ try{
         echo "{}"; // 傳回字串 xhr.responseText="exist"
     }else{ //登入成功
         //自資料庫中取回資料
+        // $cusRow = $cus->fetch();
         $cusRow = $cus->fetch(PDO::FETCH_ASSOC);
         $_SESSION["CUS_NO"] = $cusRow["CUS_NO"];
         $_SESSION["EMAIL"] = $cusRow["EMAIL"];
