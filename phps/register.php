@@ -16,6 +16,17 @@ $datas = json_decode($_POST["json"], true); //第二個參數指出要轉成關�
 
     if($affect!=0){ 
         echo "註冊成功";
+        $sql = "select * from cus order by CUS_NO desc";
+        $cusCol = $pdo->query($sql);
+        $cusNew = $cusCol->fetch(PDO::FETCH_ASSOC);
+
+        $_SESSION["CUS_NO"] = $cusNew["CUS_NO"];
+        $_SESSION["EMAIL"] = $cusNew["EMAIL"];
+        $_SESSION["CUS_NAME"] = $cusNew["CUS_NAME"];
+        $_SESSION["CUS_TEL"] = $cusNew["CUS_TEL"];
+        $_SESSION["SEX"] = $cusNew["SEX"];
+        $_SESSION["CUS_ADD"] = $cusNew["CUS_ADD"];
+        $_SESSION["CUS_PIC"] = $cusNew["CUS_PIC"];
     };
     // if( $cus->rowCount()==0){ // 非會員
     //     echo "{}"; // 傳回字串 xhr.responseText="exist"

@@ -50,74 +50,18 @@
             <div class="data_mem" v-if="data">
                 <div class="icon_edit">
                     <div class="mem_icon" >
-                        <img :src="cus_pic">
-                        <!-- <img src="img/Kurinachan_1.jpeg"> -->
+                        <form><img :src="cus_pic"></form>
                     </div>
-                    <button class="btn_btn br">
-                        編輯大頭貼
-                    </button>
+                    <input type="file" name="upFile" id="upFile" accept="image/jpeg, image/png" >
+                    <label id="btnUpload" class="btn_btn br" for="upFile">編輯大頭貼
+                    </label>
                 </div>
-                <!-- 氣氣氣table -->
-                <!-- <table class="mem_txt">
-                    <tbody>
-                        <tr class="name">
-                            <th><p>姓名：</p></th>
-                            <td>
-                                <input class='member_name' type="text" value='王雪碧'>
-                            </td>
-                        </tr>
-                    
-                    
-                        <tr class="gender">
-                            <th><p>性別：</p></th>
-                            <td>
-                                <ul>
-                                    <li>
-                                        <input class='radio-input' name='gender' type="radio" id="male" value='male'>
-                                        <label for="male" class="radio-label"><span class="radio-button"></span>男性</label>
-                                    </li>
-                                    <li>
-                                        <input class='radio-input' name='gender' type="radio" id="female" value='female' checked>
-                                        <label for="female" class="radio-label"><span class="radio-button"></span>女性</label>
-                                    </li>
-                                    <li>
-                                        <input class='radio-input' name='gender' type="radio" id="other" value='other'>
-                                        <label for="other" class="radio-label"><span class="radio-button"></span>其他</label>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr class="mail"> 
-                            <th><p>帳號：</p></th>
-                            <td>
-                                <input class='mem_id' disabled type="email" value='G1G1_cfd104'>
-                            </td>
-                        </tr>
-                        <tr class="phone">
-                            <th><p>聯絡電話：</p></th>
-                            <td>
-                                <input type="text" value='0912345678'>
-                            </td>
-                        </tr>
-                        <tr class="address">
-                            <th><p>聯絡地址：</p></th>
-                            <td>
-                                <input class='memberLeft memberAdr' type="text" value="桃園市中壢區">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button type="submit" class="btn_sub br">儲存修改</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table> -->     
-                
+                <!-- 氣氣氣table -->                  
                 <!-- 不是table -->
                 <div class="mem_txt">
                     <div class="item_box">
                         <label><p> &emsp; &emsp;姓名
-                            <input class='member_name cus_name' type="text" v-model="cusRow.CUS_NAME" >
+                            <input id="cus_name" class='member_name cus_name' type="text" v-model="cusRow.CUS_NAME" disabled >
                            </p>
                         </label>
                     </div>
@@ -126,14 +70,14 @@
                         <div class='gender'><p> &emsp; &emsp;性別</p>
                             <ul>
                                 <li>
-                                    <input class='radio-input' name='gender' type="radio" id="male" value='male'>
+                                    <input class='radio-input' name='gender' type="radio" id="male" value='男' disabled>
                                     <label for="male" class="radio-label">
                                         <span class="radio-button"></span>
                                         男性
                                     </label>
                                 </li>
                                 <li>
-                                    <input class='radio-input' name='gender' type="radio" id="female" value='female'>
+                                    <input class='radio-input' name='gender' type="radio" id="female" value='女' disabled>
                                     <label for="female" class="radio-label">
                                         <span class="radio-button"></span>
                                         女性
@@ -145,23 +89,23 @@
                     </div>
                     <div class="item_box">
                         <label><p> &emsp; &emsp;帳號
-                            <input class='mem_id' disabled type="email" v-model='cusRow.EMAIL'></p>
+                            <input id="email" class='mem_id' type="email" v-model='cusRow.EMAIL' disabled></p>
                         </label>
                     </div>
                     <div class="item_box">
                         <label><p>&ensp;連絡電話
-                            <input type="text" v-model=cusRow.CUS_TEL></p>
+                            <input id="cus_tel" type="text" v-model=cusRow.CUS_TEL disabled maxlength="10"></p>
                         </label>
                     </div>
                     <div class="item_box">
                         <label><p>&ensp;連絡地址
-                            <input class='memberLeft memberAdr' type="text" v-model=cusRow.CUS_ADD></p>
+                            <input id="cus_add" class='memberLeft memberAdr' type="text" v-model=cusRow.CUS_ADD disabled></p>
                         </label>
                     </div>
                     <!-------新增取消修改-------->
-
-                    <button type="button" class="btn_sub bl cancel">取消修改</button>
-                    <button type="button" class="btn_sub br">儲存修改</button>
+                    <button id="btnCancel" type="button" class="btn_sub bl cancel">取消修改</button>
+                    <button id="btnSave" type="button" class="btn_sub br">儲存修改</button>
+                    <button id="btnChange" type="button" class="btn_sub br">修改會員資料</button>
                 </div>
             </div>
             <!--------------------- 我是可愛分隔線 --------------------->
@@ -257,8 +201,6 @@
         </section>
         <!-- 會員資料顯示結束 ------------------------ -->
 
-
-
     </main>
     <!-- ------------ 我是Vue分隔線 ------------ -->
         <script >
@@ -270,7 +212,7 @@
                     order:false, // 預設
                     cusRow:[{CUS_NO: '', EMAIL: '', CUS_NAME: '', CUS_TEL: '',SEX:''}],
                     gender:'',
-                    cus_pic:'', // 大頭貼
+                    cus_pic:'img/emp_img.jpg', // 預設大頭貼
                 },
                 methods: {
                     getMemberInfo(){
@@ -279,7 +221,9 @@
                         xhr.onload = function(){
                             thisVue.cusRow = JSON.parse(xhr.responseText);
                             console.log(thisVue.cusRow);
-                            thisVue.cus_pic = "img/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
+                            if(thisVue.cusRow.CUS_PIC!=''){
+                                thisVue.cus_pic = "img/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
+                            }
                             // console.log(thisVue.cus_pic);
                             if(thisVue.cusRow.SEX == "女"){
                                 $('#female').prop('checked',true);
@@ -297,28 +241,6 @@
                 },
             });
         </script>
-        <script>
-        function $id(id){
-            return document.getElementById(id);
-        };
-        // 登出
-        function logout(){        
-            let xhr = new XMLHttpRequest();
-            xhr.onload = function(){
-                alert("確認登出?");
-                // 跳轉畫面
-                window.location.assign("home.html");       
-            }
-            xhr.open("get", "php/logout.php", true); // 清空session
-            xhr.send(null);
-        };
-
-        function init(){
-            $id('btnLogout').onclick = logout;
-        };
-
-        window.addEventListener("load",init);
-        </script>
-    
+<script src="js/member.js"></script>
 </body>
 </html>
