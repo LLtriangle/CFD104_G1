@@ -231,13 +231,12 @@
                                 $('#male').prop('checked',true);
                             }   
                         }
-                        xhr.open("get", "php/getMemberInfo.php", true);
+                        xhr.open("get", "phps/getMemberInfo.php", true);
                         xhr.send(null);
                     },
                 },
                 mounted() {
                     this.getMemberInfo();
-
                 },
             });
         </script>
