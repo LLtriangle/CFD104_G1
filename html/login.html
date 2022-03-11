@@ -29,13 +29,15 @@
                 </div>
                 <span class="form_span">使用郵箱免費註冊會員</span><br>
                 <!-- 姓名 -->
-                <input class="form_input" type="text" placeholder="姓名" required="required" minlength="2"/><br>
+                <input id="cusName" class="form_input" type="text" placeholder="姓名" required="required" minlength="2"/><br>
                 <!-- 註冊帳號 -->
-                <input id="cusId" class="form_input" type="email" placeholder="E-mail" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/><br>
+                <input id="cusId" class="form_input" type="email" placeholder="E-mail" required="required">
+                <span id="idMsg"></span>
+                <br>
                 <!-- 註冊密碼 -->
-                <input class="form_input" type="password" placeholder="設定密碼(格式:含英數至少六個字元)" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$" required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('請輸入正確的密碼格式:含英數至少六個字元');"/><br>
+                <input id="cusPsw" class="form_input" type="password" placeholder="設定密碼(格式:含英數至少六個字元)" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$" required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('請輸入正確的密碼格式:含英數至少六個字元');"/><br>
 
-                <input type="button" class="form_button button" value="註冊">
+                <input id="btnRegister" type="button" class="form_button button" value="註冊">
             </form>
         </div>
         <!-- 登入 -->
