@@ -33,54 +33,54 @@
 			</div>
 		</section>
         
-        <section class="activity">
-            <div class="acti_news">
+        <section class="activity" id="ActApp">
+            <div class="acti_news" >
                 <h2>活動</h2>
                 <div class="acti_item">
                     <div class="img">
-                        <img src="img/activity/happyMday.jpg">
+                        <img :src="'img/activity/'+ actRows[1].EVENT_IMG">
                     </div>
                     <div class="txt">
-                        <h3>感謝媽媽 母親節優惠活動</h3>
+                        <h3>{{actRows[1].TITLE}}</h3>
                         <p>
-                            活動期間再商城購買商品結帳輸入優惠碼<br>即可享1000元優惠
+                            {{actRows[1].CONTENT}}
                         </p> 
-                        <p>2022/1/1~2022/12/31</p>
+                        <p>{{actRows[1].START}}~{{actRows[1].END}}</p>
                         </div>
                         <div class="copy">
-                            <input id="textArea" value="22HAPPYMDAY"  readonly>
+                            <input id="textArea" :value="actRows[1].COUPON"  readonly>
                             <button onclick="copyToClipBoard('textArea')"><span>複製</span></button>
                         </div>
                 </div>
                 <div class="acti_item">
                     <div class="img">
-                        <img src="img/activity/happy88.jpg">
+                        <img :src="'img/activity/'+ actRows[0].EVENT_IMG">
                     </div>
                     <div class="txt">
-                        <h3>慶祝父親節快樂 優惠活動</h3>
+                        <h3>{{actRows[0].TITLE}}</h3>
                         <p>
-                            各位辛苦打掃的爸爸們父親節快樂，在商城結帳時輸入優惠碼，即可享八八折優惠
+                            {{actRows[0].CONTENT}}
                         </p> 
-                        <p>2022/1/1~2022/12/31</p>
+                        <p>{{actRows[0].START}}~{{actRows[0].END}}</p>
                     </div>                        
                         <div class="copy">
-                            <input id="textArea2" value="2022HAPPY88" readonly>
+                            <input id="textArea2" :value="actRows[0].COUPON" readonly>
                             <button onclick="copyToClipBoard('textArea2')"><span>複製</span></button>
                         </div>  
                 </div>
                 <div class="acti_item">
                     <div class="img">
-                        <img src="img/activity/22soeasyevd.jpg">
+                        <img :src="'img/activity/'+ actRows[2].EVENT_IMG">
                     </div>
                     <div class="txt">
-                        <h3>收EASY業績突破 優惠活動</h3>
+                        <h3>{{actRows[2].TITLE}}</h3>
                         <p>
-                            本公司今年突破去年業績，在商城結帳輸入優惠碼<br>即可現折900元優惠
+                            {{actRows[2].CONTENT}}
                         </p> 
-                        <p>2022/1/1~2022/12/31</p>
+                        <p>{{actRows[2].START}}~{{actRows[2].END}}</p>
                     </div>                        
                         <div class="copy">
-                            <input value="22SOEASYEVD" readonly id="textAreas3"/>
+                            <input :value="actRows[2].COUPON" readonly id="textAreas3"/>
                             <button onclick="copyToClipBoard('textAreas3')"><span>複製</span></button>
                         </div>
                 </div>
@@ -96,19 +96,13 @@
                     </a>
                     <div class="txt">
                         <a href="columns.html" class="txt_h3">
-                            <h3>「別讓你的生活，過得毫無意識」堆積收納箱不叫整理，而是惡性囤積</h3>
+                            <h3>{{colRows[0].TOPIC}}</h3>
                         </a>
                          <div class="item">
-                            <div class="item_img"><img src="img/logo_act.jpg"></div>
-                            <div class="name">SOEASY</div>
+                            <div class="item_img"><img :src="'img/'+colRows[0].AUTHOR_PIC"></div>
+                            <div class="name">{{colRows[0].AUTHOR}}</div>
                         </div>
-                        <p>住家坪數小的購物狂家裡，想必一定是塞滿東西，如果又崇尚 IKEA 或是無印良品的簡約風，那一定會有不少收納家具或抽屜，至少我們家是這樣沒錯。實際上，那些捨不得丟的、裝在收納盒裡的東西，可能放了幾年都沒動過。
-                
-                            接觸零廢棄之後，我開始進行掃除長物的作業，從收納盒裡翻出一些稀奇古怪的東西，像是一整鞋盒的老照片，不少場景已沒了印象，甚至有些影中人連名字都忘了，原本是為了保留美好回憶而收藏的照片，卻完全沒了記憶，這似乎已失去收藏的意義了。所以，我最後只留下一些珍貴的照片，像是有紀念性的阿嬤照片，然後把一些可能對某些親友別具意義的照片還給當事人，連同一些不具意義的往返信件，毫不留情的統統送進碎紙機裡，正式向無意識生活說再見。
-                            
-                            當我把各種多餘的東西清掉之後，留下的空的收納箱，大大小小至少有 20 多個，真的是太驚人了，這不免讓我再一次反省自己真的太會亂買。因為很愛買，又懶得整理，看到家居雜誌上那種清爽潔淨的生活空間，就腦波弱的買了一堆收納箱及整理架，試圖讓家裡看起來整齊一點，效果當然沒有雜誌上那樣高雅簡潔。
-                            
-                            相信不少人都有同樣的問題，實際上這不叫整理收納，而是惡性囤積。我們現在是租屋而居，在小小的空間內堆滿收納盒，真正生活的空間越來越小，那到底是付租金給人住，還是給貨物住呢？真正有效果的收納，不外乎計畫性消費和不浪費，不僅能達到室內美觀簡潔的目標，還可以減少家庭支出和家務負擔，更不用擔心不知道東西收去哪兒了。</p>
+                        <p>{{colRows[0].CONTENT1}}</p>
                         <a href="columns.html" class="moreprd">more...</a>
                     </div>
                    
@@ -126,8 +120,8 @@
                             
                         </a>
                          <div class="item">
-                            <div class="item_img"><img src="img/logo_act.jpg"></div>
-                            <div class="name">SOEASY</div>
+                            <div class="item_img"><img :src="'img/'+colRows[0].AUTHOR_PIC"></div>
+                            <div class="name">{{colRows[0].AUTHOR}}</div>
                         </div>
                         <p>
                             臺灣極簡生活實踐家——末羊子，從月光購物狂變身為極簡推廣者，她強調極簡生活不是追求「零雜物、零慾望」，而是認清真正的自己。
@@ -211,8 +205,48 @@
 
     @@include('layout/footer.html')
 
-
-    <script>
+<script>
+        new Vue({
+                el:"#ActApp",
+                data:{
+                    actRows:[{COUPON: '', EVENT_IMG: '', TITLE: '', CONTENT: '', START: '',END: ''},
+                        {COUPON: '', EVENT_IMG: '', TITLE: '', CONTENT: '', START: '',END: ''},
+                        {COUPON: '', EVENT_IMG: '', TITLE: '', CONTENT: '', START: '',END: ''}],
+                    colRows:[{COLUMN_NO: '', AUTHER: '', AUTHER_PIC: '', DATE: '', TOPIC: '',CONTENT1: '',CONTENT2: '',MAIN_PIC: '',IMG1: '',IMG2: '',SUBTITLE_01: '',SUBTITLE_02: ''}]
+                },
+                methods: {
+                    getAct(){
+                        let xhr = new XMLHttpRequest();
+                        let thisVue = this;
+                        console.log(1);
+                        xhr.onload = function(){
+                            console.log(xhr.responseText);
+                            console.log(2);
+                            thisVue.actRows = JSON.parse(xhr.responseText);
+                        }
+                        xhr.open("get","php2/getActList.php", true);
+                        xhr.send(null);
+                    },
+                    getCol(){
+                        let xhr = new XMLHttpRequest();
+                        let thisVue = this;
+                        console.log(1);
+                        xhr.onload = function(){
+                            console.log(xhr.responseText);
+                            console.log(2);
+                            thisVue.colRows = JSON.parse(xhr.responseText);
+					}
+					xhr.open("get","php2/getColList.php", true);
+					xhr.send(null);
+				}
+                },
+                mounted() {
+                    this.getAct(),
+                    this.getCol()
+                },
+            });
+    
+            
         function copyToClipBoard(p1) {
 
         var content = document.getElementById(p1);
@@ -222,7 +256,8 @@
 
         alert("已複製!");
         }
+
+        
     </script>
-    
 </body>
 </html>
