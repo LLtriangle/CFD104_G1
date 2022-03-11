@@ -18,7 +18,7 @@ let member={};
               location.href="member.html";
             }
         };
-        xhr.open("post", "php/login.php", true);  
+        xhr.open("post", "phps/login.php", true);  
         xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
         
         let datas = {};
@@ -36,7 +36,7 @@ let member={};
     //   xhr.onload = function(){
     //     member = JSON.parse(xhr.responseText);
     //   }
-    //   xhr.open("get", "php/getMemberInfo.php", true);
+    //   xhr.open("get", "phps/getMemberInfo.php", true);
     //   xhr.send(null);
     // };
 
@@ -62,7 +62,7 @@ let member={};
         // 信箱驗證
         var emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
         if(emailRule.test($id("cusId").value)){
-          let url = "php/cus_vali.php?cusId=" + $id("cusId").value;
+          let url = "phps/cus_vali.php?cusId=" + $id("cusId").value;
           xhr.open("get", url, true);
           xhr.send(null);
         }else{
@@ -82,7 +82,7 @@ let member={};
         //跳轉
         location.href="member.html";
       }
-      xhr.open("post", "php/register.php", true);  
+      xhr.open("post", "phps/register.php", true);  
       xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
            
       let datas = {};

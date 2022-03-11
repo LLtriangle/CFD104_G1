@@ -50,12 +50,11 @@
             <div class="data_mem" v-if="data">
                 <div class="icon_edit">
                     <div class="mem_icon" >
-                        <img :src="cus_pic">
-                        <!-- <img src="img/Kurinachan_1.jpeg"> -->
+                        <form><img :src="cus_pic"></form>
                     </div>
-                    <button id="btnUpload" type="button" class="btn_btn br">
-                        編輯大頭貼
-                    </button>
+                    <input type="file" name="upFile" id="upFile" accept="image/jpeg, image/png" >
+                    <label id="btnUpload" class="btn_btn br" for="upFile">編輯大頭貼
+                    </label>
                 </div>
                 <!-- 氣氣氣table -->                  
                 <!-- 不是table -->
@@ -213,7 +212,7 @@
                     order:false, // 預設
                     cusRow:[{CUS_NO: '', EMAIL: '', CUS_NAME: '', CUS_TEL: '',SEX:''}],
                     gender:'',
-                    cus_pic:'', // 大頭貼
+                    cus_pic:'img/emp_img.jpg', // 預設大頭貼
                 },
                 methods: {
                     getMemberInfo(){
@@ -222,7 +221,9 @@
                         xhr.onload = function(){
                             thisVue.cusRow = JSON.parse(xhr.responseText);
                             console.log(thisVue.cusRow);
-                            thisVue.cus_pic = "img/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
+                            if(thisVue.cusRow.CUS_PIC!=''){
+                                thisVue.cus_pic = "img/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
+                            }
                             // console.log(thisVue.cus_pic);
                             if(thisVue.cusRow.SEX == "女"){
                                 $('#female').prop('checked',true);

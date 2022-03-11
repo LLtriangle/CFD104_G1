@@ -10,7 +10,7 @@ function getMemberInfo(){
     xhr.onload = function(){
     member = JSON.parse(xhr.responseText);
     }
-    xhr.open("get", "php/getMemberInfo.php", true);
+    xhr.open("get", "phps/getMemberInfo.php", true);
     xhr.send(null);
 };
 
@@ -40,16 +40,15 @@ function hideBtn(){
 
 // 取消修改資料
 function cancelMemberInfo(){
-
+    history.go(0);
 };
 // 更改會員資料
 function changeMemberInfo(){
     let xhr = new XMLHttpRequest();
     xhr.onload = function(){
-      alert(xhr.responseText); 
-
+      alert("修改成功!"); 
     }
-    xhr.open("post", "php/changeMemberInfo.php", true);  
+    xhr.open("post", "phps/changeMemberInfo.php", true);  
     xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
          
     // 抓格子裡的資料
@@ -70,11 +69,10 @@ function changeMemberInfo(){
 function logout(){        
     let xhr = new XMLHttpRequest();
     xhr.onload = function(){
-        alert("確認登出?");
         // 跳轉畫面
         window.location.assign("home.html");       
     }
-    xhr.open("get", "php/logout.php", true); // 清空session
+    xhr.open("get", "phps/logout.php", true); // 清空session
     xhr.send(null);
 };
 
