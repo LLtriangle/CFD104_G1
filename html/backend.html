@@ -24,7 +24,7 @@
                     </a>
                 </li>
                 <li>
-                    <a @click="content('plan')">
+                    <a @click="content('result')">
                         <span class="icon">
                             <!-- <ion-icon name="accessibility-outline"></ion-icon> -->
                         </span>
@@ -40,7 +40,7 @@
                     </a>
                 </li>
                 <li>
-                    <a @click="content('plan')">
+                    <a @click="content('prd')">
                         <span class="icon">
                             <!-- <ion-icon name="cart-outline"></ion-icon> -->
                         </span>
@@ -64,7 +64,7 @@
                     </a>
                 </li>
                 <li>
-                    <a @click="content('plan')">
+                    <a @click="content('event')">
                         <span class="icon">
                             <!-- <ion-icon name="mail-open-outline"></ion-icon> -->
                         </span>
@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="backend_columns.html">
+                    <a @click="content('columntable')">
                         <span class="icon">
                             <!-- <ion-icon name="mail-open-outline"></ion-icon> -->
                         </span>
@@ -110,14 +110,14 @@
             </div>
 
             <!-- cards -->
-            <div class="card_box">
+            <!-- <div class="card_box">
                 <div class="card">
                     <div>
                         <div class="numbers">8,808</div>
                         <div class="card_name">瀏覽人數</div>
                     </div>
                     <div class="icon_bx">
-                        <!-- <ion-icon name="eye-outline"></ion-icon> -->
+                        <ion-icon name="eye-outline"></ion-icon>
                     </div>
                 </div>
                 <div class="card">
@@ -126,7 +126,7 @@
                         <div class="card_name">銷售數量</div>
                     </div>
                     <div class="icon_bx">
-                        <!-- <ion-icon name="cart-outline"></ion-icon> -->
+                        <ion-icon name="cart-outline"></ion-icon>
                     </div>
                 </div>
                 <div class="card">
@@ -135,7 +135,7 @@
                         <div class="card_name">銷售金額</div>
                     </div>
                     <div class="icon_bx">
-                        <!-- <ion-icon name="cash-outline"></ion-icon> -->
+                        <ion-icon name="cash-outline"></ion-icon>
                     </div>
                 </div>
                 <div class="card">
@@ -144,13 +144,32 @@
                         <div class="card_name">完成個案</div>
                     </div>
                     <div class="icon_bx">
-                        <!-- <ion-icon name="file-tray-stacked-outline"></ion-icon> -->
+                        <ion-icon name="file-tray-stacked-outline"></ion-icon>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="details">
-                <res-component></res-component>
+                <div class="recent_orders">
+                    <div class="card_header">
+                        <h2>訂單狀態</h2>
+                        <a href="#" class="btn">全部</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th v-for="tableHead in showTableHead">{{tableHead}}</th>
+                                <th><button>新增</button></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="tableBody in showTableBody">
+                                <td v-for="tableBodyIndex in tableBody">{{tableBodyIndex}}</td>
+                                <td><button>修改</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <!-- order details list
                 <div class="recent_orders">
                     <div class="card_header">
@@ -300,57 +319,77 @@
         // list.forEach((item) =>
         // item.addEventListener('mouseover',activeLink));
         
-        const bus = new Vue();
-        Vue.component('resComponent',{
-            template: `
-            <div class="recent_orders">
-                <div class="card_header">
-                    <h2>訂單狀態</h2>
-                    <a href="#" class="btn">全部</a>
-                </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>PLAN_NO</td>
-                            <td>PLAN_NAME</td>
-                            <td>PLAN_TA</td>
-                            <td>PLAN_FEATURE</td>
-                            <td>PRICE</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="resCol in resJSON">
-                            <td>{{resCol.PLAN_NO}}</td>
-                            <td>{{resCol.PLAN_NAME}}</td>
-                            <td>{{resCol.PLAN_TA}}</td>
-                            <td>{{resCol.PLAN_FEATURE}}</td>
-                            <td>{{resCol.PRICE}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>`,
-            data() {
-                return {
-                    resJSON:'',
-                }
-            },
+        // Vue.component('finish-button',{
+        //     // template: `<button> Add </button>`,
+        //     template: `<input id="finish" @click="judge" class="btn_sub rd" type="button" value="完成放置" disabled>`,
+        //     methods: {
+        //         judge(){
+        //             if( $('#hiding img').length==1 && $('#garbage img').length<=1 ){
+        //                 bus.$emit('abc',this.personality='蝴蝶');   // 自訂事件
+        //             }else if( $('#hiding img').length<=5 && $('#garbage img').length<=1 ){
+        //                 bus.$emit('abc',this.personality='蜜蜂');   // 自訂事件
+        //             }else if( $('#hiding img').length>=5 && $('#garbage img').length<=3 ){
+        //                 bus.$emit('abc',this.personality='瓢蟲');   // 自訂事件
+        //             }else{
+        //                 bus.$emit('abc',this.personality='蟋蟀');   // 自訂事件
+        //             };
+        //         },
+        //     },
+        // });
+        // <div class="recent_orders">
+        //     <div class="card_header">
+        //         <h2>訂單狀態</h2>
+        //         <a href="#" class="btn">全部</a>
+        //     </div>
+        //     <table>
+        //         <thead>
+        //             <tr>
+        //                 <td>PLAN_NO</td>
+        //                 <td>PLAN_NAME</td>
+        //                 <td>PLAN_TA</td>
+        //                 <td>PLAN_FEATURE</td>
+        //                 <td>PRICE</td>
+        //             </tr>
+        //         </thead>
+        //         <tbody>
+        //             <tr v-for="resCol in resTable">
+        //                 <td>{{resCol.PLAN_NO}}</td>
+        //                 <td>{{resCol.PLAN_NAME}}</td>
+        //                 <td>{{resCol.PLAN_TA}}</td>
+        //                 <td>{{resCol.PLAN_FEATURE}}</td>
+        //                 <td>{{resCol.PRICE}}</td>
+        //             </tr>
+        //         </tbody>
+        //     </table>
+        // </div>
+
+
+
+		new Vue({
+			el:"#app",
+			data:{
+                showTableHead:'',
+                planTableHead:['編號','方案名稱','適合對象','方案特色','方案價格'],
+                resultTableHead:['編號','測驗人格','推薦方案','推薦商品1','推薦商品2','推薦商品3'],
+                columnTableHead:['編號','測驗人格','推薦方案','推薦商品1','推薦商品2','推薦商品3'],
+                showTableBody: '',
+			},
             methods: {
                 content(tableName) {
                     var vueApp = this;
                     // console.log(tableName);
                     $.ajax({
-                        url: `php/backend_service.php`,   // 呼叫的檔案或網址列
+                        url: `phps/backend_service.php`,   // 呼叫的檔案或網址列
                         data: `data=${tableName}`,     // 傳送到 server 端的資料，會自動轉成字串形式
                         type: 'GET',     // GET 或 POST
                         dataType: 'json', // response 的資料格式，xml | html | script | json | jsonp | text
                         success(res){
-                            // console.log(res);
-                            console.log(res[0]);
-                            vueApp.resJSON = res;
-                            // console.log(vueApp.resJSON);
-                            // console.log(vueApp.resJSON[0]);
-                            // console.log(vueApp.resJSON[0].PLAN_NAME);
-                            // bus.$emit('tableBus',vueApp.resJSON);   // 自訂事件
+                            vueApp.showTableBody = res;
+                            if (tableName=='plan') {
+                                vueApp.showTableHead = vueApp.planTableHead;
+                            }else if(tableName=='result'){
+                                vueApp.showTableHead = vueApp.resultTableHead;
+                            };
                         },
                         error(res){
                             console.log('error');
@@ -359,16 +398,6 @@
                     });
                 },
             },
-        });
-        
-
-
-
-		new Vue({
-			el:"#app",
-			data:{
-                // resJSON: '',
-			},
 		});
 
     </script>
