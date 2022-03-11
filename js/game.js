@@ -1,21 +1,4 @@
-// 未完成:拖曳物件
 function init() {
-    // 拖放物件
-    // $('#item_group img').draggable({
-    //     // cursor: 'grabbing',
-    //     // opacity: .5,
-    //     // revert: true,
-    //     // start(event){
-    //     //     event.addClass('selected');
-    //     // },
-        
-    // });
-    // $('#garbage').droppable({
-    //     activate: function( event, ui ) {
-    //         console.log(event.currentSrc());
-    //         // console.log(ui.draggable);
-    //     },
-    // });
 
     // 點選物件
     function itemClick(){
@@ -40,6 +23,7 @@ function init() {
             $(this).append($('#item_group img.selected'));
         }else if($(this).html()){
             // 條件:位置上已有物品
+            $(this).children().removeClass('selected');
             $(this).children().prependTo($('#item_group'));
         };
         finishButton();   // 送出按鈕disabled切換
@@ -87,6 +71,7 @@ function init() {
 
     // 點擊衣櫃內收納物
     $(document).on('click','#hiding img',function(e){
+        $(this).removeClass('selected');
         $(this).prependTo($('#item_group'));
         finishButton();   // 送出按鈕disabled切換
         if($('#wardrobe #hiding img').length == 0){
@@ -97,6 +82,7 @@ function init() {
 
     // 點擊垃圾
     $(document).on('click','#garbage img',function(e){
+        $(this).removeClass('selected');
         $(this).prependTo($('#item_group'));
         finishButton();   // 送出按鈕disabled切換
         if($('#trashcan #garbage img').length == 0){
@@ -147,39 +133,6 @@ function init() {
 
     $('#select_all').on('change',selectAll);
     
-    // 拖放物件
-
-    // leftbox = document.querySelector('#item_group');
-    // image = document.querySelector('#item_group img');
-    // pullboxs = document.querySelectorAll('.pullbox_group .pullbox');
-    // console.log(pullboxs);
-    // console.log(pullboxs[1]);
-
-    // image.addEventListener('dragstart',startDrag);
-    // image.addEventListener('dragend',endDrag);
-    
-    // pullboxs[0].addEventListener('dragenter',function(e){e.preventDefault();});
-    // pullboxs[0].addEventListener('dragover',function(e){e.preventDefault();});
-    // pullboxs[0].addEventListener('drop',dropped);
-
-    // function startDrag(e){
-    //     // let data = '<img src="https://picsum.photos/225/225/?random=10">';
-    //     e.dataTransfer.setData('picsum',e.target.id);
-    //     console.log(e.target.src);
-    // };
-
-    // function endDrag(e){
-    //     // image.style.visibility = 'hidden';
-    //     // e.target.style.visibility = 'hidden';
-    //     // e.target.style.display = 'none';
-    // };
-
-    // function dropped(e){
-    //     e.preventDefault();
-    //     console.log(this);
-    //     $(this).append($(`#${e.dataTransfer.getData('picsum')}`));
-    // };
-
 };
 window.addEventListener("load",init,false);
 
