@@ -31,43 +31,25 @@
 		</section>
         
         
-        <section class="activity">    
-            <h3>「別讓你的生活，過得毫無意識」堆積收納箱不叫整理，而是惡性囤積</h3>
+        <section class="activity" id="colApp">
+            <h3>{{colRows[0].TOPIC}}</h3>
             <div class="item">
-                <div class="item_img"><img src="img/logo_act.jpg"></div>
-                <div class="name">SOEASY</div>
+                <div class="item_img"><img :src="'img/'+colRows[0].AUTHOR_PIC"></div>
+                <div class="name">{{colRows[0].AUTHOR}}</div>
             </div>
             <div class="img">
-                <img src="img/activity/column_01.jpg" alt="">
+                <img :src="'img/activity/'+colRows[0].MAIN_PIC" alt="">
             </div>
             <div class="txt">
-                <h4>堆積收納箱，不叫整理</h4>
-                <p>
-                    住家坪數小的購物狂家裡，想必一定是塞滿東西，如果又崇尚 IKEA 或是無印良品的簡約風，那一定會有不少收納家具或抽屜。實際上，那些捨不得丟的、裝在收納盒裡的東西，可能放了幾年都沒動過。
-                
-                    接觸零廢棄之後，開始進行掃除長物的作業，從收納盒裡翻出一些稀奇古怪的東西，像是一整鞋盒的老照片，不少場景已沒了印象，甚至有些影中人連名字都忘了，原本是為了保留美好回憶而收藏的照片，卻完全沒了記憶，這似乎已失去收藏的意義了。所以，最後只留下一些珍貴的照片，像是有紀念性的阿嬤照片，然後把一些可能對某些親友別具意義的照片還給當事人，連同一些不具意義的往返信件，毫不留情的統統送進碎紙機裡，正式向無意識生活說再見。
-                
-                    當把各種多餘的東西清掉之後，留下的空的收納箱，大大小小至少有 20 多個，真的是太驚人了，這不免再一次反省自己真的太會亂買。因為很愛買，又懶得整理，看到家居雜誌上那種清爽潔淨的生活空間，就腦波弱的買了一堆收納箱及整理架，試圖讓家裡看起來整齊一點，效果沒有雜誌上那樣高雅簡潔。
-                
-                    相信不少人都有同樣的問題，實際上這不叫整理收納，而是惡性囤積。在小小的空間內堆滿收納盒，真正生活的空間越來越小，真正有效果的收納，就是計畫性消費和不浪費，不僅能室內美觀簡潔的目標，還可以減少家庭支出和家務負擔，更不用擔心不知道東西收去哪兒了。
-                
-                
-                    </p>
+                <h4>{{colRows[0].SUBTITLE_01}}</h4>
+                <p>{{colRows[0].CONTENT1}}</p>
             </div>
             <div class="img">
-                <img src="img/service_07.jpg" alt="">
+                <img :src="'img/'+ colRows[0].IMG1" alt="">
             </div>
             <div class="txt">
-                <h4>你可以越收越少</h4>
-                <p>
-                    收納盒就像個神秘黑洞，當你把東西放進盒子裡，要再打開的機率幾乎零。我自己光是清空收納盒就花了兩年半之久。回想起來是一段相當折磨人的過程，好像被懲罰一樣，但畢竟是自己造的惡業，也沒有什麼好抱怨的。我當時把整理好的東西，透過交換社團、贈物網或公益單位，一一媒合給需要的人。
-                
-                    花時間處理自己花錢買來的垃圾也不全然是災難一樁，透過斷捨離逐一清理長物的過程中，我也更了解自己，更清楚自己在做什麼，這也可以說是洗滌心靈的好方法。如果你還沒開始零廢棄生活，也想從整理多餘的物品開始，建議你可以這樣做：
-                
-                    整理前不要急著買收納箱。
-                    把東西全部都放在一個大空間，檢視你的物品。
-                    檢視一年以上沒拿來用的物品，留下需要的，不需要的就幫他們找新家，可透過贈送、換物或分類回收的方式。
-                    確認需要的物品之後，再開始規畫收納空間。</p>
+                <h4>{{colRows[0].SUBTITLE_02}}</h4>
+                <p>{{colRows[0].CONTENT2}}</p>
             </div>
         </section>
 
@@ -75,7 +57,31 @@
 
     @@include('layout/footer.html')
 
-
+<script>
+    new Vue({
+			el:"#colApp",
+			data:{
+				colRows:[{COLUMN_NO: '', AUTHER: '', AUTHER_PIC: '', DATE: '', TOPIC: '',CONTENT1: '',CONTENT2: '',MAIN_PIC: '',IMG1: '',IMG2: '',SUBTITLE_01: '',SUBTITLE_02: ''}]
+			},
+			methods: {
+				getCol(){
+					let xhr = new XMLHttpRequest();
+					let thisVue = this;
+					console.log(1);
+					xhr.onload = function(){
+						console.log(xhr.responseText);
+						console.log(2);
+						thisVue.colRows = JSON.parse(xhr.responseText);
+					}
+					xhr.open("get","php2/getColList.php", true);
+					xhr.send(null);
+				}
+			},
+			mounted() {
+				this.getCol()
+			},
+		});
+</script>
     
 </body>
 </html>
