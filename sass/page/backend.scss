@@ -187,9 +187,9 @@ body{
     position: relative;
     width: 100%;
     padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    grid-gap: 30px;
+    // display: grid;
+    // grid-template-columns: repeat(4,1fr);
+    // grid-gap: 30px;
     .card{
         position: relative;
         background: map-get($color, 'bg');
@@ -228,13 +228,13 @@ body{
     position: relative;
     width: 100%;
     padding: 20px;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-gap: 30px;
+    // display: grid;
+    // grid-template-columns: 2fr 1fr;
+    // grid-gap: 30px;
     // margin-top: 10px;
     .recent_orders{
         position: relative;
-        display: grid;
+        // display: grid;
         min-height: 500px;
         background: map-get($color, 'bg');
         padding: 20px;
@@ -290,7 +290,11 @@ body{
                     border-bottom: none;
                 }
                 td{
+                    overflow:hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
                     padding: 10px;
+                    max-width: 170px;
                     &:last-child{
                         text-align: end;
                     }
@@ -326,7 +330,7 @@ body{
         border-collapse: collapse;
         margin-top: 10px;
         thead{
-            td{
+            th{
                 font-weight: 600;
             }
         }
