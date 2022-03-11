@@ -14,13 +14,6 @@
     <main  id="mem_data">
         <!-- 會員功能欄開始 ---------------------------->
         <section class="data_column">
-            <!-- <div class="mem_icon">
-                <img src="https://picsum.photos/100/100/?random=33">
-            </div> -->
-            <!-- <div class="id">
-                <p>王雪碧</p>
-                <p>G1G1_cfd104</p>
-            </div> -->
             <!-- 功能欄--各細項 data_button ------------------>
             <div class="data_button">
                 <input type="checkbox" id="m_data">
@@ -60,7 +53,7 @@
                         <img :src="cus_pic">
                         <!-- <img src="img/Kurinachan_1.jpeg"> -->
                     </div>
-                    <button class="btn_btn bl">
+                    <button class="btn_btn br">
                         編輯大頭貼
                     </button>
                 </div>
@@ -165,8 +158,10 @@
                             <input class='memberLeft memberAdr' type="text" v-model=cusRow.CUS_ADD></p>
                         </label>
                     </div>
-                    
-                    <button type="submit" class="btn_sub br">儲存修改</button>
+                    <!-------新增取消修改-------->
+
+                    <button type="button" class="btn_sub bl cancel">取消修改</button>
+                    <button type="button" class="btn_sub br">儲存修改</button>
                 </div>
             </div>
             <!--------------------- 我是可愛分隔線 --------------------->

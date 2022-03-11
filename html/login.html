@@ -15,43 +15,46 @@
     <main>
         <!-- rwd專屬 -->
         <div class="lo_or_si">
-            <button class="rwd_button sirwd" id="si_box">註冊</button>
-            <button class="rwd_button lorwd" id="lo_box">登入</button>
+            <button type="button" class="rwd_button sirwd" id="si_box">註冊</button>
+            <button type="button" class="rwd_button lorwd" id="lo_box">登入</button>
         </div>
       <!-- 註冊 -->
         <div class="container signup_container" id="signup_container" >
             <form class="form" id="a-form">
-            <h2 class="form_title title">註冊</h2>
-            <div class="form_icons">
-                <img class="form_icon" src="" alt="">
-                <img class="form_icon" src="">
-                <img class="form_icon" src="">
+                <h2 class="form_title title">註冊</h2>
+                <div class="form_icons">
+                    <img class="form_icon" src="" alt="">
+                    <img class="form_icon" src="">
+                    <img class="form_icon" src="">
                 </div>
                 <span class="form_span">使用郵箱免費註冊會員</span><br>
+                <!-- 姓名 -->
+                <input id="cusName" class="form_input" type="text" placeholder="姓名" required="required" minlength="2"/><br>
+                <!-- 註冊帳號 -->
+                <input id="cusId" class="form_input" type="email" placeholder="E-mail" required="required">
+                <span id="idMsg"></span>
+                <br>
+                <!-- 註冊密碼 -->
+                <input id="cusPsw" class="form_input" type="password" placeholder="設定密碼(格式:含英數至少六個字元)" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$" required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('請輸入正確的密碼格式:含英數至少六個字元');"/><br>
 
-            <input class="form_input" type="text" placeholder="姓名" required="required" minlength="2"/><br>
-            <input class="form_input" type="email" placeholder="E-mail" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/><br>
-            <input class="form_input" type="password" placeholder="設定密碼(格式:含英數至少六個字元)" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$" required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('請輸入正確的密碼格式:含英數至少六個字元');"/><br>
-            <input type="submit" class="form_button button" value="註冊">
+                <input id="btnRegister" type="button" class="form_button button" value="註冊">
             </form>
         </div>
         <!-- 登入 -->
         <div class="container login_container" id="login_container">
-            <form class="form" id="b-form" method="" action="">
+            <form class="form" id="b-form">
                 <h2 class="form_title title">登入</h2>
                 <div class="form_icons"><img class="form_icon" src="" alt=""><img class="form_icon" src="">
                     <img class="form_icon" src="">
                 </div>
                 <span class="form_span">使用您的郵箱登入</span><br>
-                <!-- 帳號 -->
+                <!-- 登入帳號 -->
                 <input id="memId" class="form_input" type="email" placeholder="E-mail" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/><br>
-                <!-- 密碼 -->
+                <!-- 登入密碼 -->
                 <input id="memPsw" class="form_input" type="password" placeholder="密碼" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$" required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('請輸入正確的密碼格式:含英數至少六個字元');"/><br>
                 <a class="form_link">忘記您的密碼?</a><br>
                 <!-- 登入 -->
-                <input id="btnLogin" type="submit" class="form_button button" value="登入">
-                <!-- <a href="member.html" class="form_button button ">登入</a> -->
-                
+                <input id="btnLogin" type="button" class="form_button button" value="登入">             
             </form>
         </div>
 
@@ -63,13 +66,13 @@
             <div class="switch_container" id="switch-c1">
                 <h2 class="switch_title title">歡迎訪客 !</h2><br>
                 <p class="switch_description description">目前想不到內容的小標</p><br>
-                <button class="switch_button button switch-btn">登入</button>
+                <button type="button" class="switch_button button switch-btn">登入</button>
             </div>
         <!-- 會員回來 -->
             <div class="switch_container is-hidden" id="switch-c2">
                 <h2 class="switch_title title">親愛的會員 !</h2><br>
                 <p class="switch_description description">享受你獨家的整理服務吧</p><br>
-                <button class="switch_button button switch-btn">註冊</button>
+                <button type="button" class="switch_button button switch-btn">註冊</button>
             </div>  
 
         </div>

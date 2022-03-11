@@ -83,7 +83,7 @@ table{
     td {
         text-align: center;
         padding: 0.3em 0.4em;
-        color: map-get($color, 'plain_blue');
+        color: map-get($color, 'black');
         .product{
             height: 50px;
         }
@@ -165,4 +165,70 @@ textarea {
 .card_img{
     max-width: 50px;
     max-height: 30px;
+}
+
+// RWD
+
+@media screen and (max-width: 830px) {
+    input{
+        width: 100%;
+        margin: 10px auto;
+        box-sizing: border-box;
+        height: 45px;
+    }
+    select{
+        margin: 10px auto;
+        width: 100%;
+        height: 45px;
+    }
+    .tabcontent{
+        padding: 30px 20px;
+        border-top-left-radius: unset;
+        border-top-right-radius: unset;
+    }
+    .container{
+        width: 100%;
+        min-width: unset;
+        .progress{
+            margin-left:0;
+            a{  
+                font-size: 15px;
+                width:calc(100%/3);
+                box-sizing: border-box;
+                img{
+                    width: 20px;
+                }
+            }
+        }
+    }
+    // 第二頁
+    .payment{
+        .ccard{
+            width: 100%;
+            display: block;
+            .c_pic{
+                margin-top: 10px;
+                width: 100%;
+                img{
+                    width: 50%;
+                }
+            }
+            .table_ccard{
+                width: 100%;
+                box-sizing: border-box;
+                margin: 0 auto;
+                div{
+                    box-sizing: border-box;
+                    margin: 20px 0;
+                    h4{
+                        margin-right: 10px;
+                    }
+                    select{
+                        margin: 10px auto;
+                        min-width: unset;
+                    }
+                }
+            }
+        }
+    }
 }

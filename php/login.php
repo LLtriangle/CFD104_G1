@@ -12,7 +12,7 @@ try{
     $cus->execute();
 
     if( $cus->rowCount()==0){ // 非會員
-        echo "查無此人"; // 傳回字串 xhr.responseText="查無此人"
+        echo "{}"; // 傳回字串 xhr.responseText="exist"
     }else{ //登入成功
         //自資料庫中取回資料
         $cusRow = $cus->fetch(PDO::FETCH_ASSOC);
@@ -25,7 +25,6 @@ try{
         $_SESSION["CUS_PIC"] = $cusRow["CUS_PIC"];
 
         //送出會員資料
-
         $result = [
         "CUS_NO" => $_SESSION["CUS_NO"],
         "EMAIL" => $_SESSION["EMAIL"], 

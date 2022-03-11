@@ -174,9 +174,13 @@ input{
                     position: relative;
                     button{
                         position: absolute;
-                        right: 3%;
+                        right: 5%;
                         // bottom: 0;
                         padding: 4px 10px;
+                    }
+                    .cancel{
+                        right: auto;
+                        left: 5%;
                     }
                     .item_box{
                         margin: 15px 0px;
@@ -316,6 +320,9 @@ input{
                         position: absolute;
                         right: 10px;
                         bottom: 10px;
+                    }
+                    .cancel{
+                        right: 144px;
                     }
                     .gender{
                         margin-top: 40px;
