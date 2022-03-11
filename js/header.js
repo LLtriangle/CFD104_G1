@@ -29,13 +29,15 @@ $(window).on('load',function(){
         
     });
 
+    // go_top
     $('.go_top span').on('click',function () {
         $('html, body').animate({
-        scrollTop: 0,
+            scrollTop: 0,
         }, 500);
         return false;
     });
-    
+
+
     gsap.registerPlugin(ScrollTrigger);
 
     let showAnim = gsap.from("header", { 

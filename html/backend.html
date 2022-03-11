@@ -6,49 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>後台</title>
     <link rel="stylesheet" href="css/backend.css">
+    <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="navigation">
             <ul>
                 <li>
-                    <a href="#">
+                    <a data-id="plan">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="title"></ion-icon>主頁</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a data-id="plan">
                         <span class="icon"><ion-icon name="accessibility-outline"></ion-icon></span>
                         <span class="title">員工管理</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a data-id="plan">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="title">會員管理</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a data-id="plan">
                         <span class="icon"><ion-icon name="cart-outline"></ion-icon></span>
                         <span class="title">商品管理</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a data-id="plan">
                         <span class="icon"><ion-icon name="receipt-outline"></ion-icon></span>
                         <span class="title">訂單管理</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a data-id="plan">
                         <span class="icon"><ion-icon name="file-tray-stacked-outline"></ion-icon></span>
                         <span class="title">服務管理</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a data-id="plan">
                         <span class="icon"><ion-icon name="mail-open-outline"></ion-icon></span>
                         <span class="title">活動管理</span>
                     </a>
@@ -60,7 +61,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a data-id="plan">
                         <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
                         <span class="title">登出</span>
                     </a>
@@ -267,16 +268,35 @@
             main.classList.toggle('active');
         }
 
-        //add hovered class in selected list item
-        let list = document.querySelectorAll('.navigation li');
-        function activeLink(){
-            list.forEach((item) =>
-            item.classList.remove('hovered'));
-            item.classList.add('hovered');
-        }
-        list.forEach((item) =>
-        item.addEventListener('mouseover',activeLink));
+        // //add hovered class in selected list item
+        // let list = document.querySelectorAll('.navigation li');
+        // function activeLink(){
+        //     list.forEach((item) =>
+        //     item.classList.remove('hovered'));
+        //     item.classList.add('hovered');
+        // }
+        // list.forEach((item) =>
+        // item.addEventListener('mouseover',activeLink));
         
+
+        $(".navigation li a").on("click",function() {
+            console.log($(this).data("id"));
+            console.log(`data=${$(this).data("id")}`);
+            $.ajax({
+                url: `php/backend_service.php`,   // 呼叫的檔案或網址列
+                data: `data=${$(this).data("id")}`,     // 傳送到 server 端的資料，會自動轉成字串形式
+                type: 'GET',     // GET 或 POST
+                dataType: 'json', // response 的資料格式，xml | html | script | json | jsonp | text
+                success(res){
+                    console.log(res);
+                    $('.details').html(`${res}`);
+                },
+                error(res){
+                    console.log('error');
+                    console.log(res);
+                },
+            });
+        });
     </script>
 </body>
 </html>
