@@ -197,7 +197,7 @@ function createCalendar(){
                 let dp = new Date();
                 let month00 = dp.getMonth(); // 現在月份
                 if(actual.getDate() <= data.getDate() && actual.getMonth() <= month00){
-                    td.className = 'fora';
+                    td.className = 'past';
                 }
     
                 // today=今天
@@ -232,7 +232,7 @@ function createCalendar(){
 
                 for(let i=0; i<tds.length; i++){
 
-                    if(tds[i].className.indexOf('fora') == -1 && tds[i].className.indexOf('today') == -1 && tds[i].className.indexOf('full') == -1){
+                    if(tds[i].className.indexOf('fora') == -1 && tds[i].className.indexOf('today') == -1 && tds[i].className.indexOf('full') == -1 && tds[i].className.indexOf('past') == -1 ){
                         tds[i].onclick=function(){	
                             // tds[i] 是這個被點到的格子
                             $('#calendari td').removeClass("active");

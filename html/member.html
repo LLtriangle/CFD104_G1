@@ -50,7 +50,10 @@
             <div class="data_mem" v-if="data">
                 <div class="icon_edit">
                     <div class="mem_icon" >
-                        <form><img :src="cus_pic"></form>
+                        <form id="myForm" enctype="multipart/form-data">
+                            <!-- 大頭貼 -->
+                            <img id="myImg" :src="cus_pic">
+                        </form>
                     </div>
                     <input type="file" name="upFile" id="upFile" accept="image/jpeg, image/png" >
                     <label id="btnUpload" class="btn_btn br" for="upFile">編輯大頭貼
