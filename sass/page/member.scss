@@ -139,6 +139,7 @@ input{
             border: #d6aa81 2px solid;
             border-radius: 20px;
             flex-direction: row;
+            overflow: hidden;
             .data_mem{
                 .icon_edit{
                     .mem_icon{
@@ -277,6 +278,7 @@ input{
             border: #d6aa81 2px solid;
             border-radius: 20px;
             flex-direction: row;
+            overflow: hidden;
             .data_mem{
                 display: flex;
                 height: 90%;

@@ -106,7 +106,7 @@
                         </label>
                     </div>
                     <!-------新增取消修改-------->
-                    <button id="btnCancel" type="button" class="btn_sub bl cancel">取消修改</button>
+                    <button id="btnCancel" type="button" class="btn_sub bl cancel" @click="getMemberInfo">取消修改</button>
                     <button id="btnSave" type="button" class="btn_sub br">儲存修改</button>
                     <button id="btnChange" type="button" class="btn_sub br">修改會員資料</button>
                 </div>
@@ -230,7 +230,7 @@
                             // console.log(thisVue.cus_pic);
                             if(thisVue.cusRow.SEX == "女"){
                                 $('#female').prop('checked',true);
-                            }else{
+                            }else if(thisVue.cusRow.SEX == "男"){
                                 $('#male').prop('checked',true);
                             }   
                         }
