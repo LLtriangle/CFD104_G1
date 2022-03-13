@@ -38,10 +38,6 @@ function hideBtn(){
     $('.radio-input').attr("disabled",true);
 }
 
-// 取消修改資料
-function cancelMemberInfo(){
-    history.go(0);
-};
 // 更改會員資料
 function changeMemberInfo(){
     let xhr = new XMLHttpRequest();
@@ -59,7 +55,7 @@ function changeMemberInfo(){
     datas.memSex = $('input:radio:checked[name="gender"]').val(); // 修改後性別
     datas.memTel = $("#cus_tel").val(); // 修改後電話
     datas.memAdd = $("#cus_add").val(); // 修改後地址
-    datas.memImg = $("#myImg").attr('src'); // 修改後照片
+    // datas.memImg = $("#myImg").attr('src'); // 修改後照片
     
     let data_info = "json=" + JSON.stringify(datas);
     xhr.send(data_info);
@@ -82,9 +78,9 @@ function uploadFile(){
     upFile.onchange=function(e){ //選檔案:change事件
         let file = e.target.files[0]; //找物件
         let reader = new FileReader(); //reader讀物件
-        reader.onload = function(){  //讀完發生onload事件 結果在result裡
+        reader.onload = function(){ 
             $id("myImg").src = reader.result;
-            // console.log($("#myImg").attr('src'));
+            console.log($("#myImg")[0]);
         }
         reader.readAsDataURL(file);
     }
@@ -94,7 +90,6 @@ function init(){
     getMemberInfo();
     uploadFile();
     $id('btnLogout').addEventListener("click",logout);
-    $id('btnCancel').addEventListener("click",cancelMemberInfo);
     $id('btnCancel').addEventListener("click",hideBtn);
     $id('btnSave').addEventListener("click",changeMemberInfo);
     $id('btnSave').addEventListener("click",hideBtn);

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @@include('layout/head.html')
+    <title>員工後台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/emp.css">
+    <link rel="stylesheet" href="css/calendar.css">
+</head>
+<body>
+    @@include('layout/header.html')
+    <main  id="emp_data">
+        <!-- 左側選單 ---------------------------->
+        <section class="data_column">
+            <!-- 功能欄--各細項 data_button ------------------>
+            <div class="data_button">
+                <input type="checkbox" id="m_data">
+                <label for="m_data" class="id">
+                    <div class="mem">
+                        <div class="mem_icon">
+                            <img :src="emp_pic">
+                        </div>
+                        <div class="mem_p">
+                            <!-- 名字 -->
+                            <p>麻里不會</p>
+                        </div>
+                        <img src="img/memupupdowndown.png" alt="" class="up_down">
+                    </div>
+                </label>
+                <div class="con_data">
+                    <a>工作行程</a><br>
+                    <a>工作紀錄</a><br>
+                    <a id="btnLogout">登出</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 員工資料 -------------------------->
+        <section class="data_con">
+            <!-- 資料區的頭上槓槓 -->
+            <div class="title_color"></div>
+            <!-- 資料區的內容盒子 data_mem------------------>
+            <!-- 工作行程 -->
+            <div class="data_mem emp_sch flex">
+                <!-- 預約明細 -->
+                <div class="datails_info flex">
+                    <table class="d_table">
+                        <tr>
+                            <td>姓名</td>
+                            <td>客戶姓名</td>
+                        </tr>
+                        <tr>
+                            <td>電話</td>
+                            <td>客戶電話</td>
+                        </tr>
+                        <tr>
+                            <td>地址</td>
+                            <td>客戶的地址</td>
+                        </tr>
+                        <tr>
+                            <td>預約方案</td>
+                            <td>客戶的預約方案</td>
+                        </tr>
+                        <tr>
+                            <td>整理師</td>
+                            <td>選你去!!!</td>
+                        </tr>
+                        <tr>
+                            <td>預約日期</td>
+                            <td>客戶的預約日期</td>
+                        </tr>
+                        <tr>
+                            <td>預約時段</td>
+                            <td>客戶的預約時段</td>
+                        </tr>
+                        <tr>
+                            <td>需求</td>
+                            <td>客戶需求放在這裡</td>
+                        </tr>
+
+                    </table>
+                    <div class="d_pic center">
+                        <img id="info_pic" src="https://picsum.photos/300/200/?random=10">
+                    </div>
+                </div>
+
+                <!-- 月曆 -->
+                <div class="emp_calendar">
+                    <button class="btn_btn br btn_job relative" type="button">請假</button>
+
+                    <div id="calendari"></div>
+                </div>
+            </div>
+
+
+
+            <!-- 工作紀錄 -->
+            <div class="data_mem">
+
+            </div>
+        </section>
+
+    </main>
+    <!-- ------------ 我是Vue分隔線 ------------ -->
+        <script >
+            new Vue({
+                el:'#emp_data',
+                data:{
+                    emp_pic:'img/emp_img.jpg', // 預設大頭貼
+                },
+                methods: {
+                    getEmpInfo(){
+                        let xhr = new XMLHttpRequest();
+                        let thisVue = this;
+                        xhr.onload = function(){
+                            // thisVue.cusRow = JSON.parse(xhr.responseText);
+                            // console.log(thisVue.cusRow);
+                            // if(thisVue.cusRow.CUS_PIC!=''){
+                            //     thisVue.cus_pic = "img/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
+                            // }  
+                        }
+                        xhr.open("get", "phps/getEmpInfo.php", true);
+                        xhr.send(null);
+                    },
+                },
+                mounted() {
+                    this.getEmpInfo();
+                },
+            });
+        </script>
+<!-- <script src="js/member.js"></script> -->
+<script src="js/calendar.js"></script>
+</body>
+</html>
