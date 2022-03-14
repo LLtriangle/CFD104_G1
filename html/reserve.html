@@ -106,7 +106,7 @@
                     <div class="form_item choose_emp">
                         <h3>選擇整理師</h3>
                         <div>
-                            <select v-model="selectedEmp">
+                            <select v-model="selectedEmp" @change="getInfo()">
                                 <option value="" disabled>請選擇</option>
                                 <option v-for="emp in emps">{{emp}}</option>
                             </select>
@@ -428,6 +428,7 @@
             dataDate: null,
             dataTime: null,
             ccard_src:'',
+            info:[],
         },
         watch: {
             credit_card(nVal, oVal) {
@@ -487,6 +488,24 @@
                     this.activetab = `${num}`
                 }
             },
+            getInfo(){
+                let emp_name = this.selectedEmp;
+                console.log(emp_name);
+                let thisVue = this;
+                $.ajax({
+                    url: `phps/reserve.php`,
+                    data: `data=${emp_name}`, 
+                    type: 'GET', 
+                    dataType: 'json', 
+                    success(res){
+                        console.log(res);
+                    },
+                    error(res){
+                        console.log('error');
+                        console.log(res);
+                    },
+                });
+            },
         },
         computed: {
             plan0_info() {
@@ -523,6 +542,9 @@
                     this.ccard_src='img/mstercard.gif'
                 }
             }
+        },
+        mounted() {
+            // this.getMemberInfo();
         },
     });
 
