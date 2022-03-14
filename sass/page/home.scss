@@ -51,7 +51,7 @@ $section_margin_top: 60px;
         &.enter{
             transform: translate(0, 0);
             opacity: 1;
-            transition: transform .8s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+            transition: transform .3s cubic-bezier(0.215, 0.61, 0.355, 1), opacity .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
         }
 
     }
@@ -71,15 +71,42 @@ $section_margin_top: 60px;
         height: 100vh;    
     }
 
-    // @include PC{
-    //     display: grid;
-    //     grid-template-columns: 50% 50%;
-    //     grid-template-areas: "full_view_box logo_view";
-    // }
     .img_grow{
         background-image: url(../img/about.jpg);
         background-position: center;
         background-size: cover;
+        display: flex;
+        clip-path: polygon(50% 0%, 100% 26%, 100% 100%, 0 100%, 0 26%);
+
+        // // 透明度 0.6 的黑色半透明遮罩
+        background-color: rgba(0, 0, 0, .2);
+        // // 設置背景混和模式為相乘模式
+        background-blend-mode: multiply;
+
+
+        .blur_txt{
+            color: #fff;
+            display: block;
+            align-items: center;
+            // display: none;
+            margin: 40px;
+
+            @include pad{
+                margin: 40px 20px;   
+            }
+
+            h2{
+                padding: 0;
+                transform: translateY(0);
+            }
+
+            p{
+                @include pad{
+                    padding-top: 20px;
+                }
+                opacity: 0;
+            }
+        }
     }
 
     
@@ -126,8 +153,6 @@ $section_margin_top: 60px;
         }
     }
     
-    
-
     .logo_view{
         height: 100vh;
         background-color: map-get($color , "cover" );
@@ -166,7 +191,7 @@ $section_margin_top: 60px;
 
         .web_title{
             padding-top: 100px;
-            padding-bottom: 40px;
+            padding-bottom: 20px;
             margin: auto;
 
             h1, p{
@@ -393,6 +418,7 @@ $section_margin_top: 60px;
 
     .rolling_case_img{
         width: 100%;
+        max-width: $max_w_s;
         overflow: hidden;
         position: relative;
 
@@ -401,75 +427,86 @@ $section_margin_top: 60px;
         }
         
         ul{
-            // width: 6215%;
-            // // position: relative;
-            // // transition-duration: 80s;
-            // transition-timing-function: linear;
-            // transform: translate3d(-3960px, 0px, 0px);
             display: flex;
             align-items: center;
+            justify-content: center;
+            transition: width 1s linear;
+            // 無限循環輪播
+            animation: run 20s infinite linear;
 
+            @include pad{
+                width: calc(260px * 12);    
+            }
+
+            @include PC{
+                width: calc(400px * 12);
+            }
+
+            &:hover{
+                animation-play-state: paused;
+            }
+            
             li{
                 position: relative;
                 height: auto;
-                // animation: run 15s infinite;
                 margin: 0 20px;
-
-                .roll_img_box{
-                    @include pad{
-                        width: 260px;
-                        height: 215px;
-                          
-                    }
-
-                    @include PC{
-                        width: 400px;
-                        height: 300px;   
-                    }
-
-                    img{
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        object-position: center;
-                    }
-
-                    // background-size: cover;
-                    // background-position: center;
-
-                    // &._1{
-                    //     background-image: url(../img/service_01.jpg);
-                    // }
-                    // &._2{
-                    //     background-image: url(../img/service_02.jpg);
-                    // }
-                    // &._3{
-                    //     background-image: url(../img/service_07.jpg);
-                    // }
-                    // &._4{
-                    //     background-image: url(../img/service_04.jpg);
-                    // }
-                    // &._5{
-                    //     background-image: url(../img/service_05.jpg);
-                    // }
-                    // &._6{
-                    //     background-image: url(../img/service_06.jpg);
-                    // }
+                perspective: 50px;
+                
+                @include pad{
+                    width: 260px;
+                    height: 215px;
+                        
                 }
 
-                @keyframes run {
-                    0%{
-                        transform: translate3d(0px, 0px, 0px);
-                    }
+                @include PC{
+                    width: 400px;
+                    height: 300px;   
+                }
 
-                    50%{
-                        transform: translate3d(-3960px, 0px, 0px);
-                    }
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                    transition: .5s;
+                }
 
-                    100%{
-                        transform: translate3d(0px, 0px, 0px);
+                // 無限循環輪播被hover到時放大
+                & img:hover{
+                    transform: translateZ(5px);
+                    transition: .5s;
+                }
+
+                // 無限循環輪播手機版
+                @include pad{
+                    @keyframes run {
+                    
+                        0%{
+                            transform: translateX(0);
+                        }
+    
+                        100%{
+                            transform: translateX( calc(-260px * 6 + 2px) );
+                        }
+                    }
+        
+                }
+
+                // 無限循環輪播電腦版
+                @include PC{
+                    @keyframes run {
+                    
+                        0%{
+                            transform: translateX(0);
+                        }
+    
+                        100%{
+                            transform: translateX( calc(-400px * 6 + 2px) );
+                        }
                     }
                 }
+                
+                
             }
         }
     }
@@ -570,9 +607,6 @@ $section_margin_top: 60px;
     margin-bottom: 60px;
     
     ul{
-        // margin: auto;
-        // max-width: $max_w_s;
-        // position: relative;
         margin-top: 120px;
         
             @include PC{
@@ -603,35 +637,6 @@ $section_margin_top: 60px;
                 
             }
         }
-        
-        // & li:first-child{
-        //     &::after{
-        //         width: 0%;
-        //         height: 3px;
-        //         left: 20%;
-        //         transition: 2s;
-        //     }
-        //     &.enter{
-        //         &::after{
-        //             width: 80%;
-        //             transition: 2s;
-        //         }
-        //     }
-        // }
-
-        // & li:last-child{
-        //     &::after{
-        //         width: 0%;
-        //         transition: 2s;
-        //     }
-        //     &.enter{
-        //         &::after{
-        //             width: 80%;
-        //             transition: 2s;
-        //         }
-        //     }
-        // }
-        
         li{
             @include pad{
                 margin-bottom: 120px;
@@ -787,14 +792,6 @@ $section_margin_top: 60px;
     padding-bottom: 60px;
     margin-bottom: 60px;
     background-image: linear-gradient(map-get($color , "bg_white" ), map-get($color , "cover" ), map-get($color , "bg_white" ) );
-    // background-image: url("../img/home/h_fold_tal.jpg");
-    // background-position: top left;
-    // background-size: cover;
-    // height: 600px;
-    // position: relative;
-    // background-size: 30vw;
-    // background-repeat: no-repeat;
-    // background-position: top left;
     
     .acti_content{
         max-width: $max_w_s;
@@ -805,12 +802,6 @@ $section_margin_top: 60px;
         @include pad{
             flex-direction: column-reverse;
         }
-        
-        
-
-        // @include pad{
-        //     display: block;       
-        // }
 
         @include PC{
             // display: flex;
@@ -869,7 +860,6 @@ $section_margin_top: 60px;
             }
         }
         .acti_list{
-            // flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -1076,7 +1066,8 @@ $section_margin_top: 60px;
                 -webkit-line-clamp: 4;
 
                 @include pad{
-                    -webkit-line-clamp: 6;     
+                    -webkit-line-clamp: 6;
+                    margin-bottom: 40px;     
                 }
             }
 
@@ -1096,17 +1087,11 @@ $section_margin_top: 60px;
                     padding:10px 10px;
                 }
             }
-
-            // .more{
-            //     position: absolute;
-            //     bottom: -30px;
-            //     right: 0;
-            //     padding: 20px 0;                    
-            // }
-            .more{
-                margin: 0;
-                padding: 20px 0;
-                text-align: end;
+            .moreprd{
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                padding: 0 10px;
             }
         }
     }
@@ -1201,13 +1186,17 @@ $section_margin_top: 60px;
     
     ul{
         display: flex;
-        justify-content: space-around;
         position: relative;
 
         @include pad{
-            padding: 0 20px;
+         width: 1200vw;       
         }
 
+
+        @include PC{
+            width: 450vw;
+                
+        }
         li{
             background-color: map-get($color , "cover" );
             position: relative;
@@ -1237,8 +1226,8 @@ $section_margin_top: 60px;
 
             .hs_img_box{
                 position: relative;
-                width: 250px;
-                height: 250px;
+                width: 200px;
+                height: 200px;
                 left: 60px;
                 top: 60px;
                 overflow: hidden;
@@ -1255,9 +1244,9 @@ $section_margin_top: 60px;
             &::after{
                 content: "";
                 position: absolute;
-                width: 10rem;
+                width: 5rem;
                 height: .5rem;
-                top: 370px;
+                top: 320px;
                 left: 10px;
                 background-color: map-get($color , "sub_yellow" );
                 z-index: 0;
@@ -1268,6 +1257,7 @@ $section_margin_top: 60px;
                 height: 45vh;
                 margin-bottom: 120px;
                 position: relative;
+                margin: 0 20px;
 
                 &::after{
                     content: "";
@@ -1304,15 +1294,15 @@ $section_margin_top: 60px;
             }
 
             @include PC{
-                height: 600px;
-                width: 300px;
-                margin: 20px;
+                height: 500px;
+                width: 250px;
+                margin: 40px;
             }
             
         }
     }
 
-    ul li:nth-child(2){
+    ul li:nth-child(2n){
 
         @include pad{
             .hs_img_box{
@@ -1322,7 +1312,7 @@ $section_margin_top: 60px;
 
         @include PC{
             position: relative;
-            top: -100px;
+            top: -50px;
         }
     }
 

@@ -205,6 +205,19 @@ function createCalendar(){
                 if(data.getDate() == actual.getDate() && actual.getMonth() == month00){
                     td.className = 'today';
                 }
+                // ---------------3/14新增
+                
+                // console.log(actual.getFullYear());  // 年分2022
+                //console.log(actual.getMonth()+1);  // 月份
+                // console.log(actual.getDate());
+                var date_code = actual.getFullYear() + "-"+ (actual.getMonth()+1) + "-" + actual.getDate()
+                // console.log(date_code);
+                // td.classList.add(date_code);
+                td.dataset.date = date_code;
+                morning.dataset.time = 1;
+                afternoon.dataset.time = 2;
+                night.dataset.time = 3;
+                
                 // t_add3=今天後三天
                 // if(data.getDate() == actual.getDate()-3 &&
                 // data.getMonth() == actual.getMonth())
@@ -234,6 +247,8 @@ function createCalendar(){
 
                     if(tds[i].className.indexOf('fora') == -1 && tds[i].className.indexOf('today') == -1 && tds[i].className.indexOf('full') == -1 && tds[i].className.indexOf('past') == -1 ){
                         tds[i].onclick=function(){	
+                            // console.log(actual.getDate());
+
                             // 每次點擊清空時段選擇
                             vm.dataTime = null;
                             // tds[i] 是這個被點到的格子
@@ -295,7 +310,7 @@ function createCalendar(){
                 var selectedPeriod; // 選擇的時段
 
                 for(let i=0; i<periods.length; i++){
-                    if(periods[i].className.indexOf('reserved') == -1 && $(window).width()>830){
+                    if(periods[i].className.indexOf('reserved') == -1){
                         periods[i].onclick = function(){
                             let period = periods[i].innerText;
                             if(period=="早"){
@@ -333,15 +348,15 @@ function createCalendar(){
     
     calendari(document.getElementById('calendari'), new Date());
 }
-function changeSpan(){
-    if( $(window).width()<=830){
-        $('td > div div:nth-child(2) span').css('color','transparent');
-    }else{
-        $('td > div div:nth-child(2) span').css('color','black');
-    };           
-}
+// function changeSpan(){
+//     if( $(window).width()<=830){
+//         $('td > div div:nth-child(2) span').css('color','transparent');
+//     }else{
+//         $('td > div div:nth-child(2) span').css('color','black');
+//     };           
+// }
 
 window.addEventListener('load',createCalendar);
-window.addEventListener('resize',changeSpan);
+// window.addEventListener('resize',changeSpan);
 // 加上選到的效果
 // tds[i].classList.add("selected");

@@ -15,22 +15,36 @@ footer{
         box-sizing: border-box;
         width: 100%;
         background: url('../img/footer_bg_white.png') no-repeat center/100% 100%;
+
         .link_ro{
             display: block;
             margin: auto;
             height: 70px;
             width: 70px;
-            padding: 15px;
-            background-color: #fff;
-            &:hover{
-                background-color: map-get($color , "sub_blue" );
-                color: map-get($color , "plain" );
+            padding: 18px;
+            // color: map-get($btn_color, "main" );
+            // border-color: map-get($btn_color, "main" );
+            // background-color: map-get($btn_color, "main" );
+            color: #fff;
+            border-color: map-get($btn_color, "blue" );
+            background-color: map-get($btn_color, "blue" );
+        }
+
+        @media screen and (max-width: 767px){
+            .link_ro{
+                transform: rotate(0deg);
             }
         }
+        
         @media screen and (min-width: 769px){
             .link_ro:hover::before {
                 content: none;
             }
+        }
+
+        &:hover .link_ro{
+            padding: 10px;
+            transition: .3s;
         }
     }
 
@@ -67,21 +81,37 @@ footer{
         .reserve{
             .go_reserve{
                 // background: linear-gradient(0deg,transparent 25%,map-get($color,"sub_blue" ) 25%,map-get($color,"sub_blue" ) 65%,transparent 65%);
-                background: url('../img/SoEazy_house.png') no-repeat center/auto 100%;
+                clip-path: polygon(50% 0%, 100% 26%, 100% 100%, 0 100%, 0 26%);
+                // background: url('../img/SoEazy_house.png') no-repeat center/auto 100%;
                 display: block;
-                height: 200px;
+                width: 100px;
+                height: 100px;
+                margin: auto;
+                clip-path: polygon(50% 0%, 100% 26%, 100% 100%, 0 100%, 0 26%);
+                background-color: map-get($color,"sub_brown");
+
                 &:hover{
-                    background: url('../img/SoEazy_house_simple.png') no-repeat center/auto 100%;
+                    
                     p{
-                        color: map-get($color,"plain" );
+                        color: map-get($color,"sub_brown");
+                        background-color: map-get($color,"cover");
+                        transition: .3s;
                     }
                 }
+
                 p{
                     display: block;
                     text-align: center;
-                    padding-top: 100px;
-                    color: map-get($color,"main" );
-                    font-size: 36px;
+                    padding-top: 50px;
+                    font-size: 20px;
+                    width: 100px;
+                    height: 100px;
+                    color: map-get($color,"cover" );
+                    background-color: map-get($color,"sub_brown");
+                    font-weight: 600;
+                    
+                    clip-path: polygon(50% 4%, 97% 28%, 97% 97%, 3% 97%, 3% 28%);
+                    transition: .3s;
                 }
             }
         }
@@ -146,15 +176,20 @@ footer{
             padding-top: 30px;
             box-sizing: border-box;
             width: 100%;
-            background-color: map-get($color,"plain");
+            // background-color: map-get($color,"plain");
             background: url('../img/footer_bg_white.png') no-repeat center/100% 100%;
             background-blend-mode: lighten;
+
             .link_ro{
                 display: block;
                 margin: auto;
                 height: 70px;
                 width: 70px;
-                padding: 15px;
+                padding: 18px;
+
+                &:hover{
+                    cursor: pointer;
+                }
             }
         }
 

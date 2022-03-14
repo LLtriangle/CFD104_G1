@@ -106,7 +106,7 @@
                     <div class="form_item choose_emp">
                         <h3>選擇整理師</h3>
                         <div>
-                            <select v-model="selectedEmp">
+                            <select v-model="selectedEmp" @change="getInfo()">
                                 <option value="" disabled>請選擇</option>
                                 <option v-for="emp in emps">{{emp}}</option>
                             </select>
@@ -428,6 +428,7 @@
             dataDate: null,
             dataTime: null,
             ccard_src:'',
+            infos:[],
         },
         watch: {
             credit_card(nVal, oVal) {
@@ -487,6 +488,61 @@
                     this.activetab = `${num}`
                 }
             },
+            getInfo(){
+                let emp_name = this.selectedEmp;
+                // console.log(emp_name);
+                if(emp_name=="麻里不會"){
+                    emp_no=1
+                }else if(emp_name=="末牛子"){
+                    emp_no=2
+                }else if(emp_name=="潔癖子"){
+                    emp_no=3
+                }
+                // console.log(emp_no);
+                let thisVue = this;
+                $.ajax({
+                    url: `phps/reserve.php`,
+                    data: `data=${emp_no}`, 
+                    type: 'GET', 
+                    dataType: 'json', 
+                    success(res){
+                        console.log(res);
+                        thisVue.infos = res;
+                        for(let i=0; i<thisVue.infos.length; i++){
+                            console.log(thisVue.infos[i].DAY_OFF); //不可預約日期
+                            console.log(thisVue.infos[i].SCH_TIME);//不可預約時段
+                            // console.log(td.dataset.date);
+                            // let tds = $("#calendari td");
+                            // for(let j=0; j<tds.length; i++){
+                            //     // console.log(tds[j].dataset.date);  不要打這行
+                            //     if(tds[j].dataset.date==thisVue.infos[i]){
+                            //         console.log(tds[j].dataset.date);
+                            //     }
+                            // }
+                        }
+                    },
+                    error(res){
+                        console.log('error');
+                        console.log(res);
+                    },
+                });
+            },
+            // content(tableName,e) {
+            //     console.log(e);
+            //     var thisVue = this;
+            //     $.ajax({
+            //         url: `phps/selectAll.php`, 
+            //         data: `data=${tableName}`, 
+            //         type: 'GET',
+            //         dataType: 'json', 
+            //         success(res){
+            //             console.log(res);
+            //         },
+            //         error(res){
+            //             console.log('error');
+            //         },
+            //     });
+            // },
         },
         computed: {
             plan0_info() {
@@ -523,6 +579,9 @@
                     this.ccard_src='img/mstercard.gif'
                 }
             }
+        },
+        mounted() {
+            // this.getMemberInfo();
         },
     });
 
