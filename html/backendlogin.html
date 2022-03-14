@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>後台登入</title>
+
+    <link rel="stylesheet" href="css/backendlogin.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/vue.js"></script>
+
+</head>
+<body>
+    
+    <div class="login_container" id="app">
+        <form class="form">
+            <img src="img/logo_act.jpg" alt="logo">
+            <h2 class="form_title title">收Eazy後台管理系統</h2>
+            <div class="form_icons"><img class="form_icon" src="" alt=""><img class="form_icon" src="">
+                <img class="form_icon" src="">
+            </div>
+            <span class="form_span">
+                帳號:
+            </span>
+            <input @change="account" class="form_input" type="text" placeholder="輸入註冊 Email">
+            <div v-if="mun">必填</div><br>
+            <span class="form_span">
+                密碼:
+            </span>
+            <input class="form_input" type="password" placeholder="輸入密碼"><br>
+            <button type="submit"><a href="backend.html"><span>登 入</span></a></button><a href="#">忘記您的密碼?</a>
+        </form>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+            mun: 0
+            },
+            // computed: {
+            //     account(){
+            //         if(account.value = ''){
+            //             return alert === 1
+            //         }
+            //     }
+
+            // }
+        })
+
+    </script>
+</body>
+</html>
