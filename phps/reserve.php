@@ -1,9 +1,11 @@
 <?php 
 try {
 	require_once("connect.php"); // 開發用
-	$sql = "select * from emp where EMP_NAME = '{$_GET['data']}' ";
+	$sql = " SELECT EMP_NO,DAY_OFF,SCH_TIME FROM sch WHERE EMP_NO='{$_GET['data']}'
+    UNION
+    SELECT EMP_NO,SAO_DATE,SAO_TIME FROM sao WHERE EMP_NO='{$_GET['data']}' ";
 	$info = $pdo->query($sql);
-	$infos = $info->fetch(PDO::FETCH_ASSOC);
+	$infos = $info->fetchAll(PDO::FETCH_ASSOC);
 	echo json_encode($infos);
 } catch (PDOException $e) {
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";
