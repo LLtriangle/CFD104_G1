@@ -146,7 +146,7 @@
 					xhr.onload = function(){
 						thisVue.plansRows = JSON.parse(xhr.responseText);
 					}
-					xhr.open("get", "phps/getPlansList.php", true);
+					xhr.open("get", "phps/selectAll.php?tableName=plan", true);
 					xhr.send(null);
 				},
 				getCases(){
@@ -155,7 +155,7 @@
 					xhr.onload = function(){
 						thisVue.casesRows = JSON.parse(xhr.responseText);
 					}
-					xhr.open("get", "phps/getCasesList.php", true);
+					xhr.open("get", "phps/selectAll.php?tableName=casetable", true);
 					xhr.send(null);
 				},
 			},
@@ -164,20 +164,6 @@
 				this.getCases();
 			},
 		});
-		
-		
-		// function getPlans(){
-		// 	let xhr = new XMLHttpRequest();
-		// 	xhr.onload = function(){
-		// 		console.log(JSON.parse(xhr.responseText));
-		// 		app.plansRows = JSON.parse(xhr.responseText);
-		// 	}
-		// 	xhr.open("get", "php/getPlansList.php", true);
-		// 	xhr.send(null);
-		// }
-		// window.addEventListener("load", function(){
-		// 	getPlans();
-		// })
 		
 	</script>
     <!-- <footer></footer> -->
