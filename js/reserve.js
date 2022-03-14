@@ -84,6 +84,7 @@ function submitForm(){
 
 function init(){
     uploadFile();
+    
     document.getElementById("submit").addEventListener('click',submitForm);
     for(let i = 0; i<next_btns.length ; i++){
         next_btns[i].onclick=function(){
