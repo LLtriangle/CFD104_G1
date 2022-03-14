@@ -26,7 +26,7 @@ try {
 		$sql = "select * from {$_GET['data']}";
 		
 	}elseif ($_GET['data'] == "columntable"){
-		$sql = "select COLUMN_NO,AUTHOR,DATE,TOPIC,CONTENT1,CONTENT2 from {$_GET['data']}";
+		$sql = "select COLUMN_NO,AUTHOR,DATE,TOPIC from {$_GET['data']}";
 		
 	};
 	$cases = $pdo->query($sql);	
