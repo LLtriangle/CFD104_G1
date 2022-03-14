@@ -295,15 +295,16 @@ body{
                     text-overflow: ellipsis;
                     padding: 10px;
                     max-width: 170px;
-                    &:last-child{
-                        text-align: end;
-                    }
-                    &:nth-child(2){
-                        text-align: end;
-                    }
-                    &:nth-child(3){
-                        text-align: center;
-                    }
+                    text-align: center;
+                    // &:last-child{
+                    //     text-align: end;
+                    // }
+                    // &:nth-child(2){
+                    //     text-align: end;
+                    // }
+                    // &:nth-child(3){
+                    //     text-align: center;
+                    // }
                 }
             }
         }
