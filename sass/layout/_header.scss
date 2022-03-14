@@ -22,6 +22,13 @@ header{
     z-index: 800;
     background-color: #ffffffaa;
     top: 0;
+    transition: .3s ease-in-out;
+
+    // 下滑時header隱藏
+    &.hide{
+        top: -100px;
+        transition: .3s ease-in-out;
+    }
 }
 
 .header_elements{
