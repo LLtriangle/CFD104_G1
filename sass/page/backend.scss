@@ -31,6 +31,7 @@ body{
         left: 0;
         width: 100%;
         li{
+            
             position: relative;
             width: 100%;
             list-style: none;
@@ -66,8 +67,8 @@ body{
                     height: 60px;
                     line-height: 75px;
                     text-align: center;
-                    ion-icon{
-                        font-size: 1.75em;
+                    img{
+                        width: 30px;
                     }
                 }
                 .title{
