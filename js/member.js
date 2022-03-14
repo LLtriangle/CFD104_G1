@@ -38,27 +38,24 @@ function hideBtn(){
     $('.radio-input').attr("disabled",true);
 }
 
-// 取消修改資料
-function cancelMemberInfo(){
-    history.go(0);
-};
 // 更改會員資料
 function changeMemberInfo(){
     let xhr = new XMLHttpRequest();
     xhr.onload = function(){
-      alert("修改成功!"); 
+      console.log(xhr.responseText);
     }
     xhr.open("post", "phps/changeMemberInfo.php", true);  
     xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-         
+    
     // 抓格子裡的資料
     let datas = {};
-
+    
     datas.memId = $("#email").val(); // 會員帳號
     datas.memName = $("#cus_name").val(); // 修改後姓名
     datas.memSex = $('input:radio:checked[name="gender"]').val(); // 修改後性別
     datas.memTel = $("#cus_tel").val(); // 修改後電話
     datas.memAdd = $("#cus_add").val(); // 修改後地址
+    // datas.memImg = $("#myImg").attr('src'); // 修改後照片
     
     let data_info = "json=" + JSON.stringify(datas);
     xhr.send(data_info);
@@ -76,16 +73,23 @@ function logout(){
     xhr.send(null);
 };
 
+//上傳照片與大頭貼預覽
+function uploadFile(){
+    upFile.onchange=function(e){ //選檔案:change事件
+        let file = e.target.files[0]; //找物件
+        let reader = new FileReader(); //reader讀物件
+        reader.onload = function(){ 
+            $id("myImg").src = reader.result;
+            console.log($("#myImg")[0]);
+        }
+        reader.readAsDataURL(file);
+    }
+};
 
 function init(){
     getMemberInfo();
+    uploadFile();
     $id('btnLogout').addEventListener("click",logout);
-    // $id('btnLogout').onclick = logout;
-    // $id('btnCancel').onclick = cancelMemberInfo;
-    // $id('btnSave').onclick = changeMemberInfo;
-    // $id('btnChange').onclick = showBtn;
-    // $id('btnSave').onclick = hideBtn;
-    $id('btnCancel').addEventListener("click",cancelMemberInfo);
     $id('btnCancel').addEventListener("click",hideBtn);
     $id('btnSave').addEventListener("click",changeMemberInfo);
     $id('btnSave').addEventListener("click",hideBtn);

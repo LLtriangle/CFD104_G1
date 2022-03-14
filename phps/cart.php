@@ -1,11 +1,11 @@
 <?php
 session_start();
-$datas = json_decode($_POST["json"], true); //第二個參數指出要轉成關聯性陣列
+
 
 try{
 	// require_once("../connect_cfd104g1.php"); // 上線用
 	require_once("connect.php"); // 開發用
-    $sql = "select * from `cus` where EMAIL=:EMAIL and CUS_PSW=:CUS_PSW"; 
+    $sql = "select * from `pro` where EMAIL=:EMAIL and CUS_PSW=:CUS_PSW"; 
     $cus = $pdo->prepare($sql);
     $cus->bindValue(":EMAIL", $datas["memId"]);
     $cus->bindValue(":CUS_PSW", $datas["memPsw"]);
@@ -42,4 +42,3 @@ try{
   echo $e->getMessage();
 }
 ?>
-

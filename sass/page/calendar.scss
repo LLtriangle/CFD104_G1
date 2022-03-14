@@ -113,8 +113,12 @@ td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
 
 /* 非此月 */
 #calendari td.fora {
+    opacity: 0;
+}
+// 這個月已過日期
+#calendari td.past {
     opacity: 0.3;
-    cursor: not-allowed; /* fora不能被點擊 */
+    cursor: not-allowed; /* past不能被點擊 */
 }
 // 預約已滿
 #calendari td.full{

@@ -36,7 +36,7 @@
 
 
 section{
-    margin: 60px auto;
+    margin: 0px auto;
 }
 .about_belief{
     display: flex;
@@ -87,11 +87,34 @@ section{
             line-height: 2;
             height: 550px;
             .txt_bg{
+                position: relative;
                 background-color:#d7dbe4;
                 max-width: 700px;
                 box-sizing: border-box;
                 padding: 10px 10px 60px 20px;
-                box-shadow: 50px -40px 0px 20px map-get($color, "main");
+                &::after{
+                    content: '';
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                    background-color: map-get($color, "main");
+                    position: absolute;
+                    left: -27px;
+                    top: 236px;
+                    mix-blend-mode: color-dodge;
+                }
+                &::before{
+                    content: '';
+                    width: 350px;
+                    height: 350px;
+                    border-radius: 50%;
+                    background-color: map-get($color, "main");
+                    position: absolute;
+                    left: 517px;
+                    top: -93px;
+                    mix-blend-mode: color-dodge;
+
+                }
                 h3{
                     margin-bottom: 10px;
                     // color: #fff;
@@ -109,6 +132,13 @@ section{
 .bg_deep{
     background-color: #ac8969;
 }
+ 
+// about的特殊待遇footer
+footer{
+    margin-top: -62px;
+}
+
+
 
 // 手機-------------------------------
 @media  screen and (max-width:768px),
@@ -324,7 +354,7 @@ screen and (max-width:992px)
     .about_contact{
         // margin-top: 50px;
         // display: flex;
-        margin: 120px 10px 50px 10px;
+        margin: 77px 10px 0px 10px;
         .con_left{
             width: 100%;
             text-align: center;
@@ -336,16 +366,16 @@ screen and (max-width:992px)
             }
         }
         .con_right{
-            width: 50%;
+            width: 100%;
             margin: auto;
             .fb{
                 display: block;
                 text-align: center;
                 line-height: 15;
                 margin: auto;
-                // width: 400px;
+                width: 400px;
                 height: 200px;
-                background-color: map-get($color, "sub_brown");
+                // background-color: map-get($color, "sub_brown");
             } 
         }
     }
@@ -441,7 +471,7 @@ screen and (max-width:992px)
     // 關於我們-------
     .about_team{
         box-sizing: border-box;
-        padding: 90px 0px 60px 0px;
+        padding: 0px 0px 60px 0px;
         display: flex;
         background-color: map-get($color, "cover");
         position: relative;
@@ -585,7 +615,7 @@ screen and (max-width:992px)
         margin: auto;
         margin-top: 50px;
         display: flex;
-        margin: 120px 10px 50px 10px;
+        margin: 77px 10px 0px 10px;
         .con_left{
             width: 50%;
             text-align: center;
@@ -595,7 +625,7 @@ screen and (max-width:992px)
             }
         }
         .con_right{
-            width: 50%;
+            // width: 50%;
             margin: auto;
             .fb{
                 display: block;
@@ -604,10 +634,11 @@ screen and (max-width:992px)
                 margin: auto;
                 max-width: 400px;
                 height: 200px;
-                background-color: map-get($color, "sub_brown");
+                // background-color: map-get($color, "sub_brown");
         
             } 
         }
     }
     
 }
+

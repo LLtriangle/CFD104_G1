@@ -197,7 +197,7 @@ function createCalendar(){
                 let dp = new Date();
                 let month00 = dp.getMonth(); // 現在月份
                 if(actual.getDate() <= data.getDate() && actual.getMonth() <= month00){
-                    td.className = 'fora';
+                    td.className = 'past';
                 }
     
                 // today=今天
@@ -232,8 +232,10 @@ function createCalendar(){
 
                 for(let i=0; i<tds.length; i++){
 
-                    if(tds[i].className.indexOf('fora') == -1 && tds[i].className.indexOf('today') == -1 && tds[i].className.indexOf('full') == -1){
+                    if(tds[i].className.indexOf('fora') == -1 && tds[i].className.indexOf('today') == -1 && tds[i].className.indexOf('full') == -1 && tds[i].className.indexOf('past') == -1 ){
                         tds[i].onclick=function(){	
+                            // 每次點擊清空時段選擇
+                            vm.dataTime = null;
                             // tds[i] 是這個被點到的格子
                             $('#calendari td').removeClass("active");
                             $(this).addClass("active");
@@ -250,7 +252,7 @@ function createCalendar(){
                             let span_a = tds[i].firstChild.lastChild.childNodes[1]; // 中的狀態
                             let span_n = tds[i].firstChild.lastChild.lastChild; // 晚的狀態
                             let time_items = document.getElementsByClassName("time_item"); // 陣列
-
+                            // console.log(span_m);
                             if(span_m.classList.contains("reserved") == true){
                                 let period_1 = document.getElementById("period_1"); // 早的input
                                 period_1.disabled = true;
@@ -277,13 +279,11 @@ function createCalendar(){
                                 time_items[2].style.opacity = "1";
                             };
 
-                            document.getElementById("showDate").innerText = document.getElementById("selectedDate").innerText;
+                            // if($(window).width()>830){
+                            //     document.getElementById("showPeriod").innerText = document.getElementById("selectedPeriod").innerText;
 
-                            if($(window).width()>830){
-                                document.getElementById("showPeriod").innerText = document.getElementById("selectedPeriod").innerText;
-
-                                vm.getData();  
-                            }
+                            //     vm.getData();  
+                            // }
 
                             vm.getData();
                         };  

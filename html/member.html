@@ -50,7 +50,10 @@
             <div class="data_mem" v-if="data">
                 <div class="icon_edit">
                     <div class="mem_icon" >
-                        <form><img :src="cus_pic"></form>
+                        <form id="myForm" enctype="multipart/form-data">
+                            <!-- 大頭貼 -->
+                            <img id="myImg" :src="cus_pic">
+                        </form>
                     </div>
                     <input type="file" name="upFile" id="upFile" accept="image/jpeg, image/png" >
                     <label id="btnUpload" class="btn_btn br" for="upFile">編輯大頭貼
@@ -103,7 +106,7 @@
                         </label>
                     </div>
                     <!-------新增取消修改-------->
-                    <button id="btnCancel" type="button" class="btn_sub bl cancel">取消修改</button>
+                    <button id="btnCancel" type="button" class="btn_sub bl cancel" @click="getMemberInfo">取消修改</button>
                     <button id="btnSave" type="button" class="btn_sub br">儲存修改</button>
                     <button id="btnChange" type="button" class="btn_sub br">修改會員資料</button>
                 </div>
@@ -227,17 +230,16 @@
                             // console.log(thisVue.cus_pic);
                             if(thisVue.cusRow.SEX == "女"){
                                 $('#female').prop('checked',true);
-                            }else{
+                            }else if(thisVue.cusRow.SEX == "男"){
                                 $('#male').prop('checked',true);
                             }   
                         }
-                        xhr.open("get", "php/getMemberInfo.php", true);
+                        xhr.open("get", "phps/getMemberInfo.php", true);
                         xhr.send(null);
                     },
                 },
                 mounted() {
                     this.getMemberInfo();
-
                 },
             });
         </script>
