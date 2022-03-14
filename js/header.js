@@ -35,20 +35,23 @@ $(window).on('load',function(){
         }, 500);
         return false;
     });
+
+    // 當下滑menu消失，上滑出現，打開時尚下滑不會有改變
+
+    let prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
     
-    gsap.registerPlugin(ScrollTrigger);
-
-    let showAnim = gsap.from("header", { 
-        yPercent: -100,
-        paused: true,
-        duration: 0.2
-        }).progress(1);
-
-        ScrollTrigger.create({
-        start: "top top",
-        end: 99999,
-        onUpdate: (self) => {
-            self.direction === -1 ? showAnim.play() : showAnim.reverse()
+        if($('.menu_link.on')[0]){
+            console.log("menu_btns open, no slide disapper");
+        }else{
+            if (prevScrollpos > currentScrollPos) {
+                $("header").removeClass("hide");
+            } else {
+                $("header").addClass("hide");
+            }
         }
-    });
+        
+        prevScrollpos = currentScrollPos;
+    }
 });
