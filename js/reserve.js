@@ -55,8 +55,7 @@ function uploadFile(){
                 file_label_rwd.remove()
             }
             if(myimgs.length != 0){
-
-                // 第二頁 顯示照片第一張在明細
+                // 第二頁 顯示照片在明細
                 // console.log(document.getElementById("d_pic_img").src);
                 document.getElementById("d_pic_img").src = myimgs[0].src;
                 document.getElementById("info_pic").src = myimgs[0].src;
@@ -85,6 +84,7 @@ function submitForm(){
 
 function init(){
     uploadFile();
+    
     document.getElementById("submit").addEventListener('click',submitForm);
     for(let i = 0; i<next_btns.length ; i++){
         next_btns[i].onclick=function(){

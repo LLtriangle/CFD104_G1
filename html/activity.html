@@ -224,7 +224,7 @@
                             console.log(2);
                             thisVue.actRows = JSON.parse(xhr.responseText);
                         }
-                        xhr.open("get","php2/getActList.php", true);
+                        xhr.open("get","phps/selectAll.php?tableName=event", true);
                         xhr.send(null);
                     },
                     getCol(){
@@ -236,7 +236,7 @@
                             console.log(2);
                             thisVue.colRows = JSON.parse(xhr.responseText);
 					}
-					xhr.open("get","php2/getColList.php", true);
+					xhr.open("get","phps/selectAll.php?tableName=columntable", true);
 					xhr.send(null);
 				}
                 },

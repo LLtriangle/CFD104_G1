@@ -1,11 +1,10 @@
 <?php 
 try {
 	require_once("connect.php"); // 開發用
-    $sql = "select * from {$_GET['data']}";
-	$cases = $pdo->query($sql);
-
-	$caseRows = $cases->fetchAll(PDO::FETCH_ASSOC);
-	echo json_encode($caseRows);
+	$sql = "select * from {$_GET['tableName']}";
+	$allTable = $pdo->query($sql);
+	$Rows = $allTable->fetchAll(PDO::FETCH_ASSOC);
+	echo json_encode($Rows);
 } catch (PDOException $e) {
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";
 	echo "錯誤行號 : ", $e->getLine(), "<br>";

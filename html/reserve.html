@@ -10,9 +10,7 @@
     <link rel="stylesheet" href="css/reserve.css">
     <link rel="stylesheet" href="css/calendar.css">
     <script src="js/reserve.js"></script>
-    <!-- <script src="js/calendar.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script> -->
      
 </head>
 <body>
@@ -108,7 +106,7 @@
                     <div class="form_item choose_emp">
                         <h3>選擇整理師</h3>
                         <div>
-                            <select v-model="selectedEmp">
+                            <select v-model="selectedEmp" @change="getInfo()">
                                 <option value="" disabled>請選擇</option>
                                 <option v-for="emp in emps">{{emp}}</option>
                             </select>
@@ -430,6 +428,7 @@
             dataDate: null,
             dataTime: null,
             ccard_src:'',
+            info:[],
         },
         watch: {
             credit_card(nVal, oVal) {
@@ -489,6 +488,24 @@
                     this.activetab = `${num}`
                 }
             },
+            getInfo(){
+                let emp_name = this.selectedEmp;
+                console.log(emp_name);
+                let thisVue = this;
+                $.ajax({
+                    url: `phps/reserve.php`,
+                    data: `data=${emp_name}`, 
+                    type: 'GET', 
+                    dataType: 'json', 
+                    success(res){
+                        console.log(res);
+                    },
+                    error(res){
+                        console.log('error');
+                        console.log(res);
+                    },
+                });
+            },
         },
         computed: {
             plan0_info() {
@@ -525,6 +542,9 @@
                     this.ccard_src='img/mstercard.gif'
                 }
             }
+        },
+        mounted() {
+            // this.getMemberInfo();
         },
     });
 

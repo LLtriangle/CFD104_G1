@@ -24,19 +24,27 @@
                     </a>
                 </li>
                 <li>
-                    <a @click="content('result')">
+                    <a @click="content('emp')">
                         <span class="icon">
                             <!-- <ion-icon name="accessibility-outline"></ion-icon> -->
                         </span>
-                        <span class="title">員工管理</span>
+                        <span class="title">員工管理emp</span>
                     </a>
                 </li>
                 <li>
-                    <a @click="content('plan')">
+                    <a @click="content('cus')">
                         <span class="icon">
                             <!-- <ion-icon name="person-outline"></ion-icon> -->
                         </span>
-                        <span class="title">會員管理</span>
+                        <span class="title">會員管理cus</span>
+                    </a>
+                </li>
+                <li>
+                    <a @click="content('result')">
+                        <span class="icon">
+                            <!-- <ion-icon name="person-outline"></ion-icon> -->
+                        </span>
+                        <span class="title">測驗推薦管理result</span>
                     </a>
                 </li>
                 <li>
@@ -44,39 +52,15 @@
                         <span class="icon">
                             <!-- <ion-icon name="cart-outline"></ion-icon> -->
                         </span>
-                        <span class="title">商品管理</span>
+                        <span class="title">商品管理prd</span>
                     </a>
                 </li>
                 <li>
-                    <a @click="content('plan')">
+                    <a @click="content('ord')">
                         <span class="icon">
                             <!-- <ion-icon name="receipt-outline"></ion-icon> -->
                         </span>
-                        <span class="title">訂單管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a @click="content('plan')">
-                        <span class="icon">
-                            <!-- <ion-icon name="file-tray-stacked-outline"></ion-icon> -->
-                        </span>
-                        <span class="title">服務管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a @click="content('event')">
-                        <span class="icon">
-                            <!-- <ion-icon name="mail-open-outline"></ion-icon> -->
-                        </span>
-                        <span class="title">活動管理</span>
-                    </a>
-                </li>
-                <li>
-                    <a @click="content('columntable')">
-                        <span class="icon">
-                            <!-- <ion-icon name="mail-open-outline"></ion-icon> -->
-                        </span>
-                        <span class="title">專欄管理</span>
+                        <span class="title">訂單管理ord</span>
                     </a>
                 </li>
                 <li>
@@ -84,7 +68,31 @@
                         <span class="icon">
                             <!-- <ion-icon name="log-out-outline"></ion-icon> -->
                         </span>
-                        <span class="title">登出</span>
+                        <span class="title">服務方案管理plan</span>
+                    </a>
+                </li>
+                <li>
+                    <a @click="content('casetable')">
+                        <span class="icon">
+                            <!-- <ion-icon name="file-tray-stacked-outline"></ion-icon> -->
+                        </span>
+                        <span class="title">案例管理casetable</span>
+                    </a>
+                </li>
+                <li>
+                    <a @click="content('event')">
+                        <span class="icon">
+                            <!-- <ion-icon name="mail-open-outline"></ion-icon> -->
+                        </span>
+                        <span class="title">活動管理event</span>
+                    </a>
+                </li>
+                <li>
+                    <a @click="content('columntable')">
+                        <span class="icon">
+                            <!-- <ion-icon name="mail-open-outline"></ion-icon> -->
+                        </span>
+                        <span class="title">專欄管理columntable</span>
                     </a>
                 </li>
             </ul>
@@ -152,20 +160,21 @@
             <div class="details">
                 <div class="recent_orders">
                     <div class="card_header">
-                        <h2>訂單狀態</h2>
+                        <!-- <h2>{{tableName}}</h2> -->
+                        <h2>try hard</h2>
                         <a href="#" class="btn">全部</a>
                     </div>
                     <table>
                         <thead>
                             <tr>
                                 <th v-for="tableHead in showTableHead">{{tableHead}}</th>
-                                <th><button>新增</button></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="tableBody in showTableBody">
                                 <td v-for="tableBodyIndex in tableBody">{{tableBodyIndex}}</td>
-                                <td><button>修改</button></td>
+                                <td><button>編輯</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -368,27 +377,51 @@
 		new Vue({
 			el:"#app",
 			data:{
+                tableTitle:'',
+                tableTitles:['員工管理','會員管理','測驗推薦管理','商品管理','訂單管理','服務方案管理','案例管理','活動管理','專欄管理'],
                 showTableHead:'',
-                planTableHead:['編號','方案名稱','適合對象','方案特色','方案價格'],
-                resultTableHead:['編號','測驗人格','推薦方案','推薦商品1','推薦商品2','推薦商品3'],
-                columnTableHead:['編號','測驗人格','推薦方案','推薦商品1','推薦商品2','推薦商品3'],
+                empTableHead:['員工編號','姓名','聯絡電話','職位','地址','入值日期','權限'],
+                cusTableHead:['會員編號','帳號(信箱)','權限','姓名','連絡電話','地址','性別'],
+                resultTableHead:['測驗編號','測驗人格','推薦方案','推薦商品1','推薦商品2','推薦商品3'],
+                prdTableHead:['商品編號','分類','商品名稱','價格'],
+                ordTableHead:['訂單','訂單','訂單','訂單','訂單','訂單','訂單','訂單'],
+                planTableHead:['方案編號','方案名稱','適合對象','方案特色','方案價格'],
+                caseTableHead:['案例編號','整理前','整理後'],
+                eventTableHead:['折扣碼','標題','活動文案','折扣參數','開始日期','截止日期','上下架'],
+                columnTableHead:['專欄編號','作者','日期','標題','內文1','內文2'],
                 showTableBody: '',
 			},
             methods: {
-                content(tableName) {
+                content(tableName,e) {
+                    console.log(e);
                     var vueApp = this;
                     // console.log(tableName);
                     $.ajax({
-                        url: `phps/backend_service.php`,   // 呼叫的檔案或網址列
+                        url: `phps/backend.php`,   // 呼叫的檔案或網址列
                         data: `data=${tableName}`,     // 傳送到 server 端的資料，會自動轉成字串形式
+                        // data: `type=select&sql=${tableName}`,
                         type: 'GET',     // GET 或 POST
                         dataType: 'json', // response 的資料格式，xml | html | script | json | jsonp | text
                         success(res){
                             vueApp.showTableBody = res;
-                            if (tableName=='plan') {
-                                vueApp.showTableHead = vueApp.planTableHead;
+                            if (tableName=='emp') {
+                                vueApp.showTableHead = vueApp.empTableHead;
+                            }else if(tableName=='cus'){
+                                vueApp.showTableHead = vueApp.cusTableHead;
                             }else if(tableName=='result'){
                                 vueApp.showTableHead = vueApp.resultTableHead;
+                            }else if(tableName=='prd'){
+                                vueApp.showTableHead = vueApp.prdTableHead;
+                            }else if(tableName=='ord'){
+                                vueApp.showTableHead = vueApp.ordTableHead;
+                            }else if(tableName=='plan'){
+                                vueApp.showTableHead = vueApp.planTableHead;
+                            }else if(tableName=='casetable'){
+                                vueApp.showTableHead = vueApp.caseTableHead;
+                            }else if(tableName=='event'){
+                                vueApp.showTableHead = vueApp.eventTableHead;
+                            }else if(tableName=='columntable'){
+                                vueApp.showTableHead = vueApp.columnTableHead;
                             };
                         },
                         error(res){
