@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/mall.css">
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script> -->
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         function showHideDiv(ele, cls) {
             document.getElementsByClassName(cls)[0].style.display = 'none';
             var srcElement = document.getElementById(ele);
@@ -26,7 +26,7 @@
                 return false;
             }
         }
-    </script>
+    </script> -->
 </head>
 
 <body>
@@ -56,19 +56,19 @@
         <section class="mall_product">
             <!-- 5大分類按鈕 -->
             <div class="btn_btn_box mall_btn">
-                <button class="btn_btn bl" @click="content('熱門商品')">
+                <button class="btn_btn bl" @click="changClass('熱門商品')">
                     熱門商品
                 </button>
-                <button class="btn_btn bl" @click="content('專業整理')">
+                <button class="btn_btn bl" @click="changClass('專業整理')">
                     專業整理
                 </button>
-                <button class="btn_btn bl" @click="content('居家生活')">
+                <button class="btn_btn bl" @click="changClass('居家生活')">
                     居家生活
                 </button>
-                <button class="btn_btn bl" @click="content('辦公文具')">
+                <button class="btn_btn bl" @click="changClass('辦公文具')">
                     辦公文具
                 </button>
-                <button class="btn_btn bl" @click="content('世界品牌')">
+                <button class="btn_btn bl" @click="changClass('世界品牌')">
                     世界品牌
                 </button>
             </div>  
@@ -77,20 +77,20 @@
             <!-- 商品 -->
             <div class="container">
                 <!-- 商品 1 -->
-                <div class="mall_item col-6" v-for="i in 10">
+                <div class="mall_item col-6" v-for="(prd,index) in prdsRows.slice(0,perPage)">
                     <div class="mall_img">
-                        <a :href="'product.php?prdno='+prdsRows[i-1].PRD_NO">
-                            <img :src="'img/'+prdsRows[i-1].IMG1">
+                        <a :href="'product.php?prdno='+prd.PRD_NO">
+                            <img :src="'img/'+prd.IMG1">
                         </a>
                     </div>
                     <div class="mall_txt">
                         <h3>
-                            <a :href="'product.php?prdno='+prdsRows[i-1].PRD_NO">
-                                {{prdsRows[i-1].PRD_NAME}}
+                            <a :href="'product.php?prdno='+prd.PRD_NO">
+                                {{prd.PRD_NAME}}
                             </a>
                         </h3>
                         <p>
-                            NT ${{prdsRows[i-1].PRICE}}
+                            NT ${{prd.PRICE}}
                         </p>
                     </div>
                 </div>
@@ -100,86 +100,9 @@
                 
                 <!-- 下一頁按鈕 -->
                 <div class="mall_item mall_nextpagebtn">
-                    <input type="button" value="看更多商品" class="btn_btn bl js_btn_showmore" onClick="showHideDiv('npimg', 'js_btn_showmore')"/>
+                    <input type="button" value="看更多商品" class="btn_btn bl js_btn_showmore" @click="setPage()"/>
                 </div>
 
-                <div id="npimg">
-                    <!-- 展開的商品 17 -->
-                    <div class="mall_item col-6">
-                        <div class="mall_img">
-                            <a href="product.html">
-                                <img src="img/mall_cabinet_no01.jfif">
-                            </a>
-                        </div>
-                        <div class="mall_txt">
-                            <h3>
-                                <a href="product.html">
-                                    北歐風純白床頭櫃
-                                </a>
-                            </h3>
-                            <p>
-                                NT $2,380
-                            </p>
-                        </div>
-                    </div>
-        
-                    <!-- 展開的商品 18 -->
-                    <div class="mall_item col-6">
-                        <div class="mall_img">
-                            <a href="product.html">
-                                <img src="img/mall_box_no01.jpg">
-                            </a>
-                        </div>
-                        <div class="mall_txt">
-                            <h3>
-                                <a href="product.html">
-                                    衣物整理籃
-                                </a>
-                            </h3>
-                            <p>
-                                NT $380
-                            </p>
-                        </div>
-                    </div>
-        
-                    <!-- 展開的商品 19 -->
-                    <div class="mall_item col-6">
-                        <div class="mall_img">
-                            <a href="product.html">
-                                <img src="img/mall_cabinet_no05.jfif">
-                            </a>
-                        </div>
-                        <div class="mall_txt">
-                            <h3>
-                                <a href="product.html">
-                                    多功能用餐儲物桌
-                                </a>
-                            </h3>
-                            <p>
-                                NT $2,680
-                            </p>
-                        </div>
-                    </div>
-                
-                    <!-- 展開的商品 20 -->
-                    <div class="mall_item col-6">
-                        <div class="mall_img">
-                            <a href="product.html">
-                                <img src="img/mall_wccombination_no01.jfif">
-                            </a>
-                        </div>
-                        <div class="mall_txt">
-                            <h3>
-                                <a href="product.html">
-                                    浴廁專用防水儲物櫃
-                                </a>
-                            </h3>
-                            <p>
-                                NT $3,880
-                            </p>
-                        </div>
-                    </div> 
-                </div>
 
             </div>
             
@@ -191,6 +114,8 @@
 			el:"#mallApp",
 			data:{
 				prdsRows:[{PRD_NO: '', CATEGORY: '', PRD_NAME: '', PRICE: '', IMG1: '',IMG2: '', IMG3: '', IMG4: '', INFO_IMG1: '', INFO_TITLE_1: '',INFO_1: '', INFO_IMG2: '', INFO_TITLE_2: '', INFO_2: '', STATE: '',SPEC_IMG:''}],
+                
+                perPage: 8,
 			},
 			methods: {
 				getprds(){
@@ -202,6 +127,21 @@
 					xhr.open("get", "phps/selectAll.php?tableName=prd", true);
 					xhr.send(null);
 				},
+                changClass(prdClass){
+                    let xhr = new XMLHttpRequest();
+                    let thisVue = this;
+                    xhr.onload = function(){
+                        console.log(thisVue.prdsRows);
+                        console.log(JSON.parse(xhr.responseText));
+                        thisVue.prdsRows = JSON.parse(xhr.responseText);
+                        console.log(thisVue.prdsRows);
+                    }
+                    xhr.open("get", `phps/getClassPrd.php?prdClass=${prdClass}`, true);
+                    xhr.send(null);
+                },
+                setPage(){
+                    this.perPage += 4;
+                },
 			},
 			mounted() {
 				this.getprds();
