@@ -428,6 +428,42 @@ try{
 
 
     <script type="text/javascript" src="js/product.js"></script>
+    <script>
+        
+        let prd_name = <?php echo json_encode($prodRow) ?>;
+        // cartArr[0].prdNo = prd_name.PRD_NO;
+        // cartArr[0].prdNum = num;
+        
+        function setItemCart(){
+            
+            var num = parseInt($("#num").val());
+            // console.log(JSON.parse(localStorage.getItem("cart")));
+            var cartArr = JSON.parse(localStorage.getItem("cart"));
+            if(cartArr == null){
+                // console.log('cartnull');
+                cartArr = [];
+            }
+            // console.log(cartArr.filter(obj=>obj.prdNo == prd_name.PRD_NO));
+            arrObj = cartArr.filter(obj=>obj.prdNo == prd_name.PRD_NO)
+            if(arrObj.length==0){
+                cartArr.push({"prdNo" : prd_name.PRD_NO,"prdNum" : num});
+            }else{
+                index = cartArr.indexOf(arrObj[0]);
+                cartArr[index].prdNum = cartArr[index].prdNum + num;
+            };
+            // localStorage.setItem(prd_name.PRD_NO,num);
+            localStorage.setItem("cart",JSON.stringify(cartArr));
+            // localStorage.setItem("cart",`${cartArr.toString()}`);
+            
+        }
+        function init(){
+            let cart = document.getElementById("cart");
+            let buy = document.getElementById("buy");
+            cart.addEventListener('click',setItemCart);
+            buy.addEventListener('click',setItemCart);
+        };
+        window.addEventListener('load',init, false);
+    </script>
 </body>
 
 </html>
