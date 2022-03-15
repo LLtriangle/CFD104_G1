@@ -223,17 +223,15 @@ try{
                             </p>
                             <div class="prod_minbtn">
                                 <input type="button" class="btnminus" value="-">
-                                <input type="text" class="qtybox" name="qty" value="1">
+                                <input type="text" id="num" class="qtybox" name="qty" value="1">
                                 <input type="button" class="btnplus" value="+">
                             </div>
                         </div>
                         <div class="btn_btn_box">
-                            <a href="cart.html">
-                                <button class="btn_btn bl pointer">
-                                    加入購物車
-                                </button>
-                            </a>
-                            <a href="cart.html">
+                            <button class="btn_btn bl pointer" id="cart">
+                                加入購物車
+                            </button>
+                            <a href="cart.html" id="buy">
                                 <button class="btn_btn bl pointer">
                                     立即購買
                                 </button>
@@ -358,21 +356,6 @@ try{
         </section>
     </main>
 
-    <script>            
-    function showLarge(e){
-        let small = e.target.src; 
-        let big = document.getElementById("large").src;
-        document.getElementById("large").src = small;
-        e.target.src = big;
-    }
-    function init(){
-        let smalls = document.getElementsByClassName("small");
-        for(let i=0; i<smalls.length; i++){
-            smalls[i].onclick = showLarge;
-        }
-    }
-    window.addEventListener("load", init, false);
-    </script>
 
     <!-- <footer></footer> -->
     <footer>
@@ -428,8 +411,15 @@ try{
 
 
     <script type="text/javascript" src="js/product.js"></script>
-    <script>
-        
+
+    <script>    
+        function showLarge(e){
+            let small = e.target.src; 
+            let big = document.getElementById("large").src;
+            document.getElementById("large").src = small;
+            e.target.src = big;
+        }
+
         let prd_name = <?php echo json_encode($prodRow) ?>;
         // cartArr[0].prdNo = prd_name.PRD_NO;
         // cartArr[0].prdNum = num;
@@ -457,6 +447,10 @@ try{
             
         }
         function init(){
+            let smalls = document.getElementsByClassName("small");
+            for(let i=0; i<smalls.length; i++){
+                smalls[i].onclick = showLarge;
+            }
             let cart = document.getElementById("cart");
             let buy = document.getElementById("buy");
             cart.addEventListener('click',setItemCart);
