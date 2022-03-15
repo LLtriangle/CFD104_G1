@@ -158,12 +158,12 @@ body{
                     outline: none;
                     border: 1px solid map-get($color, 'sub_blue');
                 }
-                ion-icon{
-                    position: absolute;
-                    top: 0;
-                    left: 10px;
-                    font-size: 1.2em;
-                }
+                // ion-icon{
+                //     position: absolute;
+                //     top: 0;
+                //     left: 10px;
+                //     font-size: 1.2em;
+                // }
             }
         }
         .user{
