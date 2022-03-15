@@ -34,11 +34,11 @@ try{
 	<!-- .css連結 -->
 	<link rel="stylesheet" href="css/style.css">
 	<!-- .js連結-->
-	<!-- <script src="js/jquery.js"></script>
+	<script src="js/jquery.js"></script>
   	<script src="js/jquery-ui.js"></script>
   	<script src="js/vue.js"></script>
 	<script src="js/header.js"></script>
-	<script src="js/loading.js"></script> -->
+	<script src="js/loading.js"></script>
 
     <!-- 初始設定，請自行修改title，及添加js連結 -->
 
@@ -123,19 +123,17 @@ try{
                             數量
                         </p>
                         <div class="prod_minbtn">
-                            <input type="button" class="btnminus" value="-">
-                            <input type="text" class="qtybox" name="qty" value="1">
-                            <input type="button" class="btnplus" value="+">
+                            <input type="button" class="btnminus" value="-" id="minus">
+                            <input type="text" class="qtybox" name="qty" value="1" id="num">
+                            <input type="button" class="btnplus" value="+" id="add">
                         </div>
                     </div>
                     <div class="btn_btn_box">
+                        <button class="btn_btn bl pointer" id="cart">
+                            加入購物車
+                        </button>
                         <a href="cart.html">
-                            <button class="btn_btn bl pointer">
-                                加入購物車
-                            </button>
-                        </a>
-                        <a href="cart.html">
-                            <button class="btn_btn bl pointer">
+                            <button class="btn_btn bl pointer" id="buy">
                                 立即購買
                             </button>
                         </a>
@@ -201,6 +199,7 @@ try{
                 </div>
             </div>
         </div>
+
     </section>
 
     <!-- 推薦商品 -->
@@ -278,6 +277,42 @@ try{
     <!-- @@include('layout/footer.html') -->
 
     <script type="text/javascript" src="js/product.js"></script>
+    <script>
+        
+        let prd_name = <?php echo json_encode($prodRow) ?>;
+        // cartArr[0].prdNo = prd_name.PRD_NO;
+        // cartArr[0].prdNum = num;
+        
+        function setItemCart(){
+            
+            var num = parseInt($("#num").val());
+            // console.log(JSON.parse(localStorage.getItem("cart")));
+            var cartArr = JSON.parse(localStorage.getItem("cart"));
+            if(cartArr == null){
+                // console.log('cartnull');
+                cartArr = [];
+            }
+            // console.log(cartArr.filter(obj=>obj.prdNo == prd_name.PRD_NO));
+            arrObj = cartArr.filter(obj=>obj.prdNo == prd_name.PRD_NO)
+            if(arrObj.length==0){
+                cartArr.push({"prdNo" : prd_name.PRD_NO,"prdNum" : num});
+            }else{
+                index = cartArr.indexOf(arrObj[0]);
+                cartArr[index].prdNum = cartArr[index].prdNum + num;
+            };
+            // localStorage.setItem(prd_name.PRD_NO,num);
+            localStorage.setItem("cart",JSON.stringify(cartArr));
+            // localStorage.setItem("cart",`${cartArr.toString()}`);
+            
+        }
+        function init(){
+            let cart = document.getElementById("cart");
+            let buy = document.getElementById("buy");
+            cart.addEventListener('click',setItemCart);
+            buy.addEventListener('click',setItemCart);
+        };
+        window.addEventListener('load',init, false);
+    </script>
 </body>
 
 </html>
