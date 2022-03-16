@@ -12,7 +12,7 @@
     <!-- <header></header> -->
     @@include('layout/header.html')
 
-    <main class="home">
+    <main class="home" id="homeApp">
         
         <!-- 登陸section -->
         <section class="home_landing" id="landing"> 
@@ -26,7 +26,7 @@
                         <br><br>
                         終日忙碌疲倦，我們渴求給自己和家人們最好的而努力工作，但現代的生活型態讓物質佔據了我們的生活，忽略了物品對我們真正的意義，在越來越壅擠的生活裡喘不過氣。
                         <br><br>
-                        收Easy整理服務能陪伴您處理過多的物品，把家變成舒適安全的代名詞，找回生活的主導權。
+                        收Easy整理服務陪伴您處理過多的物品，把家變成舒適安全的代名詞，找回生活的主導權。
                     </p>
                 </div>
             </div>
@@ -56,55 +56,20 @@
         </section>
 
         <!-- 服務section -->
-        <section class="home_plans">
+        <section class="home_plans" id="homePlansApp">
             <h2>服務方案</h2>
             <div class="plans_link_box">
                 <ul class="col-12 plans_links">
-                    <li class="col-12 col-md-4 left">
+                    <li class="col-12 col-md-4 left" v-for="plansRow in plansRows">
                         <a class="link_under_line_l" href="service.html">
-                            <span class="plans_img_box"><img src="../img/home/plans_teaching_6.jpg" alt=""></span>
+                            <span class="plans_img_box">
+                                <div></div>
+                            </span>
                             <div class="txt_box">
-                                <h3 class="link_under_line_w">到府一對一教學</h3>
+                                <h3 class="link_under_line_w">{{plansRow.PLAN_NAME}}</h3>
                                 <br>
                                 <p>給想要掌握收納技巧，<br>長期保持美好生活環境的你。</p>
 
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
-                                <g id="Layer_1">
-                                 <title>Layer 1</title>
-                                 <path id="svg_1" d="m3.44159,27.16454" opacity="NaN" stroke="#000" fill="#fff"/>
-                                 <line stroke="#000" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_3" y2="23.14106" x2="50.42394" y1="23.14106" x1="-0.38462" fill="none"/>
-                                 <path stroke="#000" id="svg_4" d="m50.57692,23.52567l-15.53251,-15.20735" opacity="undefined" stroke-linecap="undefined" stroke-linejoin="undefined" fill="none"/>
-                                </g>
-                            </svg>
-                        </a>
-                    </li>
-                    <li class="col-12 col-md-4 mid">
-                        <a class="link_under_line_l" href="service.html">
-                            <span class="plans_img_box"><img src="../img/home/h_fold_tal.jpg" alt=""></span>
-                            <div class="txt_box">
-                                <h3 class="link_under_line_w">空間整理收納</h3>
-                                <br>
-                                <p>還給您最舒適的居家空間，<br>量身打造專屬您的空間規劃。</p>
-                            
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
-                                <g id="Layer_1">
-                                 <title>Layer 1</title>
-                                 <path id="svg_1" d="m3.44159,27.16454" opacity="NaN" stroke="#000" fill="#fff"/>
-                                 <line stroke="#000" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_3" y2="23.14106" x2="50.42394" y1="23.14106" x1="-0.38462" fill="none"/>
-                                 <path stroke="#000" id="svg_4" d="m50.57692,23.52567l-15.53251,-15.20735" opacity="undefined" stroke-linecap="undefined" stroke-linejoin="undefined" fill="none"/>
-                                </g>
-                            </svg>
-                        </a>
-                    </li>
-                    <li class="col-12 col-md-4 right">
-                        <a class="link_under_line_l" href="service.html">
-                            <span class="plans_img_box"><img src="../img/home/plans_packing_3.jpg" alt=""></span>
-                            <div class="txt_box">
-                                <h3 class="link_under_line_w">搬家前後物品上下架</h3>
-                                <br>
-                                <p>搬家前後的雜亂不再，<br>讓您體驗最愉快的搬家經驗。</p>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
                                 <g id="Layer_1">
@@ -126,75 +91,75 @@
                 <ul>
                     <!-- 為了要用css無限輪播，需放兩個的圖片循環 -->
                     <li class="roll_img_box _1">
-                        <img src="../img/service_01.jpg" alt="">
+                        <img src="img/service_01.jpg" alt="">
                         <!-- <div class="roll_img_box _1">
-                            <img src="../img/service_01.jpg" alt="">
+                            <img src="img/service_01.jpg" alt="">
                         </div> -->
                     </li>
                     <li class="roll_img_box _2">
-                        <img src="../img/service_02.jpg" alt="">
+                        <img src="img/service_02.jpg" alt="">
                         <!-- <div class="roll_img_box _2">
-                           <img src="../img/service_02.jpg" alt=""> 
+                           <img src="img/service_02.jpg" alt=""> 
                         </div> -->
                     </li>
                     <li class="roll_img_box _3">
-                        <img src="../img/service_07.jpg" alt="">
+                        <img src="img/service_07.jpg" alt="">
                         <!-- <div class="roll_img_box _3">
-                            <img src="../img/service_07.jpg" alt="">
+                            <img src="img/service_07.jpg" alt="">
                         </div> -->
                     </li>
                     <li class="roll_img_box _4">
-                        <img src="../img/service_04.jpg" alt="">
+                        <img src="img/service_04.jpg" alt="">
                         <!-- <div class="roll_img_box _4">
-                            <img src="../img/service_04.jpg" alt="">
+                            <img src="img/service_04.jpg" alt="">
                         </div> -->
                     </li>
                     <li class="roll_img_box _5">
-                        <img src="../img/service_05.jpg" alt="">
+                        <img src="img/service_05.jpg" alt="">
                         <!-- <div class="roll_img_box _5">
-                            <img src="../img/service_05.jpg" alt="">
+                            <img src="img/service_05.jpg" alt="">
                         </div> -->
                     </li>
                     <li class="roll_img_box _6">
-                        <img src="../img/service_06.jpg" alt="">
+                        <img src="img/service_06.jpg" alt="">
                         <!-- <div class="roll_img_box _6">
-                            <img src="../img/service_06.jpg" alt="">
+                            <img src="img/service_06.jpg" alt="">
                         </div> -->
                     </li>
                     <li class="roll_img_box _1">
-                        <img src="../img/service_01.jpg" alt="">
+                        <img src="img/service_01.jpg" alt="">
                         <!-- <div class="roll_img_box _1">
-                            <img src="../img/service_01.jpg" alt="">
+                            <img src="img/service_01.jpg" alt="">
                         </div> -->
                     </li>
                     <li class="roll_img_box _2">
-                        <img src="../img/service_02.jpg" alt="">
+                        <img src="img/service_02.jpg" alt="">
                         <!-- <div class="roll_img_box _2">
-                           <img src="../img/service_02.jpg" alt=""> 
+                           <img src="img/service_02.jpg" alt=""> 
                         </div> -->
                     </li>
                     <li class="roll_img_box _3">
-                        <img src="../img/service_07.jpg" alt="">
+                        <img src="img/service_07.jpg" alt="">
                         <!-- <div class="roll_img_box _3">
-                            <img src="../img/service_07.jpg" alt="">
+                            <img src="img/service_07.jpg" alt="">
                         </div> -->
                     </li>
                     <li class="roll_img_box _4">
-                        <img src="../img/service_04.jpg" alt="">
+                        <img src="img/service_04.jpg" alt="">
                         <!-- <div class="roll_img_box _4">
-                            <img src="../img/service_04.jpg" alt="">
+                            <img src="img/service_04.jpg" alt="">
                         </div> -->
                     </li>
                     <li class="roll_img_box _5">
-                        <img src="../img/service_05.jpg" alt="">
+                        <img src="img/service_05.jpg" alt="">
                         <!-- <div class="roll_img_box _5">
-                            <img src="../img/service_05.jpg" alt="">
+                            <img src="img/service_05.jpg" alt="">
                         </div> -->
                     </li>
                     <li class="roll_img_box _6">
-                        <img src="../img/service_06.jpg" alt="">
+                        <img src="img/service_06.jpg" alt="">
                         <!-- <div class="roll_img_box _6">
-                            <img src="../img/service_06.jpg" alt="">
+                            <img src="img/service_06.jpg" alt="">
                         </div> -->
                     </li>
                 </ul>
@@ -264,12 +229,18 @@
         </section>
 
         <!-- 活動消息section -->
-        <section class="home_acti">
+        <section class="home_acti" id="homeActiApp">
             <div class="acti_content">
-                <div class="col-12 col-md-6 deco_img_box"><img src="../img/home/sale_tal.jpg" alt=""></div>
+                <div class="col-12 col-md-6 deco_img_box"><img src="img/home/sale_tal.jpg" alt=""></div>
                 <ul class="col-12 col-md-6 acti_list">
                     <h2>活動消息</h2>
-                    <li>
+                    <li v-for="(actiRow, index) in actiRows">
+                         <a href="activity.html">
+                            <h3> <span>0{{index +1}}.</span> {{actiRow.TITLE}}</h3>
+                            <p>{{actiRow.CONTENT}}</p>
+                        </a>
+                    </li>
+                    <!-- <li>
                          <a href="activity.html">
                             <h3> <span>01</span> 新春大優惠</h3>
                             <p>到2/30前全館消費滿2000現折500 !折扣碼: 2022TIGERYEAR</p>
@@ -280,13 +251,7 @@
                             <h3> <span>01</span> 新春大優惠</h3>
                             <p>到2/30前全館消費滿2000現折500 !折扣碼: 2022TIGERYEAR</p>
                         </a>
-                    </li>
-                    <li>
-                         <a href="activity.html">
-                            <h3> <span>01</span> 新春大優惠</h3>
-                            <p>到2/30前全館消費滿2000現折500 !折扣碼: 2022TIGERYEAR</p>
-                        </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
 
@@ -304,22 +269,15 @@
                         <span class="img_part_4"></span>
                     </div>
                 </a>
-                <div class="txt">
+                <div class="txt" v-for="columnsRow in columnsRows">
                     <a href="columns.html" class="txt_h3">
-                        <h3>「別讓你的生活，過得毫無意識」堆積收納箱不叫整理，而是惡性囤積</h3>
+                        <h3>{{columnsRow.TOPIC}}</h3>
                     </a>
                      <div class="item">
-                        <div class="item_img"><img src="img/logo_act.jpg"></div>
-                        <div class="name">SOEASY</div>
+                        <div class="item_img"><img :src="'img/'+columnsRow.AUTHOR_PIC"></div>
+                        <div class="name">{{columnsRow.AUTHOR}}</div>
                     </div>
-                    <p>住家坪數小的購物狂家裡，想必一定是塞滿東西，如果又崇尚 IKEA 或是無印良品的簡約風，那一定會有不少收納家具或抽屜，至少我們家是這樣沒錯。實際上，那些捨不得丟的、裝在收納盒裡的東西，可能放了幾年都沒動過。
-            
-                        接觸零廢棄之後，我開始進行掃除長物的作業，從收納盒裡翻出一些稀奇古怪的東西，像是一整鞋盒的老照片，不少場景已沒了印象，甚至有些影中人連名字都忘了，原本是為了保留美好回憶而收藏的照片，卻完全沒了記憶，這似乎已失去收藏的意義了。所以，我最後只留下一些珍貴的照片，像是有紀念性的阿嬤照片，然後把一些可能對某些親友別具意義的照片還給當事人，連同一些不具意義的往返信件，毫不留情的統統送進碎紙機裡，正式向無意識生活說再見。
-                        
-                        當我把各種多餘的東西清掉之後，留下的空的收納箱，大大小小至少有 20 多個，真的是太驚人了，這不免讓我再一次反省自己真的太會亂買。因為很愛買，又懶得整理，看到家居雜誌上那種清爽潔淨的生活空間，就腦波弱的買了一堆收納箱及整理架，試圖讓家裡看起來整齊一點，效果當然沒有雜誌上那樣高雅簡潔。
-                        
-                        相信不少人都有同樣的問題，實際上這不叫整理收納，而是惡性囤積。我們現在是租屋而居，在小小的空間內堆滿收納盒，真正生活的空間越來越小，那到底是付租金給人住，還是給貨物住呢？真正有效果的收納，不外乎計畫性消費和不浪費，不僅能達到室內美觀簡潔的目標，還可以減少家庭支出和家務負擔，更不用擔心不知道東西收去哪兒了。
-                    </p>
+                    <p>{{columnsRow.CONTENT1}}</p>
                     <a href="columns.html" class="moreprd">more...</a>
                 </div>
                
@@ -385,23 +343,21 @@
             <h2>熱門商品</h2>
             <div class="content">
                 <ul class="row">
-                    <li class="col-12 col-md-4 hs_item _1">
+                    <li class="col-12 col-md-4 hs_item _1" v-for="prdsRow in prdsRows">
                         <div class="product_bg right"></div>
                         <a class="hs_link" href="product.html">
                             <div class="hs_img_box">
-                                <img src="../img/prd/prd_1_1.jpg" alt="">
+                                <img :src="'img/'+prdsRow.IMG1" alt="">
                             </div>
-                            <h3>格調漩渦 <br> 壁掛式時鐘</h3>
-                            <p>
-                                NT$ 1,099
-                            </p>
+                            <h3>{{prdsRow.PRD_NAME}}</h3>
+                            <p>NT$ {{prdsRow.PRICE}}</p>
                         </a>
                     </li>
-                    <li class="col-12 col-md-4 hs_item _2">
+                    <!-- <li class="col-12 col-md-4 hs_item _2">
                         <div class="product_bg middle"></div>
                         <a class="hs_link" href="product.html">
                             <div class="hs_img_box">
-                                <img src="../img/prd/prd_2_1.jpg" alt="">
+                                <img src="img/prd/prd_2_1.jpg" alt="">
                             </div>
                             <h3>白日夢海綿架</h3>
                             <p>
@@ -413,7 +369,7 @@
                         <div class="product_bg left"></div>
                         <a class="hs_link" href="product.html">
                             <div class="hs_img_box">
-                                <img src="../img/prd/prd_3_1.jpg" alt="">
+                                <img src="img/prd/prd_3_1.jpg" alt="">
                             </div>
                             <h3>小麋鹿木掛架</h3>
                             <p>
@@ -425,7 +381,7 @@
                         <div class="product_bg right"></div>
                         <a class="hs_link" href="product.html">
                             <div class="hs_img_box">
-                                <img src="../img/prd/prd_1_1.jpg" alt="">
+                                <img src="img/prd/prd_1_1.jpg" alt="">
                             </div>
                             <h3>格調漩渦 <br> 壁掛式時鐘</h3>
                             <p>
@@ -437,7 +393,7 @@
                         <div class="product_bg middle"></div>
                         <a class="hs_link" href="product.html">
                             <div class="hs_img_box">
-                                <img src="../img/prd/prd_2_1.jpg" alt="">
+                                <img src="img/prd/prd_2_1.jpg" alt="">
                             </div>
                             <h3>白日夢海綿架</h3>
                             <p>
@@ -449,43 +405,7 @@
                         <div class="product_bg left"></div>
                         <a class="hs_link" href="product.html">
                             <div class="hs_img_box">
-                                <img src="../img/prd/prd_3_1.jpg" alt="">
-                            </div>
-                            <h3>小麋鹿木掛架</h3>
-                            <p>
-                                NT$ 1,480
-                            </p>
-                        </a>
-                    <!-- </li>
-                    <li class="col-12 col-md-4 hs_item _7">
-                        <div class="product_bg right"></div>
-                        <a class="hs_link" href="product.html">
-                            <div class="hs_img_box">
-                                <img src="../img/prd/prd_1_1.jpg" alt="">
-                            </div>
-                            <h3>格調漩渦 <br> 壁掛式時鐘</h3>
-                            <p>
-                                NT$ 1,099
-                            </p>
-                        </a>
-                    </li>
-                    <li class="col-12 col-md-4 hs_item _8">
-                        <div class="product_bg middle"></div>
-                        <a class="hs_link" href="product.html">
-                            <div class="hs_img_box">
-                                <img src="../img/prd/prd_2_1.jpg" alt="">
-                            </div>
-                            <h3>白日夢海綿架</h3>
-                            <p>
-                                NT$ 490
-                            </p>
-                        </a>
-                    </li>
-                    <li class="col-12 col-md-4 hs_item _9">
-                        <div class="product_bg left"></div>
-                        <a class="hs_link" href="product.html">
-                            <div class="hs_img_box">
-                                <img src="../img/prd/prd_3_1.jpg" alt="">
+                                <img src="img/prd/prd_3_1.jpg" alt="">
                             </div>
                             <h3>小麋鹿木掛架</h3>
                             <p>
@@ -507,136 +427,107 @@
 
     <script>
         new Vue({
-            el: '#landing',
-            data: {
-                // img: "../img/index_choose.jpeg"
+            el: '#homeApp',
+            data:{
+                // img: "img/index_choose.jpeg"
                 s_imgs: [
-                    {'background-image': 'url(' + "../img/home/landing_main_s.jpg" + ')'},
+                    {'background-image': 'url(' + "img/home/landing_main_s.jpg" + ')'},
 
-                    {'background-image': 'url(' + "../img/home/w_choose.jpeg" + ')'},
+                    {'background-image': 'url(' + "img/home/w_choose.jpeg" + ')'},
 
-                    {'background-image': 'url(' +  "../img/home/shirt.jpeg" + ')'},
+                    {'background-image': 'url(' +  "img/home/shirt.jpeg" + ')'},
 
-                    {'background-image': 'url(' + "../img/home/h_fold_side.jpg" + ')'},
+                    {'background-image': 'url(' + "img/home/h_fold_side.jpg" + ')'},
                 ],
 
                 l_imgs: [
-                    {'background-image': 'url(' + "../img/home/landing_main.jpg" + ')'},
+                    {'background-image': 'url(' + "img/home/landing_main.jpg" + ')'},
 
-                    {'background-image': 'url(' + "../img/home/w_choose.jpeg" + ')'},
+                    {'background-image': 'url(' + "img/home/w_choose.jpeg" + ')'},
 
-                    {'background-image': 'url(' +  "../img/home/shirt.jpeg" + ')'},
+                    {'background-image': 'url(' +  "img/home/shirt.jpeg" + ')'},
 
-                    {'background-image': 'url(' + "../img/home/h_fold_side.jpg" + ')'},
+                    {'background-image': 'url(' + "img/home/h_fold_side.jpg" + ')'},
                 ],
 
                 i: 0,
                 percent: 0,
+
+                plansRows:[{PLAN_NO: '', PLAN_NAME: ''}],
+                actiRows:[{COUPON: '', TITLE: '', CONTENT: ''}],
+				columnsRows:[{COLUMN_NO: '', AUTHOR: '', AUTHOR_PIC	:'', DATE: '', TOPIC: '', CONTENT1: ''}],
+				prdsRows:[{PRD_NO: '', CATEGORY: '', PRD_NAME:'', PRICE: '', IMG1: ''}],
+
             },
-            methods: {
+			methods: {
                 imgTime: function(){
                     setInterval(this.imgOrder, 6000)
                 },
 
-                imgOrder:function(){
+                imgOrder: function(){
                     this.i++;
 
                     if(this.i == 4){
                         this.i = 0;
                     }
-
-                    // this.percent = this.i * 25;
                 },
 
-            },
+				getPlans(){
+					let xhr = new XMLHttpRequest();
+					let thisVue = this;
+					xhr.onload = function(){
+						thisVue.plansRows = JSON.parse(xhr.responseText);
+					}
+					xhr.open("get", "phps/selectAll.php?tableName=plan", true);
+					xhr.send(null);
+				},
+
+                getActi(){
+					let xhr = new XMLHttpRequest();
+					let thisVue = this;
+					xhr.onload = function(){
+						thisVue.actiRows = JSON.parse(xhr.responseText);
+					}
+					xhr.open("get", "phps/selectAll.php?tableName=event", true);
+					xhr.send(null);
+				},
+
+                getColumns(){
+					let xhr = new XMLHttpRequest();
+					let thisVue = this;
+					xhr.onload = function(){
+						thisVue.columnsRows = JSON.parse(xhr.responseText);
+					}
+					xhr.open("get", "phps/selectAll.php?tableName=columntable", true);
+					xhr.send(null);
+				},
+
+                getPrds(){
+					let xhr = new XMLHttpRequest();
+					let thisVue = this;
+					xhr.onload = function(){
+						thisVue.prdsRows = JSON.parse(xhr.responseText);
+					}
+					xhr.open("get", "phps/getPrd.php", true);
+					xhr.send(null);
+				},
+			},
             computed: {
                 changeImg(){
                     return  `${this.i}`; 
                 },
-                progressBar(){
-                    return `${this.i * 25}%`;
-                },
-
             },
-
-            mounted:function(){    //生命週期  鉤子函數   掛載完成
-                this.imgTime()
-            },
-
-            watch: {  
-                //偵聽器: 主要用來偵聽 data 和 computed 的變化     
-            },
+			mounted() {
+                this.imgTime();
+				this.getPlans();
+				this.getActi();
+				this.getColumns();
+				this.getPrds();
+			},
         });
 
         
     </script>
-
-    <!-- <img src="../img/index_box.jpeg" alt="">
-        <img src="../img/index_choose.jpeg" alt="">
-        <img src="../img/index_fold.jpeg" alt="">
-        <img src="../img/index_plate_tal.jpeg" alt=""> -->
-
-<!-- window.onload = function(){
-    new Vue({
-        el:"#my",
-        data:{
-            img:["img/banner1.jpg",
-                "img/banner2.jpg",
-                "img/banner3.jpg",
-                "img/banner4.jpg",
-                "img/banner5.jpg"],
-            n:2
-        },
-        methods:{
-            fun:function(){
-                //setInterval(函數體,時間)
-                setInterval(this.play,2000)
-            },
-            play:function(){
-                this.n++;
-                if(this.n == this.img.length){
-                    this.n = 0;
-                }
-            }
-        },
-        mounted:function(){    //生命週期  鉤子函數   掛載完成
-            this.fun()
-        }
-    })
-} -->
-
-
-
-<!-- // fun:function(){
-    // //setInterval(函數體,時間)
-    // setInterval(this.play,2000)
-    // },
-    // play:function(){
-    //     this.n++;
-    //     if(this.n == this.img.length){
-    //         this.n = 0;
-    //     }
-    // } -->
-
-
-    
-
-    <!-- //             $('.iindex_p2-progressSolid').width(`${length}%`)
-    //     length += .7;
-    //     if (length >= 100) {
-    //         length = 0;
-    //         index += 1;
-    //         $('.index_p2_tickerContainer>h1').html(`${titleWord[index % 3]}`);
-    //         $('.index_p2_button>h2').text(`${titleWord[index % 3]}`);
-    //         $('.index_p2_pic>img').attr('src', `${itemPic[index % 3]}`)
-    //         $('.iindex_p2_right').css({
-    //             background: `url(${bgPic[index % 3]})`
-    //         });
-    //         $('.index_p2_left').css({
-    //             backgroundColor: `${bgColor[index % 3]}`
-    //         });
-    //     }
-    // }, 30); -->
 
 </body>
 </html>
