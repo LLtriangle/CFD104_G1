@@ -16,20 +16,23 @@ button{
     }
 }
 .container{
-    max-width: 820px; 
-    min-width: 420px;
-    margin: 40px auto;
+    // max-width: 820px; 
+    min-width: 425px;
+    margin: 40px;
     margin-top: 92px; // 推header
     font-family: $font_family;
     font-size: 0.9em;
     color: map-get($color, 'main');
+    .full{
+        width: 100%;
+    }
     .progress{
         overflow: hidden;
         margin-bottom: -2px;
          /* hide bottom border */
         margin-left: 24px;
         a{
-            width: 26%;
+            width: calc((100% - 170px)/3);
             float: left;
             cursor: pointer;
             padding: 12px 24px;
@@ -51,12 +54,18 @@ button{
             color: map-get($color, 'blue');
             cursor: default;
             }
+            img{
+                width: 30px;
+            }
         }
     }
 }
 table{
     margin: 10px 0;
     width: 100%;
+    .radio-input{
+        display: none;
+    }
     .creditCard{
     text-align: center;
     }
@@ -66,12 +75,18 @@ table{
     border-radius: 15px;
     // width: 25px;
 }
+
 .tabcontent {
     background-color: map-get($color , "plain" );
     padding: 30px 50px;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 4px 4px 8px #e1e1e1;
+    .flex{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
     .left{
         text-align: left;
         padding-left: 20px;
@@ -80,7 +95,7 @@ table{
         display: flex;
         justify-content: space-between;
     }
-    td {
+    td,div {
         text-align: center;
         padding: 0.3em 0.4em;
         color: map-get($color, 'black');
@@ -189,6 +204,7 @@ textarea {
     .container{
         width: 100%;
         min-width: unset;
+        margin: 40px auto;
         .progress{
             margin-left:0;
             a{  
