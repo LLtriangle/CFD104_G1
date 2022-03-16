@@ -28,6 +28,11 @@ footer{
             color: #fff;
             border-color: map-get($btn_color, "blue" );
             background-color: map-get($btn_color, "blue" );
+
+            &:hover{
+                padding: 10px;
+                transition: .3s;
+            }
         }
 
         @media screen and (max-width: 767px){
@@ -42,10 +47,6 @@ footer{
             }
         }
 
-        &:hover .link_ro{
-            padding: 10px;
-            transition: .3s;
-        }
     }
 
     .footer_info{

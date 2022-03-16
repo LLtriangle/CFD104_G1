@@ -68,17 +68,6 @@ $(window).on('load',function(){
 
         let ig_t = `${lg.offset().top}px`;
         ig[0].style.top = ig_t;
-
-        let ig_wh = lg_w / 2;
-        let ig_h = lg_h / 2;
-
-        // console.log(houseWidth);
-        // console.log(houseHeight);
-
-        // console.log("bgimg:", img_grow_width, img_grow_height);
-        // console.log();
-
-        // console.log(img_growLeft, img_growTop)
     });
 
     // ig[0].style.width =  houseWidth;
@@ -119,17 +108,18 @@ $(window).on('load',function(){
                 left: "0",
                 top: "0",
                 zIndex: 50,
-                duration: 2,
+                duration: 5,
             },">").to(".blur_txt", {
                 display: "block",
             }).fromTo(".blur_txt h2, .blur_txt p", {
                 scale: 1.2, 
                 blur: 5,
+                duration: 5,
             },{
                 opacity: 1,
                 scale: 1, 
                 blur: 0,
-                duration: 2,
+                duration: 5,
             });
         },
         // 畫面不小於 768px 執行
@@ -148,81 +138,23 @@ $(window).on('load',function(){
                 left: "0",
                 top: "0",
                 zIndex: 50,
-                duration: 2,
+                duration: 5,
             },">").to(".blur_txt", {
                 display: "flex",
             }).fromTo(".blur_txt h2, .blur_txt p", {
                 scale: 1.2, 
                 blur: 5,
+                duration: 5,
             },{
                 opacity: 1,
                 scale: 1, 
                 blur: 0,
-                duration: 2,
+                duration: 5,
             });
         },
         // 不管畫面大小，我都執行
         // "all": () => { 執行內容 },
     });
-    // landing_tl.to(".img_grow",{
-    //     opacity: 0,
-    // },">").to(".img_grow", 
-    //     {
-    //     "clip-path": "polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%)",
-    // },">").to(".img_grow", 
-    //     {
-    //     opacity: 1,
-    // },">").to(".img_grow",{
-    //     width:"100vw", 
-    //     height:"100vh", 
-    //     left: "0",
-    //     top: "0",
-    //     zIndex: 50,
-    //     duration: 2,
-    // },">").to(".blur_txt", {
-    //     display: "flex",
-    //     opacity: "1",
-    //     duration: 2,
-    // }).to(".blur_txt h2, .blur_txt p", {
-    //     opacity: "1",
-    //     duration: 2,
-    // });
-
-    // .css('width', '100vw')
-    // .width() == $(document).width()
-
-    // $(window).one('scroll', function(){
-    //     if($(".img_grow").css('left', '0px') = 1){
-
-    //         console.log("100%");
-    //         // 壓在房子底下的圖片放大到全屏，並用並顯示出文字
-    //         const landing_txt_tl = gsap.timeline({
-    //             scrollTrigger: {
-    //                 trigger: ".img_grow", 
-    //                 start: "top +=1200", 
-    //                 // end: "+=400",
-    //                 pin: true,
-    //                 scrub: true, 
-    //                 markers: true,
-    //                 toggleActions: "play complete reverse reset",
-    //             }
-    //         });
-    
-    //         landing_txt_tl.to(".blur_txt", {
-    //             display: "flex",
-    //             opacity: "1",
-    //             duration: 2,
-    //         });
-
-    //         landing_txt_tl.to(".blur_txt h2, .blur_txt p", {
-    //             opacity: "1",
-    //             duration: 2,
-    //         });
-
-    //     }else{
-    //         console.log("nope");
-    //     }
-    // });
     
     // landing換圖進度條，但目前不準，因為vue設定的關係，圖片載入有時間差
     gsap.to(".img_progress_bar", 6, {width: "100%", repeat: -1, repeatDelay: 1.2}); 
@@ -362,9 +294,9 @@ $(window).on('load',function(){
                     snap: 1 / (hs_items.length - 0.45),
                     // marker: true,
                     // base vertical scrolling on how wide the container is so it feels more natural.
-                    start: "center center",
+                    start: "top center",
                     // end: "top bottom",
-                    end:"+=1200px",
+                    end:"+=1500px",
                 }
             });
         },
@@ -382,9 +314,9 @@ $(window).on('load',function(){
                     snap: 1 / (hs_items.length - 1),
                     // marker: true,
                     // base vertical scrolling on how wide the container is so it feels more natural.
-                    start: "center center",
+                    start: "top center",
                     // end: "top bottom",
-                    end:"+=1200px",
+                    end:"+=1500px",
                 }
             });
         },
