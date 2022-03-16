@@ -31,6 +31,7 @@ body{
         left: 0;
         width: 100%;
         li{
+            
             position: relative;
             width: 100%;
             list-style: none;
@@ -66,8 +67,8 @@ body{
                     height: 60px;
                     line-height: 75px;
                     text-align: center;
-                    ion-icon{
-                        font-size: 1.75em;
+                    img{
+                        width: 30px;
                     }
                 }
                 .title{
@@ -295,15 +296,16 @@ body{
                     text-overflow: ellipsis;
                     padding: 10px;
                     max-width: 170px;
-                    &:last-child{
-                        text-align: end;
-                    }
-                    &:nth-child(2){
-                        text-align: end;
-                    }
-                    &:nth-child(3){
-                        text-align: center;
-                    }
+                    text-align: center;
+                    // &:last-child{
+                    //     text-align: end;
+                    // }
+                    // &:nth-child(2){
+                    //     text-align: end;
+                    // }
+                    // &:nth-child(3){
+                    //     text-align: center;
+                    // }
                 }
             }
         }

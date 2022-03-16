@@ -1,4 +1,4 @@
-$(window).on('load',function(){// MenuToggle
+// MenuToggle
     let toggle = document.querySelector('.toggle');
     let navigation = document.querySelector('.navigation');
     let main = document.querySelector('.main');
@@ -17,4 +17,3 @@ $(window).on('load',function(){// MenuToggle
     }
     list.forEach((item) =>
     item.addEventListener('mouseover',activeLink));
-});
