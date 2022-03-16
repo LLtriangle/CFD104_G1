@@ -24,9 +24,9 @@ button{
     }
 }
 .container{
-    max-width: 820px; 
+    // max-width: 820px; 
     min-width: 420px;
-    margin: 40px auto;
+    margin: 40px;
     margin-top: 92px; // 推header
     font-family: $font_family;
     font-size: 0.9em;
@@ -43,7 +43,7 @@ button{
             border: 1px solid #ccc;
             border-right: none;
             border-bottom: none;
-            background-color:map-get($color , "plain" );
+            background-color:map-get($color , "cover" );
             border-radius: 10px 10px 0 0;
             font-weight: bold;
             &:last-child { 
@@ -68,7 +68,7 @@ table.creditCard{
     text-align: center;
 }
 .tabcontent {
-    background-color: map-get($color , "plain" );
+    background-color: map-get($color , "cover" );
     padding: 30px 50px;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -118,7 +118,6 @@ table.creditCard{
 
             p{
                 padding-left: 2rem;
-                font-size: 14px;
             }
             p.plan_price{
                 font-size: 20px;
