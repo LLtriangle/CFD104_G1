@@ -107,13 +107,6 @@
             </div>
         </section>
         
-        <!-- <label>
-            <input type="checkbox" id="control_txt"><span>文字開關</span>
-        </label>
-        <label>
-            <input type="checkbox" id="select_all"><span>全選</span>
-        </label> -->
-
 
         <!-- 測驗結果 -->
         <section class="text_result" id="result">
@@ -125,7 +118,7 @@
             <div class="paper">
                 <h2>測驗結果</h2>
                 <div class="result">
-                    <div class="evaluate bee">
+                    <div class="evaluate">
                         <div class="txt">
                             <h3>你是{{yourpersonality[0]}}人！</h3>
                             <p class="text-wrapper">{{yourpersonality[1]}}</p>
@@ -146,15 +139,13 @@
                     </div>
                     <h3>推薦服務</h3>
                     <div class="push_service">
-                        <h3>到府一對一教學</h3>
+                        <h3>{{pushService.PLAN_NAME}}</h3>
                         <img src="img/service_08.jpg">
                         <div class="txt">
                             <h3>｜適合對象｜</h3>
-                            <p>#平日愛整理收納，想了解更多整理達人收納術。</p>
-                            <p>#希望有整理師現場帶領和調整一個適合自己的整理方式。</p>
-                            <p>#協助與室內設計師溝通適合的收納空間規劃。</p>
+                            <p class="text-wrapper">{{pushService.PLAN_TA}}</p>
                             <h3>｜方案特色｜</h3>
-                            <p>以一個範圍教學完流程後，可嘗試自行完成其他區域。</p>
+                            <p class="text-wrapper">{{pushService.PLAN_FEATURE}}</p>
                             <br>
                             <p>
                                 <a href="reserve.html" class="link_btn rd">馬上預約</a>
@@ -165,11 +156,11 @@
                     <div class="push_products">
                         <div>
                             <div class="prd_card">
-                                <img src="https://www.shuter.com.tw/upload/2021_06_1615/20210616112309h9nbkd9CJ9.jpg">
+                                <img :src="'img/'+pushService.prd1_img">
                                 <div class="txt">
-                                    <p>黑色不鏽鋼雙層瀝水碗盤置物收納架</p>
+                                    <p>{{pushService.prd1}}</p>
                                     <div>
-                                        <p>NT $1,680</p>
+                                        <p>NT ${{pushService.prd1_price}}</p>
                                         <p>
                                             <a href="product.html" class="link_btn bl">購買</a>
                                         </p>
@@ -177,11 +168,11 @@
                                 </div>
                             </div>
                             <div class="prd_card">
-                                <img src="img/index_product_1.png">
+                                <img :src="'img/'+pushService.prd2_img">
                                 <div class="txt">
-                                    <p>格調漩渦壁掛式時鐘</p>
+                                    <p>{{pushService.prd2}}</p>
                                     <div>
-                                        <p>NT$ 1,099</p>
+                                        <p>NT ${{pushService.prd2_price}}</p>
                                         <p>
                                             <a href="product.html" class="link_btn bl">購買</a>
                                         </p>
@@ -189,11 +180,11 @@
                                 </div>
                             </div>
                             <div class="prd_card">
-                                <img src="https://www.shuter.com.tw/upload/2021_10_074/20211007175019ykq3fogyX1.jpg">
+                                <img :src="'img/'+pushService.prd3_img">
                                 <div class="txt">
-                                    <p>木頭上蓋桌板組</p>
+                                    <p>{{pushService.prd3}}</p>
                                     <div>
-                                        <p>NT $1,699</p>
+                                        <p>NT ${{pushService.prd3_price}}</p>
                                         <p>
                                             <a href="product.html" class="link_btn bl">購買</a>
                                         </p>
@@ -214,6 +205,16 @@
         // 跨區域拖放受限，失敗原因 : 
         // https://stackoverflow.com/questions/11927309/html5-dnd-datatransfer-setdata-or-getdata-not-working-in-every-browser-except-fi
         
+        // 送出按鈕disabled切換
+        function finishButton(){
+            // console.log(0);
+            if($('#item_group img').length == 0) {
+                $('#finish').attr('disabled',false);
+            }else if($('#item_group img').length > 0){
+                $('#finish').attr('disabled',true);
+            };
+        };
+
         function allowDrop(allowdropevent) {
             allowdropevent.preventDefault();
         };
@@ -226,6 +227,7 @@
             dropevent.preventDefault();
             var data = dropevent.dataTransfer.getData("text");
             dropevent.target.appendChild(document.getElementById(data));
+            finishButton();   // 送出按鈕disabled切換
         };
         
         function dropTrashcan(e) {
@@ -233,19 +235,25 @@
             var data = e.dataTransfer.getData("text");
             e.target.parentNode.parentNode.lastChild.appendChild(document.getElementById(data));
             if($('#wardrobe #hiding img').length == 0){
-                // 條件:衣櫃是空的，顯示為空
-                $('#wardrobe #inside').addClass('empty');
+                // 條件:垃圾桶是空的，顯示為空
+                $('#trashcan').addClass('empty');
+            }else{
+                $('#trashcan').removeClass('empty');
             };
+            finishButton();   // 送出按鈕disabled切換
         };
+        
         function dropWardrobe(e) {
             e.preventDefault();
             var data = e.dataTransfer.getData("text");
-            console.log(e.target.parentNode.lastChild);
             $('#hiding').append(document.getElementById(data));
             if($('#wardrobe #hiding img').length == 0){
                 // 條件:衣櫃是空的，顯示為空
                 $('#wardrobe #inside').addClass('empty');
+            }else{
+                $('#wardrobe #inside').removeClass('empty');
             };
+            finishButton();   // 送出按鈕disabled切換
         };
 
 
@@ -266,7 +274,6 @@
                         bus.$emit('abc',this.personality='蟋蟀');   // 自訂事件
                     };
                 },
-                // 2 額外增加的，可以不用寫
                 data() {
                     return {
                         personality: '',
@@ -277,31 +284,41 @@
 
         new Vue({
             el:'#app',
-            data() {
-                return {
-                    yourpersonality: '',
-                    butterfly:['蝴蝶',
+			data:{
+                yourpersonality: '',
+                butterfly:['蝴蝶',
                     '用得到的、喜愛的物件都要在眼前一覽無遺，你才會感到安心。',
                     '你比較喜歡：「豐富視覺＋簡易收納」',
                     '你思考活躍、創意十足、著眼於大處，做事時樂在當下，珍惜和物品的感情連結。',
                     '你總是覺得，「東西要是收起來，我就會忘記它們的存在！」結果物品四處散亂堆積，櫃子、抽屜反而空空如也。\n你可能常被人認為懶惰、任空間亂七八糟，但那只是因為市面上的收納用品不符合你的習慣。\n既然東西要擺出來才安心，就讓自己當個被心愛物品圍繞的蝴蝶人吧！','img/game_butterfly.png'],
-                    ladybug:['瓢蟲',
+                ladybug:['瓢蟲',
                     '你能從宏觀角度掌握事物全貌，整潔有序，經手過的空間美得能拍網美照！',
                     '你比較喜歡：「簡潔視覺＋簡易收納」',
                     '你做事有條理，也有強盛的行動力，容易對手作DIY有熱情，生活過得充實精彩！',
                     '「那些帳單、藥罐、小東西通通都要收起來，眼不見為淨！」\n瓢蟲人的家看似整潔，其實他們有著難以啟齒的秘密──那些看不見的抽屜、櫃子早就大爆炸一團亂了！\n結果老是找不到要用的東西，每天都在跟雜物玩捉迷藏……要仔細整理真的很困難！','img/game_ladybug.png'],
-                    bee:['蜜蜂',
+                bee:['蜜蜂',
                     '你偏好讓所有事物在眼前自成秩序，並深信它們都能物盡其用。',
                     '你比較喜歡：「豐富視覺＋詳盡收納」',
                     '你做事有條理，也有強盛的行動力，容易對手作DIY有熱情，生活過得充實精彩！',
                     '「我的興趣很多，導致東西也很多！」忙碌的小蜜蜂被嗜好圍繞雖然幸福，但是空間也因此被各種器材用品塞爆。\n又因為常常想著「以後可能會用到啊！」結果割捨不下任何東西，只好通通堆在自己身邊。\n很想要找出完美的收納方式，但可能會先被雜物淹沒……','img/game_bee.png'],
-                    cricket:['蟋蟀',
+                cricket:['蟋蟀',
                     '俐落有序、細節準則是你的人生信仰，你只用「正確方式」做事。',
                     '你比較喜歡：「簡潔視覺＋詳盡收納」',
                     '你擅長分析、注重細節、條理分明，任何事交給有責任感的你，絕對讓人放心！',
                     '市面上的收納用品根本是為蟋蟀人設計的，許多專業整理師也都是這個類型。\n但是你太追求完美，甚至覺得沒做好還不如完全別做，整理收納容易一拖再拖，反而更容易堆積物品，尤其文件是你難攻克的大魔王。\n請放下自我懷疑，並接受你天生的收納整理能力。','img/game_cricket.png'],
-                };
+                pushService:{PLAN_FEATURE: "",PLAN_NAME: "",PLAN_TA: "",prd1: "",prd1_img: "",prd1_price: "",prd2: "",prd2_img: "",prd2_price: "",prd3: "",prd3_img: "",prd3_price:''},
             },
+			methods: {
+				getPushService(){
+					let xhr = new XMLHttpRequest();
+					let thisVue = this;
+					xhr.onload = function(){
+                        thisVue.pushService = JSON.parse(xhr.responseText);
+					}
+					xhr.open("get", `phps/getPush.php?personality=${thisVue.yourpersonality[0]}`, true);
+					xhr.send(null);
+				},
+			},
             // 在 mounted() 時聆聽該事件
             mounted() {
                 bus.$on('abc',(personality) => {
@@ -314,6 +331,7 @@
                     }else if(personality=='蟋蟀'){
                         this.yourpersonality=this.cricket;
                     };
+                    this.getPushService();
                 });
             },
         });

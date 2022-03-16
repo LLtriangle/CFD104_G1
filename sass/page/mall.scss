@@ -1,12 +1,13 @@
 @import  "../base/color";
-// 手機版
 .mall_btn{
     display: flex;
     justify-content: center;
     max-width: 100%;
     padding-top: 20px;
     .btn_btn{
+        margin: 5px;
         cursor: pointer;
+        border-radius: 0%;
     }
 }
 .container{
@@ -34,25 +35,94 @@
     }
     input[type=button]{
         width: 140px;
-    }
-    input[type=button]:hover{
-        cursor: pointer;
+        &:disabled{
+            &:hover{
+                cursor: auto;
+            }
+            background-color: #aaa;
+            color: #ddd;
+            box-shadow: none;
+            border-color: #aaa;
+        }
+        &:hover{
+            cursor: pointer;
+        }
     }
     #npimg{
         display: none;
     }
     .mall_nextpagebtn{
-    display: flex;
-    justify-content: center;
+        display: flex;
+        justify-content: center;
     }
 }
-
+//手機板
+@media (min-width: 768px) {
+    .mall_btn{
+        display: flex;
+        justify-content: center;
+        max-width: 100%;
+        padding-top: 20px;
+        .btn_btn{
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 0%;
+        }
+    }
+    .container{
+        max-width: 1200px;
+        display: flex;
+        flex-wrap: wrap;
+        .mall_item{
+            margin: 30px 10px;
+            width: calc(50% - 20px);
+            .mall_img{
+                img{
+                    width: 100%;
+                    border-radius: 5%;
+                }
+            }
+            h3{
+                margin-left: 5px;
+                margin-top: 5px;
+                font-size: 18px;
+            }
+            p{
+                margin-left: 5px;
+                margin-top: 5px;
+            }
+        }
+        input[type=button]{
+            width: 140px;
+            &:disabled{
+                &:hover{
+                    cursor: auto;
+                }
+                background-color: #aaa;
+                color: #ddd;
+                box-shadow: none;
+                border-color: #aaa;
+            }
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        #npimg{
+            display: none;
+        }
+        .mall_nextpagebtn{
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
 // 桌機版
 @media (min-width: 1200px) {
     .mall_btn{
         padding-top: 30px;
         .btn_btn{
             margin: 0px 30px;
+            border-radius: 100px;
         }
     }
     .container{
@@ -88,9 +158,9 @@
             width: 1200px;
         }
         .mall_nextpagebtn{
-        width: 1200px;
-        display: flex;
-        justify-content: center;
+            width: 1200px;
+            display: flex;
+            justify-content: center;
         }
     }             
 }

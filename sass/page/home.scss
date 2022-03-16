@@ -288,43 +288,15 @@ $section_margin_top: 60px;
             position: relative;
             transition: transform .8s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
             
-
             @include PC{
                 padding-top: 60px;
                 padding-bottom: 160px;
                 display: flex;
-                
-                .left{
-                    &.enter{
-                        transition: transform .8s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-                    }
-                }
-                
-                .mid{
-                    top: 80px;
-
-                    &.enter{
-                        transition: transform 1.6s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-                    }
-                }
-    
-                .right{
-                    top: 160px;
-
-                    &.enter{
-                        transition: transform 2.4s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-                    }
-
-                    
-                }
-                
             }
-
-            
-            
         }
 
         li{
+
             position: relative;
             height: 500px;
             transform: translateY(100px);
@@ -363,10 +335,10 @@ $section_margin_top: 60px;
                     left: 0;
                     overflow: hidden;
 
-                    img{
+                    div{
                         position: absolute;
                         width: 100%;
-                        height: auto;
+                        height: 100%;
                         display: block;
                         top: 50%;
                         left: 55%;
@@ -395,7 +367,60 @@ $section_margin_top: 60px;
 
             }
 
+            // 因為v-for 自動篩入資料，所以scss樣式用nth-child來選
+            &:nth-child(1){
+                &.enter{
+                    transition: transform .8s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+                }
+                
+
+                .plans_img_box{
+                    
+                    div{
+                        background: url("../img/home/plans_teaching_6.jpg") no-repeat center/cover;
+                    }
+                }
+            }
+            &:nth-child(2){
+                
+                @include PC{
+                    top: 80px;
+                }
+
+                &.enter{
+                    transition: transform 1.6s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+                }
+
+                .plans_img_box{
+                    
+                    div{
+                        background: url("../img/home/h_fold_tal.jpg") no-repeat center/cover;
+                    }
+                }
+
+            }
+            &:nth-child(3){
+                
+                @include PC{
+                    top: 160px;
+                }
+
+                &.enter{
+                    transition: transform 2.4s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.1s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+                }
+
+                .plans_img_box{
+                    
+                    div{
+                        background: url("../img/home/plans_packing_3.jpg") no-repeat center/cover;
+                    }
+                }
+
+            }
+
         }
+
+        
     }
 }
 
@@ -664,17 +689,7 @@ $section_margin_top: 60px;
                 // }
             }
             a{
-                &:hover{
-                    .view{
-                        &::after{
-                            // background-color: map-get($color , "sub_brown" );
-                            background-color: map-get($color , "plain_blue" );
-                            transition: .5s;
-                        }
-                    }
-                    
-                }
-
+                
                 .view{
                     width: 250px;
                     height: 250px;
@@ -689,14 +704,10 @@ $section_margin_top: 60px;
                     position: relative;
                     margin: auto;
                     transition: 3s;
-                    margin: 0 60px;
-
-
-                    &:hover{
-                        background-position: left;
+                    @include PC{
+                        margin: 0 60px;
                     }
                     
-    
                     &::before{
                         width: 120px;
                         height: 300px;
@@ -762,6 +773,19 @@ $section_margin_top: 60px;
 
                 }
 
+                &:hover{
+                    .view{
+                        background-position: left;
+                        
+                        &::after{
+                            // background-color: map-get($color , "sub_brown" );
+                            background-color: map-get($color , "plain_blue" );
+                            transition: .5s;
+                        }
+                    }
+                    
+                }
+
                 .des{
                     display: flex;
                     flex-direction: column-reverse;
@@ -823,7 +847,7 @@ $section_margin_top: 60px;
             position: relative;
 
             @include pad{
-                height: 350px;   
+                height: 350px;
             }
 
             &::before{

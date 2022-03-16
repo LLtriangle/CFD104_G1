@@ -5,6 +5,7 @@ $(window).on('load',function(){
 		scrollTrigger:{
 			trigger: '.serve_case',
 			start: 'center center',
+			end:'+=5000px',
 			pin: true,
 			scrub: true,
 			// markers:true,
