@@ -428,18 +428,17 @@ try{
         // cartArr[0].prdNum = num;
         
         function setItemCart(){
-            
             var num = parseInt($("#num").val());
             // console.log(JSON.parse(localStorage.getItem("cart")));
             var cartArr = JSON.parse(localStorage.getItem("cart"));
             if(cartArr == null){
-                // console.log('cartnull');
                 cartArr = [];
-            }
+                // cartArr.push({prdNo : prd_name.PRD_NO, prdName : prd_name.PRD_NAME, prdPrice : prd_name.PRICE, prdImg : prd_name.IMG1, prdNum : num});
+            };
             // console.log(cartArr.filter(obj=>obj.prdNo == prd_name.PRD_NO));
             arrObj = cartArr.filter(obj=>obj.prdNo == prd_name.PRD_NO)
             if(arrObj.length==0){
-                cartArr.push({"prdNo" : prd_name.PRD_NO,"prdNum" : num});
+                cartArr.push({prdNo : prd_name.PRD_NO, prdName : prd_name.PRD_NAME, prdPrice : prd_name.PRICE, prdImg : prd_name.IMG1, prdNum : num});
             }else{
                 index = cartArr.indexOf(arrObj[0]);
                 cartArr[index].prdNum = cartArr[index].prdNum + num;
