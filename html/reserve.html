@@ -25,7 +25,7 @@
             </a>
             <a v-bind:class="[ activetab === '2' ? 'active' : '' ]" @click="clickHandler(2)">
                 <img src="img/reserve_credit-card.png" alt="">
-                訂金付款
+                付款資訊
             </a>
             <a v-bind:class="[ activetab === '3' ? 'active' : '' ]" @click="clickHandler(3)">
                 <img src="img/reserve_receipt.png" alt="">
@@ -38,7 +38,9 @@
                 <!-- 預約表單 -->
                 <form>
                     <!-- 選擇方案 -->
-                    <h3>選擇方案</h3>
+                    <div>
+                        <h3>選擇方案</h3>
+                    </div>
                     <div class="form_item choose_plan">
                         <div class="plan_li">
                             <li>
@@ -108,7 +110,7 @@
                         <div>
                             <select v-model="selectedEmp" @change="getInfo">
                                 <option value="" disabled>請選擇</option>
-                                <option v-for="emp in emps" :value="emp.no">{{emp.name}}</option>
+                                <option v-for="emp in emps">{{emp}}</option>
                             </select>
                         </div>
                     </div>
@@ -145,6 +147,17 @@
                                     </div>
                                 </label>
                             </div>
+                            <!-- 顯示挑選時間 -->
+                            <!-- <div class="time_panel" >
+                                <div>
+                                    <p>｜預約日期</p>
+                                    <p id="selectedDate"></p>
+                                </div>
+                                <div>
+                                    <p>｜預約時段</p>
+                                    <p id="selectedPeriod">{{dataTime}}</p>
+                                </div>
+                            </div> -->
                         </div>
                         <!-- 顯示挑選時間 -->
                         <div class="time_panel">
@@ -187,7 +200,7 @@
                     <!-- 需求 -->
                     <div class="form_item input_need">
                         <h3>需求</h3>
-                        <textarea cols="50" rows="5" v-model="need"></textarea>
+                        <textarea cols="57" rows="5" v-model="need"></textarea>
                     </div>
                     <!-- 上傳照片 -->
                     <div class="form_item upload_pics">
@@ -212,7 +225,7 @@
                     </div>
                 
                     <div class="btn_div page1">
-                        <p class="plan_price total">${{total}}</p>
+                        <p class="plan_price total">$ {{total}}</p>
                         <button class="next_btn" @click="nextHandler(1)" type="button">下一步</button>  
                     </div>  
 
@@ -262,7 +275,7 @@
                             </tr>
                         </table>
                         <div class="d_pic center" id="d_pic">
-                            <img id="d_pic_img" src="https://picsum.photos/300/200/?random=10">
+                            <img id="d_pic_img">
                         </div>
                     </div>
                 </div>
@@ -407,8 +420,9 @@
             price0: 800, // 方案0價格
             price1: 1000, // 方案1價格
             price2: 900, // 方案2價格
-            emps: [{name:"麻里不會",no:1},{name:"末牛子",no:2},{name:"潔癖子",no:3}],
-            // emps_no:[1,2,3],
+            // emps: [{name:"麻里不會",no:1},{name:"末牛子",no:2},{name:"潔癖子",no:3}],
+            emps:['麻里不會','末牛子','潔癖子'],
+            emp_no:'',
             selectedEmp: '',
             tel: '',
             Citys: ["台北市","新北市","基隆市","桃園市"],
@@ -501,7 +515,7 @@
                     tds[i].classList.remove('full');
                 };
                 let emp_name = this.selectedEmp;
-                // console.log(emp_name);
+                console.log(emp_name);
                 if(emp_name=="麻里不會"){
                     emp_no=1
                 }else if(emp_name=="末牛子"){
