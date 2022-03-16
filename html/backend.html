@@ -10,6 +10,8 @@
 	<script src="js/jquery.js"></script>
   	<script src="js/jquery-ui.js"></script>
   	<script src="js/vue.js"></script>
+  	<script src="js/vue.js"></script>
+  	<script src="js/backend.js"></script>
 </head>
 <body>
     <div class="container" id="app">
@@ -18,7 +20,7 @@
                 <li>
                     <a @click="content('plan')">
                         <span class="icon">
-                            <!-- <ion-icon name="home-outline"></ion-icon> -->
+                            <img src="img/icon/home-outline.svg" alt="">
                         </span>
                         <span class="title"></ion-icon>主頁</span>
                     </a>
@@ -26,7 +28,7 @@
                 <li>
                     <a @click="content('emp')">
                         <span class="icon">
-                            <!-- <ion-icon name="accessibility-outline"></ion-icon> -->
+                            <img src="img/icon/accessibility-outline.svg" alt="">
                         </span>
                         <span class="title">員工管理emp</span>
                     </a>
@@ -34,7 +36,7 @@
                 <li>
                     <a @click="content('cus')">
                         <span class="icon">
-                            <!-- <ion-icon name="person-outline"></ion-icon> -->
+                            <img src="img/icon/person-outline.svg" alt="">
                         </span>
                         <span class="title">會員管理cus</span>
                     </a>
@@ -42,7 +44,7 @@
                 <li>
                     <a @click="content('result')">
                         <span class="icon">
-                            <!-- <ion-icon name="person-outline"></ion-icon> -->
+                            <img src="img/icon/people-outline.svg" alt="">
                         </span>
                         <span class="title">測驗推薦管理result</span>
                     </a>
@@ -50,7 +52,7 @@
                 <li>
                     <a @click="content('prd')">
                         <span class="icon">
-                            <!-- <ion-icon name="cart-outline"></ion-icon> -->
+                            <img src="img/icon/cart-outline.svg" alt="">
                         </span>
                         <span class="title">商品管理prd</span>
                     </a>
@@ -58,7 +60,7 @@
                 <li>
                     <a @click="content('ord')">
                         <span class="icon">
-                            <!-- <ion-icon name="receipt-outline"></ion-icon> -->
+                            <img src="img/icon/receipt-outline.svg" alt="">
                         </span>
                         <span class="title">訂單管理ord</span>
                     </a>
@@ -66,7 +68,7 @@
                 <li>
                     <a @click="content('plan')">
                         <span class="icon">
-                            <!-- <ion-icon name="log-out-outline"></ion-icon> -->
+                            <img src="img/icon/log-in-outline.svg" alt="">
                         </span>
                         <span class="title">服務方案管理plan</span>
                     </a>
@@ -74,7 +76,7 @@
                 <li>
                     <a @click="content('casetable')">
                         <span class="icon">
-                            <!-- <ion-icon name="file-tray-stacked-outline"></ion-icon> -->
+                            <img src="img/icon/calendar-outline.svg" alt="">
                         </span>
                         <span class="title">案例管理casetable</span>
                     </a>
@@ -82,7 +84,7 @@
                 <li>
                     <a @click="content('event')">
                         <span class="icon">
-                            <!-- <ion-icon name="mail-open-outline"></ion-icon> -->
+                            <img src="img/icon/ticket-outline.svg" alt="">
                         </span>
                         <span class="title">活動管理event</span>
                     </a>
@@ -90,7 +92,7 @@
                 <li>
                     <a @click="content('columntable')">
                         <span class="icon">
-                            <!-- <ion-icon name="mail-open-outline"></ion-icon> -->
+                            <img src="img/icon/albums-outline.svg" alt="">
                         </span>
                         <span class="title">專欄管理columntable</span>
                     </a>
@@ -102,18 +104,19 @@
         <div class="main">
             <div class="topbar">
                 <div class="toggle">
+                    <img src="img/icon/calendar-outline.svg" alt="">
                     <!-- <ion-icon name="menu-outline"></ion-icon> -->
                 </div>
                 <!-- search -->
-                <div class="search">
+                <!-- <div class="search">
                     <label for="">
-                        <input type="text" placeholder="Search">
+                        <input type="text" placeholder="Search"> -->
                         <!-- <ion-icon name="search-outline"></ion-icon> -->
-                    </label>
-                </div>
+                    <!-- </label>
+                </div> -->
                 <!-- userImg -->
                 <div class="user">
-                    <img src="img/logo_img.png" alt="user">
+                    <img src="img/logo_act.jpg" alt="user">
                 </div>
             </div>
 
@@ -174,10 +177,10 @@
                         <tbody>
                             <tr v-for="tableBody in showTableBody">
                                 <td v-for="tableBodyIndex in tableBody">{{tableBodyIndex}}</td>
-                                <td><button>編輯</button></td>
+                                <td><button class="edit" type="button">編輯</button></td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> 
                 </div>
                 <!-- order details list
                 <div class="recent_orders">
@@ -304,19 +307,19 @@
         </div>
     </div>
 
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> -->
 
     <script>
-        // MenuToggle
-        let toggle = document.querySelector('.toggle');
-        let navigation = document.querySelector('.navigation');
-        let main = document.querySelector('.main');
+        // // MenuToggle
+        // let toggle = document.querySelector('.toggle');
+        // let navigation = document.querySelector('.navigation');
+        // let main = document.querySelector('.main');
 
-        toggle.onclick = function(){
-            navigation.classList.toggle('active');
-            main.classList.toggle('active');
-        }
+        // toggle.onclick = function(){
+        //     navigation.classList.toggle('active');
+        //     main.classList.toggle('active');
+        // }
 
         // //add hovered class in selected list item
         // let list = document.querySelectorAll('.navigation li');
@@ -328,51 +331,6 @@
         // list.forEach((item) =>
         // item.addEventListener('mouseover',activeLink));
         
-        // Vue.component('finish-button',{
-        //     // template: `<button> Add </button>`,
-        //     template: `<input id="finish" @click="judge" class="btn_sub rd" type="button" value="完成放置" disabled>`,
-        //     methods: {
-        //         judge(){
-        //             if( $('#hiding img').length==1 && $('#garbage img').length<=1 ){
-        //                 bus.$emit('abc',this.personality='蝴蝶');   // 自訂事件
-        //             }else if( $('#hiding img').length<=5 && $('#garbage img').length<=1 ){
-        //                 bus.$emit('abc',this.personality='蜜蜂');   // 自訂事件
-        //             }else if( $('#hiding img').length>=5 && $('#garbage img').length<=3 ){
-        //                 bus.$emit('abc',this.personality='瓢蟲');   // 自訂事件
-        //             }else{
-        //                 bus.$emit('abc',this.personality='蟋蟀');   // 自訂事件
-        //             };
-        //         },
-        //     },
-        // });
-        // <div class="recent_orders">
-        //     <div class="card_header">
-        //         <h2>訂單狀態</h2>
-        //         <a href="#" class="btn">全部</a>
-        //     </div>
-        //     <table>
-        //         <thead>
-        //             <tr>
-        //                 <td>PLAN_NO</td>
-        //                 <td>PLAN_NAME</td>
-        //                 <td>PLAN_TA</td>
-        //                 <td>PLAN_FEATURE</td>
-        //                 <td>PRICE</td>
-        //             </tr>
-        //         </thead>
-        //         <tbody>
-        //             <tr v-for="resCol in resTable">
-        //                 <td>{{resCol.PLAN_NO}}</td>
-        //                 <td>{{resCol.PLAN_NAME}}</td>
-        //                 <td>{{resCol.PLAN_TA}}</td>
-        //                 <td>{{resCol.PLAN_FEATURE}}</td>
-        //                 <td>{{resCol.PRICE}}</td>
-        //             </tr>
-        //         </tbody>
-        //     </table>
-        // </div>
-
-
 
 		new Vue({
 			el:"#app",
@@ -380,20 +338,19 @@
                 tableTitle:'',
                 tableTitles:['員工管理','會員管理','測驗推薦管理','商品管理','訂單管理','服務方案管理','案例管理','活動管理','專欄管理'],
                 showTableHead:'',
-                empTableHead:['員工編號','姓名','聯絡電話','職位','地址','入值日期','權限'],
+                empTableHead:['員工編號','姓名','聯絡電話','職位','地址','入職日期','權限'],
                 cusTableHead:['會員編號','帳號(信箱)','權限','姓名','連絡電話','地址','性別'],
                 resultTableHead:['測驗編號','測驗人格','推薦方案','推薦商品1','推薦商品2','推薦商品3'],
                 prdTableHead:['商品編號','分類','商品名稱','價格'],
                 ordTableHead:['訂單','訂單','訂單','訂單','訂單','訂單','訂單','訂單'],
-                planTableHead:['方案編號','方案名稱','適合對象','方案特色','方案價格'],
+                planTableHead:['方案編號','方案名稱','方案價格'],
                 caseTableHead:['案例編號','整理前','整理後'],
-                eventTableHead:['折扣碼','標題','活動文案','折扣參數','開始日期','截止日期','上下架'],
-                columnTableHead:['專欄編號','作者','日期','標題','內文1','內文2'],
+                eventTableHead:['標題','開始日期','截止日期','折扣碼','上下架'],
+                columnTableHead:['專欄編號','標題','作者','日期'],
                 showTableBody: '',
 			},
             methods: {
-                content(tableName,e) {
-                    console.log(e);
+                content(tableName) {
                     var vueApp = this;
                     // console.log(tableName);
                     $.ajax({
