@@ -1,45 +1,56 @@
 <?php
 session_start();
 try{
-$datas = json_decode($_POST["json"], true);
 	// require_once("../connect_cfd104g1.php"); // 上線用
-	require_once("connect.php"); // 開發用 
-    //=========儲存照片
-    // 取得主檔名
-    // $file = uniqid();
-    // 取得副檔名
+	require_once("connect.php"); // 開發用
     // 檔案名稱：$_FILES['input的name']['name']
     // 檔案格式：$_FILES['input的name']['type']
     // 檔案的暫存位置：$_FILES['input的name']['tmp_name']
     
-    // $fileInfo = pathinfo($_FILES['upFile']['name']); 
+    if($_FILES['upFile']['error']==0){
+      $file = uniqid();
+      $fileInfo = pathinfo($_FILES['upFile']['name']); 
+  
+      $ext = $fileInfo["extension"]; // 副檔名
+      $fileName = "$file.$ext";
+      $from = $_FILES['upFile']['tmp_name']; //暫存區含路徑
+      $to = "../img/cus/$fileName";
+      copy($from, $to);
+      // 修改
+      $sql = "update cus set CUS_NAME=:CUS_NAME, SEX=:SEX ,CUS_TEL=:CUS_TEL,CUS_ADD=:CUS_ADD, CUS_PIC=:CUS_PIC where CUS_NO=:CUS_NO "; 
+      $cus = $pdo->prepare($sql);
 
-    // $ext = $fileInfo["extension"]; // 副檔名
-    // $fileName = "$file.$ext";
-    
-    // $from = $_FILES['upFile']['tmp_name']; //暫存區含路徑
-    // $to = "img/$fileName";
-    // copy($from, $to);
+      $cus->bindValue(":CUS_NO",$_SESSION["CUS_NO"]); // 帳號
+      $cus->bindValue(":CUS_NAME",$_POST["cus_name"]); // 姓名
+      $cus->bindValue(":SEX", $_POST["gender"]); // 性別
+      $cus->bindValue(":CUS_TEL", $_POST["cus_tel"]); // 電話
+      $cus->bindValue(":CUS_ADD", $_POST["cus_add"]); // 地址
+      $cus->bindValue(":CUS_PIC", $fileName); // 照片
 
-    // 新增
-    $sql = "update cus set CUS_NAME=:CUS_NAME, SEX=:SEX ,CUS_TEL=:CUS_TEL,CUS_ADD=:CUS_ADD, CUS_PIC=:CUS_PIC where EMAIL=:EMAIL "; 
-    $cus = $pdo->prepare($sql);
+      $_SESSION["CUS_NAME"] = $_POST["cus_name"];
+      $_SESSION["CUS_TEL"] = $_POST["cus_tel"];
+      $_SESSION["SEX"] = $_POST["gender"];
+      $_SESSION["CUS_ADD"] = $_POST["cus_add"];
+      $_SESSION["CUS_PIC"] = $fileName;
+       
+    }else{
+      // 修改
+      $sql = "update cus set CUS_NAME=:CUS_NAME, SEX=:SEX ,CUS_TEL=:CUS_TEL,CUS_ADD=:CUS_ADD where CUS_NO=:CUS_NO "; 
+      $cus = $pdo->prepare($sql);
+  
+      $cus->bindValue(":CUS_NO",$_SESSION["CUS_NO"]); // 帳號
+      $cus->bindValue(":CUS_NAME",$_POST["cus_name"]); // 姓名
+      $cus->bindValue(":SEX", $_POST["gender"]); // 性別
+      $cus->bindValue(":CUS_TEL", $_POST["cus_tel"]); // 電話
+      $cus->bindValue(":CUS_ADD", $_POST["cus_add"]); // 地址
+  
+      $_SESSION["CUS_NAME"] = $_POST["cus_name"];
+      $_SESSION["CUS_TEL"] = $_POST["cus_tel"];
+      $_SESSION["SEX"] = $_POST["gender"];
+      $_SESSION["CUS_ADD"] = $_POST["cus_add"];
+    }
 
-    $cus->bindValue(":EMAIL", $datas["memId"]); // 帳號
-    $cus->bindValue(":CUS_NAME", $datas["memName"]); // 姓名
-    $cus->bindValue(":SEX", $datas["memSex"]); // 性別
-    $cus->bindValue(":CUS_TEL", $datas["memTel"]); // 電話
-    $cus->bindValue(":CUS_ADD", $datas["memAdd"]); // 地址
-    // $cus->bindValue(":CUS_PIC", $datas["memImg"]); // 照片
-
-    $affect = $cus->execute(); // 異動1筆資料
-    $_SESSION["EMAIL"] = $datas["memId"];
-    $_SESSION["CUS_NAME"] = $datas["memName"];
-    $_SESSION["CUS_TEL"] = $datas["memTel"];
-    $_SESSION["SEX"] = $datas["memSex"];
-    $_SESSION["CUS_ADD"] = $datas["memAdd"];
-    // $_SESSION["CUS_PIC"] = base64url_decode($data);
-
+    $affect = $cus->execute();
     echo `修改${affect}筆資料`; 
 }catch(PDOException $e){
   echo $e->getMessage();

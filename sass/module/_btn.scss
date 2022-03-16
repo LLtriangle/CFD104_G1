@@ -280,11 +280,11 @@ input:focus, button:focus{
 
 // 更改input[type=text],input[type=email],input[type=password]樣式
 input[type=text],input[type=email],input[type=password]{
-    border: 0.3px solid map-get($btn_color, 'brown');
-    box-shadow: 2px 2px map-get($btn_color, 'brown');
+    // border: 0.3px solid map-get($btn_color, 'brown');
+    box-shadow: 2px 2px #ccc;
     padding: 5px;
     border-radius: 10px;
-    background-color: map-get($color , "plain" );
+    background-color: white;
     &:focus{
         box-shadow: -1.5px -1.5px map-get($color, 'main');
         border: 0.3px solid map-get($color, 'main');

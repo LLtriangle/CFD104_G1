@@ -122,8 +122,13 @@ td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
 }
 // 預約已滿
 #calendari td.full{
+    pointer-events: none;
     cursor: not-allowed; /* full不能被點擊 */
     overflow: hidden;
+    background-color: rgb(204, 201, 201);
+    &:hover{
+        outline: none;
+    }
     img.full_img{
         position: absolute;
         left: calc(50% - 25px);
@@ -176,18 +181,17 @@ td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
     button:hover { cursor: pointer; }
     button:focus { outline: none; }
     
-    /* 早中晚文字 */
+    /* 早中晚點點 */
     span.period {
-        width: 8px;
-        height: 8px;
-        background-color: rgba(207, 188, 174, 0.712);
+        width: 10px;
+        height: 10px;
+        background-color: #DFBE9B;
         border-radius: 50%;
     } 
     /* 被預約的時段 */
     td>div div:nth-child(2) span.reserved {
-        background-color: rgb(221, 221, 221);
         opacity: 0.5;
-        border: 2px solid transparent;
+        background-color: gray;
     }
     
     // 早中晚input
@@ -223,13 +227,14 @@ td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        background-color:#DDCFC5;
+                        background-color:#dfbe9be1;
                         box-sizing: border-box;
                         p{  
                             box-sizing: border-box;
                             font-size: 12px;
                             padding: 10px;
-                            font-weight: 600;
+                            font-weight: 900;
+                            letter-spacing: 0.1em;
                         }
                     }
                 }
