@@ -292,9 +292,9 @@ $(window).on('load',function(){
                     scrub: 1,
                     //每次滑動的進度
                     snap: 1 / (hs_items.length - 0.45),
-                    // marker: true,
+                    marker: true,
                     // base vertical scrolling on how wide the container is so it feels more natural.
-                    start: "top center",
+                    start: "center center",
                     // end: "top bottom",
                     end:"+=1500px",
                 }
@@ -312,9 +312,9 @@ $(window).on('load',function(){
                     scrub: 1,
                     //每次滑動的進度
                     snap: 1 / (hs_items.length - 1),
-                    // marker: true,
+                    marker: true,
                     // base vertical scrolling on how wide the container is so it feels more natural.
-                    start: "top center",
+                    start: "center center",
                     // end: "top bottom",
                     end:"+=1500px",
                 }

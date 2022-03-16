@@ -1,4 +1,6 @@
-// MenuToggle
+
+$(window).on('load', function(){
+    // MenuToggle
     let toggle = document.querySelector('.toggle');
     let navigation = document.querySelector('.navigation');
     let main = document.querySelector('.main');
@@ -9,11 +11,16 @@
     }
 
     //add hovered class in selected list item
-    let list = document.querySelectorAll('.navigation li');
-    function activeLink(){
-        list.forEach((item) =>
-        item.classList.remove('hovered'));
-        item.classList.add('hovered');
-    }
-    list.forEach((item) =>
-    item.addEventListener('mouseover',activeLink));
+    // let list = document.querySelectorAll('.navigation ul li a');
+    
+    // list.forEach((item) =>
+    // item.addEventListener('mouseover',activeLink));
+
+    // function activeLink(){
+    //     list.forEach((item) =>
+    //     item.classList.remove('hovered'));
+    //     item.classList.add('hovered');
+    // };
+
+});
+

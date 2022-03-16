@@ -11,10 +11,10 @@ try {
 		$sql = "select * from {$_GET['data']}";
 		
 	}elseif ($_GET['data'] == "prd"){
-		$sql = "select PRD_NO,CATEGORY,PRD_NAME,PRICE from {$_GET['data']}";
+		$sql = "select PRD_NO,CATEGORY,PRD_NAME,PRICE, STATE from {$_GET['data']}";
 		
 	}elseif ($_GET['data'] == "ord"){
-		$sql = "select * from {$_GET['data']}";
+		$sql = "select ORD_NO, CUS_NO, TIME, PAY_STATE, STATE from {$_GET['data']}";
 		
 	}elseif ($_GET['data'] == "plan"){
 		$sql = "select PLAN_NO,PLAN_NAME,PRICE from {$_GET['data']}";
