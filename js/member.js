@@ -19,6 +19,7 @@ function showBtn(){
     $("#btnCancel").show();
     $("#btnSave").show();
     $("#btnUpload").show();
+    $("#btnUpload").css("display","block")
     $("#btnChange").hide();
     $('#cus_name').attr("disabled",false);
     // $('#email').attr("disabled",false);

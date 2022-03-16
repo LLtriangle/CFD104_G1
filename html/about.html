@@ -6,29 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @@include('layout/head.html')
     <title>關於我們</title>
-     <!-- fullpage的css -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.5/fullpage.min.css" integrity="sha512-hDXpx6vRwBR+f4rnj8BDQRpwfi4lvztz1KPkBPCG2XkTKiJ5Y6zq7/NsDmJRIQbquKchG0DVc6gmZiOE0ZXrvg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="stylesheet" href="OwlCarousel/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="OwlCarousel/assets/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/fullpage.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/about.css">
-   
-    <!-- fullpage的js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.5/fullpage.min.js" integrity="sha512-+m1+m9XBnZXowk9jSNIlZYgtOPTIu6aUHha/4/3dk84PQcpWgrNd4/zKmOYno0BQK9nuJ6WgYBnuPqCrmvMNtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" referrerpolicy="no-referrer"></script> -->
     
     
 </head>
 <body>
     @@include('layout/header.html')
-    <!-- fb串接JS -->
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v13.0" nonce="pYJ8MATZ"></script>
-    <!-- fb串接結束 -->
+    
     <main id="fullPage">
         <div class="section">
             <section class="uni_banner">
@@ -66,22 +54,60 @@
                     <div class="txt">
                         <div class="txt_bg">
                             <h3>｜我們的理念｜</h3>
-                            <p>我是假文一號</p>
-                            <p>假文二號來報到了</p>
-                            <p>假文三號到,四號睡過頭了</p>
-                            <p>我是假文五號,下午想請假s</p>
-                            <p>A說B在說謊，</p>
-                            <p>B 說 C 在說謊，</p>
-                            <p>C 說 A、B 都在說謊。</p>
-                            <p>請問到底誰在說謊？</p>
+                            <p>家，是每個人成長的地方</p>
+                            <p>構成無數與家人間溫暖的回憶</p>
+                            <p>當大家越來越忙碌時</p>
+                            <p>家中環境也越來越髒亂</p>
+                            <p>收Easy在這樣的背景下誕生</p>
+                            <p>致力於讓家有煥然一新的感覺</p>
+                            <p>使每個人享受一個更好的家</p>
                         </div>
                     </div>
-                    <div class="small_img owl-carousel owl-theme">
-                        <a class="item" href="service.html"><img src="img/about_belief_1.jpg"></a>
+                    <div class="small_img rolling_case_img">
+                        <ul>
+                            
+                            <li class="roll_img_box _1">
+                                <img src="img/service_01.jpg" alt="">
+                            </li>
+                            <li class="roll_img_box _2">
+                                <img src="img/service_02.jpg" alt="">
+                            </li>
+                            <li class="roll_img_box _3">
+                                <img src="img/service_07.jpg" alt="">
+                            </li>
+                            <li class="roll_img_box _4">
+                                <img src="img/service_09.jpg" alt="">
+                            </li>
+                            <li class="roll_img_box _5">
+                                <img src="img/service_05.jpg" alt="">
+                            </li>
+                            <li class="roll_img_box _6">
+                                <img src="img/service_06.jpg" alt="">
+                            </li>
+                            <li class="roll_img_box _1">
+                                <img src="img/service_01.jpg" alt="">
+                            </li>
+                            <li class="roll_img_box _2">
+                                <img src="img/service_02.jpg" alt="">
+                            </li>
+                            <li class="roll_img_box _3">
+                                <img src="img/service_07.jpg" alt="">
+                            </li>
+                            <li class="roll_img_box _4">
+                                <img src="img/service_09.jpg" alt="">
+                            </li>
+                            <li class="roll_img_box _5">
+                                <img src="img/service_05.jpg" alt="">
+                            </li>
+                            <li class="roll_img_box _6">
+                                <img src="img/service_06.jpg" alt="">
+                            </li>
+                        </ul>
+                        <!-- <a class="item" href="service.html"><img src="img/about_belief_1.jpg"></a>
                         <a class="item"><img src="img/index_landing.jpg"></a>
                         <a class="item"><img src="img/index_fold.jpeg"></a>
                         <a class="item"><img src="img/index_shirt.jpeg"></a>
-                        <a class="item"><img src="img/index_suit.jpeg"></a>
+                        <a class="item"><img src="img/index_suit.jpeg"></a> -->
             
                     </div>
                 </div>
@@ -114,13 +140,14 @@
                     </div>
                     <!-- rwd整理師的大圖 -->
                     <div class="img_box" id="rwd_large">
-                        <div class="change_img b-tab active"  v-if="rwd_1"  id="mem_1">
+                        <div class="change_img b-tab active"  v-if="rwd_1"  id="mem_1" >
                             <img src="img/Kurinachan_2.jpg">
                             <div class="large_txt">
                                 <h3>｜整理師 : 麻里不會｜</h3>
-                                <p>地下收納聯盟假級認證</p>
+                                <p class="text-wrapper">{{empsRows[0].INTRO}}</p>
+                                <!-- <p>地下收納聯盟假級認證</p>
                                 <p>個人風格：重視效率、利用行為科學打造容易做到的整理收納</p>
-                                <p>專長領域：企業與倉儲整理收納術、個人行為規劃整合</p>
+                                <p>專長領域：企業與倉儲整理收納術、個人行為規劃整合</p> -->
                                 <a href="reserve.html">立即預約</a>
                             </div>
                         </div>
@@ -128,9 +155,10 @@
                             <img src="img/Nikuchan.jpg">
                             <div class="large_txt">
                                 <h3>｜整理師 : 末牛子｜</h3>
-                                <p>銀河系地球收納協會1級認證</p>
+                                <p class="text-wrapper">{{empsRows[1].INTRO}}</p>
+                                <!-- <p>銀河系地球收納協會1級認證</p>
                                 <p>個人風格：以神秘力量收拾空間，在不留神之時就能完美整理收納</p>
-                                <p>專長領域：通靈術、占星術</p>
+                                <p>專長領域：通靈術、占星術</p> -->
                                 <a href="reserve.html">立即預約</a>
                             </div>
                         </div>
@@ -138,9 +166,10 @@
                             <img src="img/Marishimasen.jpg">
                             <div class="large_txt">
                                 <h3>｜整理師 : 潔癖子｜</h3>
-                                <p>整理師互助協會3級認證</p>
+                                <p class="text-wrapper">{{empsRows[2].INTRO}}</p>
+                                <!-- <p>整理師互助協會3級認證</p>
                                 <p>個人風格：看不習慣的東西會一律幫客戶清理掉，斷捨離障礙人格最佳選擇</p>
-                                <p>專長領域：強迫症整理收納術</p>
+                                <p>專長領域：強迫症整理收納術</p> -->
                                 <a href="reserve.html">立即預約</a>
                             </div>
                         </div>
@@ -150,24 +179,18 @@
                 <div class="introduce" id="lightBox" >
                     <div v-if="emp1" class="introduce_txt b-tab active" id="cancel">
                         <h3>｜整理師 : 麻里不會｜</h3>
-                        <p>地下收納聯盟假級認證</p>
-                        <p>個人風格：重視效率、利用行為科學打造容易做到的整理收納</p>
-                        <p>專長領域：企業與倉儲整理收納術、個人行為規劃整合</p>
+                        <p class="text-wrapper">{{empsRows[0].INTRO}}</p>
                         <a href="reserve.html">立即預約</a>
             
                     </div>
                     <div v-if="emp2" class="introduce_txt b-tab" id="cancel">
                         <h3>｜整理師 : 末牛子｜</h3>
-                        <p>銀河系地球收納協會1級認證</p>
-                        <p>個人風格：以神秘力量收拾空間，在不留神之時就能完美整理收納</p>
-                        <p>專長領域：通靈術、占星術</p>
+                        <p class="text-wrapper">{{empsRows[1].INTRO}}</p>
                         <a href="reserve.html">立即預約</a>
                     </div>
                     <div v-if="emp3" class="introduce_txt b-tab" id="cancel" >
                         <h3>｜整理師 : 潔癖子｜</h3>
-                        <p>整理師互助協會3級認證</p>
-                        <p>個人風格：看不習慣的東西會一律幫客戶清理掉，斷捨離障礙人格最佳選擇</p>
-                        <p>專長領域：強迫症整理收納術</p>
+                        <p class="text-wrapper">{{empsRows[2].INTRO}}</p>
                         <a href="reserve.html">立即預約</a>
                     </div>
                     <!-- 桌機小圖 -->
@@ -179,7 +202,7 @@
                             <div class="card_txt">
                                 <p>麻里不會</p>
                             </div>
-                            <a @click="emp1=true,emp2=false,emp3=false" href="#orange" class="black_hov b-nav-tab active" data-tab="orange">
+                            <a @click="emp1=true,emp2=false,emp3=false" class="black_hov b-nav-tab active" data-tab="orange">
                                 <p>More</p>
                             </a>
                         </div>
@@ -190,7 +213,7 @@
                             <div class="card_txt">
                                 <p>末牛子</p>
                             </div>
-                            <a @click="emp1=false,emp2=true,emp3=false" href="#green" class="black_hov b-nav-tab" data-tab="green">
+                            <a @click="emp1=false,emp2=true,emp3=false" class="black_hov b-nav-tab" data-tab="green">
                                 <p>More</p>
                             </a>
                         </div>
@@ -201,7 +224,7 @@
                             <div class="card_txt">
                                 <p>潔癖子</p>
                             </div>
-                            <a @click="emp1=false,emp2=false,emp3=true" href="#blue" class="black_hov b-nav-tab" data-tab="blue">
+                            <a @click="emp1=false,emp2=false,emp3=true" class="black_hov b-nav-tab" data-tab="blue">
                                 <p>More</p>
                             </a>
                         </div>
@@ -237,121 +260,135 @@
                     </div>
                 </div>
             </section>
-            
+        </div>    
+    </main>   
+    @@include('layout/footer.html')
+    
+
+    <!-- 混亂的JS開始辣 --------------------------------->
+    <!-- fb串接JS -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v13.0" nonce="pYJ8MATZ"></script>
+    <!-- fb串接結束 -->
+
+    <!-- 大圖整理師切換圖 -->
+    <script>
+        function showLarge(e){
+            // let small = e.target;
+            // document.getElementById("large").src = small.src;
+            // console.log($(this).parent().children('.card_img').children().attr('src'));
+            $("#large").attr('src',$(this).parent().children('.card_img').children().attr('src'));
+        }
+
+        function init(){
+            let smalls = document.querySelectorAll(".small .introduce_card .black_hov");//要有小數點
+            for(let i=0;i<smalls.length;i++){
+                smalls[i].onclick = showLarge;
+            }
+        }
+        window.addEventListener("load", init, false);
+    </script>
 
     
-    @@include('layout/footer.html')
-        </div>
+    
+    
 
-        <!-- 混亂的JS開始辣 --------------------------------->
-        <!-- 我是貓貓貓貓頭鷹啦 -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="OwlCarousel/owl.carousel.min.js"></script>
-        <script>
-            $('.owl-carousel').owlCarousel({
-                items:1,
-                autoHeight:true,
-                loop:true,
-                margin:10,
-                autoWidth:true,
-                items:5,
-                autoplay:true
+    <!-- 出事了集中地 ------------------------------->
+    <!-- 出事<1>.整理師切換button換色 他不變色，他他他他他他他他不變色-->
+    <!-- <script>
+
+        function changChick(target){
+            $.each($(".changChick"), function() {
+                $(this).removeClass("bg_deep");
             });
-            AutoHeight.Defaults = {
-                autoHeight: false,
-                autoHeightClass: 'owl-height'
-            };
-        </script>
+            $(target).addClass("bg_deep");
+        }
         
-        <!-- 大圖整理師切換圖 -->
-        <script>
-            function showLarge(e){
-                // let small = e.target;
-                // document.getElementById("large").src = small.src;
-                // console.log($(this).parent().children('.card_img').children().attr('src'));
-                $("#large").attr('src',$(this).parent().children('.card_img').children().attr('src'));
-            }
+    </script> -->
 
-            function init(){
-                let smalls = document.querySelectorAll(".small .introduce_card .black_hov");//要有小數點
-                for(let i=0;i<smalls.length;i++){
-                    smalls[i].onclick = showLarge;
-                }
-            }
-            window.addEventListener("load", init, false);
-        </script>
+    
+    <!-- 出事<2>.rwd的整理師介紹燈箱    出事ㄌ出事ㄌ出事ㄌ出事ㄌ出事ㄌ出事ㄌ出事ㄌ-->
+    <!-- <script>
+        var libox = document.getElementById("lightBox")
 
+        var can = document.getElementById("cancel");
+
+        var out = document.getElementById("mem_1");
+        out.onclick = function(){
+            libox.style="display:block";
+        };
+
+        can.onclick = function(){
+            libox.style="display:none";
+        }
+    </script> -->
+
+
+    <!-- 只要我出現，全世界都要給我bug的fullpage:我可能是滾動事件----宣告復活，RWD沉到海底ㄌ -->
+    <!-- <script>
+        new fullpage('#fullPage',{
+            autoScrolling:true,
+            navigation: true,
+            scrollOverflow:true,
+        })
+    </script> -->
+
+
+    <!-- 我是安詳躺在備註裡的貓貓貓貓頭鷹啦，為甚麼我會在這呢，因為我跟其他人發生衝突了。 -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="OwlCarousel/owl.carousel.min.js"></script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            items:1,
+            // autoHeight:true,
+            loop:true,
+            margin:10,
+            autoWidth:true,
+            items:5,
+            autoplay:true
+        });
+        // AutoHeight.Defaults = {
+        //     autoHeight: false,
+        //     autoHeightClass: 'owl-height'
+        // };
+    </script> -->
+
+
+
+    <!-------------- 我是Vue的分隔線 -------------->
+     
+    <!-- 試圖使用資料庫 -->
+    <script type="text/javascript">
+        new Vue({
+            el:"#fullPage",
+            data:{
+                emp1:true, // 預設--桌機板切換介紹
+                emp2:false, // 預設--桌機板切換介紹
+                emp3:false, // 預設--桌機板切換介紹
+                rwd_1:true, // 預設--rwd切換整理師圖片
+                rwd_2:false, // 預設--rwd切換整理師圖片
+                rwd_3:false, // 預設--rwd切換整理師圖片
+                empsRows:[],
+            },
+            methods: {
+                getEmps(){
+                    let xhr = new XMLHttpRequest();
+                    let thisVue = this;
+                    xhr.onload = function(){
+                        console.log(JSON.parse(xhr.responseText));
+                        thisVue.empsRows = JSON.parse(xhr.responseText);
+                    }
+                    xhr.open("get", "phps/emp.php", true);
+                    xhr.send(null);
+                },
+            },
+            mounted() {
+                this.getEmps();
+            },
+        });
         
-        <!-- 我可能是滾動事件----已死亡 -->
-        <script>
-            new fullpage('#fullPage',{
-                autoScrolling:true,
-                navigation: true,
-                scrollOverflow:true,
-            })
-        </script>
-        
+    </script>
 
-        <!-- 出事了集中地 ------------------------------->
-        <!-- 出事<1>.整理師切換button換色 他不變色，他他他他他他他他不變色-->
-        <!-- <script>
-
-            function changChick(target){
-                $.each($(".changChick"), function() {
-                    $(this).removeClass("bg_deep");
-                });
-                $(target).addClass("bg_deep");
-            }
-            
-        </script> -->
-
-        
-        <!-- 出事<2>.rwd的整理師介紹燈箱    出事ㄌ出事ㄌ出事ㄌ出事ㄌ出事ㄌ出事ㄌ出事ㄌ-->
-        <!-- <script>
-            var libox = document.getElementById("lightBox")
-
-            var can = document.getElementById("cancel");
-
-            var out = document.getElementById("mem_1");
-            out.onclick = function(){
-                libox.style="display:block";
-            };
-
-            can.onclick = function(){
-                libox.style="display:none";
-            }
-        </script> -->
-
-
-
-
-
-        <!-------------- 我是Vue的分隔線 -------------->
-        <!-- 桌機板切換介紹 -->
-        <script>
-            new Vue({
-                el:'#lightBox',
-                data:{
-                    emp1:true, // 預設
-                    emp2:false, // 預設
-                    emp3:false, // 預設
-                }
-            });
-        </script>
-
-
-        <!-- rwd切換整理師圖片 -->
-        <script>
-            new Vue({
-                el:'#container',
-                data:{
-                    rwd_1:true, // 預設
-                    rwd_2:false, // 預設
-                    rwd_3:false, // 預設
-                }
-            });
-        </script>
-        
-    </main>
+    
 </body>
 </html>
