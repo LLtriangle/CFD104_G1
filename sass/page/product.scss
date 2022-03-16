@@ -1,7 +1,7 @@
 @import  "../base/color";
 
 h3{
-    margin-left: 20px;
+    // margin-left: 20px;
     margin-top: 20px;
 }
 p{
@@ -15,6 +15,9 @@ p{
         width: 100%;
         .prod_txt{
             margin: 10px auto 0 auto;
+            h3{
+                margin: 20px;
+            }
             p{
                 margin: 0px 20px;
             }
@@ -26,6 +29,7 @@ p{
                 padding: 20px;
                 margin-top: 20px;
                 display: flex;
+                justify-content: center;
                 p{
                     padding-top: 10px;
                     padding-right: 20px;
@@ -58,6 +62,13 @@ p{
                     .btn_btn_box{
                         padding: 10px;
                     }
+                }
+            }
+            .btn_btn_box{
+                display: flex;
+                justify-content: center;
+                button{
+                    margin: 10px;
                 }
             }
         }
@@ -171,9 +182,11 @@ p{
 }
 .htop1{
     font-size: 32px;
+    margin-left: 20px;
 }
 .htop2{
     font-size: 32px;
+    margin-left: 20px;
 }
 
 // 手機版
@@ -384,7 +397,8 @@ p{
                 .prod_amount{
                     padding: 20px;
                     display: flex;
-                    justify-content: flex-start;
+                    // justify-content: start;
+                    justify-content: center;
                     p{
                         margin-top: 10px;
                     }
