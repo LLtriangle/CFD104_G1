@@ -223,17 +223,15 @@ try{
                             </p>
                             <div class="prod_minbtn">
                                 <input type="button" class="btnminus" value="-">
-                                <input type="text" class="qtybox" name="qty" value="1">
+                                <input type="text" id="num" class="qtybox" name="qty" value="1">
                                 <input type="button" class="btnplus" value="+">
                             </div>
                         </div>
                         <div class="btn_btn_box">
-                            <a href="cart.html">
-                                <button class="btn_btn bl pointer">
-                                    加入購物車
-                                </button>
-                            </a>
-                            <a href="cart.html">
+                            <button class="btn_btn bl pointer" id="cart">
+                                加入購物車
+                            </button>
+                            <a href="cart.html" id="buy">
                                 <button class="btn_btn bl pointer">
                                     立即購買
                                 </button>
@@ -310,29 +308,32 @@ try{
             <div class="prod_con">             
                 <div class="prod_rerow">
                     <!-- button left -->
-                    <div class="reitem_btn">
+                    <!-- <div class="reitem_btn">
                         <div class="left_btn">
                             <button class="btn_btn bl pointer"><</button>
                         </div>
-                    </div>
+                    </div> -->
                 <?php 
-                    foreach($recommendPrdsRows as $i => $recommendPrdRow){
+                    // shuffle($recommendPrdsRows);
+                    // $arrPrd = array_slice($recommendPrdsRows,0, 5)
+                    // foreach($recommendPrdsRows as $i => $recommendPrdRow){
+                    for($i=0;$i<5;$i++){
                 ?>	
                     <!-- 推薦商品 -->
                     <div class="prod_reitem reitem_goods">
                         <div class="prod_img">
-                            <a href="product.php?prdno=<?=$recommendPrdRow['PRD_NO']?>">
-                                <img src="img/<?=$recommendPrdRow["IMG1"]?>">
+                            <a href="product.php?prdno=<?=$recommendPrdsRows[$i]['PRD_NO']?>">
+                                <img src="img/<?=$recommendPrdsRows[$i]["IMG1"]?>">
                             </a>
                         </div>
                         <div class="prod_txt">
                             <h3>
-                                <a href="product.php?prdno=<?=$recommendPrdRow['PRD_NO']?>">
-                                    <?=$recommendPrdRow["PRD_NAME"]?>
+                                <a href="product.php?prdno=<?=$recommendPrdsRows[$i]['PRD_NO']?>">
+                                    <?=$recommendPrdsRows[$i]["PRD_NAME"]?>
                                 </a>
                             </h3>
                             <p>
-                                NT $<?=$recommendPrdRow["PRICE"]?>
+                                NT $<?=$recommendPrdsRows[$i]["PRICE"]?>
                             </p>
                             <div class="btn_btn_box prod_btn">
                                 <a href="cart.html">
@@ -348,31 +349,16 @@ try{
                 ?>
 
                     <!-- button right -->
-                    <div class="reitem_btn">
+                    <!-- <div class="reitem_btn">
                         <div class="right_btn">
                             <button class="btn_btn bl pointer">></button>         
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div> 
         </section>
     </main>
 
-    <script>            
-    function showLarge(e){
-        let small = e.target.src; 
-        let big = document.getElementById("large").src;
-        document.getElementById("large").src = small;
-        e.target.src = big;
-    }
-    function init(){
-        let smalls = document.getElementsByClassName("small");
-        for(let i=0; i<smalls.length; i++){
-            smalls[i].onclick = showLarge;
-        }
-    }
-    window.addEventListener("load", init, false);
-    </script>
 
     <!-- <footer></footer> -->
     <footer>
@@ -428,6 +414,53 @@ try{
 
 
     <script type="text/javascript" src="js/product.js"></script>
+
+    <script>    
+        function showLarge(e){
+            let small = e.target.src; 
+            let big = document.getElementById("large").src;
+            document.getElementById("large").src = small;
+            e.target.src = big;
+        }
+
+        let prd_name = <?php echo json_encode($prodRow) ?>;
+        // cartArr[0].prdNo = prd_name.PRD_NO;
+        // cartArr[0].prdNum = num;
+        
+        function setItemCart(){
+            
+            var num = parseInt($("#num").val());
+            // console.log(JSON.parse(localStorage.getItem("cart")));
+            var cartArr = JSON.parse(localStorage.getItem("cart"));
+            if(cartArr == null){
+                // console.log('cartnull');
+                cartArr = [];
+            }
+            // console.log(cartArr.filter(obj=>obj.prdNo == prd_name.PRD_NO));
+            arrObj = cartArr.filter(obj=>obj.prdNo == prd_name.PRD_NO)
+            if(arrObj.length==0){
+                cartArr.push({"prdNo" : prd_name.PRD_NO,"prdNum" : num});
+            }else{
+                index = cartArr.indexOf(arrObj[0]);
+                cartArr[index].prdNum = cartArr[index].prdNum + num;
+            };
+            // localStorage.setItem(prd_name.PRD_NO,num);
+            localStorage.setItem("cart",JSON.stringify(cartArr));
+            // localStorage.setItem("cart",`${cartArr.toString()}`);
+            
+        }
+        function init(){
+            let smalls = document.getElementsByClassName("small");
+            for(let i=0; i<smalls.length; i++){
+                smalls[i].onclick = showLarge;
+            }
+            let cart = document.getElementById("cart");
+            let buy = document.getElementById("buy");
+            cart.addEventListener('click',setItemCart);
+            buy.addEventListener('click',setItemCart);
+        };
+        window.addEventListener('load',init, false);
+    </script>
 </body>
 
 </html>

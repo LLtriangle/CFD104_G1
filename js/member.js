@@ -19,6 +19,7 @@ function showBtn(){
     $("#btnCancel").show();
     $("#btnSave").show();
     $("#btnUpload").show();
+    $("#btnUpload").css("display","block")
     $("#btnChange").hide();
     $('#cus_name').attr("disabled",false);
     // $('#email').attr("disabled",false);
@@ -39,27 +40,28 @@ function hideBtn(){
 }
 
 // 更改會員資料
+
+// function changeMemberInfo(){
+//     let xhr = new XMLHttpRequest();
+//     xhr.onload = function(){
+//         console.log(xhr.responseText);
+//     }
+
+//     let myForm = document.getElementById("myForm");
+//     let formData = new FormData(myForm);
+//     xhr.send(formData);
+
+// }
 function changeMemberInfo(){
     let xhr = new XMLHttpRequest();
     xhr.onload = function(){
-      console.log(xhr.responseText);
+        console.log(xhr.responseText);
     }
+    
     xhr.open("post", "phps/changeMemberInfo.php", true);  
-    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-    
-    // 抓格子裡的資料
-    let datas = {};
-    
-    datas.memId = $("#email").val(); // 會員帳號
-    datas.memName = $("#cus_name").val(); // 修改後姓名
-    datas.memSex = $('input:radio:checked[name="gender"]').val(); // 修改後性別
-    datas.memTel = $("#cus_tel").val(); // 修改後電話
-    datas.memAdd = $("#cus_add").val(); // 修改後地址
-    // datas.memImg = $("#myImg").attr('src'); // 修改後照片
-    
-    let data_info = "json=" + JSON.stringify(datas);
-    xhr.send(data_info);
-    console.log(data_info);
+    let myForm = document.getElementById("myForm");
+    let formData = new FormData(myForm);
+    xhr.send(formData);
 };
 
 // 登出
@@ -80,7 +82,7 @@ function uploadFile(){
         let reader = new FileReader(); //reader讀物件
         reader.onload = function(){ 
             $id("myImg").src = reader.result;
-            console.log($("#myImg")[0]);
+            // console.log($id("myImg").src);
         }
         reader.readAsDataURL(file);
     }

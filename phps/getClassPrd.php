@@ -1,7 +1,12 @@
 <?php 
 try{
 	require_once("connect.php");
-	$sql = "select * from prd where CATEGORY = '{$_GET['prdClass']}'";
+	if ($_GET['prdClass'] == "熱門商品") {
+		$sql = "select * from prd";
+	}else{
+		$sql = "select * from prd where CATEGORY = '{$_GET['prdClass']}'";
+	};
+
 	$prodRowTable = $pdo->query($sql);
 	$prodRow = $prodRowTable->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($prodRow);

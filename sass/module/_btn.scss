@@ -30,7 +30,7 @@ input:focus, button:focus{
     font-size: $font_size_btn;
 }
 
-/*input 和 button 須將被景色先設為白色*/
+/*input 和 button 須將背景色先設為白色*/
 .btn_sub, .btn_btn{
     background-color: map-get($color , "bg" );
 }
@@ -118,7 +118,9 @@ input:focus, button:focus{
 /* 一般a連結的按鈕樣式 */
 /* input 和 button的按鈕樣式 */
     .link_btn, .btn_sub, .btn_btn{
-        border: 1px solid map-get($color, "border" );
+        border: 1px solid map-get($btn_color, "brown" );
+        background-color: map-get($btn_color, "brown" );
+        color: map-get($font_color, "white" );  
         transition: 0.2s ease-in;
     }
     .link_btn:hover, .btn_sub:hover, .btn_btn:hover{
@@ -142,7 +144,8 @@ input:focus, button:focus{
     /* 圓形a連結的按鈕樣式 */
     .link_ro{
         position: relative;
-        border: 1px solid map-get($color , "border_black" );
+        border: 1px solid map-get($btn_color , "brown" );
+        background-color: map-get($btn_color, "brown" );
         border-radius: $border_radius_btn_ro;
         overflow:hidden;
         transition: 0.2s ease-in-out;
@@ -280,11 +283,11 @@ input:focus, button:focus{
 
 // 更改input[type=text],input[type=email],input[type=password]樣式
 input[type=text],input[type=email],input[type=password]{
-    border: 0.3px solid map-get($btn_color, 'brown');
-    box-shadow: 2px 2px map-get($btn_color, 'brown');
+    // border: 0.3px solid map-get($btn_color, 'brown');
+    box-shadow: 2px 2px #ccc;
     padding: 5px;
     border-radius: 10px;
-    background-color: map-get($color , "plain" );
+    background-color: white;
     &:focus{
         box-shadow: -1.5px -1.5px map-get($color, 'main');
         border: 0.3px solid map-get($color, 'main');

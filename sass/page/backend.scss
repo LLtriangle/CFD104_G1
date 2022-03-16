@@ -10,7 +10,7 @@ body{
     min-height: 100vh;
     overflow-x: hidden;
 }
-.container{
+.backend{
     position: relative;
     width: 100%;
 }
@@ -158,12 +158,12 @@ body{
                     outline: none;
                     border: 1px solid map-get($color, 'sub_blue');
                 }
-                ion-icon{
-                    position: absolute;
-                    top: 0;
-                    left: 10px;
-                    font-size: 1.2em;
-                }
+                // ion-icon{
+                //     position: absolute;
+                //     top: 0;
+                //     left: 10px;
+                //     font-size: 1.2em;
+                // }
             }
         }
         .user{

@@ -47,70 +47,73 @@
             <!-- 資料區的頭上槓槓 -->
             <div class="title_color"></div>
             <!-- 資料區的內容盒子 data_mem------------------>
-            <div class="data_mem" v-if="data">
-                <div class="icon_edit">
-                    <div class="mem_icon" >
-                        <form id="myForm" enctype="multipart/form-data">
-                            <!-- 大頭貼 -->
-                            <img id="myImg" :src="cus_pic">
-                        </form>
-                    </div>
-                    <input type="file" name="upFile" id="upFile" accept="image/jpeg, image/png" >
-                    <label id="btnUpload" class="btn_btn br" for="upFile">編輯大頭貼
-                    </label>
-                </div>
-                <!-- 氣氣氣table -->                  
-                <!-- 不是table -->
-                <div class="mem_txt">
-                    <div class="item_box">
-                        <label><p> &emsp; &emsp;姓名
-                            <input id="cus_name" class='member_name cus_name' type="text" v-model="cusRow.CUS_NAME" disabled >
-                           </p>
-                        </label>
-                    </div>
-
-                    <div class="item_box">
-                        <div class='gender'><p> &emsp; &emsp;性別</p>
-                            <ul>
-                                <li>
-                                    <input class='radio-input' name='gender' type="radio" id="male" value='男' disabled>
-                                    <label for="male" class="radio-label">
-                                        <span class="radio-button"></span>
-                                        男性
-                                    </label>
-                                </li>
-                                <li>
-                                    <input class='radio-input' name='gender' type="radio" id="female" value='女' disabled>
-                                    <label for="female" class="radio-label">
-                                        <span class="radio-button"></span>
-                                        女性
-                                    </label>
-                                </li>
-                            </ul>
-                        
+            <form id="myForm">
+                <div class="data_mem" v-if="data">
+                    <div class="icon_edit">
+                        <div class="mem_icon" >
+                                <!-- 大頭貼 -->
+                                <img id="myImg" :src="cus_pic">
+                                <input type="file" name="upFile" id="upFile" accept="image/jpeg, image/png" >
+                                <label id="btnUpload" class="btn_btn br" for="upFile">編輯大頭貼
+                                </label>
                         </div>
                     </div>
-                    <div class="item_box">
-                        <label><p> &emsp; &emsp;帳號
-                            <input id="email" class='mem_id' type="email" v-model='cusRow.EMAIL' disabled></p>
-                        </label>
+                    <!-- 氣氣氣table -->
+                    <!-- 不是table -->
+                    <div class="mem_txt">
+                        <div class="item_box">
+                            <label><p> &emsp; &emsp;姓名
+                                <input id="cus_name" name="cus_name" class='member_name cus_name' type="text" v-model="cusRow.CUS_NAME" disabled >
+                               </p>
+                            </label>
+                        </div>
+                        <div class="item_box">
+                            <div class='gender'><p> &emsp; &emsp;性別</p>
+                                <ul>
+                                    <li>
+                                        <input class='radio-input' name='gender' type="radio" id="male" value='男' disabled>
+                                        <label for="male" class="radio-label">
+                                            <span class="radio-button"></span>
+                                            男性
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input class='radio-input' name='gender' type="radio" id="female" value='女' disabled>
+                                        <label for="female" class="radio-label">
+                                            <span class="radio-button"></span>
+                                            女性
+                                        </label>
+                                    </li>
+                                </ul>
+                
+                            </div>
+                        </div>
+                        <div class="item_box">
+                            <label for="email"><p> &emsp; &emsp;帳號
+                                <input id="email" name="my_email" class='mem_id' type="email" v-model='cusRow.EMAIL' disabled></p>
+                            </label>
+                        </div>
+                        <div class="item_box">
+                            <label><p>&ensp;連絡電話
+                                <input id="cus_tel" name="cus_tel"  type="text" v-model=cusRow.CUS_TEL disabled maxlength="10"></p>
+                            </label>
+                        </div>
+                        <div class="item_box">
+                            <label><p>&ensp;連絡地址
+                                <input id="cus_add" name="cus_add" class='memberLeft memberAdr' type="text" v-model=cusRow.CUS_ADD disabled></p>
+                            </label>
+                        </div>
+                
+                        <!-------新增取消修改-------->
+                        <button id="btnCancel" type="button" class="btn_sub bl cancel" @click="getMemberInfo">取消修改</button>
+                        <button id="btnSave" type="button" class="btn_sub br">儲存修改</button>
+                        <button id="btnChange" type="button" class="btn_sub br">修改會員資料</button>
                     </div>
-                    <div class="item_box">
-                        <label><p>&ensp;連絡電話
-                            <input id="cus_tel" type="text" v-model=cusRow.CUS_TEL disabled maxlength="10"></p>
-                        </label>
-                    </div>
-                    <div class="item_box">
-                        <label><p>&ensp;連絡地址
-                            <input id="cus_add" class='memberLeft memberAdr' type="text" v-model=cusRow.CUS_ADD disabled></p>
-                        </label>
-                    </div>
-                    <!-------新增取消修改-------->
-                    <button id="btnCancel" type="button" class="btn_sub bl cancel" @click="getMemberInfo">取消修改</button>
-                    <button id="btnSave" type="button" class="btn_sub br">儲存修改</button>
-                    <button id="btnChange" type="button" class="btn_sub br">修改會員資料</button>
                 </div>
-            </div>
+            </form>
+
+
+
             <!--------------------- 我是可愛分隔線 --------------------->
 
             <!-- 我是訂單區 ------------------------------->
@@ -225,7 +228,7 @@
                             thisVue.cusRow = JSON.parse(xhr.responseText);
                             console.log(thisVue.cusRow);
                             if(thisVue.cusRow.CUS_PIC!=''){
-                                thisVue.cus_pic = "img/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
+                                thisVue.cus_pic = "img/cus/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
                             }
                             // console.log(thisVue.cus_pic);
                             if(thisVue.cusRow.SEX == "女"){

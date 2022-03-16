@@ -90,11 +90,13 @@ function createCalendar(){
         boto_prev.onclick = function() {
             data.setMonth(data.getMonth() - 1);
             calendari(widget, data);
+            vm.getInfo();
         };
     
         boto_next.onclick = function() {
             data.setMonth(data.getMonth() + 1);
             calendari(widget, data);
+            vm.getInfo();
         };
     
         fila.appendChild(title);
@@ -136,9 +138,6 @@ function createCalendar(){
                 var morning = document.createElement('span');
                 var afternoon = document.createElement('span');
                 var night = document.createElement('span');
-                var full_img = document.createElement('img');
-                full_img.className = "full_img"
-                full_img.src = "img/soeasy_full.png"
     
                 td.appendChild(div_flex);
                 // 加入span
@@ -156,38 +155,6 @@ function createCalendar(){
                 
                 // span裡面放入日期
                 span.innerHTML = actual.getDate();
-    
-                // // 早中晚加入文字
-                // morning.innerText = "早";
-                // afternoon.innerText = "中";
-                // night.innerText = "晚";
-
-                // if( $(window).width()<=830){
-                //     $('td > div div:nth-child(2) span').css('color','transparent');
-                // }else{
-                //     $('td > div div:nth-child(2) span').css('color','black');
-                // };
-
-                // 隨機
-                // var arr = Math.round(Math.random());
-                // var re_index = 0;
-                
-                // if (arr==1) {
-                //     morning.classList.add("reserved");
-                //     re_index++;
-                // };
-                
-                // arr = Math.round(Math.random());
-                // if (arr==1) {
-                //     afternoon.classList.add("reserved");
-                //     re_index++;
-                // }
-                
-                // arr = Math.round(Math.random());
-                // if (arr==1) {
-                //     night.classList.add("reserved");
-                //     re_index++;
-                // }
     
                 // fora=非此月
                 if(actual.getMonth() !== data.getMonth() )
@@ -210,9 +177,19 @@ function createCalendar(){
                 // console.log(actual.getFullYear());  // 年分2022
                 //console.log(actual.getMonth()+1);  // 月份
                 // console.log(actual.getDate());
-                var date_code = actual.getFullYear() + "-"+ (actual.getMonth()+1) + "-" + actual.getDate()
-                // console.log(date_code);
-                // td.classList.add(date_code);
+                let mon = actual.getMonth()+1;
+                if(mon < 10){
+                    mon = "0"+mon;
+                    // console.log(mon);
+                }
+                let day = actual.getDate();
+                if(day < 10){
+                    day = "0"+day;
+                }
+                // console.log(day);
+                var date_code = actual.getFullYear() + "-"+ mon + "-" + day; // 字串
+                // console.log(typeof date_code);
+                
                 td.dataset.date = date_code;
                 morning.dataset.time = 1;
                 afternoon.dataset.time = 2;
@@ -222,12 +199,6 @@ function createCalendar(){
                 // if(data.getDate() == actual.getDate()-3 &&
                 // data.getMonth() == actual.getMonth())
                 //     td.classList.add('t_add3');
-                
-                // 三時段皆滿
-                // if(re_index == 3){
-                //     td.classList.add('full');
-                //     td.appendChild(full_img);
-                // }
 
                 // 這個月以前不能回去 boto_prev disable
                 // console.log(data.getMonth()); // 1 二月
@@ -245,7 +216,7 @@ function createCalendar(){
 
                 for(let i=0; i<tds.length; i++){
 
-                    if(tds[i].className.indexOf('fora') == -1 && tds[i].className.indexOf('today') == -1 && tds[i].className.indexOf('full') == -1 && tds[i].className.indexOf('past') == -1 ){
+                    if(tds[i].className.indexOf('fora') == -1 && tds[i].className.indexOf('today') == -1 && tds[i].className.indexOf('past') == -1 ){
                         tds[i].onclick=function(){	
                             // console.log(actual.getDate());
 
@@ -294,37 +265,31 @@ function createCalendar(){
                                 time_items[2].style.opacity = "1";
                             };
 
-                            // if($(window).width()>830){
-                            //     document.getElementById("showPeriod").innerText = document.getElementById("selectedPeriod").innerText;
-
-                            //     vm.getData();  
-                            // }
-
                             vm.getData();
                         };  
                     }
                     
                 }
                 // periods為早中晚三個span
-                let periods = document.querySelectorAll(".period");
-                var selectedPeriod; // 選擇的時段
+                // let periods = document.querySelectorAll(".period");
+                // var selectedPeriod; // 選擇的時段
 
-                for(let i=0; i<periods.length; i++){
-                    if(periods[i].className.indexOf('reserved') == -1){
-                        periods[i].onclick = function(){
-                            let period = periods[i].innerText;
-                            if(period=="早"){
-                                selectedPeriod = '早上9-12點';
-                            }else if(period=="中"){
-                                selectedPeriod = '下午14-17點';
-                            }else if(period=="晚"){
-                                selectedPeriod = '晚上18-21點';
-                            }
-                            document.getElementById("selectedPeriod").innerText = selectedPeriod;
-                            vm.getData();
-                        }
-                    };
-                }
+                // for(let i=0; i<periods.length; i++){
+                //     if(periods[i].className.indexOf('reserved') == -1){
+                //         periods[i].onclick = function(){
+                //             let period = periods[i].innerText;
+                //             if(period=="早"){
+                //                 selectedPeriod = '早上9-12點';
+                //             }else if(period=="中"){
+                //                 selectedPeriod = '下午14-17點';
+                //             }else if(period=="晚"){
+                //                 selectedPeriod = '晚上18-21點';
+                //             }
+                //             document.getElementById("selectedPeriod").innerText = selectedPeriod;
+                //             vm.getData();
+                //         }
+                //     };
+                // }
             }
             
             e.appendChild(fila);

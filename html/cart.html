@@ -209,45 +209,24 @@
         </div>
 
     </div>
-
     <script>
-        // function init() {
-        //     var del_btn_icon = document.getElementsByClassName("del_btn_icon");
-        //     var del_btn = document.getElementsByClassName("del_btn");
-        //     for (i = 0; i < del_btn.length; i++) {
-        //         del_btn_icon[i].addEventListener('click', delete_mypic_icon);
-        //         del_btn[i].addEventListener('click', delete_mypic);
-        //     }
 
-        //     function delete_mypic_icon(e) {
-        //         let div_img_icon = e.target.parentNode;
-        //         // console.log(div_img_icon.parentNode.parentNode)
-        //         div_img_icon.parentNode.parentNode.remove();
-        //     }
-
-        //     function delete_mypic(e) {
-        //         let div_img = e.target.parentNode;
-        //         // console.log(div_img.parentNode)
-        //         div_img.parentNode.remove();
-        //     };
-        // }
-        // window.addEventListener("load", init)
         new Vue({
             el: '#tabs',
             data: {
                 activetab: '1',
                 list: [{
                     image: 'img/prod_box_no01-1.jpg',
-                    count: 1,
-                    price: 1680,
+                    count: num,
+                    price: prd_name.PRICE,
                     disabled: false,
-                    key: '00001',
+                    key: "prd_name.PRD_NO",
                 }, {
                     image: 'img/prod_box_no01-2.jpg',
-                    count: 1,
-                    price: 3080,
+                    count: num,
+                    price: prd_name.PRICE,
                     disabled: false,
-                    key: '00002',
+                    key: "prd_name.PRD_NO",
                 }, ],
                 message: '',
                 Citys: ["台北市", "新北市", "基隆市", "桃園市"],
@@ -278,12 +257,24 @@
                 del_btn(index){
                     this.list.splice(index,1)
                 },
-                getList() {
-                    let list = localStorage.getItem('list');
+                getprds() {
+                    let List = localStorage.getItem('prd_name.PRD_NO');
                     if (list) this.list = JSON.parse(list);
+                    let xhr = new XMLHttpRequest();
+                    let thisVue = this;
+                    xhr.onload = function(){
+                        thisVue.prdsRows = JSON.parse(xhr.responseText);
+                    }
+                    xhr.open("get", "phps/cart.php?tableName=prd", true);
+                    xhr.send(null);
                 },
+                // getList() {
+                //     let list = localStorage.getItem('list');
+                //     if (list) this.list = JSON.parse(list);
+                // },
                 setList() {
-                    localStorage.setItem('list', JSON.stringify(this.list));
+                    localStorage.setItem('prd_name.PRD_NO', JSON.stringify(this.list));
+                    // localStorage.getItem('prd_name.PRD_NO');
                 },
                 ValidateCreditCardNumber(num) {
 
@@ -399,7 +390,8 @@
                 },
             },
             mounted() {
-                this.getList();
+                // this.getList();
+				this.getprds();
             },
         });
     </script>
