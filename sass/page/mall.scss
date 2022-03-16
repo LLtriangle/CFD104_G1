@@ -20,7 +20,10 @@
         .mall_img{
             img{
                 width: 100%;
+                // width: 180px;
+                // height: 120px;
                 border-radius: 5%;
+                object-fit: cover;
             }
         }
         h3{
@@ -79,7 +82,10 @@
             .mall_img{
                 img{
                     width: 100%;
+                    width: 180px;
+                    height: 120px;
                     border-radius: 5%;
+                    object-fit: cover;
                 }
             }
             h3{
@@ -136,6 +142,9 @@
             .mall_img{
                 img{
                     width: 100%;
+                    width: 280px;
+                    height: 200px;
+                    object-fit: cover;
                 }
             }               
             h3{
