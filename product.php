@@ -308,29 +308,32 @@ try{
             <div class="prod_con">             
                 <div class="prod_rerow">
                     <!-- button left -->
-                    <div class="reitem_btn">
+                    <!-- <div class="reitem_btn">
                         <div class="left_btn">
                             <button class="btn_btn bl pointer"><</button>
                         </div>
-                    </div>
+                    </div> -->
                 <?php 
-                    foreach($recommendPrdsRows as $i => $recommendPrdRow){
+                    // shuffle($recommendPrdsRows);
+                    // $arrPrd = array_slice($recommendPrdsRows,0, 5)
+                    // foreach($recommendPrdsRows as $i => $recommendPrdRow){
+                    for($i=0;$i<5;$i++){
                 ?>	
                     <!-- 推薦商品 -->
                     <div class="prod_reitem reitem_goods">
                         <div class="prod_img">
-                            <a href="product.php?prdno=<?=$recommendPrdRow['PRD_NO']?>">
-                                <img src="img/<?=$recommendPrdRow["IMG1"]?>">
+                            <a href="product.php?prdno=<?=$recommendPrdsRows[$i]['PRD_NO']?>">
+                                <img src="img/<?=$recommendPrdsRows[$i]["IMG1"]?>">
                             </a>
                         </div>
                         <div class="prod_txt">
                             <h3>
-                                <a href="product.php?prdno=<?=$recommendPrdRow['PRD_NO']?>">
-                                    <?=$recommendPrdRow["PRD_NAME"]?>
+                                <a href="product.php?prdno=<?=$recommendPrdsRows[$i]['PRD_NO']?>">
+                                    <?=$recommendPrdsRows[$i]["PRD_NAME"]?>
                                 </a>
                             </h3>
                             <p>
-                                NT $<?=$recommendPrdRow["PRICE"]?>
+                                NT $<?=$recommendPrdsRows[$i]["PRICE"]?>
                             </p>
                             <div class="btn_btn_box prod_btn">
                                 <a href="cart.html">
@@ -346,11 +349,11 @@ try{
                 ?>
 
                     <!-- button right -->
-                    <div class="reitem_btn">
+                    <!-- <div class="reitem_btn">
                         <div class="right_btn">
                             <button class="btn_btn bl pointer">></button>         
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div> 
         </section>

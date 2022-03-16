@@ -34,16 +34,25 @@
     }
     input[type=button]{
         width: 140px;
-    }
-    input[type=button]:hover{
-        cursor: pointer;
+        &:disabled{
+            &:hover{
+                cursor: auto;
+            }
+            background-color: #aaa;
+            color: #ddd;
+            box-shadow: none;
+            border-color: #aaa;
+        }
+        &:hover{
+            cursor: pointer;
+        }
     }
     #npimg{
         display: none;
     }
     .mall_nextpagebtn{
-    display: flex;
-    justify-content: center;
+        display: flex;
+        justify-content: center;
     }
 }
 
@@ -88,9 +97,9 @@
             width: 1200px;
         }
         .mall_nextpagebtn{
-        width: 1200px;
-        display: flex;
-        justify-content: center;
+            width: 1200px;
+            display: flex;
+            justify-content: center;
         }
     }             
 }

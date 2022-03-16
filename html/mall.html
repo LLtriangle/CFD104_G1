@@ -114,7 +114,6 @@
 			el:"#mallApp",
 			data:{
 				prdsRows:[{PRD_NO: '', CATEGORY: '', PRD_NAME: '', PRICE: '', IMG1: '',IMG2: '', IMG3: '', IMG4: '', INFO_IMG1: '', INFO_TITLE_1: '',INFO_1: '', INFO_IMG2: '', INFO_TITLE_2: '', INFO_2: '', STATE: '',SPEC_IMG:''}],
-                
                 perPage: 8,
 			},
 			methods: {
@@ -128,19 +127,22 @@
 					xhr.send(null);
 				},
                 changClass(prdClass){
+                    $('.mall_nextpagebtn input').val('看更多商品').prop('disabled',false);
                     let xhr = new XMLHttpRequest();
                     let thisVue = this;
+                    thisVue.perPage = 8;
                     xhr.onload = function(){
-                        console.log(thisVue.prdsRows);
-                        console.log(JSON.parse(xhr.responseText));
                         thisVue.prdsRows = JSON.parse(xhr.responseText);
-                        console.log(thisVue.prdsRows);
                     }
                     xhr.open("get", `phps/getClassPrd.php?prdClass=${prdClass}`, true);
                     xhr.send(null);
                 },
                 setPage(){
                     this.perPage += 4;
+                    if(this.perPage>=this.prdsRows.length){
+                        this.perPage = this.prdsRows.length;
+                        $('.mall_nextpagebtn input').val('沒有商品了').prop('disabled',true);
+                    };
                 },
 			},
 			mounted() {
