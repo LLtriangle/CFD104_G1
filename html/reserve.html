@@ -106,9 +106,9 @@
                     <div class="form_item choose_emp">
                         <h3>選擇整理師</h3>
                         <div>
-                            <select v-model="selectedEmp" @change="getInfo()">
+                            <select v-model="selectedEmp" @change="getInfo">
                                 <option value="" disabled>請選擇</option>
-                                <option v-for="emp in emps">{{emp}}</option>
+                                <option v-for="emp in emps" :value="emp.no">{{emp.name}}</option>
                             </select>
                         </div>
                     </div>
@@ -213,7 +213,7 @@
                 
                     <div class="btn_div page1">
                         <p class="plan_price total">${{total}}</p>
-                        <button class="next_btn" v-on:click="activetab='2'" type="button">下一步</button>  
+                        <button class="next_btn" @click="nextHandler(1)" type="button">下一步</button>  
                     </div>  
 
                 </form>
@@ -280,8 +280,7 @@
                                     <option value="Visa" id="visa">Visa</option>
                                     <option value="Mastercard" id="mastercard">Mastercard</option>
                                 </select>
-                                <input type="text" name="cardNumber" id="cardNum" v-model="credit_card"
-                                @change="ValidateCreditCardNumber(credit_card)" maxlength="16" />
+                                <input type="text" name="cardNumber" id="cardNum" v-model="credit_card" maxlength="16" />
                             </div>
                             <div class="flex">
                                 <h4 class="left">驗證碼</h4>
@@ -309,7 +308,7 @@
                         <ion-icon name="arrow-back-outline"></ion-icon>
                         返回
                     </button>
-                    <button class="next_btn center" type="button" @click="nextHandler(2)"  id="submit">確認付款
+                    <button class="next_btn center" type="button" @click="nextHandler(2);sendForm"  id="submit">確認付款
                     <!-- <ion-icon name="arrow-forward-outline"></ion-icon> -->
                         
                     </button>
@@ -408,7 +407,8 @@
             price0: 800, // 方案0價格
             price1: 1000, // 方案1價格
             price2: 900, // 方案2價格
-            emps: ["麻里不會","末牛子","潔癖子","由收easy安排"],
+            emps: [{name:"麻里不會",no:1},{name:"末牛子",no:2},{name:"潔癖子",no:3}],
+            // emps_no:[1,2,3],
             selectedEmp: '',
             tel: '',
             Citys: ["台北市","新北市","基隆市","桃園市"],
@@ -429,6 +429,7 @@
             dataTime: null,
             ccard_src:'',
             infos:[],
+            cusRow:[{CUS_NO: '', EMAIL: '', CUS_NAME: '', CUS_TEL: '',SEX:''}],
         },
         watch: {
             credit_card(nVal, oVal) {
@@ -462,14 +463,16 @@
             },
             // 控制第二頁到第三頁
             nextHandler(num) {
-                let credit_valid = this.ValidateCreditCardNumber(this.credit_card);
+                // let credit_valid = this.ValidateCreditCardNumber(this.credit_card);
                 if (num == 2) {
-                    if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test || !this.credit_valid){
-                        // alert("資料不完整");
-                        // return;
-                    }else{
-                        this.activetab = `${num + 1}`
-                    };
+                    if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test)
+                    alert("資料不完整");
+                    else this.activetab = `${num + 1}`
+                    // return;
+                }else if(num == 1){
+                    if (!this.selectedEmp || !this.dataDate || !this.dataTime || !this.name || !this.tel || !this.selectedCity || !this.selectedArea || !this.address)
+                    alert("請填寫完整資訊");
+                    else this.activetab = `${num + 1}`
                 }
             },
             changeCity(){
@@ -489,6 +492,14 @@
                 }
             },
             getInfo(){
+                let tds = $("#calendari td");
+                for(let i=0;i<tds.length;i++){
+                    let dots = tds[i].childNodes[0].childNodes[1].childNodes; // 早中晚點點 陣列
+                    dots[0].classList.remove('reserved');
+                    dots[1].classList.remove('reserved');
+                    dots[2].classList.remove('reserved');
+                    tds[i].classList.remove('full');
+                };
                 let emp_name = this.selectedEmp;
                 // console.log(emp_name);
                 if(emp_name=="麻里不會"){
@@ -498,7 +509,7 @@
                 }else if(emp_name=="潔癖子"){
                     emp_no=3
                 }
-                // console.log(emp_no);
+                
                 let thisVue = this;
                 $.ajax({
                     url: `phps/reserve.php`,
@@ -506,20 +517,43 @@
                     type: 'GET', 
                     dataType: 'json', 
                     success(res){
-                        console.log(res);
                         thisVue.infos = res;
+                        // 清空
+                        let tds = $("#calendari td");
+                        $('.full_img').remove();
                         for(let i=0; i<thisVue.infos.length; i++){
                             console.log(thisVue.infos[i].DAY_OFF); //不可預約日期
                             console.log(thisVue.infos[i].SCH_TIME);//不可預約時段
-                            // console.log(td.dataset.date);
-                            // let tds = $("#calendari td");
-                            // for(let j=0; j<tds.length; i++){
-                            //     // console.log(tds[j].dataset.date);  不要打這行
-                            //     if(tds[j].dataset.date==thisVue.infos[i]){
-                            //         console.log(tds[j].dataset.date);
-                            //     }
-                            // }
+                            for(let j=0; j<tds.length; j++){
+                                // console.log(thisVue.infos[i].DAY_OFF); 
+                                // 如果不可預約時間 = data-date 加入 reserved
+                                if(thisVue.infos[i].DAY_OFF == tds[j].dataset.date){
+                                    
+                                    if(thisVue.infos[i].SCH_TIME==1){
+                                        tds[j].childNodes[0].childNodes[1].childNodes[0].classList.add('reserved');
+                                    }else if(thisVue.infos[i].SCH_TIME==2){
+                                        tds[j].childNodes[0].childNodes[1].childNodes[1].classList.add('reserved');
+                                    }else if(thisVue.infos[i].SCH_TIME==3){
+                                        tds[j].childNodes[0].childNodes[1].childNodes[2].classList.add('reserved');
+                                    }
+
+                                }
+                            }
                         }
+
+                        for(let i=0;i<tds.length;i++){
+                            let dots = tds[i].childNodes[0].childNodes[1].childNodes; // 早中晚點點 陣列
+
+                            if(dots[0].classList.contains("reserved")==true && dots[1].classList.contains("reserved")==true && dots[2].classList.contains("reserved")==true){
+                                let full_img = document.createElement('img');
+                                full_img.className = "full_img"
+                                full_img.src = "img/soeasy_full.png"
+                                tds[i].classList.add('full');
+                                tds[i].appendChild(full_img);
+                            }
+                        }
+
+
                     },
                     error(res){
                         console.log('error');
@@ -527,22 +561,35 @@
                     },
                 });
             },
-            // content(tableName,e) {
-            //     console.log(e);
-            //     var thisVue = this;
-            //     $.ajax({
-            //         url: `phps/selectAll.php`, 
-            //         data: `data=${tableName}`, 
-            //         type: 'GET',
-            //         dataType: 'json', 
-            //         success(res){
-            //             console.log(res);
-            //         },
-            //         error(res){
-            //             console.log('error');
-            //         },
-            //     });
-            // },
+            sendForm(){
+                let thisVue = this;
+                let datas={};
+                datas.tel = this.tel;
+                $.ajax({
+                    url: `phps/reserve.php`,
+                    data: 'data='+JSON.stringify(datas),
+                    type: 'GET', 
+                    dataType: 'json', 
+                    success(res){
+                        thisVue.infos = res;
+                        console.log(thisVue.cusRow.CUS_NO); 
+                    },
+                    error(res){
+                        console.log('error');
+                        console.log(res);
+                    },
+                });
+            },
+            getMemberInfo(){
+                let xhr = new XMLHttpRequest();
+                let thisVue = this;
+                xhr.onload = function(){
+                    thisVue.cusRow = JSON.parse(xhr.responseText);
+                     
+                }
+                xhr.open("get", "phps/getMemberInfo.php", true);
+                xhr.send(null);
+            },
         },
         computed: {
             plan0_info() {
@@ -581,7 +628,7 @@
             }
         },
         mounted() {
-            // this.getMemberInfo();
+            this.getMemberInfo();
         },
     });
 
