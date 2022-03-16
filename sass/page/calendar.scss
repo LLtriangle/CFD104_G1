@@ -1,14 +1,16 @@
 @import  "../base/var";
 @import  "../base/color";
+
 /* 月曆外觀 */
 #calendari {
     margin: 20px 0 10px 0;
     position: relative;
     overflow: hidden;
-    width: 80%;
+    min-width: 650px;
     height: 480px;
     font-size: 14px;
     box-shadow: 0px 1px 4px rgba(0,0,0,0.4);
+    border-radius: 10px;
 }
 /* table的class=actiu */
 #calendari table{
@@ -55,7 +57,7 @@
     padding: 5px;
     border-top: 1px solid rgba(0,0,0,0.1);
     border-right: 1px solid rgba(0,0,0,0.1);
-    background-color: rgb(223, 190, 155);
+    background-color: map-get($color , 'sub_brown' );
     color: #fff;
     text-shadow: 0px -1px 0px rgba(0,0,0,0.2);
     // font-weight: 900;
@@ -264,6 +266,7 @@ td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
 
 @media screen and (max-width: 830px) {
     #calendari {
+        min-width: unset;
         width: 100%;
         height: 470px;
     }

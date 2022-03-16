@@ -1,21 +1,22 @@
 <?php
 session_start();
+// echo $_FILES['upFile']['name'];
 try{
-	// require_once("../connect_cfd104g1.php"); // 上線用
+  // require_once("../connect_cfd104g1.php"); // 上線用
 	require_once("connect.php"); // 開發用
-    // 檔案名稱：$_FILES['input的name']['name']
-    // 檔案格式：$_FILES['input的name']['type']
-    // 檔案的暫存位置：$_FILES['input的name']['tmp_name']
-    
-    if($_FILES['upFile']['error']==0){
+  // 檔案名稱：$_FILES['input的name']['name']
+  // 檔案格式：$_FILES['input的name']['type']
+  // 檔案的暫存位置：$_FILES['input的name']['tmp_name']
+  
+  if($_FILES['upFile']['error']==0){
       $file = uniqid();
       $fileInfo = pathinfo($_FILES['upFile']['name']); 
-  
       $ext = $fileInfo["extension"]; // 副檔名
       $fileName = "$file.$ext";
       $from = $_FILES['upFile']['tmp_name']; //暫存區含路徑
       $to = "../img/cus/$fileName";
       copy($from, $to);
+  
       // 修改
       $sql = "update cus set CUS_NAME=:CUS_NAME, SEX=:SEX ,CUS_TEL=:CUS_TEL,CUS_ADD=:CUS_ADD, CUS_PIC=:CUS_PIC where CUS_NO=:CUS_NO "; 
       $cus = $pdo->prepare($sql);
