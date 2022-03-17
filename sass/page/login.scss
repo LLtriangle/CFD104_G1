@@ -23,7 +23,7 @@
   .form{
     .form_button{
       display: block;
-      font-size: 20pxs;
+      font-size: 20px;
     }
   }  
 }
@@ -226,6 +226,7 @@
   }
   #switch-c1{
     height: 100%;
+    // background-color: #d6aa81;
     background-color: map-get($btn_color, "blue");
   }
   
