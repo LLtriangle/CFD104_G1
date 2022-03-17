@@ -1,16 +1,6 @@
 @import  "../base/var";
 @import "../base/color";
 
-// 輪播圖------------------
-// .small_img{
-//     .item{
-//         img{
-//             max-height:250px ;
-//             // max-width: 500px;
-//         }
-//     }
-// }
-
 // 整理師介紹---------------
 .b-tab {
     // padding: 20px;
@@ -174,8 +164,8 @@ screen and (max-width:992px)
                 margin: 0 20px;
                 perspective: 50px;
                 img{
-                    max-height:170px ;
-                    max-width: 200px;
+                    height:170px ;
+                    width: 200px;
                     object-fit: cover;
                     object-position: center;
                     transition: .5s;
@@ -197,7 +187,6 @@ screen and (max-width:992px)
             transform: translateX( calc(-260px * 6 + 2px) );
         }
     }
-
 
     .large{
         display: none;
@@ -226,7 +215,6 @@ screen and (max-width:992px)
 
 
     // 關於我們-----
-    
     .about_team{
         box-sizing: border-box;
         padding: 40px 0px 60px 0px;
@@ -377,9 +365,7 @@ screen and (max-width:992px)
                     line-height: 2;
                     margin-left: 20px;
                 }
-                
-            }
-            
+            } 
         }
     }
 
@@ -412,8 +398,6 @@ screen and (max-width:992px)
             } 
         }
     }
-    
-
 }
 
 // 整理師按鈕調整----------------------
@@ -448,7 +432,7 @@ screen and (max-width:992px)
         }
 
     }
-    }
+}
 
 
 // 桌機-------------------------------
@@ -476,7 +460,8 @@ screen and (max-width:992px)
                 margin: 0 20px;
                 perspective: 50px;
                 img{
-                    max-height:250px ;
+                    height:250px ;
+                    width:370px ;
                     object-fit: cover;
                     object-position: center;
                     transition: .5s;

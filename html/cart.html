@@ -337,13 +337,16 @@
                 total_all() {
                     let all = 0;
                     for (let i = 0; i < this.cart.length; i++) {
-                        if (this.coupon === "2022HAPPY88") {
-                            return Math.round((this.cart[i].prdPrice * this.cart[i].prdNum) * (this.param))  + this.fee;
-                        } else if (this.coupon === "22HAPPYMDAY" || this.coupon === "22SOEASYEVD") {
-                            return (this.cart[i].prdPrice * this.cart[i].prdNum) + (this.param) + this.fee;
-                        } else {
-                            all += this.cart[i].prdPrice * this.cart[i].prdNum + this.fee;
-                        }
+                        all += this.cart[i].prdPrice * this.cart[i].prdNum;
+                    }
+                    if (this.coupon === "2022HAPPY88") {
+                        all *= this.param;
+                        all += this.fee;
+                    } else if (this.coupon === "22HAPPYMDAY" || this.coupon === "22SOEASYEVD") {
+                        all += this.param;
+                        all += this.fee;
+                    } else {
+                        all += this.fee;
                     }
                     return all;
                 },
