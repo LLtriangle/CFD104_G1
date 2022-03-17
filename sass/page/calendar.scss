@@ -6,7 +6,7 @@
     margin: 20px 0 10px 0;
     position: relative;
     overflow: hidden;
-    min-width: 650px;
+    min-width: 550px;
     height: 480px;
     font-size: 14px;
     box-shadow: 0px 1px 4px rgba(0,0,0,0.4);
@@ -101,14 +101,14 @@
     color: black;
 }
 /* 六日 日期 */
-td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
-    color: #82002D;
-}
+// td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
+//     color: #82002D;
+// }
 
 /* 今天的日期td */
 #calendari td.today { 
     cursor: not-allowed;/* today不能被點擊 */
-    background: rgba(212, 195, 174, 0.4);
+    // background: rgba(212, 195, 174, 0.4);
     border-radius: 10px;
 }
 /* 今天後三天的日期td */
@@ -144,10 +144,10 @@ td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
 #calendari td:hover,
 #calendari td:focus {
     box-sizing: border-box;
-    // background-color: #cfa64b91;
-    outline: 2px solid #82002D;
-    z-index: 11;
+    background: rgba(212, 195, 174, 0.4);
     // transform: scale(1.1);
+    // outline: 2px solid map-get($color , 'sub_red');
+    z-index: 11;
     transition: 0.2s ease-in-out;
     border-radius: 10px;
 }
@@ -258,8 +258,9 @@ td:last-child>div div:first-child span,td:nth-child(6)>div div:first-child span{
 
 // td被選取的效果
 #calendari td.active{
-    outline: 2px solid #82002D;
+    // outline: 2px solid map-get($color , 'sub_red' );
     // transform: scale(1.1);
+    background: rgba(212, 195, 174, 0.4);
     z-index: 10;
     border-radius: 10px;
 }
