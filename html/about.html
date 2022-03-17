@@ -120,14 +120,17 @@
             <div class="circle_big_img" id="container">
                 <!-- 選擇整理師按鈕 -->
                 <div class="btn_mem">
-                    <button @click="rwd_1=true,rwd_2=false,rwd_3=false" class="rwd_mem_1 changChick" onclick="changChick(this)" id="bb_1">
+                    <button @click="rwd_1=true,rwd_2=false,rwd_3=false,rwd_4=false" class="rwd_mem_1 changChick" onclick="changChick(this)" id="bb_1">
                         麻里不會
                     </button>
-                    <button @click="rwd_1=false,rwd_2=true,rwd_3=false" class="rwd_mem_2 changChick" onclick="changChick(this)" id="bb_2">
+                    <button @click="rwd_1=false,rwd_2=true,rwd_3=false,rwd_4=false" class="rwd_mem_2 changChick" onclick="changChick(this)" id="bb_2">
                         末牛子
                     </button>
-                    <button @click="rwd_1=false,rwd_2=false,rwd_3=true" class="rwd_mem_3 changChick" onclick="changChick(this)"  id="bb_3">
+                    <button @click="rwd_1=false,rwd_2=false,rwd_3=true,rwd_4=false" class="rwd_mem_3 changChick" onclick="changChick(this)"  id="bb_3">
                         潔癖子
+                    </button>
+                    <button @click="rwd_1=false,rwd_2=false,rwd_3=false,rwd_4=true" class="rwd_mem_1 changChick" onclick="changChick(this)"  id="bb_4">
+                        地球鈔人
                     </button>
                 </div>
                 <div class="circle">我是藏起來的圈圈</div>
@@ -137,59 +140,67 @@
                 </div>
                 <!-- rwd整理師的大圖 -->
                 <div class="img_box" id="rwd_large">
-                    <div class="change_img b-tab active"  v-if="rwd_1"  id="mem_1" >
+                    <!-- 替代rwd預定燈箱的整理師介紹 -->
+                    <div class="change_img b-tab active"  v-show="rwd_1"  id="mem_1" >
                         <img src="img/Kurinachan_2.jpg">
                         <div class="large_txt">
                             <h3>｜整理師 : 麻里不會｜</h3>
                             <p class="text-wrapper">{{empsRows[0].INTRO}}</p>
-                            <!-- <p>地下收納聯盟假級認證</p>
-                            <p>個人風格：重視效率、利用行為科學打造容易做到的整理收納</p>
-                            <p>專長領域：企業與倉儲整理收納術、個人行為規劃整合</p> -->
                             <a href="reserve.html">立即預約</a>
                         </div>
                     </div>
-                    <div class="change_img b-tab"  id="mem_2" v-if="rwd_2">
+                    <div class="change_img b-tab"  id="mem_2" v-show="rwd_2">
                         <img src="img/Nikuchan.jpg">
                         <div class="large_txt">
                             <h3>｜整理師 : 末牛子｜</h3>
                             <p class="text-wrapper">{{empsRows[1].INTRO}}</p>
-                            <!-- <p>銀河系地球收納協會1級認證</p>
-                            <p>個人風格：以神秘力量收拾空間，在不留神之時就能完美整理收納</p>
-                            <p>專長領域：通靈術、占星術</p> -->
                             <a href="reserve.html">立即預約</a>
                         </div>
                     </div>
-                    <div class="change_img b-tab"  id="mem_3" v-if="rwd_3">
+                    <div class="change_img b-tab"  id="mem_3" v-show="rwd_3">
                         <img src="img/Marishimasen.jpg">
                         <div class="large_txt">
                             <h3>｜整理師 : 潔癖子｜</h3>
                             <p class="text-wrapper">{{empsRows[2].INTRO}}</p>
-                            <!-- <p>整理師互助協會3級認證</p>
-                            <p>個人風格：看不習慣的東西會一律幫客戶清理掉，斷捨離障礙人格最佳選擇</p>
-                            <p>專長領域：強迫症整理收納術</p> -->
+                            <a href="reserve.html">立即預約</a>
+                        </div>
+                    </div>
+                    <div class="change_img b-tab"  id="mem_4" v-show="rwd_4">
+                        <img src="img/handsome.jpg">
+                        <div class="large_txt">
+                            <h3>｜整理師 : 地球鈔人｜</h3>
+                            <p class="text-wrapper">{{empsRows[3].INTRO}}</p>
                             <a href="reserve.html">立即預約</a>
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- 整理師基本介紹 -->
             <div class="introduce" id="lightBox" >
-                <div v-if="emp1" class="introduce_txt b-tab active" id="cancel">
+                <div v-show="emp1" class="introduce_txt b-tab active" id="cancel">
                     <h3>｜整理師 : 麻里不會｜</h3>
                     <p class="text-wrapper">{{empsRows[0].INTRO}}</p>
                     <a href="reserve.html">立即預約</a>
         
                 </div>
-                <div v-if="emp2" class="introduce_txt b-tab" id="cancel">
-                    <h3>｜整理師 : 末牛子｜</h3>
+                <div v-show="emp2" class="introduce_txt b-tab" id="cancel">
+                    <h3>｜整理師 : 牛牛子｜</h3>
                     <p class="text-wrapper">{{empsRows[1].INTRO}}</p>
                     <a href="reserve.html">立即預約</a>
                 </div>
-                <div v-if="emp3" class="introduce_txt b-tab" id="cancel" >
+                <div v-show="emp3" class="introduce_txt b-tab" id="cancel" >
                     <h3>｜整理師 : 潔癖子｜</h3>
                     <p class="text-wrapper">{{empsRows[2].INTRO}}</p>
                     <a href="reserve.html">立即預約</a>
                 </div>
+                <div v-show="emp4" class="introduce_txt b-tab " id="cancel">
+                    <h3>｜整理師 : 地球鈔人｜</h3>
+                    <p class="text-wrapper">{{empsRows[3].INTRO}}</p>
+                    <a href="reserve.html">立即預約</a>
+        
+                </div>
+                
                 <!-- 桌機小圖 -->
                 <div class="circle_small_card small">
                     <div class="introduce_card">
@@ -199,29 +210,40 @@
                         <div class="card_txt">
                             <p>麻里不會</p>
                         </div>
-                        <a @click="emp1=true,emp2=false,emp3=false" class="black_hov b-nav-tab active" data-tab="orange">
+                        <a @click="emp1=true,emp2=false,emp3=false,emp4=false" class="black_hov b-nav-tab active" data-tab="orange">
                             <p>More</p>
                         </a>
                     </div>
                     <div class="introduce_card">
                         <div class="card_img">
-                            <img src="img/Nikuchan.jpg"/>>
+                            <img src="img/Nikuchan.jpg"/>
                         </div>
                         <div class="card_txt">
                             <p>末牛子</p>
                         </div>
-                        <a @click="emp1=false,emp2=true,emp3=false" class="black_hov b-nav-tab" data-tab="green">
+                        <a @click="emp1=false,emp2=true,emp3=false,emp4=false" class="black_hov b-nav-tab" data-tab="green">
                             <p>More</p>
                         </a>
                     </div>
                     <div class="introduce_card">
                         <div class="card_img">
-                            <img src="img/Marishimasen.jpg"/>>
+                            <img src="img/Marishimasen.jpg"/>
                         </div>
                         <div class="card_txt">
                             <p>潔癖子</p>
                         </div>
-                        <a @click="emp1=false,emp2=false,emp3=true" class="black_hov b-nav-tab" data-tab="blue">
+                        <a @click="emp1=false,emp2=false,emp3=true,emp4=false" class="black_hov b-nav-tab" data-tab="blue">
+                            <p>More</p>
+                        </a>
+                    </div>
+                    <div class="introduce_card">
+                        <div class="card_img">
+                            <img src="img/handsome.jpg"/>
+                        </div>
+                        <div class="card_txt">
+                            <p>地球鈔人</p>
+                        </div>
+                        <a @click="emp1=false,emp2=false,emp3=false,emp4=true" class="black_hov b-nav-tab" data-tab="blue">
                             <p>More</p>
                         </a>
                     </div>
@@ -336,9 +358,11 @@
                 emp1:true, // 預設--桌機板切換介紹
                 emp2:false, // 預設--桌機板切換介紹
                 emp3:false, // 預設--桌機板切換介紹
+                emp4:false, // 預設--桌機板切換介紹
                 rwd_1:true, // 預設--rwd切換整理師圖片
                 rwd_2:false, // 預設--rwd切換整理師圖片
                 rwd_3:false, // 預設--rwd切換整理師圖片
+                rwd_4:false, // 預設--rwd切換整理師圖片
                 empsRows:[],
             },
             methods: {
