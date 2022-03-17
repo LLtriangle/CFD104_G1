@@ -126,7 +126,7 @@
 					xhr.send(null);
 				},
                 changClass(prdClass){
-                    $('.mall_nextpagebtn input').val('看更多商品').prop('disabled',false);
+                    $('.mall_nextpagebtn input').val('看更多商品').prop('disabled',false).css('backgroundColor','#d6aa81');
                     let xhr = new XMLHttpRequest();
                     let thisVue = this;
                     thisVue.perPage = 8;
