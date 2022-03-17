@@ -91,7 +91,7 @@
                 <div class="col">
                     <a href="columns.html">
                         <div class="img">
-                            <img src="img/prod_box_no02.jpg">
+                            <img :src="'img/activity/'+colRows[0].MAIN_PIC">
                         </div>
                     </a>
                     <div class="txt">
@@ -108,96 +108,63 @@
                    
                 </div>
                 <div class="col">
-                    <a href="columns.html">
+                    <a href="columns_2.html">
                         <div class="img">
-                            <img src="img/service_01.jpg">
+                            <img :src="'img/'+colRows[1].MAIN_PIC">
                         </div>
                     </a>
                     <div class="txt">
-                        <a href="columns.html" class="txt_h3">
-                            
-                                <h3>極簡主義實踐心法：理智把關，只買自己百分之百喜歡的物品</h3>
-                            
+                        <a href="columns_2.html" class="txt_h3">
+                            <h3>{{colRows[1].TOPIC}}</h3>
                         </a>
                          <div class="item">
-                            <div class="item_img"><img :src="'img/'+colRows[0].AUTHOR_PIC"></div>
-                            <div class="name">{{colRows[0].AUTHOR}}</div>
+                            <div class="item_img"><img :src="'img/'+colRows[1].AUTHOR_PIC"></div>
+                            <div class="name">{{colRows[1].AUTHOR}}</div>
                         </div>
-                        <p>
-                            臺灣極簡生活實踐家——末羊子，從月光購物狂變身為極簡推廣者，她強調極簡生活不是追求「零雜物、零慾望」，而是認清真正的自己。
-
-                            只買百分之百喜歡的物品
-                            常常會有人問我：「明明喜歡簡單生活的感覺，但還是一直會有購物慾望跑出來，要怎麼辦？」，其實我自己也偶爾會遇到這樣的狀況，但為了漸進式地調整物慾，學著和這份自然產生的渴望共存，而不是在短時間內趕盡殺絕，我認為透過「只買百分之百喜歡的物品」，可以滿足想要購物的心情，也能讓買來的物品不這麼快被淘汰。
-                            
-                            只是「將就、順眼」的物品，馬上就會被你淘汰
-                            我有一個深切的親身經歷，這是在還沒有接觸極簡、沒聽過斷捨離以前發生的事情。
-                            
-                            那一年我在瑞士的某個鄉下讀書，因為錢包被偷了，需要買一個新的，我就坐了長途火車到附近的大城市逛街，希望可以買到一款喜歡的錢包。當時滿腦子想的都是：「這個大城市一定會比我住的偏僻小鎮，還要更有機會、更有選擇逛到好看和喜歡的！」
-                            
-                            不過找了好幾個小時，始終沒有找到一個超級喜歡的錢包，礙於當時天色漸漸黑了，商店打烊得很早，我又有曾被偷竊的陰影，便不由得急了起來，就對自己妥協了。我買了一個當下所有選擇裡最順眼的短夾後，就驅車返家。
-                            
-                            當時的心態是：好吧，就買這個吧！反正也沒得選了。可是當下沒得選，不代表未來沒得選，若非急需品，要在未來再找到一個「更喜歡的」，其實一點都不難，世界上可以給我們選擇的商品上千萬款，現場就算挑不到，回家還有二十四小時的網路購物，不打烊的電商供我滑。
-                            
-                            將就之下買了僅只是「順眼」的短夾沒多久，果不其然，我就在別的店看到另一個很喜歡的短夾，一個心動就購買付錢。而第一個為妥協而購買的錢包就被打入冷宮，後來我就轉手低價賣掉了。
-                                                           
-                            千萬不要妥協，給自己多一點時間等待最適合的商品出現，那將會成為陪伴你數年的寶貝。
-                            
-                            越喜歡的，就越難以被取代
-                            「只買百分之百喜歡的東西」，不僅僅會讓我們更珍惜買下的東西，而且也比較不容易因為「對現有的不滿」而「想要」買新的。此外，越是挑選百分之百喜歡的物品再買下，就越不容易看膩，因為很難找到跟它一樣好、甚至更好更喜歡的，也就不會那麼容易「被生火」、產生購物慾望。
-                            
-                            舉個例子，許多人衣櫃必備的黑色長褲，各種價格、品牌、版型都有，在我還沒有接觸極簡之前，也非常喜歡買黑褲，沒有什麼別的原因，就是常穿，所以覺得多買一件、兩件也無可厚非。但自從我找到某牌命定款後，因為「很滿意」，所以幾乎不會再看別的黑褲了，就算有看到其他好看的黑褲，也不容易生火，因為不認為會買到比現在這件更適合自己的。
-                            
-                            現在想想，那正是因為買到「百分之百喜歡的東西」，所以不會輕易地認為有更好的選擇可以取代掉它，或是輕易的喜新厭舊。
-                            
-                            我們很容易因為一點點喜歡，就把一個商品買回家，可是買回家後又不一樣了，很容易因為一點點不喜歡，就不使用它。
-                            
-                            我也曾經是腦波非常非常弱的購物狂，當時總覺得買東西真的不需要太多理由，光是一個犒賞自己、就是想買、好可愛，就可以成立。但是不用這個東西也是理由一大堆，畢竟當初不是深思熟慮就帶回家，真正使用時才會發現那些心動其實漏洞百出。
-                            
-                            排除市面上真的別無選擇，還有當務之急的急須品以外，耐心多等待幾天、幾個禮拜、幾個機會，提高每次購物選品的標準，練習替自己買到百分之百喜歡的東西，花時間去找到那個無法替代、無可挑剔，也百分之百喜歡的東西，面對購物慾，我們就能更從容、更理智一點。
-                        </p>
-                        <a href="columns.html" class="moreprd">more...</a>
+                        <p>{{colRows[1].CONTENT1}}</p>
+                        <a href="columns_2.html" class="moreprd">more...</a>
                     </div>
-                    
+                   
                 </div>
                 <div class="col">
-                    <a href="columns.html">
+                    <a href="columns_3.html">
                         <div class="img">
-                            <img src="img/prod_box_no02.jpg">
+                            <img :src="'img/activity/'+colRows[2].MAIN_PIC">
                         </div>
                     </a>
                     <div class="txt">
-                        <a href="columns.html" class="txt_h3">
-                            <h3>「東西不是通通放到整理箱就叫整理」達人教您收納大法</h3>
-                        </a>
-                        <div class="item">
-                            <div class="item_img"><img src="img/logo_act.jpg"></div>
-                            <div class="name">SOEASY</div>
-                        </div>
-                        <p>當我把各種多餘的東西清掉之後，留下的空的收納箱，大大小小至少有 20 多個，真的是太驚人了，這不免讓我再一次反省自己真的太會亂買。因為很愛買，又懶得整理，看到家居雜誌上那種清爽潔淨的生活空間，就腦波弱的買了一堆收納箱及整理架，試圖讓家裡看起來整齊一點，效果當然沒有雜誌上那樣高雅簡潔。</p>
-                        <a href="columns.html" class="moreprd">more...</a>
-                    </div>
-                    
-                </div>
-                <div class="col">
-                    <a href="columns.html">
-                        <a href="columns.html">
-                            <div class="img">
-                                <img src="img/activity/column_01.jpg">
-                            </div>
-                        </a>
-                    </a>
-                    <div class="txt">
-                        <a href="columns.html" class="txt_h3">
-                            <h3>家裡太小，想騰出更多收納空間你一定要知道的段捨離大法</h3>
+                        <a href="columns_3.html" class="txt_h3">
+                            <h3>{{colRows[2].TOPIC}}</h3>
                         </a>
                          <div class="item">
-                            <div class="item_img"><img src="img/logo_act.jpg"></div>
-                            <div class="name">SOEASY</div>
+                            <div class="item_img"><img :src="'img/'+colRows[2].AUTHOR_PIC"></div>
+                            <div class="name">{{colRows[2].AUTHOR}}</div>
                         </div>
-                        <p>相信不少人都有同樣的問題，實際上這不叫整理收納，而是惡性囤積。我們現在是租屋而居，在小小的空間內堆滿收納盒，真正生活的空間越來越小，那到底是付租金給人住，還是給貨物住呢？真正有效果的收納，不外乎計畫性消費和不浪費，不僅能達到室內美觀簡潔的目標，還可以減少家庭支出和家務負擔，更不用擔心不知道東西收去哪兒了。</p>
-                        <a href="columns.html" class="more moreprd">more...</a>
+                        <p>{{colRows[2].CONTENT1}}</p>
+                        <a href="columns_3.html" class="moreprd">more...</a>
                     </div>
+                   
                 </div>
+                <div class="col">
+                    <a href="columns_4.html">
+                        <div class="img">
+                            <img :src="'img/'+colRows[3].MAIN_PIC">
+                        </div>
+                    </a>
+                    <div class="txt">
+                        <a href="columns_4.html" class="txt_h3">
+                            <h3>{{colRows[3].TOPIC}}</h3>
+                        </a>
+                         <div class="item">
+                            <div class="item_img"><img :src="'img/'+colRows[3].AUTHOR_PIC"></div>
+                            <div class="name">{{colRows[3].AUTHOR}}</div>
+                        </div>
+                        <p>{{colRows[3].CONTENT1}}</p>
+                        <a href="columns_4.html" class="moreprd">more...</a>
+                    </div>
+                   
+                </div>
+                
             </div>
         </section>
 
@@ -212,7 +179,12 @@
                     actRows:[{COUPON: '', EVENT_IMG: '', TITLE: '', CONTENT: '', START: '',END: ''},
                         {COUPON: '', EVENT_IMG: '', TITLE: '', CONTENT: '', START: '',END: ''},
                         {COUPON: '', EVENT_IMG: '', TITLE: '', CONTENT: '', START: '',END: ''}],
-                    colRows:[{COLUMN_NO: '', AUTHER: '', AUTHER_PIC: '', DATE: '', TOPIC: '',CONTENT1: '',CONTENT2: '',MAIN_PIC: '',IMG1: '',IMG2: '',SUBTITLE_01: '',SUBTITLE_02: ''}]
+                    colRows:[
+                        {COLUMN_NO: '', AUTHER: '', AUTHER_PIC: '', DATE: '', TOPIC: '',CONTENT1: '',CONTENT2: '',MAIN_PIC: '',IMG1: '',IMG2: '',SUBTITLE_01: '',SUBTITLE_02: ''},
+                        {COLUMN_NO: '', AUTHER: '', AUTHER_PIC: '', DATE: '', TOPIC: '',CONTENT1: '',CONTENT2: '',MAIN_PIC: '',IMG1: '',IMG2: '',SUBTITLE_01: '',SUBTITLE_02: ''},
+                        {COLUMN_NO: '', AUTHER: '', AUTHER_PIC: '', DATE: '', TOPIC: '',CONTENT1: '',CONTENT2: '',MAIN_PIC: '',IMG1: '',IMG2: '',SUBTITLE_01: '',SUBTITLE_02: ''},
+                        {COLUMN_NO: '', AUTHER: '', AUTHER_PIC: '', DATE: '', TOPIC: '',CONTENT1: '',CONTENT2: '',MAIN_PIC: '',IMG1: '',IMG2: '',SUBTITLE_01: '',SUBTITLE_02: ''}
+                    ]
                 },
                 methods: {
                     getAct(){
