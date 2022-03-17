@@ -26,6 +26,7 @@ p{
                 padding: 20px;
                 margin-top: 20px;
                 display: flex;
+                justify-content: center;
                 p{
                     padding-top: 10px;
                     padding-right: 20px;
@@ -41,7 +42,7 @@ p{
                         background-color: #fff;
                         border: 1px solid;
                         border-radius: 50%;
-                        font-size: 20px;
+                        font-size: 12px;
                         padding: 10px 20px;
                     }
                     input[type=button]:hover{
@@ -56,8 +57,15 @@ p{
                         font-size: 18px;
                     }
                     .btn_btn_box{
-                        padding: 10px 10px 10px 30px;
+                        padding: 10px;
                     }
+                }
+            }
+            .btn_btn_box{
+                display: flex;
+                justify-content: center;
+                button{
+                    margin: 10px;
                 }
             }
         }
@@ -139,7 +147,7 @@ p{
         .prod_reitem{
             margin: 20px 20px ;
             .btn_btn_box{
-                padding: 10px 10px 10px 30px;
+                padding: 10px;
                 display: flex;
                 justify-content: center;
             }            
@@ -170,10 +178,12 @@ p{
     cursor: pointer;
 }
 .htop1{
-    font-size: 32px;
+    // font-size: 32px;
+    // margin-left: 20px;
 }
 .htop2{
-    font-size: 32px;
+    // font-size: 32px;
+    // margin-left: 20px;
 }
 
 // 手機版
@@ -219,7 +229,7 @@ p{
                             background-color: #fff;
                             border: 1px solid;
                             border-radius: 50%;
-                            font-size: 20px;
+                            font-size: 15px;
                             padding: 10px 20px;
                         }
                         input[type=button]:hover{
@@ -317,7 +327,7 @@ p{
             .prod_reitem{
                 margin: 20px 20px ;
                 .btn_btn_box{
-                    padding: 10px 10px 10px 30px;
+                    padding: 10px;
                     display: flex;
                     justify-content: center;
                 }            
@@ -347,12 +357,12 @@ p{
     .pointer{
         cursor: pointer;
     }
-    .htop1{
-        font-size: 32px;
-    }
-    .htop2{
-        font-size: 32px;
-    }
+    // .htop1{
+    //     font-size: 32px;
+    // }
+    // .htop2{
+    //     font-size: 32px;
+    // }
 }
 //桌機版
 @media (min-width: 1200px) {
@@ -384,7 +394,8 @@ p{
                 .prod_amount{
                     padding: 20px;
                     display: flex;
-                    justify-content: flex-start;
+                    // justify-content: start;
+                    justify-content: center;
                     p{
                         margin-top: 10px;
                     }
@@ -398,7 +409,7 @@ p{
                         border: 1px solid;
                         box-shadow: none;
                         border-radius: 50%;
-                        font-size: 20px;
+                        font-size: 15px;
                         padding: 10px 20px;
                     }
                     input[type=button]:hover{
@@ -559,12 +570,12 @@ p{
     }        
 }
 .htop1{
-    font-size: 34px;
+    // font-size: 34px;
     margin-top: 50px;
     margin-bottom: -30px;
 }
 .htop2{
-    font-size: 34px;
+    // font-size: 34px;
     margin-top: 40px;
     margin-bottom: -20px;
 }

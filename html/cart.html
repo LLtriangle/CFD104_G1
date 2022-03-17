@@ -20,99 +20,81 @@
     <div id="tabs" class="container">
 
         <div class="progress">
-            <a v-bind:class="[ activetab === '1' ? 'active' : '' ]" @click="clickHandler(1)">訂單資料</a>
-            <a v-bind:class="[ activetab === '2' ? 'active' : '' ]" @click="clickHandler(2)">收件人資訊</a>
-            <a v-bind:class="[ activetab === '3' ? 'active' : '' ]" @click="clickHandler(3)">訂單明細確認</a>
+            <a v-bind:class="[ activetab === '1' ? 'active' : '' ]" @click="clickHandler(1)"><img src="img/reserve_contract.png" alt=""> 商品資訊</a>
+            <a v-bind:class="[ activetab === '2' ? 'active' : '' ]" @click="clickHandler(2)"><img src="img/reserve_credit-card.png" alt=""> 付款資訊</a>
+            <a v-bind:class="[ activetab === '3' ? 'active' : '' ]" @click="clickHandler(3)"><img src="img/reserve_receipt.png" alt=""> 訂單明細</a>
         </div>
 
         <div class="content">
             <div v-if="activetab ==='1'" class="tabcontent">
+                <div v-for="(item, index) in cart">
+                    <div class="flex">
+                        <div><img :src="'img/'+item.prdImg" class="product"></div>
+                        <div>{{item.prdName}}</div>
+                        <div>$ {{item.prdPrice}}</div>
+                        <div><button @click="countNum(-1,index)" :disabled="item.isDisabled" class="add">-</button></div>
+                        <div>{{item.prdNum}}</div>
+                        <div><button @click="countNum(1,index)" class="add">+</button></div>
+                        <div>$ {{(item.prdPrice* item.prdNum)}}</div>
+                        <div><button class="add" @click="del_btn(index)">
+                            </button></div>
+                    </div>
+                </div>
                 <table>
-                    <tr>
-                        <td>
-                            <h3>商品詳情</h3>
-                        </td>
-                        <td>
-                            <h3>單價</h3>
-                        </td>
-                        <td></td>
-                        <td>
-                            <h3>數量</h3>
-                        </td>
-                        <td></td>
-                        <td>
-                            <h3>小計</h3>
-                        </td>
-                    </tr>
-
-                    <tr v-for="(item, index) in list">
-                        <td><img :src="item.image" class="product"></td>
-                        <td>$ {{item.price}}</td>
+                    <!-- <tr v-for="(item, index) in cart">
+                        <td><img :src="'img/'+item.prdImg" class="product"></td>
+                        <td>{{item.prdName}}</td>
+                        <td>$ {{item.prdPrice}}</td>
                         <td><button @click="countNum(-1,index)" :disabled="item.isDisabled" class="add">-</button></td>
-                        <td>{{item.count}}</td>
+                        <td>{{item.prdNum}}</td>
                         <td><button @click="countNum(1,index)" class="add">+</button></td>
-                        <td>$ {{(item.price* item.count)}}</td>
+                        <td>$ {{(item.prdPrice* item.prdNum)}}</td>
                         <td><button class="add" @click="del_btn(index)">
-                                <ion-icon name="trash-outline"></ion-icon>
                             </button></td>
-                    </tr>
-                    <!-- <tr v-if="product">
-                        <td><img :src="image"></td>
-                        <td>{{price}}</td>
-                        <td><button @click="countNum(-1)" :disabled="isDisabled">-</button></td>
-                        <td>{{count}}</td>
-                        <td><button @click="countNum(1)">+</button></td>
-                        <td>{{total}}</td>
-                        <td><button @click="count=0">刪除</button></td>
                     </tr> -->
                     <tr>
-                        <td colspan="2">優惠碼輸入:</td>
-                        <td colspan="3">
-                            <input type="text" maxlength="11" v-model.trim="coupon" @change="" placeholder="請輸入折扣碼">
+                        <td colspan="2" class="left">優惠碼輸入:</td>
+                        <td colspan="6">
+                            <input type="text" maxlength="11" v-model.trim="coupon" @change="" placeholder="請輸入折扣碼" class="full">
                         </td>
-                        <td colspan="2" rowspan="2">{{show_coupon}}</td>
                     </tr>
                     <tr>
-                        <td colspan="2">送貨及物流資訊</td>
+                        <td colspan="2" class="left">送貨及物流資訊</td>
                         <td colspan="3"></td>
+                        <td colspan="2">{{show_coupon}}</td>
                     </tr>
                     <tr>
                         <td class="left" colspan="3"><input type="radio" v-model="delivery" value="宅配" id="plan1"
                                 class="radio-input"><label for="plan1" class="radio-label"><span
                                     class="radio-button"></span>宅配</label></td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="3"></td>
                         <td>$ 100</td>
                     </tr>
                     <tr>
                         <td class="left" colspan="3"><input type="radio" v-model="delivery" value="7-11超商取貨付款"
                                 id="plan2" class="radio-input"><label for="plan2" class="radio-label"><span
                                     class="radio-button"></span>7-11超商取貨付款</label></td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="3"></td>
                         <td>$ 90</td>
                     </tr>
                     <tr>
                         <td class="left" colspan="3"><input type="radio" v-model="delivery" value="全家超商取貨付款" id="plan3"
                                 class="radio-input"><label for="plan3" class="radio-label"><span
                                     class="radio-button"></span>全家超商取貨付款</label></td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="3"></td>
                         <td>$ 80</td>
                     </tr>
                     <tr>
-                        <td colspan="2">總金額</td>
-                        <td colspan="3"></td>
+                        <td colspan="2" class="left">總金額</td>
+                        <td colspan="4"></td>
                         <td>$ {{total_all}}</td>
                     </tr>
                 </table>
 
                 <div class="space">
-                    <button class="center"><a href="product.html">
-                            <ion-icon name="arrow-back-outline"></ion-icon>繼續購物
-                        </a></button>
-                    <button v-on:click="activetab='2'" class="center">下一步<ion-icon name="arrow-forward-outline">
-                        </ion-icon></button>
+                    <button class="center" onClick="javascript:history.back()">繼續購物
+                        </button>
+                    <button v-on:click="activetab='2'" class="center">下一步</button>
                 </div>
             </div>
             <div v-if="activetab ==='2'" class="tabcontent">
@@ -170,11 +152,9 @@
                     </tr>
                 </table>
                 <div class="space">
-                    <button class="center" v-on:click="activetab='1'">
-                        <ion-icon name="arrow-back-outline"></ion-icon>返回
+                    <button class="center" v-on:click="activetab='1'">返回
                     </button>
-                    <button class="center" @click="nextHandler(2)">下一步<ion-icon name="arrow-forward-outline">
-                        </ion-icon></button>
+                    <button class="center" @click="nextHandler(2)">下一步</button>
                 </div>
             </div>
             <div v-if="activetab ==='3'" class="tabcontent">
@@ -201,9 +181,8 @@
                     </tr>
                 </table>
                 <div class="space">
-                    <button class="center" v-on:click="activetab='2'">
-                        <ion-icon name="arrow-back-outline"></ion-icon>返回
-                    </button><button class="center">送出<ion-icon name="arrow-forward-outline"></ion-icon></button>
+                    <button class="center" v-on:click="activetab='2'">返回
+                    </button><button class="center">送出</button>
                 </div>
             </div>
         </div>
@@ -215,19 +194,8 @@
             el: '#tabs',
             data: {
                 activetab: '1',
-                list: [{
-                    image: 'img/prod_box_no01-1.jpg',
-                    count: num,
-                    price: prd_name.PRICE,
-                    disabled: false,
-                    key: "prd_name.PRD_NO",
-                }, {
-                    image: 'img/prod_box_no01-2.jpg',
-                    count: num,
-                    price: prd_name.PRICE,
-                    disabled: false,
-                    key: "prd_name.PRD_NO",
-                }, ],
+                cart: [],
+                prdsRows: '',
                 message: '',
                 Citys: ["台北市", "新北市", "基隆市", "桃園市"],
                 Areas: '',
@@ -255,25 +223,45 @@
             },
             methods: {
                 del_btn(index){
-                    this.list.splice(index,1)
+                    // this.cart.splice(index,1);
+                    // let cart = JSON.parse(localStorage.getItem("cart"));
+                    // console.log(index);
+                    // console.log(cart);
+                    // console.log(this.cart);
+                    // cart.splice(cart.indexOf(index),1);
+                    this.cart.splice(index,1);
+                    localStorage.setItem("cart",JSON.stringify(this.cart));
+                    // console.log(cart);
+                    // console.log(this.cart);
                 },
-                getprds() {
-                    let List = localStorage.getItem('prd_name.PRD_NO');
-                    if (list) this.list = JSON.parse(list);
-                    let xhr = new XMLHttpRequest();
-                    let thisVue = this;
-                    xhr.onload = function(){
-                        thisVue.prdsRows = JSON.parse(xhr.responseText);
-                    }
-                    xhr.open("get", "phps/cart.php?tableName=prd", true);
-                    xhr.send(null);
-                },
-                // getList() {
-                //     let list = localStorage.getItem('list');
+                // getprds() {
+                //     let List = localStorage.getItem('prd_name.PRD_NO');
                 //     if (list) this.list = JSON.parse(list);
+                //     let xhr = new XMLHttpRequest();
+                //     let thisVue = this;
+                //     xhr.onload = function(){
+                //         thisVue.prdsRows = JSON.parse(xhr.responseText);
+                //     }
+                //     xhr.open("get", "phps/cart.php?tableName=prd", true);
+                //     xhr.send(null);
                 // },
+                getList() {
+                    let cart = JSON.parse(localStorage.getItem("cart"));
+                    console.log(cart);
+                    this.cart = cart;
+                    
+                    // let xhr = new XMLHttpRequest();
+                    // let thisVue = this;
+                    // xhr.onload = function(){
+                    //     thisVue.prdsRows = JSON.parse(xhr.responseText);
+                    //     thisVue.prdsRows.p
+                    // }
+                    // xhr.open("get", "phps/cart.php?tableName=prd", true);
+                    // xhr.send(null);
+                },
                 setList() {
-                    localStorage.setItem('prd_name.PRD_NO', JSON.stringify(this.list));
+                    //let cart = JSON.parse(localStorage.setItem("cart"));
+                    localStorage["cart"] = JSON.stringify(this.cart);
                     // localStorage.getItem('prd_name.PRD_NO');
                 },
                 ValidateCreditCardNumber(num) {
@@ -296,14 +284,14 @@
                     }
                 },
                 countNum(x, index) {
-                    this.list[index].count += x;
-                    if (this.list[index].count != 1) {
-                        this.list[index].isDisabled = false
+                    // alert("hi");
+                    this.cart[index].prdNum += x;
+                    if (this.cart[index].prdNum != 1) {
+                        this.cart[index].isDisabled = false
                     } else {
-                        this.list[index].isDisabled = true
+                        this.cart[index].isDisabled = true
                     }
-                    this.se;
-                    tList()
+                    this.setList();
                 },
                 clickHandler(num) {
                     if (num <= this.activetab) {
@@ -318,6 +306,13 @@
                             credit_valid) alert("資料不完整");
                         else this.activetab = `${num + 1}`
                     }
+                },
+                saveOrder(){
+                    let data_info = JSON.stringify(this.cart);
+                    let xhr = new XMLHttpRequest();
+                    let url = "phps/orderToDb.php?cart=" + data_info;
+                    xhr.open("get", url , true);
+                    xhr.send(null);
                 },
                 changeCity() {
                     if (this.selectedCity === "台北市") {
@@ -340,16 +335,18 @@
             },
             computed: {
                 total_all() {
-                    let a = this.list;
                     let all = 0;
-                    for (let i = 0; i < a.length; i++) {
-                        if (this.coupon === "2022HAPPY88") {
-                            return Math.round((this.list[i].price * this.list[i].count) * (this.param))  + this.fee;
-                        } else if (this.coupon === "22HAPPYMDAY" || this.coupon === "22SOEASYEVD") {
-                            return (this.list[i].price * this.list[i].count) + (this.param) + this.fee;
-                        } else {
-                            all += this.list[i].price * this.list[i].count + this.fee;
-                        }
+                    for (let i = 0; i < this.cart.length; i++) {
+                        all += this.cart[i].prdPrice * this.cart[i].prdNum;
+                    }
+                    if (this.coupon === "2022HAPPY88") {
+                        all *= this.param;
+                        all += this.fee;
+                    } else if (this.coupon === "22HAPPYMDAY" || this.coupon === "22SOEASYEVD") {
+                        all += this.param;
+                        all += this.fee;
+                    } else {
+                        all += this.fee;
                     }
                     return all;
                 },
@@ -390,14 +387,12 @@
                 },
             },
             mounted() {
-                // this.getList();
-				this.getprds();
+                this.getList();
+                // let storage = localStorage;
+				// this.getprds();
             },
         });
     </script>
-
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <!-- <footer></footer> -->
     @@include('layout/footer.html')
 </body>

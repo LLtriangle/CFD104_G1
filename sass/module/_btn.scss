@@ -302,7 +302,8 @@ select{
     font-size: initial;
     background-color: white;
     border: none;
-    box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
+    // box-shadow: 1px 1px 3px #ccc;
+    box-shadow: 2px 2px #ccc;
     border-radius: 10px;
     padding: 5px;
     min-width: 150px;
@@ -315,7 +316,6 @@ select{
     background-position: center;
     background-position-x: calc(100% - 10px);
     background-size: 0.9rem 0.9rem;
-
     &:focus{
         outline: none;
         box-shadow: 1px 1px 5px map-get($color, 'main');
