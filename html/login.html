@@ -35,7 +35,7 @@
                 <span id="idMsg"></span>
                 <br>
                 <!-- 註冊密碼 -->
-                <input id="cusPsw" class="form_input" type="password" placeholder="設定密碼(格式:含英數至少六個字元)" maxlength="50" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$" required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('請輸入正確的密碼格式:含英數至少六個字元');"/><br>
+                <input id="cusPsw" class="form_input" type="password" placeholder="設定密碼(含英數至少六個字元)" maxlength="50" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$" required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('請輸入正確的密碼格式:含英數至少六個字元');"/><br>
 
                 <input id="btnRegister" type="button" class="form_button button" value="註冊" disabled>
             </form>
@@ -58,7 +58,7 @@
             </form>
         </div>
 
-      <!-- 上面的覆蓋頁 -->
+      <!------- 上面的覆蓋頁 ------->
       <div class="switch" id="switch-cnt">
             <div class="switch_circle"></div>
             <div class="switch_circle switch_circle--t"></div>
@@ -77,9 +77,10 @@
 
         </div>
     </main>
+
+    <!-- JS區 -->
     <script src="js/login.js"></script>
     <script src="js/loginAndLogout.js"></script>
-
     <script>
         var sibox = document.getElementById("si_box");//註冊
 
@@ -98,9 +99,6 @@
             lobox.style="transform: scale(1.1);background-color:#8c96a8";
             sibox.style="transform: scale(0.9);background-color:#ECF0F3";
         }
-
-            
-
     </script>
   </body>
 </html>

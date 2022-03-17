@@ -26,16 +26,15 @@
                             <!-- 名字 -->
                             <p>{{cusRow.CUS_NAME}}</p>
                             <!-- email -->
-                            <p>{{cusRow.EMAIL}}</p>
+                            <p><span>{{cusRow.EMAIL}}</span></p>
                         </div>
                         <img src="img/memupupdowndown.png" alt="" class="up_down">
                     </div>
                 </label>
                 <div class="con_data">
-                    <a @click="data=true,p_order=false">會員資料</a><br>
-                    <a @click="data=false,p_order=true">商品訂單</a><br>
-                    <a @click="data=false,p_order=true">服務預約</a><br>
-                    <a @click="data=false,p_order=true">收藏清單</a><br>
+                    <a @click="data=true,p_order=false,p_reserve=false">會員資料</a><br>
+                    <a @click="data=false,p_order=true,p_reserve=false">商品訂單</a><br>
+                    <a @click="data=false,p_order=false,p_reserve=true">服務預約</a><br>
                     <a id="btnLogout">登出</a>
                 </div>
             </div>
@@ -48,7 +47,7 @@
             <div class="title_color"></div>
             <!-- 資料區的內容盒子 data_mem------------------>
             <form id="myForm">
-                <div class="data_mem" v-if="data">
+                <div class="data_mem" v-show="data">
                     <div class="icon_edit">
                         <div class="mem_icon" >
                                 <!-- 大頭貼 -->
@@ -106,18 +105,18 @@
                 
                         <!-------新增取消修改-------->
                         <button id="btnCancel" type="button" class="btn_sub bl cancel" @click="getMemberInfo">取消修改</button>
-                        <button id="btnSave" type="button" class="btn_sub br">儲存修改</button>
+                        <button id="btnSave" type="button" class="btn_sub br" @click="getMemberInfo">儲存修改</button>
                         <button id="btnChange" type="button" class="btn_sub br">修改會員資料</button>
                     </div>
                 </div>
             </form>
-
+            <!-- 會員資料顯示結束 ------------------------ -->
 
 
             <!--------------------- 我是可愛分隔線 --------------------->
 
             <!-- 我是訂單區 ------------------------------->
-            <div class="data_mem" v-if="p_order">
+            <div class="data_mem" v-show="p_order">
                 <!-- <h3>商品訂單</h3> -->
                 <div class="memberOrder">
                     <div class="memberOrderContent">
@@ -141,9 +140,9 @@
                         </div>
                     </div>
             
-                    <div class="memberProgressAll">
+                    <!-- <div class="memberProgressAll">
                         <div class="dot_box">
-                            <!-- 訂單進度點點 -->
+                            訂單進度點點
                             <div class="memberProgressDot">
                                 <div>
 
@@ -155,7 +154,7 @@
                                 <div class="memberProgressDot_even3"></div>
                                 <div class="memberProgressDot_odd3 memberUnchecked"></div>
                             </div>
-                            <!-- 訂單進度 -->
+                            訂單進度
                             <div class="memberProgressWord">
                                 <div class="memberWordCheck1">收到訂單</div>
                                 <div class="memberWordCheck2">訂單確認</div>
@@ -163,10 +162,10 @@
                                 <div class="memberWordCheck4">商品送達</div>
                             </div>
                         </div>
-                        <!-- <div>
+                        <div>
                             <button class="memberOpenDetail">查看明細</button>
-                        </div> -->
-                    </div>
+                        </div>
+                    </div> -->
                     <div class="memberOrderDetailHere">
                         <div class="memberOrderDetailAll">
                             <div class="memberOrderDetail">
@@ -204,9 +203,49 @@
                 
                 </div>
             </div>
-        </section>
-        <!-- 會員資料顯示結束 ------------------------ -->
+            <!-- 訂單區結束 ------------------------------->
 
+            <!-- 我是預約區 ------------------------------->
+            <div class="data_mem" v-show="p_reserve">
+                
+                <div class="memberReserve">
+                    <div class="memberReserveContent">
+                        <div class="memberGrid">
+                            <div class="memberGrid1">訂單編號</div>
+                            <div class="memberGrid2">預約時間</div>
+                            <div class="memberGrid3">金額</div>
+                            <div class="memberGrid4">預約方案</div>
+                            <div class="memberGrid5">預約整理師</div>
+                            <div class="memberGrid6">預約狀態</div>
+                            <!-- <div class="memberGrid7">預約狀態</div> -->
+                            <!-- <div class="memberGrid8">收件人資訊</div> -->
+                            <div class="memberGrid9"> 20220228 </div>
+                            <div class="memberGrid10"> 2022-02-28上午 </div>
+                            <div class="memberGrid11"> $9999 </div>
+                            <div class="memberGrid12"> 到府一對一教學 </div>
+                            <div class="memberGrid13"> 麻里不會 </div>
+                            <div class="memberGrid14"> 已完成 </div>
+                            <!-- <div class="memberGrid15"> 已完成 </div> -->
+                            <!-- <div class="memberGrid16 memberReceiverID">詳細資訊</div> -->
+                        </div>
+                    </div>
+            
+                    <div class="memberReserveDetailHere">
+                        <div class="memberReserveDetailAll">
+                            <div class="memberReserveDetail">
+                                <div class="memberReserveD1">
+                                    <div>顧客需求</div>
+                                </div>
+                                <div href="product.html" class="memberOrderD2">
+                                    <p>一堆的顧客需求假文</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
     </main>
     <!-- ------------ 我是Vue分隔線 ------------ -->
         <script >
