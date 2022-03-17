@@ -1,7 +1,7 @@
 @import  "../base/color";
 
 h3{
-    // margin-left: 20px;
+    margin-left: 20px;
     margin-top: 20px;
 }
 p{
@@ -15,9 +15,6 @@ p{
         width: 100%;
         .prod_txt{
             margin: 10px auto 0 auto;
-            h3{
-                margin: 20px;
-            }
             p{
                 margin: 0px 20px;
             }
@@ -181,12 +178,12 @@ p{
     cursor: pointer;
 }
 .htop1{
-    font-size: 32px;
-    margin-left: 20px;
+    // font-size: 32px;
+    // margin-left: 20px;
 }
 .htop2{
-    font-size: 32px;
-    margin-left: 20px;
+    // font-size: 32px;
+    // margin-left: 20px;
 }
 
 // 手機版
@@ -360,12 +357,12 @@ p{
     .pointer{
         cursor: pointer;
     }
-    .htop1{
-        font-size: 32px;
-    }
-    .htop2{
-        font-size: 32px;
-    }
+    // .htop1{
+    //     font-size: 32px;
+    // }
+    // .htop2{
+    //     font-size: 32px;
+    // }
 }
 //桌機版
 @media (min-width: 1200px) {
@@ -573,12 +570,12 @@ p{
     }        
 }
 .htop1{
-    font-size: 34px;
+    // font-size: 34px;
     margin-top: 50px;
     margin-bottom: -30px;
 }
 .htop2{
-    font-size: 34px;
+    // font-size: 34px;
     margin-top: 40px;
     margin-bottom: -20px;
 }
