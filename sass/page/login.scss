@@ -112,24 +112,37 @@
 @media  screen and (min-width:768px){
   .form_button{
     border-radius: 20px;
-    border: 2px solid map-get($color,"sub_brown");
+    background-color: #fff;
+    // border: 2px solid map-get($color,"sub_brown");
+    border: 1px solid rgb(226, 226, 226);
     box-sizing: border-box;
     padding: 1px 12px;
+    box-shadow: 2px 2px 2px #00000038;
     &:hover{
+      border: 1px solid map-get($color,"sub_brown");
       background-color: map-get($color,"sub_brown");
       color: #fff;
+      box-shadow:0px 0px 0px ;
     }
   }
-  .form_button.button.submit{
-    border: 1px solid map-get($color, "sub_brown")  ;
-    border-width: 2px;
-    transition: 0.2s ease-in;
-    padding: 1px 15px;
-    border-radius: 25px;
-  }
-  .form_button.button.submit:hover{
-    background-color:map-get($color, "sub_brown") ;
-    color: #fff;
+  // .form_button.button.submit{
+  //   // border: 1px solid map-get($color, "sub_brown")  ;
+  //   border-width: 2px;
+  //   transition: 0.2s ease-in;
+  //   padding: 1px 15px;
+  //   border-radius: 25px;
+  // }
+  // .form_button.button.submit:hover{
+  //   background-color:map-get($color, "sub_brown") ;
+  //   color: #fff;
+  // }
+  #btnRegister{
+    &:hover{
+      border: 1px solid map-get($color,"sub_blue");
+      background-color: map-get($color,"sub_blue");
+      color: #fff;
+      box-shadow:0px 0px 0px ;
+    }
   }
   .switch_button.button.switch-btn{
     border-radius: 25px;
