@@ -89,13 +89,14 @@
             <div class="acti_columns">
                 <h2>專欄</h2>
                 <div class="col">
-                    <a href="columns.html">
+                    <div class="col_num">{{colRows[0].COLUMN_NO}}</div>
+                    <a class="colNum" >
                         <div class="img">
                             <img :src="'img/activity/'+colRows[0].MAIN_PIC">
                         </div>
                     </a>
                     <div class="txt">
-                        <a href="columns.html" class="txt_h3">
+                        <a class="colNum txt_h3">
                             <h3>{{colRows[0].TOPIC}}</h3>
                         </a>
                          <div class="item">
@@ -103,18 +104,19 @@
                             <div class="name">{{colRows[0].AUTHOR}}</div>
                         </div>
                         <p>{{colRows[0].CONTENT1}}</p>
-                        <a href="columns.html" class="moreprd">more...</a>
+                        <a class="colNum moreprd">more...</a>
                     </div>
                    
                 </div>
                 <div class="col">
-                    <a href="columns_2.html">
+                    <div class="col_num">{{colRows[1].COLUMN_NO}}</div>
+                    <a class="colNum">
                         <div class="img">
                             <img :src="'img/'+colRows[1].MAIN_PIC">
                         </div>
                     </a>
                     <div class="txt">
-                        <a href="columns_2.html" class="txt_h3">
+                        <a class="colNum txt_h3">
                             <h3>{{colRows[1].TOPIC}}</h3>
                         </a>
                          <div class="item">
@@ -122,18 +124,19 @@
                             <div class="name">{{colRows[1].AUTHOR}}</div>
                         </div>
                         <p>{{colRows[1].CONTENT1}}</p>
-                        <a href="columns_2.html" class="moreprd">more...</a>
+                        <a class="colNum moreprd">more...</a>
                     </div>
                    
                 </div>
                 <div class="col">
-                    <a href="columns_3.html">
+                    <div class="col_num">{{colRows[2].COLUMN_NO}}</div>
+                    <a class="colNum" >
                         <div class="img">
                             <img :src="'img/activity/'+colRows[2].MAIN_PIC">
                         </div>
                     </a>
                     <div class="txt">
-                        <a href="columns_3.html" class="txt_h3">
+                        <a class="colNum txt_h3">
                             <h3>{{colRows[2].TOPIC}}</h3>
                         </a>
                          <div class="item">
@@ -141,18 +144,19 @@
                             <div class="name">{{colRows[2].AUTHOR}}</div>
                         </div>
                         <p>{{colRows[2].CONTENT1}}</p>
-                        <a href="columns_3.html" class="moreprd">more...</a>
+                        <a class="colNum moreprd">more...</a>
                     </div>
                    
                 </div>
                 <div class="col">
-                    <a href="columns_4.html">
+                    <div class="col_num">{{colRows[3].COLUMN_NO}}</div>
+                    <a class="colNum" >
                         <div class="img">
                             <img :src="'img/'+colRows[3].MAIN_PIC">
                         </div>
                     </a>
                     <div class="txt">
-                        <a href="columns_4.html" class="txt_h3">
+                        <a class="colNum txt_h3">
                             <h3>{{colRows[3].TOPIC}}</h3>
                         </a>
                          <div class="item">
@@ -160,7 +164,7 @@
                             <div class="name">{{colRows[3].AUTHOR}}</div>
                         </div>
                         <p>{{colRows[3].CONTENT1}}</p>
-                        <a href="columns_4.html" class="moreprd">more...</a>
+                        <a class="colNum moreprd">more...</a>
                     </div>
                    
                 </div>
@@ -228,8 +232,14 @@
 
         alert("已複製!");
         }
-
-        
+        $('.colNum').on("click",function(){
+            console.log($(this));
+            console.log($(this).closest('.col').children('.col_num'));
+            console.log($(this).closest('.col').children('.col_num').text());
+            let colNumb = $(this).closest('.col').children('.col_num').text();
+            localStorage.setItem('colNumb',colNumb);
+            window.location.href='columns.html';
+        });
     </script>
 </body>
 </html>

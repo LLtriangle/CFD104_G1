@@ -2,6 +2,7 @@
 @import  "../base/color";
 @import  "../base/universal";
 
+a{cursor:pointer;}
 .activity{
     margin: 30px auto;
     max-width: 1200px;
@@ -56,6 +57,9 @@
     }
     .acti_columns{
         .col{
+            .col_num{
+                display: none;
+            }
             position: relative;
             margin: 30px 30px;
             padding: 15px 15px 50px 15px;
@@ -96,7 +100,7 @@
                 .moreprd{
                     position: absolute;
                     bottom: -30px;
-                    right: 0;                    
+                    right: 0;               
                 }
             }
         }
@@ -157,6 +161,9 @@
         }
         .acti_columns{
             .col{
+                .col_num{
+                    display: none;
+                }
                 margin: 30px 0;
                 display: flex;
                 flex-wrap: nowrap;
@@ -191,6 +198,9 @@
                 }
             }
             .col:nth-child(even){
+                .col_num{
+                    display: none;
+                }
                 flex-direction: row-reverse;
             }
         }
@@ -247,6 +257,9 @@
         }
         .acti_columns{
             .col{
+                .col_num{
+                    display: none;
+                }
                 margin: 30px 0;
                 display: flex;
                 justify-content: space-between;
@@ -270,6 +283,9 @@
                 }
             }
             .col:nth-child(even){
+                .col_num{
+                    display: none;
+                }
                 flex-direction: row-reverse;
             }
         }
