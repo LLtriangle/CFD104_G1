@@ -25,7 +25,7 @@
                         <span class="title"></ion-icon>主頁</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li emp">
                     <a @click="content('emp')">
                         <span class="icon">
                             <img src="img/icon/accessibility-outline.svg" alt="">
@@ -33,7 +33,7 @@
                         <span class="title">員工管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li cus">
                     <a @click="content('cus')">
                         <span class="icon">
                             <img src="img/icon/person-outline.svg" alt="">
@@ -41,7 +41,7 @@
                         <span class="title">會員管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li result">
                     <a @click="content('result')">
                         <span class="icon">
                             <img src="img/icon/people-outline.svg" alt="">
@@ -49,7 +49,7 @@
                         <span class="title">測驗推薦管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li prd">
                     <a @click="content('prd')">
                         <span class="icon">
                             <img src="img/icon/cart-outline.svg" alt="">
@@ -57,7 +57,7 @@
                         <span class="title">商品管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li ord">
                     <a @click="content('ord')">
                         <span class="icon">
                             <img src="img/icon/receipt-outline.svg" alt="">
@@ -65,7 +65,7 @@
                         <span class="title">訂單管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li plan">
                     <a @click="content('plan')">
                         <span class="icon">
                             <img src="img/icon/log-in-outline.svg" alt="">
@@ -73,7 +73,7 @@
                         <span class="title">服務方案管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li sao">
                     <a @click="content('sao')">
                         <span class="icon">
                             <img src="img/icon/receipt-outline.svg" alt="">
@@ -81,7 +81,7 @@
                         <span class="title">服務訂單管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li casetable">
                     <a @click="content('casetable')">
                         <span class="icon">
                             <img src="img/icon/calendar-outline.svg" alt="">
@@ -89,7 +89,7 @@
                         <span class="title">案例管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li event">
                     <a @click="content('event')">
                         <span class="icon">
                             <img src="img/icon/ticket-outline.svg" alt="">
@@ -97,7 +97,7 @@
                         <span class="title">活動管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li columntable">
                     <a @click="content('columntable')">
                         <span class="icon">
                             <img src="img/icon/albums-outline.svg" alt="">
@@ -226,13 +226,13 @@
                 <div class="light_box result">
                     <p class="light_box_cap">編輯與查看</p>
                     <ul>
-                        <li>測驗編號:{{showLightBox.RESULT_NO}}</li>
-                        <li>測驗人格:{{showLightBox.RESULT_NAME}}</li>
+                        <li>測驗編號: {{showLightBox.RESULT_NO}}</li>
+                        <li>測驗人格: {{showLightBox.RESULT_NAME}}</li>
                         <li>推薦方案:
                             <select name="status" id="">
-                                <option :value="showLightBox.PLAN_NO">到府一對一教學</option>
-                                <option :value="showLightBox.PLAN_NO">空間整理收納</option>
-                                <option :value="showLightBox.PLAN_NO">搬家前後物品上下架</option>
+                                <option value="1">{{showLightBox.PLAN_NAME}}</option>
+                                <option value="2">{{showLightBox.PLAN_NAME}}</option>
+                                <option value="3">{{showLightBox.PLAN_NAME}}</option>
                             </select>
                         </li>
                         <li>推薦商品編號1:{{showLightBox.PRD_NO1}}</li>
@@ -764,7 +764,21 @@
 
             </form>
             
+
+            <div class="light_box close_check">
+                <section>
+
+                </section> 
+                <p>尚未存檔，請確認是否確認關閉</p> 
+
+                <div>
+                    <button @click="closeCheckC" type="button">取消</button>
+                    <button @click="closeCheckY"type="button">確認</button>
+                </div>
+            </div>
         </div>
+        
+        <div class="hide"></div>
     </main>
 
 
@@ -907,11 +921,16 @@
                                 vueApp.showTableHead = vueApp.columnTableHead;
 
                             };
+
+                            $(`.nav_li`).removeClass("hovered");
+                            console.log($(`.nav_li.${vueApp.tableName}`));
+                            $(`.nav_li.${vueApp.tableName}`).addClass("hovered");
                         },
                         error(res){
                             console.log('error');
                             console.log(res);
                         },
+                        
                     });
 
                 },
@@ -961,26 +980,36 @@
                         },
                     });
 
+                    $(".hide").addClass("show");
+
 
                 },
 
+                // 按下關閉後顯示未儲存確認燈箱
                 close(){
                     var vueApp = this;
                     console.log(`.light_box.${vueApp.tableName}`);
                     $(`.light_box.${vueApp.tableName}`).removeClass("show");
-                    // $.ajax({
-                    //     url: `phps/backendSelectRow.php`,   // 呼叫的檔案或網址列
-                    //     data: `tableName=${vueApp.tableName}`,     // 傳送到 server 端的資料，會自動轉成字串形式
-                    //     type: 'GET',     // GET 或 POST
-                    //     dataType: 'json', // response 的資料格式，xml | html | script | json | jsonp | text
-                    //     success(res){
-                            
-                    //     },
-                    //     error(res){
-                    //         console.log(res);
-                    //     },
-                    // });
-                   
+                    $(".close_check").addClass("show");
+                    $(".hide").addClass("show");
+
+                },
+
+                // 未儲存確認燈箱按下確認，直接為未儲存，直接顯示panel
+                closeCheckY(){
+                    var vueApp = this;
+                    console.log($(`.light_box.${vueApp.tableName}`));
+                    $(".close_check").removeClass("show");    
+                    $(".hide").removeClass("show");    
+
+                },
+
+                // 未儲存確認燈箱按下取消，重新顯示留有修改資料的panel
+                closeCheckC(){
+                    var vueApp = this;
+                    $(`.light_box.${vueApp.tableName}`).addClass("show");
+                    $(".hide").removeClass("show");
+                    $(".close_check").removeClass("show");
                 },
 
                 save(){
@@ -1004,7 +1033,27 @@
                         }
                         xhr.open("get", "phps/backendChange.php", true);
                         xhr.send(null);
-                }
+                },
+
+                getMemberInfo(){
+                        let xhr = new XMLHttpRequest();
+                        let thisVue = this;
+                        xhr.onload = function(){
+                            thisVue.cusRow = JSON.parse(xhr.responseText);
+                            console.log(thisVue.cusRow);
+                            if(thisVue.cusRow.CUS_PIC!=''){
+                                thisVue.cus_pic = "img/cus/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
+                            }
+                            // console.log(thisVue.cus_pic);
+                            if(thisVue.cusRow.SEX == "女"){
+                                $('#female').prop('checked',true);
+                            }else if(thisVue.cusRow.SEX == "男"){
+                                $('#male').prop('checked',true);
+                            }   
+                        }
+                        xhr.open("get", "phps/getMemberInfo.php?tableName=", true);
+                        xhr.send(null);
+                    },
             },
             mounted() {
                 this.selectAllPrd();
