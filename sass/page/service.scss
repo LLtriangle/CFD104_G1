@@ -290,9 +290,13 @@
                         padding: 10px 30px 100px;
                     }
                     a{
+                        // border-color: map-get($color , "sub_blue");
                         background-color: #ffffffaa;
+                        color: map-get($color , "sub_red");
                         &:hover{
+                            border-color: map-get($color , "sub_red");
                             background-color: map-get($color , "sub_red");
+                            color: map-get($color , "bg");
                         }
                     }
                 }

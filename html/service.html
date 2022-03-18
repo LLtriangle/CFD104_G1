@@ -57,7 +57,7 @@
 
 		<section class="serve_case">
 			<h2>案例分享</h2>
-			<div v-for="casesRow in casesRows" :class="'case case0'+casesRow.CASE_NO">
+			<div v-for="casesRow in casesRows.slice(-3)" :class="'case case0'+casesRow.CASE_NO">
 				<div class="pic">
 					<img class="content" :src="'img/case/'+casesRow.BEFORE_IMG" draggable="false">
 					<div class="afterPic slowMove">
@@ -73,7 +73,7 @@
 						<p>{{casesRow.INFO_AFTER}}</p>
 					</div>
 				</div>
-				<div class="bookmark">Case{{casesRow.CASE_NO}}</div>
+				<div class="bookmark">No.0{{casesRow.CASE_NO}}</div>
 			</div>
 		</section>
 

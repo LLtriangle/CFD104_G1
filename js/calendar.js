@@ -217,7 +217,8 @@ function createCalendar(){
                 for(let i=0; i<tds.length; i++){
 
                     if(tds[i].className.indexOf('fora') == -1 && tds[i].className.indexOf('today') == -1 && tds[i].className.indexOf('past') == -1 ){
-                        tds[i].onclick=function(){	
+                        tds[i].onclick=function(){
+                            vm.sao_date=tds[i].dataset.date;
                             // console.log(actual.getDate());
 
                             // 每次點擊清空時段選擇
@@ -264,7 +265,6 @@ function createCalendar(){
                                 period_3.disabled = false;
                                 time_items[2].style.opacity = "1";
                             };
-
                             vm.getData();
                         };  
                     }

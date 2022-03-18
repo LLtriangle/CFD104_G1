@@ -129,19 +129,19 @@
                             <!-- 挑時段 -->
                             <div class="time_period">
                                 <input type="radio" v-model="dataTime" value="上午9-12點" id="period_1">
-                                <label @click="getData" for="period_1">
+                                <label class="label_period" for="period_1" data-period="1">
                                     <div class="time_item">
                                         <p>上午<br>9-12點</p>
                                     </div>
                                 </label>
                                 <input type="radio" v-model="dataTime" value="下午14-17點" id="period_2">
-                                <label @click="getData" for="period_2">
+                                <label class="label_period" for="period_2" data-period="2">
                                     <div class="time_item">
                                         <p>下午<br>14-17點</p>
                                     </div>
                                 </label>
                                 <input type="radio" v-model="dataTime" value="晚上18-21點" id="period_3">
-                                <label @click="getData" for="period_3">
+                                <label class="label_period" for="period_3" data-period="3">
                                     <div class="time_item">
                                         <p>晚上<br>18-21點</p>
                                     </div>
@@ -227,7 +227,8 @@
                     <div class="btn_div page1">
                         <p class="plan_price total">$ {{total}}</p>
                         <button class="next_btn" @click="nextHandler(1)" type="button">下一步</button>  
-                    </div>  
+                    </div>
+                    <button type="button" @click="sendForm">確認</button>
 
                 </form>
             </div>
@@ -321,7 +322,7 @@
                         <ion-icon name="arrow-back-outline"></ion-icon>
                         返回
                     </button>
-                    <button class="next_btn center" type="button" @click="nextHandler(2);sendForm"  id="submit">確認付款
+                    <button class="next_btn center" type="button" @click="nextHandler(2)"  id="submit">確認付款
                     <!-- <ion-icon name="arrow-forward-outline"></ion-icon> -->
                         
                     </button>
@@ -444,6 +445,8 @@
             ccard_src:'',
             infos:[],
             cusRow:[{CUS_NO: '', EMAIL: '', CUS_NAME: '', CUS_TEL: '',SEX:''}],
+            sao_date:'',
+            sao_time:'',
         },
         watch: {
             credit_card(nVal, oVal) {
@@ -452,8 +455,16 @@
             },
         },
         methods: {
+            getsao_time(){
+                let thisVue = this;
+                for(let i=0;i<3;i++){
+                    $('.label_period')[i].onclick = function(){
+                        console.log($('.label_period')[i].dataset.period)
+                        thisVue.sao_time = $('.label_period')[i].dataset.period;
+                    } 
+                }
+            },
             getData() {
-                // 網頁版成功
                 this.dataDate = document.getElementById('selectedDate').innerText;
             },
             ValidateCreditCardNumber(num) {
@@ -515,7 +526,6 @@
                     tds[i].classList.remove('full');
                 };
                 let emp_name = this.selectedEmp;
-                console.log(emp_name);
                 if(emp_name=="麻里不會"){
                     emp_no=1
                 }else if(emp_name=="末牛子"){
@@ -532,12 +542,13 @@
                     dataType: 'json', 
                     success(res){
                         thisVue.infos = res;
+                        console.log(thisVue.cusRow);
                         // 清空
                         let tds = $("#calendari td");
                         $('.full_img').remove();
                         for(let i=0; i<thisVue.infos.length; i++){
-                            console.log(thisVue.infos[i].DAY_OFF); //不可預約日期
-                            console.log(thisVue.infos[i].SCH_TIME);//不可預約時段
+                            // console.log(thisVue.infos[i].DAY_OFF); //不可預約日期
+                            // console.log(thisVue.infos[i].SCH_TIME);//不可預約時段
                             for(let j=0; j<tds.length; j++){
                                 // console.log(thisVue.infos[i].DAY_OFF); 
                                 // 如果不可預約時間 = data-date 加入 reserved
@@ -577,22 +588,74 @@
             },
             sendForm(){
                 let thisVue = this;
-                let datas={};
-                datas.tel = this.tel;
-                $.ajax({
-                    url: `phps/reserve.php`,
-                    data: 'data='+JSON.stringify(datas),
-                    type: 'GET', 
-                    dataType: 'json', 
-                    success(res){
-                        thisVue.infos = res;
-                        console.log(thisVue.cusRow.CUS_NO); 
-                    },
-                    error(res){
-                        console.log('error');
-                        console.log(res);
-                    },
-                });
+                let emp_name = this.selectedEmp;
+                if(emp_name=="麻里不會"){
+                    emp_no=1
+                }else if(emp_name=="末牛子"){
+                    emp_no=2
+                }else if(emp_name=="潔癖子"){
+                    emp_no=3
+                }
+                let plan_name = this.plan;
+                if(plan_name=="到府一對一教學"){
+                    plan_no=1
+                }else if(plan_name=="空間整理收納"){
+                    plan_no=2
+                }else if(plan_name=="搬家前後物品上下架"){
+                    plan_no=3
+                }
+                // parseInt(this.dataDate)
+                // -------------- FormData
+                // let myForm = document.getElementById("myForm");
+                let formData = new FormData();
+                formData.append('emp_no', emp_no);
+                formData.append('cus_no', thisVue.cusRow.CUS_NO);
+                formData.append('plan_no',plan_no );
+                formData.append('sao_name',thisVue.name );
+                formData.append('sao_tel',thisVue.tel );
+                formData.append('sao_date',thisVue.sao_date);
+                formData.append('sao_time',thisVue.sao_time);
+                formData.append('sao_add',thisVue.selectedCity+thisVue.selectedArea+thisVue.address);
+                formData.append('needs',thisVue.need);
+                // formData.append('upload_pic[]',upFile.files[0]);
+                // console.log(thisVue.sao_date);
+                let xhr = new XMLHttpRequest();
+                xhr.onload = function(){
+                    console.log(xhr.responseText);
+                }
+                
+                xhr.open("post", "phps/sendForm.php", true);  
+                xhr.send(formData);
+
+                // ------------ajax
+                // let datas={};
+                // datas.tel = this.tel;
+                // console.log(thisVue.cusRow.CUS_NO);
+                // $.ajax({
+                //     url: `phps/sendform.php`,
+                //     data: {
+                //     "emp_no":emp_no,
+                //     "cus_no":thisVue.cusRow.CUS_NO,
+                //     "plan_no":plan_no,
+                //     "sao_name":thisVue.name,
+                //     "sao_tel":thisVue.tel,
+                //     "sao_date":thisVue.dataDate,
+                //     "sao_time":thisVue.dataTime,
+                //     // "upload_pic1":
+                //     // "upload_pic2":
+                //     // "upload_pic3":
+                //     "needs":thisVue.need,
+                //     },
+                //     type: 'POST', 
+                //     dataType: 'json', 
+                //     success(res){
+                //         // thisVue.infos = res; 
+                //     },
+                //     error(res){
+                //         console.log('error');
+                //         console.log(res);
+                //     },
+                // });
             },
             getMemberInfo(){
                 let xhr = new XMLHttpRequest();
@@ -643,6 +706,7 @@
         },
         mounted() {
             this.getMemberInfo();
+            this.getsao_time();
         },
     });
 

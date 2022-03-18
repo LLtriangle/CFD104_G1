@@ -208,11 +208,7 @@ try{
                             <?=$prodRow["PRD_NAME"]?>
                         </h3>
                         <p>
-                            可堆疊式整理箱，充分利用零散角落<br>
-                            彈性收納各式物品，擴充儲存空間<br>
-                            簡約外型，適用多種環境<br>
-                            輕輕鬆鬆打造居家美感生活<br>
-                            靈活運用空間，從此和雜亂無章說再見！
+                            <?=$prodRow["PRD_DE"]?>
                         </p>
                         <p class="prod_price">
                             NT $<?=$prodRow["PRICE"]?>

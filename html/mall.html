@@ -98,12 +98,11 @@
 
                 <!-- <input type="button" value="看更多商品" class="mall_item col-12 btn_btn bl" onClick="showHideDiv('npimg')"/><br><br> -->
                 
-                <!-- 下一頁按鈕 -->
-                <div class="mall_item mall_nextpagebtn">
-                    <input type="button" value="看更多商品" class="btn_btn bl js_btn_showmore" @click="setPage()"/>
-                </div>
+            </div>
 
-
+            <!-- 下一頁按鈕 -->
+            <div class="mall_item mall_nextpagebtn">
+                <input type="button" value="看更多商品" class="btn_btn bl js_btn_showmore" @click="setPage()"/>
             </div>
             
         </section>
@@ -127,7 +126,7 @@
 					xhr.send(null);
 				},
                 changClass(prdClass){
-                    $('.mall_nextpagebtn input').val('看更多商品').prop('disabled',false);
+                    $('.mall_nextpagebtn input').val('看更多商品').prop('disabled',false).css('backgroundColor','#d6aa81');
                     let xhr = new XMLHttpRequest();
                     let thisVue = this;
                     thisVue.perPage = 8;
@@ -141,7 +140,7 @@
                     this.perPage += 4;
                     if(this.perPage>=this.prdsRows.length){
                         this.perPage = this.prdsRows.length;
-                        $('.mall_nextpagebtn input').val('沒有商品了').prop('disabled',true);
+                        $('.mall_nextpagebtn input').val('沒有商品了').prop('disabled',true).css('backgroundColor','#8c96a8');
                     };
                 },
 			},
