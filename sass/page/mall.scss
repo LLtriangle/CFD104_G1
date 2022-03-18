@@ -1,4 +1,5 @@
 @import  "../base/color";
+// 手機版
 .mall_btn{
     display: flex;
     justify-content: center;
@@ -66,7 +67,7 @@
 input[type=button]:hover{
     cursor: pointer;
 }
-//手機板
+// 平板
 @media (min-width: 768px) {
     .mall_btn{
         display: flex;

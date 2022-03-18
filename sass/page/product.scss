@@ -1,5 +1,5 @@
 @import  "../base/color";
-
+// 手機版
 h3{
     margin-left: 20px;
     margin-top: 20px;
@@ -140,11 +140,15 @@ p{
     .prod_rerow{
         width: 100%;
         margin-top: -50px;
-        .reitem_btn{
-            visibility: hidden;
-        }
+        overflow: hidden;
+        white-space: nowrap;
+        // .reitem_btn{
+        //     visibility: hidden;
+        // }
         .prod_reitem{
-            margin: 20px 20px;
+            display: inline-block;
+            width: calc(50% - 40px);
+            margin: 20px 15px 20px 20px;
             .btn_btn_box{
                 padding: 10px;
                 display: flex;
@@ -166,7 +170,7 @@ p{
             }
         }
         .reitem_goods{
-            border: 2px solid map-get($color, 'main');
+            border: 1px solid map-get($color, 'blue');
             border-radius: 10px;
             background-color: map-get($color, 'bg_white');
             position: relative;
@@ -177,10 +181,10 @@ p{
     cursor: pointer;
 }
 
-// 手機版
+// 平版
 @media (min-width: 768px){
     h3{
-        margin-left: 20px;
+        margin-left: 0px;
         margin-top: 20px;
     }
     p{
@@ -310,17 +314,19 @@ p{
             }
         }
         // 推薦商品
-    .prod_con{
-        
     
         .prod_rerow{
-            display: flex;
-            width: 100%;
-            .reitem_btn{
-                visibility: hidden;
-            }
+            // display: flex;
+            overflow: hidden;
+            white-space: nowrap;
+            // flex-wrap: wrap;
+            // .reitem_btn{
+            //     visibility: hidden;
+            // }
             .prod_reitem{
-                width: 20%;
+                display: inline-block;
+                box-sizing: border-box;
+                width: calc(100% / 3 - 40px);
                 img{
                     width: 100%;
                 }
@@ -339,14 +345,12 @@ p{
                 }
             }
             .reitem_goods{
-                width: 20%;
-                border: 2px solid map-get($color, 'main');
+                // border: 2px solid map-get($color, 'main');
                 border-radius: 10px;
                 background-color: map-get($color, 'bg_white');
             }
         }
     }
-    } 
     .pointer{
         cursor: pointer;
     }
@@ -527,7 +531,7 @@ p{
             display: flex;
             margin-top: -10px;
             .prod_reitem{
-                width: calc(100% / 4 - 20px);
+                width: calc(100% / 5 - 20px);
                 margin: auto 10px;
                 .btn_btn_box{
                     padding: 10px 15px;
@@ -569,7 +573,6 @@ p{
                 }
             }
             .reitem_goods{
-                border: 1px solid map-get($color, 'blue');
                 border-radius: 10px;
                 background-color: map-get($color, 'bg_white');
                 position: relative;
