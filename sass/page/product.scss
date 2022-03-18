@@ -191,7 +191,8 @@ p{
         margin-top: 70px;
         // padding-top: 40px;
         .prod_row{
-            width: 100%;
+            max-width: 768px;
+            margin: auto;
             .prod_txt{
                 margin: 10px auto 0 auto;
                 p{
@@ -309,51 +310,62 @@ p{
             }
         }
         // 推薦商品
+    .prod_con{
+        
+    
         .prod_rerow{
+            display: flex;
             width: 100%;
-            margin-top: -50px;
             .reitem_btn{
                 visibility: hidden;
             }
             .prod_reitem{
-                margin: 20px 20px ;
-                .btn_btn_box{
-                    padding: 10px;
-                    display: flex;
-                    justify-content: center;
-                }            
-                .btn_xshidden{
-                    visibility: hidden;
-                }
+                width: 20%;
                 img{
                     width: 100%;
-                    border-radius: 10px 10px 0 0;
                 }
                 h3{
                     text-align: center;
+                    margin: 0;
                 }
                 p{
                     text-align: center;
                     margin-bottom: 10px;
                 }
+                .btn_btn_box{
+                    padding: 10px;
+                    display: flex;
+                    justify-content: center;
+                }
             }
             .reitem_goods{
+                width: 20%;
                 border: 2px solid map-get($color, 'main');
                 border-radius: 10px;
                 background-color: map-get($color, 'bg_white');
-                position: relative;
             }
         }
+    }
     } 
     .pointer{
         cursor: pointer;
     }
-    // .htop1{
-    //     font-size: 32px;
-    // }
-    // .htop2{
-    //     font-size: 32px;
-    // }
+    .prod_info{
+        max-width: 768px;
+        margin: auto;
+    }
+    .prod_detail{
+        max-width: 768px;
+        margin: auto;
+    }
+    .prod_spec{
+        max-width: 768px;
+        margin: auto;
+    }
+    .prod_recom{
+        max-width: 768px;
+        margin: auto;
+    }
 }
 //桌機版
 @media (min-width: 1200px) {
@@ -563,6 +575,22 @@ p{
                 position: relative;
             }
         }
+    }
+    .prod_info{
+        max-width: 1200px;
+        margin: auto;
+    }
+    .prod_detail{
+        max-width: 1200px;
+        margin: auto;
+    }
+    .prod_spec{
+        max-width: 1200px;
+        margin: auto;
+    }
+    .prod_recom{
+        max-width: 1200px;
+        margin: auto;
     }        
 }
 .htop1{

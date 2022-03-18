@@ -85,12 +85,10 @@ input[type=button]:hover{
         flex-wrap: wrap;
         .mall_item{
             margin: 30px 10px;
-            width: calc(50% - 20px);
+            width: calc(33.333333% - 20px);
             .mall_img{
                 img{
                     width: 100%;
-                    width: 180px;
-                    height: 120px;
                     border-radius: 5%;
                     object-fit: cover;
                 }

@@ -307,14 +307,14 @@ try{
                     <!-- <div class="reitem_btn">
                         <div class="left_btn">
                             <button class="btn_btn bl pointer"><</button>
-                        </div>
-                    </div> -->
-                <?php 
-                    // shuffle($recommendPrdsRows);
-                    // $arrPrd = array_slice($recommendPrdsRows,0, 5)
-                    // foreach($recommendPrdsRows as $i => $recommendPrdRow){
-                    for($i=0;$i<5;$i++){
-                ?>	
+                        </div>-->
+                    <!-- </div> --> 
+                    <?php 
+                        // shuffle($recommendPrdsRows);
+                        // $arrPrd = array_slice($recommendPrdsRows,0, 5)
+                        // foreach($recommendPrdsRows as $i => $recommendPrdRow){
+                        for($i=0;$i<5;$i++){
+                    ?>	
                     <!-- 推薦商品 -->
                     <div class="prod_reitem reitem_goods">
                         <div class="prod_img">
@@ -340,9 +340,9 @@ try{
                             </div> 
                         </div>
                     </div>
-                <?php 
-                }
-                ?>
+                    <?php 
+                    }
+                    ?>
 
                     <!-- button right -->
                     <!-- <div class="reitem_btn">
