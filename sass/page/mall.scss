@@ -59,6 +59,13 @@
         justify-content: center;
     }
 }
+.mall_nextpagebtn{
+    display: flex;
+    justify-content: center;
+}
+input[type=button]:hover{
+    cursor: pointer;
+}
 //手機板
 @media (min-width: 768px) {
     .mall_btn{
@@ -120,6 +127,10 @@
             display: flex;
             justify-content: center;
         }
+    }
+    .mall_nextpagebtn{
+        display: flex;
+        justify-content: center;
     }
 }
 // 桌機版
@@ -184,5 +195,12 @@
             display: flex;
             justify-content: center;
         }
-    }             
+    } 
+    .mall_nextpagebtn{
+        display: flex;
+        justify-content: center;
+    }           
+    input[type=button]:hover{
+        cursor: pointer;
+    }           
 }
