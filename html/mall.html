@@ -126,7 +126,7 @@
 					xhr.send(null);
 				},
                 changClass(prdClass){
-                    $('.mall_nextpagebtn input').val('看更多商品').prop('disabled',false);
+                    $('.mall_nextpagebtn input').val('看更多商品').prop('disabled',false).css('backgroundColor','#d6aa81');
                     let xhr = new XMLHttpRequest();
                     let thisVue = this;
                     thisVue.perPage = 8;
@@ -140,7 +140,7 @@
                     this.perPage += 4;
                     if(this.perPage>=this.prdsRows.length){
                         this.perPage = this.prdsRows.length;
-                        $('.mall_nextpagebtn input').val('沒有商品了').prop('disabled',true);
+                        $('.mall_nextpagebtn input').val('沒有商品了').prop('disabled',true).css('backgroundColor','#8c96a8');
                     };
                 },
 			},

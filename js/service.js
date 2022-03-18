@@ -5,7 +5,7 @@ $(window).on('load',function(){
 		scrollTrigger:{
 			trigger: '.serve_case',
 			start: 'center center',
-			end:'+=5000px',
+			end:'+=3000px',
 			pin: true,
 			scrub: true,
 			// markers:true,
@@ -13,49 +13,49 @@ $(window).on('load',function(){
 	});
 	
 	serveCase
-	.fromTo('.case01',{
+	.fromTo('.serve_case > div:nth-of-type(1)',{
+		y:150,},{
 		y:150,
-		x:20,},{
-		y:150,
-		x:20,})
-	.to('.case01 .pic .afterPic',{
+		x:0,})
+	.to('.serve_case > div:nth-of-type(1) .pic .afterPic',{
 		width:700,},">")
-	.to('.case01 .pic .handle',{
+	.to('.serve_case > div:nth-of-type(1) .pic .handle',{
 		left:700,},"<")
-	.to('.case01 .txt .afterTxt',{
+	.to('.serve_case > div:nth-of-type(1) .txt .afterTxt',{
 		height:300,},">")
-	.fromTo('.case01 .bookmark',{
+	.fromTo('.serve_case > div:nth-of-type(1) .bookmark',{
 		y:1000,},{
 		y:-30,})
-	.fromTo('.case02',{
+	.fromTo('.serve_case > div:nth-of-type(2)',{
 		y:1000,},{
 		y:150,})
-	.to('.case01',{
-		y:120,},"<")
-	.to('.case02 .pic .afterPic',{
+	.to('.serve_case > div:nth-of-type(1)',{
+		y:120,
+		x:20,},"<")
+	.to('.serve_case > div:nth-of-type(2) .pic .afterPic',{
 		width:700,},">")
-	.to('.case02 .pic .handle',{
+	.to('.serve_case > div:nth-of-type(2) .pic .handle',{
 		left:700,},"<")
-	.to('.case02 .txt .afterTxt',{
+	.to('.serve_case > div:nth-of-type(2) .txt .afterTxt',{
 		height:300,},">")
-	.fromTo('.case02 .bookmark',{
+	.fromTo('.serve_case > div:nth-of-type(2) .bookmark',{
 		y:1000,},{
 		y:-30,})
-	.fromTo('.case03',{
+	.fromTo('.serve_case > div:nth-of-type(3)',{
 		y:1000,},{
 		y:150,
 		x:-20,})
-	.to('.case01',{
+	.to('.serve_case > div:nth-of-type(1)',{
 		y:90,},"<")
-	.to('.case02',{
+	.to('.serve_case > div:nth-of-type(2)',{
 		y:120,},"<")
-	.to('.case03 .pic .afterPic',{
+	.to('.serve_case > div:nth-of-type(3) .pic .afterPic',{
 		width:700,},">")
-	.to('.case03 .pic .handle',{
+	.to('.serve_case > div:nth-of-type(3) .pic .handle',{
 		left:700,},"<")
-	.to('.case03 .txt .afterTxt',{
+	.to('.serve_case > div:nth-of-type(3) .txt .afterTxt',{
 		height:300,},">")
-	.fromTo('.case03 .bookmark',{
+	.fromTo('.serve_case > div:nth-of-type(3) .bookmark',{
 		y:1000,},{
 		y:-30,});
 
@@ -72,13 +72,13 @@ $(window).on('load',function(){
 // // 點擊 bookmark(便利貼) 跳轉
 // 	let case0 = $('.serve_case').offset().top;
 // 	let case1 = $('.serve_case .case01').offset().top;
-// 	let case2 = $('.serve_case .case02').offset().top;
-// 	let case3 = $('.serve_case .case03').offset().top;
+// 	let case2 = $('.serve_case .case:nth-child(2)').offset().top;
+// 	let case3 = $('.serve_case .case:nth-child(3)').offset().top;
 // 	// $(window).on(resize,function(){
 // 	// 	case0 = $('.serve_case').offset().top;
 // 	// 	case1 = $('.serve_case .case01').offset().top;
-// 	// 	case2 = $('.serve_case .case02').offset().top;
-// 	// 	case3 = $('.serve_case .case03').offset().top;
+// 	// 	case2 = $('.serve_case .case:nth-child(2)').offset().top;
+// 	// 	case3 = $('.serve_case .case:nth-child(3)').offset().top;
 // 	// });
 	
 // 	$('.bookmark').on('click',function () {
