@@ -116,77 +116,49 @@
             <!--------------------- 我是可愛分隔線 --------------------->
 
             <!-- 我是訂單區 ------------------------------->
-            <div class="data_mem" v-show="p_order">
+            <div class="data_mem data_list" v-show="p_order">
                 <!-- <h3>商品訂單</h3> -->
-                <div class="memberOrder">
+                <div class="memberOrder"   v-for="ordcloumn in ordcloumns">
                     <div class="memberOrderContent">
                         <div class="memberGrid">
                             <div class="memberGrid1">訂單編號</div>
                             <div class="memberGrid2">日期</div>
                             <div class="memberGrid3">金額</div>
-                            <div class="memberGrid4">付款方式</div>
+                            <div class="memberGrid4">取貨方式</div>
                             <div class="memberGrid5">付款狀態</div>
-                            <div class="memberGrid6">貨運狀態</div>
+                            <div class="memberGrid6">暫定會員邊號</div>
                             <div class="memberGrid7">訂單狀態</div>
                             <div class="memberGrid8">收件人資訊</div>
-                            <div class="memberGrid9"> 20220228 </div>
-                            <div class="memberGrid10"> 2022-02-28 </div>
-                            <div class="memberGrid11"> $111 </div>
-                            <div class="memberGrid12"> 取貨付款 </div>
-                            <div class="memberGrid13"> 已付款 </div>
-                            <div class="memberGrid14"> 已出貨 </div>
-                            <div class="memberGrid15"> 已完成 </div>
+                            <div class="memberGrid9"> {{ordcloumn.ORD_NO}} </div>
+                            <div class="memberGrid10"> {{ordcloumn.TIME}} </div>
+                            <div class="memberGrid11"> {{ordcloumn.TOTAL}} </div>
+                            <div class="memberGrid12"> {{ordcloumn.SHIPPING}} </div>
+                            <div class="memberGrid13"> {{ordcloumn.PAY_STATE}} </div>
+                            <div class="memberGrid14"> {{ordcloumn.CUS_NO}} </div>
+                            <div class="memberGrid15"> {{ordcloumn.STATE}} </div>
                             <div class="memberGrid16 memberReceiverID">詳細資訊</div>
                         </div>
                     </div>
             
-                    <!-- <div class="memberProgressAll">
-                        <div class="dot_box">
-                            訂單進度點點
-                            <div class="memberProgressDot">
-                                <div>
-
-                                </div>
-                                <div class="memberProgressDot_even1"></div>
-                                <div class="memberProgressDot_odd1"></div>
-                                <div class="memberProgressDot_even2"></div>
-                                <div class="memberProgressDot_odd2"></div>
-                                <div class="memberProgressDot_even3"></div>
-                                <div class="memberProgressDot_odd3 memberUnchecked"></div>
-                            </div>
-                            訂單進度
-                            <div class="memberProgressWord">
-                                <div class="memberWordCheck1">收到訂單</div>
-                                <div class="memberWordCheck2">訂單確認</div>
-                                <div class="memberWordCheck3">商品出貨</div>
-                                <div class="memberWordCheck4">商品送達</div>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="memberOpenDetail">查看明細</button>
-                        </div>
-                    </div> -->
                     <div class="memberOrderDetailHere">
                         <div class="memberOrderDetailAll">
                             <div class="memberOrderDetail">
                                 <div class="memberOrderD1">
                                     <div>訂單詳情</div>
-                                    <!-- <div>商品名稱</div>
-                                    <div>數量</div>
-                                    <div>價格</div> -->
+                                    
                                 </div>
-                                <a href="product.html" class="memberOrderD2">
-                                    <img src="img/index_product_2.jpg">
-                                    <div>白日夢海綿架</div>
-                                    <div>1件</div>
-                                    <div>$490</div>
+                                <a :href="'product.php?prdno='+ordcloumn.PRD_NO" class="memberOrderD2" >
+                                    <img :src="'img/'+ordcloumn.IMG1">
+                                    <div>{{ordcloumn.PRD_NAME}}</div>
+                                    <div>{{ordcloumn.AMOUNT}}件</div>
+                                    <div>${{ordcloumn.AMOUNT*ordcloumn.prd_price}}</div>
                                 </a>
-                                <a href="product.html" class="memberOrderD2">
+                                <!-- <a href="product.html" class="memberOrderD2">
                                     <img src="img/index_product_3.png">
                                     <div>小麋鹿木掛架</div>
                                     <div>1件</div>
                                     <div>$480</div>
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                         
@@ -206,9 +178,9 @@
             <!-- 訂單區結束 ------------------------------->
 
             <!-- 我是預約區 ------------------------------->
-            <div class="data_mem" v-show="p_reserve">
+            <div class="data_mem data_list" v-show="p_reserve">
                 
-                <div class="memberReserve">
+                <div class="memberReserve" v-for="rescloumn in rescloumns">
                     <div class="memberReserveContent">
                         <div class="memberGrid">
                             <div class="memberGrid1">訂單編號</div>
@@ -217,16 +189,16 @@
                             <div class="memberGrid4">預約方案</div>
                             <div class="memberGrid5">預約整理師</div>
                             <div class="memberGrid6">預約狀態</div>
-                            <!-- <div class="memberGrid7">預約狀態</div> -->
-                            <!-- <div class="memberGrid8">收件人資訊</div> -->
-                            <div class="memberGrid9"> 20220228 </div>
-                            <div class="memberGrid10"> 2022-02-28上午 </div>
-                            <div class="memberGrid11"> $9999 </div>
-                            <div class="memberGrid12"> 到府一對一教學 </div>
-                            <div class="memberGrid13"> 麻里不會 </div>
-                            <div class="memberGrid14"> 已完成 </div>
-                            <!-- <div class="memberGrid15"> 已完成 </div> -->
-                            <!-- <div class="memberGrid16 memberReceiverID">詳細資訊</div> -->
+                            <!-- <div class="memberGrid7">項目7</div> -->
+                            <!-- <div class="memberGrid8">項目8</div> -->
+                            <div class="memberGrid9"> {{rescloumn.SAO_NO}} </div>
+                            <div class="memberGrid10"> {{rescloumn.SAO_DATE}}{{rescloumn.SAO_TIME}} </div>
+                            <div class="memberGrid11"> {{rescloumn.PRICE}} </div>
+                            <div class="memberGrid12"> {{rescloumn.planname}} </div>
+                            <div class="memberGrid13"> {{rescloumn.empname}} </div>
+                            <div class="memberGrid14"> {{rescloumn.STATE}} </div>
+                            <!-- <div class="memberGrid15"> 項目15 </div> -->
+                            <!-- <div class="memberGrid16 memberReceiverID">項目16</div> -->
                         </div>
                     </div>
             
@@ -237,7 +209,7 @@
                                     <div>顧客需求</div>
                                 </div>
                                 <div href="product.html" class="memberOrderD2">
-                                    <p>一堆的顧客需求假文</p>
+                                    <p>{{rescloumn.NEEDS}}</p>
                                 </div>
                             </div>
                         </div>
@@ -245,8 +217,9 @@
                 </div>
             </div>
         </section>
-        
     </main>
+
+
     <!-- ------------ 我是Vue分隔線 ------------ -->
         <script >
             new Vue({
@@ -254,10 +227,15 @@
                 data:{
                     data:true, // 預設
                     p_order:false, // 預設
+                    p_reserve:false,// 預設
                     order:false, // 預設
                     cusRow:[{CUS_NO: '', EMAIL: '', CUS_NAME: '', CUS_TEL: '',SEX:''}],
                     gender:'',
                     cus_pic:'img/cus/emp_img.jpg', // 預設大頭貼
+                    rescloumns:[],
+                    // {SAO_NO: '', EMP_NO: '', empname: '', CUS_NO: '',cusname:'',planname:'',SAO_NAME:'',SAO_TEL:'',SAO_DATE:'',SAO_TIME:'',SAO_ADD:'',UPLOAD_PIC1:'',UPLOAD_PIC2:'',UPLOAD_PIC3:'',NEEDS:'',STATE:'',INFO:'',BEFORE_IMG:'',AFTER_IMG:'',PRICE:''}
+                    ordcloumns:[],
+                    // {ORD_NO: '',CUS_NO: '',  CUS_NAME: '', CUS_TEL: '',CUS_ADD:'',TIME:'',SHIPPING:'',TOTAL:'',PAY_STATE:'',STATE:'',COUPON:'',PRD_NO:'',PRD_NAME:'',prd_price:'',AMOUNT:''}
                 },
                 methods: {
                     getMemberInfo(){
@@ -265,7 +243,7 @@
                         let thisVue = this;
                         xhr.onload = function(){
                             thisVue.cusRow = JSON.parse(xhr.responseText);
-                            console.log(thisVue.cusRow);
+                            // console.log(thisVue.cusRow);
                             if(thisVue.cusRow.CUS_PIC!=''){
                                 thisVue.cus_pic = "img/cus/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
                             }
@@ -279,9 +257,51 @@
                         xhr.open("get", "phps/getMemberInfo.php", true);
                         xhr.send(null);
                     },
+                    getOrderInfo(){
+                        let xhr = new XMLHttpRequest();
+                        let thisVue = this;
+                        xhr.onload = function(){
+                            console.log(xhr.responseText);
+                            console.log((xhr.responseText));
+
+                            thisVue.ordcloumns = JSON.parse(xhr.responseText);
+                            // console.log(thisVue.ordcloumns[0].SHIPPING);
+                        }
+                        xhr.open("get", "phps/memberOrd.php", true);
+                        xhr.send(null);
+                        // if(thisVue.ordcloumn.SHIPPING == '1'){
+                        //         thisVue.ordcloumn.SHIPPING = "宅配";
+                        //     }else if(thisVue.ordcloumn.SHIPPING == '2'){
+                        //         thisVue.ordcloumn.SHIPPING = "seven取貨";
+                        //     }else if(thisVue.ordcloumn.SHIPPING == '3'){
+                        //         thisVue.ordcloumn.SHIPPING = "全家取貨";
+                        //     };
+                        //     if(thisVue.ordcloumn.PAY_STATE == '0'){
+                        //         thisVue.ordcloumn.PAY_STATE = "未付款";
+                        //     }else if(thisVue.ordcloumn.PAY_STATE == '1'){
+                        //         thisVue.ordcloumn.PAY_STATE = "已付款";
+                        //     };
+                        //     if(thisVue.ordcloumn.STATE == '0'){
+                        //         thisVue.ordcloumn.STATE = "未完成";
+                        //     }else if(thisVue.ordcloumn.STATE == '1'){
+                        //         thisVue.ordcloumn.STATE = "已完成";
+                        //     };
+                    },
+                    getReserveInfo(){
+                        let xhr = new XMLHttpRequest();
+                        let thisVue = this;
+                        xhr.onload = function(){
+                            // console.log(JSON.parse(xhr.responseText));
+                            thisVue.rescloumns = JSON.parse(xhr.responseText);
+                        }
+                        xhr.open("get", "phps/memberSao.php", true);
+                        xhr.send(null);
+                    },
                 },
                 mounted() {
                     this.getMemberInfo();
+                    this.getOrderInfo();
+                    this.getReserveInfo();
                 },
             });
         </script>
