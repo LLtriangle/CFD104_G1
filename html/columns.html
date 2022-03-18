@@ -32,24 +32,24 @@
         
         
         <section class="activity" id="colApp">
-            <h3>{{colRows[0].TOPIC}}</h3>
+            <h3>{{colRows[colnum].TOPIC}}</h3>
             <div class="item">
-                <div class="item_img"><img :src="'img/'+colRows[0].AUTHOR_PIC"></div>
-                <div class="name">{{colRows[0].AUTHOR}}</div>
+                <div class="item_img"><img :src="'img/activity/'+colRows[colnum].AUTHOR_PIC"></div>
+                <div class="name">{{colRows[colnum].AUTHOR}}</div>
             </div>
             <div class="img">
-                <img :src="'img/activity/'+colRows[0].MAIN_PIC" alt="">
+                <img :src="'img/activity/'+colRows[colnum].MAIN_PIC" alt="">
             </div>
             <div class="txt">
-                <h4>{{colRows[0].SUBTITLE_01}}</h4>
-                <p>{{colRows[0].CONTENT1}}</p>
+                <h4>{{colRows[colnum].SUBTITLE_01}}</h4>
+                <p>{{colRows[colnum].CONTENT1}}</p>
             </div>
             <div class="img">
-                <img :src="'img/'+ colRows[0].IMG1" alt="">
+                <img :src="'img/activity/'+ colRows[colnum].IMG1" alt="">
             </div>
             <div class="txt">
-                <h4>{{colRows[0].SUBTITLE_02}}</h4>
-                <p>{{colRows[0].CONTENT2}}</p>
+                <h4>{{colRows[colnum].SUBTITLE_02}}</h4>
+                <p>{{colRows[colnum].CONTENT2}}</p>
             </div>
         </section>
 
@@ -67,9 +67,11 @@
 					{COLUMN_NO: '', AUTHER: '', AUTHER_PIC: '', DATE: '', TOPIC: '',CONTENT1: '',CONTENT2: '',MAIN_PIC: '',IMG1: '',IMG2: '',SUBTITLE_01: '',SUBTITLE_02: ''},
 					{COLUMN_NO: '', AUTHER: '', AUTHER_PIC: '', DATE: '', TOPIC: '',CONTENT1: '',CONTENT2: '',MAIN_PIC: '',IMG1: '',IMG2: '',SUBTITLE_01: '',SUBTITLE_02: ''}
 				],
+				colnum:'',
 			},
 			methods: {
 				getCol(){
+					this.colnum=localStorage.getItem('colNumb')-1;
 					let xhr = new XMLHttpRequest();
 					let thisVue = this;
 					console.log(1);
@@ -86,6 +88,7 @@
 				this.getCol()
 			},
 		});
+
 </script>
     
 </body>

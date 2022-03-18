@@ -10,16 +10,16 @@ body{
     min-height: 100vh;
     overflow-x: hidden;
 }
-.backend{
-    position: relative;
-    width: 100%;
-}
+// .backend{
+//     position: relative;
+//     width: 100%;
+// }
 .navigation{
     position: fixed;
     width: 300px;
     height: 100%;
-    background: map-get($color, 'main');
-    border-left: 10px solid map-get($color, 'main');
+    background: map-get($color, 'sub_brown');
+    border-left: 10px solid map-get($color, 'sub_brown');
     transition: 0.5s;
     overflow: hidden;
     &.active{
@@ -45,6 +45,7 @@ body{
             }
             &:hover{
                 background-color: map-get($color, 'bg');
+                cursor: pointer;
                 a{
                     color: map-get($color, 'main');
                 }
@@ -131,6 +132,7 @@ body{
         justify-content: space-between;
         align-items: center;
         padding: 0 10px;
+            margin-top: 20px;
         .toggle{
             position: relative;
             width: 60px;
@@ -184,48 +186,8 @@ body{
         }
     }
 }
-.card_box{
-    position: relative;
-    width: 100%;
-    padding: 20px;
-    // display: grid;
-    // grid-template-columns: repeat(4,1fr);
-    // grid-gap: 30px;
-    .card{
-        position: relative;
-        background: map-get($color, 'bg');
-        padding: 30px;
-        border-radius: 20px;
-        display: flex;
-        justify-content: space-between;
-        cursor: pointer;
-        box-shadow: 0 7px 25px rgba(0,0,0,0.08);
-        .numbers{
-            position: relative;
-            font-weight: 500;
-            font-size: 2.5em;
-            color: map-get($color, 'main');
-        }
-        .card_name{
-            color: map-get($color, 'sub_blue');
-            font-size: 1.1em;
-            margin-top: 5px;
-        }
-        .icon_bx{
-            font-size: 3.5em;
-            color: map-get($color, 'sub_blue');
-        }
-        &:hover{
-            background: map-get($color, 'main');
-            .numbers,
-            .card_name,
-            .icon_bx{
-                color: map-get($color, 'bg');
-            }
-        }
-    }
-}
-.details{
+
+.panel_box{
     position: relative;
     width: 100%;
     padding: 20px;
@@ -233,7 +195,7 @@ body{
     // grid-template-columns: 2fr 1fr;
     // grid-gap: 30px;
     // margin-top: 10px;
-    .recent_orders{
+    .panel{
         position: relative;
         // display: grid;
         min-height: 500px;
@@ -241,7 +203,29 @@ body{
         padding: 20px;
         box-shadow: 0 7px 25px rgba(0,0,0,0.08);
         border-radius: 20px;
+        .panel_title{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            h2{
+                font-weight: 600;
+                color: map-get($color, 'main');
+            }
+
+            .add_btn{
+                position: relative;
+                padding: 5px 10px;
+                background: map-get($color, 'sub_brown');
+                text-decoration: none;
+                color: map-get($color, 'bg');
+                border-radius: 6px;
+                border: none;
+            }
+            
+        }
         table{
+            width: 100%;
             tbody{
                 tr{
                     .status{
@@ -272,15 +256,15 @@ body{
                         &.inprogress{
                             padding: 2px 4px;
                             background: map-get($color, 'sub_inprogress');
-                            color: map-get($color, 'bg');
+                            color: map-get($color, 'main');
                             border-radius: 4px;
                             font-size: 14px;
                             font-weight: 500;
                         }
                     }
                     &:hover{
-                        background: map-get($color, 'main');
-                        color: map-get($color, 'bg');
+                        background: map-get($color, 'cover');
+                        color: map-get($color, 'main');
                     }
                 }
             }
@@ -297,6 +281,14 @@ body{
                     padding: 10px;
                     max-width: 170px;
                     text-align: center;
+                    .edit_btn{
+                        padding: 5px 10px;
+                        background: #d6aa81;
+                        text-decoration: none;
+                        color: #fff;
+                        border-radius: 6px;
+                        border-color: transparent;
+                    }
                     // &:last-child{
                     //     text-align: end;
                     // }
@@ -309,87 +301,114 @@ body{
                 }
             }
         }
-        .card_header{
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            h2{
-                font-weight: 600;
-                color: map-get($color, 'main');
-            }
-            .btn{
-                position: relative;
-                padding: 5px 10px;
-                background: map-get($color, 'main');
-                text-decoration: none;
-                color: map-get($color, 'bg');
-                border-radius: 6px;
-            }
-        }
+        
     }
-    table{
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-        thead{
-            th{
-                font-weight: 600;
-            }
-        }
-    }
-    .recent_customers{
-        position: relative;
+}
+
+.light_box{
+    width: 800px;
+    height: 90%;
+    max-height: 1100px;
+    // -ms-grid-rows: 44px 980px 54px;
+    // grid-template-rows: 44px 980px 54px;
+    border-radius: 10px;
+    overflow: hidden;
+    /* position: relative; */
+    /* left: 20%; */
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background-color: map-get($color , "cover" );
+    overflow-y: auto;
+
+    ul{
         display: grid;
-        min-height: 500px;
-        padding: 20px;
-        background: map-get($color, 'bg');
-        box-shadow: 0 7px 25px rgba(0,0,0,0.08);
-        border-radius: 20px;
-        .img_bx{
-            position: relative;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            overflow: hidden;
-            img{
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
+        -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr .9fr;
+        list-style: none;
+
+    }
+
+    .light_box_cap{
+        background-color: map-get($color , "sub_brown" );
+        padding: 10px;
+        font-weight: 600;
+        height: 20px;
+    }
+    
+
+    &.emp{
+        &.show{
+            display: grid;
         }
-        table{
-            tr{
-                &:hover{
-                    background: map-get($color, 'main');
-                    color: map-get($color, 'bg');
-                    td{
-                        h4{
-                            span{
-                                color: map-get($color, 'bg');
-                            }
-                        }
-                    }
-                }
-                td{
-                    padding: 12px 10px;
-                    h4{
-                        font-size: 16px;
-                        font-weight: 500;
-                        line-height: 1.2em;
-                        span{
-                            font-size: 14px;
-                            color: map-get($color, 'sub_blue');
-                        }
-                    }
-                }
-                .customers_td{
-                    width: 60px;
-                }
-            }
+        display: none;
+    }
+
+    &.cus{
+
+        &.show{
+           display: grid; 
         }
+        display: none;
+    }
+
+    &.result{
+        &.show{
+           display: grid; 
+        }
+        display: none;
+    }
+
+    &.prd{
+        &.show{
+            display: grid;
+        }
+        display: none;
+    }
+
+    &.ord{
+        &.show{
+            display: grid;
+        }
+        display: none;
+    }
+
+    &.plan{
+        &.show{
+            display: grid;
+        }
+        display: none;
+    }
+    
+    &.sao{
+        &.show{
+            display: grid;
+        }
+        display: none;
+    }
+
+    &.casetable{
+        &.show{
+            display: grid;
+        }
+        display: none;
+    }
+
+    &.event{
+        &.show{
+            display: grid;
+        }
+        display: none;
+    }
+
+    &.columntable{
+        &.show{
+            display: grid;
+        }
+        display: none;
     }
 }
 @media (max-width: 991px){
