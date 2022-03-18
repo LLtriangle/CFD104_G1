@@ -6,22 +6,47 @@ try{
   // 檔案名稱：$_FILES['input的name']['name']
   // 檔案格式：$_FILES['input的name']['type']
   // 檔案的暫存位置：$_FILES['input的name']['tmp_name']
-  
+  $file1 = $_FILES['upload_pic1'] ?? null;
+  $file2 = $_FILES['upload_pic2'] ?? null;
+  $file3 = $_FILES['upload_pic3'] ?? null;
   // if($_FILES['upFile']['error']==0){
-    //     $file = uniqid();
-    //     $fileInfo = pathinfo($_FILES['upFile']['name']); 
-    //     $ext = $fileInfo["extension"]; // 副檔名
-    //     $fileName = "$file.$ext";
-    //     $from = $_FILES['upFile']['tmp_name']; //暫存區含路徑
-    //     $to = "../img/cus/$fileName";
-    //     copy($from, $to);
+  $file = uniqid();
+      if ($file1) {
+        $fileInfo = pathinfo($_FILES['upload_pic1']['name']);
+        $ext = $fileInfo["extension"]; // 副檔名
+        $fileName1 = "$file.$ext";
+        $from = $_FILES['upload_pic1']['tmp_name']; //暫存區含路徑
+        $to = "../img/reserve/$fileName1";
+        copy($from, $to);
+      }
+      if ($file2) {
+        $fileInfo = pathinfo($_FILES['upload_pic2']['name']);
+        $ext = $fileInfo["extension"]; // 副檔名
+        $fileName2 = "$file.$ext";
+        $from = $_FILES['upload_pic2']['tmp_name']; //暫存區含路徑
+        $to2 = "../img/reserve/$fileName2";
+        copy($from, $to2);
+      }
+      if ($file3) {
+        $fileInfo = pathinfo($_FILES['upload_pic3']['name']);
+        $ext = $fileInfo["extension"]; // 副檔名
+        $fileName3 = "$file.$ext";
+        $from = $_FILES['upload_pic3']['tmp_name']; //暫存區含路徑
+        $to3 = "../img/reserve/$fileName3";
+        copy($from, $to3);
+      }
+      $path1 = $file1 ? $fileName1 : null;
+      $path2 = $file2 ? $fileName2 : null;
+      $path3 = $file3 ? $fileName3 : null;
+      // echo 'path1'.$path1;
+      // echo 'path2'.$path2;
     
     // 修改
-    $sql = "INSERT INTO sao (SAO_NO, EMP_NO, CUS_NO, PLAN_NO, SAO_NAME, SAO_TEL, SAO_DATE, SAO_TIME, SAO_ADD, NEEDS) VALUES (null, :EMP_NO, :CUS_NO, :PLAN_NO, :SAO_NAME, :SAO_TEL, :SAO_DATE, :SAO_TIME, :SAO_ADD, :NEEDS)"; 
+    $sql = "INSERT INTO sao (SAO_NO, EMP_NO, CUS_NO, PLAN_NO, SAO_NAME, SAO_TEL, SAO_DATE, SAO_TIME, SAO_ADD, NEEDS,UPLOAD_PIC1,UPLOAD_PIC2,UPLOAD_PIC3) VALUES (null, :EMP_NO, :CUS_NO, :PLAN_NO, :SAO_NAME, :SAO_TEL, :SAO_DATE, :SAO_TIME, :SAO_ADD, :NEEDS ,:UPLOAD_PIC1,:UPLOAD_PIC2,:UPLOAD_PIC3)"; 
     $cus = $pdo->prepare($sql);
     
     $cus->bindValue(":EMP_NO",$_POST["emp_no"]);
-    $cus->bindValue(":CUS_NO",$_POST["cus_no"]);
+    $cus->bindValue(":CUS_NO",$_SESSION["CUS_NO"]);
     $cus->bindValue(":PLAN_NO",$_POST["plan_no"]);
     $cus->bindValue(":SAO_NAME", $_POST["sao_name"]);
     $cus->bindValue(":SAO_TEL", $_POST["sao_tel"]); 
@@ -29,6 +54,9 @@ try{
     $cus->bindValue(":SAO_TIME", $_POST["sao_time"]);
     $cus->bindValue(":SAO_ADD", $_POST["sao_add"]);
     $cus->bindValue(":NEEDS", $_POST["needs"]);
+    $cus->bindValue(":UPLOAD_PIC1",$path1 );
+    $cus->bindValue(":UPLOAD_PIC2",$path2 );
+    $cus->bindValue(":UPLOAD_PIC3",$path3 );
     
     
     echo $_POST["sao_date"];

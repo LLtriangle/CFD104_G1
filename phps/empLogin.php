@@ -6,34 +6,33 @@ try{
 	// require_once("../connect_cfd104g1.php"); // 上線用
 	require_once("connect.php"); // 開發用
 
-    $sql = "select * from emp where EMP_PSW=:EMP_PSW"; 
-    $cus = $pdo->prepare($sql);
-    // $cus->bindValue(":EMAIL", $datas["memId"]);
-    $cus->bindValue(":EMP_PSW", $datas["empPsw"]);
-    $cus->execute();
+    $sql = "select * from emp where EMP_EMAIL=:EMP_EMAIL and EMP_PSW=:EMP_PSW and EMP_STATE = 1"; 
+    $emp = $pdo->prepare($sql);
+    $emp->bindValue(":EMP_EMAIL", $datas["emp_email"]);
+    $emp->bindValue(":EMP_PSW", $datas["emp_psw"]);
+    $emp->execute();
 
-    if( $cus->rowCount()==0){ // 非會員
+    if( $emp->rowCount()==0){ // 非員工
         echo "{}"; 
     }else{ //登入成功
         //自資料庫中取回資料放入SESSION
-        $cusRow = $cus->fetch(PDO::FETCH_ASSOC);
-        $_SESSION["CUS_NO"] = $cusRow["CUS_NO"];
-        $_SESSION["EMAIL"] = $cusRow["EMAIL"];
-        $_SESSION["CUS_NAME"] = $cusRow["CUS_NAME"];
-        $_SESSION["CUS_TEL"] = $cusRow["CUS_TEL"];
-        $_SESSION["SEX"] = $cusRow["SEX"];
-        $_SESSION["CUS_ADD"] = $cusRow["CUS_ADD"];
-        $_SESSION["CUS_PIC"] = $cusRow["CUS_PIC"];
+        $empRow = $emp->fetch(PDO::FETCH_ASSOC);
+        $_SESSION["EMP_NO"] = $empRow["EMP_NO"];
+        $_SESSION["EMP_NAME"] = $empRow["EMP_NAME"];
+        $_SESSION["EMP_EMAIL"] = $empRow["EMP_EMAIL"];
+        $_SESSION["EMP_TEL"] = $empRow["EMP_TEL"];
+        $_SESSION["JOB"] = $empRow["JOB"];
+        $_SESSION["EMP_ADD"] = $empRow["EMP_ADD"];
+        // $_SESSION["HIREDATE"] = $empRow["HIREDATE"];
 
-        //送出員工資料
         $result = [
-        "CUS_NO" => $_SESSION["CUS_NO"],
-        "EMAIL" => $_SESSION["EMAIL"], 
-        "CUS_NAME" => $_SESSION["CUS_NAME"],
-        "CUS_TEL" => $_SESSION["CUS_TEL"],
-        "SEX" => $_SESSION["SEX"],
-        "CUS_ADD" => $_SESSION["CUS_ADD"],
-        "CUS_PIC" => $_SESSION["CUS_PIC"],
+        "EMP_NO" => $_SESSION["EMP_NO"],
+        "EMP_NAME" => $_SESSION["EMP_NAME"], 
+        "EMP_EMAIL" => $_SESSION["EMP_EMAIL"],
+        "EMP_TEL" => $_SESSION["EMP_TEL"],
+        "JOB" => $_SESSION["JOB"],
+        "EMP_ADD" => $_SESSION["EMP_ADD"],
+        // "CUS_PIC" => $_SESSION["CUS_PIC"],
         ];
 
         echo json_encode($result); 

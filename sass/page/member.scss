@@ -611,6 +611,14 @@ input{
         }
     }
 }
+// 新增商品動單跟預約訂單的明細排版
+main{
+    .data_con{
+        .data_list{
+            display: block;
+        }
+    }
+}
 
 // ------------ 3/11新增
 #btnCancel,#btnSave,#btnUpload{
@@ -622,3 +630,5 @@ input{
 // #upFile ~ label{
 
 // }
+
+

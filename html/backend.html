@@ -25,7 +25,7 @@
                         <span class="title"></ion-icon>主頁</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li emp">
                     <a @click="content('emp')">
                         <span class="icon">
                             <img src="img/icon/accessibility-outline.svg" alt="">
@@ -33,7 +33,7 @@
                         <span class="title">員工管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li cus">
                     <a @click="content('cus')">
                         <span class="icon">
                             <img src="img/icon/person-outline.svg" alt="">
@@ -41,7 +41,7 @@
                         <span class="title">會員管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li result">
                     <a @click="content('result')">
                         <span class="icon">
                             <img src="img/icon/people-outline.svg" alt="">
@@ -49,7 +49,7 @@
                         <span class="title">測驗推薦管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li prd">
                     <a @click="content('prd')">
                         <span class="icon">
                             <img src="img/icon/cart-outline.svg" alt="">
@@ -57,7 +57,7 @@
                         <span class="title">商品管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li ord">
                     <a @click="content('ord')">
                         <span class="icon">
                             <img src="img/icon/receipt-outline.svg" alt="">
@@ -65,7 +65,7 @@
                         <span class="title">訂單管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li plan">
                     <a @click="content('plan')">
                         <span class="icon">
                             <img src="img/icon/log-in-outline.svg" alt="">
@@ -73,7 +73,7 @@
                         <span class="title">服務方案管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li sao">
                     <a @click="content('sao')">
                         <span class="icon">
                             <img src="img/icon/receipt-outline.svg" alt="">
@@ -81,7 +81,7 @@
                         <span class="title">服務訂單管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li casetable">
                     <a @click="content('casetable')">
                         <span class="icon">
                             <img src="img/icon/calendar-outline.svg" alt="">
@@ -89,7 +89,7 @@
                         <span class="title">案例管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li event">
                     <a @click="content('event')">
                         <span class="icon">
                             <img src="img/icon/ticket-outline.svg" alt="">
@@ -97,7 +97,7 @@
                         <span class="title">活動管理</span>
                     </a>
                 </li>
-                <li>
+                <li class="nav_li columntable">
                     <a @click="content('columntable')">
                         <span class="icon">
                             <img src="img/icon/albums-outline.svg" alt="">
@@ -134,7 +134,7 @@
                     <div class="panel_title">
                         <!-- <h2>{{tableName}}</h2> -->
                         <h2>{{showtableTitle}}</h2>
-                        <button type="button" class="add_btn"><i class="fa-solid fa-plus"></i>新增</button>
+                        <button type="button" class="add_btn">新增</button>
                     </div>
                     <table>
                         <thead>
@@ -154,56 +154,60 @@
 
             </div>
             
-            <form action="">
+            <form>
                 <div class="light_box emp">
                     <p class="light_box_cap">編輯與查看</p>
+                    <!-- 員工資料可以編輯，電話、權限、地址、介紹文 -->
                     <ul>
-                        <li>員工編號:{{showLightBox.EMP_NO}}</li>
-                        <li>帳號(email):{{showLightBox.EMP_EMAIL}}</li>
+                        <li>員工編號: {{showLightBox.EMP_NO}}</li>
+                        <li>帳號(email): {{showLightBox.EMP_EMAIL}}</li>
                         <li>
                             <label for="">手機:</label>
-                            <input type="text" :value="showLightBox.EMP_TEL">
-                            <p class="hidden">{{showLightBox.EMP_TEL}}</p>
+                            <input name="emp_tel" type="text" v-model.number="showLightBox.EMP_TEL" >
+                            <p>{{showLightBox.EMP_TEL}}</p>
                         </li>
-                        <li>姓名:{{showLightBox.EMP_NAME}}</li>
+                        <li>姓名: {{showLightBox.EMP_NAME}}</li>
                         <li>
                             帳號狀態:
-                            <select name="status" id="">
-                                <option value="0">停權</option>
+                            <select name="emp_status" id="" class="status" v-model.number="showLightBox.STATUS">
+                                <option value="0" >停權</option>
                                 <option value="1">正常</option>
+                                <!-- <p>{{showLightBox.STATUS}}</p> -->
                             </select>
                         </li>
                         <li>職稱:{{showLightBox.JOB}}</li>
                         <li>
-                            <label for="">地址:</label>
-                            <input type="text" :value="showLightBox.EMP_ADD">
-                            <p class="hidden">{{showLightBox.EMP_ADD}}</p>
+                            <label for="">地址: </label>
+                            <input name="emp_add" type="text" v-model="showLightBox.EMP_ADD">
+                            <p>{{showLightBox.EMP_ADD}}</p>
                         </li>
-                        <li>入職時間:{{showLightBox.HIREDATE}}</li>
+                        <li>入職時間: {{showLightBox.HIREDATE}}</li>
                         <li>
-                            介紹:
-                            <textarea cols="57" rows="5">{{showLightBox.INTRO}}</textarea>
+                            介紹: 
+                            <textarea name="emp_intro" cols="57" rows="5" v-model.trim="showLightBox.INTRO">{{showLightBox.INTRO}}</textarea>
+
+                            <p>{{showLightBox.INTRO}}</p>
                         </li>
                     </ul>
                     <div class="editbtn emp">
-                        <button class="close emp" type="button" @click="close()">關閉</button>
-                        <button class="save emp">儲存</button>
+                        <button class="close emp" type="button" @click="close">關閉</button>
+                        <button class="save emp" @click="save">儲存</button>
                     </div>
                 </div>
             </form>
 
-            <form action="">    
+            <form>    
                 <div class="light_box cus">
                     <p class="light_box_cap">編輯與查看</p>
                     <ul>
-                        <li>會員編號:{{showLightBox.CUS_NO}}</li>
-                        <li>性別:{{showLightBox.SEX}}</li>
-                        <li>帳號(email):{{showLightBox.EMAIL}}</li>
-                        <li>手機:{{showLightBox.CUS_TEL}}</li>
-                        <li>姓名:{{showLightBox.CUS_NAME}}</li>
+                        <li>會員編號: {{showLightBox.CUS_NO}}</li>
+                        <li>性別: {{showLightBox.SEX}}</li>
+                        <li>帳號(email): {{showLightBox.EMAIL}}</li>
+                        <li>手機: {{showLightBox.CUS_TEL}}</li>
+                        <li>姓名: {{showLightBox.CUS_NAME}}</li>
                         <li>
                             帳號狀態:
-                            <select name="status" id="">
+                            <select name="cus_status" id="" class="status">
                                 <option value="0">停權</option>
                                 <option value="1">正常</option>
                             </select>
@@ -212,23 +216,23 @@
                         <li>創建時間:{{showLightBox.JOIN_DATE}}</li>
                     </ul>
                     <div class="editbtn cus">
-                        <button class="close cus" type="button" @click="close()">關閉</button>
+                        <button class="close cus" type="button" @click="close">關閉</button>
                         <button class="save cus">儲存</button>
                     </div>
                 </div>
             </form>
 
-            <form action="">
+            <form>
                 <div class="light_box result">
                     <p class="light_box_cap">編輯與查看</p>
                     <ul>
-                        <li>測驗編號:{{showLightBox.RESULT_NO}}</li>
-                        <li>測驗人格:{{showLightBox.RESULT_NAME}}</li>
+                        <li>測驗編號: {{showLightBox.RESULT_NO}}</li>
+                        <li>測驗人格: {{showLightBox.RESULT_NAME}}</li>
                         <li>推薦方案:
                             <select name="status" id="">
-                                <option :value="showLightBox.PLAN_NO">到府一對一教學</option>
-                                <option :value="showLightBox.PLAN_NO">空間整理收納</option>
-                                <option :value="showLightBox.PLAN_NO">搬家前後物品上下架</option>
+                                <option value="1">{{showLightBox.PLAN_NAME}}</option>
+                                <option value="2">{{showLightBox.PLAN_NAME}}</option>
+                                <option value="3">{{showLightBox.PLAN_NAME}}</option>
                             </select>
                         </li>
                         <li>推薦商品編號1:{{showLightBox.PRD_NO1}}</li>
@@ -242,7 +246,7 @@
                 </div>
             </form>
             
-            <form action="">
+            <form>
                 <div class="light_box prd">
                     <p class="light_box_cap">編輯與查看</p>
                     <div class="prd_edit_left">
@@ -269,7 +273,7 @@
 
                             <li>
                                 <label for="">售價:</label>
-                                <input type="text" :value="showLightBox.PRICE" v-model.number="showLightBox.PRICE">
+                                <input type="text" v-model.number="showLightBox.PRICE">
                                 <p class="hidden">{{showLightBox.PRICE}}</p>
                             </li>
                             <li>
@@ -369,7 +373,7 @@
                 </div>
             </form>
 
-            <form action="">
+            <form>
                 <div class="light_box ord">
                     <p class="light_box_cap">編輯與查看</p>
                     <div class="ord_num">
@@ -448,7 +452,7 @@
                 </div>
             </form>
 
-            <form action="">
+            <form>
                 <div class="light_box plan">
                     <p class="light_box_cap">編輯與查看</p>
                     <ul>
@@ -488,7 +492,7 @@
                 </div>
             </form>
 
-            <form action="">
+            <form>
                 <div class="light_box sao">
                     <p class="light_box_cap">編輯與查看</p>
                     <div class="sao_num">
@@ -598,7 +602,7 @@
                 </div>
             </form>
 
-            <form action="">
+            <form>
                 <div class="light_box casetable">
                     <p class="light_box_cap">編輯與查看</p>
                     <div>案例編號:{{showLightBox.CASE_NO}}</div>
@@ -635,7 +639,7 @@
 
             </form>
 
-            <form action="">
+            <form>
                 <div class="light_box event">
                     <p class="light_box_cap">編輯與查看</p>
                     <ul>
@@ -687,7 +691,7 @@
 
             </form>
 
-            <form action="">
+            <form>
                 <div class="light_box columntable">
                 <p class="light_box_cap">編輯與查看</p>
                 <div class="col_edit_left">
@@ -760,7 +764,21 @@
 
             </form>
             
+
+            <div class="light_box close_check">
+                <section>
+
+                </section> 
+                <p>尚未存檔，請確認是否確認關閉</p> 
+
+                <div>
+                    <button @click="closeCheckC" type="button">取消</button>
+                    <button @click="closeCheckY"type="button">確認</button>
+                </div>
+            </div>
         </div>
+        
+        <div class="hide"></div>
     </main>
 
 
@@ -903,11 +921,16 @@
                                 vueApp.showTableHead = vueApp.columnTableHead;
 
                             };
+
+                            $(`.nav_li`).removeClass("hovered");
+                            console.log($(`.nav_li.${vueApp.tableName}`));
+                            $(`.nav_li.${vueApp.tableName}`).addClass("hovered");
                         },
                         error(res){
                             console.log('error');
                             console.log(res);
                         },
+                        
                     });
 
                 },
@@ -926,34 +949,111 @@
                             vueApp.showLightBox = res;
                             console.log(res);
                             $(`.light_box.${vueApp.tableName}`).addClass("show");
-                            console.log(vueApp.tableName);
-                            console.log(`.light_box.${vueApp.tableName}`);
+                            // console.log(vueApp.tableName);
+                            // console.log(`.light_box.${vueApp.tableName}`);
+                            // console.log(`${tableName.EMP_STATE}`);
+                            // console.log(`${showLightBox.EMP_STATE}`);
+
+                            //emp 和 cus 的權限判斷，selection的預選值
+                            if(`${vueApp.showLightBox.STATUS}` == 0){
+                                console.log("進停權判斷");
+                                $(".status option[value='0']").attr("selected", "selected");
+
+                                console.log($(".status option[value='0']"));
+
+                            }else if(`${vueApp.showLightBox.STATUS}` == 1){
+                                console.log("進停權判斷 正常");
+                                $(".status option[value='1']").attr("selected", "selected");
+
+                                console.log($(".status option[value='1']"));
+
+                            }
+
+                            $(".status").change(function(){
+                                console.log($(".status").val());
+                                console.log(`這是目前改變(填寫)的權限狀態: ${vueApp.showLightBox.STATUS}`);
+                            });
+
                         },
                         error(res){
                             console.log(res);
                         },
                     });
 
+                    $(".hide").addClass("show");
+
 
                 },
+
+                // 按下關閉後顯示未儲存確認燈箱
                 close(){
                     var vueApp = this;
                     console.log(`.light_box.${vueApp.tableName}`);
                     $(`.light_box.${vueApp.tableName}`).removeClass("show");
-                    // $.ajax({
-                    //     url: `phps/backendSelectRow.php`,   // 呼叫的檔案或網址列
-                    //     data: `tableName=${vueApp.tableName}`,     // 傳送到 server 端的資料，會自動轉成字串形式
-                    //     type: 'GET',     // GET 或 POST
-                    //     dataType: 'json', // response 的資料格式，xml | html | script | json | jsonp | text
-                    //     success(res){
-                            
-                    //     },
-                    //     error(res){
-                    //         console.log(res);
-                    //     },
-                    // });
-                   
+                    $(".close_check").addClass("show");
+                    $(".hide").addClass("show");
+
                 },
+
+                // 未儲存確認燈箱按下確認，直接為未儲存，直接顯示panel
+                closeCheckY(){
+                    var vueApp = this;
+                    console.log($(`.light_box.${vueApp.tableName}`));
+                    $(".close_check").removeClass("show");    
+                    $(".hide").removeClass("show");    
+
+                },
+
+                // 未儲存確認燈箱按下取消，重新顯示留有修改資料的panel
+                closeCheckC(){
+                    var vueApp = this;
+                    $(`.light_box.${vueApp.tableName}`).addClass("show");
+                    $(".hide").removeClass("show");
+                    $(".close_check").removeClass("show");
+                },
+
+                save(){
+                    let xhr = new XMLHttpRequest();
+                        let thisVue = this;
+                        xhr.onload = function(){
+                            thisVue.cusRow = JSON.parse(xhr.responseText);
+                            console.log(thisVue.cusRow);
+
+
+
+                            // if(thisVue.cusRow.CUS_PIC!=''){
+                            //     thisVue.cus_pic = "img/cus/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
+                            // }
+                            // // console.log(thisVue.cus_pic);
+                            // if(thisVue.cusRow.SEX == "女"){
+                            //     $('#female').prop('checked',true);
+                            // }else if(thisVue.cusRow.SEX == "男"){
+                            //     $('#male').prop('checked',true);
+                            // }   
+                        }
+                        xhr.open("get", "phps/backendChange.php", true);
+                        xhr.send(null);
+                },
+
+                getMemberInfo(){
+                        let xhr = new XMLHttpRequest();
+                        let thisVue = this;
+                        xhr.onload = function(){
+                            thisVue.cusRow = JSON.parse(xhr.responseText);
+                            console.log(thisVue.cusRow);
+                            if(thisVue.cusRow.CUS_PIC!=''){
+                                thisVue.cus_pic = "img/cus/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
+                            }
+                            // console.log(thisVue.cus_pic);
+                            if(thisVue.cusRow.SEX == "女"){
+                                $('#female').prop('checked',true);
+                            }else if(thisVue.cusRow.SEX == "男"){
+                                $('#male').prop('checked',true);
+                            }   
+                        }
+                        xhr.open("get", "phps/getMemberInfo.php?tableName=", true);
+                        xhr.send(null);
+                    },
             },
             mounted() {
                 this.selectAllPrd();

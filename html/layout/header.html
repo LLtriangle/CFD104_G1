@@ -118,3 +118,23 @@
     
 </script> -->
 
+<script>
+function areYouLogin(){
+    let xhr = new XMLHttpRequest();
+    let thisVue = this;
+    xhr.onload = function(){
+        console.log(xhr.responseText);
+        if(xhr.responseText=='未登入'){
+            $('.user').attr('href','login.html');
+        }else{
+            $('.user').attr('href','member.html').html(`<img src="img/cus/${xhr.responseText}">`);
+        };
+        // thisVue.plansRows = JSON.parse(xhr.responseText);
+    };
+    xhr.open("get", "phps/areYouLogin.php", true);
+    xhr.send(null);
+};
+
+$(window).on('load',areYouLogin);
+</script>
+

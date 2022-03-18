@@ -3,10 +3,10 @@ try {
 	require_once("connect.php"); // 開發用
 
     if ($_GET['tableName'] == "emp") {
-		$sql = "select EMP_NO, EMP_NAME, EMP_EMAIL, EMP_TEL, EMP_STATE, JOB, EMP_ADD, HIREDATE, INTRO from {$_GET['tableName']} where EMP_NO = {$_GET['editNo']} ";
+		$sql = "select EMP_NO, EMP_NAME, EMP_EMAIL, EMP_TEL, EMP_STATE STATUS, JOB, EMP_ADD, HIREDATE, INTRO from {$_GET['tableName']} where EMP_NO = {$_GET['editNo']} ";
 		
 	}elseif ($_GET['tableName'] == "cus"){
-		$sql = "select CUS_NO, JOIN_DATE, EMAIL, STATE, CUS_NAME, CUS_TEL, CUS_ADD, SEX from {$_GET['tableName']} where CUS_NO = {$_GET['editNo']} ";
+		$sql = "select CUS_NO, JOIN_DATE, EMAIL, STATE STATUS, CUS_NAME, CUS_TEL, CUS_ADD, SEX from {$_GET['tableName']} where CUS_NO = {$_GET['editNo']} ";
 		
 	}elseif ($_GET['tableName'] == "result"){
 		$sql = "select * from {$_GET['tableName']} where RESULT_NO = {$_GET['editNo']} ";
