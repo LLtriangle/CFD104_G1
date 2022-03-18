@@ -28,10 +28,12 @@ try{
       $cus->bindValue(":CUS_ADD", $_POST["cus_add"]); // 地址
       $cus->bindValue(":CUS_PIC", $fileName); // 照片
 
+      // $emp->bindValue(":EMP_TEL", $POST["tel"]); 
+
       $_SESSION["CUS_NAME"] = $_POST["cus_name"];
       $_SESSION["CUS_TEL"] = $_POST["cus_tel"];
       $_SESSION["SEX"] = $_POST["gender"];
-      $_SESSION["CUS_ADD"] = $_POST["cus_add"];
+     $_SESSION["CUS_ADD"] = $_POST["cus_add"];
       $_SESSION["CUS_PIC"] = $fileName;
        
     }else{

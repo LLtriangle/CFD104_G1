@@ -20,7 +20,7 @@
                 <label for="m_data" class="id">
                     <div class="mem">
                         <div class="mem_icon">
-                            <img :src="cus_pic">
+                            <img :src="cus_pic2 || cus_pic">
                         </div>
                         <div class="mem_p">
                             <!-- 名字 -->
@@ -51,7 +51,7 @@
                     <div class="icon_edit">
                         <div class="mem_icon" >
                                 <!-- 大頭貼 -->
-                                <img id="myImg" :src="cus_pic">
+                                <img id="myImg" :src="cus_pic2 || cus_pic">
                                 <input type="file" name="upFile" id="upFile" accept="image/jpeg, image/png" >
                                 <label id="btnUpload" class="btn_btn br" for="upFile">編輯大頭貼
                                 </label>
@@ -105,7 +105,7 @@
                 
                         <!-------新增取消修改-------->
                         <button id="btnCancel" type="button" class="btn_sub bl cancel" @click="getMemberInfo">取消修改</button>
-                        <button id="btnSave" type="button" class="btn_sub br" @click="getMemberInfo">儲存修改</button>
+                        <button id="btnSave" type="button" class="btn_sub br" @click="changeMemberInfo">儲存修改</button>
                         <button id="btnChange" type="button" class="btn_sub br">修改會員資料</button>
                     </div>
                 </div>
@@ -258,6 +258,7 @@
                     cusRow:[{CUS_NO: '', EMAIL: '', CUS_NAME: '', CUS_TEL: '',SEX:''}],
                     gender:'',
                     cus_pic:'img/cus/emp_img.jpg', // 預設大頭貼
+                    cus_pic2:'', // 預設大頭貼
                 },
                 methods: {
                     getMemberInfo(){
@@ -275,13 +276,40 @@
                             }else if(thisVue.cusRow.SEX == "男"){
                                 $('#male').prop('checked',true);
                             }   
+
+                            thisVue.cus_pic2 ="";
                         }
                         xhr.open("get", "phps/getMemberInfo.php", true);
                         xhr.send(null);
                     },
+                    uploadFile(){
+                        let thisVue = this;
+                        upFile.onchange=function(e){ //選檔案:change事件
+                            let file = e.target.files[0]; //找物件
+                            let reader = new FileReader(); //reader讀物件
+                            reader.onload = function(){ 
+                                thisVue.cus_pic2 = reader.result;
+                                // console.log($id("myImg").src);
+                            }
+                            reader.readAsDataURL(file);
+                        }
+                    },
+                    changeMemberInfo(){
+                        let thisVue = this;
+                        let xhr = new XMLHttpRequest();
+                        xhr.onload = function(){
+                            thisVue.getMemberInfo();
+                        }
+                        
+                        xhr.open("post", "phps/changeMemberInfo.php", true);  
+                        let myForm = document.getElementById("myForm");
+                        let formData = new FormData(myForm);
+                        xhr.send(formData);
+                    }
                 },
                 mounted() {
                     this.getMemberInfo();
+                    this.uploadFile();
                 },
             });
         </script>
