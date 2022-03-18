@@ -128,9 +128,9 @@ function areYouLogin(){
     xhr.onload = function(){
         console.log(xhr.responseText);
         if(xhr.responseText=='未登入'){
-            $('a.user').attr('herf','login.html');
+            $('.user').attr('href','login.html');
         }else{
-            $('a.user').attr('herf','member.html').html(`<img src="img/cus/${xhr.responseText}">`);
+            $('.user').attr('href','member.html').html(`<img src="img/cus/${xhr.responseText}">`);
         };
         // thisVue.plansRows = JSON.parse(xhr.responseText);
     };
