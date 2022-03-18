@@ -68,7 +68,7 @@
                             <div class="txt_box">
                                 <h3 class="link_under_line_w">{{plansRow.PLAN_NAME}}</h3>
                                 <br>
-                                <p>給想要掌握收納技巧，<br>長期保持美好生活環境的你。</p>
+                                <p>{{plansRow.PLAN_FEATURE}}</p>
 
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
@@ -498,7 +498,7 @@
 					xhr.onload = function(){
 						thisVue.columnsRows = JSON.parse(xhr.responseText);
 					}
-					xhr.open("get", "phps/selectAll.php?tableName=columntable", true);
+					xhr.open("get", "phps/getColumns.php", true);
 					xhr.send(null);
 				},
 

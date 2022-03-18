@@ -15,7 +15,7 @@
 </head>
 <body>
     <main class="container" id="app">
-        <div class="navigation">
+        <nav class="navigation">
             <ul>
                 <li>
                     <a @click="content('plan')">
@@ -106,7 +106,7 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </nav>
 
         <!-- main -->
         <div class="main">
@@ -129,12 +129,12 @@
             </div>
 
             
-            <div class="details">
-                <div class="recent_orders">
-                    <div class="card_header">
+            <div class="panel_box">
+                <div class="panel">
+                    <div class="panel_title">
                         <!-- <h2>{{tableName}}</h2> -->
                         <h2>{{showtableTitle}}</h2>
-                        <a href="#" class="btn">全部</a>
+                        <button type="button" class="add_btn">新增</button>
                     </div>
                     <table>
                         <thead>
@@ -146,14 +146,624 @@
                         <tbody>
                             <tr v-for="(tableBody, index) in showTableBody">
                                 <td v-for="tableBodyIndex in tableBody">{{tableBodyIndex}}</td>
-                                <td><button class="edit" type="button" @click='edit(tableBody)'>編輯</button></td>
+                                <td><button class="edit_btn" type="button" @click='edit(tableBody)'>編輯</button></td>
                             </tr>
                         </tbody>
                     </table> 
                 </div>
-                
-            </div>
 
+            </div>
+            
+            <form>
+                <div class="light_box emp">
+                    <p class="light_box_cap">編輯與查看</p>
+                    <!-- 員工資料可以編輯，電話、權限、地址、介紹文 -->
+                    <ul>
+                        <li>員工編號: {{showLightBox.EMP_NO}}</li>
+                        <li>帳號(email): {{showLightBox.EMP_EMAIL}}</li>
+                        <li>
+                            <label for="">手機:</label>
+                            <input name="emp_tel" type="text" v-model.number="showLightBox.EMP_TEL" >
+                            <p>{{showLightBox.EMP_TEL}}</p>
+                        </li>
+                        <li>姓名: {{showLightBox.EMP_NAME}}</li>
+                        <li>
+                            帳號狀態:
+                            <select name="emp_status" id="" class="status" v-model.number="showLightBox.STATUS">
+                                <option value="0" >停權</option>
+                                <option value="1">正常</option>
+                                <!-- <p>{{showLightBox.STATUS}}</p> -->
+                            </select>
+                        </li>
+                        <li>職稱:{{showLightBox.JOB}}</li>
+                        <li>
+                            <label for="">地址: </label>
+                            <input name="emp_add" type="text" v-model="showLightBox.EMP_ADD">
+                            <p>{{showLightBox.EMP_ADD}}</p>
+                        </li>
+                        <li>入職時間: {{showLightBox.HIREDATE}}</li>
+                        <li>
+                            介紹: 
+                            <textarea name="emp_intro" cols="57" rows="5" v-model.trim="showLightBox.INTRO">{{showLightBox.INTRO}}</textarea>
+
+                            <p>{{showLightBox.INTRO}}</p>
+                        </li>
+                    </ul>
+                    <div class="editbtn emp">
+                        <button class="close emp" type="button" @click="close">關閉</button>
+                        <button class="save emp" @click="save">儲存</button>
+                    </div>
+                </div>
+            </form>
+
+            <form>    
+                <div class="light_box cus">
+                    <p class="light_box_cap">編輯與查看</p>
+                    <ul>
+                        <li>會員編號: {{showLightBox.CUS_NO}}</li>
+                        <li>性別: {{showLightBox.SEX}}</li>
+                        <li>帳號(email): {{showLightBox.EMAIL}}</li>
+                        <li>手機: {{showLightBox.CUS_TEL}}</li>
+                        <li>姓名: {{showLightBox.CUS_NAME}}</li>
+                        <li>
+                            帳號狀態:
+                            <select name="cus_status" id="" class="status">
+                                <option value="0">停權</option>
+                                <option value="1">正常</option>
+                            </select>
+                        </li>
+                        <li>地址:{{showLightBox.CUS_ADD}}</li>
+                        <li>創建時間:{{showLightBox.JOIN_DATE}}</li>
+                    </ul>
+                    <div class="editbtn cus">
+                        <button class="close cus" type="button" @click="close">關閉</button>
+                        <button class="save cus">儲存</button>
+                    </div>
+                </div>
+            </form>
+
+            <form>
+                <div class="light_box result">
+                    <p class="light_box_cap">編輯與查看</p>
+                    <ul>
+                        <li>測驗編號:{{showLightBox.RESULT_NO}}</li>
+                        <li>測驗人格:{{showLightBox.RESULT_NAME}}</li>
+                        <li>推薦方案:
+                            <select name="status" id="">
+                                <option :value="showLightBox.PLAN_NO">到府一對一教學</option>
+                                <option :value="showLightBox.PLAN_NO">空間整理收納</option>
+                                <option :value="showLightBox.PLAN_NO">搬家前後物品上下架</option>
+                            </select>
+                        </li>
+                        <li>推薦商品編號1:{{showLightBox.PRD_NO1}}</li>
+                        <li>推薦商品編號2:{{showLightBox.PRD_NO2}}</li>
+                        <li>推薦商品編號3:{{showLightBox.PRD_NO3}}</li>
+                    </ul>
+                    <div class="editbtn result">
+                        <button class="close result" type="button" @click="close()">關閉</button>
+                        <button class="save result">儲存</button>
+                    </div>
+                </div>
+            </form>
+            
+            <form>
+                <div class="light_box prd">
+                    <p class="light_box_cap">編輯與查看</p>
+                    <div class="prd_edit_left">
+                        <ul>
+                            <li>
+                                <label for="">商品編號:</label>
+                                <input type="text" :value="showLightBox.PRD_NO">
+                                <p class="hidden">{{showLightBox.PRD_NO}}</p>
+                            </li>
+                            <li>
+                                商品類別:
+                                <select name="status" id="">
+                                    <option value="0">專業整理</option>
+                                    <option value="1">居家生活</option>
+                                    <option value="2">辦公文具</option>
+                                    <option value="3">世界品牌</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label for="">商品名稱:</label>
+                                <input type="text" :value="showLightBox.PRD_NAME">
+                                <p class="hidden">{{showLightBox.PRD_NAME}}</p>
+                            </li>
+
+                            <li>
+                                <label for="">售價:</label>
+                                <input type="text" v-model.number="showLightBox.PRICE">
+                                <p class="hidden">{{showLightBox.PRICE}}</p>
+                            </li>
+                            <li>
+                                上下架:
+                                <select name="status" id="">
+                                    <option value="0">下架</option>
+                                    <option value="1">上架</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label for="">商品介紹標題1:</label>
+                                <input type="text" :value="showLightBox.INFO_TITLE_1">
+                                <p class="hidden">{{showLightBox.INFO_TITLE_1}}</p>
+                            </li>
+                            <li>
+                                <label for="">商品介紹內文1:</label>
+                                <textarea name="" id="" cols="30" rows="5" v-model.trim="showLightBox.INFO_1">
+                                </textarea>
+                                <!-- {{showLightBox.INFO_1}} -->
+                            </li>
+                            <li>
+                                <label for="">商品介紹標題2:</label>
+                                <input type="text" :value="showLightBox.INFO_TITLE_2">
+                                <p class="hidden">{{showLightBox.INFO_TITLE_2}}</p>
+                            </li>
+                            <li>
+                                <label for="">商品介紹內文2:</label>
+                                <textarea name="" id="" cols="30" rows="5">
+                                    {{showLightBox.INFO_2}}
+                                </textarea>
+                            </li>
+                        </ul>
+                    </div>
+                
+                    <div class="prd_edit_right">
+                        <div class="prd_group">
+                            <label for="0">圖片1:</label>
+                            <input type="file" id="0">
+                            <p>請選擇圖片上傳</p>
+                            <div class="prd_img">
+                                <img :src='"img/"+showLightBox.IMG1'>
+                                <p class="hidden">{{showLightBox.IMG1}}</p>
+                            </div>
+                            <img src="" alt="">
+                        </div>
+                        <div class="prd_group">
+                            <label for="1">圖片2:</label>
+                            <input type="file" id="1">
+                            <p>請選擇圖片上傳</p>
+                            <div class="prd_img">
+                                <img src="">
+                            </div>
+                            <img src="" alt="">
+                        </div>
+                        <div class="prd_group">
+                            <label for="2">圖片3:</label>
+                            <input type="file" id="2">
+                            <p>請選擇圖片上傳</p>
+                            <div class="prd_img">
+                                <img src="">
+                            </div>
+                            <img src="" alt="">
+                        </div>
+                        <div class="prd_group">
+                            <label for="3">資訊圖1:</label>
+                            <input type="file" id="3">
+                            <p>請選擇圖片上傳</p>
+                            <div class="prd_img">
+                                <img src="">
+                            </div>
+                            <img src="" alt="">
+                        </div>
+                        <div class="prd_group">
+                            <label for="4">資訊圖2:</label>
+                            <input type="file" id="4">
+                            <p>請選擇圖片上傳</p>
+                            <div class="prd_img">
+                                <img src="">
+                            </div>
+                            <img src="" alt="">
+                        </div>
+                        <div class="prd_group">
+                            <label for="5">規格圖:</label>
+                            <input type="file" id="4">
+                            <p>請選擇圖片上傳</p>
+                            <div class="prd_img">
+                                <img src="">
+                            </div>
+                            <img src="" alt="">
+                        </div>
+                    </div>
+
+                    <div class="editbtn result">
+                        <button class="close result" type="button" @click="close()">關閉</button>
+                        <button class="save result">儲存</button>
+                    </div>
+                </div>
+            </form>
+
+            <form>
+                <div class="light_box ord">
+                    <p class="light_box_cap">編輯與查看</p>
+                    <div class="ord_num">
+                        <label for="">訂單編號:</label>
+                        <input type="text" :value="showLightBox.ORD_NO" readonly="readonly">
+                        <p class="hidden">{{showLightBox.ORD_NO}}</p>
+                    </div>
+                    <ul class="ord_total_status">
+                        <li>
+                            付款狀態:
+                            <select name="pay_status" id="">
+                                <option value="0">未付款</option>
+                                <option value="1">已付款</option>
+                            </select>
+                        </li>
+                        <li>
+                            訂單狀態:
+                            <select name="ord_status" id="">
+                                <option value="0">已完成</option>
+                                <option value="1">未完成</option>
+                            </select>
+                        </li>
+                        <li>
+                            運送方式:
+                            <select name="shipping" id="">
+                                <option value="1">宅配</option>
+                                <option value="2">seven取貨</option>
+                                <option value="3">全家取貨</option>
+                            </select>
+                        </li>
+                    </ul>
+                
+                    <ul class="ord_info">
+                        <li>會員帳號: eric8861453@yahoo.com.tw</li>
+                        <li>收件人姓名: 陳建宏</li>
+                        <li>收件人手機: 0123456789</li>
+                        <li>收件人地址: 台北市大安區復興南路二段273號</li>
+                        <li>運送方式: 宅配</li>
+                        <!-- <li>付款方式: 線上付款</li>
+                        <li>門市名稱: 台北大安</li> -->
+                    </ul>
+                    <div class="ord_detail">
+                        <p>訂單商品明細</p>
+                        <ul class="ord_detail_title">
+                            <li>名稱</li>
+                            <li>數量</li>
+                            <li>金額</li>
+                        </ul>
+                        <section>
+                            <ul class="ord_detail_content">
+                                <li>草莓銅鑼燒</li>
+                                <li>2</li>
+                                <li>285</li>
+                            </ul><ul class="ord_detail_content">
+                                <li>抹茶鯛魚燒</li>
+                                <li>1</li>
+                                <li>285</li>
+                            </ul>
+                        </section>
+                        <ul class="ord_checkout">
+                            <li>商品金額&emsp;&nbsp;:&ensp;$570元</li>
+                            <li>折扣碼&emsp;&emsp;&nbsp;:&ensp;NA</li>
+                            <li>運費&emsp;&emsp;&emsp;&nbsp;:&ensp;$80元&nbsp;&nbsp;</li>
+                            <li>訂單總金額&nbsp;:&ensp;$650元</li>
+                        </ul>
+                        <div class="editbtn ord">
+                            <button class="close ord">關閉</button>
+                            <button class="save ord">儲存</button>
+                        </div>
+                    </div>
+
+                    <div class="editbtn ord">
+                        <button class="close ord" type="button" @click="close()">關閉</button>
+                        <button class="save ord">儲存</button>
+                    </div>
+                </div>
+            </form>
+
+            <form>
+                <div class="light_box plan">
+                    <p class="light_box_cap">編輯與查看</p>
+                    <ul>
+                        <li>
+                            <label for="">方案編號:</label>
+                            <input type="text" :value="showLightBox.PLAN_NO" readonly="readonly">
+                            <p class="hidden">{{showLightBox.PLAN_NO}}</p>
+                        </li>
+                        <li>
+                            <label for="">方案名稱:</label>
+                            <input type="text" :value="showLightBox.PLAN_NAME">
+                            <p class="hidden">{{showLightBox.PLAN_NAME}}</p>
+                        </li>
+                        <li>
+                            <label for="">方案價格:</label>
+                            <input type="text" :value="showLightBox.PRICE">
+                            <p class="hidden">{{showLightBox.PRICE}}</p>
+                        </li>
+                        <li>
+                            <label for="">適合對象:</label>
+                            <textarea name="" id="" cols="20" rows="5">
+                                {{showLightBox.PLAN_TA}}
+                            </textarea>
+                        </li>
+                        <li>
+                            <label for="">方案特色:</label>
+                            <textarea name="" id="" cols="20" rows="5">
+                                {{showLightBox.PLAN_FEATURE}}
+                            </textarea>
+                        </li>
+
+                        <div class="editbtn plan">
+                            <button class="close plan" type="button" @click="close()">關閉</button>
+                            <button class="save plan">儲存</button>
+                        </div>
+                    </ul>
+                </div>
+            </form>
+
+            <form>
+                <div class="light_box sao">
+                    <p class="light_box_cap">編輯與查看</p>
+                    <div class="sao_num">
+                        <label for="">訂單編號:</label>
+                        <input type="text" :value="showLightBox.SAO_NO" readonly="readonly">
+                        <p class="hidden">{{showLightBox.SAO_NO}}</p>
+                    </div>
+                    <ul class="sao_total_status">
+                        <li>
+                            付款狀態:
+                            <select name="pay_status" id="">
+                                <option value="0">未付款</option>
+                                <option value="1">已付款</option>
+                            </select>
+                        </li>
+                        <li>
+                            訂單狀態:
+                            <select name="ord_status" id="">
+                                <option value="0">已完成</option>
+                                <option value="1">未完成</option>
+                            </select>
+                        </li>
+                    </ul>
+                
+                    <ul class="sao_info">
+                        <li>會員帳號: eric8861453@yahoo.com.tw</li>
+                        <li>客戶名稱: 陳建宏</li>
+                        <li>客戶手機: 0123456789</li>
+                        <li>服務地址: 台北市大安區復興南路二段273號</li>
+                        <li>付款方式: 線上付款</li>
+                    </ul>
+                    <div class="sao_detail">
+                        <p>服務明細</p>
+                        <ul class="sao_detail_title">
+                            <li>方案編號:{{showLightBox.SAO_NO}}</li>
+                            <li>服務日期:{{showLightBox.SAO_DATE}}</li>
+                            <li>服務時段:{{showLightBox.SAO_TIME}}</li>
+                            <li>服務人員:{{showLightBox.EMP_NO}}</li>
+                        </ul>
+                        <section>
+                            <ul class="sao_detail_content need">
+                                <li>服務需求:</li>
+                                <li>
+                                    <label for="">服務需求內容:</label>
+                                    <textarea name="" id="" cols="30" rows="5" readonly="readonly">
+                                        {{showLightBox.NEEDS}}
+                                    </textarea>
+                                </li>
+                            </ul>
+                            <div class="sao_detail_content need_img">
+                                <div class="need_img_box">
+                                    <label for="0">客戶需求圖片1:</label>
+                                    <div class="need_img">
+                                        <img src="">
+                                    </div>
+                                </div>
+                                <div class="need_img_box">
+                                    <label for="0">客戶需求圖片2:</label>
+                                    <div class="need_img">
+                                        <img src="">
+                                    </div>
+                                </div>
+                                <div class="need_img_box">
+                                    <label for="0">客戶需求圖片3:</label>
+                                    <div class="need_img">
+                                        <img src="">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <ul class="sao_detail_content report">
+                                <li>結案回報</li>
+                                <li>
+                                    <label for="">結案回報內容:</label>
+                                    <textarea name="" id="" cols="30" rows="5">
+                                        {{showLightBox.INFO}}
+                                    </textarea>
+                                </li>
+                            </ul>
+                            <div class="sao_detail_content report_img">
+                                <div class="before_img_box">
+                                    <label for="0">服務前圖片:</label>
+                                    <div class="before_img">
+                                        <img src="">
+                                    </div>
+                                </div>
+                                <div class="after_img_box">
+                                    <label for="0">服務後圖片:</label>
+                                    <div class="after_img">
+                                        <img src="">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <ul class="sao_checkout">
+                            <li>服務金額&emsp;&nbsp;:&ensp;$570元</li>
+                            <li>運費&emsp;&emsp;&emsp;&nbsp;:&ensp;$80元&nbsp;&nbsp;</li>
+                            <li>訂單總金額&nbsp;:&ensp;$650元</li>
+                        </ul>
+                    </div>
+
+                    <div class="editbtn sao">
+                        <button class="close sao" type="button" @click="close()">關閉</button>
+                        <button class="save sao">儲存</button>
+                    </div>
+                </div>
+            </form>
+
+            <form>
+                <div class="light_box casetable">
+                    <p class="light_box_cap">編輯與查看</p>
+                    <div>案例編號:{{showLightBox.CASE_NO}}</div>
+                    <div>
+                        <label for="">整理前文案:</label>
+                        <textarea cols="57" rows="5">{{showLightBox.INFO_BEFORE}}</textarea>
+                    </div>
+                    <div>
+                        <label for="">整理後文案:</label>
+                        <textarea cols="57" rows="5">{{showLightBox.INFO_AFTER}}</textarea>
+                    </div>
+                    <div class="case_detail_content b&a_img">
+                        <div class="case_img_box">
+                            <label for="0">整理前圖片:</label>
+                            <div class="case_img">
+                                <img src="">
+                                {{showLightBox.BEFORE_IMG}}
+                            </div>
+                        </div>
+                        <div class="case_img_box">
+                            <label for="0">整理後圖片:</label>
+                            <div class="case_img">
+                                <img src="">
+                                {{showLightBox.AFTER_IMG}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="editbtn case">
+                        <button class="close case" type="button" @click="close()">關閉</button>
+                        <button class="save case">儲存</button>
+                    </div>
+                </div>
+
+            </form>
+
+            <form>
+                <div class="light_box event">
+                    <p class="light_box_cap">編輯與查看</p>
+                    <ul>
+                        <li>
+                            <label for="">折扣碼:</label>
+                            <input type="text" :value="showLightBox.CASE_NO" readonly="readonly">
+                            <p class="hidden">{{showLightBox.CASE_NO}}</p>
+                        </li>
+                        <li>
+                            <label for="">活動標題:</label>
+                            <input type="text" :value="showLightBox.TITLE" readonly="readonly">
+                            <p class="hidden">{{showLightBox.TITLE}}</p>
+                        </li>
+                        <li>
+                            <label for="">開始日期:</label>
+                            <input type="text" :value="showLightBox.START" readonly="readonly">
+                            <p class="hidden">{{showLightBox.START}}</p>
+                        </li>
+                        <li>
+                            <label for="">截止日期:</label>
+                            <input type="text" :value="showLightBox.END" readonly="readonly">
+                            <p class="hidden">{{showLightBox.END}}</p>
+                        </li>
+                        <li>
+                            <label for="">優惠折數:</label>
+                            <input type="text" :value="showLightBox.PARM" readonly="readonly">
+                            <p class="hidden">{{showLightBox.PARM}}</p>
+                        </li>
+                        <li>
+                            &emsp;上下架:
+                            <select name="status" id="">
+                                <option value="0">下架</option>
+                                <option value="1">上架</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label for="">活動介紹內文:</label>
+                                <textarea name="" id="" cols="30" rows="5">
+
+                                </textarea>
+                        </li>
+                        
+                    </ul>
+                    <div class="editbtn event">
+                        <button class="close event" type="button" @click="close()">關閉</button>
+                        <button class="save event">儲存</button>
+                    </div>
+                </div>
+
+            </form>
+
+            <form>
+                <div class="light_box columntable">
+                <p class="light_box_cap">編輯與查看</p>
+                <div class="col_edit_left">
+                    <ul>
+                        <li>
+                            <label for="">專欄編號:</label>
+                            <input type="text" readonly="readonly">
+                        </li>
+                        <li>
+                            <label for="">專欄標題:</label>
+                            <input type="text">
+                        </li>
+                        <li>
+                            <label for="">專欄作者:</label>
+                            <input type="text">
+                        </li>
+                        <li>發表時間:{{showLightBox.HIREDATE}}</li>
+                        <li>
+                            <label for="">專欄副標題1:</label>
+                            <input type="text">
+                            <label for="">專欄內文1:</label>
+                            <textarea name="" id="" cols="30" rows="5">
+                            </textarea>
+                        </li>
+                        <li>
+                            <label for="">專欄副標題2:</label>
+                            <input type="text">
+                            <label for="">專欄內文2:</label>
+                            <textarea name="" id="" cols="30" rows="5">
+                            </textarea>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col_edit_right">
+                    <div class="col_group">
+                        <label for="0">專欄主圖:</label>
+                        <input type="file" id="0">
+                        <p>請選擇圖片上傳</p>
+                        <div class="col_img">
+                            <img src="">
+                        </div>
+                        <img src="" alt="">
+                    </div>
+                    <div class="col_group">
+                        <label for="1">專欄附圖1:</label>
+                        <input type="file" id="1">
+                        <p>請選擇圖片上傳</p>
+                        <div class="col_img">
+                            <img src="">
+                        </div>
+                        <img src="" alt="">
+                    </div>
+                    <div class="col_group">
+                        <label for="2">專欄附圖2:</label>
+                        <input type="file" id="2">
+                        <p>請選擇圖片上傳</p>
+                        <div class="col_img">
+                            <img src="">
+                        </div>
+                        <img src="" alt="">
+                    </div>
+                </div>
+
+                <div class="editbtn col">
+                    <button class="close col" type="button" @click="close()">關閉</button>
+                    <button class="save col">儲存</button>
+                </div>
+                </div>
+
+            </form>
+            
         </div>
     </main>
 
@@ -171,15 +781,18 @@
                 cusTableHead:['會員編號','姓名','會員帳號(信箱)','連絡電話','地址','性別','權限'],
                 resultTableHead:['測驗編號','測驗人格','推薦方案','推薦商品1','推薦商品2','推薦商品3'],
                 prdTableHead:['商品編號','分類','商品名稱','價格', '上下架'],
-                ordTableHead:['訂單編號','會員編號','訂購日期','付款狀態','訂單狀態'],
+                ordTableHead:['訂單編號','會員編號','訂購日期','訂單狀態'],
                 planTableHead:['方案編號','方案名稱','方案價格'],
-                saoTableHead:['服務訂單編號','員工編號','會員編號','方案編號','服務日期','服務時間','付款狀態','服務訂單狀態'],
+                saoTableHead:['服務訂單編號','員工編號','會員編號','方案編號','服務日期','服務時間','服務訂單狀態'],
                 caseTableHead:['案例編號','整理前(文案)','整理後(文案)'],
-                eventTableHead:['折扣碼', '標題','開始日期','截止日期','上下架'],
-                columnTableHead:['專欄編號','標題','作者','日期'],
+                eventTableHead:['折扣碼', '活動標題','開始日期','截止日期','上下架'],
+                columnTableHead:['專欄編號','專欄標題','作者','日期'],
 
                 showTableBody: '',
                 allPrd:[],
+
+                showLightBox:[],
+                
 			},
             methods: {
                 selectAllPrd(){
@@ -209,15 +822,10 @@
                                 vueApp.showTableHead = vueApp.empTableHead;
 
                                 vueApp.showTableBody.forEach(element => {
-                                    // console.log(element);
                                     if(element.EMP_STATE == 1){
-                                        // console.log(element.EMP_STATE);
                                         element.EMP_STATE = "正常";
-                                        // console.log("過");
                                     }else if(element.EMP_STATE == 0){
-                                        // console.log(element.EMP_STATE);
                                         element.EMP_STATE = "停權";
-                                        // console.log("沒過");
                                     };
                                 });
                                 
@@ -226,66 +834,78 @@
                                 vueApp.showTableHead = vueApp.cusTableHead;
 
                                 vueApp.showTableBody.forEach(element => {
-                                    // console.log(element);
                                     if(element.STATE == 1){
-                                        // console.log(element.STATE);
                                         element.STATE = "正常";
-                                        // console.log("過");
                                     }else if(element.STATE == 0){
-                                        // console.log(element.STATE);
                                         element.STATE = "停權";
-                                        // console.log("沒過");
                                     };
                                 });
+
                             }else if(tableName=='result'){
                                 vueApp.showtableTitle = vueApp.tableTitles[2];
                                 vueApp.showTableHead = vueApp.resultTableHead;
+
                             }else if(tableName=='prd'){
                                 vueApp.showtableTitle = vueApp.tableTitles[3];
                                 vueApp.showTableHead = vueApp.prdTableHead;
                                 vueApp.showTableBody.forEach(element => {
-                                    // console.log(element);
                                     if(element.STATE == 1){
-                                        // console.log(element.STATE);
                                         element.STATE = "上架";
-                                        // console.log("過");
                                     }else if(element.STATE == 0){
-                                        // console.log(element.STATE);
                                         element.STATE = "下架";
-                                        // console.log("沒過");
                                     };
                                 });
+
                             }else if(tableName=='ord'){
                                 vueApp.showtableTitle = vueApp.tableTitles[4];
                                 vueApp.showTableHead = vueApp.ordTableHead;
+
                             }else if(tableName=='plan'){
                                 vueApp.showtableTitle = vueApp.tableTitles[5];
                                 vueApp.showTableHead = vueApp.planTableHead;
+
                             }else if(tableName=='sao'){
                                 vueApp.showtableTitle = vueApp.tableTitles[6];
                                 vueApp.showTableHead = vueApp.saoTableHead;
+
+                                vueApp.showTableBody.forEach(element => {
+                                    if(element.STATE == 1){
+                                        element.STATE = "已完成";
+                                    }else if(element.STATE == 0){
+                                        element.STATE = "未完成";
+                                    };
+
+                                    if(element.SAO_TIME == 1){
+                                        element.SAO_TIME = "上午";
+                                    }else if(element.SAO_TIME == 2){
+                                        element.SAO_TIME = "中午";
+                                    }else if(element.SAO_TIME == 3){
+                                        element.SAO_TIME = "下午";
+                                    };
+                                });
+
+
+
                             }else if(tableName=='casetable'){
                                 vueApp.showtableTitle = vueApp.tableTitles[7];
                                 vueApp.showTableHead = vueApp.caseTableHead;
+
                             }else if(tableName=='event'){
                                 vueApp.showtableTitle = vueApp.tableTitles[8];
                                 vueApp.showTableHead = vueApp.eventTableHead;
                                 
                                 vueApp.showTableBody.forEach(element => {
-                                    // console.log(element);
                                     if(element.STATE == 1){
-                                        // console.log(element.STATE);
                                         element.STATE = "上架";
-                                        // console.log("過");
                                     }else if(element.STATE == 0){
-                                        // console.log(element.STATE);
                                         element.STATE = "下架";
-                                        // console.log("沒過");
                                     }
                                 });
+
                             }else if(tableName=='columntable'){
                                 vueApp.showtableTitle = vueApp.tableTitles[9];
                                 vueApp.showTableHead = vueApp.columnTableHead;
+
                             };
                         },
                         error(res){
@@ -299,43 +919,92 @@
                 edit(index){
                     // let current_edit = 0;
                     // this.current_edit = index;
+                    var vueApp = this;
                     $.ajax({
                         url: `phps/backendSelectRow.php`,   // 呼叫的檔案或網址列
-                        data: `tableName=${tableName}&editNo=${index.no}`,     // 傳送到 server 端的資料，會自動轉成字串形式
+                        data: `tableName=${vueApp.tableName}&editNo=${index.ta}`,     // 傳送到 server 端的資料，會自動轉成字串形式
                         // data: `type=select&sql=${tableName}`,
                         type: 'GET',     // GET 或 POST
                         dataType: 'json', // response 的資料格式，xml | html | script | json | jsonp | text
                         success(res){
+                            vueApp.showLightBox = res;
+                            console.log(res);
+                            $(`.light_box.${vueApp.tableName}`).addClass("show");
+                            // console.log(vueApp.tableName);
+                            // console.log(`.light_box.${vueApp.tableName}`);
+                            // console.log(`${tableName.EMP_STATE}`);
+                            // console.log(`${showLightBox.EMP_STATE}`);
 
+                            //emp 和 cus 的權限判斷，selection的預選值
+                            if(`${vueApp.showLightBox.STATUS}` == 0){
+                                console.log("進停權判斷");
+                                $(".status option[value='0']").attr("selected", "selected");
+
+                                console.log($(".status option[value='0']"));
+
+                            }else if(`${vueApp.showLightBox.STATUS}` == 1){
+                                console.log("進停權判斷 正常");
+                                $(".status option[value='1']").attr("selected", "selected");
+
+                                console.log($(".status option[value='1']"));
+
+                            }
+
+                            $(".status").change(function(){
+                                console.log($(".status").val());
+                                console.log(`這是目前改變(填寫)的權限狀態: ${vueApp.showLightBox.STATUS}`);
+                            });
+
+                        },
+                        error(res){
+                            console.log(res);
                         },
                     });
 
-                    // this.p_number = this.products[index].product_id;
-                    // this.p_name = this.products[index].product_name;
-                    // this.p_original = this.products[index].net_price;
-                    // this.p_sell = this.products[index].price;
-                    // this.p_stock = this.products[index].stock; 
-                    // this.p_status = this.products[index].promotion;
-                    // this.p_limit = this.products[index].promotion2;
-                    // this.on_off = this.products[index].product_status;
-                    // this.p_exp = this.products[index].expiration;
-                    // this.p_customized = this.products[index].product_customize;
-                    // this.p_sort = this.products[index].product_class;
-                    // this.p_ingredient = this.products[index].ingredient;
-                    // this.p_descript = this.products[index].product_content;
-                    
-                    // this.new_img[0] = this.products[index].product_image1;
-                    // this.new_img[1] = this.products[index].product_image2;
-                    // this.new_img[2] = this.products[index].product_image3;
-                    // this.new_img[3] = this.products[index].product_image_topview;
-                    // this.new_img[4] = this.products[index].product_image_customize;
-            
-                    // this.img_names[0]['src'] = '../images/shopping_list/'+ this.products[index].product_image1;
-                    // this.img_names[1]['src'] = '../images/shopping_list/'+ this.products[index].product_image2;
-                    // this.img_names[2]['src'] = '../images/shopping_list/'+ this.products[index].product_image3;
-                    // this.img_names[3]['src'] = '../images/shopping_list/'+ this.products[index].product_image_topview;
-                    // this.img_names[4]['src'] = '../images/shopping_list/'+ this.products[index].product_image_customize;
+
                 },
+
+                close(){
+                    var vueApp = this;
+                    console.log(`.light_box.${vueApp.tableName}`);
+                    $(`.light_box.${vueApp.tableName}`).removeClass("show");
+                    // $.ajax({
+                    //     url: `phps/backendSelectRow.php`,   // 呼叫的檔案或網址列
+                    //     data: `tableName=${vueApp.tableName}`,     // 傳送到 server 端的資料，會自動轉成字串形式
+                    //     type: 'GET',     // GET 或 POST
+                    //     dataType: 'json', // response 的資料格式，xml | html | script | json | jsonp | text
+                    //     success(res){
+                            
+                    //     },
+                    //     error(res){
+                    //         console.log(res);
+                    //     },
+                    // });
+                   
+                },
+
+                save(){
+                    let xhr = new XMLHttpRequest();
+                        let thisVue = this;
+                        xhr.onload = function(){
+                            thisVue.cusRow = JSON.parse(xhr.responseText);
+                            console.log(thisVue.cusRow);
+
+
+
+                            // if(thisVue.cusRow.CUS_PIC!=''){
+                            //     thisVue.cus_pic = "img/cus/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
+                            // }
+                            // // console.log(thisVue.cus_pic);
+                            // if(thisVue.cusRow.SEX == "女"){
+                            //     $('#female').prop('checked',true);
+                            // }else if(thisVue.cusRow.SEX == "男"){
+                            //     $('#male').prop('checked',true);
+                            // }   
+                        }
+                        xhr.open("get", "phps/backendChange.php", true);
+                        xhr.send(null);
+                }
             },
             mounted() {
                 this.selectAllPrd();
