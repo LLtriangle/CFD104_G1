@@ -146,6 +146,9 @@ p{
         //     visibility: hidden;
         // }
         .prod_reitem{
+            .reitemPrd{
+                display: none;
+            }
             display: inline-block;
             width: calc(50% - 40px);
             margin: 20px 15px 20px 20px;

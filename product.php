@@ -361,6 +361,10 @@ try{
                     ?>	
                     <!-- 推薦商品 -->
                     <div class="prod_reitem reitem_goods">
+                        <div class="reitemPrd"><?=$recommendPrdsRows[$i]['PRD_NO']?></div>
+                        <div class="reitemPrd"><?=$recommendPrdsRows[$i]['PRD_NAME']?></div>
+                        <div class="reitemPrd"><?=$recommendPrdsRows[$i]['PRICE']?></div>
+                        <div class="reitemPrd"><?=$recommendPrdsRows[$i]['IMG1']?></div>
                         <div class="prod_img">
                             <a href="product.php?prdno=<?=$recommendPrdsRows[$i]['PRD_NO']?>">
                                 <img src="img/<?=$recommendPrdsRows[$i]["IMG1"]?>">
@@ -376,7 +380,7 @@ try{
                                 NT $<?=$recommendPrdsRows[$i]["PRICE"]?>
                             </p>
                             <div class="btn_btn_box prod_btn">
-                                <a href="cart.html">
+                                <a href="cart.html" class="buy_reitem">
                                     <button class="btn_btn bl pointer">
                                         購買
                                     </button>
@@ -461,7 +465,7 @@ try{
             let big = document.getElementById("large").src;
             document.getElementById("large").src = small;
             e.target.src = big;
-        }
+        };
 
         let prd_name = <?php echo json_encode($prodRow) ?>;
         // cartArr[0].prdNo = prd_name.PRD_NO;
@@ -476,7 +480,7 @@ try{
                 // cartArr.push({prdNo : prd_name.PRD_NO, prdName : prd_name.PRD_NAME, prdPrice : prd_name.PRICE, prdImg : prd_name.IMG1, prdNum : num});
             };
             // console.log(cartArr.filter(obj=>obj.prdNo == prd_name.PRD_NO));
-            arrObj = cartArr.filter(obj=>obj.prdNo == prd_name.PRD_NO)
+            var arrObj = cartArr.filter(obj=>obj.prdNo == prd_name.PRD_NO);
             if(arrObj.length==0){
                 cartArr.push({prdNo : prd_name.PRD_NO, prdName : prd_name.PRD_NAME, prdPrice : prd_name.PRICE, prdImg : prd_name.IMG1, prdNum : num});
             }else{
@@ -486,17 +490,39 @@ try{
             // localStorage.setItem(prd_name.PRD_NO,num);
             localStorage.setItem("cart",JSON.stringify(cartArr));
             // localStorage.setItem("cart",`${cartArr.toString()}`);
-            
-        }
+        };
+
+        // 購買推薦商品
+        function setReitemCart(){
+            var reitemPrd = $(this).closest('.prod_reitem').children('.reitemPrd');
+            var reitemNo = reitemPrd[0].innerText;    //點擊的推薦商品編號
+            var reitemName = reitemPrd[1].innerText;    //點擊的推薦商品名稱
+            var reitemPrice = reitemPrd[2].innerText;    //點擊的推薦商品價格
+            var reitemImg = reitemPrd[3].innerText;    //點擊的推薦商品圖片
+            var cartArr = JSON.parse(localStorage.getItem("cart"));
+            if(cartArr == null){
+                cartArr = [];
+            };
+            var arrObj = cartArr.filter(obj=>obj.prdNo == reitemNo);
+            if(arrObj.length==0){
+                cartArr.push({prdNo : `${reitemNo}`, prdName : `${reitemName}`, prdPrice : `${reitemPrice}`, prdImg : `${reitemImg}`, prdNum : 1});
+            // }else{
+            //     index = cartArr.indexOf(arrObj[0]);
+            //     cartArr[index].prdNum = cartArr[index].prdNum + 1;
+            };
+            localStorage.setItem("cart",JSON.stringify(cartArr));
+        };
+        
         function init(){
             let smalls = document.getElementsByClassName("small");
             for(let i=0; i<smalls.length; i++){
                 smalls[i].onclick = showLarge;
-            }
+            };
             let cart = document.getElementById("cart");
             let buy = document.getElementById("buy");
             cart.addEventListener('click',setItemCart);
             buy.addEventListener('click',setItemCart);
+            $(".buy_reitem").on('click',setReitemCart);
         };
         window.addEventListener('load',init, false);
     </script>
