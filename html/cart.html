@@ -22,6 +22,7 @@
 
         <div class="content">
             <div v-if="activetab ==='1'" class="tabcontent">
+                <div v-show="noshopping" class="noshopping">目前購物車是空的</div>
                 <div v-for="(item, index) in cart">
                     <div class="flex">
                         <div><img :src="'img/'+item.prdImg" class="product"></div>
@@ -196,6 +197,7 @@
             el: '#tabs',
             data: {
                 activetab: '1',
+                noshopping: false,
                 cart: [],
                 prdsRows: '',
                 // Citys: ["台北市", "新北市", "基隆市", "桃園市"],
@@ -252,11 +254,12 @@
                 del_btn(index){
                     this.cart.splice(index,1);
                     localStorage.setItem("cart",JSON.stringify(this.cart));
+                    if(this.cart == ""){this.noshopping = true}
                 },
                 getList() {
                     let cart = JSON.parse(localStorage.getItem("cart"));
-                    console.log(cart);
                     this.cart = cart;
+                    if(this.cart == ""){this.noshopping = true}
                 },
                 setList() {
                     localStorage["cart"] = JSON.stringify(this.cart);
@@ -273,7 +276,7 @@
                         }
                         return (visaRegEx.test(num))
                     } else if (this.cCard === 'Mastercard') {
-                        if (!mastercardRegEx.test(num)) {
+                        if (!(mastercardRegEx.test(num))) {
                             return false;
                         }
                         return (mastercardRegEx.test(num))
@@ -295,13 +298,14 @@
                 },
                 nextHandler(num) {
                     if (num == 1) {
-                        if (!this.cusRow.EMAIL) alert("請先登入");
+                        if (!this.cusRow.EMAIL) alert("請先登入才可以下一步");
+                        else if (this.person.total <= 0) alert("價格必須多於1元");
                         else this.activetab = `${num + 1}`
                     }
                     let credit_valid = this.ValidateCreditCardNumber(this.credit_card);
                     if (num == 2) {
                         if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test || !this.person.name || !this.person.address || !
-                            credit_valid) alert("資料不完整");
+                            credit_valid) alert("資料不完整或有誤");
                         else this.activetab = `${num + 1}`
                     }
                 },
@@ -342,12 +346,14 @@
                     for (let i = 0; i < this.cart.length; i++) {
                         all += this.cart[i].prdPrice * this.cart[i].prdNum;
                     }
-                    if (this.person.coupon === "2022HAPPY88") {
+                    if (this.person.coupon === "2022HAPPY88" && this.cart!="") {
                         all = (all * this.param);
                         all += this.fee;
-                    } else if (this.person.coupon === "22HAPPYMDAY" || this.person.coupon === "22SOEASYEVD") {
+                    } else if (this.person.coupon === "22HAPPYMDAY" && this.cart!="" || this.person.coupon === "22SOEASYEVD" && this.cart!="") {
                         all += this.param;
                         all += this.fee;
+                    } else if (this.cart == "") {
+                        all = 0;
                     } else {
                         all += this.fee;
                     }
