@@ -89,7 +89,7 @@
                 <div class="space">
                     <button class="center" onClick="javascript:history.back()">繼續購物
                         </button>
-                    <button v-on:click="activetab='2'" class="center">下一步</button>
+                    <button class="center" @click="nextHandler(1)">下一步</button>
                 </div>
             </div>
             <div v-if="activetab ==='2'" class="tabcontent">
@@ -208,7 +208,12 @@
                 credit_card_png: ['img/visa.gif', 'img/mstercard.gif'],
                 isDisabled: true,
                 years: [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
-                cusRow:[{EMAIL: '', CUS_NAME: '', CUS_TEL: '',CUS_ADD:''}],
+                cusRow:{
+                    EMAIL: '',
+                    CUS_NAME: '',
+                    CUS_TEL: '',
+                    CUS_ADD: '',
+                },
                 person: {
                     phone: '',
                     coupon: '',
@@ -218,7 +223,7 @@
                     name: '',
                     delivery: '宅配',
                     total: '',
-                    },
+                },
             },
             watch: {
                 credit_card(nVal, oVal) {
@@ -233,12 +238,12 @@
                     xhr.onload = function(){
                         thisVue.cusRow = JSON.parse(xhr.responseText);
                         console.log(thisVue.cusRow);
-                        if(thisVue.cusRow.EMAIL!=''){
+                        if(!thisVue.cusRow.EMAIL){
+                            alert("請先登入");
+                        }else{
                             thisVue.person.name = thisVue.cusRow.CUS_NAME;
                             thisVue.person.phone = thisVue.cusRow.CUS_TEL;
                             thisVue.person.address = thisVue.cusRow.CUS_ADD;
-                        }else{
-                            alert("請先登入");
                         };
                     };
                     xhr.open("get", "phps/getMemberInfo.php", true);
@@ -288,16 +293,11 @@
                         this.activetab = `${num}`
                     }
                 },
-                // nextHandler(num) {
-                //     let credit_valid = this.ValidateCreditCardNumber(this.credit_card);
-                //     if (num == 2) {
-                //         if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test || !this.person.name || !this.person.address || !credit_valid)alert("資料不完整");
-                //             return this.activetab = '2';
-                //         }
-                //         // else this.activetab = `${num + 1}`
-                //     // this.activetab = `${num + 1}`
-                // },
                 nextHandler(num) {
+                    if (num == 1) {
+                        if (!this.cusRow.EMAIL) alert("請先登入");
+                        else this.activetab = `${num + 1}`
+                    }
                     let credit_valid = this.ValidateCreditCardNumber(this.credit_card);
                     if (num == 2) {
                         if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test || !this.person.name || !this.person.address || !
