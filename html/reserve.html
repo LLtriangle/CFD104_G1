@@ -171,7 +171,17 @@
                             </div>
                         </div>
                     </div>
-
+                    <div>
+                        <li>
+                            <input type="checkbox" id="same_as_cus" value="true" class="radio-input" hidden @change="same_as_cus">
+                            <label for="same_as_cus" class="radio-label pointer">
+                                <span class="radio-button"></span>
+                                <p class="in-b">同會員資料</p>
+                            </label>
+                        </li>
+                    </div>
+                    <!-- <input type="radio" name="same_as_cus">
+                    <label for="same_as_cus">同會員資料</label> -->
                     <!-- 姓名 -->
                     <div class="form_item input_name">
                         <h3>姓名</h3>
@@ -239,7 +249,7 @@
                         <p class="plan_price total">$ {{total}}</p>
                         <button class="next_btn" @click="nextHandler(1)" type="button">下一步</button>  
                     </div>
-                    <button type="button" @click="sendForm">確認</button>
+                    <!-- <button type="button" @click="sendForm">確認</button> -->
 
                 </form>
             </div>
@@ -333,7 +343,7 @@
                         <ion-icon name="arrow-back-outline"></ion-icon>
                         返回
                     </button>
-                    <button class="next_btn center" type="button" @click="nextHandler(2)"  id="submit">確認付款
+                    <button class="next_btn center" type="button" @click="nextHandler(2);sendForm"  id="submit">確認付款
                     <!-- <ion-icon name="arrow-forward-outline"></ion-icon> -->
                         
                     </button>
@@ -678,12 +688,30 @@
                 let xhr = new XMLHttpRequest();
                 let thisVue = this;
                 xhr.onload = function(){
-                    thisVue.cusRow = JSON.parse(xhr.responseText);
-                     
+                    thisVue.cusRow = JSON.parse(xhr.responseText);             
                 }
                 xhr.open("get", "phps/getMemberInfo.php", true);
                 xhr.send(null);
             },
+            same_as_cus(){
+                if( $("#same_as_cus").prop('checked') == true){
+                    // console.log("選到");
+                    this.name = this.cusRow.CUS_NAME;
+                    this.tel = this.cusRow.CUS_TEL;
+                    this.selectedCity = this.cusRow.CUS_ADD.substring(0,3);
+                    this.selectedArea = this.cusRow.CUS_ADD.substring(3,6);
+                    this.address = this.cusRow.CUS_ADD.substring(6);
+                    console.log(this.cusRow.CUS_ADD.substring(3,6));
+                }else{
+                    // console.log("沒選到");
+                    this.name = "";
+                    this.tel = "";
+                    this.selectedCity = "";
+                    this.selectedArea = "";
+                    this.address = "";
+                }
+
+            }
         },
         computed: {
             plan0_info() {
@@ -724,6 +752,8 @@
         mounted() {
             this.getMemberInfo();
             this.getsao_time();
+            this.same_as_cus();
+            this.changeCity();
         },
     });
 

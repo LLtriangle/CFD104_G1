@@ -33,7 +33,7 @@
                 <div class="con_data">
                     <a>工作行程</a><br>
                     <a>工作紀錄</a><br>
-                    <a id="btnLogout">登出</a>
+                    <a id="btnLogout" @click="logout">登出</a>
                 </div>
             </div>
         </section>
@@ -138,8 +138,8 @@
                         };
                         
                         $.ajax({
-                            url: `phps/getEmpSao.php`,
-                            data: `data=${emp_no}`, 
+                            // url: `phps/getEmpSao.php`,
+                            // data: `data=${emp_no}`, 
                             type: 'GET', 
                             dataType: 'json', 
                             success(res){
@@ -172,11 +172,6 @@
                                     let dots = tds[i].childNodes[0].childNodes[1].childNodes; // 早中晚點點 陣列
 
                                     if(dots[0].classList.contains("reserved")==true && dots[1].classList.contains("reserved")==true && dots[2].classList.contains("reserved")==true){
-                                        let full_img = document.createElement('img');
-                                        full_img.className = "full_img"
-                                        full_img.src = "img/soeasy_full.png"
-                                        tds[i].classList.add('full');
-                                        tds[i].appendChild(full_img);
                                     }
                                 }
 
@@ -187,6 +182,15 @@
                                 console.log(res);
                             },
                         });
+                    },
+                    logout(){        
+                        let xhr = new XMLHttpRequest();
+                        xhr.onload = function(){
+                            // 跳轉畫面
+                            window.location.assign("backendlogin.html");       
+                        }
+                        xhr.open("get", "phps/logout.php", true); // 清空session
+                        xhr.send(null);
                     },
                 },
                 mounted() {
