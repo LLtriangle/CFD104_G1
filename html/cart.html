@@ -5,18 +5,13 @@
     <!-- 初始設定，請自行修改title，及添加js連結 -->
     @@include('layout/head.html')
     <title>cart</title>
-
     <link rel="stylesheet" href="css/cart.css">
-    
-
-
 </head>
 
 <body>
 
     <!-- <header></header> -->
     @@include('layout/header.html')
-
     <div id="tabs" class="container">
 
         <div class="progress">
@@ -36,7 +31,7 @@
                         <div>{{item.prdNum}}</div>
                         <div><button @click="countNum(1,index)" class="add">+</button></div>
                         <div>$ {{(item.prdPrice* item.prdNum)}}</div>
-                        <div><button class="add" @click="del_btn(index)">
+                        <div><button class="add" @click="del_btn(index)"><img src="img/trash_bin.png" class="bin">
                             </button></div>
                     </div>
                 </div>
@@ -55,7 +50,7 @@
                     <tr>
                         <td colspan="2" class="left">優惠碼輸入:</td>
                         <td colspan="6">
-                            <input type="text" maxlength="11" v-model.trim="coupon" @change="" placeholder="請輸入折扣碼" class="full">
+                            <input type="text" maxlength="11" v-model.trim="person.coupon" @change="" placeholder="請輸入折扣碼" class="full">
                         </td>
                     </tr>
                     <tr>
@@ -64,21 +59,21 @@
                         <td colspan="2">{{show_coupon}}</td>
                     </tr>
                     <tr>
-                        <td class="left" colspan="3"><input type="radio" v-model="delivery" value="宅配" id="plan1"
+                        <td class="left" colspan="3"><input type="radio" v-model="person.delivery" value="宅配" id="plan1"
                                 class="radio-input"><label for="plan1" class="radio-label"><span
                                     class="radio-button"></span>宅配</label></td>
                         <td colspan="3"></td>
                         <td>$ 100</td>
                     </tr>
                     <tr>
-                        <td class="left" colspan="3"><input type="radio" v-model="delivery" value="7-11超商取貨付款"
+                        <td class="left" colspan="3"><input type="radio" v-model="person.delivery" value="7-11超商取貨付款"
                                 id="plan2" class="radio-input"><label for="plan2" class="radio-label"><span
                                     class="radio-button"></span>7-11超商取貨付款</label></td>
                         <td colspan="3"></td>
                         <td>$ 90</td>
                     </tr>
                     <tr>
-                        <td class="left" colspan="3"><input type="radio" v-model="delivery" value="全家超商取貨付款" id="plan3"
+                        <td class="left" colspan="3"><input type="radio" v-model="person.delivery" value="全家超商取貨付款" id="plan3"
                                 class="radio-input"><label for="plan3" class="radio-label"><span
                                     class="radio-button"></span>全家超商取貨付款</label></td>
                         <td colspan="3"></td>
@@ -136,19 +131,23 @@
                     </tr>
                     <tr>
                         <td colspan="3">收貨人姓名:</td>
-                        <td colspan="2"><input type="text" v-model.trim="name"></td>
+                        <td colspan="2"><input type="text" v-model.trim="person.name"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">收貨人電話:</td>
+                        <td colspan="2"><input type="text" v-model.number="person.phone"></td>
                     </tr>
                     <tr>
                         <td colspan="3">收貨地址:</td>
-                        <td><select name="市" v-model.trim="selectedCity" @change="changeCity">
+                        <!-- <td><select name="市" v-model.trim="person.selectedCity" @change="changeCity">
                                 <option value="" disabled>選擇縣市</option>
                                 <option v-for="City in Citys">{{City}}</option>
                             </select></td>
-                        <td><select name="區" v-model="selectedArea" @change="changeCity">
+                        <td><select name="區" v-model="person.selectedArea" @change="changeCity">
                                 <option value="" disabled>選擇區域</option>
                                 <option v-for="Area in Areas">{{Area}}</option>
-                            </select></td>
-                        <td colspan="3"><input type="text" v-model.trim="address"></td>
+                            </select></td> -->
+                        <td colspan="3"><input type="text" v-model.trim="person.address"></td>
                     </tr>
                 </table>
                 <div class="space">
@@ -165,15 +164,19 @@
                     </tr>
                     <tr>
                         <td class="left">物流資訊:</td>
-                        <td>{{delivery}}</td>
+                        <td>{{person.delivery}}</td>
                     </tr>
                     <tr>
                         <td class="left">收貨地址:</td>
-                        <td>{{selectedCity}}{{selectedArea}}{{address}}</td>
+                        <td>{{person.address}}</td>
                     </tr>
                     <tr>
                         <td class="left">收貨人姓名:</td>
-                        <td>{{name}}</td>
+                        <td>{{person.name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="left">收貨人電話:</td>
+                        <td>{{person.phone}}</td>
                     </tr>
                     <tr>
                         <td class="left">總金額:</td>
@@ -182,11 +185,10 @@
                 </table>
                 <div class="space">
                     <button class="center" v-on:click="activetab='2'">返回
-                    </button><button class="center">送出</button>
+                    </button><button class="center" @click="saveOrder">送出</button>
                 </div>
             </div>
         </div>
-
     </div>
     <script>
 
@@ -196,24 +198,27 @@
                 activetab: '1',
                 cart: [],
                 prdsRows: '',
-                message: '',
-                Citys: ["台北市", "新北市", "基隆市", "桃園市"],
-                Areas: '',
+                // Citys: ["台北市", "新北市", "基隆市", "桃園市"],
+                // Areas: '',
                 selectedYear: '',
                 selectedMonth: '',
                 test: '',
-                selectedCity: '',
-                selectedArea: '',
-                address: '',
                 credit_card: '',
-                cCard: 'Visa',
-                delivery: '宅配',
-                payment: '',
-                name: '',
-                coupon: '',
+                cCard: "'Visa','Mastercard'",
                 credit_card_png: ['img/visa.gif', 'img/mstercard.gif'],
                 isDisabled: true,
-                years: [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030]
+                years: [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
+                cusRow:[{EMAIL: '', CUS_NAME: '', CUS_TEL: '',CUS_ADD:''}],
+                person: {
+                    phone: '',
+                    coupon: '',
+                    // selectedCity: '',
+                    // selectedArea: '',
+                    address: '',
+                    name: '',
+                    delivery: '宅配',
+                    total: '',
+                    },
             },
             watch: {
                 credit_card(nVal, oVal) {
@@ -222,69 +227,54 @@
                 },
             },
             methods: {
+                getMemberInfo(){
+                    let xhr = new XMLHttpRequest();
+                    let thisVue = this;
+                    xhr.onload = function(){
+                        thisVue.cusRow = JSON.parse(xhr.responseText);
+                        console.log(thisVue.cusRow);
+                        if(thisVue.cusRow.EMAIL!=''){
+                            thisVue.person.name = thisVue.cusRow.CUS_NAME;
+                            thisVue.person.phone = thisVue.cusRow.CUS_TEL;
+                            thisVue.person.address = thisVue.cusRow.CUS_ADD;
+                        }else{
+                            alert("請先登入");
+                        };
+                    };
+                    xhr.open("get", "phps/getMemberInfo.php", true);
+                    xhr.send(null);
+                },
                 del_btn(index){
-                    // this.cart.splice(index,1);
-                    // let cart = JSON.parse(localStorage.getItem("cart"));
-                    // console.log(index);
-                    // console.log(cart);
-                    // console.log(this.cart);
-                    // cart.splice(cart.indexOf(index),1);
                     this.cart.splice(index,1);
                     localStorage.setItem("cart",JSON.stringify(this.cart));
-                    // console.log(cart);
-                    // console.log(this.cart);
                 },
-                // getprds() {
-                //     let List = localStorage.getItem('prd_name.PRD_NO');
-                //     if (list) this.list = JSON.parse(list);
-                //     let xhr = new XMLHttpRequest();
-                //     let thisVue = this;
-                //     xhr.onload = function(){
-                //         thisVue.prdsRows = JSON.parse(xhr.responseText);
-                //     }
-                //     xhr.open("get", "phps/cart.php?tableName=prd", true);
-                //     xhr.send(null);
-                // },
                 getList() {
                     let cart = JSON.parse(localStorage.getItem("cart"));
                     console.log(cart);
                     this.cart = cart;
-                    
-                    // let xhr = new XMLHttpRequest();
-                    // let thisVue = this;
-                    // xhr.onload = function(){
-                    //     thisVue.prdsRows = JSON.parse(xhr.responseText);
-                    //     thisVue.prdsRows.p
-                    // }
-                    // xhr.open("get", "phps/cart.php?tableName=prd", true);
-                    // xhr.send(null);
                 },
                 setList() {
-                    //let cart = JSON.parse(localStorage.setItem("cart"));
                     localStorage["cart"] = JSON.stringify(this.cart);
-                    // localStorage.getItem('prd_name.PRD_NO');
                 },
                 ValidateCreditCardNumber(num) {
-
-                    // var ccNum = document.getElementById("cardNum").value;
-                    // var ccNum = num;
+                    var ccNum = document.getElementById("cardNum").value;
+                    var ccNum = num;
                     var visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
                     var mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
-                    console.log((visaRegEx.test(num)))
+                    // console.log((visaRegEx.test(num)));
                     if (this.cCard === 'Visa') {
-                        // if (!(visaRegEx.test(num))) {
-                        //     return (visaRegEx.test(num))
-                        // }
+                        if (!(visaRegEx.test(num))) {
+                            return false;
+                        }
                         return (visaRegEx.test(num))
-                    } else {
-                        // if (!mastercardRegEx.test(num)) {
-                        //     alert("信用卡資料有誤");
-                        // }
-                        return (!mastercardRegEx.test(num))
+                    } else if (this.cCard === 'Mastercard') {
+                        if (!mastercardRegEx.test(num)) {
+                            return false;
+                        }
+                        return (mastercardRegEx.test(num))
                     }
                 },
                 countNum(x, index) {
-                    // alert("hi");
                     this.cart[index].prdNum += x;
                     if (this.cart[index].prdNum != 1) {
                         this.cart[index].isDisabled = false
@@ -298,40 +288,53 @@
                         this.activetab = `${num}`
                     }
                 },
+                // nextHandler(num) {
+                //     let credit_valid = this.ValidateCreditCardNumber(this.credit_card);
+                //     if (num == 2) {
+                //         if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test || !this.person.name || !this.person.address || !credit_valid)alert("資料不完整");
+                //             return this.activetab = '2';
+                //         }
+                //         // else this.activetab = `${num + 1}`
+                //     // this.activetab = `${num + 1}`
+                // },
                 nextHandler(num) {
                     let credit_valid = this.ValidateCreditCardNumber(this.credit_card);
                     if (num == 2) {
-                        if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test || !
-                            this.name || !this.selectedCity || !this.selectedArea || !this.address || !
+                        if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test || !this.person.name || !this.person.address || !
                             credit_valid) alert("資料不完整");
                         else this.activetab = `${num + 1}`
                     }
                 },
+
                 saveOrder(){
                     let data_info = JSON.stringify(this.cart);
+                    let person_info = JSON.stringify(this.person);
                     let xhr = new XMLHttpRequest();
-                    let url = "phps/orderToDb.php?cart=" + data_info;
+                    xhr.onload = function(){
+                        console.log(xhr.responseText);
+                    }
+                    let url = "phps/orderToDb.php?cart=" + data_info + "&person=" + person_info;
                     xhr.open("get", url , true);
                     xhr.send(null);
                 },
-                changeCity() {
-                    if (this.selectedCity === "台北市") {
-                        return this.Areas = ["中正區", "大同區", "中山區", "松山區", "大安區", "萬華區", "信義區", "士林區", "北投區",
-                            "內湖區", "南港區", "文山區"
-                        ];
-                    } else if (this.selectedCity === "新北市") {
-                        return this.Areas = ["萬里區", "金山區", "板橋區", "汐止區", "深坑區", "石碇區", "瑞芳區", "平溪區", "雙溪區",
-                            "貢寮區", "新店區", "坪林區", "烏來區", "永和區", "中和區", "土城區", "三峽區", "樹林區", "鶯歌區", "三重區",
-                            "新莊區", "泰山區", "林口區", "蘆洲區", "五股區", "八里區", "淡水區", "三芝區", "石門區"
-                        ];
-                    } else if (this.selectedCity === "基隆市") {
-                        return this.Areas = ["仁愛區", "信義區", "中正區", "中山區", "安樂區", "暖暖區", "七堵區"];
-                    } else {
-                        return this.Areas = ["中壢區", "平鎮區", "龍潭區", "楊梅區", "新屋區", "觀音區", "桃園區", "龜山區", "八德區",
-                            "大溪區", "復興區", "大園區", "蘆竹區"
-                        ];
-                    }
-                },
+                // changeCity() {
+                //     if (this.selectedCity === "台北市") {
+                //         return this.Areas = ["中正區", "大同區", "中山區", "松山區", "大安區", "萬華區", "信義區", "士林區", "北投區",
+                //             "內湖區", "南港區", "文山區"
+                //         ];
+                //     } else if (this.selectedCity === "新北市") {
+                //         return this.Areas = ["萬里區", "金山區", "板橋區", "汐止區", "深坑區", "石碇區", "瑞芳區", "平溪區", "雙溪區",
+                //             "貢寮區", "新店區", "坪林區", "烏來區", "永和區", "中和區", "土城區", "三峽區", "樹林區", "鶯歌區", "三重區",
+                //             "新莊區", "泰山區", "林口區", "蘆洲區", "五股區", "八里區", "淡水區", "三芝區", "石門區"
+                //         ];
+                //     } else if (this.selectedCity === "基隆市") {
+                //         return this.Areas = ["仁愛區", "信義區", "中正區", "中山區", "安樂區", "暖暖區", "七堵區"];
+                //     } else {
+                //         return this.Areas = ["中壢區", "平鎮區", "龍潭區", "楊梅區", "新屋區", "觀音區", "桃園區", "龜山區", "八德區",
+                //             "大溪區", "復興區", "大園區", "蘆竹區"
+                //         ];
+                //     }
+                // },
             },
             computed: {
                 total_all() {
@@ -339,37 +342,37 @@
                     for (let i = 0; i < this.cart.length; i++) {
                         all += this.cart[i].prdPrice * this.cart[i].prdNum;
                     }
-                    if (this.coupon === "2022HAPPY88") {
-                        all *= this.param;
+                    if (this.person.coupon === "2022HAPPY88") {
+                        all = (all * this.param);
                         all += this.fee;
-                    } else if (this.coupon === "22HAPPYMDAY" || this.coupon === "22SOEASYEVD") {
+                    } else if (this.person.coupon === "22HAPPYMDAY" || this.person.coupon === "22SOEASYEVD") {
                         all += this.param;
                         all += this.fee;
                     } else {
                         all += this.fee;
                     }
+                    this.person.total = all;
                     return all;
                 },
-
                 // 運費
                 fee() {
-                    if (this.delivery === "宅配") {
+                    if (this.person.delivery === "宅配") {
                         return 100
-                    } else if (this.delivery === "7-11超商取貨付款") {
+                    } else if (this.person.delivery === "7-11超商取貨付款") {
                         return 90
-                    } else if (this.delivery === "全家超商取貨付款") {
+                    } else if (this.person.delivery === "全家超商取貨付款") {
                         return 80
                     }
                 },
                 // 折扣碼顯示
                 show_coupon() {
-                    if (this.coupon === "22HAPPYMDAY") {
+                    if (this.person.coupon === "22HAPPYMDAY") {
                         return "折扣1000元"
-                    } else if (this.coupon === "2022HAPPY88") {
+                    } else if (this.person.coupon === "2022HAPPY88") {
                         return "全部商品打88折"
-                    } else if (this.coupon === "22SOEASYEVD") {
+                    } else if (this.person.coupon === "22SOEASYEVD") {
                         return "折扣900元"
-                    } else if (this.coupon === "") {
+                    } else if (this.person.coupon === "") {
                         return ""
                     } else {
                         return "折扣碼無效"
@@ -377,19 +380,18 @@
                 },
                 // 折扣參數
                 param() {
-                    if (this.coupon === "22HAPPYMDAY") {
+                    if (this.person.coupon === "22HAPPYMDAY") {
                         return -1000
-                    } else if (this.coupon === "2022HAPPY88") {
+                    } else if (this.person.coupon === "2022HAPPY88") {
                         return 0.88
-                    } else if (this.coupon === "22SOEASYEVD") {
+                    } else if (this.person.coupon === "22SOEASYEVD") {
                         return -900
                     }
                 },
             },
             mounted() {
                 this.getList();
-                // let storage = localStorage;
-				// this.getprds();
+                this.getMemberInfo();
             },
         });
     </script>

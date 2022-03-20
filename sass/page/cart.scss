@@ -60,22 +60,6 @@ button{
         }
     }
 }
-table{
-    margin: 10px 0;
-    width: 100%;
-    .radio-input{
-        display: none;
-    }
-    .creditCard{
-    text-align: center;
-    }
-}
-.add{
-    padding: 5px 15px;
-    border-radius: 15px;
-    // width: 25px;
-}
-
 .tabcontent {
     background-color: map-get($color , "plain" );
     padding: 30px 50px;
@@ -86,6 +70,16 @@ table{
         display: flex;
         width: 100%;
         justify-content: center;
+        .add{
+            padding: 5px 15px;
+            border-radius: 15px;
+            
+        }
+        img{
+            &.bin{
+                width: 20px;
+            }
+        }
     }
     .left{
         text-align: left;
@@ -99,12 +93,22 @@ table{
         text-align: center;
         padding: 0.3em 0.4em;
         color: map-get($color, 'black');
-        .product{
+        img.product{
             height: 50px;
         }
         .left{
             text-align: left;
         }
+    }
+}
+table{
+    margin: 10px 0;
+    width: 100%;
+    .radio-input{
+        display: none;
+    }
+    .creditCard{
+    text-align: center;
     }
 }
 .data { width: 120px; }
@@ -218,33 +222,4 @@ textarea {
         }
     }
     // 第二頁
-    .payment{
-        .ccard{
-            width: 100%;
-            display: block;
-            .c_pic{
-                margin-top: 10px;
-                width: 100%;
-                img{
-                    width: 50%;
-                }
-            }
-            .table_ccard{
-                width: 100%;
-                box-sizing: border-box;
-                margin: 0 auto;
-                div{
-                    box-sizing: border-box;
-                    margin: 20px 0;
-                    h4{
-                        margin-right: 10px;
-                    }
-                    select{
-                        margin: 10px auto;
-                        min-width: unset;
-                    }
-                }
-            }
-        }
-    }
 }
