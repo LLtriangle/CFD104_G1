@@ -116,15 +116,20 @@ header{
             padding: 10px;
         }
 
-        // .user{
-        //     width: 50px;
-        //     overflow: hidden;
-        //     border-radius: 50%;
-        //     img{
-        //         height: 50px;
+        a.user{
+            margin: 8px;
+            padding: 0;
+            width: 41px;
+            overflow: hidden;
+            border-radius: 50%;
+            svg{
+                margin: 8px;
+            }
+            img{
+                height: 41px;
                 
-        //     }
-        // }
+            }
+        }
 
         /*header_function menu 漢堡按鈕 每層*/
         .menu_btns{

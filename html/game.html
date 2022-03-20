@@ -234,7 +234,7 @@
             e.preventDefault();
             var data = e.dataTransfer.getData("text");
             e.target.parentNode.parentNode.lastChild.appendChild(document.getElementById(data));
-            if($('#wardrobe #hiding img').length == 0){
+            if($('#trashcan #garbage img').length == 0){
                 // 條件:垃圾桶是空的，顯示為空
                 $('#trashcan').addClass('empty');
             }else{

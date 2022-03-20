@@ -209,15 +209,26 @@
                             <span>(最多上傳3張,僅支援格式 jpg /png)</span>
                         </p>
                         <div class="your_pics" id="your_pics">
-                            <label for="upFile" class="file_label_rwd" id="file_label_rwd">
+                            <!-- ----手機版 -->
+                            <!-- <label for="upFile" class="file_label_rwd" id="file_label_rwd">
                                 <img src="img/reserve_upload.png" alt="">
-                            </label>
+                            </label> -->
+
                             <div id="div_myimgs">
                                 <!-- 這裡放照片 -->
                             </div>
-                            <div id="div_upload">
-                                <input type="file" name="upFile" id="upFile" style="display: none;" accept="image/jpeg, image/png"  multiple>
-                                <label for="upFile">
+
+                            <div class="flex" id="div_upload">
+                                <input type="file" name="upFile1" id="upFile1" style="display: none;" accept="image/jpeg, image/png">
+                                <label for="upFile1" id="upFile1_l">
+                                    <img src="img/reserve_upload.png" alt="">
+                                </label>
+                                <input type="file" name="upFile2" id="upFile2" style="display: none;" accept="image/jpeg, image/png">
+                                <label for="upFile2" id="upFile2_l">
+                                    <img src="img/reserve_upload.png" alt="">
+                                </label>
+                                <input type="file" name="upFile3" id="upFile3" style="display: none;" accept="image/jpeg, image/png">
+                                <label for="upFile3" id="upFile3_l">
                                     <img src="img/reserve_upload.png" alt="">
                                 </label>
                             </div>
@@ -422,7 +433,7 @@
             price1: 1000, // 方案1價格
             price2: 900, // 方案2價格
             // emps: [{name:"麻里不會",no:1},{name:"末牛子",no:2},{name:"潔癖子",no:3}],
-            emps:['麻里不會','末牛子','潔癖子'],
+            emps:['麻里不會','末牛子','潔癖子','地球鈔人'],
             emp_no:'',
             selectedEmp: '',
             tel: '',
@@ -526,12 +537,14 @@
                     tds[i].classList.remove('full');
                 };
                 let emp_name = this.selectedEmp;
-                if(emp_name=="麻里不會"){
+                if(emp_name == "麻里不會"){
                     emp_no=1
-                }else if(emp_name=="末牛子"){
+                }else if(emp_name == "末牛子"){
                     emp_no=2
-                }else if(emp_name=="潔癖子"){
+                }else if(emp_name == "潔癖子"){
                     emp_no=3
+                }else if(emp_name == "地球鈔人"){
+                    emp_no=6
                 }
                 
                 let thisVue = this;
@@ -617,8 +630,12 @@
                 formData.append('sao_time',thisVue.sao_time);
                 formData.append('sao_add',thisVue.selectedCity+thisVue.selectedArea+thisVue.address);
                 formData.append('needs',thisVue.need);
-                // formData.append('upload_pic[]',upFile.files[0]);
-                // console.log(thisVue.sao_date);
+                formData.append('upload_pic1',upFile1.files[0]);
+                formData.append('upload_pic2',upFile2.files[0]);
+                formData.append('upload_pic3',upFile3.files[0]);
+                // for (let i = 0; i < upFile.files.length; i++) {
+                //     formData.append('file[]', fileList[i])
+                // }
                 let xhr = new XMLHttpRequest();
                 xhr.onload = function(){
                     console.log(xhr.responseText);

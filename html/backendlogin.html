@@ -18,14 +18,13 @@
             <form class="form">
                 <h2>後臺登入</h2>
                 <p class="col">使用員工帳號登入</p>
-                
-                
-                <input @change="account" class="form_input" type="text" placeholder="輸入註冊 Email" maxlength="50">
+                       
+                <input id="emp_email" class="form_input" type="text" placeholder="輸入Email" maxlength="50">
                 <div v-if="mun">必填</div><br>
                 
-                <input class="form_input" type="password" placeholder="輸入密碼" maxlength="8"><br>
+                <input id="emp_psw" class="form_input" type="password" placeholder="輸入密碼" maxlength="8"><br>
                 <!-- <a href="#">忘記您的密碼?</a> -->
-                <button type="button" >
+                <button @click="sendForm" type="button" >
                     <span class="form_button button">登入</span>
                 </button>
             </form>
@@ -44,16 +43,65 @@
             data: {
             mun: 0
             },
-            // computed: {
-            //     account(){
-            //         if(account.value = ''){
-            //             return alert === 1
-            //         }
-            //     }
-
-            // }
+            methods: {
+                sendForm(){
+                    let emp = {};
+                    let xhr = new XMLHttpRequest();
+                    xhr.onload = function(){ 
+                        emp = JSON.parse(xhr.responseText);
+                        if(emp.EMP_NO == undefined){
+                            alert("帳密錯誤");
+                        }else{
+                        // 成功
+                            if(emp.JOB=="整理師"){
+                                location.href="emp.html";
+                            }else if(emp.JOB=="網站管理員"){
+                                location.href="backend.html";
+                            }             
+                        }
+                    };
+                xhr.open("post", "phps/empLogin.php", true);  
+                xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                
+                let datas = {};
+                datas.emp_email = $("#emp_email").val(); // 收到輸入框的帳號
+                datas.emp_psw = $("#emp_psw").val(); // 收到輸入框的密碼
+                
+                let data_info = "json=" + JSON.stringify(datas);
+                xhr.send(data_info);
+                },
+            },
         })
 
     </script>
+    <!-- <script>
+    let emp = {};
+    function sendForm(){
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function(){ 
+            emp = JSON.parse(xhr.responseText);
+            if(emp.EMP_NO == undefined){
+              alert("帳密錯誤");
+            }else{
+              // 成功
+                if(emp.JOB="整理師"){
+                    location.href="emp.html";
+                }else if(emp.JOB="網站管理員"){
+                    location.href="backend.html";
+                }             
+            }
+        };
+        xhr.open("post", "phps/empLogin.php", true);  
+        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+        
+        let datas = {};
+        datas.emp_email = $("#emp_email").val(); // 收到輸入框的帳號
+        datas.emp_psw = $("#emp_psw").val(); // 收到輸入框的密碼
+        
+        let data_info = "json=" + JSON.stringify(datas);
+        xhr.send(data_info);
+        
+    };
+    </script> -->
 </body>
 </html>

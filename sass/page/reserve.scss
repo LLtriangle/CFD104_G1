@@ -538,7 +538,7 @@ textarea {
             }
             // 上傳照片的div
             #div_myimgs{
-                width: 100%;
+                // width: 100%;
                 display: flex;
                 overflow: hidden;
                 div{
@@ -553,7 +553,10 @@ textarea {
                 }
             }
             #div_upload{
-                display: none;
+                label{
+                    width: 100px;
+                    height: 100px;
+                }
             }
 
         }
@@ -609,3 +612,10 @@ textarea {
         }
     }
 }
+
+// .upload_pics .your_pics #div_upload #upFile2_l{
+//     display: none;
+// }
+// .upload_pics .your_pics #div_upload #upFile3_l{
+//     display: none;
+// }
