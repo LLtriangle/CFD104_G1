@@ -28,7 +28,7 @@
                             <!-- email -->
                             <p><span>{{cusRow.EMAIL}}</span></p>
                         </div>
-                        <img src="img/memupupdowndown.png" alt="" class="up_down">
+                        <img src="img/memupupdowndown.png"  class="up_down">
                     </div>
                 </label>
                 <div class="con_data">
@@ -118,25 +118,25 @@
             <!-- 我是訂單區 ------------------------------->
             <div class="data_mem data_list" v-show="p_order">
                 <!-- <h3>商品訂單</h3> -->
-                <div class="memberOrder"   v-for="ordcloumn in ordcloumns">
+                <div class="memberOrder" v-for="ordcloumn in ordcloumns">
                     <div class="memberOrderContent">
                         <div class="memberGrid">
                             <div class="memberGrid1">訂單編號</div>
                             <div class="memberGrid2">日期</div>
-                            <div class="memberGrid3">金額</div>
+                            <div class="memberGrid3">訂單金額</div>
                             <div class="memberGrid4">取貨方式</div>
-                            <div class="memberGrid5">付款狀態</div>
-                            <div class="memberGrid6">暫定會員邊號</div>
-                            <div class="memberGrid7">訂單狀態</div>
-                            <div class="memberGrid8">收件人資訊</div>
+                            <!-- <div class="memberGrid5">付款狀態</div>
+                            <div class="memberGrid6">暫定會員邊號</div> -->
+                            <div class="memberGrid5">訂單狀態</div>
+                            <div class="memberGrid6">收件人資訊</div>
                             <div class="memberGrid9"> {{ordcloumn.ORD_NO}} </div>
                             <div class="memberGrid10"> {{ordcloumn.TIME}} </div>
-                            <div class="memberGrid11"> {{ordcloumn.TOTAL}} </div>
+                            <div class="memberGrid11"> ${{ordcloumn.TOTAL}} </div>
                             <div class="memberGrid12"> {{ordcloumn.SHIPPING}} </div>
-                            <div class="memberGrid13"> {{ordcloumn.PAY_STATE}} </div>
-                            <div class="memberGrid14"> {{ordcloumn.CUS_NO}} </div>
-                            <div class="memberGrid15"> {{ordcloumn.STATE}} </div>
-                            <div class="memberGrid16 memberReceiverID">詳細資訊</div>
+                            <!-- <div class="memberGrid13"> {{ordcloumn.PAY_STATE}} </div>
+                            <div class="memberGrid14"> {{ordcloumn.CUS_NO}} </div> -->
+                            <div class="memberGrid13"> {{ordcloumn.STATE}} </div>
+                            <div class="memberGrid14 memberReceiverID">詳細資訊</div>
                         </div>
                     </div>
             
@@ -147,11 +147,11 @@
                                     <div>訂單詳情</div>
                                     
                                 </div>
-                                <a :href="'product.php?prdno='+ordcloumn.PRD_NO" class="memberOrderD2" >
-                                    <img :src="'img/'+ordcloumn.IMG1">
-                                    <div>{{ordcloumn.PRD_NAME}}</div>
-                                    <div>{{ordcloumn.AMOUNT}}件</div>
-                                    <div>${{ordcloumn.AMOUNT*ordcloumn.prd_price}}</div>
+                                <a :href="'product.php?prdno='+ordprd.PRD_NO" class="memberOrderD2"  v-for="ordprd in ordprds.filter((obj) => obj.ORD_NO == ordcloumn.ORD_NO )">
+                                    <img :src="'img/'+ordprd.IMG1">
+                                    <div>{{ordprd.PRD_NAME}}</div>
+                                    <div class="amount_center">{{ordprd.AMOUNT}}件</div>
+                                    <div>${{ordprd.AMOUNT*ordprd.PRICE}}</div>
                                 </a>
                                 <!-- <a href="product.html" class="memberOrderD2">
                                     <img src="img/index_product_3.png">
@@ -236,6 +236,7 @@
                     // {SAO_NO: '', EMP_NO: '', empname: '', CUS_NO: '',cusname:'',planname:'',SAO_NAME:'',SAO_TEL:'',SAO_DATE:'',SAO_TIME:'',SAO_ADD:'',UPLOAD_PIC1:'',UPLOAD_PIC2:'',UPLOAD_PIC3:'',NEEDS:'',STATE:'',INFO:'',BEFORE_IMG:'',AFTER_IMG:'',PRICE:''}
                     ordcloumns:[],
                     // {ORD_NO: '',CUS_NO: '',  CUS_NAME: '', CUS_TEL: '',CUS_ADD:'',TIME:'',SHIPPING:'',TOTAL:'',PAY_STATE:'',STATE:'',COUPON:'',PRD_NO:'',PRD_NAME:'',prd_price:'',AMOUNT:''}
+                    ordprds:[],
                 },
                 methods: {
                     getMemberInfo(){
@@ -261,38 +262,56 @@
                         let xhr = new XMLHttpRequest();
                         let thisVue = this;
                         xhr.onload = function(){
-                            console.log(xhr.responseText);
-                            console.log((xhr.responseText));
+                            // console.log(xhr.responseText);
+                            // console.log(xhr.responseText.split('|'));
+                            a =xhr.responseText.split('|');
+                            // console.log(JSON.parse(a[0]));
+                            // console.log(JSON.parse(a[1]));
+                            thisVue.ordcloumns = JSON.parse(a[0]); //訂單細項
+                            thisVue.ordprds = JSON.parse(a[1]);    //商品詳情
 
-                            thisVue.ordcloumns = JSON.parse(xhr.responseText);
-                            // console.log(thisVue.ordcloumns[0].SHIPPING);
-                        }
+                            console.log(thisVue.ordcloumns[0].SHIPPING);
+                            for(i in thisVue.ordcloumns){
+
+                                if(thisVue.ordcloumns[i].SHIPPING == '1'){
+                                    thisVue.ordcloumns[i].SHIPPING = "宅配";
+                                }else if(thisVue.ordcloumns[i].SHIPPING == '2'){
+                                    thisVue.ordcloumns[i].SHIPPING = "seven取貨";
+                                }else if(thisVue.ordcloumns[i].SHIPPING == '3'){
+                                    thisVue.ordcloumns[i].SHIPPING = "全家取貨";
+                                };
+                                // 沒有付款狀態了
+                                // if(thisVue.ordcloumns[i].PAY_STATE == '0'){
+                                //     thisVue.ordcloumns[i].PAY_STATE = "未付款";
+                                // }else if(thisVue.ordcloumns[i].PAY_STATE == '1'){
+                                //     thisVue.ordcloumns[i].PAY_STATE = "已付款";
+                                // };
+                                if(thisVue.ordcloumns[i].STATE == '0'){
+                                    thisVue.ordcloumns[i].STATE = "未完成";
+                                }else if(thisVue.ordcloumns[i].STATE == '1'){
+                                    thisVue.ordcloumns[i].STATE = "已完成";
+                                };
+                            };
+                        };
                         xhr.open("get", "phps/memberOrd.php", true);
-                        xhr.send(null);
-                        // if(thisVue.ordcloumn.SHIPPING == '1'){
-                        //         thisVue.ordcloumn.SHIPPING = "宅配";
-                        //     }else if(thisVue.ordcloumn.SHIPPING == '2'){
-                        //         thisVue.ordcloumn.SHIPPING = "seven取貨";
-                        //     }else if(thisVue.ordcloumn.SHIPPING == '3'){
-                        //         thisVue.ordcloumn.SHIPPING = "全家取貨";
-                        //     };
-                        //     if(thisVue.ordcloumn.PAY_STATE == '0'){
-                        //         thisVue.ordcloumn.PAY_STATE = "未付款";
-                        //     }else if(thisVue.ordcloumn.PAY_STATE == '1'){
-                        //         thisVue.ordcloumn.PAY_STATE = "已付款";
-                        //     };
-                        //     if(thisVue.ordcloumn.STATE == '0'){
-                        //         thisVue.ordcloumn.STATE = "未完成";
-                        //     }else if(thisVue.ordcloumn.STATE == '1'){
-                        //         thisVue.ordcloumn.STATE = "已完成";
-                        //     };
+                        xhr.send(null);  
                     },
                     getReserveInfo(){
                         let xhr = new XMLHttpRequest();
                         let thisVue = this;
                         xhr.onload = function(){
-                            // console.log(JSON.parse(xhr.responseText));
+                            console.log(xhr.responseText);
                             thisVue.rescloumns = JSON.parse(xhr.responseText);
+                            for(i in thisVue.rescloumns){
+                                if(thisVue.rescloumns[i].STATE == '1'){
+                                    thisVue.rescloumns[i].STATE = "已完成";
+                                }else if(thisVue.rescloumns[i].STATE == '2'){
+                                    thisVue.rescloumns[i].STATE = "已取消";
+                                }else if(thisVue.rescloumns[i].STATE == '0'){
+                                    thisVue.rescloumns[i].STATE = "未完成";
+                                };
+                                
+                            };
                         }
                         xhr.open("get", "phps/memberSao.php", true);
                         xhr.send(null);
