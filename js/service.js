@@ -1,4 +1,4 @@
-$(window).on('load',function(){
+window.addEventListener('load',function(){
   
 // 前後對比 gsap scrollTrigger
 	const serveCase = gsap.timeline({
