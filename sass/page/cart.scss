@@ -66,6 +66,9 @@ button{
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 4px 4px 8px #e1e1e1;
+    .noshopping{
+        padding: 20px;
+    }
     .flex{
         display: flex;
         width: 100%;
@@ -73,12 +76,6 @@ button{
         .add{
             padding: 5px 15px;
             border-radius: 15px;
-            
-        }
-        img{
-            &.bin{
-                width: 20px;
-            }
         }
     }
     .left{
@@ -93,8 +90,8 @@ button{
         text-align: center;
         padding: 0.3em 0.4em;
         color: map-get($color, 'black');
-        img.product{
-            height: 50px;
+        img{
+            height: 30px;
         }
         .left{
             text-align: left;
@@ -209,6 +206,7 @@ textarea {
         width: 100%;
         min-width: unset;
         margin: 40px auto;
+        margin-top: 92px; // 推header
         .progress{
             margin-left:0;
             a{  
@@ -221,5 +219,20 @@ textarea {
             }
         }
     }
-    // 第二頁
+}
+@media screen and (max-width: 619px) {
+    body{
+        min-width: 418px;
+    }
+    .tabcontent {
+        .flex{
+            flex-wrap: wrap;
+            div{
+                min-width: 33%;
+                &.width20{
+                    min-width: 20%;
+                }
+            }
+        }
+    }
 }

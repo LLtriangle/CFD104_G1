@@ -15,23 +15,29 @@
     <div id="tabs" class="container">
 
         <div class="progress">
-            <a v-bind:class="[ activetab === '1' ? 'active' : '' ]" @click="clickHandler(1)"><img src="img/reserve_contract.png" alt=""> 商品資訊</a>
-            <a v-bind:class="[ activetab === '2' ? 'active' : '' ]" @click="clickHandler(2)"><img src="img/reserve_credit-card.png" alt=""> 付款資訊</a>
-            <a v-bind:class="[ activetab === '3' ? 'active' : '' ]" @click="clickHandler(3)"><img src="img/reserve_receipt.png" alt=""> 訂單明細</a>
+            <a v-bind:class="[ activetab === '1' ? 'active' : '' ]" @click="clickHandler(1)"><img
+                    src="img/reserve_contract.png" alt=""> 商品資訊</a>
+            <a v-bind:class="[ activetab === '2' ? 'active' : '' ]" @click="clickHandler(2)"><img
+                    src="img/reserve_credit-card.png" alt=""> 付款資訊</a>
+            <a v-bind:class="[ activetab === '3' ? 'active' : '' ]" @click="clickHandler(3)"><img
+                    src="img/reserve_receipt.png" alt=""> 訂單明細</a>
         </div>
 
         <div class="content">
             <div v-if="activetab ==='1'" class="tabcontent">
+                <div v-if="noshopping" class="noshopping">目前購物車是空的</div>
                 <div v-for="(item, index) in cart">
                     <div class="flex">
-                        <div><img :src="'img/'+item.prdImg" class="product"></div>
-                        <div>{{item.prdName}}</div>
-                        <div>$ {{item.prdPrice}}</div>
-                        <div><button @click="countNum(-1,index)" :disabled="item.isDisabled" class="add">-</button></div>
-                        <div>{{item.prdNum}}</div>
-                        <div><button @click="countNum(1,index)" class="add">+</button></div>
-                        <div>$ {{(item.prdPrice* item.prdNum)}}</div>
-                        <div><button class="add" @click="del_btn(index)"><img src="img/trash_bin.png" class="bin">
+                        <div><img :src="'img/'+item.prdImg" style="height: 50px;"></div>
+                        <div style="padding-top: 16px;flex-grow: 1;">{{item.prdName}}</div>
+                        <div style="padding-top: 16px;min-width: 60px;">$ {{item.prdPrice}}</div>
+                        <div class="width20"><button @click="countNum(-1,index)" :disabled="item.isDisabled" class="add width20">-</button>
+                        </div>
+                        <div style="padding-top: 16px;min-width: 28px;" class="width20">{{item.prdNum}}</div>
+                        <div class="width20"><button @click="countNum(1,index)" class="add width20">+</button></div>
+                        <div style="padding-top: 16px;min-width: 60px;" class="width20">$ {{(item.prdPrice* item.prdNum)}}</div>
+                        <div class="width20"><button style="padding: 5px 8px;border-radius: 10px;" @click="del_btn(index)"><img
+                                    src="img/trash_bin.png" style="width: 30px;">
                             </button></div>
                     </div>
                 </div>
@@ -48,48 +54,44 @@
                             </button></td>
                     </tr> -->
                     <tr>
-                        <td colspan="2" class="left">優惠碼輸入:</td>
-                        <td colspan="6">
-                            <input type="text" maxlength="11" v-model.trim="person.coupon" @change="" placeholder="請輸入折扣碼" class="full">
+                        <td class="left">優惠碼輸入:</td>
+                        <td>
+                            <input type="text" maxlength="11" v-model.trim="person.coupon"
+                                placeholder="請輸入折扣碼" class="full">
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="left">送貨及物流資訊</td>
-                        <td colspan="3"></td>
-                        <td colspan="2">{{show_coupon}}</td>
+                        <td class="left">送貨及物流資訊</td>
+                        <td>{{show_coupon}}</td>
                     </tr>
                     <tr>
-                        <td class="left" colspan="3"><input type="radio" v-model="person.delivery" value="宅配" id="plan1"
+                        <td class="left"><input type="radio" v-model="person.delivery" value="宅配" id="plan1"
                                 class="radio-input"><label for="plan1" class="radio-label"><span
                                     class="radio-button"></span>宅配</label></td>
-                        <td colspan="3"></td>
                         <td>$ 100</td>
                     </tr>
                     <tr>
-                        <td class="left" colspan="3"><input type="radio" v-model="person.delivery" value="7-11超商取貨付款"
+                        <td class="left"><input type="radio" v-model="person.delivery" value="7-11超商取貨付款"
                                 id="plan2" class="radio-input"><label for="plan2" class="radio-label"><span
                                     class="radio-button"></span>7-11超商取貨付款</label></td>
-                        <td colspan="3"></td>
                         <td>$ 90</td>
                     </tr>
                     <tr>
-                        <td class="left" colspan="3"><input type="radio" v-model="person.delivery" value="全家超商取貨付款" id="plan3"
-                                class="radio-input"><label for="plan3" class="radio-label"><span
+                        <td class="left"><input type="radio" v-model="person.delivery" value="全家超商取貨付款"
+                                id="plan3" class="radio-input"><label for="plan3" class="radio-label"><span
                                     class="radio-button"></span>全家超商取貨付款</label></td>
-                        <td colspan="3"></td>
                         <td>$ 80</td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="left">總金額</td>
-                        <td colspan="4"></td>
+                        <td class="left">總金額</td>
                         <td>$ {{total_all}}</td>
                     </tr>
                 </table>
 
                 <div class="space">
                     <button class="center" onClick="javascript:history.back()">繼續購物
-                        </button>
-                    <button v-on:click="activetab='2'" class="center">下一步</button>
+                    </button>
+                    <button class="center" @click="nextHandler(1)">下一步</button>
                 </div>
             </div>
             <div v-if="activetab ==='2'" class="tabcontent">
@@ -185,17 +187,17 @@
                 </table>
                 <div class="space">
                     <button class="center" v-on:click="activetab='2'">返回
-                    </button><button class="center" @click="saveOrder">送出</button>
+                    </button><button class="center" @click="saveOrder"><a href="home.html">送出</a></button>
                 </div>
             </div>
         </div>
     </div>
     <script>
-
         new Vue({
             el: '#tabs',
             data: {
                 activetab: '1',
+                noshopping: false,
                 cart: [],
                 prdsRows: '',
                 // Citys: ["台北市", "新北市", "基隆市", "桃園市"],
@@ -208,7 +210,12 @@
                 credit_card_png: ['img/visa.gif', 'img/mstercard.gif'],
                 isDisabled: true,
                 years: [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
-                cusRow:[{EMAIL: '', CUS_NAME: '', CUS_TEL: '',CUS_ADD:''}],
+                cusRow: {
+                    EMAIL: '',
+                    CUS_NAME: '',
+                    CUS_TEL: '',
+                    CUS_ADD: '',
+                },
                 person: {
                     phone: '',
                     coupon: '',
@@ -218,7 +225,7 @@
                     name: '',
                     delivery: '宅配',
                     total: '',
-                    },
+                },
             },
             watch: {
                 credit_card(nVal, oVal) {
@@ -227,31 +234,36 @@
                 },
             },
             methods: {
-                getMemberInfo(){
+                getMemberInfo() {
                     let xhr = new XMLHttpRequest();
                     let thisVue = this;
-                    xhr.onload = function(){
+                    xhr.onload = function () {
                         thisVue.cusRow = JSON.parse(xhr.responseText);
                         console.log(thisVue.cusRow);
-                        if(thisVue.cusRow.EMAIL!=''){
+                        if (!thisVue.cusRow.EMAIL) {
+                            alert("請先登入");
+                        } else {
                             thisVue.person.name = thisVue.cusRow.CUS_NAME;
                             thisVue.person.phone = thisVue.cusRow.CUS_TEL;
                             thisVue.person.address = thisVue.cusRow.CUS_ADD;
-                        }else{
-                            alert("請先登入");
                         };
                     };
                     xhr.open("get", "phps/getMemberInfo.php", true);
                     xhr.send(null);
                 },
-                del_btn(index){
-                    this.cart.splice(index,1);
-                    localStorage.setItem("cart",JSON.stringify(this.cart));
+                del_btn(index) {
+                    this.cart.splice(index, 1);
+                    localStorage.setItem("cart", JSON.stringify(this.cart));
+                    if (this.cart == "") {
+                        this.noshopping = true
+                    }
                 },
                 getList() {
                     let cart = JSON.parse(localStorage.getItem("cart"));
-                    console.log(cart);
                     this.cart = cart;
+                    if (this.cart == "") {
+                        this.noshopping = true
+                    }
                 },
                 setList() {
                     localStorage["cart"] = JSON.stringify(this.cart);
@@ -268,7 +280,7 @@
                         }
                         return (visaRegEx.test(num))
                     } else if (this.cCard === 'Mastercard') {
-                        if (!mastercardRegEx.test(num)) {
+                        if (!(mastercardRegEx.test(num))) {
                             return false;
                         }
                         return (mastercardRegEx.test(num))
@@ -288,33 +300,31 @@
                         this.activetab = `${num}`
                     }
                 },
-                // nextHandler(num) {
-                //     let credit_valid = this.ValidateCreditCardNumber(this.credit_card);
-                //     if (num == 2) {
-                //         if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test || !this.person.name || !this.person.address || !credit_valid)alert("資料不完整");
-                //             return this.activetab = '2';
-                //         }
-                //         // else this.activetab = `${num + 1}`
-                //     // this.activetab = `${num + 1}`
-                // },
                 nextHandler(num) {
+                    if (num == 1) {
+                        if (!this.cusRow.EMAIL) alert("請先登入才可以下一步");
+                        else if (this.person.total <= 0) alert("價格必須多於1元");
+                        else this.activetab = `${num + 1}`
+                    }
                     let credit_valid = this.ValidateCreditCardNumber(this.credit_card);
                     if (num == 2) {
-                        if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test || !this.person.name || !this.person.address || !
-                            credit_valid) alert("資料不完整");
+                        if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test || !
+                            this.person.name || !this.person.address || !
+                            credit_valid) alert("資料不完整或有誤");
                         else this.activetab = `${num + 1}`
                     }
                 },
 
-                saveOrder(){
+                saveOrder() {
+                    alert("購買成功~");
                     let data_info = JSON.stringify(this.cart);
                     let person_info = JSON.stringify(this.person);
                     let xhr = new XMLHttpRequest();
-                    xhr.onload = function(){
+                    xhr.onload = function () {
                         console.log(xhr.responseText);
                     }
                     let url = "phps/orderToDb.php?cart=" + data_info + "&person=" + person_info;
-                    xhr.open("get", url , true);
+                    xhr.open("get", url, true);
                     xhr.send(null);
                 },
                 // changeCity() {
@@ -342,12 +352,15 @@
                     for (let i = 0; i < this.cart.length; i++) {
                         all += this.cart[i].prdPrice * this.cart[i].prdNum;
                     }
-                    if (this.person.coupon === "2022HAPPY88") {
+                    if (this.person.coupon === "2022HAPPY88" && this.cart != "") {
                         all = (all * this.param);
                         all += this.fee;
-                    } else if (this.person.coupon === "22HAPPYMDAY" || this.person.coupon === "22SOEASYEVD") {
+                    } else if (this.person.coupon === "22HAPPYMDAY" && this.cart != "" || this.person.coupon ===
+                        "22SOEASYEVD" && this.cart != "") {
                         all += this.param;
                         all += this.fee;
+                    } else if (this.cart == "") {
+                        all = 0;
                     } else {
                         all += this.fee;
                     }
