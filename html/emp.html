@@ -116,7 +116,7 @@
                         let xhr = new XMLHttpRequest();
                         let thisVue = this;
                         xhr.onload = function(){
-                            // thisVue.cusRow = JSON.parse(xhr.responseText);
+                            thisVue.cusRow = JSON.parse(xhr.responseText);
                             // console.log(thisVue.cusRow);
                             // if(thisVue.cusRow.CUS_PIC!=''){
                             //     thisVue.cus_pic = "img/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑

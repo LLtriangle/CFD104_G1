@@ -33,7 +33,7 @@ try{
       $_SESSION["CUS_NAME"] = $_POST["cus_name"];
       $_SESSION["CUS_TEL"] = $_POST["cus_tel"];
       $_SESSION["SEX"] = $_POST["gender"];
-     $_SESSION["CUS_ADD"] = $_POST["cus_add"];
+      $_SESSION["CUS_ADD"] = $_POST["cus_add"];
       $_SESSION["CUS_PIC"] = $fileName;
        
     }else{
