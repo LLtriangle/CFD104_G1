@@ -9,7 +9,8 @@ try{
   // 檔案的暫存位置：$_FILES['input的name']['tmp_name']
   
   if($_FILES['upFile']['error']==0){
-      $file = uniqid();
+      // $file = uniqid();
+      $file = $_SESSION["CUS_NO"]."_pic";
       $fileInfo = pathinfo($_FILES['upFile']['name']); 
       $ext = $fileInfo["extension"]; // 副檔名
       $fileName = "$file.$ext";
@@ -33,7 +34,7 @@ try{
       $_SESSION["CUS_NAME"] = $_POST["cus_name"];
       $_SESSION["CUS_TEL"] = $_POST["cus_tel"];
       $_SESSION["SEX"] = $_POST["gender"];
-     $_SESSION["CUS_ADD"] = $_POST["cus_add"];
+      $_SESSION["CUS_ADD"] = $_POST["cus_add"];
       $_SESSION["CUS_PIC"] = $fileName;
        
     }else{

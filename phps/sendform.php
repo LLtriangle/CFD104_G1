@@ -10,27 +10,29 @@ try{
   $file2 = $_FILES['upload_pic2'] ?? null;
   $file3 = $_FILES['upload_pic3'] ?? null;
   // if($_FILES['upFile']['error']==0){
-  $file = uniqid();
-      if ($file1) {
+    if ($file1) {
+        $file1 = uniqid();
         $fileInfo = pathinfo($_FILES['upload_pic1']['name']);
         $ext = $fileInfo["extension"]; // 副檔名
-        $fileName1 = "$file.$ext";
+        $fileName1 = "$file1.$ext";
         $from = $_FILES['upload_pic1']['tmp_name']; //暫存區含路徑
         $to = "../img/reserve/$fileName1";
         copy($from, $to);
       }
       if ($file2) {
+        $file2 = uniqid();
         $fileInfo = pathinfo($_FILES['upload_pic2']['name']);
         $ext = $fileInfo["extension"]; // 副檔名
-        $fileName2 = "$file.$ext";
+        $fileName2 = "$file2.$ext";
         $from = $_FILES['upload_pic2']['tmp_name']; //暫存區含路徑
         $to2 = "../img/reserve/$fileName2";
         copy($from, $to2);
       }
       if ($file3) {
+        $file3 = uniqid();
         $fileInfo = pathinfo($_FILES['upload_pic3']['name']);
         $ext = $fileInfo["extension"]; // 副檔名
-        $fileName3 = "$file.$ext";
+        $fileName3 = "$file3.$ext";
         $from = $_FILES['upload_pic3']['tmp_name']; //暫存區含路徑
         $to3 = "../img/reserve/$fileName3";
         copy($from, $to3);

@@ -47,19 +47,19 @@
                 sendForm(){
                     let emp = {};
                     let xhr = new XMLHttpRequest();
-                xhr.onload = function(){ 
-                    emp = JSON.parse(xhr.responseText);
-                    if(emp.EMP_NO == undefined){
-                        alert("帳密錯誤");
-                    }else{
-                    // 成功
-                        if(emp.JOB=="整理師"){
-                            location.href="emp.html";
-                        }else if(emp.JOB=="網站管理員"){
-                            location.href="backend.html";
-                        }             
-                    }
-                };
+                    xhr.onload = function(){ 
+                        emp = JSON.parse(xhr.responseText);
+                        if(emp.EMP_NO == undefined){
+                            alert("帳密錯誤");
+                        }else{
+                        // 成功
+                            if(emp.JOB=="整理師"){
+                                location.href="emp.html";
+                            }else if(emp.JOB=="網站管理員"){
+                                location.href="backend.html";
+                            }             
+                        }
+                    };
                 xhr.open("post", "phps/empLogin.php", true);  
                 xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                 
@@ -71,20 +71,11 @@
                 xhr.send(data_info);
                 },
             },
-            // computed: {
-            //     account(){
-            //         if(account.value = ''){
-            //             return alert === 1
-            //         }
-            //     }
-
-            // }
         })
 
     </script>
-    <script>
+    <!-- <script>
     let emp = {};
-    // =========登入
     function sendForm(){
         let xhr = new XMLHttpRequest();
         xhr.onload = function(){ 
@@ -111,6 +102,6 @@
         xhr.send(data_info);
         
     };
-    </script>
+    </script> -->
 </body>
 </html>

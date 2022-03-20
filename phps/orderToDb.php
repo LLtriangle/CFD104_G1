@@ -1,17 +1,63 @@
 <?php
 session_start();
-//customer data already in session, 
-$_SESSION["CUS_NO"];
 $cart = json_decode($_GET["cart"]);
+$person = json_decode($_GET["person"]);
 try {
 	require_once("connect.php"); // 開發用
-    // insert 1 records into ord
-    $sql = "";
-    // insert many records into ord    
-	
-	$allTable = $pdo->query($sql);
-	$Rows = $allTable->fetchAll(PDO::FETCH_ASSOC);
-	echo json_encode($Rows);
+	if(isset($_SESSION["EMAIL"]) == true){
+		$result = [
+			"CUS_NO" => $_SESSION["CUS_NO"],
+			"EMAIL" => $_SESSION["EMAIL"], 
+			"CUS_NAME" => $_SESSION["CUS_NAME"],
+			"CUS_TEL" => $_SESSION["CUS_TEL"],
+			"SEX" => $_SESSION["SEX"],
+			"CUS_ADD" => $_SESSION["CUS_ADD"],
+			"CUS_PIC" => $_SESSION["CUS_PIC"],
+			];
+			echo json_encode($result);
+			$cusNo = $_SESSION["CUS_NO"];
+			$CUS_NAME = $_SESSION["CUS_NAME"];
+			$CUS_TEL = $_SESSION["CUS_TEL"];
+			$coupon = $person->coupon;
+			// $selectedCity = $person->selectedCity;
+			// $selectedArea = $person->selectedArea;
+			$address = $person->address;
+			$phone = $person->phone;
+			$name = $person->name;
+			$delivery = $person->delivery;
+			if($delivery == '宅配'){
+				$delivery = 1;
+			}elseif($delivery == '7-11超商取貨付款'){
+				$delivery = 2;
+			}else $delivery = 3;
+			$total = $person->total;
+			$Date = date("Y-m-d h:i:s");
+			// $full_add = $selectedCity.$selectedArea.$address;
+				echo $coupon;
+			if ($coupon=='') {
+				$sql = "INSERT INTO `ord`(`CUS_NO`, `CUS_NAME`, `CUS_TEL`, `CUS_ADD`, `TIME`, `SHIPPING`, `TOTAL`, `STATE`, `COUPON`) VALUES ({$cusNo},'{$CUS_NAME}','{$CUS_TEL}','{$address}','$Date','$delivery',{$total},0,null)";
+			}else{
+				$sql = "INSERT INTO `ord`(`CUS_NO`, `CUS_NAME`, `CUS_TEL`, `CUS_ADD`, `TIME`, `SHIPPING`, `TOTAL`, `STATE`, `COUPON`) VALUES ({$cusNo},'{$CUS_NAME}','{$CUS_TEL}','{$address}','$Date','$delivery',{$total},0,'{$coupon}')";
+			};
+			// $ORDINFO = $pdo->exec($sql);
+			$ORDINFO = $pdo->exec($sql);
+			echo $ORDINFO;
+			// $sql = "select LAST(ORD_NO) form ord";
+			// $ORD_NO = $pdo->query($sql);
+			// $Rows = $ORD_NO->fetchAll(PDO::FETCH_ASSOC);
+			$ORD_NO = $pdo->lastInsertId();
+			foreach($cart as $key => $val) {
+				$prdNo = $val -> prdNo;
+				$prdName = $val -> prdName;
+				$prdPrice = $val -> prdPrice;
+				$prdNum = $val -> prdNum;
+				$sql = "INSERT INTO `ordinfo`(`ORD_NO`,`PRD_NO`, `CUS_NO`, `PRICE`, `AMOUNT`) VALUES ($ORD_NO,$prdNo,{$cusNo},$prdPrice,$prdNum)";
+				$ORDTABLE = $pdo->prepare($sql);
+				$ORDTABLE->execute();
+			};
+	}else{ //尚未登入
+		echo "{}";
+	}
 } catch (PDOException $e) {
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";
 	echo "錯誤行號 : ", $e->getLine(), "<br>";
