@@ -433,7 +433,7 @@
             price1: 1000, // 方案1價格
             price2: 900, // 方案2價格
             // emps: [{name:"麻里不會",no:1},{name:"末牛子",no:2},{name:"潔癖子",no:3}],
-            emps:['麻里不會','末牛子','潔癖子'],
+            emps:['麻里不會','末牛子','潔癖子','地球鈔人'],
             emp_no:'',
             selectedEmp: '',
             tel: '',
@@ -537,12 +537,14 @@
                     tds[i].classList.remove('full');
                 };
                 let emp_name = this.selectedEmp;
-                if(emp_name=="麻里不會"){
+                if(emp_name == "麻里不會"){
                     emp_no=1
-                }else if(emp_name=="末牛子"){
+                }else if(emp_name == "末牛子"){
                     emp_no=2
-                }else if(emp_name=="潔癖子"){
+                }else if(emp_name == "潔癖子"){
                     emp_no=3
+                }else if(emp_name == "地球鈔人"){
+                    emp_no=6
                 }
                 
                 let thisVue = this;

@@ -23,7 +23,7 @@ try{
         $_SESSION["EMP_TEL"] = $empRow["EMP_TEL"];
         $_SESSION["JOB"] = $empRow["JOB"];
         $_SESSION["EMP_ADD"] = $empRow["EMP_ADD"];
-        // $_SESSION["HIREDATE"] = $empRow["HIREDATE"];
+        $_SESSION["EMP_PIC"] = $empRow["EMP_PIC"];
 
         $result = [
         "EMP_NO" => $_SESSION["EMP_NO"],
@@ -32,7 +32,7 @@ try{
         "EMP_TEL" => $_SESSION["EMP_TEL"],
         "JOB" => $_SESSION["JOB"],
         "EMP_ADD" => $_SESSION["EMP_ADD"],
-        // "CUS_PIC" => $_SESSION["CUS_PIC"],
+        "EMP_PIC" => $_SESSION["EMP_PIC"],
         ];
 
         echo json_encode($result); 
