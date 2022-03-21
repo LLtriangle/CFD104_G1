@@ -18,25 +18,33 @@ try {
         //              join prd Pr3 on R.PRD_NO3 = Pr3.PRD_NO";
 
 	}elseif ($_GET['tableName'] == "prd"){
-		$sql = "select * from {$_GET['tableName']} where PRD_NO = '{$_GET['editNo']}' ";
+		$sql = "select PRD_NO, CATEGORY, PRD_NAME, PRICE, IMG1, IMG2, IMG3, IMG4, INFO_IMG1, INFO_TITLE_1, INFO_1, INFO_IMG2, INFO_TITLE_2, INFO_2, STATE STATUS, SPEC_IMG  from {$_GET['tableName']} where PRD_NO = '{$_GET['editNo']}' ";
 		
 	}elseif ($_GET['tableName'] == "ord"){
-		$sql = "select * from {$_GET['tableName']} where ORD_NO = '{$_GET['editNo']}' ";
+		$sql = "select O.ORD_NO, O.CUS_NO, O.CUS_NAME, O.CUS_TEL, O.CUS_ADD, O.TIME, O.SHIPPING, O.TOTAL, O.STATE STATUS, O.COUPON, OI.PRD_NO, OI.PRICE, OI.AMOUNT, P.PRD_NAME
+		from ord O join ordinfo OI on O.ORD_NO = OI.ORD_NO 
+		join prd P on P.PRD_NO = OI.PRD_NO where O.ORD_NO = '{$_GET['editNo']}' ";
 		
 	}elseif ($_GET['tableName'] == "plan"){
 		$sql = "select * from {$_GET['tableName']} where PLAN_NO = '{$_GET['editNo']}' ";
 
 	}elseif ($_GET['tableName'] == "sao"){
-		$sql = "select * from {$_GET['tableName']} where PLAN_NO = '{$_GET['editNo']}' ";
-			
+		// $sql = "select * from {$_GET['tableName']} where PLAN_NO = '{$_GET['editNo']}' ";
+		$sql = "select S.SAO_NO, S.EMP_NO, S.CUS_NO, S.PLAN_NO, S.PLAN_NO, S.SAO_NAME, S.SAO_TEL, S.SAO_DATE, S.SAO_TIME, S.SAO_ADD, S.UPLOAD_PIC1, S.UPLOAD_PIC2, S.UPLOAD_PIC3, S.NEEDS, S.STATE STATUS, S.INFO, S.BEFORE_IMG, S.AFTER_IMG, C.CUS_NAME, P.PRICE
+		from sao S join cus C on S.CUS_NO = C.CUS_NO 
+		join plan P on P.PLAN_NO = S.PLAN_NO where S.SAO_NO = '{$_GET['editNo']}' ";
+
 	}elseif ($_GET['tableName'] == "casetable"){
 		$sql = "select * from {$_GET['tableName']} where CASE_NO = '{$_GET['editNo']}' ";
 		
 	}elseif ($_GET['tableName'] == "event"){
-		$sql = "select * from {$_GET['tableName']} where COUPON = '{$_GET['editNo']}' ";
+		$sql = "select COUPON, EVENT_IMG, TITLE, CONTENT, PARM, START, END, STATE STATUS from {$_GET['tableName']} where COUPON = '{$_GET['editNo']}' ";
 		
 	}elseif ($_GET['tableName'] == "columntable"){
 		$sql = "select * from {$_GET['tableName']} where COLUMN_NO = '{$_GET['editNo']}' ";
+
+	}elseif ($_GET['tableName'] == "sch"){
+		$sql = "select * from {$_GET['tableName']} where SCH_NO = '{$_GET['editNo']}' ";
 		
 	};
 
