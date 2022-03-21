@@ -282,7 +282,7 @@ input:focus, button:focus{
   }
 
 // 更改input[type=text],input[type=email],input[type=password]樣式
-input[type=text],input[type=email],input[type=password]{
+input[type=text],input[type=email],input[type=password],input[type=number]{
     border: 0.3px solid #ddd;
     box-shadow: 2px 2px #ccc;
     padding: 5px;

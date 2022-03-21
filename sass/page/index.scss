@@ -1,7 +1,7 @@
 @import  "../base/var";
 @import  "../base/color";
 
-.welcome{
+#welcome{
     background: url('../img/service_05.jpg') no-repeat center/cover;
     background-color: map-get($color,'plain');
     position: fixed;
@@ -12,10 +12,11 @@
         width: 100%;
         color: map-get($color,'main');
         position: absolute;
-        top: 35%;
+        top: 40%;
         left: 50%;
-        transform: translate(-50%,-50%) rotate(30deg);
+        transform: translate(-50%,-50%) rotate(15deg);
         text-align: center;
+        filter: drop-shadow(0 0 5px #fff);
     }
     >a{
         display: block;
@@ -26,19 +27,16 @@
         background-color: map-get($color,'plain');
         border-radius: 50%;
         position: absolute;
-        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.051),
-                    0px 0px 7.2px rgba(0, 0, 0, 0.073), 0px 0px 13.6px rgba(0, 0, 0, 0.09),
-                    0px 0px 24.3px rgba(0, 0, 0, 0.107), 0px 0px 45.5px rgba(0, 0, 0, 0.129);
-        //             0px 0px 109px rgba(0, 0, 0, 0.18);
+        filter: drop-shadow(0 0 15px #00000044);
         &.frontSide{
-            top: 35%;
+            top: 40%;
             right: 50%;
-            transform: translate(100%,-130%) rotate(30deg);
+            transform: translate(100%,-130%) rotate(15deg);
         }
         &.backSide{
-            bottom: 65%;
+            bottom: 60%;
             left: 50%;
-            transform: translate(-100%,130%) rotate(30deg);
+            transform: translate(-100%,130%) rotate(15deg);
         }
         h2{
             line-height: 200px;
@@ -125,11 +123,11 @@
         a{
             &.frontSide{
                 top: 40%;
-                transform: translate(150%,-120%) rotate(30deg);
+                transform: translate(150%,-120%) rotate(15deg);
             }
             &.backSide{
                 bottom: 60%;
-                transform: translate(-150%,120%) rotate(30deg);
+                transform: translate(-150%,120%) rotate(15deg);
             }
         }
     }

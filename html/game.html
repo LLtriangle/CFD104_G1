@@ -34,19 +34,22 @@
                 <h2>遊玩方法</h2>
                 <div class="pic">
                     <img src="https://cdn-icons-png.flaticon.com/512/57/57213.png">
-                    <img src="https://cdn-icons-png.flaticon.com/128/64/64797.png">
+                    <img class="array" src="https://cdn-icons-png.flaticon.com/128/64/64797.png">
                     <img src="https://cdn-icons-png.flaticon.com/512/128/128236.png">
                 </div>
                 <div class="txt">
-                    <p>點選物件再點擊框線即可放置物品。</p>
+                    <p>拖曳或點選物件可放置物品。</p>
                 </div>
                 <div class="pic">
                     <img src="https://cdn-icons-png.flaticon.com/512/57/57213.png">
-                    <img src="https://cdn-icons-png.flaticon.com/128/64/64797.png">
-                    <img src="https://cdn-icons-png.flaticon.com/512/35/35444.png">
+                    <img class="array" src="https://cdn-icons-png.flaticon.com/128/64/64797.png">
+                    <img class="trashcan" src="img/game_trashcan0.png">
+                    <img src="https://cdn-icons-png.flaticon.com/512/57/57213.png">
+                    <img class="array" src="https://cdn-icons-png.flaticon.com/128/64/64797.png">
+                    <img class="wardrobe"  src="img/game_room_wardrobe.png">
                 </div>
                 <div class="txt">
-                    <p>點擊垃圾桶可以丟棄物品。</p>
+                    <p>垃圾桶可以丟棄物品。衣櫃可以收納物品。</p>
                 </div>
                 <button class="btn_btn rd">前往臥室</button>
                 <!-- <button class="btn_btn rd" disabled>前往廚房</button> -->
@@ -156,37 +159,55 @@
                     <div class="push_products">
                         <div>
                             <div class="prd_card">
-                                <img :src="'img/'+pushService.prd1_img">
+                                <div class="reitemPrd">{{pushService.prdNo1}}</div>
+                                <div class="reitemPrd">{{pushService.prd1}}</div>
+                                <div class="reitemPrd">{{pushService.prd1_price}}</div>
+                                <div class="reitemPrd">{{pushService.prd1_img}}</div>
+                                <a href="'product.php?prdno='+pushService.prdNo1">
+                                    <img :src="'img/'+pushService.prd1_img">
+                                </a>
                                 <div class="txt">
-                                    <p>{{pushService.prd1}}</p>
+                                    <a href="'product.php?prdno='+pushService.prdNo1">{{pushService.prd1}}</a>
                                     <div>
                                         <p>NT ${{pushService.prd1_price}}</p>
                                         <p>
-                                            <a href="product.html" class="link_btn bl">購買</a>
+                                            <a class="buy_reitem link_btn bl">加入購物車</a>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="prd_card">
-                                <img :src="'img/'+pushService.prd2_img">
+                                <div class="reitemPrd">{{pushService.prdNo2}}</div>
+                                <div class="reitemPrd">{{pushService.prd2}}</div>
+                                <div class="reitemPrd">{{pushService.prd2_price}}</div>
+                                <div class="reitemPrd">{{pushService.prd2_img}}</div>
+                                <a href="'product.php?prdno='+pushService.prdNo2">
+                                    <img :src="'img/'+pushService.prd2_img">
+                                </a>
                                 <div class="txt">
-                                    <p>{{pushService.prd2}}</p>
+                                    <a href="'product.php?prdno='+pushService.prdNo2">{{pushService.prd2}}</a>
                                     <div>
                                         <p>NT ${{pushService.prd2_price}}</p>
                                         <p>
-                                            <a href="product.html" class="link_btn bl">購買</a>
+                                            <a class="buy_reitem link_btn bl">加入購物車</a>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="prd_card">
-                                <img :src="'img/'+pushService.prd3_img">
+                                <div class="reitemPrd">{{pushService.prdNo3}}</div>
+                                <div class="reitemPrd">{{pushService.prd3}}</div>
+                                <div class="reitemPrd">{{pushService.prd3_price}}</div>
+                                <div class="reitemPrd">{{pushService.prd3_img}}</div>
+                                <a href="'product.php?prdno='+pushService.prdNo3">
+                                    <img :src="'img/'+pushService.prd3_img">
+                                </a>
                                 <div class="txt">
-                                    <p>{{pushService.prd3}}</p>
+                                    <a href="'product.php?prdno='+pushService.prdNo3">{{pushService.prd3}}</a>
                                     <div>
                                         <p>NT ${{pushService.prd3_price}}</p>
                                         <p>
-                                            <a href="product.html" class="link_btn bl">購買</a>
+                                            <a class="buy_reitem link_btn bl">加入購物車</a>
                                         </p>
                                     </div>
                                 </div>
@@ -202,8 +223,6 @@
     <script>
         // MDN
         // https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/getData
-        // 跨區域拖放受限，失敗原因 : 
-        // https://stackoverflow.com/questions/11927309/html5-dnd-datatransfer-setdata-or-getdata-not-working-in-every-browser-except-fi
         
         // 送出按鈕disabled切換
         function finishButton(){
@@ -306,7 +325,7 @@
                     '你比較喜歡：「簡潔視覺＋詳盡收納」',
                     '你擅長分析、注重細節、條理分明，任何事交給有責任感的你，絕對讓人放心！',
                     '市面上的收納用品根本是為蟋蟀人設計的，許多專業整理師也都是這個類型。\n但是你太追求完美，甚至覺得沒做好還不如完全別做，整理收納容易一拖再拖，反而更容易堆積物品，尤其文件是你難攻克的大魔王。\n請放下自我懷疑，並接受你天生的收納整理能力。','img/game_cricket.png'],
-                pushService:{PLAN_FEATURE: "",PLAN_NAME: "",PLAN_TA: "",prd1: "",prd1_img: "",prd1_price: "",prd2: "",prd2_img: "",prd2_price: "",prd3: "",prd3_img: "",prd3_price:''},
+                pushService:{PLAN_FEATURE: "",PLAN_NAME: "",PLAN_TA: "",prdNo1: "",prd1: "",prd1_img: "",prd1_price: "",prdNo2: "",prd2: "",prd2_img: "",prd2_price: "",prdNo3: "",prd3: "",prd3_img: "",prd3_price:''},
             },
 			methods: {
 				getPushService(){
