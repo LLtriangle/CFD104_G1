@@ -28,36 +28,23 @@
                 <div v-if="noshopping" class="noshopping">目前購物車是空的</div>
                 <div v-for="(item, index) in cart">
                     <div class="flex">
-                        <div><img :src="'img/'+item.prdImg" style="height: 50px;"></div>
-                        <div style="padding-top: 16px;flex-grow: 1;">{{item.prdName}}</div>
-                        <div style="padding-top: 16px;min-width: 60px;">$ {{item.prdPrice}}</div>
-                        <div class="width20"><button @click="countNum(-1,index)" :disabled="item.isDisabled" class="add width20">-</button>
+                        <div><img :src="'img/'+item.prdImg" style="height: 80px;"></div>
+                        <div class="flex-grow center">{{item.prdName}}</div>
+                        <div class="center">$ {{item.prdPrice}}</div>
+                        <div class="width20 center"><button @click="countNum(-1,index)" :disabled="item.isDisabled" class="add">-</button>
                         </div>
-                        <div style="padding-top: 16px;min-width: 28px;" class="width20">{{item.prdNum}}</div>
-                        <div class="width20"><button @click="countNum(1,index)" class="add width20">+</button></div>
-                        <div style="padding-top: 16px;min-width: 60px;" class="width20">$ {{(item.prdPrice* item.prdNum)}}</div>
-                        <div class="width20"><button style="padding: 5px 8px;border-radius: 10px;" @click="del_btn(index)"><img
-                                    src="img/trash_bin.png" style="width: 30px;">
-                            </button></div>
+                        <div class="center"><input @change="changeNum" type="number" v-model.number="item.prdNum" size="1" class="changeNum"></div>
+                        <div class="width20 center"><button @click="countNum(1,index)" class="add">+</button></div>
+                        <div class="width20 center">$ {{(item.prdPrice* item.prdNum)}}</div>
+                        <div class="width20 center"><img src="img/trash_bin.png" @click="del_btn(index)" style="width: 30px;filter: invert(100%);"></div>
                     </div>
                 </div>
                 <table>
-                    <!-- <tr v-for="(item, index) in cart">
-                        <td><img :src="'img/'+item.prdImg" class="product"></td>
-                        <td>{{item.prdName}}</td>
-                        <td>$ {{item.prdPrice}}</td>
-                        <td><button @click="countNum(-1,index)" :disabled="item.isDisabled" class="add">-</button></td>
-                        <td>{{item.prdNum}}</td>
-                        <td><button @click="countNum(1,index)" class="add">+</button></td>
-                        <td>$ {{(item.prdPrice* item.prdNum)}}</td>
-                        <td><button class="add" @click="del_btn(index)">
-                            </button></td>
-                    </tr> -->
                     <tr>
                         <td class="left">優惠碼輸入:</td>
                         <td>
                             <input type="text" maxlength="11" v-model.trim="person.coupon"
-                                placeholder="請輸入折扣碼" class="full">
+                                placeholder=" 請輸入折扣碼 " class="full">
                         </td>
                     </tr>
                     <tr>
@@ -65,21 +52,15 @@
                         <td>{{show_coupon}}</td>
                     </tr>
                     <tr>
-                        <td class="left"><input type="radio" v-model="person.delivery" value="宅配" id="plan1"
-                                class="radio-input"><label for="plan1" class="radio-label"><span
-                                    class="radio-button"></span>宅配</label></td>
+                        <td class="left"><input type="radio" v-model="person.delivery" value="宅配" id="plan1" class="radio-input full"><label for="plan1" class="radio-label"><span class="radio-button"></span>宅配</label></td>
                         <td>$ 100</td>
                     </tr>
                     <tr>
-                        <td class="left"><input type="radio" v-model="person.delivery" value="7-11超商取貨付款"
-                                id="plan2" class="radio-input"><label for="plan2" class="radio-label"><span
-                                    class="radio-button"></span>7-11超商取貨付款</label></td>
+                        <td class="left"><input type="radio" v-model="person.delivery" value="7-11超商取貨" id="plan2" class="radio-input full"><label for="plan2" class="radio-label"><span class="radio-button"></span>7-11超商取貨</label></td>
                         <td>$ 90</td>
                     </tr>
                     <tr>
-                        <td class="left"><input type="radio" v-model="person.delivery" value="全家超商取貨付款"
-                                id="plan3" class="radio-input"><label for="plan3" class="radio-label"><span
-                                    class="radio-button"></span>全家超商取貨付款</label></td>
+                        <td class="left"><input type="radio" v-model="person.delivery" value="全家超商取貨" id="plan3" class="radio-input full"><label for="plan3" class="radio-label"><span class="radio-button"></span>全家超商取貨</label></td>
                         <td>$ 80</td>
                     </tr>
                     <tr>
@@ -95,63 +76,59 @@
                 </div>
             </div>
             <div v-if="activetab ==='2'" class="tabcontent">
-                <table>
-                    <tr>
-                        <td colspan="3">
-                            <label>信用卡卡號:</label></td>
-                        <td>
-                            <select name="信用卡" v-model="cCard">
-                                <option value="Visa" id="visa">Visa</option>
-                                <option value="Mastercard" id="mastercard">Mastercard</option>
-                            </select>
-                        </td>
-                        <td colspan="3" class="left">
-                            <input type="text" name="cardNumber" id="cardNum" size="30" v-model.number="credit_card"
-                                @change="ValidateCreditCardNumber(credit_card)" maxlength="16" />
-                        </td>
-                        <td>
-                            <img class="card_img" :src="[cCard ==='Visa' ? credit_card_png[0] : credit_card_png[1]]"
-                                alt="credit_card">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">信用卡到期日:</td>
-                        <td>
-                            <select name="年" v-model="selectedYear">
-                                <option value="" disabled>選擇年份</option>
-                                <option v-for="year in years">{{year}}年</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="月份" v-model="selectedMonth">
-                                <option value="" disabled>選擇月份</option>
-                                <option v-for="month in 12">{{month}}月</option>
-                            </select>
-                        </td>
-                        <td>驗證碼:</td>
-                        <td><input type="text" size="3" maxlength="3" v-model.number="test"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">收貨人姓名:</td>
-                        <td colspan="2"><input type="text" v-model.trim="person.name"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">收貨人電話:</td>
-                        <td colspan="2"><input type="text" v-model.number="person.phone"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">收貨地址:</td>
-                        <!-- <td><select name="市" v-model.trim="person.selectedCity" @change="changeCity">
-                                <option value="" disabled>選擇縣市</option>
-                                <option v-for="City in Citys">{{City}}</option>
-                            </select></td>
-                        <td><select name="區" v-model="person.selectedArea" @change="changeCity">
-                                <option value="" disabled>選擇區域</option>
-                                <option v-for="Area in Areas">{{Area}}</option>
-                            </select></td> -->
-                        <td colspan="3"><input type="text" v-model.trim="person.address"></td>
-                    </tr>
-                </table>
+                <div class="flex">
+                    <div style="padding-top: 11px;" class="flex-grow left">信用卡卡號:</div>
+                    <div class="flex-grow">
+                        <select name="信用卡" v-model="cCard" class="select">
+                            <option value="Visa" id="visa">Visa</option>
+                            <option value="Mastercard" id="mastercard">Mastercard</option>
+                        </select>
+                    </div>
+                    <div class="flex-grow2">
+                        <input type="number" name="cardNumber" id="cardNum" size="16"
+                            v-model.number="credit_card" @change="ValidateCreditCardNumber(credit_card)" placeholder=" 請輸入信用卡卡號 " maxlength="16" />
+                    </div>
+                    <div class="flex-grow">
+                        <img class="card_img"
+                            :src="[cCard ==='Visa' ? credit_card_png[0] : credit_card_png[1]]"
+                            alt="credit_card">
+                    </div>
+                </div>
+                <div class="flex">
+                    <div style="padding-top: 11px;" class="flex-grow left">到期日:</div>
+                    <div class="flex-grow">
+                        <select name="年" v-model="selectedYear" class="select">
+                            <option value="" disabled>選擇年份</option>
+                            <option v-for="year in years">{{year}}年</option>
+                        </select>
+                    </div>
+                    <div class="flex-grow">
+                        <select name="月份" v-model="selectedMonth" class="select">
+                            <option value="" disabled>選擇月份</option>
+                            <option v-for="month in 12">{{month}}月</option>
+                        </select>
+                    </div>
+                    <div style="padding-top: 11px;" class="flex-grow left">驗證碼:</div>
+                    <div class="flex-grow"><input type="number" size="1" maxlength="3" v-model.number="test"></div>
+                </div>
+                <div class="flex">
+                    <div style="padding-top: 11px;" class="flex-grow left">姓名:</div>
+                    <div class="flex-grow"><input type="text" v-model.trim="person.name" size="16"></div>
+                    <div style="padding-top: 11px;" class="flex-grow left">電話:</div>
+                    <div class="flex-grow"><input type="number" v-model.number="person.phone" size="16"></div>
+                </div>
+                <div class="flex">
+                    <div style="padding-top: 11px;" class="flex-grow left">地址:</div>
+                    <!-- <td><select name="市" v-model.trim="person.selectedCity" @change="changeCity">
+                        <option value="" disabled>選擇縣市</option>
+                        <option v-for="City in Citys">{{City}}</option>
+                    </select></td>
+                                            <td><select name="區" v-model="person.selectedArea" @change="changeCity">
+                        <option value="" disabled>選擇區域</option>
+                        <option v-for="Area in Areas">{{Area}}</option>
+                    </select></td> -->
+                    <div class="flex-grow"><input type="text" v-model.trim="person.address" size="50"></div>
+                </div>
                 <div class="space">
                     <button class="center" v-on:click="activetab='1'">返回
                     </button>
@@ -206,7 +183,7 @@
                 selectedMonth: '',
                 test: '',
                 credit_card: '',
-                cCard: "'Visa','Mastercard'",
+                cCard: "Visa",
                 credit_card_png: ['img/visa.gif', 'img/mstercard.gif'],
                 isDisabled: true,
                 years: [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
@@ -239,9 +216,10 @@
                     let thisVue = this;
                     xhr.onload = function () {
                         thisVue.cusRow = JSON.parse(xhr.responseText);
-                        console.log(thisVue.cusRow);
+                        // console.log(thisVue.cusRow);
                         if (!thisVue.cusRow.EMAIL) {
                             alert("請先登入");
+                            location.href="login.html";
                         } else {
                             thisVue.person.name = thisVue.cusRow.CUS_NAME;
                             thisVue.person.phone = thisVue.cusRow.CUS_TEL;
@@ -255,12 +233,17 @@
                     this.cart.splice(index, 1);
                     localStorage.setItem("cart", JSON.stringify(this.cart));
                     if (this.cart == "") {
-                        this.noshopping = true
+                        this.noshopping = true;
                     }
                 },
                 getList() {
                     let cart = JSON.parse(localStorage.getItem("cart"));
                     this.cart = cart;
+                    for (i=0; i<this.cart.length; i++){
+                        if (this.cart[i].prdNum < 1){
+                            this.cart[i].prdNum = 1;
+                        }
+                    }
                     if (this.cart == "") {
                         this.noshopping = true
                     }
@@ -295,6 +278,11 @@
                     }
                     this.setList();
                 },
+                changeNum(index){
+                    this.setList();
+                    this.getList();
+                    this.setList();
+                },
                 clickHandler(num) {
                     if (num <= this.activetab) {
                         this.activetab = `${num}`
@@ -314,7 +302,6 @@
                         else this.activetab = `${num + 1}`
                     }
                 },
-
                 saveOrder() {
                     alert("購買成功~");
                     let data_info = JSON.stringify(this.cart);
@@ -350,13 +337,12 @@
                 total_all() {
                     let all = 0;
                     for (let i = 0; i < this.cart.length; i++) {
-                        all += this.cart[i].prdPrice * this.cart[i].prdNum;
+                            all += this.cart[i].prdPrice * this.cart[i].prdNum;
                     }
                     if (this.person.coupon === "2022HAPPY88" && this.cart != "") {
                         all = (all * this.param);
                         all += this.fee;
-                    } else if (this.person.coupon === "22HAPPYMDAY" && this.cart != "" || this.person.coupon ===
-                        "22SOEASYEVD" && this.cart != "") {
+                    } else if (this.person.coupon === "22HAPPYMDAY" && this.cart != "" && all>=1000 || this.person.coupon === "22SOEASYEVD" && this.cart != "" && all>=900) {
                         all += this.param;
                         all += this.fee;
                     } else if (this.cart == "") {
@@ -371,24 +357,24 @@
                 fee() {
                     if (this.person.delivery === "宅配") {
                         return 100
-                    } else if (this.person.delivery === "7-11超商取貨付款") {
+                    } else if (this.person.delivery === "7-11超商取貨") {
                         return 90
-                    } else if (this.person.delivery === "全家超商取貨付款") {
+                    } else if (this.person.delivery === "全家超商取貨") {
                         return 80
                     }
                 },
                 // 折扣碼顯示
                 show_coupon() {
                     if (this.person.coupon === "22HAPPYMDAY") {
-                        return "折扣1000元"
+                        return "折扣1000元(商品價格少於1000無法使用)"
                     } else if (this.person.coupon === "2022HAPPY88") {
                         return "全部商品打88折"
                     } else if (this.person.coupon === "22SOEASYEVD") {
-                        return "折扣900元"
+                        return "折扣900元(商品價格少於900無法使用)"
                     } else if (this.person.coupon === "") {
                         return ""
                     } else {
-                        return "折扣碼無效"
+                        return "優惠碼不正確"
                     }
                 },
                 // 折扣參數

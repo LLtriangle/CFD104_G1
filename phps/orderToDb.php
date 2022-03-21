@@ -27,7 +27,7 @@ try {
 			$delivery = $person->delivery;
 			if($delivery == '宅配'){
 				$delivery = 1;
-			}elseif($delivery == '7-11超商取貨付款'){
+			}elseif($delivery == '7-11超商取貨'){
 				$delivery = 2;
 			}else $delivery = 3;
 			$total = $person->total;

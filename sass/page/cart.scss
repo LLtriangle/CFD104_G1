@@ -16,8 +16,6 @@ button{
     }
 }
 .container{
-    // max-width: 820px; 
-    min-width: 425px;
     margin: 40px;
     margin-top: 92px; // 推header
     font-family: $font_family;
@@ -73,6 +71,19 @@ button{
         display: flex;
         width: 100%;
         justify-content: center;
+        // border: 1px solid map-get($color , "main" );
+        .changeNum{
+            width: 30px;
+        }
+        .flex-grow{
+            flex-grow: 1;
+            .select{
+                min-width: 100px;
+            }
+        }
+        .flex-grow2{
+            flex-grow: 2;
+        }
         .add{
             padding: 5px 15px;
             border-radius: 15px;
@@ -80,7 +91,7 @@ button{
     }
     .left{
         text-align: left;
-        padding-left: 20px;
+        padding-left: 0px;
     }
     .space{
         display: flex;
@@ -89,10 +100,11 @@ button{
     td,div {
         text-align: center;
         padding: 0.3em 0.4em;
+        box-sizing: border-box;
         color: map-get($color, 'black');
-        img{
-            height: 30px;
-        }
+        // img{
+        //     height: 80px;
+        // }
         .left{
             text-align: left;
         }
@@ -145,6 +157,7 @@ select{
     box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
     border-radius: 10px;
     padding: 5px;
+    min-width: 80px;
     &:focus{
         outline: none;
         box-shadow: 1px 1px 5px map-get($color, 'main');
@@ -179,6 +192,7 @@ textarea {
     align-items: center;
 }
 .card_img{
+    margin-top: 3px;
     max-width: 50px;
     max-height: 30px;
 }
@@ -188,14 +202,13 @@ textarea {
 @media screen and (max-width: 830px) {
     input{
         width: 100%;
-        margin: 10px auto;
+        margin: 0px auto;
         box-sizing: border-box;
-        height: 45px;
+        // height: 45px;
     }
     select{
-        margin: 10px auto;
+        margin: 0px auto;
         width: 100%;
-        height: 45px;
     }
     .tabcontent{
         padding: 30px 20px;
@@ -204,8 +217,8 @@ textarea {
     }
     .container{
         width: 100%;
-        min-width: unset;
-        margin: 40px auto;
+        // min-width: 127px;
+        margin: 0px auto;
         margin-top: 92px; // 推header
         .progress{
             margin-left:0;
@@ -220,15 +233,18 @@ textarea {
         }
     }
 }
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 @media screen and (max-width: 619px) {
-    body{
-        min-width: 418px;
-    }
     .tabcontent {
+        // min-width: 405px;
         .flex{
             flex-wrap: wrap;
             div{
-                min-width: 33%;
+                // min-width: 33%;
                 &.width20{
                     min-width: 20%;
                 }

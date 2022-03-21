@@ -688,7 +688,11 @@
                 let xhr = new XMLHttpRequest();
                 let thisVue = this;
                 xhr.onload = function(){
-                    thisVue.cusRow = JSON.parse(xhr.responseText);             
+                    thisVue.cusRow = JSON.parse(xhr.responseText);
+                    if (!thisVue.cusRow.EMAIL) {
+                        alert("請先登入");
+                        location.href="login.html";
+                    }    
                 }
                 xhr.open("get", "phps/getMemberInfo.php", true);
                 xhr.send(null);
