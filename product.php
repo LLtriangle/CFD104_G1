@@ -53,7 +53,7 @@ try{
 
 <body>
     <!-- <header></header> -->
-<header>
+    <header>
     <div class="header_elements">
         <div class="logo">
             <a class="logo_link" href="home.html">
@@ -66,11 +66,9 @@ try{
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/></svg>
             </a>
             <a class="cart" href="cart.html">
+                <div id="cartQuantity"></div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 0C107.5 0 117.4 8.19 119.6 19.51L121.1 32H541.8C562.1 32 578.3 52.25 572.6 72.66L518.6 264.7C514.7 278.5 502.1 288 487.8 288H170.7L179.9 336H488C501.3 336 512 346.7 512 360C512 373.3 501.3 384 488 384H159.1C148.5 384 138.6 375.8 136.4 364.5L76.14 48H24C10.75 48 0 37.25 0 24C0 10.75 10.75 0 24 0H96zM128 464C128 437.5 149.5 416 176 416C202.5 416 224 437.5 224 464C224 490.5 202.5 512 176 512C149.5 512 128 490.5 128 464zM512 464C512 490.5 490.5 512 464 512C437.5 512 416 490.5 416 464C416 437.5 437.5 416 464 416C490.5 416 512 437.5 512 464z"/></svg>
             </a>
-            <!-- <a href="" style="background-color: #ccc; width: 100px; height: 100px;">
-                <img src="img/about_belief_1.jpg" alt="">
-            </a> -->
             <nav class="menu">
                 <div class="menu_btns">
                     <span class="menu_btn top"></span>
@@ -129,31 +127,6 @@ try{
             </nav>
         </div>
     </div>
-    <!-- loading畫面 -->
-    <!-- <div id='loading_box'>
-        <svg id="loading_svg" viewbox="-300,-1000,600,2000" preserveAspectRatio="xMidYMid slice">
-			<polyline points="-50,-38 -50,30 50,30 50,-38"/>
-			<line x1="-89" y1="3" x2="-50" y2="-37">
-				<animateTransform attributeName="transform"
-					type="rotate"
-					values="0;200"
-					dur="1s" begin="1.5s" fill="freeze"
-					repeatCount="1"/>
-			</line>
-			<line x1="89" y1="3" x2="50" y2="-37">
-				<animateTransform attributeName="transform"
-					type="rotate"
-					values="0;-200"
-					dur="1s" begin="1.5s" fill="freeze"
-					repeatCount="1"/>
-			</line>
-			<rect x="-25" y="-10" width="20" height="20" id="left_bottom_box"/>
-			<rect x="-25" y="-27" width="17" height="17" id="left_up_box"/>
-			<polyline points="26,-27  3, 10 26,10" id="right_bottom_box"/>
-			<polyline points=" 3,-27 26,-27  3,10" id="right_up_box"/>
-		</svg>
-		<div class="pic"><img src="img/SoEazy.png" alt=""></div>
-    </div> -->
 </header>
 
 <!-- <script>
@@ -177,24 +150,36 @@ try{
 </script> -->
 
 <script>
-    function areYouLogin(){
-        let xhr = new XMLHttpRequest();
-        let thisVue = this;
-        xhr.onload = function(){
-            console.log(xhr.responseText);
-            if(xhr.responseText=='未登入'){
-                $('.user').attr('href','login.html');
-            }else{
-                $('.user').attr('href','member.html').html(`<img src="img/cus/${xhr.responseText}">`);
-            };
-            // thisVue.plansRows = JSON.parse(xhr.responseText);
+function areYouLogin(){
+    let xhr = new XMLHttpRequest();
+    let thisVue = this;
+    xhr.onload = function(){
+        // console.log(xhr.responseText);
+        if(xhr.responseText=='未登入'){
+            $('.user').attr('href','login.html');
+        }else{
+            $('.user').attr('href','member.html').html(`<img src="img/cus/${xhr.responseText}">`);
         };
-        xhr.open("get", "phps/areYouLogin.php", true);
-        xhr.send(null);
+        // thisVue.plansRows = JSON.parse(xhr.responseText);
     };
+    xhr.open("get", "phps/areYouLogin.php", true);
+    xhr.send(null);
 
-    $(window).on('load',areYouLogin);
+};
+
+function indexOfCart(){
+    var cartArr = JSON.parse(localStorage.getItem("cart"));
+    if(cartArr.length>0){
+        $('#cartQuantity').text(cartArr.length);
+        $('#cartQuantity').css('display','block');
+    };
+};
+
+window.addEventListener('load',areYouLogin,false);
+window.addEventListener('load',indexOfCart,false);
 </script>
+
+
 
 
 <!-- <script>
@@ -521,6 +506,7 @@ try{
             let cart = document.getElementById("cart");
             let buy = document.getElementById("buy");
             cart.addEventListener('click',setItemCart);
+            cart.addEventListener('click',indexOfCart);
             buy.addEventListener('click',setItemCart);
             $(".buy_reitem").on('click',setReitemCart);
         };
