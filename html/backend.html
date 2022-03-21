@@ -105,6 +105,14 @@
                         <span class="title">專欄管理</span>
                     </a>
                 </li>
+                <li class="nav_li sch">
+                    <a @click="content('sch')">
+                        <span class="icon">
+                            <img src="img/icon/calendar-outline.svg" alt="">
+                        </span>
+                        <span class="title">員工請假紀錄</span>
+                    </a>
+                </li>
             </ul>
         </nav>
 
@@ -134,19 +142,21 @@
                     <div class="panel_title">
                         <!-- <h2>{{tableName}}</h2> -->
                         <h2>{{showtableTitle}}</h2>
-                        <button type="button" class="add_btn">新增</button>
+                        <!-- 需要新增的欄位再出現新增按鈕 -->
+                        <button type="button" class="add_btn" v-if="showtableTitle != tableTitles[1] & showtableTitle != tableTitles[2] & showtableTitle != tableTitles[4] & showtableTitle != tableTitles[5] & showtableTitle != tableTitles[6] & showtableTitle != tableTitles[10]">新增</button>
                     </div>
                     <table>
                         <thead>
                             <tr>
-                                <th v-for="tableHead in showTableHead">{{tableHead}}</th>
+                                <th v-for="tableHead in showTableHead">{{tableHead}}</th>   
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(tableBody, index) in showTableBody">
-                                <td v-for="tableBodyIndex in tableBody">{{tableBodyIndex}}</td>
-                                <td><button class="edit_btn" type="button" @click='edit(tableBody)'>編輯</button></td>
+                                <td v-for="(tableBodyIndex) in tableBody">{{tableBodyIndex}}</td>
+                                <!-- 需要編輯和查看的欄位再出現新增按鈕 -->
+                                <td v-if="showtableTitle != tableTitles[10]"><button class="edit_btn" type="button" @click='edit(tableBody)'>編輯與查看</button></td>
                             </tr>
                         </tbody>
                     </table> 
@@ -154,25 +164,28 @@
 
             </div>
             
-            <form>
+            <!-- 可以送資料了 -->
+            <form class="from emp">
                 <div class="light_box emp">
                     <p class="light_box_cap">編輯與查看</p>
                     <!-- 員工資料可以編輯，電話、權限、地址、介紹文 -->
+                    <input name="table_title" type="text" value="emp"> 
+                    <input name="data_index" type="text" :value="data_index"> 
                     <ul>
+                        
                         <li>員工編號: {{showLightBox.EMP_NO}}</li>
                         <li>帳號(email): {{showLightBox.EMP_EMAIL}}</li>
                         <li>
                             <label for="">手機:</label>
-                            <input name="emp_tel" type="text" v-model.number="showLightBox.EMP_TEL" >
+                            <input name="emp_tel" type="text" v-model.number="showLightBox.EMP_TEL">
                             <p>{{showLightBox.EMP_TEL}}</p>
                         </li>
                         <li>姓名: {{showLightBox.EMP_NAME}}</li>
                         <li>
                             帳號狀態:
-                            <select name="emp_status" id="" class="status" v-model.number="showLightBox.STATUS">
+                            <select name="emp_status" class="status" v-model.number="showLightBox.STATUS">
                                 <option value="0" >停權</option>
                                 <option value="1">正常</option>
-                                <!-- <p>{{showLightBox.STATUS}}</p> -->
                             </select>
                         </li>
                         <li>職稱:{{showLightBox.JOB}}</li>
@@ -184,21 +197,25 @@
                         <li>入職時間: {{showLightBox.HIREDATE}}</li>
                         <li>
                             介紹: 
-                            <textarea name="emp_intro" cols="57" rows="5" v-model.trim="showLightBox.INTRO">{{showLightBox.INTRO}}</textarea>
+                            <textarea name="emp_intro" cols="30" rows="5" v-model.trim="showLightBox.INTRO">{{showLightBox.INTRO}}</textarea>
 
                             <p>{{showLightBox.INTRO}}</p>
                         </li>
                     </ul>
                     <div class="editbtn emp">
                         <button class="close emp" type="button" @click="close">關閉</button>
-                        <button class="save emp" @click="save">儲存</button>
+                        <button class="save emp" type="button" @click="saveChange">儲存</button>
                     </div>
                 </div>
             </form>
 
-            <form>    
+            <!-- 可以送資料了 -->
+            <form class="from cus">    
                 <div class="light_box cus">
                     <p class="light_box_cap">編輯與查看</p>
+                    <input name="table_title" type="text" value="cus" > 
+                    <input name="data_index" type="text" :value="data_index" >
+
                     <ul>
                         <li>會員編號: {{showLightBox.CUS_NO}}</li>
                         <li>性別: {{showLightBox.SEX}}</li>
@@ -207,7 +224,7 @@
                         <li>姓名: {{showLightBox.CUS_NAME}}</li>
                         <li>
                             帳號狀態:
-                            <select name="cus_status" id="" class="status">
+                            <select name="cus_status" class="status" v-model.number="showLightBox.STATUS">
                                 <option value="0">停權</option>
                                 <option value="1">正常</option>
                             </select>
@@ -217,91 +234,130 @@
                     </ul>
                     <div class="editbtn cus">
                         <button class="close cus" type="button" @click="close">關閉</button>
-                        <button class="save cus">儲存</button>
+                        <button class="save cus" type="button" @click="saveChange">儲存</button>
                     </div>
                 </div>
             </form>
 
-            <form>
+            <!-- 可以送資料了 -->
+            <form class="from result">
                 <div class="light_box result">
                     <p class="light_box_cap">編輯與查看</p>
+                    <input name="table_title" type="text" value="result" > 
+                    <input name="data_index" type="text" :value="data_index" >
                     <ul>
+                         
                         <li>測驗編號: {{showLightBox.RESULT_NO}}</li>
                         <li>測驗人格: {{showLightBox.RESULT_NAME}}</li>
-                        <li>推薦方案:
-                            <select name="status" id="">
-                                <option value="1">{{showLightBox.PLAN_NAME}}</option>
-                                <option value="2">{{showLightBox.PLAN_NAME}}</option>
-                                <option value="3">{{showLightBox.PLAN_NAME}}</option>
+
+                        <li>
+                            推薦方案:
+                            <select name="result_plan1" v-model.number="showLightBox.PLAN_NO">
+                                <option v-for="(allPlan, index) in allPlans" :value="index + 1">
+                                    {{allPlan.PLAN_NO}}: {{allPlan.PLAN_NAME}}
+                                </option>
                             </select>
+                            <p>我是選到的方案是: {{showLightBox.PLAN_NO}}</p>
                         </li>
-                        <li>推薦商品編號1:{{showLightBox.PRD_NO1}}</li>
-                        <li>推薦商品編號2:{{showLightBox.PRD_NO2}}</li>
-                        <li>推薦商品編號3:{{showLightBox.PRD_NO3}}</li>
+
+                        <li>
+                            推薦商品編號1:
+                            <select name="result_prd2" v-model.number="showLightBox.PRD_NO1">
+                                <option v-for="(allPrd, index) in allPrds" :value="index + 1">
+                                    {{allPrd.PRD_NO}}: {{allPrd.PRD_NAME}}
+                                </option>
+                            </select>
+                            <p>我是選到的商品編號: {{showLightBox.PRD_NO1}}</p>
+                        </li>
+
+                        <li>
+                            推薦商品編號2:
+                            <select name="result_prd3" v-model.number="showLightBox.PRD_NO2">
+                                <option v-for="(allPrd, index) in allPrds" :value="index + 1">
+                                    {{allPrd.PRD_NO}}: {{allPrd.PRD_NAME}}
+                                </option>
+                            </select>
+                            <p>我是選到的商品編號: {{showLightBox.PRD_NO2}}</p>
+                        </li>
+
+                        <li>
+                            推薦商品編號3:
+                            <select name="result_prd1" v-model.number="showLightBox.PRD_NO3">
+                                <option v-for="(allPrd, index) in allPrds" :value="index + 1">
+                                    {{allPrd.PRD_NO}}: {{allPrd.PRD_NAME}}
+                                </option>
+                            </select>
+                            <p>我是選到的商品編號: {{showLightBox.PRD_NO3}}</p>
+                        </li>
                     </ul>
                     <div class="editbtn result">
                         <button class="close result" type="button" @click="close()">關閉</button>
-                        <button class="save result">儲存</button>
+                        <button class="save result" type="button" @click="saveChange">儲存</button>
                     </div>
                 </div>
             </form>
             
-            <form>
+            <!-- 除了圖片外可以送資料了-->
+            <form class="from prd">
                 <div class="light_box prd">
                     <p class="light_box_cap">編輯與查看</p>
+                    <input name="table_title" type="text" value="prd" > 
+                    <input name="data_index" type="text" :value="data_index"> 
                     <div class="prd_edit_left">
                         <ul>
                             <li>
+                                <!-- 商品編號可以改嗎? -->
                                 <label for="">商品編號:</label>
-                                <input type="text" :value="showLightBox.PRD_NO">
+                                <input type="text" name="prd_no" v-model="showLightBox.PRD_NO" readonly="readonly">
                                 <p class="hidden">{{showLightBox.PRD_NO}}</p>
                             </li>
                             <li>
                                 商品類別:
-                                <select name="status" id="">
-                                    <option value="0">專業整理</option>
-                                    <option value="1">居家生活</option>
-                                    <option value="2">辦公文具</option>
-                                    <option value="3">世界品牌</option>
+                                <select name="prd_cate" v-model="showLightBox.CATEGORY">
+                                    <option value="專業整理">專業整理</option>
+                                    <option value="居家生活">居家生活</option>
+                                    <option value="辦公文具">辦公文具</option>
+                                    <option value="世界品牌">世界品牌</option>
                                 </select>
+                                <p>{{showLightBox.CATEGORY}}</p>
                             </li>
                             <li>
                                 <label for="">商品名稱:</label>
-                                <input type="text" :value="showLightBox.PRD_NAME">
+                                <input name="prd_name" type="text" v-model="showLightBox.PRD_NAME">
                                 <p class="hidden">{{showLightBox.PRD_NAME}}</p>
                             </li>
 
                             <li>
                                 <label for="">售價:</label>
-                                <input type="text" v-model.number="showLightBox.PRICE">
+                                <input name="prd_price" type="text" v-model.number="showLightBox.PRICE">
                                 <p class="hidden">{{showLightBox.PRICE}}</p>
                             </li>
                             <li>
                                 上下架:
-                                <select name="status" id="">
+                                <select name="prd_status" class="status" v-model.number="showLightBox.STATUS">
                                     <option value="0">下架</option>
                                     <option value="1">上架</option>
                                 </select>
                             </li>
                             <li>
-                                <label for="">商品介紹標題1:</label>
-                                <input type="text" :value="showLightBox.INFO_TITLE_1">
+                                <label for="prd_info_title_1">商品介紹標題1:</label>
+                                <input name="prd_info_title_1" type="text" v-model.trim="showLightBox.INFO_TITLE_1">
                                 <p class="hidden">{{showLightBox.INFO_TITLE_1}}</p>
                             </li>
                             <li>
-                                <label for="">商品介紹內文1:</label>
-                                <textarea name="" id="" cols="30" rows="5" v-model.trim="showLightBox.INFO_1">
+                                <label for="prd_info_1">商品介紹內文1:</label>
+                                <textarea name="prd_info_1" cols="30" rows="5" v-model.trim="showLightBox.INFO_1">
                                 </textarea>
-                                <!-- {{showLightBox.INFO_1}} -->
+                                {{showLightBox.INFO_1}}
                             </li>
                             <li>
-                                <label for="">商品介紹標題2:</label>
-                                <input type="text" :value="showLightBox.INFO_TITLE_2">
+                                <label for="prd_info_title_2">商品介紹標題2:</label>
+                                <input name="prd_info_title_2" type="text" v-model.trim="showLightBox.INFO_TITLE_2">
                                 <p class="hidden">{{showLightBox.INFO_TITLE_2}}</p>
                             </li>
                             <li>
-                                <label for="">商品介紹內文2:</label>
-                                <textarea name="" id="" cols="30" rows="5">
+                                <label for="prd_info_2">商品介紹內文2:</label>
+                                <textarea name="prd_info_2" id="" cols="30" rows="5">
                                     {{showLightBox.INFO_2}}
                                 </textarea>
                             </li>
@@ -310,72 +366,90 @@
                 
                     <div class="prd_edit_right">
                         <div class="prd_group">
-                            <label for="0">圖片1:</label>
-                            <input type="file" id="0">
-                            <p>請選擇圖片上傳</p>
-                            <div class="prd_img">
-                                <img :src='"img/"+showLightBox.IMG1'>
-                                <p class="hidden">{{showLightBox.IMG1}}</p>
-                            </div>
-                            <img src="" alt="">
+                            <label for="prd_img_1">圖片1:
+                                <input name="prd_img_1" class="upFile" type="file" @change="uploadImg">
+                                <p>請選擇圖片上傳</p>
+                                <div class="prd_img">
+                                    <img class="preview_img" :src='"img/"+showLightBox.IMG1'>
+                                    <p>{{showLightBox.IMG1}}</p>
+                                </div>
+                            </label>
                         </div>
                         <div class="prd_group">
-                            <label for="1">圖片2:</label>
-                            <input type="file" id="1">
-                            <p>請選擇圖片上傳</p>
-                            <div class="prd_img">
-                                <img src="">
-                            </div>
-                            <img src="" alt="">
+                            <label for="prd_img_2">圖片2:
+                                <input name="prd_img_2" class="upFile" type="file" @change="uploadImg">
+                                <p>請選擇圖片上傳</p>
+                                <div class="prd_img">
+                                    <img class="preview_img" :src='"img/"+showLightBox.IMG2'>
+                                    <p>{{showLightBox.IMG2}}</p>
+                                </div>
+                            </label>
                         </div>
                         <div class="prd_group">
-                            <label for="2">圖片3:</label>
-                            <input type="file" id="2">
-                            <p>請選擇圖片上傳</p>
-                            <div class="prd_img">
-                                <img src="">
-                            </div>
-                            <img src="" alt="">
+                            <label for="prd_img_3">圖片3:
+                                <input name="prd_img_3" class="upFile" type="file" @change="uploadImg">
+                                <p>請選擇圖片上傳</p>
+                                <div class="prd_img">
+                                    <img class="preview_img" :src='"img/"+showLightBox.IMG3'>
+                                    <p>{{showLightBox.IMG3}}</p>
+                                </div>
+                            </label>
                         </div>
                         <div class="prd_group">
-                            <label for="3">資訊圖1:</label>
-                            <input type="file" id="3">
-                            <p>請選擇圖片上傳</p>
-                            <div class="prd_img">
-                                <img src="">
-                            </div>
-                            <img src="" alt="">
+                            <label for="prd_img_4">圖片4:
+                                <input name="prd_img_4" class="upFile" type="file" @change="uploadImg">
+                                <p>請選擇圖片上傳</p>
+                                <div class="prd_img">
+                                    <img class="preview_img" :src='"img/"+showLightBox.IMG4'>
+                                    <p>{{showLightBox.IMG4}}</p>
+                                </div>
+                            </label>
                         </div>
                         <div class="prd_group">
-                            <label for="4">資訊圖2:</label>
-                            <input type="file" id="4">
-                            <p>請選擇圖片上傳</p>
-                            <div class="prd_img">
-                                <img src="">
-                            </div>
-                            <img src="" alt="">
+                            <label for="prd_info_img_1">資訊圖1:
+                                <input name="prd_info_img_1" class="upFile" type="file" @change="uploadImg">
+                                <p>請選擇圖片上傳</p>
+                                <div class="prd_img">
+                                    <img class="preview_img" :src='"img/"+showLightBox.INFO_IMG1'>
+                                    <p>{{showLightBox.INFO_IMG1}}</p>
+                                </div>
+                            </label>
                         </div>
                         <div class="prd_group">
-                            <label for="5">規格圖:</label>
-                            <input type="file" id="4">
-                            <p>請選擇圖片上傳</p>
-                            <div class="prd_img">
-                                <img src="">
-                            </div>
-                            <img src="" alt="">
+                            <label for="prd_info_img_2">資訊圖2:
+                                <input name="prd_info_img_2" class="upFile" type="file" @change="uploadImg">
+                                <p>請選擇圖片上傳</p>
+                                <div class="prd_img">
+                                    <img class="preview_img" :src='"img/"+showLightBox.INFO_IMG2'>
+                                    <p>{{showLightBox.INFO_IMG2}}</p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="prd_group">
+                            <label for="prd_spec_img">規格圖:
+                                <input name="prd_spec_img" class="upFile" type="file" @change="uploadImg">
+                                <p>請選擇圖片上傳</p>
+                                <div class="prd_img">
+                                    <img class="preview_img" :src='"img/"+showLightBox.SPEC_IMG'>
+                                    <p>{{showLightBox.SPEC_IMG}}</p>
+                                </div>
+                            </label>
                         </div>
                     </div>
 
                     <div class="editbtn result">
                         <button class="close result" type="button" @click="close()">關閉</button>
-                        <button class="save result">儲存</button>
+                        <button class="save result" type="button" @click="saveChange">儲存</button>
                     </div>
                 </div>
             </form>
 
-            <form>
+            <!-- 可以送資料了 -->
+            <form class="from ord">
                 <div class="light_box ord">
                     <p class="light_box_cap">編輯與查看</p>
+                    <input name="table_title" type="text" value="ord"> 
+                    <input name="data_index" type="text" :value="data_index"> 
                     <div class="ord_num">
                         <label for="">訂單編號:</label>
                         <input type="text" :value="showLightBox.ORD_NO" readonly="readonly">
@@ -383,22 +457,15 @@
                     </div>
                     <ul class="ord_total_status">
                         <li>
-                            付款狀態:
-                            <select name="pay_status" id="">
-                                <option value="0">未付款</option>
-                                <option value="1">已付款</option>
-                            </select>
-                        </li>
-                        <li>
                             訂單狀態:
-                            <select name="ord_status" id="">
-                                <option value="0">已完成</option>
-                                <option value="1">未完成</option>
+                            <select name="ord_status" v-model.number="showLightBox.STATUS">
+                                <option value="0">未完成</option>
+                                <option value="1">已完成</option>
                             </select>
                         </li>
                         <li>
                             運送方式:
-                            <select name="shipping" id="">
+                            <select name="ord_shipping" v-model.number="showLightBox.SHIPPING">
                                 <option value="1">宅配</option>
                                 <option value="2">seven取貨</option>
                                 <option value="3">全家取貨</option>
@@ -407,364 +474,427 @@
                     </ul>
                 
                     <ul class="ord_info">
-                        <li>會員帳號: eric8861453@yahoo.com.tw</li>
-                        <li>收件人姓名: 陳建宏</li>
-                        <li>收件人手機: 0123456789</li>
-                        <li>收件人地址: 台北市大安區復興南路二段273號</li>
-                        <li>運送方式: 宅配</li>
-                        <!-- <li>付款方式: 線上付款</li>
-                        <li>門市名稱: 台北大安</li> -->
+                        <li>訂購會員編號: {{showLightBox.CUS_NO}}</li>
+                        <li>收件人姓名: {{showLightBox.CUS_NAME}}</li>
+                        <li>收件人手機: {{showLightBox.CUS_TEL}}</li>
+                        <li>收件人地址: {{showLightBox.CUS_ADD}}</li>
                     </ul>
                     <div class="ord_detail">
                         <p>訂單商品明細</p>
-                        <ul class="ord_detail_title">
-                            <li>名稱</li>
-                            <li>數量</li>
-                            <li>金額</li>
-                        </ul>
-                        <section>
-                            <ul class="ord_detail_content">
-                                <li>草莓銅鑼燒</li>
-                                <li>2</li>
-                                <li>285</li>
-                            </ul><ul class="ord_detail_content">
-                                <li>抹茶鯛魚燒</li>
-                                <li>1</li>
-                                <li>285</li>
-                            </ul>
-                        </section>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="ord_detail_title">
+                                        <td>名稱</td>
+                                        <td>數量</td>
+                                        <td>金額</td>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{showLightBox.PRD_NAME}}</td>
+                                    <td>{{showLightBox.AMOUNT}}</td>
+                                    <td>NT$ {{showLightBox.PRICE}}元</td>
+                                </tr>
+
+                                <tr>
+                                    <td>總金額: NT$ {{showLightBox.TOTAL}}元</td>
+                                </tr>
+                                <tr>
+                                    <td>優惠碼: {{showLightBox.COUPON}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- 
                         <ul class="ord_checkout">
                             <li>商品金額&emsp;&nbsp;:&ensp;$570元</li>
                             <li>折扣碼&emsp;&emsp;&nbsp;:&ensp;NA</li>
                             <li>運費&emsp;&emsp;&emsp;&nbsp;:&ensp;$80元&nbsp;&nbsp;</li>
                             <li>訂單總金額&nbsp;:&ensp;$650元</li>
-                        </ul>
-                        <div class="editbtn ord">
-                            <button class="close ord">關閉</button>
-                            <button class="save ord">儲存</button>
-                        </div>
+                        </ul> -->
                     </div>
 
                     <div class="editbtn ord">
                         <button class="close ord" type="button" @click="close()">關閉</button>
-                        <button class="save ord">儲存</button>
+                        <button class="save ord" type="button" @click="saveChange">儲存</button>
                     </div>
                 </div>
             </form>
 
-            <form>
+            <!-- 可以送資料了 -->
+            <form class="from plan">
                 <div class="light_box plan">
+                    <input name="table_title" type="text" value="plan" > 
+                    <input name="data_index" type="text" :value="data_index">
                     <p class="light_box_cap">編輯與查看</p>
                     <ul>
                         <li>
-                            <label for="">方案編號:</label>
-                            <input type="text" :value="showLightBox.PLAN_NO" readonly="readonly">
+                            <label for="plan_no">方案編號:</label>
+                            <input name="plan_no" type="text" v-model.number="showLightBox.PLAN_NO" readonly="readonly">
                             <p class="hidden">{{showLightBox.PLAN_NO}}</p>
                         </li>
                         <li>
-                            <label for="">方案名稱:</label>
-                            <input type="text" :value="showLightBox.PLAN_NAME">
-                            <p class="hidden">{{showLightBox.PLAN_NAME}}</p>
+                            <label for="plan_name">方案名稱:</label>
+                            <input name="plan_name" type="text" v-model.trim="showLightBox.PLAN_NAME">
+                            <p>{{showLightBox.PLAN_NAME}}</p>
                         </li>
                         <li>
-                            <label for="">方案價格:</label>
-                            <input type="text" :value="showLightBox.PRICE">
-                            <p class="hidden">{{showLightBox.PRICE}}</p>
+                            <label for="plan_price">方案價格:</label>
+                            <input name="plan_price" type="text" v-model.number="showLightBox.PRICE">
+                            <p>{{showLightBox.PRICE}}</p>
                         </li>
                         <li>
-                            <label for="">適合對象:</label>
-                            <textarea name="" id="" cols="20" rows="5">
+                            <label for="plan_ta">適合對象:</label>
+                            <textarea name="plan_ta" id="" cols="20" rows="5" v-model.trim="showLightBox.PLAN_TA">
                                 {{showLightBox.PLAN_TA}}
                             </textarea>
+                            <p>{{showLightBox.PLAN_TA}}</p>
                         </li>
                         <li>
-                            <label for="">方案特色:</label>
-                            <textarea name="" id="" cols="20" rows="5">
+                            <label for="plan_feature">方案特色:</label>
+                            <textarea name="plan_feature" id="" cols="20" rows="5" v-model.trim="showLightBox.PLAN_FEATURE">
                                 {{showLightBox.PLAN_FEATURE}}
                             </textarea>
+                            <p>{{showLightBox.PLAN_FEATURE}}</p>
                         </li>
 
                         <div class="editbtn plan">
                             <button class="close plan" type="button" @click="close()">關閉</button>
-                            <button class="save plan">儲存</button>
+                            <button class="save plan" type="button" @click="saveChange">儲存</button>
                         </div>
                     </ul>
                 </div>
             </form>
-
-            <form>
+            
+            <!-- 除了圖片外可以送資料了-->
+            <form class="from sao">
                 <div class="light_box sao">
                     <p class="light_box_cap">編輯與查看</p>
+                    <input name="table_title" type="text" value="sao" > 
+                    <input name="data_index" type="text" :value="data_index" >
                     <div class="sao_num">
                         <label for="">訂單編號:</label>
-                        <input type="text" :value="showLightBox.SAO_NO" readonly="readonly">
+                        <input type="text" v-model.number="showLightBox.SAO_NO" readonly="readonly">
                         <p class="hidden">{{showLightBox.SAO_NO}}</p>
                     </div>
                     <ul class="sao_total_status">
-                        <li>
+                        <!-- <li>
                             付款狀態:
-                            <select name="pay_status" id="">
+                            <select name="pay_status" v-model.number="showLightBox.PAY_STATUS">
                                 <option value="0">未付款</option>
                                 <option value="1">已付款</option>
                             </select>
-                        </li>
+                        </li> -->
                         <li>
                             訂單狀態:
-                            <select name="ord_status" id="">
-                                <option value="0">已完成</option>
-                                <option value="1">未完成</option>
+                            <select name="sao_status" class="status" v-model.number="showLightBox.STATUS">
+                                <option value="0">未完成</option>
+                                <option value="1">已完成</option>
+                                <option value="2">已取消</option>
                             </select>
                         </li>
                     </ul>
                 
                     <ul class="sao_info">
-                        <li>會員帳號: eric8861453@yahoo.com.tw</li>
-                        <li>客戶名稱: 陳建宏</li>
-                        <li>客戶手機: 0123456789</li>
-                        <li>服務地址: 台北市大安區復興南路二段273號</li>
-                        <li>付款方式: 線上付款</li>
+                        <li>會員編號: {{showLightBox.EMP_NO}}</li>
+                        <li>會員姓名: {{showLightBox.CUS_NAME}}</li>
+                        <li>客戶姓名: {{showLightBox.SAO_NAME}}</li>
+                        <li>客戶手機: {{showLightBox.SAO_TEL}}</li>
+                        <li>服務地址: {{showLightBox.SAO_ADD}}</li>
                     </ul>
                     <div class="sao_detail">
                         <p>服務明細</p>
                         <ul class="sao_detail_title">
-                            <li>方案編號:{{showLightBox.SAO_NO}}</li>
-                            <li>服務日期:{{showLightBox.SAO_DATE}}</li>
-                            <li>服務時段:{{showLightBox.SAO_TIME}}</li>
-                            <li>服務人員:{{showLightBox.EMP_NO}}</li>
+                            <li>方案編號: {{showLightBox.SAO_NO}}</li>
+                            <li>服務日期: {{showLightBox.SAO_DATE}}</li>
+                            <li>服務時段: {{showLightBox.SAO_TIME}}</li>
+                            <li>服務人員編號: {{showLightBox.EMP_NO}}</li>
+                            <li>服務金額: NT$ {{showLightBox.PRICE}}元</li>
                         </ul>
                         <section>
                             <ul class="sao_detail_content need">
-                                <li>服務需求:</li>
+                                服務需求:
                                 <li>
                                     <label for="">服務需求內容:</label>
-                                    <textarea name="" id="" cols="30" rows="5" readonly="readonly">
+                                    <textarea name="" cols="30" rows="5" readonly="readonly">
                                         {{showLightBox.NEEDS}}
                                     </textarea>
                                 </li>
                             </ul>
-                            <div class="sao_detail_content need_img">
+                            <div class="sao_detail_content need_imgs">
                                 <div class="need_img_box">
-                                    <label for="0">客戶需求圖片1:</label>
-                                    <div class="need_img">
-                                        <img src="">
-                                    </div>
+                                    <label for="need_img1">客戶需求圖片1:
+                                        <div class="need_img">
+                                            <img class="preview_img" :src='"img/"+showLightBox.UPLOAD_PIC1'>
+                                            <p>{{showLightBox.UPLOAD_PIC1}}</p>
+                                        </div>
+                                    </label>
                                 </div>
                                 <div class="need_img_box">
-                                    <label for="0">客戶需求圖片2:</label>
-                                    <div class="need_img">
-                                        <img src="">
-                                    </div>
+                                    <label for="need_img2">客戶需求圖片2:
+                                        <div class="need_img">
+                                            <img class="preview_img" :src='"img/"+showLightBox.UPLOAD_PIC2'>
+                                            <p>{{showLightBox.UPLOAD_PIC2}}</p>
+                                        </div>
+                                    </label>
                                 </div>
                                 <div class="need_img_box">
-                                    <label for="0">客戶需求圖片3:</label>
-                                    <div class="need_img">
-                                        <img src="">
-                                    </div>
+                                    <label for="need_img3">客戶需求圖片3:
+                                        <div class="need_img">
+                                            <img class="preview_img" :src='"img/"+showLightBox.UPLOAD_PIC3'>
+                                            <p>{{showLightBox.UPLOAD_PIC3}}</p>
+                                        </div>
+                                    </label>
                                 </div>
                             </div>
                         </section>
                         <section>
                             <ul class="sao_detail_content report">
-                                <li>結案回報</li>
+                                結案回報:
                                 <li>
-                                    <label for="">結案回報內容:</label>
-                                    <textarea name="" id="" cols="30" rows="5">
+                                    <label for="sao_report">結案回報內容:</label>
+                                    <textarea name="sao_report" cols="30" rows="5" v-model.trim="showLightBox.PLAN_TA">
                                         {{showLightBox.INFO}}
                                     </textarea>
                                 </li>
                             </ul>
-                            <div class="sao_detail_content report_img">
+                            <div class="sao_detail_content report_imgs">
                                 <div class="before_img_box">
-                                    <label for="0">服務前圖片:</label>
-                                    <div class="before_img">
-                                        <img src="">
-                                    </div>
+                                    <label for="before_img">服務前記錄圖片:
+                                        <input name="before_img" class="upFile" type="file" @change="uploadImg">
+                                        <p>請選擇圖片上傳</p>
+                                        <div class="before_img">
+                                            <img class="preview_img" :src='"img/"+showLightBox.BEFORE_IMG'>
+                                            <p>{{showLightBox.BEFORE_IMG}}</p>
+                                        </div>
+                                    </label>
                                 </div>
                                 <div class="after_img_box">
-                                    <label for="0">服務後圖片:</label>
-                                    <div class="after_img">
-                                        <img src="">
-                                    </div>
+                                    <label for="after_img">服務後記錄圖片:
+                                        <input name="after_img" class="upFile" type="file" @change="uploadImg">
+                                        <p>請選擇圖片上傳</p>
+                                        <div class="after_img">
+                                            <img class="preview_img" :src='"img/"+showLightBox.AFTER_IMG'>
+                                            <p>{{showLightBox.AFTER_IMG}}</p>
+                                        </div>
+                                    </label>
                                 </div>
                             </div>
                         </section>
-                        <ul class="sao_checkout">
-                            <li>服務金額&emsp;&nbsp;:&ensp;$570元</li>
-                            <li>運費&emsp;&emsp;&emsp;&nbsp;:&ensp;$80元&nbsp;&nbsp;</li>
-                            <li>訂單總金額&nbsp;:&ensp;$650元</li>
-                        </ul>
                     </div>
 
                     <div class="editbtn sao">
                         <button class="close sao" type="button" @click="close()">關閉</button>
-                        <button class="save sao">儲存</button>
+                        <button class="save sao" type="button" @click="saveChange">儲存</button>
                     </div>
                 </div>
             </form>
 
-            <form>
+            <!-- 除了圖片外可以送資料了-->
+            <form class="from casetable">
                 <div class="light_box casetable">
                     <p class="light_box_cap">編輯與查看</p>
-                    <div>案例編號:{{showLightBox.CASE_NO}}</div>
+                    <input name="table_title" type="text" value="casetable" > 
+                    <input name="data_index" type="text" :value="data_index" >
+                    <div>案例編號: {{showLightBox.CASE_NO}}</div>
                     <div>
-                        <label for="">整理前文案:</label>
-                        <textarea cols="57" rows="5">{{showLightBox.INFO_BEFORE}}</textarea>
+                        <label for="case_before">整理前文案:</label>
+                        <textarea name="case_before" cols="57" rows="5" v-model.trim="showLightBox.INFO_BEFORE">
+                            {{showLightBox.INFO_BEFORE}}
+                        </textarea>
                     </div>
                     <div>
-                        <label for="">整理後文案:</label>
-                        <textarea cols="57" rows="5">{{showLightBox.INFO_AFTER}}</textarea>
+                        <label for="case_after">整理後文案:</label>
+                        <textarea name="case_after" cols="57" rows="5" v-model.trim="showLightBox.INFO_AFTER">
+                            {{showLightBox.INFO_AFTER}}
+                        </textarea>
                     </div>
                     <div class="case_detail_content b&a_img">
-                        <div class="case_img_box">
-                            <label for="0">整理前圖片:</label>
-                            <div class="case_img">
-                                <img src="">
-                                {{showLightBox.BEFORE_IMG}}
-                            </div>
+                        <div class="before_img_box">
+                            <label for="before_img">整理前圖片:
+                                <input name="before_img" class="upFile" type="file" @change="uploadImg">
+                                <p>請選擇圖片上傳</p>
+                                <div class="before_img">
+                                    <img class="preview_img" :src='"img/case/"+showLightBox.BEFORE_IMG'>
+                                    <p>{{showLightBox.BEFORE_IMG}}</p>
+                                </div>
+                            </label>
                         </div>
-                        <div class="case_img_box">
-                            <label for="0">整理後圖片:</label>
-                            <div class="case_img">
-                                <img src="">
-                                {{showLightBox.AFTER_IMG}}
-                            </div>
+                        <div class="after_img_box">
+                            <label for="after_img">整理後圖片:
+                                <input name="after_img" class="upFile" type="file" @change="uploadImg">
+                                <p>請選擇圖片上傳</p>
+                                <div class="after_img">
+                                    <img class="preview_img" :src='"img/case/"+showLightBox.AFTER_IMG'>
+                                    <p>{{showLightBox.AFTER_IMG}}</p>
+                                </div>
+                            </label>
                         </div>
                     </div>
 
                     <div class="editbtn case">
                         <button class="close case" type="button" @click="close()">關閉</button>
-                        <button class="save case">儲存</button>
+                        <button class="save case" type="button" @click="saveChange">儲存</button>
                     </div>
                 </div>
 
             </form>
 
-            <form>
+            <!-- 資料傳送不出去 -->
+            <form class="from event">
                 <div class="light_box event">
                     <p class="light_box_cap">編輯與查看</p>
+                    <input name="table_title" type="text" value="event" > 
+                    <input name="data_index" type="text" :value="data_index" >
                     <ul>
                         <li>
-                            <label for="">折扣碼:</label>
-                            <input type="text" :value="showLightBox.CASE_NO" readonly="readonly">
-                            <p class="hidden">{{showLightBox.CASE_NO}}</p>
+                            <label for="event_coupon">折扣碼:</label>
+                            <input name="event_coupon" type="text" v-model.trim="showLightBox.COUPON" readonly="r">
+                            <p>{{showLightBox.COUPON}}</p>
                         </li>
                         <li>
-                            <label for="">活動標題:</label>
-                            <input type="text" :value="showLightBox.TITLE" readonly="readonly">
-                            <p class="hidden">{{showLightBox.TITLE}}</p>
+                            <label for="event_title">活動標題:</label>
+                            <input name="event_title" type="text" v-model.trim="showLightBox.TITLE">
+                            <p>{{showLightBox.TITLE}}</p>
                         </li>
                         <li>
-                            <label for="">開始日期:</label>
-                            <input type="text" :value="showLightBox.START" readonly="readonly">
-                            <p class="hidden">{{showLightBox.START}}</p>
+                            <label for="event_start">開始日期:</label>
+                            <input name="event_start" type="datetime" v-model.trim="showLightBox.START">
+                            <p>{{showLightBox.START}}</p>
                         </li>
                         <li>
-                            <label for="">截止日期:</label>
-                            <input type="text" :value="showLightBox.END" readonly="readonly">
-                            <p class="hidden">{{showLightBox.END}}</p>
+                            <label for="event_end">截止日期:</label>
+                            <input name="event_end" type="datetime" v-model.trim="showLightBox.END">
+                            <p>{{showLightBox.END}}</p>
                         </li>
                         <li>
-                            <label for="">優惠折數:</label>
-                            <input type="text" :value="showLightBox.PARM" readonly="readonly">
-                            <p class="hidden">{{showLightBox.PARM}}</p>
+                            <label for="event_parm">優惠折數:</label>
+                            <input name="event_parm" type="text" v-model.trim="showLightBox.PARM">
+                            <p>{{showLightBox.PARM}}</p>
                         </li>
                         <li>
-                            &emsp;上下架:
-                            <select name="status" id="">
+                            上下架:
+                            <select name="event_status" class="status" v-model.number="showLightBox.STATUS">
                                 <option value="0">下架</option>
                                 <option value="1">上架</option>
                             </select>
                         </li>
                         <li>
-                            <label for="">活動介紹內文:</label>
-                                <textarea name="" id="" cols="30" rows="5">
-
+                            <label for="event_content">活動介紹內文:</label>
+                                <textarea name="event_content" cols="30" rows="5" v-model.trim="showLightBox.CONTENT">
+                                    {{showLightBox.CONTENT}}
                                 </textarea>
                         </li>
-                        
+                        <div class="event_detail_content event_imgs">
+                            <div class="event_img_box">
+                                <label for="event_img">活動圖片:
+                                    <input name="event_img" class="upFile" type="file" @change="uploadImg">
+                                    <p>請選擇圖片上傳</p>
+                                    <div class="event_img">
+                                        <img class="preview_img" :src='"img/activity/"+showLightBox.EVENT_IMG'>
+                                        <p>{{showLightBox.EVENT_IMG}}</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
                     </ul>
                     <div class="editbtn event">
                         <button class="close event" type="button" @click="close()">關閉</button>
-                        <button class="save event">儲存</button>
+                        <button class="save event" type="button" @click="saveChange">儲存</button>
                     </div>
                 </div>
 
             </form>
 
-            <form>
+            <!-- 除了圖片外可以送資料了-->
+            <form class="from columntable">
                 <div class="light_box columntable">
                 <p class="light_box_cap">編輯與查看</p>
+                <input name="table_title" type="text" value="columntable" > 
+                    <input name="data_index" type="text" :value="data_index" >
                 <div class="col_edit_left">
                     <ul>
+                        <li>專欄編號: {{showLightBox.COLUMN_NO}}</li>
                         <li>
-                            <label for="">專欄編號:</label>
-                            <input type="text" readonly="readonly">
+                            <label for="col_topic">專欄標題:
+                                <input name="col_topic" type="text" v-model.trim="showLightBox.TOPIC">
+                            </label>
+                            <p>{{showLightBox.TOPIC}}</p>
                         </li>
                         <li>
-                            <label for="">專欄標題:</label>
-                            <input type="text">
+                            <label for="col_author">專欄作者:
+                                <input name="col_author" type="text" v-model.trim="showLightBox.AUTHOR">
+                            </label>
+                            <p>{{showLightBox.AUTHOR}}</p>
+                        </li>
+                        <li>發表時間: {{showLightBox.DATE}}</li>
+                        <li>
+                            <label for="col_sub_title_1">專欄副標題1:
+                                <input name="col_sub_title_1" type="text" v-model.trim="showLightBox.SUBTITLE_01">
+                            </label>
+                            <p>{{showLightBox.SUBTITLE_01}}</p>
+                            <label for="col_content_1">專欄內文1:
+                                <textarea name="col_content_1" cols="30" rows="5" v-model.trim="showLightBox.CONTENT1">
+                                    {{showLightBox.CONTENT1}}
+                                </textarea>
+                            </label>
                         </li>
                         <li>
-                            <label for="">專欄作者:</label>
-                            <input type="text">
-                        </li>
-                        <li>發表時間:{{showLightBox.HIREDATE}}</li>
-                        <li>
-                            <label for="">專欄副標題1:</label>
-                            <input type="text">
-                            <label for="">專欄內文1:</label>
-                            <textarea name="" id="" cols="30" rows="5">
-                            </textarea>
-                        </li>
-                        <li>
-                            <label for="">專欄副標題2:</label>
-                            <input type="text">
-                            <label for="">專欄內文2:</label>
-                            <textarea name="" id="" cols="30" rows="5">
-                            </textarea>
+                            <label for="col_sub_title_2">專欄副標題2:
+                                <input name="col_sub_title_2" type="text" v-model.trim="showLightBox.SUBTITLE_02">
+                            </label>
+                            <p>{{showLightBox.SUBTITLE_02}}</p>
+                            <label for="col_content_2">專欄內文2:
+                                <textarea name="col_content_2" cols="30" rows="5" v-model.trim="showLightBox.CONTENT2">
+                                    {{showLightBox.CONTENT2}}
+                                </textarea>
+                            </label>
                         </li>
                     </ul>
+                    <div class="col_detail_content col_imgs">
+                        <div class="col_img_box">
+                            <label for="col_main_img">專欄主圖:
+                                <input name="col_main_img" class="upFile" type="file" @change="uploadImg">
+                                <p>請選擇圖片上傳</p>
+                                <div class="col_img">
+                                    <img class="preview_img" :src='"img/activity/"+showLightBox.MAIN_PIC'>
+                                    <p>{{showLightBox.MAIN_PIC}}</p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col_img_box">
+                            <label for="col_main_img">專欄附圖1:
+                                <input name="col_sub_img_1" class="upFile" type="file" @change="uploadImg">
+                                <p>請選擇圖片上傳</p>
+                                <div class="col_img">
+                                    <img class="preview_img" :src='"img/activity/"+showLightBox.IMG1'>
+                                    <p>{{showLightBox.IMG1}}</p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col_img_box">
+                            <label for="col_main_img">專欄附圖2:
+                                <input name="col_sub_img_2" class="upFile" type="file" @change="uploadImg">
+                                <p>請選擇圖片上傳</p>
+                                <div class="col_img">
+                                    <img class="preview_img" :src='"img/activity/"+showLightBox.IMG2'>
+                                    <p>{{showLightBox.IMG2}}</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="col_edit_right">
-                    <div class="col_group">
-                        <label for="0">專欄主圖:</label>
-                        <input type="file" id="0">
-                        <p>請選擇圖片上傳</p>
-                        <div class="col_img">
-                            <img src="">
-                        </div>
-                        <img src="" alt="">
-                    </div>
-                    <div class="col_group">
-                        <label for="1">專欄附圖1:</label>
-                        <input type="file" id="1">
-                        <p>請選擇圖片上傳</p>
-                        <div class="col_img">
-                            <img src="">
-                        </div>
-                        <img src="" alt="">
-                    </div>
-                    <div class="col_group">
-                        <label for="2">專欄附圖2:</label>
-                        <input type="file" id="2">
-                        <p>請選擇圖片上傳</p>
-                        <div class="col_img">
-                            <img src="">
-                        </div>
-                        <img src="" alt="">
-                    </div>
-                </div>
-
                 <div class="editbtn col">
                     <button class="close col" type="button" @click="close()">關閉</button>
-                    <button class="save col">儲存</button>
+                    <button class="save col" type="button" @click="saveChange">儲存</button>
                 </div>
                 </div>
 
             </form>
             
-
+            <!-- 不送資料了，僅供閱覽-->
             <div class="light_box close_check">
                 <section>
 
@@ -788,37 +918,58 @@
 			data:{
                 tableName:'',
                 showtableTitle:'',
-                tableTitles:['員工管理','會員管理','測驗推薦管理','商品管理','訂單管理','服務方案管理','服務訂單管理','案例管理','活動管理','專欄管理'],
+                tableTitles:['員工管理','會員管理','測驗推薦管理','商品管理','訂單管理','服務方案管理','服務訂單管理','案例管理','活動管理','專欄管理', '員工請假紀錄'],
 
                 showTableHead:'',
                 empTableHead:['員工編號','姓名','聯絡電話','職位','地址','入職日期','權限'],
                 cusTableHead:['會員編號','姓名','會員帳號(信箱)','連絡電話','地址','性別','權限'],
                 resultTableHead:['測驗編號','測驗人格','推薦方案','推薦商品1','推薦商品2','推薦商品3'],
                 prdTableHead:['商品編號','分類','商品名稱','價格', '上下架'],
-                ordTableHead:['訂單編號','會員編號','訂購日期','訂單狀態'],
+                ordTableHead:['訂單編號','訂購會員編號','訂購日期','訂單狀態'],
                 planTableHead:['方案編號','方案名稱','方案價格'],
                 saoTableHead:['服務訂單編號','員工編號','會員編號','方案編號','服務日期','服務時間','服務訂單狀態'],
                 caseTableHead:['案例編號','整理前(文案)','整理後(文案)'],
                 eventTableHead:['折扣碼', '活動標題','開始日期','截止日期','上下架'],
                 columnTableHead:['專欄編號','專欄標題','作者','日期'],
+                schTableHead:['假單編號','員工編號','請假日期','請假時段'],
+                
 
                 showTableBody: '',
-                allPrd:[],
+                allPrds:[],
+                allPlans:[],
+                ordinfoItems:[],
 
                 showLightBox:[],
+                data_index:[],
+
+                addShow: '',
+                
                 
 			},
             methods: {
-                selectAllPrd(){
+                selectAllPrds(){
 					let xhr = new XMLHttpRequest();
 					let thisVue = this;
 					xhr.onload = function(){
-                        console.log(JSON.parse(xhr.responseText));
-						thisVue.allPrd = JSON.parse(xhr.responseText);
+                        // console.log(JSON.parse(xhr.responseText));
+						thisVue.allPrds = JSON.parse(xhr.responseText);
 					}
 					xhr.open("get", "phps/selectAll.php?tableName=prd", true);
 					xhr.send(null);
                 },
+
+                selectAllPlans(){
+                    let xhr = new XMLHttpRequest();
+					let thisVue = this;
+					xhr.onload = function(){
+                        // console.log(JSON.parse(xhr.responseText));
+						thisVue.allPlans = JSON.parse(xhr.responseText);
+					}
+					xhr.open("get", "phps/selectAll.php?tableName=plan", true);
+					xhr.send(null);
+                },
+
+                // 按下nav選項後 panel 出現哪個table 的資料
                 content(tableName) {
                     this.tableName = tableName;
                     var vueApp = this;
@@ -834,6 +985,8 @@
                             if (tableName=='emp') {
                                 vueApp.showtableTitle = vueApp.tableTitles[0];
                                 vueApp.showTableHead = vueApp.empTableHead;
+                                addShow = true;
+                                console.log(addShow);
 
                                 vueApp.showTableBody.forEach(element => {
                                     if(element.EMP_STATE == 1){
@@ -846,6 +999,8 @@
                             }else if(tableName=='cus'){
                                 vueApp.showtableTitle = vueApp.tableTitles[1];
                                 vueApp.showTableHead = vueApp.cusTableHead;
+                                addShow = false;
+                                console.log(addShow);
 
                                 vueApp.showTableBody.forEach(element => {
                                     if(element.STATE == 1){
@@ -873,6 +1028,15 @@
                             }else if(tableName=='ord'){
                                 vueApp.showtableTitle = vueApp.tableTitles[4];
                                 vueApp.showTableHead = vueApp.ordTableHead;
+                                vueApp.showTableBody.forEach(element => {
+                                    if(element.STATE == 1){
+                                        element.STATE = "已完成";
+                                    }else if(element.STATE == 0){
+                                        element.STATE = "未完成";
+                                    };
+                                });
+                                
+
 
                             }else if(tableName=='plan'){
                                 vueApp.showtableTitle = vueApp.tableTitles[5];
@@ -887,6 +1051,8 @@
                                         element.STATE = "已完成";
                                     }else if(element.STATE == 0){
                                         element.STATE = "未完成";
+                                    }else if(element.STATE == 2){
+                                        element.STATE = "已取消";
                                     };
 
                                     if(element.SAO_TIME == 1){
@@ -897,8 +1063,6 @@
                                         element.SAO_TIME = "下午";
                                     };
                                 });
-
-
 
                             }else if(tableName=='casetable'){
                                 vueApp.showtableTitle = vueApp.tableTitles[7];
@@ -919,11 +1083,24 @@
                             }else if(tableName=='columntable'){
                                 vueApp.showtableTitle = vueApp.tableTitles[9];
                                 vueApp.showTableHead = vueApp.columnTableHead;
+                            
+                            }else if(tableName=='sch'){
+                                vueApp.showtableTitle = vueApp.tableTitles[10];
+                                vueApp.showTableHead = vueApp.schTableHead;
+                                vueApp.showTableBody.forEach(element => {
+                                    if(element.SCH_TIME == 1){
+                                        element.SCH_TIME = "上午";
+                                    }else if(element.SCH_TIME == 2){
+                                        element.SCH_TIME = "中午";
+                                    }else if(element.SCH_TIME == 3){
+                                        element.SCH_TIME = "下午";
+                                    };
+                                });
 
                             };
 
                             $(`.nav_li`).removeClass("hovered");
-                            console.log($(`.nav_li.${vueApp.tableName}`));
+                            // console.log($(`.nav_li.${vueApp.tableName}`));
                             $(`.nav_li.${vueApp.tableName}`).addClass("hovered");
                         },
                         error(res){
@@ -935,6 +1112,8 @@
 
                 },
 
+
+                // 按下單筆資料，出現資料和修改light box
                 edit(index){
                     // let current_edit = 0;
                     // this.current_edit = index;
@@ -949,12 +1128,8 @@
                             vueApp.showLightBox = res;
                             console.log(res);
                             $(`.light_box.${vueApp.tableName}`).addClass("show");
-                            // console.log(vueApp.tableName);
-                            // console.log(`.light_box.${vueApp.tableName}`);
-                            // console.log(`${tableName.EMP_STATE}`);
-                            // console.log(`${showLightBox.EMP_STATE}`);
 
-                            //emp 和 cus 的權限判斷，selection的預選值
+                            //emp 和 cus 的權限判斷 & prd 上下架判斷 & ord 訂單已完成判斷
                             if(`${vueApp.showLightBox.STATUS}` == 0){
                                 console.log("進停權判斷");
                                 $(".status option[value='0']").attr("selected", "selected");
@@ -967,12 +1142,36 @@
 
                                 console.log($(".status option[value='1']"));
 
-                            }
+                            }else if(`${vueApp.showLightBox.STATUS}` == 2){
+                                $(".status option[value='2']").attr("selected", "selected");
 
+                                console.log($(".status option[value='2']"));
+
+                            };
+                            //emp 和 cus 的權限判斷 & prd 上下架判斷 & ord 訂單已完成判斷，selection的預選值
                             $(".status").change(function(){
                                 console.log($(".status").val());
                                 console.log(`這是目前改變(填寫)的權限狀態: ${vueApp.showLightBox.STATUS}`);
                             });
+
+                            if(`${vueApp.showLightBox.COUPON}` == "null"){
+                                console.log("進優惠碼判斷");
+                                vueApp.showLightBox.COUPON = "無";
+
+                            }else{
+                                console.log("有使用COUPON");
+                            }
+
+                            //prd 和 cus 的上下架判斷
+
+                            // if(`${vueApp.showLightBox.ORD_NUM} > 1`){
+                            //     console.log("不只一項單品");
+                            //     vueApp.showLightBox.ORD_NUM = vueApp.ordinfoItems;
+                            // }else{
+                            //     console.log("只有一項單品");
+                            // }
+
+
 
                         },
                         error(res){
@@ -980,10 +1179,30 @@
                         },
                     });
 
+                    console.log("test",index.ta);
+                    this.data_index = index.ta;
+                    console.log("哈哈哈",this.data_index);
+
                     $(".hide").addClass("show");
 
 
                 },
+
+                uploadImg(e){ //選檔案:change事件
+                    
+                    console.log("改變預覽圖");
+                    let file = e.target.files[0]; //找物件
+                    console.log(file);
+                    let reader = new FileReader(); //reader讀物件
+
+                    console.log(reader.result);
+                    reader.onload = function(){ 
+                        $(".previewImg").src = reader.result;
+                        console.log($(".previewImg").src);
+                    }
+                    reader.readAsDataURL(file);
+                },
+
 
                 // 按下關閉後顯示未儲存確認燈箱
                 close(){
@@ -1008,55 +1227,45 @@
                 closeCheckC(){
                     var vueApp = this;
                     $(`.light_box.${vueApp.tableName}`).addClass("show");
-                    $(".hide").removeClass("show");
                     $(".close_check").removeClass("show");
                 },
 
-                save(){
+                saveChange(e){
+                    console.log("saveChange 近來ㄌ");
+                    let vueApp = this;
+                    console.log(vueApp.showLightBox);
+                    console.log("目前更改的index", vueApp.data_index);
+
                     let xhr = new XMLHttpRequest();
-                        let thisVue = this;
-                        xhr.onload = function(){
-                            thisVue.cusRow = JSON.parse(xhr.responseText);
-                            console.log(thisVue.cusRow);
+                    xhr.onload = function(){
+                        console.log("這是個大問題0:", xhr.responseText);
+                        // vueApp.showLightBox = JSON.parse(xhr.responseText);
+                        vueApp.showLightBox = xhr.responseText;
+                        console.log("這是個解碼後的問題:", vueApp.showLightBox);
+                    }
 
+                    xhr.open("post", "phps/backendChange.php", true);
+                    let this_form = e.target.closest("form");
+                    let formData = new FormData(this_form);
+                    xhr.send(formData);
+                    // console.log(formData);
 
+                    vueApp.content(vueApp.tableName);
+                    $(`.light_box.${vueApp.tableName}`).removeClass("show");
+                    $(".hide").removeClass("show");
 
-                            // if(thisVue.cusRow.CUS_PIC!=''){
-                            //     thisVue.cus_pic = "img/cus/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
-                            // }
-                            // // console.log(thisVue.cus_pic);
-                            // if(thisVue.cusRow.SEX == "女"){
-                            //     $('#female').prop('checked',true);
-                            // }else if(thisVue.cusRow.SEX == "男"){
-                            //     $('#male').prop('checked',true);
-                            // }   
-                        }
-                        xhr.open("get", "phps/backendChange.php", true);
-                        xhr.send(null);
+                    console.log("這是個大問題1:", xhr.responseText);
+                    console.log(xhr.responseText);
+                    console.log("這是vueApp.showLightBox:",vueApp.showLightBox);
+                    
+                    
+
                 },
 
-                getMemberInfo(){
-                        let xhr = new XMLHttpRequest();
-                        let thisVue = this;
-                        xhr.onload = function(){
-                            thisVue.cusRow = JSON.parse(xhr.responseText);
-                            console.log(thisVue.cusRow);
-                            if(thisVue.cusRow.CUS_PIC!=''){
-                                thisVue.cus_pic = "img/cus/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
-                            }
-                            // console.log(thisVue.cus_pic);
-                            if(thisVue.cusRow.SEX == "女"){
-                                $('#female').prop('checked',true);
-                            }else if(thisVue.cusRow.SEX == "男"){
-                                $('#male').prop('checked',true);
-                            }   
-                        }
-                        xhr.open("get", "phps/getMemberInfo.php?tableName=", true);
-                        xhr.send(null);
-                    },
             },
             mounted() {
-                this.selectAllPrd();
+                this.selectAllPrds();
+                this.selectAllPlans();
             },
 		});
 
