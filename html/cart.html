@@ -216,7 +216,7 @@
                     let thisVue = this;
                     xhr.onload = function () {
                         thisVue.cusRow = JSON.parse(xhr.responseText);
-                        console.log(thisVue.cusRow);
+                        // console.log(thisVue.cusRow);
                         if (!thisVue.cusRow.EMAIL) {
                             alert("請先登入");
                             location.href="login.html";
@@ -235,6 +235,7 @@
                     if (this.cart == "") {
                         this.noshopping = true;
                     }
+                    window.addEventListener('click',indexOfCart,false);
                 },
                 getList() {
                     let cart = JSON.parse(localStorage.getItem("cart"));

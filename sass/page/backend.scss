@@ -439,6 +439,98 @@ body{
 
 }
 
+.new_light_box{
+    width: 800px;
+    height: 90%;
+    max-height: 1100px;
+    // -ms-grid-rows: 44px 980px 54px;
+    // grid-template-rows: 44px 980px 54px;
+    border-radius: 10px;
+    overflow: hidden;
+    /* position: relative; */
+    /* left: 20%; */
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background-color: map-get($color , "cover" );
+    overflow-y: auto;
+
+    &.emp{
+        &.show{
+            display: grid;
+        }
+        display: none;
+    }
+
+    &.cus{
+
+        &.show{
+           display: grid; 
+        }
+        display: none;
+    }
+
+    &.result{
+        &.show{
+           display: grid; 
+        }
+        display: none;
+    }
+
+    &.prd{
+        &.show{
+            display: grid;
+        }
+        display: none;
+
+    }
+
+    &.ord{
+        &.show{
+            display: grid;
+        }
+        display: none;
+    }
+
+    &.plan{
+        &.show{
+            display: grid;
+        }
+        display: none;
+    }
+    
+    &.sao{
+        &.show{
+            display: grid;
+        }
+        display: none;
+    }
+
+    &.casetable{
+        &.show{
+            display: grid;
+        }
+        display: none;
+    }
+
+    &.event{
+        &.show{
+            display: grid;
+        }
+        display: none;
+    }
+
+    &.columntable{
+        &.show{
+            display: grid;
+        }
+        display: none;
+    }
+}
+
 .close_check{
     width: 200px;
     height: 90%;
