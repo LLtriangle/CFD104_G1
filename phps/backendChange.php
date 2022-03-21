@@ -1,6 +1,4 @@
 <?php
-// session_start();
-// echo $_FILES['upFile']['name'];
 try{
   // require_once("../connect_cfd104g1.php"); // 上線用
 	require_once("connect.php"); // 開發用
@@ -50,14 +48,85 @@ try{
     $sql_exe = $result;
 
 	}elseif ($_POST["table_title"] == "prd"){
+    $road = [];
+    for($i=1; $i < 5; $i++){
+      if($_FILES["prd_img_$i"]['error']==0){
+        // 圖檔名
+        // $file = `prd_._.$i`;
+        $prdno = $_POST["data_index"]; // ok
+        $file = "prd/prd_".$prdno."_".$i;
+        $fileInfo = pathinfo($_FILES["prd_img_$i"]['name']);  // 路徑
+        $ext = $fileInfo["extension"];
+        $fileName = "$file.$ext";
+      
+        $from = $_FILES["prd_img_$i"]['tmp_name']; //暫存區含路徑
+        $to = "../img/$fileName";
+        copy($from, $to);
+        
+        $road[$i-1] = $fileName;
+      };
+    };
+
+    
+    if($_FILES["prd_info_img_1"]['error']==0){
+      // 圖檔名
+      // $file = `prd_._.$i`;
+      $prdno = $_POST["data_index"]; // ok
+      $file = "prd/prd_".$prdno."_info_1";
+      $fileInfo = pathinfo($_FILES["prd_info_img_1"]['name']);  // 路徑
+      $ext = $fileInfo["extension"];
+      $fileNameInfo1 = "$file.$ext";
+    
+      $from = $_FILES["prd_info_img_1"]['tmp_name']; //暫存區含路徑
+      $to = "../img/$fileNameInfo1";
+      copy($from, $to);
+    };
+
+    if($_FILES["prd_info_img_2"]['error']==0){
+      // 圖檔名
+      // $file = `prd_._.$i`;
+      $prdno = $_POST["data_index"]; // ok
+      $file = "prd/prd_".$prdno."_info_2";
+      $fileInfo = pathinfo($_FILES["prd_info_img_2"]['name']);  // 路徑
+      $ext = $fileInfo["extension"];
+      $fileNameInfo2 = "$file.$ext";
+    
+      $from = $_FILES["prd_info_img_2"]['tmp_name']; //暫存區含路徑
+      $to = "../img/$fileNameInfo2";
+      copy($from, $to);
+    };
+    
+    if($_FILES["prd_spec_img"]['error']==0){
+      // 圖檔名
+      // $file = `prd_._.$i`;
+      $prdno = $_POST["data_index"]; // ok
+      $file = "prd/prd_".$prdno."_info_2";
+      $fileInfo = pathinfo($_FILES["prd_spec_img"]['name']);  // 路徑
+      $ext = $fileInfo["extension"];
+      $fileNameSpec = "$file.$ext";
+    
+      $from = $_FILES["prd_spec_img"]['tmp_name']; //暫存區含路徑
+      $to = "../img/$fileNameSpec";
+      copy($from, $to);
+    };
 
     // 修改prd資料
-    $sql_prd= "update prd set PRD_NAME=:PRD_NAME, CATEGORY=:CATEGORY, PRICE=:PRICE, STATE=:STATE, INFO_TITLE_1=:INFO_TITLE_1, INFO_1=:INFO_1, INFO_TITLE_2=:INFO_TITLE_2, INFO_2=:INFO_2 where PRD_NO =:DATA_INDEX";
-    // $sql_prd= "update prd set PRD_NAME=:PRD_NAME, CATEGORY=:CATEGORY, PRICE=:PRICE, STATE=:STATE, INFO_TITLE_1=:INFO_TITLE_1, INFO_1=:INFO_1, INFO_TITLE_2=:INFO_TITLE_2, INFO_2=:INFO_2, IMG1=:IMG1 , IMG2=:IMG2, IMG3=:IMG3, IMG4=:IMG4, INFO_IMG1=:INFO_IMG1, INFO_IMG2=:INFO_IMG2, SPEC_IMG=:SPEC_IMG where PRD_NO =:DATA_INDEX";
-    //, IMG1=:IMG1 , IMG2=:IMG2, IMG3=:IMG3, IMG4=:IMG4, INFO_IMG1=:INFO_IMG1, INFO_IMG2=:INFO_IMG2, SPEC_IMG=:SPEC_IMG
+    // $sql_prd= "update prd set PRD_NAME=:PRD_NAME, CATEGORY=:CATEGORY, PRICE=:PRICE, STATE=:STATE, INFO_TITLE_1=:INFO_TITLE_1, INFO_1=:INFO_1, INFO_TITLE_2=:INFO_TITLE_2, INFO_2=:INFO_2, IMG1=:IMG1, IMG2=:IMG2, IMG3=:IMG3, IMG4=:IMG4, INFO_IMG1=:INFO_IMG1, INFO_IMG2=:INFO_IMG2, SPEC_IMG=:SPEC_IMG where PRD_NO =:DATA_INDEX";
+    $sql_prd= "update prd set PRD_NAME=:PRD_NAME, CATEGORY=:CATEGORY, PRICE=:PRICE, STATE=:STATE, INFO_TITLE_1=:INFO_TITLE_1, INFO_1=:INFO_1, INFO_TITLE_2=:INFO_TITLE_2, INFO_2=:INFO_2";
+
+    // , IMG1=:IMG1 
+    if(isset($road[0])){$sql_prd = $sql_prd.", IMG1=$road[0]";};
+    if(isset($road[1])){$sql_prd = $sql_prd.", IMG2=$road[1]";};
+    if(isset($road[2])){$sql_prd = $sql_prd.", IMG3=$road[2]";};
+    if(isset($road[3])){$sql_prd = $sql_prd.", IMG4=$road[3]";};
+    if(isset($fileNameInfo1)){$sql_prd = $sql_prd.", INFO_IMG1=$fileNameInfo1";};
+    if(isset($fileNameInfo2)){$sql_prd = $sql_prd.", INFO_IMG2=$fileNameInfo2";};
+    if(isset($fileNameSpec)){$sql_prd = $sql_prd.", SPEC_IMG=$fileNameSpec";};
+    $sql_prd = $sql_prd." where PRD_NO =:DATA_INDEX";
+
     $prd = $pdo->prepare($sql_prd);
 
-		$prd->bindValue(":PRD_NAME",$_POST["prd_name"]); // 商品名稱
+    $prd->bindValue(":PRD_NAME",$_POST["prd_name"]); // 商品名稱
     $prd->bindValue(":CATEGORY",$_POST["prd_cate"]); // 商品類別
     $prd->bindValue(":PRICE",$_POST["prd_price"]); // 商品價格
     $prd->bindValue(":STATE",$_POST["prd_status"]); // 商品上下架
@@ -66,18 +135,10 @@ try{
     $prd->bindValue(":INFO_TITLE_2",$_POST["prd_info_title_2"]); // 商品介紹標題2
     $prd->bindValue(":INFO_2",$_POST["prd_info_2"]); // 商品介紹內文2
 
-    // $prd->bindValue(":IMG1",$_POST["prd_img_1"]); // 商品圖片1
-    // $prd->bindValue(":IMG2",$_POST["prd_img_2"]); // 商品圖片2
-    // $prd->bindValue(":IMG3",$_POST["prd_img_3"]); // 商品圖片3
-    // $prd->bindValue(":IMG4",$_POST["prd_img_4"]); // 商品圖片4
-    // $prd->bindValue(":INFO_IMG1",$_POST["prd_info_img_1"]); // 商品資訊圖1
-    // $prd->bindValue(":INFO_IMG2",$_POST["prd_info_img_2"]); // 商品資訊圖2
-    // $prd->bindValue(":SPEC_IMG",$_POST["prd_spec_img"]); // 商品規格圖
-
     $prd->bindValue(":DATA_INDEX", json_decode($_POST["data_index"])); //table 裡第幾筆資料
 
     $sql_exe = $prd;
-		
+
 	}elseif ($_POST["table_title"] == "ord"){
 
     // 修改prd資料
@@ -108,14 +169,33 @@ try{
 
 	}elseif ($_POST["table_title"] == "sao"){
 
+    $road = [];
+    for($i=0; $i < 2; $i++){
+      if($_FILES["prd_img_$i"]['error']==0){
+        // 圖檔名
+        // $file = `prd_._.$i`;
+        $prdno = $_POST["data_index"]; // ok
+        $file = "prd/prd_".$prdno."_".$i;
+        $fileInfo = pathinfo($_FILES["prd_img_$i"]['name']);  // 路徑
+        $ext = $fileInfo["extension"];
+        $fileName = "$file.$ext";
+      
+        $from = $_FILES["prd_img_$i"]['tmp_name']; //暫存區含路徑
+        $to = "../img/$fileName";
+        copy($from, $to);
+        
+        $road[$i] = $fileName;
+      };
+    };
+
     // 修改sao資料
     $sql_sao= "update sao set STATE=:STATE, INFO=:INFO, BEFORE_IMG=:BEFORE_IMG, AFTER_IMG=:AFTER_IMG where SAO_NO =:DATA_INDEX";
     $sao = $pdo->prepare($sql_sao);
 
 		$sao->bindValue(":STATE",$_POST["sao_status"]); // 服務訂單狀態
     $sao->bindValue(":INFO",$_POST["sao_report"]); // 結案回報內容
-    $sao->bindValue(":BEFORE_IMG",$_POST["before_img"]); // 服務前紀錄
-    $sao->bindValue(":AFTER_IMG",$_POST["after_img"]); // 服務後紀錄
+    $sao->bindValue(":BEFORE_IMG", $road[0]); // 服務前紀錄
+    $sao->bindValue(":AFTER_IMG", $road[1]); // 服務後紀錄
 
     $sao->bindValue(":DATA_INDEX", json_decode($_POST["data_index"])); //table 裡第幾筆資料
 
