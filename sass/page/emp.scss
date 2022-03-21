@@ -145,68 +145,13 @@ input{
                 
             }
         }
-        .data_con{
+        .data_con{ // section
             width: 95%;
-            margin: 30px auto;
+            // margin: 30px auto;
             background-color: #f3f3ed;
             border: #d6aa81 2px solid;
             border-radius: 20px;
             flex-direction: row;
-            .data_mem{
-                position: relative;
-                .icon_edit{
-                    button{
-                        display: block;
-                        // height: 50px;
-                        margin: auto;
-                    }
-                }
-                .mem_txt{
-                    width: 80%;
-                    // height: 400px;
-                    border: #d6aa81 2px solid;
-                    background: #fff;
-                    border-radius: 20px;
-                    margin: 20px auto;
-                    line-height: 3;
-                    box-sizing: border-box;
-                    padding-left: 20px;
-                    padding-bottom: 60px;
-                    position: relative;
-                    button{
-                        position: absolute;
-                        right: 5%;
-                        // bottom: 0;
-                        padding: 4px 10px;
-                    }
-                    .cancel{
-                        right: auto;
-                        left: 5%;
-                    }
-                    .item_box{
-                        margin: 15px 0px;
-                        label{
-                            margin: 20px auto;
-                            
-                        }
-                        .gender{
-                            display: flex;
-                            ul{
-                                li{
-                                    display: inline-block;
-                                    label{
-                                        span{
-                                            bottom: 0;
-                                            margin: auto;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    
-                }
-            }
         }
 
     }
@@ -328,6 +273,7 @@ input{
     .emp_calendar{
 
         .btn_job{
+            position: absolute;
             left: calc(50% + 302px);
             // right: 50px;
             // left: 600px;
@@ -422,6 +368,19 @@ input{
     .memberLine::-webkit-scrollbar {
         display: none
     }
+
+    // ------ 月曆手機版
+    .emp_calendar{
+        .btn_job{
+            position: relative;
+            top: 10px;
+            left: calc(100% - 82px);
+        }
+        #calendari{
+            min-width: 550px;
+            height: 470px;
+        }
+    }
 }
 @media  screen and (max-width:575px) {
     .memberAll {
@@ -441,7 +400,7 @@ input{
 #lightbox{
     position: absolute;
     // padding: 100px;
-    background-color: white;
+    background-color: #F3F3ED;
     top: 0;
     bottom: 0;
     left: 0;
@@ -466,8 +425,52 @@ input{
         }
     }
 }
+// ------- 回報表單
+#report_div{
+    box-sizing: border-box;
+    height: 100vh;
+    position: absolute;
+    // background-color: #F3F3ED;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    // display: none;
+    #report_form{
+        padding: 50px;
+        margin: 0 auto;
+        // height: inherit;
+        box-sizing: border-box;
+        background-color: #F3F3ED;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        // .form_btn{
+        //     // position: absolute;
+        //     // width: 30px;
+        //     // height: 30px;
+        //     // padding: 0;
+        //     // right: 30px;
+        //     // top: 30px;
+        // }
+    }
+}
 
-
+// ------ 叉叉btn
+.del_btn{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    right: 30px;
+    top: 30px;
+}
+.btn_send{
+    position: absolute;
+    right: 30px;
+    bottom: 130px;
+}
 // -------------月曆
 
 /* 早中晚點點 */
@@ -517,11 +520,14 @@ td>div div:nth-child(2) span.leave {
         .memberGrid {
             display: grid;
             grid-template-columns: repeat(8, 1fr);
-            .memberReceiverID {
-                //詳細資料
-                color: map-get($btn_color, "deep_blue");
-                cursor: pointer;
+            .memberGrid1{
+                width: 50px;
             }
+            // .memberReceiverID {
+            //     //詳細資料
+            //     color: map-get($btn_color, "deep_blue");
+            //     cursor: pointer;
+            // }
         }
     }
     .memberReserveContent {
@@ -542,7 +548,7 @@ td>div div:nth-child(2) span.leave {
 
 
 }
-
+// --------------手機
 @media  screen and (max-width:768px) {
     .memberAll {
         width: 75%;

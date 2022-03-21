@@ -97,7 +97,9 @@ function createCalendar(){
         boto_next.onclick = function() {
             data.setMonth(data.getMonth() + 1);
             calendari(widget, data);
+            
             vm.getsao();
+            
             vm.getsch();
         };
     
