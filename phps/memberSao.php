@@ -1,10 +1,13 @@
-<?php 
+<?php
+session_start();  
 try {
 	require_once("connect.php"); // 開發用
+	$cus_NO=$_SESSION['CUS_NO'];
 	$sql = "select SAO_NO,e.EMP_NO,e.EMP_NAME empname,c.CUS_NO,c.CUS_NAME cusname,p.PLAN_NAME planname,SAO_NAME,SAO_TEL,SAO_DATE,SAO_TIME,SAO_ADD,UPLOAD_PIC1,UPLOAD_PIC2,UPLOAD_PIC3,NEEDS,s.STATE,INFO,BEFORE_IMG,AFTER_IMG,p.PRICE 
     from sao s join emp e on s.EMP_NO = e.EMP_NO
                join cus c on s.CUS_NO = c.CUS_NO
-               join plan p on s.PLAN_NO = p.PLAN_NO";
+               join plan p on s.PLAN_NO = p.PLAN_NO
+			   where c.CUS_NO = {$cus_NO}";
 
 	$allTable = $pdo->query($sql);
 	$Rows = $allTable->fetchAll(PDO::FETCH_ASSOC);

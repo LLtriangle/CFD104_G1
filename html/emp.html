@@ -25,7 +25,7 @@
                         </div>
                         <div class="mem_p">
                             <!-- 名字 -->
-                            <p>麻里不會</p>
+                            <p>{{empRow.EMP_NAME}}</p>
                         </div>
                         <img src="img/memupupdowndown.png" alt="" class="up_down">
                     </div>
@@ -33,7 +33,7 @@
                 <div class="con_data">
                     <a>工作行程</a><br>
                     <a>工作紀錄</a><br>
-                    <a id="btnLogout">登出</a>
+                    <a id="btnLogout" @click="logout">登出</a>
                 </div>
             </div>
         </section>
@@ -46,7 +46,7 @@
             <!-- 工作行程 -->
             <div class="data_mem emp_sch flex">
                 <!-- 預約明細 -->
-                <div class="datails_info flex">
+                <!-- <div class="datails_info flex">
                     <table class="d_table">
                         <tr>
                             <td>姓名</td>
@@ -85,7 +85,7 @@
                     <div class="d_pic center">
                         <img id="info_pic" src="https://picsum.photos/300/200/?random=10">
                     </div>
-                </div>
+                </div> -->
 
                 <!-- 月曆 -->
                 <div class="emp_calendar">
@@ -109,25 +109,93 @@
             new Vue({
                 el:'#emp_data',
                 data:{
-                    emp_pic:'img/emp_img.jpg', // 預設大頭貼
+                    emp_pic:'img/cus/emp_img.jpg', // 預設大頭貼
+                    empRow:[],
                 },
                 methods: {
                     getEmpInfo(){
                         let xhr = new XMLHttpRequest();
                         let thisVue = this;
                         xhr.onload = function(){
-                            // thisVue.cusRow = JSON.parse(xhr.responseText);
-                            // console.log(thisVue.cusRow);
-                            // if(thisVue.cusRow.CUS_PIC!=''){
-                            //     thisVue.cus_pic = "img/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
-                            // }  
+                            thisVue.empRow = JSON.parse(xhr.responseText);
+                            console.log(thisVue.empRow);
+                            if(thisVue.empRow.EMP_PIC!=''){
+                                thisVue.emp_pic = "img/"+thisVue.empRow.EMP_PIC; // 大頭貼路徑
+                            }  
                         }
                         xhr.open("get", "phps/getEmpInfo.php", true);
+                        xhr.send(null);
+                    },
+                    getsao(){
+                        let tds = $("#calendari td");
+                        let thisVue = this;
+                        for(let i=0;i<tds.length;i++){
+                            let dots = tds[i].childNodes[0].childNodes[1].childNodes; // 早中晚點點 陣列
+                            dots[0].classList.remove('reserved');
+                            dots[1].classList.remove('reserved');
+                            dots[2].classList.remove('reserved');
+                            tds[i].classList.remove('full');
+                        };
+                        
+                        $.ajax({
+                            // url: `phps/getEmpSao.php`,
+                            // data: `data=${emp_no}`, 
+                            type: 'GET', 
+                            dataType: 'json', 
+                            success(res){
+                                thisVue.infos = res;
+                                console.log(thisVue.cusRow);
+                                // 清空
+                                let tds = $("#calendari td");
+                                $('.full_img').remove();
+                                for(let i=0; i<thisVue.infos.length; i++){
+                                    // console.log(thisVue.infos[i].DAY_OFF); //不可預約日期
+                                    // console.log(thisVue.infos[i].SCH_TIME);//不可預約時段
+                                    for(let j=0; j<tds.length; j++){
+                                        // console.log(thisVue.infos[i].DAY_OFF); 
+                                        // 如果不可預約時間 = data-date 加入 reserved
+                                        if(thisVue.infos[i].DAY_OFF == tds[j].dataset.date){
+                                            
+                                            if(thisVue.infos[i].SCH_TIME==1){
+                                                tds[j].childNodes[0].childNodes[1].childNodes[0].classList.add('reserved');
+                                            }else if(thisVue.infos[i].SCH_TIME==2){
+                                                tds[j].childNodes[0].childNodes[1].childNodes[1].classList.add('reserved');
+                                            }else if(thisVue.infos[i].SCH_TIME==3){
+                                                tds[j].childNodes[0].childNodes[1].childNodes[2].classList.add('reserved');
+                                            }
+
+                                        }
+                                    }
+                                }
+
+                                for(let i=0;i<tds.length;i++){
+                                    let dots = tds[i].childNodes[0].childNodes[1].childNodes; // 早中晚點點 陣列
+
+                                    if(dots[0].classList.contains("reserved")==true && dots[1].classList.contains("reserved")==true && dots[2].classList.contains("reserved")==true){
+                                    }
+                                }
+
+
+                            },
+                            error(res){
+                                console.log('error');
+                                console.log(res);
+                            },
+                        });
+                    },
+                    logout(){        
+                        let xhr = new XMLHttpRequest();
+                        xhr.onload = function(){
+                            // 跳轉畫面
+                            window.location.assign("backendlogin.html");       
+                        }
+                        xhr.open("get", "phps/logout.php", true); // 清空session
                         xhr.send(null);
                     },
                 },
                 mounted() {
                     this.getEmpInfo();
+                    this.getsao();
                 },
             });
         </script>

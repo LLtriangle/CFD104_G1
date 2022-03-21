@@ -283,7 +283,6 @@
         }
         #garbage{
             width: calc(100vw - 180px);
-            max-width: 700px;
             position: absolute;
             bottom: 0px;
             left: 80px;
@@ -663,12 +662,13 @@ label{
                 width: 100%;
                 flex-direction: row;
                 img{
-                    max-width: 100%;
+                    width: calc(100% - 20px);
+                    box-sizing: border-box;
                 }
                 input{
                     position: absolute;
-                    bottom: 80px;
-                    right: 120px;
+                    bottom: 20px;
+                    right: 100px;
                     left: auto;
                 }
             }
@@ -676,6 +676,9 @@ label{
         #trashcan{
             bottom: 10px;
             left: 10px;
+            #garbage{
+                max-width: 560px;
+            }
         }
     }
     .text_result{

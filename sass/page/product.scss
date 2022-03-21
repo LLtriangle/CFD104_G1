@@ -1,5 +1,5 @@
 @import  "../base/color";
-
+// 手機版
 h3{
     margin-left: 20px;
     margin-top: 20px;
@@ -140,11 +140,18 @@ p{
     .prod_rerow{
         width: 100%;
         margin-top: -50px;
-        .reitem_btn{
-            visibility: hidden;
-        }
+        overflow: hidden;
+        white-space: nowrap;
+        // .reitem_btn{
+        //     visibility: hidden;
+        // }
         .prod_reitem{
-            margin: 20px 20px;
+            .reitemPrd{
+                display: none;
+            }
+            display: inline-block;
+            width: calc(50% - 40px);
+            margin: 20px 15px 20px 20px;
             .btn_btn_box{
                 padding: 10px;
                 display: flex;
@@ -166,7 +173,7 @@ p{
             }
         }
         .reitem_goods{
-            border: 2px solid map-get($color, 'main');
+            border: 1px solid map-get($color, 'blue');
             border-radius: 10px;
             background-color: map-get($color, 'bg_white');
             position: relative;
@@ -177,10 +184,10 @@ p{
     cursor: pointer;
 }
 
-// 手機版
+// 平版
 @media (min-width: 768px){
     h3{
-        margin-left: 20px;
+        margin-left: 0px;
         margin-top: 20px;
     }
     p{
@@ -191,7 +198,8 @@ p{
         margin-top: 70px;
         // padding-top: 40px;
         .prod_row{
-            width: 100%;
+            max-width: 768px;
+            margin: auto;
             .prod_txt{
                 margin: 10px auto 0 auto;
                 p{
@@ -309,51 +317,62 @@ p{
             }
         }
         // 推薦商品
+    
         .prod_rerow{
-            width: 100%;
-            margin-top: -50px;
-            .reitem_btn{
-                visibility: hidden;
-            }
+            // display: flex;
+            overflow: hidden;
+            white-space: nowrap;
+            // flex-wrap: wrap;
+            // .reitem_btn{
+            //     visibility: hidden;
+            // }
             .prod_reitem{
-                margin: 20px 20px ;
-                .btn_btn_box{
-                    padding: 10px;
-                    display: flex;
-                    justify-content: center;
-                }            
-                .btn_xshidden{
-                    visibility: hidden;
-                }
+                display: inline-block;
+                box-sizing: border-box;
+                width: calc(100% / 3 - 40px);
                 img{
                     width: 100%;
-                    border-radius: 10px 10px 0 0;
                 }
                 h3{
                     text-align: center;
+                    margin: 0;
                 }
                 p{
                     text-align: center;
                     margin-bottom: 10px;
                 }
+                .btn_btn_box{
+                    padding: 10px;
+                    display: flex;
+                    justify-content: center;
+                }
             }
             .reitem_goods{
-                border: 2px solid map-get($color, 'main');
+                // border: 2px solid map-get($color, 'main');
                 border-radius: 10px;
                 background-color: map-get($color, 'bg_white');
-                position: relative;
             }
         }
-    } 
+    }
     .pointer{
         cursor: pointer;
     }
-    // .htop1{
-    //     font-size: 32px;
-    // }
-    // .htop2{
-    //     font-size: 32px;
-    // }
+    .prod_info{
+        max-width: 768px;
+        margin: auto;
+    }
+    .prod_detail{
+        max-width: 768px;
+        margin: auto;
+    }
+    .prod_spec{
+        max-width: 768px;
+        margin: auto;
+    }
+    .prod_recom{
+        max-width: 768px;
+        margin: auto;
+    }
 }
 //桌機版
 @media (min-width: 1200px) {
@@ -515,7 +534,7 @@ p{
             display: flex;
             margin-top: -10px;
             .prod_reitem{
-                width: calc(100% / 4 - 20px);
+                width: calc(100% / 5 - 20px);
                 margin: auto 10px;
                 .btn_btn_box{
                     padding: 10px 15px;
@@ -557,12 +576,27 @@ p{
                 }
             }
             .reitem_goods{
-                border: 1px solid map-get($color, 'blue');
                 border-radius: 10px;
                 background-color: map-get($color, 'bg_white');
                 position: relative;
             }
         }
+    }
+    .prod_info{
+        max-width: 1200px;
+        margin: auto;
+    }
+    .prod_detail{
+        max-width: 1200px;
+        margin: auto;
+    }
+    .prod_spec{
+        max-width: 1200px;
+        margin: auto;
+    }
+    .prod_recom{
+        max-width: 1200px;
+        margin: auto;
     }        
 }
 .htop1{

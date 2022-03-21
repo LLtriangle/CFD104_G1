@@ -381,7 +381,7 @@ input{
         border-collapse: collapse;
         .memberGrid {
             display: grid;
-            grid-template-columns: repeat(8, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             .memberReceiverID {
                 //詳細資料
                 color: map-get($btn_color, "deep_blue");
@@ -476,7 +476,9 @@ input{
 }
 
 .memberOrderDetail .memberOrderD2 img,.memberReserveDetail .memberReserveD2 img{
-    max-width: 50px;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
 }
 .memberOrderDetail .memberOrderD2 div,.memberReserveDetail .memberReserveD2 div{
     padding-top: 19px;
@@ -499,23 +501,23 @@ input{
     // 商品訂單查詢表格
     .memberOrder .memberOrderContent {
         .memberGrid {
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             // grid-auto-flow:發現前面有空位的話，就去補他
             grid-auto-flow: dense;
         }
-        .memberGrid5 {
+        .memberGrid4 {
             grid-column: 1;
             grid-row: 3;
         }
-        .memberGrid6 {
+        .memberGrid5 {
             grid-column: 2;
             grid-row: 3;
         }
-        .memberGrid7 {
+        .memberGrid6 {
             grid-column: 3;
             grid-row: 3;
         }
-        .memberGrid8 {
+        .memberGrid7 {
             grid-column: 4;
             grid-row: 3;
         }
@@ -574,43 +576,49 @@ input{
     .memberLine::-webkit-scrollbar {
         display: none
     }
-}
-@media  screen and (max-width:575px) {
-    .memberAll {
-        width: 90%;
-        
-        // 手機版本標題改為滑動的方式
-        // 會員資料表格
-        .memberPart1 {
-            .label input {
-                width: 270px;
-            }
-        }
-        
-
-        // 訂單查詢 明細
-        .memberOrderDetail .memberOrderD1{
-            span:nth-child(1){
-                width: 200px;
-                min-width: 150px;
-                display: inline-block;
-            }
-            span:nth-child(2){
-                width: 60px;
-                display: inline-block;
-            }
-        } 
-        .memberOrderDetail .memberOrderD2{
-            div:nth-child(2){
-                width: 155px;
-                min-width: 105px;
-            }
-            div:nth-child(3){
-                width: 60px;
-            }
-        }
+    //新增限制手機版商品名稱長度  超過隱藏
+    .memberOrderDetail .memberOrderD2 div,.memberReserveDetail .memberReserveD2 div{
+        overflow: hidden;
+        max-height: 30px;
     }
 }
+// @media  screen and (max-width:575px) {
+//     .memberAll {
+//         width: 90%;
+        
+//         // 手機版本標題改為滑動的方式
+//         // 會員資料表格
+//         .memberPart1 {
+//             .label input {
+//                 width: 270px;
+//             }
+//         }
+        
+
+//         // 訂單查詢 明細
+//         .memberOrderDetail .memberOrderD1{
+//             span:nth-child(1){
+//                 width: 200px;
+//                 min-width: 150px;
+//                 display: inline-block;
+//             }
+//             span:nth-child(2){
+//                 width: 60px;
+//                 display: inline-block;
+//             }
+//         } 
+//         .memberOrderDetail .memberOrderD2{
+//             div:nth-child(2){
+//                 width: 155px;
+//                 min-width: 105px;
+//             }
+//             div:nth-child(3){
+//                 width: 60px;
+//             }
+//         }
+//     }
+// }
+
 // 新增商品動單跟預約訂單的明細排版
 main{
     .data_con{
@@ -620,6 +628,11 @@ main{
     }
 }
 
+
+//新增數量顯示置中
+.amount_center{
+    text-align: center;
+}
 // ------------ 3/11新增
 #btnCancel,#btnSave,#btnUpload{
     display: none;
