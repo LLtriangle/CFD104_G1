@@ -2,9 +2,9 @@
 try {
 	require_once("connect.php"); // 開發用
 	$sql = "select P.PLAN_NAME,P.PLAN_TA,P.PLAN_FEATURE,
-                Pr1.PRD_NAME prd1,Pr1.IMG1 prd1_img,Pr1.PRICE prd1_price,
-                Pr2.PRD_NAME prd2,Pr2.IMG1 prd2_img,Pr2.PRICE prd2_price,
-                Pr3.PRD_NAME prd3,Pr3.IMG1 prd3_img,Pr3.PRICE prd3_price from 
+                Pr1.PRD_No prdNo1,Pr1.PRD_NAME prd1,Pr1.IMG1 prd1_img,Pr1.PRICE prd1_price,
+                Pr2.PRD_No prdNo2,Pr2.PRD_NAME prd2,Pr2.IMG1 prd2_img,Pr2.PRICE prd2_price,
+                Pr3.PRD_No prdNo3,Pr3.PRD_NAME prd3,Pr3.IMG1 prd3_img,Pr3.PRICE prd3_price from 
             result R join plan P on R.PLAN_NO = P.PLAN_NO
                      join prd Pr1 on R.PRD_NO1 = Pr1.PRD_NO
                      join prd Pr2 on R.PRD_NO2 = Pr2.PRD_NO

@@ -112,6 +112,21 @@ header{
             z-index: 120;
         }
 
+        #cartQuantity{
+            display: none;
+            position: absolute;
+            background-color: map-get($color,"sub_red");
+            color: #fff;
+            font-size: 12px;
+            line-height: 15px;
+            text-align: center;
+            top: 10px;
+            right: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+        }
+
         .user, .cart, .menu_btns{
             padding: 10px;
         }

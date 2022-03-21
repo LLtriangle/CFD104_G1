@@ -716,7 +716,7 @@ $section_margin_top: 60px;
                         -webkit-text-fill-color: transparent;
                         font-size: 200px;
                         top: -30px;
-                        left: 130px;
+                        left: 180px;
                         // 放在流程圈圈前的順序數字
                         z-index: 20;
                     }
@@ -753,7 +753,7 @@ $section_margin_top: 60px;
                         width: 60%;
                         height: 60%;
                         position: absolute;
-                        // 放在流程圈圈後的裝飾性圈圈，因為是偽元素所以父蓋不住，我犯了原罪對不起嗚嗚嗚
+                        // 放在流程圈圈後的裝飾性圈圈，因為是偽元素所以父層蓋不住，我犯了原罪對不起嗚嗚嗚
                         z-index: -1;
                         transition: .5s;
                     }
@@ -815,7 +815,8 @@ $section_margin_top: 60px;
     position: relative;
     padding-bottom: 60px;
     margin-bottom: 60px;
-    background-image: linear-gradient(map-get($color , "bg_white" ), map-get($color , "cover" ), map-get($color , "bg_white" ) );
+    // background-image: linear-gradient(map-get($color , "bg_white" ), map-get($color , "cover" ), map-get($color , "bg_white" ) );
+    background-color: map-get($color , "cover" );
     
     .acti_content{
         max-width: $max_w_s;
@@ -855,7 +856,8 @@ $section_margin_top: 60px;
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                background-image: linear-gradient(map-get($color , "bg_white" ), map-get($color , "cover" ), map-get($color , "bg_white" ) );
+                // background-image: linear-gradient(map-get($color , "bg_white" ), map-get($color , "cover" ), map-get($color , "bg_white" ) );
+                background-color: map-get($color , "cover" );
                 z-index: 1;
                 
             }
@@ -877,10 +879,6 @@ $section_margin_top: 60px;
                 @include PC{ 
                     width: 512px;
                 }
-
-                
-
-                
             }
         }
         .acti_list{
@@ -920,7 +918,6 @@ $section_margin_top: 60px;
                 }
         
                 p{
-                    text-indent: 2em;
                     padding: 20px 0;
                 }
 
@@ -933,16 +930,45 @@ $section_margin_top: 60px;
 .home_columns{
     max-width: $max_w_s;
     margin: auto;
+    position: relative;
 
+    
     h2{
         padding-bottom: 60px;
+
+        &::after{
+            content: "";
+            border-radius: 50%; 
+            background-color: map-get($color , "sub_blue" );
+            width: 200px;
+            height: 200px;
+            top: 25%;
+            left: 85%;
+            position: absolute;
+            z-index: 0;
+            transition: .5s;
+        }
     }
+
+    &:hover{
+        h2{
+            &::after{
+                // background-color: map-get($color , "sub_brown" );
+                background-color: map-get($color , "plain_blue" );
+                transition: .5s;
+            }
+        }
+        
+    }
+
+    
 
     .col{
         position: relative;
         margin: 0px 40px  120px 40px;
         padding: 15px;
         border: 1px solid #ddd;
+        // background-color: #fff;
         
         @include PC{
             display: flex;
@@ -951,6 +977,8 @@ $section_margin_top: 60px;
 
         a{
             margin: auto;
+
+            
 
             .img_bar{
                 display: flex;
@@ -1124,11 +1152,13 @@ $section_margin_top: 60px;
 
 /*QAsection .home_qa*/
 .home_qa{
-    padding: 20px;
-    max-width: $max_w_s;
+    padding: 60px 20px;
     margin: auto;
+    background-color: map-get($color , "plain_blue" );
 
     h2{
+        max-width: $max_w_s;
+        margin: auto;
         padding: 0 40px 60px;
     }
     .quesion{

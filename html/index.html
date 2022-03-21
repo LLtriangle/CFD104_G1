@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <section class="welcome">
+    <section id="welcome">
         <h1>Welcome to SoEasy!</h1>
         <a href="home.html" class="frontSide card">
             <h2>前台</h2>
         </a>
-        <a href="backend.html" class="backSide card">
+        <a href="backendlogin.html" class="backSide card">
             <h2>後台</h2>
         </a>
         <div class="txt">
@@ -20,5 +20,28 @@
             <p>本網站為緯育TibaMe_前端設計工程師班第73期學員專題成果作品，本平台僅供學習、展示之用。若有抵觸有關著作權，或有第三人主張侵害智慧財產權等情事，均由學員負法律上責任，緯育公司概不負責。若有侵權疑慮，您可以私訊<a href="https://www.facebook.com/TibaMe">[緯育TibaMe]</a>，後續會由專人協助處理。</p>
         </div>
     </section>
+
+    <script>
+    // 前後對比與滑鼠位置
+        let windowWidth = window.innerWidth;
+        let windowHeight = window.innerHeight;
+        $(window).on('resize',function(){
+            windowWidth = window.innerWidth;
+            windowHeight = window.innerHeight;
+        });
+        let welcome = document.getElementById('welcome');
+        welcome.addEventListener('mousemove', function(e) {
+            // console.log('x'+e.clientX);
+            // console.log('W'+window.innerWidth);
+
+            $(this).children('h1').css('left',`${50 - 2 * e.clientX/windowWidth}%`);
+            $(this).children('h1').css('top',`${40 - 2 * e.clientY/windowWidth}%`);
+            
+            $(this).children('.frontSide').css('right',`${50 + 2 * e.clientX/windowWidth}%`);
+            $(this).children('.frontSide').css('top',`${40 - 2 * e.clientY/windowHeight}%`);
+            $(this).children('.backSide').css('left',`${50 - 2 * e.clientX/windowWidth}%`);
+            $(this).children('.backSide').css('bottom',`${60 + 2 * e.clientY/windowHeight}%`);
+        },false);
+    </script>
 </body>
 </html>
