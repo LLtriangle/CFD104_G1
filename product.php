@@ -365,9 +365,9 @@ window.addEventListener('load',indexOfCart,false);
                                 NT $<?=$recommendPrdsRows[$i]["PRICE"]?>
                             </p>
                             <div class="btn_btn_box prod_btn">
-                                <a href="cart.html" class="buy_reitem">
+                                <a class="buy_reitem">
                                     <button class="btn_btn bl pointer">
-                                        購買
+                                        加入購物車
                                     </button>
                                 </a>
                             </div> 
@@ -491,11 +491,9 @@ window.addEventListener('load',indexOfCart,false);
             var arrObj = cartArr.filter(obj=>obj.prdNo == reitemNo);
             if(arrObj.length==0){
                 cartArr.push({prdNo : `${reitemNo}`, prdName : `${reitemName}`, prdPrice : `${reitemPrice}`, prdImg : `${reitemImg}`, prdNum : 1});
-            // }else{
-            //     index = cartArr.indexOf(arrObj[0]);
-            //     cartArr[index].prdNum = cartArr[index].prdNum + 1;
             };
             localStorage.setItem("cart",JSON.stringify(cartArr));
+            indexOfCart();
         };
         
         function init(){
