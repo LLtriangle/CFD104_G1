@@ -70,6 +70,7 @@
         text-align: center;
         overflow: hidden;
         .pic{
+            filter: drop-shadow(0 0 10px #fff);
             .array{
                 transform: rotate(90deg);
                 width: 30px;
@@ -80,6 +81,7 @@
             }
             .wardrobe{
                 height: 60px;
+                width: auto;
             }
         }
         button{
@@ -608,7 +610,9 @@ label{
 
 @media screen and (min-width: 768px) {
     .text_ill{
-        width: calc(100vw - 60px);
+        .welcome ,.intr{
+            width: calc(100vw - 60px);
+        }
     }
     .text_game{
         width: calc(100vw - 60px);
@@ -622,6 +626,7 @@ label{
         }
     }
     .text_result{
+        width: calc(100vw - 60px);
         .typewriter{
             width: 120%;
             transform: translate(-50%,70%);
