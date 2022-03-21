@@ -143,7 +143,7 @@
                         <!-- <h2>{{tableName}}</h2> -->
                         <h2>{{showtableTitle}}</h2>
                         <!-- 需要新增的欄位再出現新增按鈕 -->
-                        <button type="button" class="add_btn" v-if="showtableTitle != tableTitles[1] & showtableTitle != tableTitles[2] & showtableTitle != tableTitles[4] & showtableTitle != tableTitles[5] & showtableTitle != tableTitles[6] & showtableTitle != tableTitles[10]">新增</button>
+                        <button type="button" class="add_btn" v-if="showtableTitle != tableTitles[1] & showtableTitle != tableTitles[2] & showtableTitle != tableTitles[4] & showtableTitle != tableTitles[5] & showtableTitle != tableTitles[6] & showtableTitle != tableTitles[10]" @click="newLightBox">新增</button>
                     </div>
                     <table>
                         <thead>
@@ -172,13 +172,11 @@
                     <input name="table_title" type="text" value="emp"> 
                     <input name="data_index" type="text" :value="data_index"> 
                     <ul>
-                        
                         <li>員工編號: {{showLightBox.EMP_NO}}</li>
                         <li>帳號(email): {{showLightBox.EMP_EMAIL}}</li>
                         <li>
-                            <label for="">手機:</label>
-                            <input name="emp_tel" type="text" v-model.number="showLightBox.EMP_TEL">
-                            <p>{{showLightBox.EMP_TEL}}</p>
+                            <label for="emp_tel">手機:</label>
+                            <input name="emp_tel" type="tel" v-model="showLightBox.EMP_TEL">
                         </li>
                         <li>姓名: {{showLightBox.EMP_NAME}}</li>
                         <li>
@@ -190,16 +188,67 @@
                         </li>
                         <li>職稱:{{showLightBox.JOB}}</li>
                         <li>
-                            <label for="">地址: </label>
+                            <label for="emp_add">地址: </label>
                             <input name="emp_add" type="text" v-model="showLightBox.EMP_ADD">
-                            <p>{{showLightBox.EMP_ADD}}</p>
                         </li>
                         <li>入職時間: {{showLightBox.HIREDATE}}</li>
                         <li>
                             介紹: 
                             <textarea name="emp_intro" cols="30" rows="5" v-model.trim="showLightBox.INTRO">{{showLightBox.INTRO}}</textarea>
+                        </li>
+                    </ul>
+                    <div class="editbtn emp">
+                        <button class="close emp" type="button" @click="close">關閉</button>
+                        <button class="save emp" type="button" @click="saveChange">儲存</button>
+                    </div>
+                </div>
+            </form>
 
-                            <p>{{showLightBox.INTRO}}</p>
+            <form class="from new_emp">
+                <div class="new_light_box emp">
+                    <p class="light_box_cap">新增</p>
+                    <!-- 員工資料可以編輯，電話、權限、地址、介紹文 -->
+                    <ul>
+                        <li>
+                            <label for="new_emp_no">員工編號: </label>
+                            <input name="new_emp_no" type="text" v-model="showLightBox.EMP_NO">
+                        </li>
+                        <li>
+                            <label for="new_emp_email">帳號(email): </label>
+                            <input name="new_emp_email" type="text" v-model="showLightBox.EMP_EMAIL">
+                        </li>
+                        <li>
+                            <label for="new_emp_tel">手機:</label>
+                            <input name="new_emp_tel" type="text" v-model.number="showLightBox.EMP_TEL">
+                        </li>
+                        <li>
+                            <label for="new_emp_name">姓名:</label>
+                            <input name="new_emp_name" type="text" v-model.number="showLightBox.EMP_NAME">
+                        </li>
+                        <li>
+                            帳號狀態:
+                            <select name="new_emp_status" class="status" v-model.number="showLightBox.STATUS">
+                                <option value="0" >停權</option>
+                                <option value="1">正常</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label for="new_emp_job">職稱:</label>
+                            <input name="new_emp_job" type="text" v-model.number="showLightBox.JOB">
+                        </li>
+                        <li>
+                            <label for="new_emp_add">地址: </label>
+                            <input name="new_emp_add" type="text" v-model="showLightBox.EMP_ADD">
+                        </li>
+                        <li>
+                            <label for="new_emp_hiredate">入職時間: </label>
+                            <input name="new_emp_hiredate" type="date" v-model="showLightBox.HIREDATE">
+                        </li>
+                        <li>
+                            介紹: 
+                            <textarea name="new_emp_intro" cols="30" rows="5" v-model.trim="showLightBox.INTRO">
+                                {{showLightBox.INTRO}}
+                            </textarea>
                         </li>
                     </ul>
                     <div class="editbtn emp">
@@ -291,7 +340,7 @@
                         </li>
                     </ul>
                     <div class="editbtn result">
-                        <button class="close result" type="button" @click="close()">關閉</button>
+                        <button class="close result" type="button" @click="close">關閉</button>
                         <button class="save result" type="button" @click="saveChange">儲存</button>
                     </div>
                 </div>
@@ -357,7 +406,7 @@
                             </li>
                             <li>
                                 <label for="prd_info_2">商品介紹內文2:</label>
-                                <textarea name="prd_info_2" id="" cols="30" rows="5">
+                                <textarea name="prd_info_2" id="" cols="30" rows="5" v-model.trim="showLightBox.INFO_2">
                                     {{showLightBox.INFO_2}}
                                 </textarea>
                             </li>
@@ -438,7 +487,7 @@
                     </div>
 
                     <div class="editbtn result">
-                        <button class="close result" type="button" @click="close()">關閉</button>
+                        <button class="close result" type="button" @click="close">關閉</button>
                         <button class="save result" type="button" @click="saveChange">儲存</button>
                     </div>
                 </div>
@@ -517,7 +566,7 @@
                     </div>
 
                     <div class="editbtn ord">
-                        <button class="close ord" type="button" @click="close()">關閉</button>
+                        <button class="close ord" type="button" @click="close">關閉</button>
                         <button class="save ord" type="button" @click="saveChange">儲存</button>
                     </div>
                 </div>
@@ -561,7 +610,7 @@
                         </li>
 
                         <div class="editbtn plan">
-                            <button class="close plan" type="button" @click="close()">關閉</button>
+                            <button class="close plan" type="button" @click="close">關閉</button>
                             <button class="save plan" type="button" @click="saveChange">儲存</button>
                         </div>
                     </ul>
@@ -686,7 +735,7 @@
                     </div>
 
                     <div class="editbtn sao">
-                        <button class="close sao" type="button" @click="close()">關閉</button>
+                        <button class="close sao" type="button" @click="close">關閉</button>
                         <button class="save sao" type="button" @click="saveChange">儲存</button>
                     </div>
                 </div>
@@ -735,7 +784,7 @@
                     </div>
 
                     <div class="editbtn case">
-                        <button class="close case" type="button" @click="close()">關閉</button>
+                        <button class="close case" type="button" @click="close">關閉</button>
                         <button class="save case" type="button" @click="saveChange">儲存</button>
                     </div>
                 </div>
@@ -801,7 +850,7 @@
                         </div>
                     </ul>
                     <div class="editbtn event">
-                        <button class="close event" type="button" @click="close()">關閉</button>
+                        <button class="close event" type="button" @click="close">關閉</button>
                         <button class="save event" type="button" @click="saveChange">儲存</button>
                     </div>
                 </div>
@@ -887,7 +936,7 @@
                     </div>
                 </div>
                 <div class="editbtn col">
-                    <button class="close col" type="button" @click="close()">關閉</button>
+                    <button class="close col" type="button" @click="close">關閉</button>
                     <button class="save col" type="button" @click="saveChange">儲存</button>
                 </div>
                 </div>
@@ -951,7 +1000,6 @@
 					let xhr = new XMLHttpRequest();
 					let thisVue = this;
 					xhr.onload = function(){
-                        // console.log(JSON.parse(xhr.responseText));
 						thisVue.allPrds = JSON.parse(xhr.responseText);
 					}
 					xhr.open("get", "phps/selectAll.php?tableName=prd", true);
@@ -962,7 +1010,6 @@
                     let xhr = new XMLHttpRequest();
 					let thisVue = this;
 					xhr.onload = function(){
-                        // console.log(JSON.parse(xhr.responseText));
 						thisVue.allPlans = JSON.parse(xhr.responseText);
 					}
 					xhr.open("get", "phps/selectAll.php?tableName=plan", true);
@@ -973,7 +1020,7 @@
                 content(tableName) {
                     this.tableName = tableName;
                     var vueApp = this;
-                    // console.log(tableName);
+                    console.log("重新再跑一次R!:", tableName);
                     $.ajax({
                         url: `phps/backend.php`,   // 呼叫的檔案或網址列
                         data: `data=${tableName}`,     // 傳送到 server 端的資料，會自動轉成字串形式
@@ -986,7 +1033,6 @@
                                 vueApp.showtableTitle = vueApp.tableTitles[0];
                                 vueApp.showTableHead = vueApp.empTableHead;
                                 addShow = true;
-                                console.log(addShow);
 
                                 vueApp.showTableBody.forEach(element => {
                                     if(element.EMP_STATE == 1){
@@ -1000,7 +1046,6 @@
                                 vueApp.showtableTitle = vueApp.tableTitles[1];
                                 vueApp.showTableHead = vueApp.cusTableHead;
                                 addShow = false;
-                                console.log(addShow);
 
                                 vueApp.showTableBody.forEach(element => {
                                     if(element.STATE == 1){
@@ -1100,7 +1145,6 @@
                             };
 
                             $(`.nav_li`).removeClass("hovered");
-                            // console.log($(`.nav_li.${vueApp.tableName}`));
                             $(`.nav_li.${vueApp.tableName}`).addClass("hovered");
                         },
                         error(res){
@@ -1126,51 +1170,26 @@
                         dataType: 'json', // response 的資料格式，xml | html | script | json | jsonp | text
                         success(res){
                             vueApp.showLightBox = res;
-                            console.log(res);
                             $(`.light_box.${vueApp.tableName}`).addClass("show");
 
                             //emp 和 cus 的權限判斷 & prd 上下架判斷 & ord 訂單已完成判斷
                             if(`${vueApp.showLightBox.STATUS}` == 0){
-                                console.log("進停權判斷");
                                 $(".status option[value='0']").attr("selected", "selected");
 
-                                console.log($(".status option[value='0']"));
-
                             }else if(`${vueApp.showLightBox.STATUS}` == 1){
-                                console.log("進停權判斷 正常");
                                 $(".status option[value='1']").attr("selected", "selected");
-
-                                console.log($(".status option[value='1']"));
 
                             }else if(`${vueApp.showLightBox.STATUS}` == 2){
                                 $(".status option[value='2']").attr("selected", "selected");
 
-                                console.log($(".status option[value='2']"));
-
                             };
-                            //emp 和 cus 的權限判斷 & prd 上下架判斷 & ord 訂單已完成判斷，selection的預選值
-                            $(".status").change(function(){
-                                console.log($(".status").val());
-                                console.log(`這是目前改變(填寫)的權限狀態: ${vueApp.showLightBox.STATUS}`);
-                            });
 
                             if(`${vueApp.showLightBox.COUPON}` == "null"){
-                                console.log("進優惠碼判斷");
                                 vueApp.showLightBox.COUPON = "無";
 
                             }else{
-                                console.log("有使用COUPON");
-                            }
 
-                            //prd 和 cus 的上下架判斷
-
-                            // if(`${vueApp.showLightBox.ORD_NUM} > 1`){
-                            //     console.log("不只一項單品");
-                            //     vueApp.showLightBox.ORD_NUM = vueApp.ordinfoItems;
-                            // }else{
-                            //     console.log("只有一項單品");
-                            // }
-
+                            };
 
 
                         },
@@ -1179,69 +1198,73 @@
                         },
                     });
 
-                    console.log("test",index.ta);
                     this.data_index = index.ta;
-                    console.log("哈哈哈",this.data_index);
 
                     $(".hide").addClass("show");
 
 
                 },
 
+                newLightBox(e){
+                    var vueApp = this;
+                    $(`.new_light_box.${vueApp.tableName}`).addClass("show");
+                },
+
                 uploadImg(e){ //選檔案:change事件
                     
-                    console.log("改變預覽圖");
                     let file = e.target.files[0]; //找物件
-                    console.log(file);
                     let reader = new FileReader(); //reader讀物件
-
-                    console.log(reader.result);
-                    reader.onload = function(){ 
-                        $(".previewImg").src = reader.result;
-                        console.log($(".previewImg").src);
-                    }
                     reader.readAsDataURL(file);
+                    // console.log("我是this", this);
+                    // console.log("我是this", e.target);
+                    // console.log("我是this", this.next());
+                    let preView =  $(e.target).next().next().children(".preview_img");   
+                    console.log("我是preView", preView);
+                    console.log("我是$(e.target)", $(e.target));
+
+                    reader.onload = function(){ 
+                        $(preView).attr("src" , reader.result);
+                    }
+                    console.log("這是更新過後的圖片src:",  $(preView).attr("src"));
                 },
 
 
                 // 按下關閉後顯示未儲存確認燈箱
-                close(){
+                close(e){
                     var vueApp = this;
-                    console.log(`.light_box.${vueApp.tableName}`);
-                    $(`.light_box.${vueApp.tableName}`).removeClass("show");
+                    console.log("這是close的this", $(e.target).closest("form").children("div"));
+                    $(e.target).closest("form").children("div").removeClass("show");
+                    // $(`.light_box.${vueApp.tableName}`).removeClass("show");
                     $(".close_check").addClass("show");
                     $(".hide").addClass("show");
 
                 },
 
                 // 未儲存確認燈箱按下確認，直接為未儲存，直接顯示panel
-                closeCheckY(){
+                closeCheckY(e){
                     var vueApp = this;
-                    console.log($(`.light_box.${vueApp.tableName}`));
                     $(".close_check").removeClass("show");    
                     $(".hide").removeClass("show");    
 
                 },
 
                 // 未儲存確認燈箱按下取消，重新顯示留有修改資料的panel
-                closeCheckC(){
+                closeCheckC(e){
                     var vueApp = this;
+                    console.log("這是closeC的this", $(e.target).closest("form"));
                     $(`.light_box.${vueApp.tableName}`).addClass("show");
                     $(".close_check").removeClass("show");
                 },
 
                 saveChange(e){
-                    console.log("saveChange 近來ㄌ");
                     let vueApp = this;
-                    console.log(vueApp.showLightBox);
-                    console.log("目前更改的index", vueApp.data_index);
 
                     let xhr = new XMLHttpRequest();
                     xhr.onload = function(){
-                        console.log("這是個大問題0:", xhr.responseText);
+                        console.log(xhr.responseText);
                         // vueApp.showLightBox = JSON.parse(xhr.responseText);
                         vueApp.showLightBox = xhr.responseText;
-                        console.log("這是個解碼後的問題:", vueApp.showLightBox);
+                        vueApp.content(vueApp.tableName);
                     }
 
                     xhr.open("post", "phps/backendChange.php", true);
@@ -1250,14 +1273,10 @@
                     xhr.send(formData);
                     // console.log(formData);
 
-                    vueApp.content(vueApp.tableName);
-                    $(`.light_box.${vueApp.tableName}`).removeClass("show");
+                   
+                    $(e.target).closest("form").children("div").removeClass("show");
+                    // $(`.light_box.${vueApp.tableName}`).removeClass("show");
                     $(".hide").removeClass("show");
-
-                    console.log("這是個大問題1:", xhr.responseText);
-                    console.log(xhr.responseText);
-                    console.log("這是vueApp.showLightBox:",vueApp.showLightBox);
-                    
                     
 
                 },
