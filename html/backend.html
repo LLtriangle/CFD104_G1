@@ -205,6 +205,16 @@
                             <label for="emp_intro">介紹:</label>
                             <textarea class="text_area" name="emp_intro" cols="30" rows="10" v-model.trim="showLightBox.INTRO">{{showLightBox.INTRO}}</textarea>
                         </li>
+                        <li class="emp_group">
+                            <label for="emp_img">員工照片:
+                                <input name="emp_img" class="upFile" type="file" @change="uploadImg">
+                                <p class="dnone">請選擇圖片上傳</p>
+                                <div class="emp_img">
+                                    <img class="preview_img" :src='"img/"+showLightBox.EMP_PIC'>
+                                    <p>{{showLightBox.EMP_PIC}}</p>
+                                </div>
+                            </label>
+                        </li>
                     </ul>
                     <div class="editbtn emp">
                         <button class="close emp" type="button" @click="close">關閉</button>
@@ -251,7 +261,7 @@
                         </li>
                         <li>
                             帳號狀態:
-                            <select name="new_emp_status" class="status" disabled>
+                            <select name="new_emp_status" class="status">
                                 <option value="0" >停權</option>
                                 <option value="1" selected>正常</option>
                             </select>
@@ -277,8 +287,8 @@
                                 <input name="new_emp_img" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="new_emp_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.IMG1'>
-                                    <p>{{showLightBox.IMG1}}</p>
+                                    <img class="preview_img" :src='"img/"+showLightBox.EMP_PIC'>
+                                    <p>{{showLightBox.EMP_PIC}}</p>
                                 </div>
                             </label>
                         </li>
@@ -434,7 +444,7 @@
                                 <label for="">商品名稱:</label>
                                 <input name="prd_name" type="text" v-model="showLightBox.PRD_NAME">
                             </li>
-
+                            
                             <li>
                                 <label for="">售價:</label>
                                 <input name="prd_price" type="text" v-model.number="showLightBox.PRICE">
@@ -446,7 +456,12 @@
                                     <option value="1">上架</option>
                                 </select>
                             </li>
-                            <li></li>
+                            <li>
+                                <label for="prd_des">商品描述:</label>
+                                <textarea name="prd_des" class="text_area" cols="30" rows="6" v-model.trim="showLightBox.PRD_DE">
+                                    {{showLightBox.PRD_DE}}
+                                </textarea>
+                            </li>
                             <li>
                                 <label for="prd_info_title_1">商品介紹標題1:</label>
                                 <input name="prd_info_title_1" type="text" v-model.trim="showLightBox.INFO_TITLE_1">
@@ -591,12 +606,18 @@
                             </li>
                             <li>
                                 上下架:
-                                <select name="new_prd_status" class="status" disabled>
+                                <select name="new_prd_status" class="status">
                                     <option value="0">下架</option>
                                     <option value="1" selected>上架</option>
                                 </select>
                             </li>
-                            <li></li>
+                            <li>
+                                <li>
+                                    <label for="new_prd_des">商品描述:</label>
+                                    <textarea name="new_prd_des" class="text_area" cols="30" rows="6">
+                                    </textarea>
+                                </li>
+                            </li>
                             <li>
                                 <label for="new_prd_info_title_1">商品介紹標題1:</label>
                                 <input name="new_prd_info_title_1" type="text">
@@ -1041,17 +1062,18 @@
                 <div class="new_light_box casetable">
                     <p class="light_box_cap">編輯與查看</p>
                     <input name="table_title" class="dnone" type="text" value="new_casetable" >
-                    <div class="case_no">案例編號: {{showLightBox.CASE_NO}}</div>
+                    <div class="case_no">
+                        <label for="new_case_no">案例編號: </label>
+                        <input name="new_case_no" type="text" value="此為自行產生，不用填寫" disabled>
+                    </div>
                     <div class="case_content before">
                         <label for="new_case_before">整理前文案:</label>
-                        <textarea class="text_area" name="new_case_before" cols="70" rows="6" v-model.trim="showLightBox.INFO_BEFORE">
-                            {{showLightBox.INFO_BEFORE}}
+                        <textarea class="text_area" name="new_case_before" cols="70" rows="6">
                         </textarea>
                     </div>
                     <div class="case_content after">
                         <label for="new_case_after">整理後文案:</label>
-                        <textarea class="text_area" name="new_case_after" cols="70" rows="6" v-model.trim="showLightBox.INFO_AFTER">
-                            {{showLightBox.INFO_AFTER}}
+                        <textarea class="text_area" name="new_case_after" cols="70" rows="6">
                         </textarea>
                     </div>
                     <div class="case_detail_content ba_img">
@@ -1185,7 +1207,7 @@
                     <ul>
                         <li>
                             <label for="new_event_coupon">折扣碼:</label>
-                            <input name="new_event_coupon" type="text" placeholder="此欄必填">
+                            <input name="new_event_coupon" type="text" placeholder="此欄必填，且不可重複">
                         </li>
                         <li>
                             <label for="new_event_title">活動標題:</label>
@@ -1193,12 +1215,11 @@
                         </li>
                         <li>
                             <label for="new_event_start">開始日期:</label>
-                            <input name="new_event_start" type="datetime">
-                            <p>{{showLightBox.START}}</p>
+                            <input name="new_event_start" type="datetime-local">
                         </li>
                         <li>
                             <label for="new_event_end">截止日期:</label>
-                            <input name="new_event_end" type="datetime">
+                            <input name="new_event_end" type="datetime-local">
                         </li>
                         <li>
                             <label for="new_event_parm">優惠折數:</label>
@@ -1206,14 +1227,14 @@
                         </li>
                         <li>
                             上下架:
-                            <select name="new_event_status" class="status" disabled>
+                            <select name="new_event_status" class="status">
                                 <option value="0">下架</option>
                                 <option value="1" selected>上架</option>
                             </select>
                         </li>
                         <li>
                             <label for="new_event_content">活動介紹內文:</label>
-                                <textarea class="text_area" name="event_content" cols="30" rows="10" v-model.trim="showLightBox.CONTENT">
+                                <textarea class="text_area" name="new_event_content" cols="30" rows="10" >
                                 </textarea>
                         </li>
                         <div class="event_detail_content event_imgs">
@@ -1331,6 +1352,105 @@
                     <div class="editbtn col">
                         <button class="close col" type="button" @click="close">關閉</button>
                         <button class="save col" type="button" @click="saveChange">儲存</button>
+                    </div>
+                </div>
+                <!-- 不送資料了，僅供閱覽-->
+                <div class="close_check">
+                    <div class="light_box_cap"></div>
+                    <p>尚未存檔，請確認是否確認關閉</p> 
+
+                    <div class="close_btns">
+                        <button class="closeC" @click="closeCheckC" type="button">取消</button>
+                        <button class="closeY" @click="closeCheckY"type="button">確認</button>
+                    </div>
+                </div>
+            </form>
+
+            <form class="form new_columntable">
+                <div class="new_light_box columntable">
+                    <p class="light_box_cap">編輯與查看</p>
+                    <input name="table_title" class="dnone" type="text" value="new_columntable" >
+                    <div class="col_edit_left">
+                        <ul>
+                            <li class="col_no">
+                                <label for="new_col_no">專欄編號: </label>
+                                <input name="new_col_no" type="text" placeholder="必須填寫，且不可重複">
+                            </li>
+                            <li>
+                                <label for="new_col_topic">專欄標題:
+                                    <input name="new_col_topic" type="text">
+                                </label>
+                            </li>
+                            <li>
+                                <label for="new_col_author">專欄作者:
+                                    <input name="new_col_author" type="text">
+                                </label>
+                            </li>
+                            <li>
+                                <label for="new_col_start">發表時間:</label>
+                                <input name="new_col_start" type="datetime-local">
+                            </li>
+                            <li>
+                                <label for="new_col_sub_title_1">專欄副標題1:
+                                    <input name="new_col_sub_title_1" type="text">
+                                </label>
+                                <label for="new_col_content_1">專欄內文1:
+                                    <textarea class="text_area" name="new_col_content_1" cols="30" rows="10">
+                                    </textarea>
+                                </label>
+                            </li>
+                            <li>
+                                <label for="new_col_sub_title_2">專欄副標題2:
+                                    <input name="new_col_sub_title_2" type="text">
+                                </label>
+                                <label for="new_col_content_2">專欄內文2:
+                                    <textarea class="text_area" name="new_col_content_2" cols="30" rows="10">
+                                    </textarea>
+                                </label>
+                            </li>
+                        </ul>
+                        <div class="col_detail_content col_imgs">
+                            <div class="col_img_box">
+                                <label for="new_col_author_img">專欄作者附圖:
+                                    <input name="new_col_author_img" class="upFile" type="file" @change="uploadImg">
+                                    <p class="dnone">請選擇圖片上傳</p>
+                                    <div class="col_img">
+                                        <img class="preview_img" :src='"img/activity/"+showLightBox.MAIN_PIC'>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col_img_box">
+                                <label for="new_col_main_img">專欄主圖:
+                                    <input name="new_col_main_img" class="upFile" type="file" @change="uploadImg">
+                                    <p class="dnone">請選擇圖片上傳</p>
+                                    <div class="col_img">
+                                        <img class="preview_img" :src='"img/activity/"+showLightBox.MAIN_PIC'>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col_img_box">
+                                <label for="new_col_sub_img_1">專欄附圖1:
+                                    <input name="new_col_sub_img_1" class="upFile" type="file" @change="uploadImg">
+                                    <p class="dnone">請選擇圖片上傳</p>
+                                    <div class="col_img">
+                                        <img class="preview_img" :src='"img/activity/"+showLightBox.IMG1'>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col_img_box">
+                                <label for="new_col_sub_img_2">專欄附圖2:
+                                    <input name="new_col_sub_img_2" class="upFile" type="file" @change="uploadImg">
+                                    <p class="dnone">請選擇圖片上傳</p>
+                                    <div class="col_img">
+                                        <img class="preview_img" :src='"img/activity/"+showLightBox.IMG2'>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="editbtn col">
+                        <button class="close col" type="button" @click="close">關閉</button>
+                        <button class="save col" type="button" @click="addData">儲存</button>
                     </div>
                 </div>
                 <!-- 不送資料了，僅供閱覽-->
@@ -1660,7 +1780,7 @@
                 closeCheckY(e){
                     var vueApp = this;
                     $(e.target).closest(".close_check").removeClass("show");    
-                    $(".hide").removeClass("show");    
+                    $(".hide").removeClass("show");
 
                 },
 
@@ -1715,7 +1835,7 @@
                         // console.log(xhr.responseText);
                         // vueApp.showLightBox = JSON.parse(xhr.responseText);
                         // vueApp.showLightBox = xhr.responseText;
-                        console.log(`新增${xhr.responseText}筆資料`);
+                        // console.log(`新增${xhr.responseText}筆資料`);
                         console.log(xhr.responseText);
                         vueApp.content(vueApp.tableName);
                     }
@@ -1732,9 +1852,9 @@
                     // $(`.light_box.${vueApp.tableName}`).removeClass("show");
                     $(".hide").removeClass("show");
 
-                    if(xhr.responseText.length != 1){
-                        alert("新增失敗，請確認填完表格與填寫規範");
-                    }
+                    // if(xhr.responseText.length != 1){
+                    //     alert("新增失敗，請確認填完表格與填寫規範");
+                    // }
                     
 
                 },
