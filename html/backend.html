@@ -545,20 +545,19 @@
                     <input name="data_index" class="dnone" type="text" :value="data_index"> 
                     <div class="ord_num">
                         <label for="">訂單編號:</label>
-                        <input type="text" :value="showLightBox.ORD_NO" readonly="readonly">
-                        <p class="hidden">{{showLightBox.ORD_NO}}</p>
+                        <input type="text" :value="ordInfo.ORD_NO" readonly="readonly">
                     </div>
                     <ul class="ord_total_status">
                         <li>
                             訂單狀態:
-                            <select name="ord_status" v-model.number="showLightBox.STATUS">
+                            <select name="ord_status" v-model.number="ordInfo.STATUS">
                                 <option value="0">未完成</option>
                                 <option value="1">已完成</option>
                             </select>
                         </li>
                         <li>
                             運送方式:
-                            <select name="ord_shipping" v-model.number="showLightBox.SHIPPING">
+                            <select name="ord_shipping" v-model.number="ordInfo.SHIPPING">
                                 <option value="1">宅配</option>
                                 <option value="2">seven取貨</option>
                                 <option value="3">全家取貨</option>
@@ -567,11 +566,11 @@
                     </ul>
                 
                     <ul class="ord_info">
-                        <li>訂購會員編號: {{showLightBox.CUS_NO}}</li>
-                        <li>收件人姓名: {{showLightBox.CUS_NAME}}</li>
-                        <li>收件人手機: {{showLightBox.CUS_TEL}}</li>
-                        <li>收件人地址: {{showLightBox.CUS_ADD}}</li>
-                        <li>訂購時間: {{showLightBox.TIME}}</li>
+                        <li>訂購會員編號: {{ordInfo.CUS_NO}}</li>
+                        <li>收件人姓名: {{ordInfo.CUS_NAME}}</li>
+                        <li>收件人手機: {{ordInfo.CUS_TEL}}</li>
+                        <li>收件人地址: {{ordInfo.CUS_ADD}}</li>
+                        <li>訂購時間: {{ordInfo.TIME}}</li>
                     </ul>
                     <div class="ord_detail">
                         <p>訂單商品明細:</p>
@@ -584,20 +583,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>{{showLightBox.PRD_NAME}}</td>
-                                    <td>{{showLightBox.AMOUNT}}</td>
-                                    <td>NT$ {{showLightBox.PRICE}}元</td>
+                                <tr v-for="ordList in ordLists">
+                                    <td>{{ordList.PRD_NAME}}</td>
+                                    <td>{{ordList.AMOUNT}}</td>
+                                    <td>NT$ {{ordList.PRICE}}元</td>
                                 </tr>
 
-                                <tr>
-                                    <td>總金額: NT$ {{showLightBox.TOTAL}}元</td>
+                                <!-- <tr>
+                                    <td>總金額: NT$ {{ordInfo.TOTAL}}元</td>
                                 </tr>
                                 <tr>
-                                    <td>優惠碼: {{showLightBox.COUPON}}</td>
-                                </tr>
+                                    <td>優惠碼: {{ordInfo.COUPON}}</td>
+                                </tr> -->
                             </tbody>
                         </table>
+                        <div class="ord_prices">優惠碼: {{ordInfo.COUPON}}</div>
+                        <div class="ord_prices">總金額: NT$ {{ordInfo.TOTAL}}元</div>
 
                         <!-- 
                         <ul class="ord_checkout">
@@ -816,7 +817,7 @@
                     <p class="light_box_cap">編輯與查看</p>
                     <input name="table_title" class="dnone" type="text" value="casetable" > 
                     <input name="data_index" class="dnone" type="text" :value="data_index" >
-                    <div>案例編號: {{showLightBox.CASE_NO}}</div>
+                    <div class="case_no">案例編號: {{showLightBox.CASE_NO}}</div>
                     <div class="case_content before">
                         <label for="case_before">整理前文案:</label>
                         <textarea class="text_area" name="case_before" cols="70" rows="6" v-model.trim="showLightBox.INFO_BEFORE">
@@ -1070,8 +1071,8 @@
                 columnTableHead:['專欄編號','專欄標題','作者','日期'],
                 schTableHead:['假單編號','員工編號','請假日期','請假時段'],
 
-                ordList:[], //
-                ordInfos:[], //
+                ordLists:[], //
+                ordInfo:[], //
                 
 
                 showTableBody: '',
@@ -1253,42 +1254,57 @@
                     // let current_edit = 0;
                     // this.current_edit = index;
                     var vueApp = this;
-                    $.ajax({
-                        url: `phps/backendSelectRow.php`,   // 呼叫的檔案或網址列
-                        data: `tableName=${vueApp.tableName}&editNo=${index.ta}`,     // 傳送到 server 端的資料，會自動轉成字串形式
-                        // data: `type=select&sql=${tableName}`,
-                        type: 'GET',     // GET 或 POST
-                        dataType: 'json', // response 的資料格式，xml | html | script | json | jsonp | text
-                        success(res){
-                            vueApp.showLightBox = res;
+                    if(`${vueApp.tableName}` == "ord"){
+                        let xhr = new XMLHttpRequest();
+                        xhr.onload = function(){
+                            a = xhr.responseText.split('|');
+                            vueApp.ordLists = JSON.parse(a[0]); //訂單細項
+                            vueApp.ordInfo = JSON.parse(a[1]);    //商品詳情
+
+                            if(`${vueApp.ordInfo.COUPON}` == "null"){
+                                vueApp.ordInfo.COUPON = "無";
+
+                            };
+
                             $(`.light_box.${vueApp.tableName}`).addClass("show");
+                        }
+                        xhr.open("get", `phps/backendSelectRow.php?tableName=${vueApp.tableName}&editNo=${index.ta}`, true);
+                        xhr.send(null);
+                    }else{
+                        $.ajax({
+                            url: `phps/backendSelectRow.php`,   // 呼叫的檔案或網址列
+                            data: `tableName=${vueApp.tableName}&editNo=${index.ta}`,     // 傳送到 server 端的資料，會自動轉成字串形式
+                            // data: `type=select&sql=${tableName}`,
+                            type: 'GET',     // GET 或 POST
+                            dataType: 'json', // response 的資料格式，xml | html | script | json | jsonp | text
+                            success(res){
+                                vueApp.showLightBox = res;
+                                $(`.light_box.${vueApp.tableName}`).addClass("show");
 
-                            //emp 和 cus 的權限判斷 & prd 上下架判斷 & ord 訂單已完成判斷
-                            if(`${vueApp.showLightBox.STATUS}` == 0){
-                                $(".status option[value='0']").attr("selected", "selected");
+                                //emp 和 cus 的權限判斷 & prd 上下架判斷 & ord 訂單已完成判斷
+                                if(`${vueApp.showLightBox.STATUS}` == 0){
+                                    $(".status option[value='0']").attr("selected", "selected");
 
-                            }else if(`${vueApp.showLightBox.STATUS}` == 1){
-                                $(".status option[value='1']").attr("selected", "selected");
+                                }else if(`${vueApp.showLightBox.STATUS}` == 1){
+                                    $(".status option[value='1']").attr("selected", "selected");
 
-                            }else if(`${vueApp.showLightBox.STATUS}` == 2){
-                                $(".status option[value='2']").attr("selected", "selected");
+                                }else if(`${vueApp.showLightBox.STATUS}` == 2){
+                                    $(".status option[value='2']").attr("selected", "selected");
 
-                            };
+                                };
 
-                            if(`${vueApp.showLightBox.COUPON}` == "null"){
-                                vueApp.showLightBox.COUPON = "無";
+                                
 
-                            }else{
-
-                            };
+                                
 
 
-                        },
-                        error(res){
-                            console.log(res);
-                        },
-                    });
-
+                            },
+                            error(res){
+                                console.log(res);
+                            },
+                        });
+                    };
+                    
                     this.data_index = index.ta;
 
                     $(".hide").addClass("show");
@@ -1310,13 +1326,13 @@
                     // console.log("我是this", e.target);
                     // console.log("我是this", this.next());
                     let preView =  $(e.target).next().next().children(".preview_img");   
-                    console.log("我是preView", preView);
-                    console.log("我是$(e.target)", $(e.target));
+                    // console.log("我是preView", preView);
+                    // console.log("我是$(e.target)", $(e.target));
 
                     reader.onload = function(){ 
                         $(preView).attr("src" , reader.result);
                     }
-                    console.log("這是更新過後的圖片src:",  $(preView).attr("src"));
+                    // console.log("這是更新過後的圖片src:",  $(preView).attr("src"));
                 },
 
 
@@ -1326,7 +1342,7 @@
                     // console.log("這是close的this", $(e.target).closest("form").children("div"));
                     $(e.target).closest("form").children("div").removeClass("show");
                     // $(`.light_box.${vueApp.tableName}`).removeClass("show");
-                    console.log("$(e.target).closest(.close_check)",$(e.target).closest("form").children(".close_check"));
+                    // console.log("$(e.target).closest(.close_check)",$(e.target).closest("form").children(".close_check"));
                     $(".hide").addClass("show");
                     $(e.target).closest("form").children(".close_check").addClass("show");
 
@@ -1343,7 +1359,7 @@
                 // 未儲存確認燈箱按下取消，重新顯示留有修改資料的panel
                 closeCheckC(e){
                     var vueApp = this;
-                    console.log("這是closeC的$(e.target).closest(div)", $(e.target).closest("form").children("div"));
+                    // console.log("這是closeC的$(e.target).closest(div)", $(e.target).closest("form").children("div"));
                     $(e.target).closest("form").children("div").addClass("show");
                     // $(`.light_box.${vueApp.tableName}`).addClass("show");
                     $(e.target).closest(".close_check").removeClass("show");
@@ -1361,7 +1377,7 @@
 
                     let xhr = new XMLHttpRequest();
                     xhr.onload = function(){
-                        console.log(xhr.responseText);
+                        // console.log(xhr.responseText);
                         // vueApp.showLightBox = JSON.parse(xhr.responseText);
                         vueApp.showLightBox = xhr.responseText;
                         vueApp.content(vueApp.tableName);
