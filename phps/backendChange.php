@@ -16,7 +16,7 @@ try{
     $emp->bindValue(":EMP_ADD", $_POST["emp_add"]); //員工地址
     $emp->bindValue(":INTRO", $_POST["emp_intro"]); //員工介紹
 
-    $emp->bindValue(":DATA_INDEX", json_decode($_POST["data_index"])); //table 裡第幾筆資料
+    $emp->bindValue(":DATA_INDEX", $_POST["data_index"]); //table 裡第幾筆資料
 
     $sql_exe = $emp;
 		
@@ -28,7 +28,7 @@ try{
     
     $cus->bindValue(":STATE", $_POST["cus_status"]); //會員權限(正常 or 停權)
 
-    $cus->bindValue(":DATA_INDEX", json_decode($_POST["data_index"])); //table 裡第幾筆資料 
+    $cus->bindValue(":DATA_INDEX", $_POST["data_index"]); //table 裡第幾筆資料 
 
     $sql_exe = $cus;
 
@@ -43,7 +43,7 @@ try{
     $result->bindValue(":PRD_NO2",$_POST["result_prd2"]); // 推薦商品2
     $result->bindValue(":PRD_NO3",$_POST["result_prd3"]); // 推薦商品3
 
-    $result->bindValue(":DATA_INDEX", json_decode($_POST["data_index"])); //table 裡第幾筆資料
+    $result->bindValue(":DATA_INDEX", $_POST["data_index"]); //table 裡第幾筆資料
 
     $sql_exe = $result;
 
@@ -61,6 +61,11 @@ try{
       
         $from = $_FILES["prd_img_$i"]['tmp_name']; //暫存區含路徑
         $to = "../img/$fileName";
+        
+        if(file_exists($to)){
+          unlink($to);
+        };
+
         copy($from, $to);
         
         $road[$i-1] = $fileName;
@@ -79,6 +84,11 @@ try{
     
       $from = $_FILES["prd_info_img_1"]['tmp_name']; //暫存區含路徑
       $to = "../img/$fileNameInfo1";
+
+      if(file_exists($to)){
+        unlink($to);
+      };
+      
       copy($from, $to);
     };
 
@@ -93,6 +103,11 @@ try{
     
       $from = $_FILES["prd_info_img_2"]['tmp_name']; //暫存區含路徑
       $to = "../img/$fileNameInfo2";
+
+      if(file_exists($to)){
+        unlink($to);
+      };
+
       copy($from, $to);
     };
     
@@ -107,6 +122,11 @@ try{
     
       $from = $_FILES["prd_spec_img"]['tmp_name']; //暫存區含路徑
       $to = "../img/$fileNameSpec";
+
+      if(file_exists($to)){
+        unlink($to);
+      };
+
       copy($from, $to);
     };
 
@@ -115,13 +135,15 @@ try{
     $sql_prd= "update prd set PRD_NAME=:PRD_NAME, CATEGORY=:CATEGORY, PRICE=:PRICE, STATE=:STATE, INFO_TITLE_1=:INFO_TITLE_1, INFO_1=:INFO_1, INFO_TITLE_2=:INFO_TITLE_2, INFO_2=:INFO_2";
 
     // , IMG1=:IMG1 
-    if(isset($road[0])){$sql_prd = $sql_prd.", IMG1=$road[0]";};
-    if(isset($road[1])){$sql_prd = $sql_prd.", IMG2=$road[1]";};
-    if(isset($road[2])){$sql_prd = $sql_prd.", IMG3=$road[2]";};
-    if(isset($road[3])){$sql_prd = $sql_prd.", IMG4=$road[3]";};
-    if(isset($fileNameInfo1)){$sql_prd = $sql_prd.", INFO_IMG1=$fileNameInfo1";};
-    if(isset($fileNameInfo2)){$sql_prd = $sql_prd.", INFO_IMG2=$fileNameInfo2";};
-    if(isset($fileNameSpec)){$sql_prd = $sql_prd.", SPEC_IMG=$fileNameSpec";};
+
+    
+    if(isset($road[0])){$sql_prd = $sql_prd.", IMG1='$road[0]'";};
+    if(isset($road[1])){$sql_prd = $sql_prd.", IMG2='$road[1]'";};
+    if(isset($road[2])){$sql_prd = $sql_prd.", IMG3='$road[2]'";};
+    if(isset($road[3])){$sql_prd = $sql_prd.", IMG4='$road[3]'";};
+    if(isset($fileNameInfo1)){$sql_prd = $sql_prd.", INFO_IMG1='$fileNameInfo1'";};
+    if(isset($fileNameInfo2)){$sql_prd = $sql_prd.", INFO_IMG2='$fileNameInfo2'";};
+    if(isset($fileNameSpec)){$sql_prd = $sql_prd.", SPEC_IMG='$fileNameSpec'";};
     $sql_prd = $sql_prd." where PRD_NO =:DATA_INDEX";
 
     $prd = $pdo->prepare($sql_prd);
@@ -135,7 +157,7 @@ try{
     $prd->bindValue(":INFO_TITLE_2",$_POST["prd_info_title_2"]); // 商品介紹標題2
     $prd->bindValue(":INFO_2",$_POST["prd_info_2"]); // 商品介紹內文2
 
-    $prd->bindValue(":DATA_INDEX", json_decode($_POST["data_index"])); //table 裡第幾筆資料
+    $prd->bindValue(":DATA_INDEX", $_POST["data_index"]); //table 裡第幾筆資料
 
     $sql_exe = $prd;
 
@@ -148,7 +170,7 @@ try{
 		$ord->bindValue(":STATE",$_POST["ord_status"]); // 訂單狀態
     $ord->bindValue(":SHIPPING",$_POST["ord_shipping"]); // 運送方式
 
-    $ord->bindValue(":DATA_INDEX", json_decode($_POST["data_index"])); //table 裡第幾筆資料
+    $ord->bindValue(":DATA_INDEX", $_POST["data_index"]); //table 裡第幾筆資料
 
     $sql_exe = $ord;
 		
@@ -163,7 +185,7 @@ try{
     $plan->bindValue(":PLAN_TA",$_POST["plan_ta"]); // 適合對象
     $plan->bindValue(":PLAN_FEATURE",$_POST["plan_feature"]); // 方案特色
 
-    $plan->bindValue(":DATA_INDEX", json_decode($_POST["data_index"])); //table 裡第幾筆資料
+    $plan->bindValue(":DATA_INDEX", $_POST["data_index"]); //table 裡第幾筆資料
 
     $sql_exe = $plan;
 
@@ -175,7 +197,7 @@ try{
 
 		$sao->bindValue(":STATE",$_POST["sao_status"]); // 服務訂單狀態
 
-    $sao->bindValue(":DATA_INDEX", json_decode($_POST["data_index"])); //table 裡第幾筆資料
+    $sao->bindValue(":DATA_INDEX", $_POST["data_index"]); //table 裡第幾筆資料
 
     $sql_exe = $sao;
 		
@@ -192,6 +214,11 @@ try{
     
       $from = $_FILES["before_img"]['tmp_name']; //暫存區含路徑
       $to = "../img/case/$fileNameBefore";
+
+      if(file_exists($to)){
+        unlink($to);
+      };
+      
       copy($from, $to);
     };
 
@@ -205,6 +232,11 @@ try{
     
       $from = $_FILES["after_img"]['tmp_name']; //暫存區含路徑
       $to = "../img/case/$fileNameAfter";
+
+      if(file_exists($to)){
+        unlink($to);
+      };
+
       copy($from, $to);
     };
 
@@ -212,8 +244,8 @@ try{
     $sql_casetable= "update casetable set INFO_BEFORE=:INFO_BEFORE, INFO_AFTER=:INFO_AFTER";
     // $sql_casetable= "update casetable set INFO_BEFORE=:INFO_BEFORE, INFO_AFTER=:INFO_AFTER, BEFORE_IMG=:BEFORE_IMG, AFTER_IMG=:AFTER_IMG where CASE_NO =:DATA_INDEX";
 
-    if(isset($fileNameBefore)){$sql_casetable = $sql_casetable.", BEFORE_IMG=$fileNameBefore";};
-    if(isset($fileNameAfter)){$sql_casetable = $sql_casetable.", AFTER_IMG=$fileNameAfter";};
+    if(isset($fileNameBefore)){$sql_casetable = $sql_casetable.", BEFORE_IMG='$fileNameBefore'";};
+    if(isset($fileNameAfter)){$sql_casetable = $sql_casetable.", AFTER_IMG='$fileNameAfter'";};
 
     $sql_casetable = $sql_casetable." where CASE_NO =:DATA_INDEX";
 
@@ -222,7 +254,7 @@ try{
 		$casetable->bindValue(":INFO_BEFORE",$_POST["case_before"]); // 整理前文案
     $casetable->bindValue(":INFO_AFTER",$_POST["case_after"]); // 整理後文案
 
-    $casetable->bindValue(":DATA_INDEX", json_decode($_POST["data_index"])); //table 裡第幾筆資料
+    $casetable->bindValue(":DATA_INDEX", $_POST["data_index"]); //table 裡第幾筆資料
 
     $sql_exe = $casetable;
 		
@@ -242,7 +274,7 @@ try{
     $event->bindValue(":CONTENT",$_POST["event_content"]); // 活動內文
     // $event->bindValue(":EVENT_IMG",$_POST["event_img"]); // 活動圖片
 
-    $event->bindValue(":DATA_INDEX", json_decode($_POST["data_index"])); //table 裡第幾筆資料
+    $event->bindValue(":DATA_INDEX", $_POST["data_index"]); //table 裡第幾筆資料
 
     $sql_exe = $event;
 		
@@ -265,7 +297,7 @@ try{
     // $columntable->bindValue(":IMG2",$_POST["col_sub_img_2"]); // 專欄附圖2
     
 
-    $columntable->bindValue(":DATA_INDEX", json_decode($_POST["data_index"])); //table 裡第幾筆資料
+    $columntable->bindValue(":DATA_INDEX", $_POST["data_index"]); //table 裡第幾筆資料
 
     $sql_exe = $columntable;
 		
