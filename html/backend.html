@@ -17,7 +17,7 @@
     <main class="container" id="app">
         <nav class="navigation">
             <ul>
-                <li class="nav_li emp hovered" @load="content('emp')">
+                <li class="nav_li emp hovered">
                     <a @click="content('emp')">
                         <span class="icon">
                             <img src="img/icon/accessibility-outline.svg" alt="">
@@ -1389,6 +1389,7 @@
             mounted() {
                 this.selectAllPrds();
                 this.selectAllPlans();
+                this.content('emp');
             },
 		});
 
