@@ -343,7 +343,7 @@
                         <ion-icon name="arrow-back-outline"></ion-icon>
                         返回
                     </button>
-                    <button class="next_btn center" type="button" @click="nextHandler(2);sendForm"  id="submit">確認付款
+                    <button class="next_btn center" type="button" @click="nextHandler(2)"  id="submit">確認付款
                     <!-- <ion-icon name="arrow-forward-outline"></ion-icon> -->
                         
                     </button>
@@ -513,7 +513,8 @@
                 if (num == 2) {
                     if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test)
                     alert("資料不完整");
-                    else this.activetab = `${num + 1}`
+                    else this.activetab = `${num + 1}`;
+                    this.sendForm();
                     // return;
                 }else if(num == 1){
                     if (!this.selectedEmp || !this.dataDate || !this.dataTime || !this.name || !this.tel || !this.selectedCity || !this.selectedArea || !this.address)
