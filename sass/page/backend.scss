@@ -502,7 +502,7 @@ input[type="file"]{
 
     
 
-    .prd_img, .need_img, .before_img, .after_img, .event_img, .col_img, .new_emp_img{
+    .prd_img, .need_img, .before_img, .after_img, .event_img, .col_img, .emp_img, .new_emp_img, .new_col_author_img{
         border: 1.5px solid map-get($color , "sub_brown" );
         background-color: #fff;
         width: 260px;

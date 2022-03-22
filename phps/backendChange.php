@@ -7,8 +7,28 @@ try{
   // 檔案的暫存位置：$_FILES['input的name']['tmp_name']
   if ($_POST["table_title"] == "emp") {
 
+    if($_FILES["emp_img"]['error']==0){
+      // 圖檔名
+      // $file = `prd_._.$i`;
+      $empno = $_POST["data_index"]; // ok
+      $file = "emp_".$empno;
+      $fileInfo = pathinfo($_FILES["emp_img"]['name']);  // 路徑
+      $ext = $fileInfo["extension"];
+      $fileNameEmp = "$file.$ext";
+    
+      $from = $_FILES["emp_img"]['tmp_name']; //暫存區含路徑
+      $to = "../img/$fileNameEmp";
+
+      if(file_exists($to)){
+        unlink($to);
+      };
+      
+      copy($from, $to);
+    };
+
 		// 修改emp資料
-    $sql_emp= "update emp set EMP_TEL=:EMP_TEL, EMP_STATE=:EMP_STATE, EMP_ADD=:EMP_ADD, INTRO=:INTRO where EMP_NO =:DATA_INDEX"; 
+    $sql_emp= "update emp set EMP_TEL=:EMP_TEL, EMP_STATE=:EMP_STATE, EMP_ADD=:EMP_ADD, INTRO=:INTRO, EMP_PIC='$fileNameEmp' where EMP_NO =:DATA_INDEX"; 
+    
     $emp = $pdo->prepare($sql_emp);
 
     $emp->bindValue(":EMP_TEL", $_POST["emp_tel"]); //員工電話
@@ -115,7 +135,7 @@ try{
       // 圖檔名
       // $file = `prd_._.$i`;
       $prdno = $_POST["data_index"]; // ok
-      $file = "prd/prd_".$prdno."_info_2";
+      $file = "prd/prd_".$prdno."_spec";
       $fileInfo = pathinfo($_FILES["prd_spec_img"]['name']);  // 路徑
       $ext = $fileInfo["extension"];
       $fileNameSpec = "$file.$ext";
