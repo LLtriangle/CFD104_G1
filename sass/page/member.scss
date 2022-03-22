@@ -148,12 +148,14 @@ input{
         }
         .data_con{
             width: 95%;
+            height: calc(100vh - 100px);
             margin: 30px auto;
             background-color: #f3f3ed;
             border: #d6aa81 2px solid;
             border-radius: 20px;
             flex-direction: row;
-            overflow: hidden;
+            overflow: auto;
+            overflow-x: hidden;
             .data_mem{
                 position: relative;
                 .icon_edit{
