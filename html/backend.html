@@ -21,6 +21,9 @@
   	<script src="js/backend.js"></script>
 </head>
 <body>
+    <!-- loading畫面 -->
+    @@include('layout/loading.html')
+    
     <main class="container" id="app">
         <nav class="navigation">
             <ul>
@@ -1716,6 +1719,20 @@
 					xhr.open("get", "phps/logout.php", true);
 					xhr.send(null);
                 },
+
+                initAreYouLogin(){
+                    let xhr = new XMLHttpRequest();
+                    let thisVue = this;
+                    xhr.onload = function () {
+                        console.log(xhr.responseText);
+                        if (!JSON.parse(xhr.responseText).EMP_EMAIL) {
+                            location.href="backendlogin.html";
+                        };
+                    };
+                    xhr.open("get", "phps/getEmpInfo.php", true);
+                    xhr.send(null);
+                },
+
                 addData(e){
                     let vueApp = this;
                     
@@ -1749,6 +1766,9 @@
 
                 },
 
+            },
+            created(){
+                this.initAreYouLogin();
             },
             mounted() {
                 this.selectAllPrds();
