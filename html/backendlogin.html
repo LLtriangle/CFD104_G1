@@ -22,7 +22,7 @@
                 <input id="emp_email" class="form_input" type="text" placeholder="輸入Email" maxlength="50">
                 <div v-if="mun">必填</div><br>
                 
-                <input id="emp_psw" class="form_input" type="password" placeholder="輸入密碼" maxlength="8"><br>
+                <input id="emp_psw" class="form_input" type="password" placeholder="輸入密碼" maxlength="8" @keyup.enter="sendForm"><br>
                 <!-- <a href="#">忘記您的密碼?</a> -->
                 <button @click="sendForm" type="button" >
                     <span class="form_button button">登入</span>

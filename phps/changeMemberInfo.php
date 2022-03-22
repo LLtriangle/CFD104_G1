@@ -7,7 +7,8 @@ try{
   // 檔案名稱：$_FILES['input的name']['name']
   // 檔案格式：$_FILES['input的name']['type']
   // 檔案的暫存位置：$_FILES['input的name']['tmp_name']
-  
+
+  // -------------
   if($_FILES['upFile']['error']==0){
       // $file = uniqid();
       $file = $_SESSION["CUS_NO"]."_pic";

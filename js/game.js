@@ -113,6 +113,26 @@ function openIll(){
     $('#item_group img').removeClass('selected');   // 回復物品未選取狀態
 };
 
+
+// 推薦商品加入購物車
+function setReitemCart(){
+    var reitemPrd = $(this).closest('.prd_card').children('.reitemPrd');
+    var reitemNo = reitemPrd[0].innerText;    //點擊的推薦商品編號
+    var reitemName = reitemPrd[1].innerText;    //點擊的推薦商品名稱
+    var reitemPrice = reitemPrd[2].innerText;    //點擊的推薦商品價格
+    var reitemImg = reitemPrd[3].innerText;    //點擊的推薦商品圖片
+    var cartArr = JSON.parse(localStorage.getItem("cart"));
+    if(cartArr == null){
+        cartArr = [];
+    };
+    var arrObj = cartArr.filter(obj=>obj.prdNo == reitemNo);
+    if(arrObj.length==0){
+        cartArr.push({prdNo : `${reitemNo}`, prdName : `${reitemName}`, prdPrice : `${reitemPrice}`, prdImg : `${reitemImg}`, prdNum : 1});
+    };
+    localStorage.setItem("cart",JSON.stringify(cartArr));
+    indexOfCart();
+};
+
 function init() {
     // 點選物件
     $('#item_group img').on('click',itemClick);
@@ -134,6 +154,9 @@ function init() {
     $('#finish').on('click',openResult);
     // 再來一次，跳出說明視窗(遊玩方法)，物品歸位
     $('#again').on('click',openIll);
+    
+    // 推薦商品加入購物車
+    $(".buy_reitem").on('click',setReitemCart);
 };
     
 window.addEventListener("load",init,false);
