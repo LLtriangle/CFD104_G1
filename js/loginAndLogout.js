@@ -78,7 +78,6 @@ let member={};
     function addMem(){
       let xhr = new XMLHttpRequest();
       xhr.onload = function(){
-        console.log("你好"); // 註冊成功
         //跳轉
         location.href="member.html";
       }
@@ -101,12 +100,24 @@ let member={};
 
       //===設定btnLogin.onclick 事件處理程序是 sendForm
       $id('btnLogin').addEventListener("click",sendForm);  
+      $('#memPsw').bind('keypress', function (event){
+        if (event.keyCode == 13){
+          // alert("按下enter!");
+          sendForm();
+        }
+      });
 
       // 檢查會員帳號是否存在
       $id('cusId').addEventListener("keyup", checkId, false);
       
       //===設定btnRegister.onclick 事件處理程序是 addMem
-      $id('btnRegister').addEventListener("click",addMem);  
-    }; //window.onload
+      $id('btnRegister').addEventListener("click",addMem);
+      $('#cusPsw').bind('keypress', function (event){
+          if (event.keyCode == 13){
+            alert("按下enter!");
+          // addMem();
+          }
+        });
+    }; 
 
     window.addEventListener("load",init);

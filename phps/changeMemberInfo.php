@@ -10,7 +10,6 @@ try{
 
   // -------------
   if($_FILES['upFile']['error']==0){
-      // $file = uniqid();
       $file = $_SESSION["CUS_NO"]."_pic";
       $fileInfo = pathinfo($_FILES['upFile']['name']); 
       $ext = $fileInfo["extension"]; // 副檔名

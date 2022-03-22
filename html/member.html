@@ -105,7 +105,7 @@
                 
                         <!-------新增取消修改-------->
                         <button id="btnCancel" type="button" class="btn_sub bl cancel" @click="getMemberInfo">取消修改</button>
-                        <button id="btnSave" type="button" class="btn_sub br" @click="getMemberInfo">儲存修改</button>
+                        <button id="btnSave" type="button" class="btn_sub br" @click="changeMemberInfo">儲存修改</button>
                         <button id="btnChange" type="button" class="btn_sub br">修改會員資料</button>
                     </div>
                 </div>
@@ -257,6 +257,20 @@
                         }
                         xhr.open("get", "phps/getMemberInfo.php", true);
                         xhr.send(null);
+                    },
+                    changeMemberInfo(){
+                        let thisVue = this;
+                        let xhr = new XMLHttpRequest();
+                        xhr.onload = function(){
+                            console.log(xhr.responseText);
+                            thisVue.getMemberInfo();
+                            history.go(0);
+                        }
+                        
+                        xhr.open("post", "phps/changeMemberInfo.php", true);  
+                        let myForm = document.getElementById("myForm");
+                        let formData = new FormData(myForm);
+                        xhr.send(formData);
                     },
                     getOrderInfo(){
                         let xhr = new XMLHttpRequest();

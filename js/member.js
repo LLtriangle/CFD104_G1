@@ -52,17 +52,17 @@ function hideBtn(){
 //     xhr.send(formData);
 
 // }
-function changeMemberInfo(){
-    let xhr = new XMLHttpRequest();
-    xhr.onload = function(){
-        console.log(xhr.responseText);
-    }
+// function changeMemberInfo(){
+//     let xhr = new XMLHttpRequest();
+//     xhr.onload = function(){
+//         console.log(xhr.responseText);
+//     }
     
-    xhr.open("post", "phps/changeMemberInfo.php", true);  
-    let myForm = document.getElementById("myForm");
-    let formData = new FormData(myForm);
-    xhr.send(formData);
-};
+//     xhr.open("post", "phps/changeMemberInfo.php", true);  
+//     let myForm = document.getElementById("myForm");
+//     let formData = new FormData(myForm);
+//     xhr.send(formData);
+// };
 
 // 登出
 function logout(){        
@@ -75,24 +75,24 @@ function logout(){
     xhr.send(null);
 };
 
-//上傳照片與大頭貼預覽
-// function uploadFile(){
-//     upFile.onchange=function(e){ //選檔案:change事件
-//         let file = e.target.files[0]; //找物件
-//         let reader = new FileReader(); //reader讀物件
-//         reader.onload = function(){ 
-//             $id("myImg").src = reader.result;
-//             // console.log($id("myImg").src);
-//         }
-//         reader.readAsDataURL(file);
-//     }
-// };
+// 上傳照片與大頭貼預覽
+function uploadFile(){
+    upFile.onchange=function(e){ //選檔案:change事件
+        let file = e.target.files[0]; //找物件
+        let reader = new FileReader(); //reader讀物件
+        reader.onload = function(){ 
+            $id("myImg").src = reader.result;
+            // console.log($id("myImg").src);
+        }
+        reader.readAsDataURL(file);
+    }
+};
 function init(){
-    getMemberInfo();
-    // uploadFile();
+    // getMemberInfo();
+    uploadFile();
     $id('btnLogout').addEventListener("click",logout);
     $id('btnCancel').addEventListener("click",hideBtn);
-    $id('btnSave').addEventListener("click",changeMemberInfo);
+    // $id('btnSave').addEventListener("click",changeMemberInfo);
     $id('btnSave').addEventListener("click",hideBtn);
     $id('btnChange').addEventListener("click",showBtn);
 }; 
