@@ -25,7 +25,7 @@ try {
 		from ord O join ordinfo OI on O.ORD_NO = OI.ORD_NO 
 				   join prd P on P.PRD_NO = OI.PRD_NO where OI.ORD_NO = '{$_GET['editNo']}' ";
 		$countOrdPrd = $pdo->query($ordPrdSql);
-		$counter = $countOrdPrd->fetchAll(PDO::FETCH_ASSOC);
+		$countPrd = $countOrdPrd->fetchAll(PDO::FETCH_ASSOC);
 		echo json_encode($countPrd)."|";
 
 		$sql = "select O.ORD_NO, O.CUS_NO, O.CUS_NAME, O.CUS_TEL, O.CUS_ADD, O.TIME, O.SHIPPING, O.TOTAL, O.STATE STATUS, O.COUPON from ord O where O.ORD_NO = '{$_GET['editNo']}' ";

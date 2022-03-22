@@ -440,14 +440,6 @@ input[type="file"]{
 
     }   
 
-    .sao_detail_content.title{
-        padding: 15px 30px;
-    }
-
-    .sao_detail_content.report, .case_content{
-        padding: 15px 30px;
-        
-    }
 
     &.emp{
         &.show{
@@ -491,6 +483,31 @@ input[type="file"]{
             .ord_num{
                 padding: 15px 30px;
             }
+
+            .ord_detail{
+
+                p, table, .ord_prices{
+                    padding: 15px 30px;
+                }
+
+                table{
+                    text-align: center;
+                    th, td{
+                        padding: 5px 0;
+                    }
+                    thead{
+                        background-color: map-get($color , "sub_brown" )
+                    }
+
+                    tbody{
+                        background-color: #fff;
+                    }
+                }
+
+                .ord_prices{
+                    text-align: right;
+                }
+            }
         }
         display: none;
     }
@@ -508,6 +525,14 @@ input[type="file"]{
             .sao_num, p{
                 padding: 15px 30px;
             }
+
+            .sao_detail_content.title{
+                padding: 15px 30px;
+            }
+
+            .sao_detail_content.report{
+                padding: 15px 30px;
+            }
         }
         display: none;
     }
@@ -515,6 +540,10 @@ input[type="file"]{
     &.casetable{
         &.show{
             display: grid;
+
+            .case_no, .case_content{
+                padding: 15px 30px;
+            }
         }
         display: none;
     }
