@@ -91,7 +91,7 @@ input[type="file"]{
             }
             &:last-child{
                 background-color: map-get($color, 'main');
-                pointer-events: none;
+                // pointer-events: none;
                 a{
                     color: map-get($color, 'bg');
                     img{
@@ -130,8 +130,8 @@ input[type="file"]{
         }
     }
 }
-.navigation ul li:hover a::before,
-.navigation ul li.hovered a::before{
+.navigation ul li:not(:last-child):hover a::before,
+.navigation ul li:not(:last-child).hovered a::before{
     content: '';
     position: absolute;
     right: 0;
@@ -144,8 +144,8 @@ input[type="file"]{
     pointer-events: none;
 }
   
-.navigation ul li:hover a::after, 
-.navigation ul li.hovered a::after{
+.navigation ul li:not(:last-child):hover a::after, 
+.navigation ul li:not(:last-child).hovered a::after{
     content: '';
     position: absolute;
     right: 0;
