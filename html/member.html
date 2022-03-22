@@ -135,7 +135,7 @@
                             <div class="memberGrid9"> {{ordcloumn.ORD_NO}} </div>
                             <div class="memberGrid10"> {{ordcloumn.TIME}} </div>
                             <div class="memberGrid11"> {{ordcloumn.SHIPPING}}</div>
-                            <div class="memberGrid12"> ${{ordcloumn.DEL_FEE}}元 </div>
+                            <div class="memberGrid12"> ${{ordcloumn.DEL_FEE}} </div>
                             <div class="memberGrid13"> ${{ordcloumn.TOTAL}} </div>
                             <div class="memberGrid14"> {{ordcloumn.STATE}} </div>
                             <div class="memberGrid15"> {{ordcloumn.COUPON}} </div>
@@ -170,6 +170,7 @@
                                         <div class="amount_center">{{ordprd.AMOUNT}}件</div>
                                         <div class="total_cla">${{ordprd.AMOUNT*ordprd.PRICE}}</div>
                                     </a>
+                                    <div class="ord_total">使用優惠碼{{ordcloumn.COUPON}}，折扣{{ordcloumn.PARM}}元，共{{ordcloumn.TOTAL-ordcloumn.PARM}}元</div>
                                 </div>
                                 
                             </div>
@@ -309,6 +310,14 @@
                                 }else if(thisVue.ordcloumns[i].STATE == '1'){
                                     thisVue.ordcloumns[i].STATE = "已完成";
                                 };
+                                if(thisVue.ordcloumns[i].PARM == '-88'){
+                                    thisVue.ordcloumns[i].PARM = "88";
+                                }else if(thisVue.ordcloumns[i].PARM == '-99'){
+                                    thisVue.ordcloumns[i].PARM = "99";
+                                }else if(thisVue.ordcloumns[i].PARM == '-100'){
+                                    thisVue.ordcloumns[i].PARM = "100";
+                                };
+                                
                             };
                         };
                         xhr.open("get", "phps/memberOrd.php", true);

@@ -41,6 +41,12 @@ input{
 .total_cla{
     width: 60px;
 }
+.ord_total{
+    border-top: 3px solid map-get($btn_color, "blue");
+    padding: 10px;
+    text-align:right;
+    word-break:break-all;
+}
 // 手機-------------------------------
 @media  screen and (max-width:768px){
     main{
