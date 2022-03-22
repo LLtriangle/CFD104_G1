@@ -571,6 +571,7 @@
                         <li>收件人姓名: {{showLightBox.CUS_NAME}}</li>
                         <li>收件人手機: {{showLightBox.CUS_TEL}}</li>
                         <li>收件人地址: {{showLightBox.CUS_ADD}}</li>
+                        <li>訂購時間: {{showLightBox.TIME}}</li>
                     </ul>
                     <div class="ord_detail">
                         <p>訂單商品明細:</p>
@@ -600,7 +601,7 @@
 
                         <!-- 
                         <ul class="ord_checkout">
-                            <li>商品金額&emsp;&nbsp;:&ensp;$570元</li>
+                            <li>商品金額&emsp;&nbsp;:&ensp;$700元</li>
                             <li>折扣碼&emsp;&emsp;&nbsp;:&ensp;NA</li>
                             <li>運費&emsp;&emsp;&emsp;&nbsp;:&ensp;$80元&nbsp;&nbsp;</li>
                             <li>訂單總金額&nbsp;:&ensp;$650元</li>
@@ -757,7 +758,7 @@
                             <div class="sao_detail_content title">結案回報:</div>
                             <div  class="sao_detail_content report">
                                 <label for="sao_report">結案回報內容:</label>
-                                <textarea class="text_area" name="sao_report" cols="30" rows="10" readonly="readonly">
+                                <textarea class="text_area" name="sao_report" cols="70" rows="10" readonly="readonly">
                                     {{showLightBox.INFO}}
                                 </textarea>
                             </div>
@@ -813,18 +814,18 @@
             <form class="from casetable">
                 <div class="light_box casetable">
                     <p class="light_box_cap">編輯與查看</p>
-                    <input name="table_title" type="text" value="casetable" > 
-                    <input name="data_index" type="text" :value="data_index" >
+                    <input name="table_title" class="dnone" type="text" value="casetable" > 
+                    <input name="data_index" class="dnone" type="text" :value="data_index" >
                     <div>案例編號: {{showLightBox.CASE_NO}}</div>
-                    <div>
+                    <div class="case_content before">
                         <label for="case_before">整理前文案:</label>
-                        <textarea class="text_area" name="case_before" cols="57" rows="10" v-model.trim="showLightBox.INFO_BEFORE">
+                        <textarea class="text_area" name="case_before" cols="70" rows="6" v-model.trim="showLightBox.INFO_BEFORE">
                             {{showLightBox.INFO_BEFORE}}
                         </textarea>
                     </div>
-                    <div>
+                    <div class="case_content after">
                         <label for="case_after">整理後文案:</label>
-                        <textarea class="text_area" name="case_after" cols="57" rows="10" v-model.trim="showLightBox.INFO_AFTER">
+                        <textarea class="text_area" name="case_after" cols="70" rows="6" v-model.trim="showLightBox.INFO_AFTER">
                             {{showLightBox.INFO_AFTER}}
                         </textarea>
                     </div>
@@ -878,8 +879,7 @@
                     <ul>
                         <li>
                             <label for="event_coupon">折扣碼:</label>
-                            <input name="event_coupon" type="text" v-model.trim="showLightBox.COUPON" readonly="r">
-                            <p>{{showLightBox.COUPON}}</p>
+                            <input name="event_coupon" type="text" v-model.trim="showLightBox.COUPON" readonly="readonly">
                         </li>
                         <li>
                             <label for="event_title">活動標題:</label>
@@ -959,8 +959,8 @@
             <form class="from columntable">
                 <div class="light_box columntable">
                     <p class="light_box_cap">編輯與查看</p>
-                    <input name="table_title" type="text" value="columntable" > 
-                    <input name="data_index" type="text" :value="data_index" >
+                    <input name="table_title" class="dnone" type="text" value="columntable" > 
+                    <input name="data_index" class="dnone" type="text" :value="data_index" >
                     <div class="col_edit_left">
                         <ul>
                             <li>專欄編號: {{showLightBox.COLUMN_NO}}</li>
@@ -968,20 +968,17 @@
                                 <label for="col_topic">專欄標題:
                                     <input name="col_topic" type="text" v-model.trim="showLightBox.TOPIC">
                                 </label>
-                                <p>{{showLightBox.TOPIC}}</p>
                             </li>
                             <li>
                                 <label for="col_author">專欄作者:
                                     <input name="col_author" type="text" v-model.trim="showLightBox.AUTHOR">
                                 </label>
-                                <p>{{showLightBox.AUTHOR}}</p>
                             </li>
                             <li>發表時間: {{showLightBox.DATE}}</li>
                             <li>
                                 <label for="col_sub_title_1">專欄副標題1:
                                     <input name="col_sub_title_1" type="text" v-model.trim="showLightBox.SUBTITLE_01">
                                 </label>
-                                <p>{{showLightBox.SUBTITLE_01}}</p>
                                 <label for="col_content_1">專欄內文1:
                                     <textarea class="text_area" name="col_content_1" cols="30" rows="10" v-model.trim="showLightBox.CONTENT1">
                                         {{showLightBox.CONTENT1}}
@@ -992,7 +989,6 @@
                                 <label for="col_sub_title_2">專欄副標題2:
                                     <input name="col_sub_title_2" type="text" v-model.trim="showLightBox.SUBTITLE_02">
                                 </label>
-                                <p>{{showLightBox.SUBTITLE_02}}</p>
                                 <label for="col_content_2">專欄內文2:
                                     <textarea class="text_area" name="col_content_2" cols="30" rows="10" v-model.trim="showLightBox.CONTENT2">
                                         {{showLightBox.CONTENT2}}
@@ -1007,7 +1003,6 @@
                                     <p class="dnone">請選擇圖片上傳</p>
                                     <div class="col_img">
                                         <img class="preview_img" :src='"img/activity/"+showLightBox.MAIN_PIC'>
-                                        <p>{{showLightBox.MAIN_PIC}}</p>
                                     </div>
                                 </label>
                             </div>
@@ -1017,7 +1012,6 @@
                                     <p class="dnone">請選擇圖片上傳</p>
                                     <div class="col_img">
                                         <img class="preview_img" :src='"img/activity/"+showLightBox.IMG1'>
-                                        <p>{{showLightBox.IMG1}}</p>
                                     </div>
                                 </label>
                             </div>
@@ -1027,7 +1021,6 @@
                                     <p class="dnone">請選擇圖片上傳</p>
                                     <div class="col_img">
                                         <img class="preview_img" :src='"img/activity/"+showLightBox.IMG2'>
-                                        <p>{{showLightBox.IMG2}}</p>
                                     </div>
                                 </label>
                             </div>
@@ -1076,6 +1069,9 @@
                 eventTableHead:['折扣碼', '活動標題','開始日期','截止日期','上下架'],
                 columnTableHead:['專欄編號','專欄標題','作者','日期'],
                 schTableHead:['假單編號','員工編號','請假日期','請假時段'],
+
+                ordList:[], //
+                ordInfos:[], //
                 
 
                 showTableBody: '',

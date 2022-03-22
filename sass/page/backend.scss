@@ -364,8 +364,9 @@ input[type="file"]{
 
 .light_box, .new_light_box{
     width: 800px;
-    height: 90%;
-    max-height: 1100px;
+    min-height: 400px;
+    max-height: 90%;
+    // max-height: 1100px;
     // -ms-grid-rows: 44px 980px 54px;
     // grid-template-rows: 44px 980px 54px;
     border-radius: 10px;
@@ -439,6 +440,15 @@ input[type="file"]{
 
     }   
 
+    .sao_detail_content.title{
+        padding: 15px 30px;
+    }
+
+    .sao_detail_content.report, .case_content{
+        padding: 15px 30px;
+        
+    }
+
     &.emp{
         &.show{
             display: grid;
@@ -479,7 +489,7 @@ input[type="file"]{
             }
 
             .ord_num{
-                padding: 0 30px;
+                padding: 15px 30px;
             }
         }
         display: none;
@@ -631,7 +641,7 @@ input[type="file"]{
     padding: 0;
     -ms-grid-rows: .5fr 1fr 1fr;
     grid-template-rows: .5fr 1fr 1fr;
-    background-color: #ffffff;
+    background-color: map-get($color , "cover");
     border-radius: 10px;
     overflow: hidden;
     z-index: 2;
