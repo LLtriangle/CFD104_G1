@@ -192,7 +192,7 @@ try{
 	}elseif ($_POST["table_title"] == "sao"){
 
     // 修改sao資料
-    $sql_sao= "update sao set STATE=:STATE";
+    $sql_sao= "update sao set STATE=:STATE where SAO_NO =:DATA_INDEX";
     $sao = $pdo->prepare($sql_sao);
 
 		$sao->bindValue(":STATE",$_POST["sao_status"]); // 服務訂單狀態
@@ -261,8 +261,33 @@ try{
 	}elseif ($_POST["table_title"] == "event"){
 
     // 修改event資料
-    $sql_event= "update event set TITLE=:TITLE, START=:START, END=:END, PARM=:PARM, STATE=:STATE, CONTENT=:CONTENT where COUPON =:DATA_INDEX";
+    
+    if($_FILES["event_img"]['error']==0){
+      // 圖檔名
+      // $file = `prd_._.$i`;
+      $eventno = $_POST["data_index"]; // ok
+      $file = $eventno;
+      $fileInfo = pathinfo($_FILES["event_img"]['name']);  // 路徑
+      $ext = $fileInfo["extension"];
+      $fileNameEvent = "$file.$ext";
+    
+      $from = $_FILES["event_img"]['tmp_name']; //暫存區含路徑
+      $to = "../img/activity/$fileNameEvent";
+
+      if(file_exists($to)){
+        unlink($to);
+      };
+
+      copy($from, $to);
+    };
+
+    $sql_event= "update event set TITLE=:TITLE, START=:START, END=:END, PARM=:PARM, STATE=:STATE, CONTENT=:CONTENT";
     // $sql_event= "update event set COUPON=:COUPON, TITLE=:TITLE, START=:START, END=:END, PARM=:PARM, STATE=:STATE, EVENT_IMG=:EVENT_IMG, CONTENT=:CONTENT where COUPON =:DATA_INDEX";
+
+    if(isset($fileNameEvent)){$sql_event = $sql_event.", EVENT_IMG='$fileNameEvent'";};
+
+    $sql_event = $sql_event."  where COUPON =:DATA_INDEX";
+
     $event = $pdo->prepare($sql_event);
 
 		// $event->bindValue(":COUPON",$_POST["event_coupon"]); // 折扣碼
@@ -279,10 +304,74 @@ try{
     $sql_exe = $event;
 		
 	}elseif ($_POST["table_title"] == "columntable"){
-		
+
+    if($_FILES["col_main_img"]['error']==0){
+      // 圖檔名
+      // $file = `prd_._.$i`;
+      $colno = $_POST["data_index"]; // ok
+      $file = "col_".$colno."_main";
+      $fileInfo = pathinfo($_FILES["col_main_img"]['name']);  // 路徑
+      $ext = $fileInfo["extension"];
+      $fileNameMain = "$file.$ext";
+    
+      $from = $_FILES["col_main_img"]['tmp_name']; //暫存區含路徑
+      $to = "../img/activity/$fileNameMain";
+
+      if(file_exists($to)){
+        unlink($to);
+      };
+
+      copy($from, $to);
+    };
+
+    if($_FILES["col_sub_img_1"]['error']==0){
+      // 圖檔名
+      // $file = `prd_._.$i`;
+      $colno = $_POST["data_index"]; // ok
+      $file = "col_".$colno."_sub_1";
+      $fileInfo = pathinfo($_FILES["col_sub_img_1"]['name']);  // 路徑
+      $ext = $fileInfo["extension"];
+      $fileNameSub1 = "$file.$ext";
+    
+      $from = $_FILES["col_sub_img_1"]['tmp_name']; //暫存區含路徑
+      $to = "../img/activity/$fileNameSub1";
+
+      if(file_exists($to)){
+        unlink($to);
+      };
+
+      copy($from, $to);
+    };
+
+    if($_FILES["col_sub_img_2"]['error']==0){
+      // 圖檔名
+      // $file = `prd_._.$i`;
+      $colno = $_POST["data_index"]; // ok
+      $file = "col_".$colno."_sub_2";
+      $fileInfo = pathinfo($_FILES["col_sub_img_2"]['name']);  // 路徑
+      $ext = $fileInfo["extension"];
+      $fileNameSub2 = "$file.$ext";
+    
+      $from = $_FILES["col_sub_img_2"]['tmp_name']; //暫存區含路徑
+      $to = "../img/activity/$fileNameSub2";
+
+      if(file_exists($to)){
+        unlink($to);
+      };
+
+      copy($from, $to);
+    };
+
     // 修改event資料
-    $sql_columntable= "update columntable set TOPIC=:TOPIC, AUTHOR=:AUTHOR, SUBTITLE_01=:SUBTITLE_01, CONTENT1=:CONTENT1, SUBTITLE_02=:SUBTITLE_02, CONTENT2=:CONTENT2 where COLUMN_NO =:DATA_INDEX";
+    $sql_columntable= "update columntable set TOPIC=:TOPIC, AUTHOR=:AUTHOR, SUBTITLE_01=:SUBTITLE_01, CONTENT1=:CONTENT1, SUBTITLE_02=:SUBTITLE_02, CONTENT2=:CONTENT2";
     // $sql_columntable= "update columntable set TOPIC=:TOPIC, AUTHOR=:AUTHOR, SUBTITLE_01=:SUBTITLE_01, CONTENT1=:CONTENT1, SUBTITLE_02=:SUBTITLE_02, CONTENT2=:CONTENT2, MAIN_PIC=:MAIN_PIC, MAIN_PIC=:MAIN_PIC, IMG1=:IMG1, IMG2=:IMG2 where COLUMN_NO =:DATA_INDEX";
+
+    if(isset($fileNameMain)){$sql_columntable = $sql_columntable.", MAIN_PIC='$fileNameMain'";};// 專欄主圖
+    if(isset($fileNameSub1)){$sql_columntable = $sql_columntable.", IMG1='$fileNameSub1'";};// 專欄附圖1
+    if(isset($fileNameSub2)){$sql_columntable = $sql_columntable.", IMG2='$fileNameSub2'";};// 專欄附圖2
+
+    $sql_columntable = $sql_columntable." where COLUMN_NO =:DATA_INDEX";
+    
     $columntable = $pdo->prepare($sql_columntable);
 
 		// $columntable->bindValue(":COUPON",$_POST["columntable_coupon"]); // 折扣碼
@@ -302,50 +391,11 @@ try{
     $sql_exe = $columntable;
 		
 	};
-
-$affect = $sql_exe->execute();
-echo `修改${affect}筆資料`;
-
   
-  // if($_FILES['upFile']['error']==0){
-  //     $file = uniqid();
-  //     $fileInfo = pathinfo($_FILES['upFile']['name']); 
-  //     $ext = $fileInfo["extension"]; // 副檔名
-  //     $fileName = "$file.$ext";
-  //     $from = $_FILES['upFile']['tmp_name']; //暫存區含路徑
-  //     $to = "../img/cus/$fileName";
-  //     copy($from, $to);
+  $affect = $sql_exe->execute();
+  echo $affect;
+  // echo `修改${affect}筆資料`;
 
-      
-      
-      
-
-  //     $_SESSION["CUS_NAME"] = $_POST["cus_name"];
-  //     $_SESSION["CUS_TEL"] = $_POST["cus_tel"];
-  //     $_SESSION["SEX"] = $_POST["gender"];
-  //     $_SESSION["CUS_ADD"] = $_POST["cus_add"];
-  //     $_SESSION["CUS_PIC"] = $fileName;
-  
-       
-  //   }else{
-  //     // 修改
-  //     $sql = "update cus set CUS_NAME=:CUS_NAME, SEX=:SEX ,CUS_TEL=:CUS_TEL,CUS_ADD=:CUS_ADD where CUS_NO=:CUS_NO "; 
-  //     $cus = $pdo->prepare($sql);
-  
-  //     $cus->bindValue(":CUS_NO",$_SESSION["CUS_NO"]); // 帳號
-  //     $cus->bindValue(":CUS_NAME",$_POST["cus_name"]); // 姓名
-  //     $cus->bindValue(":SEX", $_POST["gender"]); // 性別
-  //     $cus->bindValue(":CUS_TEL", $_POST["cus_tel"]); // 電話
-  //     $cus->bindValue(":CUS_ADD", $_POST["cus_add"]); // 地址
-  
-  //     $_SESSION["CUS_NAME"] = $_POST["cus_name"];
-  //     $_SESSION["CUS_TEL"] = $_POST["cus_tel"];
-  //     $_SESSION["SEX"] = $_POST["gender"];
-  //     $_SESSION["CUS_ADD"] = $_POST["cus_add"];
-  //   }
-
-  
-     
 }catch(PDOException $e){
   echo $e->getMessage();
 }
