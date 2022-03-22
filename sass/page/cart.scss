@@ -196,16 +196,20 @@ textarea {
     max-width: 50px;
     max-height: 30px;
 }
-
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 // RWD
 
 @media screen and (max-width: 830px) {
-    input{
-        width: 100%;
-        margin: 0px auto;
-        box-sizing: border-box;
-        // height: 45px;
-    }
+    // input{
+    //     width: 100%;
+    //     margin: 0px auto;
+    //     box-sizing: border-box;
+    //     // height: 45px;
+    // }
     select{
         margin: 0px auto;
         width: 100%;
@@ -232,11 +236,9 @@ textarea {
             }
         }
     }
-}
-.center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    .changeNum{
+        width: 30px;
+    }
 }
 @media screen and (max-width: 619px) {
     .tabcontent {
