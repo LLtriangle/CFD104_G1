@@ -33,7 +33,7 @@
                         <div class="center">$ {{item.prdPrice}}</div>
                         <div class="width20 center"><button @click="countNum(-1,index)" :disabled="item.isDisabled" class="add">-</button>
                         </div>
-                        <div class="center"><input @change="changeNum" type="number" v-model.number="item.prdNum" size="1" class="changeNum"></div>
+                        <div class="center"><input @change="changeNum" type="number" min="1" max="99" v-model.number="item.prdNum" size="1" class="changeNum"></div>
                         <div class="width20 center"><button @click="countNum(1,index)" class="add">+</button></div>
                         <div class="width20 center">$ {{(item.prdPrice* item.prdNum)}}</div>
                         <div class="width20 center"><img src="img/trash_bin.png" @click="del_btn(index)" style="width: 30px;filter: invert(100%);"></div>
@@ -174,7 +174,7 @@
             el: '#tabs',
             data: {
                 activetab: '1',
-                noshopping: false,
+                noshopping: true,
                 cart: [],
                 prdsRows: '',
                 // Citys: ["台北市", "新北市", "基隆市", "桃園市"],
@@ -245,8 +245,8 @@
                             this.cart[i].prdNum = 1;
                         }
                     }
-                    if (this.cart == "") {
-                        this.noshopping = true
+                    if (this.cart && this.cart.length>0) {
+                        this.noshopping = false;
                     }
                 },
                 setList() {
@@ -314,6 +314,7 @@
                     let url = "phps/orderToDb.php?cart=" + data_info + "&person=" + person_info;
                     xhr.open("get", url, true);
                     xhr.send(null);
+                    localStorage.clear("cart");
                 },
                 // changeCity() {
                 //     if (this.selectedCity === "台北市") {
