@@ -360,7 +360,7 @@
                         <li>
                             推薦方案:
                             <select name="result_plan1" v-model.number="showLightBox.PLAN_NO">
-                                <option v-for="(allPlan, index) in allPlans" :value="index + 1">
+                                <option v-for="(allPlan, index) in allPlans" :value="allPlan.PLAN_NO">
                                     {{allPlan.PLAN_NO}}: {{allPlan.PLAN_NAME}}
                                 </option>
                             </select>
@@ -369,7 +369,7 @@
                         <li>
                             推薦商品編號1:
                             <select name="result_prd2" v-model.number="showLightBox.PRD_NO1">
-                                <option v-for="(allPrd, index) in allPrds" :value="index + 1">
+                                <option v-for="(allPrd, index) in allPrds" :value="allPrd.PRD_NO">
                                     {{allPrd.PRD_NO}}: {{allPrd.PRD_NAME}}
                                 </option>
                             </select>
@@ -378,7 +378,7 @@
                         <li>
                             推薦商品編號2:
                             <select name="result_prd3" v-model.number="showLightBox.PRD_NO2">
-                                <option v-for="(allPrd, index) in allPrds" :value="index + 1">
+                                <option v-for="(allPrd, index) in allPrds" :value="allPrd.PRD_NO">
                                     {{allPrd.PRD_NO}}: {{allPrd.PRD_NAME}}
                                 </option>
                             </select>
@@ -387,7 +387,7 @@
                         <li>
                             推薦商品編號3:
                             <select name="result_prd1" v-model.number="showLightBox.PRD_NO3">
-                                <option v-for="(allPrd, index) in allPrds" :value="index + 1">
+                                <option v-for="(allPrd, index) in allPrds" :value="allPrd.PRD_NO">
                                     {{allPrd.PRD_NO}}: {{allPrd.PRD_NAME}}
                                 </option>
                             </select>
