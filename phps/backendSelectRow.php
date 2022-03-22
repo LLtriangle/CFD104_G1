@@ -18,12 +18,17 @@ try {
         //              join prd Pr3 on R.PRD_NO3 = Pr3.PRD_NO";
 
 	}elseif ($_GET['tableName'] == "prd"){
-		$sql = "select PRD_NO, CATEGORY, PRD_NAME, PRICE, IMG1, IMG2, IMG3, IMG4, INFO_IMG1, INFO_TITLE_1, INFO_1, INFO_IMG2, INFO_TITLE_2, INFO_2, STATE STATUS, SPEC_IMG  from {$_GET['tableName']} where PRD_NO = '{$_GET['editNo']}' ";
+		$sql = "select PRD_NO, CATEGORY, PRD_NAME, PRICE, IMG1, IMG2, IMG3, IMG4, INFO_IMG1, INFO_TITLE_1, INFO_1, INFO_IMG2, INFO_TITLE_2, INFO_2, STATE STATUS, SPEC_IMG from {$_GET['tableName']} where PRD_NO = '{$_GET['editNo']}' ";
 		
 	}elseif ($_GET['tableName'] == "ord"){
-		$sql = "select O.ORD_NO, O.CUS_NO, O.CUS_NAME, O.CUS_TEL, O.CUS_ADD, O.TIME, O.SHIPPING, O.TOTAL, O.STATE STATUS, O.COUPON, OI.PRD_NO, OI.PRICE, OI.AMOUNT, P.PRD_NAME
+		$ordPrdSql = "select OI.PRICE , OI.AMOUNT , P.PRD_NAME 
 		from ord O join ordinfo OI on O.ORD_NO = OI.ORD_NO 
-		join prd P on P.PRD_NO = OI.PRD_NO where O.ORD_NO = '{$_GET['editNo']}' ";
+				   join prd P on P.PRD_NO = OI.PRD_NO where OI.ORD_NO = '{$_GET['editNo']}' ";
+		$countOrdPrd = $pdo->query($ordPrdSql);
+		$counter = $countOrdPrd->fetchAll(PDO::FETCH_ASSOC);
+		echo json_encode($countPrd)."|";
+
+		$sql = "select O.ORD_NO, O.CUS_NO, O.CUS_NAME, O.CUS_TEL, O.CUS_ADD, O.TIME, O.SHIPPING, O.TOTAL, O.STATE STATUS, O.COUPON from ord O where O.ORD_NO = '{$_GET['editNo']}' ";
 		
 	}elseif ($_GET['tableName'] == "plan"){
 		$sql = "select * from {$_GET['tableName']} where PLAN_NO = '{$_GET['editNo']}' ";
