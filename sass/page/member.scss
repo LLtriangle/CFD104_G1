@@ -38,7 +38,15 @@ input{
     //     border-bottom-width: 50px;
     // }
 } 
-
+.total_cla{
+    width: 60px;
+}
+.ord_total{
+    border-top: 3px solid map-get($btn_color, "blue");
+    padding: 10px;
+    text-align:right;
+    word-break:break-all;
+}
 // 手機-------------------------------
 @media  screen and (max-width:768px){
     main{
@@ -148,12 +156,14 @@ input{
         }
         .data_con{
             width: 95%;
+            height: calc(100vh - 100px);
             margin: 30px auto;
             background-color: #f3f3ed;
             border: #d6aa81 2px solid;
             border-radius: 20px;
             flex-direction: row;
-            overflow: hidden;
+            overflow: auto;
+            overflow-x: hidden;
             .data_mem{
                 position: relative;
                 .icon_edit{
@@ -508,7 +518,7 @@ input{
         border-collapse: collapse;
         .memberGrid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(8, 1fr);
             .memberReceiverID {
                 //詳細資料
                 color: map-get($btn_color, "deep_blue");
@@ -657,32 +667,46 @@ input{
     width: 100px;
 }
 
+
+
 /* rwd */
 @media  screen and (max-width:768px) {
+    .ordprd_PRD_NAME{
+        font-size: 12px;
+    }
     .memberAll {
         width: 75%;
         margin: 0 auto;
     }
     // 商品訂單查詢表格
+    .memberOrderDetail .memberOrderD2 div:nth-child(2),.memberReserveDetail .memberReserveD2 div:nth-child(2){
+        padding-left: 10px;
+        width: 150px;
+        max-width: 180px;
+        min-width: 105px;
+    }
+    .memberOrderDetail .memberOrderD2 div:nth-child(3),.memberReserveDetail .memberReserveD2 div:nth-child(3){
+        width: 50px;
+    }
     .memberOrder .memberOrderContent {
         .memberGrid {
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             // grid-auto-flow:發現前面有空位的話，就去補他
             grid-auto-flow: dense;
         }
-        .memberGrid4 {
+        .memberGrid5 {
             grid-column: 1;
             grid-row: 3;
         }
-        .memberGrid5 {
+        .memberGrid6 {
             grid-column: 2;
             grid-row: 3;
         }
-        .memberGrid6 {
+        .memberGrid7 {
             grid-column: 3;
             grid-row: 3;
         }
-        .memberGrid7 {
+        .memberGrid8 {
             grid-column: 4;
             grid-row: 3;
         }

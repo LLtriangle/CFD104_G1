@@ -9,18 +9,50 @@ try{
   // 檔案的暫存位置：$_FILES['input的name']['tmp_name']
     if ($_POST["table_title"] == "new_emp") {
 
+        if($_FILES["new_emp_img"]['error']==0){
+            // 圖檔名
+            // $file = `prd_._.$i`;
+            $new_empno= $_POST["new_emp_tel"]; // ok
+            $file = "emp".$new_empno;
+            $fileInfo = pathinfo($_FILES["new_emp_img"]['name']);  // 路徑
+            $ext = $fileInfo["extension"];
+            $fileNameEmp = "$file.$ext";
+          
+            $from = $_FILES["new_emp_img"]['tmp_name']; //暫存區含路徑
+            $to = "../img/$fileNameEmp";
+      
+            if(file_exists($to)){
+              unlink($to);
+            };
+      
+            copy($from, $to);
+        };
+
 		// 修改emp資料
-        $sql_emp= "update emp set EMP_TEL=:EMP_TEL, EMP_STATE=:EMP_STATE, EMP_ADD=:EMP_ADD, INTRO=:INTRO where EMP_NO =:DATA_INDEX"; 
-        $emp = $pdo->prepare($sql_emp);
+        // $sql_new_emp= "insert into emp 
+        // values (EMP_NO=null, EMP_NAME=:EMP_NAME, EMP_EMAIL=:EMP_EMAIL, EMP_PSW=:EMP_PSW, EMP_TEL=:EMP_TEL, EMP_STATE=:EMP_STATE, JOB=:JOB, EMP_ADD=:EMP_ADD, HIREDATE=:HIREDATE, INTRO=:INTRO";
+        $sql_new_emp= "INSERT INTO `emp`(`EMP_NAME`, `EMP_EMAIL`, `EMP_PSW`, `EMP_TEL`, `EMP_STATE`, `JOB`, `EMP_ADD`, `HIREDATE`, `INTRO`, `EMP_PIC`) VALUES (:EMP_NAME,:EMP_EMAIL, :EMP_PSW, :EMP_TEL, :EMP_STATE,:JOB,:EMP_ADD,:HIREDATE,:INTRO, '$fileNameEmp')";
 
-        $emp->bindValue(":EMP_TEL", $_POST["emp_tel"]); //員工電話
-        $emp->bindValue(":EMP_STATE", $_POST["emp_status"]); //員工權限(正常 or 停權)
-        $emp->bindValue(":EMP_ADD", $_POST["emp_add"]); //員工地址
-        $emp->bindValue(":INTRO", $_POST["emp_intro"]); //員工介紹
+        // if(isset($fileNameEmp)){$sql_new_emp = $sql_new_emp.", EMP_PIC='$fileNameEmp'";};
 
-        $emp->bindValue(":DATA_INDEX", json_decode($_POST["data_index"])); //table 裡第幾筆資料
+        // $sql_new_emp = $sql_new_emp."  )";
 
-        $sql_exe = $emp;
+        $new_emp = $pdo->prepare($sql_new_emp);
+
+        // $new_emp->bindValue(":EMP_NO", $_POST["new_emp_no"]); //員工編號
+        $new_emp->bindValue(":EMP_NAME", $_POST["new_emp_name"]); //員工姓名
+        $new_emp->bindValue(":EMP_EMAIL", $_POST["new_emp_email"]); //員工email
+        $new_emp->bindValue(":EMP_PSW", $_POST["new_emp_psw"]); //員工密碼
+        $new_emp->bindValue(":EMP_TEL", $_POST["new_emp_tel"]); //員工電話
+        $new_emp->bindValue(":EMP_STATE", $_POST["new_emp_status"]); //員工權限(正常 or 停權)
+        $new_emp->bindValue(":JOB", $_POST["new_emp_job"]); //員工職稱
+        $new_emp->bindValue(":EMP_ADD", $_POST["new_emp_add"]); //員工地址
+        $new_emp->bindValue(":HIREDATE", $_POST["new_emp_hiredate"]); //員工入值日
+        $new_emp->bindValue(":INTRO", $_POST["new_emp_intro"]); //員工介紹
+
+        echo $_POST["new_emp_add"];
+
+        $sql_exe = $new_emp;
 		
 	
 	}elseif ($_POST["table_title"] == "new_prd"){
