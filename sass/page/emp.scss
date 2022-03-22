@@ -280,6 +280,15 @@ input{
             // display: block;
             margin: 10px 0;
         }
+        .btn_confirm{
+            position: absolute;
+            left: calc(50% + 302px);
+            // right: 50px;
+            // left: 600px;
+            bottom: 10px;
+            display: none;
+            // margin: 10px 0;
+        }
         #calendari{
             margin: 10px auto;
             width: 500px;
@@ -467,10 +476,14 @@ input{
 
 /* 早中晚點點 */
 span.period {
-    // width: 10px;
-    // height: 10px;
-    background-color: #eee;
+    width: 15px;
+    height: 15px;
+    background-color: #ddd;
     // border-radius: 50%;
+} 
+span.nodo {
+    background-color: map-get($color , "sub_blue" );
+
 } 
 /* 被預約的時段 */
 td>div div:nth-child(2) span.reserved {
@@ -496,6 +509,14 @@ td>div div:nth-child(2) span.leave {
     //     font-weight: 900;
     // }
 }
+// #calendari td.pastday{
+//     opacity: 0.3;
+//     pointer-events: none;
+// } 
+#calendari td.today{
+    cursor: pointer;
+    // transform: scale(1.1);
+} 
 
 // -----------------
 .memberOrder,.memberReserve {
