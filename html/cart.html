@@ -235,6 +235,7 @@
                     if (this.cart == "") {
                         this.noshopping = true;
                     }
+                    window.addEventListener('click',indexOfCart,false);
                 },
                 getList() {
                     let cart = JSON.parse(localStorage.getItem("cart"));

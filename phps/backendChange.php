@@ -169,33 +169,11 @@ try{
 
 	}elseif ($_POST["table_title"] == "sao"){
 
-    $road = [];
-    for($i=0; $i < 2; $i++){
-      if($_FILES["prd_img_$i"]['error']==0){
-        // 圖檔名
-        // $file = `prd_._.$i`;
-        $prdno = $_POST["data_index"]; // ok
-        $file = "prd/prd_".$prdno."_".$i;
-        $fileInfo = pathinfo($_FILES["prd_img_$i"]['name']);  // 路徑
-        $ext = $fileInfo["extension"];
-        $fileName = "$file.$ext";
-      
-        $from = $_FILES["prd_img_$i"]['tmp_name']; //暫存區含路徑
-        $to = "../img/$fileName";
-        copy($from, $to);
-        
-        $road[$i] = $fileName;
-      };
-    };
-
     // 修改sao資料
-    $sql_sao= "update sao set STATE=:STATE, INFO=:INFO, BEFORE_IMG=:BEFORE_IMG, AFTER_IMG=:AFTER_IMG where SAO_NO =:DATA_INDEX";
+    $sql_sao= "update sao set STATE=:STATE";
     $sao = $pdo->prepare($sql_sao);
 
 		$sao->bindValue(":STATE",$_POST["sao_status"]); // 服務訂單狀態
-    $sao->bindValue(":INFO",$_POST["sao_report"]); // 結案回報內容
-    $sao->bindValue(":BEFORE_IMG", $road[0]); // 服務前紀錄
-    $sao->bindValue(":AFTER_IMG", $road[1]); // 服務後紀錄
 
     $sao->bindValue(":DATA_INDEX", json_decode($_POST["data_index"])); //table 裡第幾筆資料
 
@@ -203,16 +181,46 @@ try{
 		
 			
 	}elseif ($_POST["table_title"] == "casetable"){
-		
+
+    if($_FILES["before_img"]['error']==0){
+      // 圖檔名
+      $caseno = $_POST["data_index"]; // ok
+      $file = "case_".$caseno."_0";
+      $fileInfo = pathinfo($_FILES["before_img"]['name']);  // 路徑
+      $ext = $fileInfo["extension"];
+      $fileNameBefore = "$file.$ext";
+    
+      $from = $_FILES["before_img"]['tmp_name']; //暫存區含路徑
+      $to = "../img/case/$fileNameBefore";
+      copy($from, $to);
+    };
+
+    if($_FILES["after_img"]['error']==0){
+      // 圖檔名
+      $caseno = $_POST["data_index"]; // ok
+      $file = "case_".$caseno."_1";
+      $fileInfo = pathinfo($_FILES["after_img"]['name']);  // 路徑
+      $ext = $fileInfo["extension"];
+      $fileNameAfter = "$file.$ext";
+    
+      $from = $_FILES["after_img"]['tmp_name']; //暫存區含路徑
+      $to = "../img/case/$fileNameAfter";
+      copy($from, $to);
+    };
+
     // 修改casetable資料
-    $sql_casetable= "update casetable set INFO_BEFORE=:INFO_BEFORE, INFO_AFTER=:INFO_AFTER where CASE_NO =:DATA_INDEX";
+    $sql_casetable= "update casetable set INFO_BEFORE=:INFO_BEFORE, INFO_AFTER=:INFO_AFTER";
     // $sql_casetable= "update casetable set INFO_BEFORE=:INFO_BEFORE, INFO_AFTER=:INFO_AFTER, BEFORE_IMG=:BEFORE_IMG, AFTER_IMG=:AFTER_IMG where CASE_NO =:DATA_INDEX";
+
+    if(isset($fileNameBefore)){$sql_casetable = $sql_casetable.", BEFORE_IMG=$fileNameBefore";};
+    if(isset($fileNameAfter)){$sql_casetable = $sql_casetable.", AFTER_IMG=$fileNameAfter";};
+
+    $sql_casetable = $sql_casetable." where CASE_NO =:DATA_INDEX";
+
     $casetable = $pdo->prepare($sql_casetable);
 
 		$casetable->bindValue(":INFO_BEFORE",$_POST["case_before"]); // 整理前文案
     $casetable->bindValue(":INFO_AFTER",$_POST["case_after"]); // 整理後文案
-    // $casetable->bindValue(":BEFORE_IMG",$_POST["before_img"]); // 整理前圖片
-    // $casetable->bindValue(":AFTER_IMG",$_POST["after_img"]); // 整理後圖片
 
     $casetable->bindValue(":DATA_INDEX", json_decode($_POST["data_index"])); //table 裡第幾筆資料
 
