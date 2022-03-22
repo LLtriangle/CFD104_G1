@@ -435,8 +435,8 @@ input{
     bottom: 0;
     left: 0;
     right: 0;
-    display: block;
-    // display: none;
+    // display: block;
+    display: none;
     #report_form{
         padding: 50px;
         margin: 0 auto;
@@ -446,14 +446,6 @@ input{
         display: flex;
         flex-direction: column;
         position: relative;
-        // .form_btn{
-        //     // position: absolute;
-        //     // width: 30px;
-        //     // height: 30px;
-        //     // padding: 0;
-        //     // right: 30px;
-        //     // top: 30px;
-        // }
     }
 }
 
@@ -509,7 +501,7 @@ td>div div:nth-child(2) span.leave {
 .memberOrder,.memberReserve {
     margin: auto;
     box-sizing: border-box;
-    padding: 30px;
+    padding: 30px 20px;
     width: 90%;
     
     .memberOrderContent {

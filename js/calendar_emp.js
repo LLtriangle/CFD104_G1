@@ -167,14 +167,15 @@ function createCalendar(){
                 
                 let dp = new Date();
                 let month00 = dp.getMonth(); // 現在月份
-                if(actual.getDate() <= data.getDate() && actual.getMonth() <= month00){
-                    td.className = 'past';
-                }
+                // if(actual.getDate() <= data.getDate() && actual.getMonth() <= month00){
+                //     td.className = 'past';
+                // }
     
                 // today=今天
                 // data.getMonth() = 2
                 if(data.getDate() == actual.getDate() && actual.getMonth() == month00){
-                    td.className = 'today';
+                    // td.className = 'today';
+                    td.classList.add("active");
                 }
                 // ---------------3/14新增
                 
