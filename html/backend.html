@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" "">
     <meta name="viewport" "evice-width, initial-scale=1.0">
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
     <title>後台</title>
     <link rel="stylesheet" href="css/backend.css">
 	<!-- .js連結-->
@@ -1278,6 +1279,7 @@
                             type: 'GET',     // GET 或 POST
                             dataType: 'json', // response 的資料格式，xml | html | script | json | jsonp | text
                             success(res){
+                                console.log(res);
                                 vueApp.showLightBox = res;
                                 $(`.light_box.${vueApp.tableName}`).addClass("show");
 
