@@ -126,20 +126,20 @@
                         <div class="memberGrid">
                             <div class="memberGrid1">訂單編號</div>
                             <div class="memberGrid2">日期</div>
-                            <div class="memberGrid3">訂單金額</div>
-                            <div class="memberGrid4">取貨方式</div>
-                            <!-- <div class="memberGrid5">付款狀態</div>
-                            <div class="memberGrid6">暫定會員邊號</div> -->
-                            <div class="memberGrid5">訂單狀態</div>
-                            <div class="memberGrid6">收件人資訊</div>
+                            <div class="memberGrid3">取貨方式</div>
+                            <div class="memberGrid4">運費</div>
+                            <div class="memberGrid5">訂單金額</div>
+                            <div class="memberGrid6">訂單狀態</div>
+                            <div class="memberGrid7">優惠碼</div>
+                            <div class="memberGrid8">收件人資訊</div>
                             <div class="memberGrid9"> {{ordcloumn.ORD_NO}} </div>
                             <div class="memberGrid10"> {{ordcloumn.TIME}} </div>
-                            <div class="memberGrid11"> ${{ordcloumn.TOTAL}} </div>
-                            <div class="memberGrid12"> {{ordcloumn.SHIPPING}} </div>
-                            <!-- <div class="memberGrid13"> {{ordcloumn.PAY_STATE}} </div>
-                            <div class="memberGrid14"> {{ordcloumn.CUS_NO}} </div> -->
-                            <div class="memberGrid13"> {{ordcloumn.STATE}} </div>
-                            <a @click="mem_info=true" class="memberGrid14 memberReceiverID">詳細資訊</a>
+                            <div class="memberGrid11"> {{ordcloumn.SHIPPING}}</div>
+                            <div class="memberGrid12"> ${{ordcloumn.DEL_FEE}} </div>
+                            <div class="memberGrid13"> ${{ordcloumn.TOTAL}} </div>
+                            <div class="memberGrid14"> {{ordcloumn.STATE}} </div>
+                            <div class="memberGrid15"> {{ordcloumn.COUPON}} </div>
+                            <a @click="mem_info=true" class="memberGrid16 memberReceiverID">詳細資訊</a>
                         </div>
                     </div>
                     <!-- 收件人資料，預設隱藏 -->
@@ -166,10 +166,11 @@
                                 <div class="mem_info_con" >
                                     <a :href="'product.php?prdno='+ordprd.PRD_NO" class="memberOrderD2"  v-for="ordprd in ordprds.filter((obj) => obj.ORD_NO == ordcloumn.ORD_NO )">
                                         <img :src="'img/'+ordprd.IMG1">
-                                        <div>{{ordprd.PRD_NAME}}</div>
+                                        <div class="ordprd_PRD_NAME">{{ordprd.PRD_NAME}}</div>
                                         <div class="amount_center">{{ordprd.AMOUNT}}件</div>
-                                        <div>${{ordprd.AMOUNT*ordprd.PRICE}}</div>
+                                        <div class="total_cla">${{ordprd.AMOUNT*ordprd.PRICE}}</div>
                                     </a>
+                                    <div class="ord_total">使用優惠碼{{ordcloumn.COUPON}}，折扣{{ordcloumn.PARM}}元，共{{ordcloumn.TOTAL-ordcloumn.PARM}}元</div>
                                 </div>
                                 
                             </div>
@@ -309,6 +310,14 @@
                                 }else if(thisVue.ordcloumns[i].STATE == '1'){
                                     thisVue.ordcloumns[i].STATE = "已完成";
                                 };
+                                if(thisVue.ordcloumns[i].PARM == '-88'){
+                                    thisVue.ordcloumns[i].PARM = "88";
+                                }else if(thisVue.ordcloumns[i].PARM == '-99'){
+                                    thisVue.ordcloumns[i].PARM = "99";
+                                }else if(thisVue.ordcloumns[i].PARM == '-100'){
+                                    thisVue.ordcloumns[i].PARM = "100";
+                                };
+                                
                             };
                         };
                         xhr.open("get", "phps/memberOrd.php", true);
