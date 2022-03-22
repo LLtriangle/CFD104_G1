@@ -264,6 +264,9 @@
                                             tds[j].onclick = function (){
                                                 thisVue.clickDate = tds[j].dataset.date;
                                                 $("#lightbox").toggle().show();
+
+                                                $('#calendari td').removeClass("active");
+                                                $(this).addClass("active");
                                                 
                                                 // 照片
                                             if(thisVue.saoinfos[i].UPLOAD_PIC1 == "" || thisVue.saoinfos[i].UPLOAD_PIC1 == null){
@@ -322,12 +325,13 @@
                                                 tds[j].childNodes[0].childNodes[1].childNodes[1].classList.add('leave');
                                             }else if(thisVue.schinfos[i].SCH_TIME==3){
                                                 tds[j].childNodes[0].childNodes[1].childNodes[2].classList.add('leave');
-                                            }                                        tds[j].onclick = function (){
-                                                // $("#lightbox").toggle().show();
-                                                // console.log($(".memberGrid9").text());
-                                                $(".memberGrid9").text(thisVue.saoinfos[i].SAO_DATE);
+                                            }
+                                            // tds[j].onclick = function (){
+                                            //     // $("#lightbox").toggle().show();
+                                            //     // console.log($(".memberGrid9").text());
+                                            //     $(".memberGrid9").text(thisVue.saoinfos[i].SAO_DATE);
                                                 
-                                            }  
+                                            // }  
                                         }
                                     }
                                 }
@@ -354,6 +358,8 @@
                     },
                     // 按下回報btn 打開回報form
                     showForm(SAO_NO,SAO_DATE,SAO_ADD){
+                        $("#lightbox").hide();
+                        console.log("按下回報關掉燈箱");
                         $("#report_div").show();
                         this.sao_no = SAO_NO;
                         this.sao_date = SAO_DATE;
@@ -364,32 +370,39 @@
                         $("#report_div").hide();
                     },
                     sendReport(){
-                        console.log("我要送表單");
                         let thisVue = this;
-                        let formData = new FormData();
-
-                        formData.append('sao_no', thisVue.sao_no);
-                        formData.append('info', thisVue.INFO);
-                        formData.append('before_img', before_img.files[0]);
-                        formData.append('after_img', after_img.files[0]);
-
-                        let xhr = new XMLHttpRequest();
-                        xhr.onload = function(){
-                            // console.log("這是sendReport的xhr.responseText",xhr.responseText);
-                            // 送出後要清空INFO和照片
-                            thisVue.INFO = "";
-                            before_img.files[0] = "";
-                            after_img.files[0] = "";
+                        console.log("我要送表單");
+                        // console.log(before_img.files[0]);
+                        // console.log(after_img.files[0]);
+                        // console.log(thisVue.INFO);
+                        if(thisVue.INFO == "" ||  before_img.files[0] == undefined ||after_img.files[0] == undefined){ //沒填info沒上傳圖片
+                            alert("請完整填寫");
+                        }else{ 
+                            let formData = new FormData();
+    
+                            formData.append('sao_no', thisVue.sao_no);
+                            formData.append('info', thisVue.INFO);
+                            formData.append('before_img', before_img.files[0]);
+                            formData.append('after_img', after_img.files[0]);
+    
+                            let xhr = new XMLHttpRequest();
+                            xhr.onload = function(){
+                                // console.log("這是sendReport的xhr.responseText",xhr.responseText);
+                                // 送出後要清空INFO和照片
+                                thisVue.INFO = "";
+                                before_img.files[0] = undefined;
+                                after_img.files[0] = undefined;
+                            }
+                            xhr.open("post", "phps/sendReport.php", true);  
+                            xhr.send(formData);
                         }
-                        
-                        xhr.open("post", "phps/sendReport.php", true);  
-                        xhr.send(formData);
                     },
                 },
                 mounted() {
                     this.getEmpInfo();
                     this.getsao();
                     this.getsch();
+                    $("#report_div").hide();
                 },
             });
         </script>
