@@ -117,6 +117,8 @@ function indexOfCart(){
     if(cartArr.length>0){
         $('#cartQuantity').text(cartArr.length);
         $('#cartQuantity').css('display','block');
+    }else{
+        $('#cartQuantity').css('display','none');
     };
 };
 
