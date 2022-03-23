@@ -51,11 +51,26 @@
 
                 <!-- 月曆 -->
                 <div class="emp_calendar">
+                    <div class="demo">
+                        <div class="left">
+                            <span class="brown"></span>
+                            <p>被預約時段</p>
+                        </div>
+                        <div class="left">
+                            <span class="red"></span>
+                            <p>已請假時段</p>
+                        </div>
+                        <div class="left">
+                            <span class="blue"></span>
+                            <p>編輯排休時段</p>
+                        </div>
+                    </div>
                     <button class="btn_btn br btn_job" @click="setSch" type="button">請假</button>
+                    <button class="btn_btn br btn_confirm" @click="sendSch" type="button">確認</button>
+                    <button class="btn_btn br btn_cancel" @click="cancelSch" type="button">取消</button>
+
 
                     <div id="calendari"></div>
-
-                    <button class="btn_btn br btn_confirm" @click="sendSch" type="button">確認</button>
                 </div>
                 <!-- 我是預約明細 ------------------------------->
                 <div class="data_list" id="lightbox">
@@ -89,18 +104,18 @@
                             <div class="memberReserveDetailAll">
                                 <div class="memberReserveDetail">
                                     <div class="memberReserveD1">
-                                        <div>顧客需求</div>
+                                        <div><p>顧客需求</p></div>
                                     </div>
-                                    <div href="product.html" class="memberOrderD2">
-                                        <p class="needs">{{item.NEEDS}}</p>
+                                    <div class="memberOrderD2">
+                                        <p class="needs pl_10">{{item.NEEDS}}</p>
                                     </div>
                                 </div>
                                 <div class="memberReserveDetail">
                                     <div class="memberReserveD1">
-                                        <div>顧客環境照</div>
+                                        <div><p>顧客環境照</p></div>
                                     </div>
-                                    <div href="product.html" class="memberOrderD2 sao_pics">
-                                        <p id='none' v-show="!item.UPLOAD_PIC1">無</p>
+                                    <div class="memberOrderD2 sao_pics">
+                                        <p class="pl_10" id='none' v-show="!item.UPLOAD_PIC1">無</p>
                                         <img class="sao_pic1" v-show="item.UPLOAD_PIC1" :src="item.UPLOAD_PIC1">
                                         <img class="sao_pic2" v-show="item.UPLOAD_PIC2" :src="item.UPLOAD_PIC2">
                                         <img class="sao_pic3" v-show="item.UPLOAD_PIC3" :src="item.UPLOAD_PIC3">
@@ -149,7 +164,7 @@
             </div>
 
             <!-- 工作紀錄 -->
-            <div class="data_mem data_list" v-show="workInfo">
+            <div class="data_mem data_list" v-show="workInfo" id="workInfo">
                 
                 <div class="memberReserve" v-for="item in saoinfos">
                     <div class="memberReserveContent">
@@ -174,18 +189,29 @@
                         </div>
                     </div>
             
-                    <!-- <div class="memberReserveDetailHere">
+                    <div class="memberReserveDetailHere" v-show="item.STATE == '已完成'">
                         <div class="memberReserveDetailAll">
                             <div class="memberReserveDetail">
                                 <div class="memberReserveD1">
-                                    <div>顧客需求</div>
+                                    <div><p class="pl_10">回報內容</p></div>
                                 </div>
-                                <div href="product.html" class="memberOrderD2">
-                                    <p></p>
+                                <div class="memberOrderD2">
+                                    <p class="needs pl_10">{{item.INFO}}</p>
+                                </div>
+                            </div>
+                            <div class="memberReserveDetail">
+                                <div class="memberReserveD1">
+                                    <div><p>案前與案後紀錄</p></div>
+                                </div>
+                                <div class="memberOrderD2 ba_pics">
+                                    <img class="b_pic" v-show="item.BEFORE_IMG" :src="'img/report/' + item.BEFORE_IMG">
+                                    <img class="a_pic" v-show="item.AFTER_IMG"  :src="'img/report/' + item.AFTER_IMG">
+                                    
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
+
                 </div>
             </div>
             <!-- -------------工作紀錄結束 -->
@@ -276,6 +302,7 @@
                                             if(thisVue.saoinfos[i].NEEDS == "" || thisVue.saoinfos[i].NEEDS == null){
                                                 thisVue.saoinfos[i].NEEDS = "無"
                                             };
+                            
                                         };
                                     };
                                 };
@@ -381,18 +408,19 @@
                     },
                     closeForm(){
                         $("#report_div").hide();
+                        this.INFO = "";
+                        before_img.files[0] = undefined;
+                        after_img.files[0] = undefined;
                     },
                     sendReport(){
                         let thisVue = this;
-                        console.log("我要送表單");
-                        // console.log(before_img.files[0]);
-                        // console.log(after_img.files[0]);
-                        // console.log(thisVue.INFO);
+                        let before_img = document.getElementById("before_img");
+                        let after_img = document.getElementById("after_img");
                         if(thisVue.INFO == "" ||  before_img.files[0] == undefined ||after_img.files[0] == undefined){ //沒填info沒上傳圖片
                             alert("請完整填寫");
                         }else{ 
                             let formData = new FormData();
-    
+                            
                             formData.append('sao_no', thisVue.sao_no);
                             formData.append('info', thisVue.INFO);
                             formData.append('before_img', before_img.files[0]);
@@ -400,11 +428,13 @@
     
                             let xhr = new XMLHttpRequest();
                             xhr.onload = function(){
-                                // console.log("這是sendReport的xhr.responseText",xhr.responseText);
+                                console.log("這是sendReport的xhr.responseText",xhr.responseText);
+                                alert("已送出回報");
                                 // 送出後要清空INFO和照片
                                 thisVue.INFO = "";
                                 before_img.files[0] = undefined;
                                 after_img.files[0] = undefined;
+                                $("#report_div").hide();
                             }
                             xhr.open("post", "phps/sendReport.php", true);  
                             xhr.send(formData);
@@ -436,13 +466,12 @@
                         // console.log(periods.length); //126
                         for(let i=0; i<periods.length; i++){
                             periods[i].addEventListener("click",thisVue.selectSch,false);
-                            // if(periods[i].classList.contains("leave") == false && periods[i].classList.contains("reserved") == false){
-                            //     // periods[i].style.transform = "scale(1.5)"
-                            // }
+
                         };
                         // 顯示確認btn
                         $(".btn_job").hide();
                         $(".btn_confirm").show();
+                        $(".btn_cancel").show();
                         $("#calendari td").css({
                             "pointer-events":"none"
                         });
@@ -458,25 +487,30 @@
                         });
                         $("#calendari td").removeClass("active");
 
-
+                        
                         
                     },
                     // 按下確認
                     sendSch(){
-                        $("#calendari td.pastday,#calendari td.today").css({
-                            "opacity":"1"
-                        });
-                        $("#calendari td").css({
-                            "pointer-events":"auto"
-                        });
-                        $("span.period").css({
-                            "pointer-events":"none"
-                        });
-                        // 今天要加回active
-                        this.getsao();
-                        this.getsch();
-                        
                         let nl = $(".nodo");
+                        if(nl.length=0){
+                            alert("點擊時間段安排休假");
+                        }else{
+                            $("#calendari td.pastday,#calendari td.today").css({
+                                "opacity":"1"
+                            });
+                            $("#calendari td").css({
+                                "pointer-events":"auto"
+                            });
+                            $("span.period").css({
+                                "pointer-events":"none"
+                            });
+                            // 今天要加回active
+                            $("td.today").addClass("active");
+                            this.getsao();
+                            this.getsch();
+                        }
+                        
                         for(let i=0; i<nl.length; i++){
                             let slot = {};
                             slot.date = nl[i].closest("td").dataset.date;
@@ -486,7 +520,6 @@
                         let xhr = new XMLHttpRequest();
                         let thisVue = this;
                         xhr.onload = function(){
-                            alert("請假成功!");
                             $(".nodo").addClass("leave")
                             $(".nodo").removeClass("nodo");
                         }
@@ -498,7 +531,25 @@
 
                         $(".btn_job").show();
                         $(".btn_confirm").hide();
+                        $(".btn_cancel").hide();
                        
+                    },
+                    cancelSch(){
+                        $(".nodo").removeClass("nodo");
+                        $(".btn_job").show();
+                        $(".btn_confirm").hide();
+                        $(".btn_cancel").hide();
+                        $("#calendari td.pastday,#calendari td.today").css({
+                            "opacity":"1"
+                        });
+                        $("#calendari td").css({
+                            "pointer-events":"auto"
+                        });
+                        $("span.period").css({
+                            "pointer-events":"none"
+                        });
+                        // 今天要加回active
+                        $("td.today").addClass("active");
                     },
                 },
                 mounted() {
@@ -513,3 +564,4 @@
 <script src="js/calendar_emp.js"></script>
 </body>
 </html>
+    

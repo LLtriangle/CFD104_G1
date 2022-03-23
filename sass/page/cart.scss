@@ -1,6 +1,9 @@
 @import  "../base/var";
 @import  "../base/color";
 
+*{
+    box-sizing: border-box;
+}
 button{
     padding: $btn_padding;
     border-radius: $border_radius_btn;
@@ -27,10 +30,9 @@ button{
     .progress{
         overflow: hidden;
         margin-bottom: -2px;
-         /* hide bottom border */
         margin-left: 24px;
         a{
-            width: calc((100% - 170px)/3);
+            width: calc((100% - 30px)/3);
             float: left;
             cursor: pointer;
             padding: 12px 24px;
@@ -64,22 +66,33 @@ button{
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 4px 4px 8px #e1e1e1;
+    td,div {
+        text-align: center;
+        padding: 0 0.1em;
+        color: map-get($color, 'black');
+        box-sizing: border-box;
+        .left{
+            text-align: left;
+        }
+    }
+    .padding-bottom{
+        padding-bottom: 10px;
+    }
     .noshopping{
         padding: 20px;
     }
     .flex{
         display: flex;
         width: 100%;
-        justify-content: center;
-        // border: 1px solid map-get($color , "main" );
+        justify-content: space-between;
+        .widthname{
+            min-width: 60px;
+        }
         .changeNum{
-            width: 30px;
+            width: 45px;
         }
         .flex-grow{
             flex-grow: 1;
-            .select{
-                min-width: 100px;
-            }
         }
         .flex-grow2{
             flex-grow: 2;
@@ -89,6 +102,20 @@ button{
             border-radius: 15px;
         }
     }
+    table{
+        margin: 10px 0;
+        width: 100%;
+        .radio-input{
+            display: none;
+        }
+        .creditCard{
+        text-align: center;
+        }
+    }
+    .border-bottom{
+        padding-bottom: 10px;
+        border-bottom: 1px solid map-get($btn_color, 'brown');
+    }
     .left{
         text-align: left;
         padding-left: 0px;
@@ -97,48 +124,9 @@ button{
         display: flex;
         justify-content: space-between;
     }
-    td,div {
-        text-align: center;
-        padding: 0.3em 0.4em;
-        box-sizing: border-box;
-        color: map-get($color, 'black');
-        // img{
-        //     height: 80px;
-        // }
-        .left{
-            text-align: left;
-        }
-    }
-}
-table{
-    margin: 10px 0;
-    width: 100%;
-    .radio-input{
-        display: none;
-    }
-    .creditCard{
-    text-align: center;
-    }
 }
 .data { width: 120px; }
 
-// -------------
-
-.form_item{
-    margin: 20px auto; 
-    display: flex;
-}
-.choose_plan{
-    display: flex;
-    label{
-        cursor: pointer;
-    }
-    li{
-        margin: 10px 20px;
-    }
-
-}
-    
 // 更改input[type=text]樣式
 input[type=text],input[type=email]{
     box-shadow: -1px -1px 3px map-get($btn_color, 'brown');
@@ -149,15 +137,13 @@ input[type=text],input[type=email]{
         box-shadow: -1px -1px 3px map-get($color, 'main');
     }
 }
-
-
 // 下拉式選單樣式
 select{
     border: none;
     box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
     border-radius: 10px;
     padding: 5px;
-    min-width: 80px;
+    min-width: 100px;
     &:focus{
         outline: none;
         box-shadow: 1px 1px 5px map-get($color, 'main');
@@ -176,16 +162,6 @@ textarea {
         box-shadow: 1px 1px 5px map-get($color, 'main');
     }
 }
-
-// 信用卡種類
-.card_li{ // td
-    display: flex;
-    li{
-        label{
-            cursor: pointer;
-        }
-    }
-}
 .center{
     display: flex;
     justify-content: center;
@@ -196,20 +172,9 @@ textarea {
     max-width: 50px;
     max-height: 30px;
 }
-.center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 // RWD
 
 @media screen and (max-width: 830px) {
-    // input{
-    //     width: 100%;
-    //     margin: 0px auto;
-    //     box-sizing: border-box;
-    //     // height: 45px;
-    // }
     select{
         margin: 0px auto;
         width: 100%;
@@ -221,7 +186,6 @@ textarea {
     }
     .container{
         width: 100%;
-        // min-width: 127px;
         margin: 0px auto;
         margin-top: 92px; // 推header
         .progress{
@@ -236,21 +200,9 @@ textarea {
             }
         }
     }
-    .changeNum{
-        width: 30px;
-    }
 }
-@media screen and (max-width: 619px) {
-    .tabcontent {
-        // min-width: 405px;
-        .flex{
-            flex-wrap: wrap;
-            div{
-                // min-width: 33%;
-                &.width20{
-                    min-width: 20%;
-                }
-            }
-        }
+@media screen and (max-width: 650px) {
+    .tabcontent .flex{
+        flex-wrap: wrap;
     }
 }

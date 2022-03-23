@@ -12,13 +12,11 @@
     }
 }
 .groupSearchBar{
-    .groupSearchBar_wrap{
-        .search_wrap{
-            .search{
-                img{
-                width: 40px;
-                }
-            }
+    padding: 30px 30px 10px;
+    text-align: right;
+    .search_wrap{
+        .search_input{
+            background: url('../img/mall-search.png') no-repeat right/auto 50%;
         }
     }
 }
