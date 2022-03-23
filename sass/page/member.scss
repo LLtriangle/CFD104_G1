@@ -47,6 +47,11 @@ input{
     text-align:right;
     word-break:break-all;
 }
+
+//修改客戶需求字體
+.memberOrderD2 p{
+    font-size: 16px;
+}
 // 手機-------------------------------
 @media  screen and (max-width:768px){
     main{
@@ -769,6 +774,7 @@ input{
     .memberOrderDetail .memberOrderD2 div,.memberReserveDetail .memberReserveD2 div{
         overflow: hidden;
         max-height: 30px;
+        
     }
 }
 // @media  screen and (max-width:575px) {

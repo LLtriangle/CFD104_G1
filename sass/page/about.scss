@@ -281,14 +281,14 @@ screen and (max-width:992px)
                 top: 50%;
                 transform: translate(50%, -60%);
                 z-index: 2;
-                width: 70%;
+                // width: 100%;
                 max-width: 350px;
                 max-height:400px;
                 border-radius: 20px;
                 box-shadow:none;
                 img{
                     object-fit: cover;
-                    width: 315px;
+                    width: 286px;
                     height: 476px;
                 }
                 @keyframes picpic{
@@ -328,7 +328,7 @@ screen and (max-width:992px)
                         background-color: #d6aa81;
                         color: #fff;
                         border-radius: 20px;
-                        padding: 3px 12px;
+                        padding: 3px 11px;
                     }
                 }
                
@@ -426,13 +426,13 @@ screen and (max-width:992px)
     .about_team{
         .circle_big_img{
             .btn_mem{
-                top: 80%;
+                top: 85%;
             }
             .img_box{
                 .change_img{
                     img{
                         object-fit: cover;
-                        width: 315px;
+                        width: 286px;
                         height: 476px;
                     }
                     .large_txt{
@@ -440,16 +440,20 @@ screen and (max-width:992px)
                         animation-name: picpic;
                         animation-iteration-count:infinite;
                         position: absolute;
-                        bottom: 5%;
+                        // bottom: 5%;
+                        bottom: -30px;
                         background-color: rgba(255, 255, 255, 0.548);
                         padding-bottom: 10px;
+                        h3{
+                            font-size: 26px;
+                        }
                         a{
-                            margin-left: 60%;
+                            // margin-left: 60%;
                             border: 1px solid #d6aa81;
                             background-color: #d6aa81;
                             color: #fff;
                             border-radius: 20px;
-                            padding: 3px 15px;
+                            padding: 3px 2px;
                         }
                     }
                 }
@@ -620,7 +624,7 @@ screen and (max-width:992px)
                     background-color:map-get($color, "sub_brown") ;
                     color: #fff;
                     border-radius: 20px;
-                    padding: 0px 15px;
+                    // padding: 0px 15px;
                 }
             }
             
@@ -670,8 +674,11 @@ screen and (max-width:992px)
                         transition:.5s;
                         p{
                             position:absolute;
-                            top:40%;
-                            right: 28%;
+                            top: 50%;
+                            right: 40%;
+                            transform: translate(30%, 0%);
+                            // top:40%;
+                            // right: 28%;
                             box-sizing: border-box;
                             padding-top: 10px;
                             color: map-get($color, "bg");
@@ -737,3 +744,7 @@ screen and (max-width:992px)
     }
 }
 
+
+.about_team .circle_big_img .change_img img{
+    width: 350px;
+}
