@@ -5,7 +5,7 @@ try{
 
   $sql = "select * FROM coupon WHERE CUS_NO = :CUS_NO;";
   $cp = $pdo->prepare($sql);
-  $cp -> bindValue(":CUS_NO",$_SESSION["CUS_NO"]);
+  $cp -> bindValue(":CUS_NO",3);
   $cp -> execute(); //執行
   $cps = $cp->fetchAll(PDO::FETCH_ASSOC);
   echo json_encode($cps);
