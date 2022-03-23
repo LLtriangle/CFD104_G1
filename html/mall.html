@@ -54,7 +54,7 @@
     <!-- </main> -->
         <section class="groupSearchBar">
             <div class="search_wrap">
-                <input type="text" placeholder="搜尋商品名稱" class="search_input" id="searchInput" @keyup="filterPrds" v-model="searchText">
+                <input type="text" placeholder="搜尋商品名稱" class="search_input" id="searchInput" @keyup.enter="filterPrds" v-model="searchText">
                 <!-- <button class="search" @click="filterPrds">
                     <img src="img/loupe.png" alt="GoSearch">
                 </button> -->
