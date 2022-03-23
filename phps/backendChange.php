@@ -363,24 +363,6 @@ try{
       copy($from, $to);
     };
 
-    if($_FILES["col_sub_img_2"]['error']==0){
-      // 圖檔名
-      // $file = `prd_._.$i`;
-      $colno = $_POST["data_index"]; // ok
-      $file = "col_".$colno."_sub_2";
-      $fileInfo = pathinfo($_FILES["col_sub_img_2"]['name']);  // 路徑
-      $ext = $fileInfo["extension"];
-      $fileNameSub2 = "$file.$ext";
-    
-      $from = $_FILES["col_sub_img_2"]['tmp_name']; //暫存區含路徑
-      $to = "../img/activity/$fileNameSub2";
-
-      if(file_exists($to)){
-        unlink($to);
-      };
-
-      copy($from, $to);
-    };
 
     // 修改event資料
     $sql_columntable= "update columntable set TOPIC=:TOPIC, AUTHOR=:AUTHOR, SUBTITLE_01=:SUBTITLE_01, CONTENT1=:CONTENT1, SUBTITLE_02=:SUBTITLE_02, CONTENT2=:CONTENT2";
@@ -388,7 +370,6 @@ try{
 
     if(isset($fileNameMain)){$sql_columntable = $sql_columntable.", MAIN_PIC='$fileNameMain'";};// 專欄主圖
     if(isset($fileNameSub1)){$sql_columntable = $sql_columntable.", IMG1='$fileNameSub1'";};// 專欄附圖1
-    if(isset($fileNameSub2)){$sql_columntable = $sql_columntable.", IMG2='$fileNameSub2'";};// 專欄附圖2
 
     $sql_columntable = $sql_columntable." where COLUMN_NO =:DATA_INDEX";
     
