@@ -3,7 +3,7 @@ try {
 	require_once("connect.php"); // 開發用
 
     if ($_GET['tableName'] == "emp") {
-		$sql = "select EMP_NO, EMP_NAME, EMP_EMAIL, EMP_TEL, EMP_STATE STATUS, JOB, EMP_ADD, HIREDATE, INTRO from {$_GET['tableName']} where EMP_NO = {$_GET['editNo']} ";
+		$sql = "select EMP_NO, EMP_NAME, EMP_EMAIL, EMP_TEL, EMP_STATE STATUS, JOB, EMP_ADD, HIREDATE, INTRO, EMP_PIC from {$_GET['tableName']} where EMP_NO = {$_GET['editNo']} ";
 		
 	}elseif ($_GET['tableName'] == "cus"){
 		$sql = "select CUS_NO, JOIN_DATE, EMAIL, STATE STATUS, CUS_NAME, CUS_TEL, CUS_ADD, SEX from {$_GET['tableName']} where CUS_NO = {$_GET['editNo']} ";
@@ -18,14 +18,14 @@ try {
         //              join prd Pr3 on R.PRD_NO3 = Pr3.PRD_NO";
 
 	}elseif ($_GET['tableName'] == "prd"){
-		$sql = "select PRD_NO, CATEGORY, PRD_NAME, PRICE, IMG1, IMG2, IMG3, IMG4, INFO_IMG1, INFO_TITLE_1, INFO_1, INFO_IMG2, INFO_TITLE_2, INFO_2, STATE STATUS, SPEC_IMG from {$_GET['tableName']} where PRD_NO = '{$_GET['editNo']}' ";
+		$sql = "select PRD_NO, CATEGORY, PRD_NAME, PRD_DE, PRICE, IMG1, IMG2, IMG3, IMG4, INFO_IMG1, INFO_TITLE_1, INFO_1, INFO_IMG2, INFO_TITLE_2, INFO_2, STATE STATUS, SPEC_IMG from {$_GET['tableName']} where PRD_NO = '{$_GET['editNo']}' ";
 		
 	}elseif ($_GET['tableName'] == "ord"){
 		$ordPrdSql = "select OI.PRICE , OI.AMOUNT , P.PRD_NAME 
 		from ord O join ordinfo OI on O.ORD_NO = OI.ORD_NO 
 				   join prd P on P.PRD_NO = OI.PRD_NO where OI.ORD_NO = '{$_GET['editNo']}' ";
 		$countOrdPrd = $pdo->query($ordPrdSql);
-		$counter = $countOrdPrd->fetchAll(PDO::FETCH_ASSOC);
+		$countPrd = $countOrdPrd->fetchAll(PDO::FETCH_ASSOC);
 		echo json_encode($countPrd)."|";
 
 		$sql = "select O.ORD_NO, O.CUS_NO, O.CUS_NAME, O.CUS_TEL, O.CUS_ADD, O.TIME, O.SHIPPING, O.TOTAL, O.STATE STATUS, O.COUPON from ord O where O.ORD_NO = '{$_GET['editNo']}' ";

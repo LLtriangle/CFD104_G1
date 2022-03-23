@@ -3,7 +3,9 @@ session_start();
 try {
 	require_once("connect.php"); // 開發用
     $cus_NO=$_SESSION['CUS_NO'];
-	$sql = "select * from ord where CUS_NO = {$cus_NO}";
+	$sql = "select ORD_NO,CUS_NO,CUS_NAME,CUS_TEL,CUS_ADD,TIME,o.SHIPPING,TOTAL,o.STATE,o.COUPON,d.DEL_FEE 
+	from ord o join delivery d on o.SHIPPING=d.SHIPPING
+			    where CUS_NO = {$cus_NO}";
 	$allTable = $pdo->query($sql);
 	$Rows = $allTable->fetchAll(PDO::FETCH_ASSOC);
 

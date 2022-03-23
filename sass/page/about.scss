@@ -232,6 +232,7 @@ screen and (max-width:992px)
                 top: 90%;
                 left: 50%;
                 transform: translate(-50%, 0%);
+
                 .rwd_mem_1{
                     width: 96px;
                     height: 40px;
@@ -239,6 +240,7 @@ screen and (max-width:992px)
                     border-radius: 20px;
                     color: #fff;
                     background-color: map-get($color, "sub_brown");
+                    cursor: pointer;
                     // background-color: #b18b68;
                 }
                 .rwd_mem_2{
@@ -249,6 +251,7 @@ screen and (max-width:992px)
                     border-radius: 20px;
                     color: #fff;
                     background-color: map-get($color, "sub_brown");
+                    cursor: pointer;
                 }
                 .rwd_mem_3{
                     // position:absolute;
@@ -258,6 +261,7 @@ screen and (max-width:992px)
                     border-radius: 20px;
                     color: #fff;
                     background-color: map-get($color, "sub_brown");
+                    cursor: pointer;
                 }
                 .rwd_mem_4{
                     // position:absolute;
@@ -267,6 +271,7 @@ screen and (max-width:992px)
                     border-radius: 20px;
                     color: #fff;
                     background-color: map-get($color, "sub_brown");
+                    cursor: pointer;
                 }
     
             }
@@ -717,5 +722,17 @@ screen and (max-width:992px)
         }
     }
     
+}
+
+//新增rwd按鈕切換變色
+.about_team{
+    .circle_big_img{
+        .btn_mem{
+            .bg_deep{
+                background-color: #a88665;
+                border: 1px solid #a88665;
+            }
+        }
+    }
 }
 

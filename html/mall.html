@@ -52,7 +52,14 @@
 			</div>
 		</section>
     <!-- </main> -->
-        
+        <!-- <section class="groupSearchBar">
+            <div class="groupSearchBar_wrap">
+                <div class="search_wrap">
+                    <input type="text" class="search_input" id="searchInput" @change="filterPrds" v-model="searchText">
+                    <button class="search" @click="filterPrds"><img src="img/loupe.png" alt="GoSearch"></button>
+                </div>
+            </div>
+        </section> -->
         <section class="mall_product">
             <!-- 5大分類按鈕 -->
             <div class="btn_btn_box mall_btn">
@@ -114,8 +121,20 @@
 			data:{
 				prdsRows:[{PRD_NO: '', CATEGORY: '', PRD_NAME: '', PRICE: '', IMG1: '',IMG2: '', IMG3: '', IMG4: '', INFO_IMG1: '', INFO_TITLE_1: '',INFO_1: '', INFO_IMG2: '', INFO_TITLE_2: '', INFO_2: '', STATE: '',SPEC_IMG:''}],
                 perPage: 8,
+            //     searchText: '',
 			},
 			methods: {
+                // filterPrds() {
+                //     let thisVue = this;
+                //     thisVue.getprds();
+                //     console.log(thisVue.searchText);
+                //     thisVue.prdsRows = thisVue.prdsRows.filter(v => {
+                //         if(v.PRD_NAME.indexOf(thisVue.searchText) > -1 || v.CATEGORY.indexOf(thisVue.searchText) > -1){
+                //             return v;
+                //         };
+                //     console.log(thisVue.prdsRows);
+                //     });
+                // },
 				getprds(){
 					let xhr = new XMLHttpRequest();
 					let thisVue = this;

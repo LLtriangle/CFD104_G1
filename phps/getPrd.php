@@ -1,7 +1,7 @@
 <?php 
 try {
 	require_once("connect.php"); // 開發用
-	$sql = "select * from prd limit 5";
+	$sql = "select * from prd where STATE = 1 limit 5  ";
 	$allTable = $pdo->query($sql);
 	$Rows = $allTable->fetchAll(PDO::FETCH_ASSOC);
 	echo json_encode($Rows);

@@ -32,9 +32,9 @@
                     </div>
                 </label>
                 <div class="con_data">
-                    <a @click="data=true,p_order=false,p_reserve=false">會員資料</a><br>
-                    <a @click="data=false,p_order=true,p_reserve=false">商品訂單</a><br>
-                    <a @click="data=false,p_order=false,p_reserve=true">服務預約</a><br>
+                    <a @click="data=true,p_order=false,p_reserve=false" class="changChick hovered" onclick="changChick(this)">會員資料</a>
+                    <a @click="data=false,p_order=true,p_reserve=false" class="changChick" onclick="changChick(this)">商品訂單</a>
+                    <a @click="data=false,p_order=false,p_reserve=true" class="changChick" onclick="changChick(this)">服務預約</a>
                     <a id="btnLogout">登出</a>
                 </div>
             </div>
@@ -118,47 +118,61 @@
             <!-- 我是訂單區 ------------------------------->
             <div class="data_mem data_list" v-show="p_order">
                 <!-- <h3>商品訂單</h3> -->
+                <div class="ori">
+                    <h3>目前尚無訂單</h3>
+                </div>
                 <div class="memberOrder" v-for="ordcloumn in ordcloumns">
                     <div class="memberOrderContent">
                         <div class="memberGrid">
                             <div class="memberGrid1">訂單編號</div>
                             <div class="memberGrid2">日期</div>
-                            <div class="memberGrid3">訂單金額</div>
-                            <div class="memberGrid4">取貨方式</div>
-                            <!-- <div class="memberGrid5">付款狀態</div>
-                            <div class="memberGrid6">暫定會員邊號</div> -->
-                            <div class="memberGrid5">訂單狀態</div>
-                            <div class="memberGrid6">收件人資訊</div>
+                            <div class="memberGrid3">取貨方式</div>
+                            <div class="memberGrid4">運費</div>
+                            <div class="memberGrid5">訂單金額</div>
+                            <div class="memberGrid6">訂單狀態</div>
+                            <div class="memberGrid7">優惠碼</div>
+                            <div class="memberGrid8">收件人資訊</div>
                             <div class="memberGrid9"> {{ordcloumn.ORD_NO}} </div>
                             <div class="memberGrid10"> {{ordcloumn.TIME}} </div>
-                            <div class="memberGrid11"> ${{ordcloumn.TOTAL}} </div>
-                            <div class="memberGrid12"> {{ordcloumn.SHIPPING}} </div>
-                            <!-- <div class="memberGrid13"> {{ordcloumn.PAY_STATE}} </div>
-                            <div class="memberGrid14"> {{ordcloumn.CUS_NO}} </div> -->
-                            <div class="memberGrid13"> {{ordcloumn.STATE}} </div>
-                            <div class="memberGrid14 memberReceiverID">詳細資訊</div>
+                            <div class="memberGrid11"> {{ordcloumn.SHIPPING}}</div>
+                            <div class="memberGrid12"> ${{ordcloumn.DEL_FEE}} </div>
+                            <div class="memberGrid13"> ${{ordcloumn.TOTAL}} </div>
+                            <div class="memberGrid14"> {{ordcloumn.STATE}} </div>
+                            <div class="memberGrid15"> {{ordcloumn.COUPON}} </div>
+                            <a @click="mem_info=true" class="memberGrid16 memberReceiverID">詳細資訊</a>
                         </div>
                     </div>
+                    <!-- 收件人資料，預設隱藏 -->
+                    <div id="mem_info" v-show="mem_info"> 
+                        <div class="info">
+                            <h3>收件人資料</h3>
+                            <div>收件人姓名：{{ordcloumn.CUS_NAME}}</div>
+                            <div>收件人地址：{{ordcloumn.CUS_ADD}}</div>
+                            <div>收件人電話：{{ordcloumn.CUS_TEL}}</div>
+                            <a @click="mem_info=false">確認</a>
+                        </div>
+                    </div> 
             
                     <div class="memberOrderDetailHere">
                         <div class="memberOrderDetailAll">
                             <div class="memberOrderDetail">
-                                <div class="memberOrderD1">
-                                    <div>訂單詳情</div>
-                                    
+                                <!-- <input type="checkbox" id="order_title"> -->
+                                <label for="order_title" class="order_label">
+                                    <div class="memberOrderD1">
+                                        <div>訂單詳情</div>
+                                        <!-- <img src="img/w_memupupdowndown.png"  class="up_down"> -->
+                                    </div>
+                                </label>
+                                <div class="mem_info_con" >
+                                    <a :href="'product.php?prdno='+ordprd.PRD_NO" class="memberOrderD2"  v-for="ordprd in ordprds.filter((obj) => obj.ORD_NO == ordcloumn.ORD_NO )">
+                                        <img :src="'img/'+ordprd.IMG1">
+                                        <div class="ordprd_PRD_NAME">{{ordprd.PRD_NAME}}</div>
+                                        <div class="amount_center">{{ordprd.AMOUNT}}件</div>
+                                        <div class="total_cla">${{ordprd.AMOUNT*ordprd.PRICE}}</div>
+                                    </a>
+                                    <!-- <div class="ord_total">使用優惠碼{{ordcloumn.COUPON}}，折扣{{ordcloumn.PARM}}元，共{{ordcloumn.TOTAL-ordcloumn.PARM}}元</div> -->
                                 </div>
-                                <a :href="'product.php?prdno='+ordprd.PRD_NO" class="memberOrderD2"  v-for="ordprd in ordprds.filter((obj) => obj.ORD_NO == ordcloumn.ORD_NO )">
-                                    <img :src="'img/'+ordprd.IMG1">
-                                    <div>{{ordprd.PRD_NAME}}</div>
-                                    <div class="amount_center">{{ordprd.AMOUNT}}件</div>
-                                    <div>${{ordprd.AMOUNT*ordprd.PRICE}}</div>
-                                </a>
-                                <!-- <a href="product.html" class="memberOrderD2">
-                                    <img src="img/index_product_3.png">
-                                    <div>小麋鹿木掛架</div>
-                                    <div>1件</div>
-                                    <div>$480</div>
-                                </a> -->
+                                
                             </div>
                         </div>
                         
@@ -174,12 +188,16 @@
                     </div> -->
                 
                 </div>
+
+                 
             </div>
             <!-- 訂單區結束 ------------------------------->
 
             <!-- 我是預約區 ------------------------------->
             <div class="data_mem data_list" v-show="p_reserve">
-                
+                <div class="ori">
+                    <h3>目前尚無訂單</h3>
+                </div>
                 <div class="memberReserve" v-for="rescloumn in rescloumns">
                     <div class="memberReserveContent">
                         <div class="memberGrid">
@@ -229,6 +247,7 @@
                     p_order:false, // 預設
                     p_reserve:false,// 預設
                     order:false, // 預設
+                    mem_info:false,//收件人資料
                     cusRow:[{CUS_NO: '', EMAIL: '', CUS_NAME: '', CUS_TEL: '',SEX:''}],
                     gender:'',
                     cus_pic:'img/cus/emp_img.jpg', // 預設大頭貼
@@ -239,22 +258,45 @@
                     ordprds:[],
                 },
                 methods: {
+                // getMemberInfo() {
+                //     let xhr = new XMLHttpRequest();
+                //     let thisVue = this;
+                //     xhr.onload = function () {
+                //         thisVue.cusRow = JSON.parse(xhr.responseText);
+                //         // console.log(thisVue.cusRow);
+                //         if (!thisVue.cusRow.EMAIL) {
+                //             alert("請先登入");
+                //             location.href="login.html";
+                //         } else {
+                //             thisVue.person.name = thisVue.cusRow.CUS_NAME;
+                //             thisVue.person.phone = thisVue.cusRow.CUS_TEL;
+                //             thisVue.person.address = thisVue.cusRow.CUS_ADD;
+                //         };
+                //     };
+                //     xhr.open("get", "phps/getMemberInfo.php", true);
+                //     xhr.send(null);
+                // },
                     getMemberInfo(){
                         let xhr = new XMLHttpRequest();
                         let thisVue = this;
                         xhr.onload = function(){
                             thisVue.cusRow = JSON.parse(xhr.responseText);
                             // console.log(thisVue.cusRow);
-                            if(thisVue.cusRow.CUS_PIC!=''){
-                                thisVue.cus_pic = "img/cus/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
-                            }
-                            // console.log(thisVue.cus_pic);
-                            if(thisVue.cusRow.SEX == "女"){
-                                $('#female').prop('checked',true);
-                            }else if(thisVue.cusRow.SEX == "男"){
-                                $('#male').prop('checked',true);
-                            }   
-                        }
+                            if (!thisVue.cusRow.EMAIL) {
+                                // alert("請先登入");
+                                location.href="login.html";
+                            }else{
+                                if(thisVue.cusRow.CUS_PIC!=''){
+                                    thisVue.cus_pic = "img/cus/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
+                                };
+                                // console.log(thisVue.cus_pic);
+                                if(thisVue.cusRow.SEX == "女"){
+                                    $('#female').prop('checked',true);
+                                }else if(thisVue.cusRow.SEX == "男"){
+                                    $('#male').prop('checked',true);
+                                };
+                            };
+                        };
                         xhr.open("get", "phps/getMemberInfo.php", true);
                         xhr.send(null);
                     },
@@ -305,6 +347,14 @@
                                 }else if(thisVue.ordcloumns[i].STATE == '1'){
                                     thisVue.ordcloumns[i].STATE = "已完成";
                                 };
+                                if(thisVue.ordcloumns[i].PARM == '-88'){
+                                    thisVue.ordcloumns[i].PARM = "88";
+                                }else if(thisVue.ordcloumns[i].PARM == '-99'){
+                                    thisVue.ordcloumns[i].PARM = "99";
+                                }else if(thisVue.ordcloumns[i].PARM == '-100'){
+                                    thisVue.ordcloumns[i].PARM = "100";
+                                };
+                                
                             };
                         };
                         xhr.open("get", "phps/memberOrd.php", true);
@@ -324,7 +374,13 @@
                                 }else if(thisVue.rescloumns[i].STATE == '0'){
                                     thisVue.rescloumns[i].STATE = "未完成";
                                 };
-                                
+                                if(thisVue.rescloumns[i].SAO_TIME == '1'){
+                                    thisVue.rescloumns[i].SAO_TIME = "上午";
+                                }else if(thisVue.rescloumns[i].SAO_TIME == '2'){
+                                    thisVue.rescloumns[i].SAO_TIME = "中午";
+                                }else if(thisVue.rescloumns[i].SAO_TIME == '3'){
+                                    thisVue.rescloumns[i].SAO_TIME = "晚上";
+                                };
                             };
                         }
                         xhr.open("get", "phps/memberSao.php", true);
@@ -339,5 +395,40 @@
             });
         </script>
 <script src="js/member.js"></script>
+
+<!-- 改變點擊右邊選單時的樣式 -->
+<script>
+    function changChick(target){
+        $.each($(".changChick"), function() {
+            $(this).removeClass("hovered");
+        });
+        $(target).addClass("hovered");
+    }
+</script>
+<!-- <script>
+    // 收件人詳細資訊  
+    // $('body').on('click','.memberReceiverID', function(){
+    //     recevier = $(this).parent().parent().next().next().next();
+    //     recevier.fadeIn(500);
+    //     // 不可滑動卷軸
+    //     $('body').addClass('stopScroll');
+    //     // 背景灰底
+    //     $('body').append("<div class='greyBackground'></div>");
+    // });
+    // var libox = document.getElementById("meme_info")
+
+    // var can = document.getElementById("box_cancel");
+
+    // var out = document.getElementById("memberReceiverID");
+    // out.onclick = function(){
+    //     libox.style="display:block";
+    // };
+
+    // can.onclick = function(){
+    //     libox.style="display:none";
+    // }
+
+    
+</script> -->
 </body>
 </html>
