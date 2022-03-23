@@ -91,7 +91,7 @@
                                     <div class="memberReserveD1">
                                         <div>顧客需求</div>
                                     </div>
-                                    <div href="product.html" class="memberOrderD2">
+                                    <div class="memberOrderD2">
                                         <p class="needs">{{item.NEEDS}}</p>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                                     <div class="memberReserveD1">
                                         <div>顧客環境照</div>
                                     </div>
-                                    <div href="product.html" class="memberOrderD2 sao_pics">
+                                    <div class="memberOrderD2 sao_pics">
                                         <p id='none' v-show="!item.UPLOAD_PIC1">無</p>
                                         <img class="sao_pic1" v-show="item.UPLOAD_PIC1" :src="item.UPLOAD_PIC1">
                                         <img class="sao_pic2" v-show="item.UPLOAD_PIC2" :src="item.UPLOAD_PIC2">
@@ -174,18 +174,29 @@
                         </div>
                     </div>
             
-                    <!-- <div class="memberReserveDetailHere">
+                    <div class="memberReserveDetailHere" v-show="item.STATE == '已完成'">
                         <div class="memberReserveDetailAll">
                             <div class="memberReserveDetail">
                                 <div class="memberReserveD1">
-                                    <div>顧客需求</div>
+                                    <div>回報內容</div>
                                 </div>
-                                <div href="product.html" class="memberOrderD2">
-                                    <p></p>
+                                <div class="memberOrderD2">
+                                    <p class="needs">{{item.INFO}}</p>
+                                </div>
+                            </div>
+                            <div class="memberReserveDetail">
+                                <div class="memberReserveD1">
+                                    <div>案前與案後紀錄</div>
+                                </div>
+                                <div class="memberOrderD2 ba_pics">
+                                    <img class="b_pic" v-show="item.BEFORE_IMG" :src="'img/report/' + item.BEFORE_IMG">
+                                    <img class="a_pic" v-show="item.AFTER_IMG"  :src="'img/report/' + item.AFTER_IMG">
+                                    
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
+
                 </div>
             </div>
             <!-- -------------工作紀錄結束 -->
@@ -276,6 +287,11 @@
                                             if(thisVue.saoinfos[i].NEEDS == "" || thisVue.saoinfos[i].NEEDS == null){
                                                 thisVue.saoinfos[i].NEEDS = "無"
                                             };
+
+                                            // B/A照
+                                            // thisVue.saoinfos[i].BEFORE_IMG = "img/report"+thisVue.saoinfos[i].BEFORE_IMG;
+                                            // thisVue.saoinfos[i].AFTER_IMG = "img/report"+thisVue.saoinfos[i].AFTER_IMG;
+                            
                                         };
                                     };
                                 };
