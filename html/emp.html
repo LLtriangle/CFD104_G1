@@ -34,8 +34,8 @@
                     </div>
                 </label>
                 <div class="con_data">
-                    <a @click="workSch=true;workInfo=false">工作行程</a>
-                    <a @click="workSch=false;workInfo=true">工作紀錄</a>
+                    <a class="hovered" @click="workSch=true;workInfo=false" onclick="changChick(this)">工作行程</a><br>
+                    <a @click="workSch=false;workInfo=true" onclick="changChick(this)">工作紀錄</a><br>
                     <a id="btnLogout" @click="logout">登出</a>
                 </div>
             </div>
@@ -562,6 +562,13 @@
         </script>
 <!-- <script src="js/member.js"></script> -->
 <script src="js/calendar_emp.js"></script>
+<script>
+
+    function changChick(target){
+        $(".hovered").removeClass("hovered");
+        $(target).addClass("hovered");
+    }
+</script>
 </body>
 </html>
     
