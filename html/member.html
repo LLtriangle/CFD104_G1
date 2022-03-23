@@ -258,22 +258,45 @@
                     ordprds:[],
                 },
                 methods: {
+                // getMemberInfo() {
+                //     let xhr = new XMLHttpRequest();
+                //     let thisVue = this;
+                //     xhr.onload = function () {
+                //         thisVue.cusRow = JSON.parse(xhr.responseText);
+                //         // console.log(thisVue.cusRow);
+                //         if (!thisVue.cusRow.EMAIL) {
+                //             alert("請先登入");
+                //             location.href="login.html";
+                //         } else {
+                //             thisVue.person.name = thisVue.cusRow.CUS_NAME;
+                //             thisVue.person.phone = thisVue.cusRow.CUS_TEL;
+                //             thisVue.person.address = thisVue.cusRow.CUS_ADD;
+                //         };
+                //     };
+                //     xhr.open("get", "phps/getMemberInfo.php", true);
+                //     xhr.send(null);
+                // },
                     getMemberInfo(){
                         let xhr = new XMLHttpRequest();
                         let thisVue = this;
                         xhr.onload = function(){
                             thisVue.cusRow = JSON.parse(xhr.responseText);
                             // console.log(thisVue.cusRow);
-                            if(thisVue.cusRow.CUS_PIC!=''){
-                                thisVue.cus_pic = "img/cus/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
-                            }
-                            // console.log(thisVue.cus_pic);
-                            if(thisVue.cusRow.SEX == "女"){
-                                $('#female').prop('checked',true);
-                            }else if(thisVue.cusRow.SEX == "男"){
-                                $('#male').prop('checked',true);
-                            }   
-                        }
+                            if (!thisVue.cusRow.EMAIL) {
+                                // alert("請先登入");
+                                location.href="login.html";
+                            }else{
+                                if(thisVue.cusRow.CUS_PIC!=''){
+                                    thisVue.cus_pic = "img/cus/"+thisVue.cusRow.CUS_PIC; // 大頭貼路徑
+                                };
+                                // console.log(thisVue.cus_pic);
+                                if(thisVue.cusRow.SEX == "女"){
+                                    $('#female').prop('checked',true);
+                                }else if(thisVue.cusRow.SEX == "男"){
+                                    $('#male').prop('checked',true);
+                                };
+                            };
+                        };
                         xhr.open("get", "phps/getMemberInfo.php", true);
                         xhr.send(null);
                     },
