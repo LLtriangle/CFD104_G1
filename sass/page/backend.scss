@@ -586,7 +586,8 @@ input[type="file"]{
                         padding: 5px 0;
                     }
                     thead{
-                        background-color: map-get($color , "sub_brown" )
+                        background-color: map-get($color , "sub_brown" );
+                        color: #fff;
                     }
 
                     tbody{
