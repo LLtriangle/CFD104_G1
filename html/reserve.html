@@ -315,7 +315,7 @@
                                     <option value="Visa" id="visa">Visa</option>
                                     <option value="Mastercard" id="mastercard">Mastercard</option>
                                 </select>
-                                <input type="text" name="cardNumber" id="cardNum" v-model="credit_card" maxlength="16" />
+                                <input type="text" name="cardNumber" id="cardNum" v-model="credit_card" maxlength="16" @change="ValidateCreditCardNumber(credit_card)" />
                             </div>
                             <div class="flex">
                                 <h4 class="left">驗證碼</h4>
@@ -355,7 +355,7 @@
                 <div class="details">
                     <div class="center"><h3>預約明細</h3></div>
                     <div class="datails_info flex">
-                        <table class="d_table">
+                        <table class="d_table m_0_auto">
                             <tr>
                                 <td>姓名</td>
                                 <td>{{name}}</td>
@@ -511,7 +511,7 @@
                 // let credit_valid = this.ValidateCreditCardNumber(this.credit_card);
                 if (num == 2) {
                     if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test)
-                    alert("資料不完整");
+                    alert("請填寫付款資訊");
                     else{
                         this.sendForm();
                         alert("預約成功!");
@@ -761,7 +761,14 @@
                 }else if(this.cCard === 'Mastercard'){
                     this.ccard_src='img/mstercard.gif'
                 }
-            }
+            },
+            show_pic(){
+                if(upFile1.files[0] != undefined){
+                    return true;
+                }else{
+                    return false;
+                }
+            },
         },
         mounted() {
             this.getMemberInfo();
