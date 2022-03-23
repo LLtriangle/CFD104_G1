@@ -123,10 +123,7 @@ section{
     background-color: #ac8969;
 }
  
-// about的特殊待遇footer
-footer{
-    margin-top: -62px;
-}
+
 
 
 
@@ -319,7 +316,11 @@ screen and (max-width:992px)
                     position: absolute;
                     bottom: -7%;
                     background-color: rgba(255, 255, 255, 0.8);
+                    padding: 10px;
                     padding-bottom: 10px;
+                    p{
+                        font-size: 16px;
+                    }
                     a{
                         display: block;
                         margin:15px 35%;
@@ -327,7 +328,7 @@ screen and (max-width:992px)
                         background-color: #d6aa81;
                         color: #fff;
                         border-radius: 20px;
-                        padding: 3px 13px;
+                        padding: 3px 12px;
                     }
                 }
                

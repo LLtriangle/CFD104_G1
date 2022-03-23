@@ -136,13 +136,14 @@
                 <div class="circle">我是藏起來的圈圈</div>
                 <!-- 桌機的秀大圖 -->
                 <div class="large">
-                    <img src="img/Kurinachan_3.jpg"  id="large">
+                    <img :src="'img/'+empsRows[0].EMP_PIC" id="large">
+                    <!-- <img src="img/Kurinachan_3.jpg"  id="large"> -->
                 </div>
                 <!-- rwd整理師的大圖 -->
                 <div class="img_box" id="rwd_large">
                     <!-- 替代rwd預定燈箱的整理師介紹 -->
                     <div class="change_img b-tab active"  v-show="rwd_1"  id="mem_1" >
-                        <img src="img/Kurinachan_2.jpg">
+                        <img :src="'img/'+empsRows[0].EMP_PIC">
                         <div class="large_txt">
                             <h3>｜整理師 : 麻里不會｜</h3>
                             <p class="text-wrapper">{{empsRows[0].INTRO}}</p>
@@ -150,7 +151,7 @@
                         </div>
                     </div>
                     <div class="change_img b-tab"  id="mem_2" v-show="rwd_2">
-                        <img src="img/Nikuchan.jpg">
+                        <img :src="'img/'+empsRows[1].EMP_PIC">
                         <div class="large_txt">
                             <h3>｜整理師 : 末牛子｜</h3>
                             <p class="text-wrapper">{{empsRows[1].INTRO}}</p>
@@ -158,7 +159,7 @@
                         </div>
                     </div>
                     <div class="change_img b-tab"  id="mem_3" v-show="rwd_3">
-                        <img src="img/Marishimasen.jpg">
+                        <img :src="'img/'+empsRows[2].EMP_PIC">
                         <div class="large_txt">
                             <h3>｜整理師 : 潔癖子｜</h3>
                             <p class="text-wrapper">{{empsRows[2].INTRO}}</p>
@@ -166,7 +167,7 @@
                         </div>
                     </div>
                     <div class="change_img b-tab"  id="mem_4" v-show="rwd_4">
-                        <img src="img/handsome.jpg">
+                        <img :src="'img/'+empsRows[3].EMP_PIC">
                         <div class="large_txt">
                             <h3>｜整理師 : 地球鈔人｜</h3>
                             <p class="text-wrapper">{{empsRows[3].INTRO}}</p>
@@ -205,7 +206,8 @@
                 <div class="circle_small_card small">
                     <div class="introduce_card">
                         <div class="card_img">
-                            <img src="img/Kurinachan_3.jpg"/>
+                            <img :src="'img/'+empsRows[0].EMP_PIC">
+                            <!-- <img src="img/Kurinachan_3.jpg"/> -->
                         </div>
                         <div class="card_txt">
                             <p>麻里不會</p>
@@ -216,7 +218,8 @@
                     </div>
                     <div class="introduce_card">
                         <div class="card_img">
-                            <img src="img/Nikuchan.jpg"/>
+                            <img :src="'img/'+empsRows[1].EMP_PIC">
+                            <!-- <img src="img/Nikuchan.jpg"/> -->
                         </div>
                         <div class="card_txt">
                             <p>末牛子</p>
@@ -227,7 +230,8 @@
                     </div>
                     <div class="introduce_card">
                         <div class="card_img">
-                            <img src="img/Marishimasen.jpg"/>
+                            <img :src="'img/'+empsRows[2].EMP_PIC">
+                            <!-- <img src="img/Marishimasen.jpg"/> -->
                         </div>
                         <div class="card_txt">
                             <p>潔癖子</p>
@@ -238,7 +242,8 @@
                     </div>
                     <div class="introduce_card">
                         <div class="card_img">
-                            <img src="img/handsome.jpg"/>
+                            <img :src="'img/'+empsRows[3].EMP_PIC">
+                            <!-- <img src="img/handsome.jpg"/> -->
                         </div>
                         <div class="card_txt">
                             <p>地球鈔人</p>

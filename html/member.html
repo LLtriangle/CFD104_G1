@@ -354,6 +354,9 @@
                                 }else if(thisVue.ordcloumns[i].PARM == '-100'){
                                     thisVue.ordcloumns[i].PARM = "100";
                                 };
+                                if(thisVue.ordcloumns[i].COUPON == "" || thisVue.ordcloumns[i].COUPON == null){
+                                thisVue.ordcloumns[i].COUPON = "無"
+                                };
                                 
                             };
                         };
@@ -380,6 +383,9 @@
                                     thisVue.rescloumns[i].SAO_TIME = "中午";
                                 }else if(thisVue.rescloumns[i].SAO_TIME == '3'){
                                     thisVue.rescloumns[i].SAO_TIME = "晚上";
+                                };
+                                if(thisVue.rescloumns[i].NEEDS == "" || thisVue.rescloumns[i].NEEDS == null){
+                                thisVue.rescloumns[i].NEEDS = "無"
                                 };
                             };
                         }
