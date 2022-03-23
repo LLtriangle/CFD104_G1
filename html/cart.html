@@ -62,7 +62,7 @@
                             <p>優惠碼輸入:</p>
                         </td>
                         <td>
-                            <input @change="pushcoupon" type="text" maxlength="11" v-model.trim="person.coupon" placeholder=" 請輸入折扣碼 " class="full">
+                            <input type="text" maxlength="11" v-model.trim="person.coupon" placeholder=" 請輸入折扣碼 " class="full">
                         </td>
                     </tr>
                     <tr>
@@ -406,9 +406,6 @@
                     xhr.open("get", url, true);
                     xhr.send(null);
                     localStorage.clear("cart");
-                },
-                pushcoupon() {
-                    this.total_all();
                 },
             },
             computed: {
