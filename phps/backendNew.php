@@ -342,28 +342,11 @@ try{
             copy($from, $to);
         };
 
-        if($_FILES["new_col_sub_img_2"]['error']==0){
-            $colno =$_POST["new_col_no"]; // ok
-            $file = "col_".$colno."_2";
-            $fileInfo = pathinfo($_FILES["new_col_sub_img_2"]['name']);  // 路徑
-            $ext = $fileInfo["extension"];
-            $fileNameImg2 = "$file.$ext";
-          
-            $from = $_FILES["new_col_sub_img_2"]['tmp_name']; //暫存區含路徑
-            $to = "../img/activity/$fileNameImg2";
-      
-            if(file_exists($to)){
-              unlink($to);
-            };
-      
-            copy($from, $to);
-        };
-
 
         // 修改columntable資料
         // $sql_new_emp= "insert into emp 
         // values (EMP_NO=null, EMP_NAME=:EMP_NAME, EMP_EMAIL=:EMP_EMAIL, EMP_PSW=:EMP_PSW, EMP_TEL=:EMP_TEL, EMP_STATE=:EMP_STATE, JOB=:JOB, EMP_ADD=:EMP_ADD, HIREDATE=:HIREDATE, INTRO=:INTRO";
-        $sql_new_columntable= "INSERT INTO `columntable`(`COLUMN_NO`, `AUTHOR`, `AUTHOR_PIC`, `DATE`, `TOPIC`, `CONTENT1`, `CONTENT2`, `MAIN_PIC`, `IMG1`, `IMG2`, `SUBTITLE_01`, `SUBTITLE_02`) VALUES (:COLUMN_NO, :AUTHOR, '$fileNameAuthor', :COLDATE, :TOPIC, :CONTENT1, :CONTENT2,'$fileNameColMain','$fileNameImg1','$fileNameImg2', :SUBTITLE_01, :SUBTITLE_02)";
+        $sql_new_columntable= "INSERT INTO `columntable`(`COLUMN_NO`, `AUTHOR`, `AUTHOR_PIC`, `DATE`, `TOPIC`, `CONTENT1`, `CONTENT2`, `MAIN_PIC`, `IMG1`, `SUBTITLE_01`, `SUBTITLE_02`) VALUES (:COLUMN_NO, :AUTHOR, '$fileNameAuthor', :COLDATE, :TOPIC, :CONTENT1, :CONTENT2,'$fileNameColMain','$fileNameImg1', :SUBTITLE_01, :SUBTITLE_02)";
 
         $new_columntable = $pdo->prepare($sql_new_columntable);
 

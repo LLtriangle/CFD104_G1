@@ -132,27 +132,13 @@
             <div class="topbar">
                 <div class="toggle">
                     <img src="img/memupupdowndown.png" alt="">
-                    <!-- <img src="img/icon/home-outline.svg" alt=""> -->
-                    <!-- <ion-icon name="menu-outline"></ion-icon> -->
                 </div>
-                <!-- search -->
-                <!-- <div class="search">
-                    <label for="">
-                        <input type="text" placeholder="Search"> -->
-                        <!-- <ion-icon name="search-outline"></ion-icon> -->
-                    <!-- </label>
-                </div> -->
-                <!-- userImg -->
-                <!-- <div class="user">
-                    <img src="img/logo_act.jpg" alt="user">
-                </div> -->
             </div>
 
             
             <div class="panel_box">
                 <div class="panel">
                     <div class="panel_title">
-                        <!-- <h2>{{tableName}}</h2> -->
                         <h2>{{showtableTitle}}</h2>
                         <!-- 需要新增的欄位再出現新增按鈕 -->
                         <button type="button" class="add_btn" v-if="showtableTitle != tableTitles[1] & showtableTitle != tableTitles[2] & showtableTitle != tableTitles[4] & showtableTitle != tableTitles[5] & showtableTitle != tableTitles[6] & showtableTitle != tableTitles[10] & showtableTitle != []" @click="newLightBox">新增</button>
@@ -173,10 +159,8 @@
                         </tbody>
                     </table> 
                 </div>
-
             </div>
             
-            <!-- 可以送資料了 -->
             <form class="form emp">
                 <div class="light_box emp">
                     <p class="light_box_cap">編輯與查看</p>
@@ -214,7 +198,6 @@
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="emp_img">
                                     <img class="preview_img" :src='"img/"+showLightBox.EMP_PIC'>
-                                    <p>{{showLightBox.EMP_PIC}}</p>
                                 </div>
                             </label>
                         </li>
@@ -290,8 +273,7 @@
                                 <input name="new_emp_img" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="new_emp_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.EMP_PIC'>
-                                    <p>{{showLightBox.EMP_PIC}}</p>
+                                    <img class="preview_img">
                                 </div>
                             </label>
                         </li>
@@ -342,8 +324,8 @@
                         <button class="close cus" type="button" @click="close">關閉</button>
                         <button class="save cus" type="button" @click="saveChange">儲存</button>
                     </div>
-                    
                 </div>
+
                 <!-- 不送資料了，僅供閱覽-->
                 <div class="close_check">
                     <div class="light_box_cap"></div>
@@ -363,10 +345,8 @@
                     <input name="table_title" class="dnone" type="text" value="result" > 
                     <input name="data_index" class="dnone" type="text" :value="data_index" >
                     <ul>
-                         
                         <li>測驗編號: {{showLightBox.RESULT_NO}}</li>
                         <li>測驗人格: {{showLightBox.RESULT_NAME}}</li>
-
                         <li>
                             推薦方案:
                             <select name="result_plan1" v-model.number="showLightBox.PLAN_NO">
@@ -375,7 +355,6 @@
                                 </option>
                             </select>
                         </li>
-
                         <li>
                             推薦商品編號1:
                             <select name="result_prd2" v-model.number="showLightBox.PRD_NO1">
@@ -384,7 +363,6 @@
                                 </option>
                             </select>
                         </li>
-
                         <li>
                             推薦商品編號2:
                             <select name="result_prd3" v-model.number="showLightBox.PRD_NO2">
@@ -393,7 +371,6 @@
                                 </option>
                             </select>
                         </li>
-
                         <li>
                             推薦商品編號3:
                             <select name="result_prd1" v-model.number="showLightBox.PRD_NO3">
@@ -494,7 +471,6 @@
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
                                     <img class="preview_img" :src='"img/"+showLightBox.IMG1'>
-                                    <p>{{showLightBox.IMG1}}</p>
                                 </div>
                             </label>
                         </div>
@@ -504,7 +480,6 @@
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
                                     <img class="preview_img" :src='"img/"+showLightBox.IMG2'>
-                                    <p>{{showLightBox.IMG2}}</p>
                                 </div>
                             </label>
                         </div>
@@ -514,7 +489,6 @@
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
                                     <img class="preview_img" :src='"img/"+showLightBox.IMG3'>
-                                    <p>{{showLightBox.IMG3}}</p>
                                 </div>
                             </label>
                         </div>
@@ -524,7 +498,6 @@
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
                                     <img class="preview_img" :src='"img/"+showLightBox.IMG4'>
-                                    <p>{{showLightBox.IMG4}}</p>
                                 </div>
                             </label>
                         </div>
@@ -534,7 +507,6 @@
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
                                     <img class="preview_img" :src='"img/"+showLightBox.INFO_IMG1'>
-                                    <p>{{showLightBox.INFO_IMG1}}</p>
                                 </div>
                             </label>
                         </div>
@@ -544,7 +516,6 @@
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
                                     <img class="preview_img" :src='"img/"+showLightBox.INFO_IMG2'>
-                                    <p>{{showLightBox.INFO_IMG2}}</p>
                                 </div>
                             </label>
                         </div>
@@ -554,7 +525,6 @@
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
                                     <img class="preview_img" :src='"img/"+showLightBox.SPEC_IMG'>
-                                    <p>{{showLightBox.SPEC_IMG}}</p>
                                 </div>
                             </label>
                         </div>
@@ -676,7 +646,6 @@
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
                                     <img class="preview_img" :src='"img/"+showLightBox.IMG4'>
-                                    <p>{{showLightBox.IMG4}}</p>
                                 </div>
                             </label>
                         </div>
@@ -912,7 +881,7 @@
                             <li class="sao_detail_content need">
                                 服務需求:
                                 <label for="">服務需求內容:</label>
-                                <textarea class="text_area" name="" cols="30" rows="10" readonly="readonly">
+                                <textarea class="text_area" name="" cols="30" rows="10" readonly="readonly" v-model.trim="showLightBox.INFO">
                                     {{showLightBox.NEEDS}}
                                 </textarea>
                             </li>
@@ -923,7 +892,6 @@
                                     <label for="need_img1">客戶需求圖片1:
                                         <div class="need_img">
                                             <img class="preview_img" :src='"img/"+showLightBox.UPLOAD_PIC1'>
-                                            <p>{{showLightBox.UPLOAD_PIC1}}</p>
                                         </div>
                                     </label>
                                 </div>
@@ -931,7 +899,6 @@
                                     <label for="need_img2">客戶需求圖片2:
                                         <div class="need_img">
                                             <img class="preview_img" :src='"img/"+showLightBox.UPLOAD_PIC2'>
-                                            <p>{{showLightBox.UPLOAD_PIC2}}</p>
                                         </div>
                                     </label>
                                 </div>
@@ -939,7 +906,6 @@
                                     <label for="need_img3">客戶需求圖片3:
                                         <div class="need_img">
                                             <img class="preview_img" :src='"img/"+showLightBox.UPLOAD_PIC3'>
-                                            <p>{{showLightBox.UPLOAD_PIC3}}</p>
                                         </div>
                                     </label>
                                 </div>
@@ -949,7 +915,7 @@
                             <div class="sao_detail_content title">結案回報:</div>
                             <div  class="sao_detail_content report">
                                 <label for="sao_report">結案回報內容:</label>
-                                <textarea class="text_area" name="sao_report" cols="70" rows="10" readonly="readonly">
+                                <textarea class="text_area" name="sao_report" cols="70" rows="10" readonly="readonly" v-model.trim="showLightBox.INFO">
                                     {{showLightBox.INFO}}
                                 </textarea>
                             </div>
@@ -958,7 +924,6 @@
                                     <label for="before_img">服務前記錄圖片:
                                         <div class="before_img">
                                             <img class="preview_img" :src='"img/"+showLightBox.BEFORE_IMG'>
-                                            <p>{{showLightBox.BEFORE_IMG}}</p>
                                         </div>
                                     </label>
                                 </div>
@@ -966,7 +931,6 @@
                                     <label for="after_img">服務後記錄圖片:
                                         <div class="after_img">
                                             <img class="preview_img" :src='"img/"+showLightBox.AFTER_IMG'>
-                                            <p>{{showLightBox.AFTER_IMG}}</p>
                                         </div>
                                     </label>
                                 </div>
@@ -1027,7 +991,6 @@
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="before_img">
                                     <img class="preview_img" :src='"img/case/"+showLightBox.BEFORE_IMG'>
-                                    <p>{{showLightBox.BEFORE_IMG}}</p>
                                 </div>
                             </label>
                         </div>
@@ -1037,7 +1000,6 @@
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="after_img">
                                     <img class="preview_img" :src='"img/case/"+showLightBox.AFTER_IMG'>
-                                    <p>{{showLightBox.AFTER_IMG}}</p>
                                 </div>
                             </label>
                         </div>
@@ -1132,22 +1094,18 @@
                         <li>
                             <label for="event_title">活動標題:</label>
                             <input name="event_title" type="text" v-model.trim="showLightBox.TITLE">
-                            <p>{{showLightBox.TITLE}}</p>
                         </li>
                         <li>
                             <label for="event_start">開始日期:</label>
                             <input name="event_start" type="datetime" v-model.trim="showLightBox.START">
-                            <p>{{showLightBox.START}}</p>
                         </li>
                         <li>
                             <label for="event_end">截止日期:</label>
                             <input name="event_end" type="datetime" v-model.trim="showLightBox.END">
-                            <p>{{showLightBox.END}}</p>
                         </li>
                         <li>
                             <label for="event_parm">優惠折數:</label>
                             <input name="event_parm" type="text" v-model.trim="showLightBox.PARM">
-                            <p>{{showLightBox.PARM}}</p>
                         </li>
                         <li>
                             上下架:
@@ -1169,7 +1127,6 @@
                                     <p class="dnone">請選擇圖片上傳</p>
                                     <div class="event_img">
                                         <img class="preview_img" :src='"img/activity/"+showLightBox.EVENT_IMG'>
-                                        <p>{{showLightBox.EVENT_IMG}}</p>
                                     </div>
                                 </label>
                             </div>
@@ -1247,7 +1204,6 @@
                                     <p class="dnone">請選擇圖片上傳</p>
                                     <div class="event_img">
                                         <img class="preview_img" :src='"img/activity/"+showLightBox.EVENT_IMG'>
-                                        <p>{{showLightBox.EVENT_IMG}}</p>
                                     </div>
                                 </label>
                             </div>
@@ -1341,15 +1297,6 @@
                                     </div>
                                 </label>
                             </div>
-                            <div class="col_img_box">
-                                <label for="col_sub_img_2">專欄附圖2:
-                                    <input name="col_sub_img_2" class="upFile" type="file" @change="uploadImg">
-                                    <p class="dnone">請選擇圖片上傳</p>
-                                    <div class="col_img">
-                                        <img class="preview_img" :src='"img/activity/"+showLightBox.IMG2'>
-                                    </div>
-                                </label>
-                            </div>
                         </div>
                     </div>
                     <div class="editbtn col">
@@ -1437,15 +1384,6 @@
                                     <p class="dnone">請選擇圖片上傳</p>
                                     <div class="col_img">
                                         <img class="preview_img" :src='"img/activity/"+showLightBox.IMG1'>
-                                    </div>
-                                </label>
-                            </div>
-                            <div class="col_img_box">
-                                <label for="new_col_sub_img_2">專欄附圖2:
-                                    <input name="new_col_sub_img_2" class="upFile" type="file" @change="uploadImg">
-                                    <p class="dnone">請選擇圖片上傳</p>
-                                    <div class="col_img">
-                                        <img class="preview_img" :src='"img/activity/"+showLightBox.IMG2'>
                                     </div>
                                 </label>
                             </div>
