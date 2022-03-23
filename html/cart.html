@@ -309,6 +309,7 @@
                     let thisVue = this;
                     $.ajax({
                         url: `phps/coupon.php`,
+                        data: `data=${thisVue.cusRow.CUS_NO}`,
                         type: 'GET',
                         dataType: 'json',
                         success(res) {
@@ -452,6 +453,7 @@
                         all += this.fee;
                     } else if (this.person.coupon === "2022HAPPY88" && this.cart != "") {
                         all *= this.param;
+                        all = Math.round(all);
                         all += this.fee;
                     } else if (this.person.coupon === "22HAPPYMDAY" && this.cart != "" && all >= 1000){
                         all += this.param;
