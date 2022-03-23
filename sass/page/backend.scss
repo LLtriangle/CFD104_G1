@@ -97,9 +97,13 @@ body{
     overflow-x: hidden;
 }
 
+input,textarea,select{
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
 input[type="text"], input[type="tel"], input[type="date"], textarea, select, option{
     border: 1.5px solid map-get($color , "sub_brown" );
-
 }
 input[type="file"]{
     padding: 5px 10px;
@@ -129,7 +133,7 @@ input[type="file"]{
 // }
 .navigation{
     position: fixed;
-    width: 300px;
+    width: 250px;
     height: 100%;
     background: map-get($color, 'sub_brown');
     border-left: 10px solid map-get($color, 'sub_brown');
@@ -137,7 +141,7 @@ input[type="file"]{
     overflow: hidden;
     
     &.active{
-        width: 80px;
+        width: 70px;
     }
     ul{
         position: absolute;
@@ -192,11 +196,12 @@ input[type="file"]{
                 text-decoration: none;
                 color: map-get($color, 'bg');
                 .icon{
+                    writing-mode: tb-rl;
                     position: relative;
                     display: block;
-                    min-width: 60px;
-                    height: 60px;
-                    line-height: 75px;
+                    min-width: 50px;
+                    height: 50px;
+                    line-height: 50px;
                     text-align: center;
                     img{
                         width: 30px;
@@ -206,8 +211,8 @@ input[type="file"]{
                     position: relative;
                     display: block;
                     padding: 0 10px;
-                    height: 60px;
-                    line-height: 60px;
+                    height: 50px;
+                    line-height: 50px;
                     text-align: start;
                     white-space: nowrap;
                 }
@@ -244,8 +249,8 @@ input[type="file"]{
 }
 .main{
     position: absolute;
-    width: calc(100% - 300px);
-    left: 300px;
+    width: calc(100% - 250px);
+    left: 250px;
     min-height: 100vh;
     background: map-get($color, 'bg');
     transition: 0.5s;
@@ -581,7 +586,8 @@ input[type="file"]{
                         padding: 5px 0;
                     }
                     thead{
-                        background-color: map-get($color , "sub_brown" )
+                        background-color: map-get($color , "sub_brown" );
+                        color: #fff;
                     }
 
                     tbody{

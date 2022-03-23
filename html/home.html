@@ -9,6 +9,9 @@
     <title>首頁</title>
 </head>
 <body>
+    <!-- loading畫面 -->
+    @@include('layout/loading.html')
+    
     <!-- <header></header> -->
     @@include('layout/header.html')
 
@@ -240,18 +243,6 @@
                             <p>{{actiRow.CONTENT}}</p>
                         </a>
                     </li>
-                    <!-- <li>
-                         <a href="activity.html">
-                            <h3> <span>01</span> 新春大優惠</h3>
-                            <p>到2/30前全館消費滿2000現折500 !折扣碼: 2022TIGERYEAR</p>
-                        </a>
-                    </li>
-                    <li>
-                         <a href="activity.html">
-                            <h3> <span>01</span> 新春大優惠</h3>
-                            <p>到2/30前全館消費滿2000現折500 !折扣碼: 2022TIGERYEAR</p>
-                        </a>
-                    </li> -->
                 </ul>
             </div>
 
@@ -270,7 +261,8 @@
                     </div>
                 </a>
                 <div class="txt" v-for="columnsRow in columnsRows">
-                    <a href="columns.html" class="txt_h3">
+                    <div class="col_num dnone">{{columnsRow.COLUMN_NO}}</div>
+                    <a  class="txt_h3 colNum">
                         <h3>{{columnsRow.TOPIC}}</h3>
                     </a>
                      <div class="item">
@@ -278,7 +270,7 @@
                         <div class="name">{{columnsRow.AUTHOR}}</div>
                     </div>
                     <p>{{columnsRow.CONTENT1}}</p>
-                    <a href="columns.html" class="moreprd">more...</a>
+                    <a  class="moreprd colNum">more...</a>
                 </div>
                
             </div>
@@ -292,7 +284,7 @@
 				<label for="Q1">
 					<h3>什麼是整理師？跟清潔阿姨有什麼不一樣？</h3>
 				</label>
-				<p>笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑笑容滿面。</p>
+				<p>我們比較厲害而且笑容滿面。</p>
 			</div>
 			<div class="quesion">
 				<input type="checkbox" id="Q2">
@@ -315,27 +307,6 @@
 				</label>
 				<p>不需要。除了第一次服務時，我們希望客戶在場告知個人的居家習慣外，爾後我們的服務員可以在客戶外出前到宅開始服務，此時客戶即可外出，待服務員完成工作後，以電話撥打給您，告知已完成工作並自行將門關上後離開。</p>
 			</div>
-			<!-- <div class="quesion">
-				<input type="checkbox" id="Q5">
-				<label for="Q5">
-					<h3>過程中如有物品不慎損壞或遺失，該如何處理？</h3>
-				</label>
-				<p>如物品的損壞是由整理師不慎造成的，請務必於現場立即向整理師提出，如確實是本公司服務員所為，本公司將比照合約賠償辦理（最高賠償金額為當次服務費用2倍）；另外如果您發現有物品遺失狀況，請馬上向鐘點管家反映並同時報案處理，本公司將派公司主管立即至現場處理並會同警方全力協助調查。</p>
-			</div> -->
-			<!-- <div class="quesion">
-				<input type="checkbox" id="Q6">
-				<label for="Q6">
-					<h3>是否可以在服務期間照顧小孩？</h3>
-				</label>
-				<p>很抱歉，照顧幼童與小孩不在我們的服務項目中。若家中有較年幼的小孩，請至少要有一位家長協同在家。</p>
-			</div> -->
-			<!-- <div class="quesion">
-				<input type="checkbox" id="Q7">
-				<label for="Q7">
-					<h3>每次服務一定要3小時嗎？</h3>
-				</label>
-				<p>是的，每個人家裡的環境是不同的，所以我們將為您進行客製化的精選服務，不論您的坪數大小，事前您可與專業客服討論、規劃需要為您服務的項目。</p>
-			</div> -->
 		</section>
         
         <!-- 熱門商品section -->
@@ -343,9 +314,9 @@
             <h2>熱門商品</h2>
             <div class="content">
                 <ul class="row">
-                    <li class="col-12 col-md-4 hs_item _1" v-for="prdsRow in prdsRows">
+                    <li class="col-12 col-md-4 hs_item _1" v-for="(prdsRow, index) in prdsRows">
                         <div class="product_bg right"></div>
-                        <a class="hs_link" href="product.html">
+                        <a class="hs_link"  :href="'product.php?prdno='+prdsRow.PRD_NO">
                             <div class="hs_img_box">
                                 <img :src="'img/'+prdsRow.IMG1" alt="">
                             </div>
@@ -353,68 +324,7 @@
                             <p>NT$ {{prdsRow.PRICE}}</p>
                         </a>
                     </li>
-                    <!-- <li class="col-12 col-md-4 hs_item _2">
-                        <div class="product_bg middle"></div>
-                        <a class="hs_link" href="product.html">
-                            <div class="hs_img_box">
-                                <img src="img/prd/prd_2_1.jpg" alt="">
-                            </div>
-                            <h3>白日夢海綿架</h3>
-                            <p>
-                                NT$ 490
-                            </p>
-                        </a>
-                    </li>
-                    <li class="col-12 col-md-4 hs_item _3">
-                        <div class="product_bg left"></div>
-                        <a class="hs_link" href="product.html">
-                            <div class="hs_img_box">
-                                <img src="img/prd/prd_3_1.jpg" alt="">
-                            </div>
-                            <h3>小麋鹿木掛架</h3>
-                            <p>
-                                NT$ 1,480
-                            </p>
-                        </a>
-                    </li>
-                    <li class="col-12 col-md-4 hs_item _4">
-                        <div class="product_bg right"></div>
-                        <a class="hs_link" href="product.html">
-                            <div class="hs_img_box">
-                                <img src="img/prd/prd_1_1.jpg" alt="">
-                            </div>
-                            <h3>格調漩渦 <br> 壁掛式時鐘</h3>
-                            <p>
-                                NT$ 1,099
-                            </p>
-                        </a>
-                    </li>
-                    <li class="col-12 col-md-4 hs_item _5">
-                        <div class="product_bg middle"></div>
-                        <a class="hs_link" href="product.html">
-                            <div class="hs_img_box">
-                                <img src="img/prd/prd_2_1.jpg" alt="">
-                            </div>
-                            <h3>白日夢海綿架</h3>
-                            <p>
-                                NT$ 490
-                            </p>
-                        </a>
-                    </li>
-                    <li class="col-12 col-md-4 hs_item _6">
-                        <div class="product_bg left"></div>
-                        <a class="hs_link" href="product.html">
-                            <div class="hs_img_box">
-                                <img src="img/prd/prd_3_1.jpg" alt="">
-                            </div>
-                            <h3>小麋鹿木掛架</h3>
-                            <p>
-                                NT$ 1,480
-                            </p>
-                        </a>
-                    </li> -->
                 </ul>
-                <!-- <a class="hs_more moreprd" href="mall.html">more...</a> -->
             </div>
 
         </section>
@@ -431,23 +341,23 @@
             data:{
                 // img: "img/index_choose.jpeg"
                 s_imgs: [
-                    {'background-image': 'url(' + "img/home/landing_main_s.jpg" + ')'},
+                    {'background-image': 'url(' + "img/home/landing_1.jpg" + ')', 'background-position': 'center'},
 
-                    {'background-image': 'url(' + "img/home/w_choose.jpeg" + ')'},
+                    {'background-image': 'url(' + "img/home/landing_2.jpg" + ')', 'background-position': 'center'},
 
-                    {'background-image': 'url(' +  "img/home/shirt.jpeg" + ')'},
+                    {'background-image': 'url(' +  "img/home/landing_3.jpg" + ')', 'background-position': 'center'},
 
-                    {'background-image': 'url(' + "img/home/h_fold_side.jpg" + ')'},
+                    {'background-image': 'url(' + "img/home/landing_4.jpg" + ')', 'background-position': 'center'},
                 ],
 
                 l_imgs: [
-                    {'background-image': 'url(' + "img/home/landing_main.jpg" + ')'},
+                    {'background-image': 'url(' + "img/home/landing_1.jpg" + ')', 'background-position': 'center'},
 
-                    {'background-image': 'url(' + "img/home/w_choose.jpeg" + ')'},
+                    {'background-image': 'url(' + "img/home/landing_2.jpg" + ')', 'background-position': 'center'},
 
-                    {'background-image': 'url(' +  "img/home/shirt.jpeg" + ')'},
+                    {'background-image': 'url(' +  "img/home/landing_3.jpg" + ')', 'background-position': 'center'},
 
-                    {'background-image': 'url(' + "img/home/h_fold_side.jpg" + ')'},
+                    {'background-image': 'url(' + "img/home/landing_4.jpg" + ')', 'background-position': 'center'},
                 ],
 
                 i: 0,
@@ -458,6 +368,11 @@
 				columnsRows:[{COLUMN_NO: '', AUTHOR: '', AUTHOR_PIC	:'', DATE: '', TOPIC: '', CONTENT1: ''}],
 				prdsRows:[{PRD_NO: '', CATEGORY: '', PRD_NAME:'', PRICE: '', IMG1: ''}],
 
+                actRows:[{COUPON: '', EVENT_IMG: '', TITLE: '', CONTENT: '', START: '',END: ''}],
+
+                colRows:[
+                    {COLUMN_NO: '', AUTHER: '', AUTHER_PIC: '', DATE: '', TOPIC: '',CONTENT1: '',CONTENT2: '',MAIN_PIC: '',IMG1: '',IMG2: '',SUBTITLE_01: '',SUBTITLE_02: ''}
+                ],
             },
 			methods: {
                 imgTime: function(){
@@ -511,6 +426,19 @@
 					xhr.open("get", "phps/getPrd.php", true);
 					xhr.send(null);
 				},
+
+                getCol(){
+                    let xhr = new XMLHttpRequest();
+                    let thisVue = this;
+                    console.log(1);
+                    xhr.onload = function(){
+                        console.log(xhr.responseText);
+                        console.log(2);
+                        thisVue.colRows = JSON.parse(xhr.responseText);
+                    }
+                    xhr.open("get","phps/selectAll.php?tableName=columntable", true);
+                    xhr.send(null);
+                },
 			},
             computed: {
                 changeImg(){
@@ -523,7 +451,15 @@
 				this.getActi();
 				this.getColumns();
 				this.getPrds();
+                this.getCol();
 			},
+        });
+
+        $('.colNum').on("click",function(){
+            let colNumb = $('.col_num').text();
+            console.log(colNumb);
+            localStorage.setItem('colNumb',colNumb);
+            window.location.href='columns.html';
         });
 
         
