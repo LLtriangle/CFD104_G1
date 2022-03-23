@@ -14,9 +14,10 @@ window.addEventListener('load',function(){
 	
 	serveCase
 	.fromTo('.serve_case > div:nth-of-type(1)',{
-		y:150,},{
-		y:150,
-		x:0,})
+		y:120,},{
+		y:120,
+		})
+		// x:0,})
 	.to('.serve_case > div:nth-of-type(1) .pic .afterPic',{
 		width:700,},">")
 	.to('.serve_case > div:nth-of-type(1) .pic .handle',{
@@ -31,7 +32,8 @@ window.addEventListener('load',function(){
 		y:150,})
 	.to('.serve_case > div:nth-of-type(1)',{
 		y:120,
-		x:20,},"<")
+		},"<")
+		// x:20,},"<")
 	.to('.serve_case > div:nth-of-type(2) .pic .afterPic',{
 		width:700,},">")
 	.to('.serve_case > div:nth-of-type(2) .pic .handle',{
@@ -44,7 +46,8 @@ window.addEventListener('load',function(){
 	.fromTo('.serve_case > div:nth-of-type(3)',{
 		y:1000,},{
 		y:150,
-		x:-20,})
+		})
+		// x:-20,})
 	.to('.serve_case > div:nth-of-type(1)',{
 		y:90,},"<")
 	.to('.serve_case > div:nth-of-type(2)',{
