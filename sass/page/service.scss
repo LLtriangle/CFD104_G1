@@ -71,26 +71,11 @@
         padding: 30px 60px;
     }
     .case{
-        padding: 30px;
         width: calc(100% - 80px);
         height: calc(100vh - 160px);
-        box-sizing: border-box;
-        // border: 1px solid map-get($color , "main");
-        background-color: map-get($color , "cover");
-        // background-image: url('../img/memupupdowndown.png');
-        // background-size: 10px;
-        // background-blend-mode:overlay;
-        box-shadow: 0 0 5px 1px map-get($color , "sub_blue");
-        border-radius: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        &:nth-child(2){
-            width: calc(100% - 100px);
-        }
-        &:nth-child(3){
-            width: calc(100% - 90px);
-        }
         &:not(:first-child){
             position: absolute;
             top: 0;
@@ -98,8 +83,10 @@
             transform: translate(-50%);
         }
         .pic{
-            border: 1px solid map-get($color , "sub_blue");
-            border-radius: 10px;
+            box-shadow: 0 0 5px 1px map-get($color , "sub_blue");
+            box-sizing: border-box;
+            border: 30px solid map-get($color , "bg");
+            border-radius: 10px 10px 0 0;
             display: inline-block;
             line-height: 0;
             position: relative;
@@ -145,22 +132,28 @@
             }
         }
         .txt{
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 5px 5px 1px map-get($color , "sub_blue");
+            background-color: map-get($color , "bg");
             position: relative;
-            background-color: map-get($color , "cover");
+            top: -1px;
+            padding: 0 30px 20px;
+            // background-color: map-get($color , "cover");
             h3{
                 border-bottom: 1px solid map-get($color , "sub_brown");
             }
             .afterTxt{
                 position: absolute;
                 top: 0px;
-                left: 0;
-                height:0%;
-                max-height: 100%;
+                left: 10px;
+                width: calc(100% - 20px);
+                box-sizing: border-box;
                 overflow: hidden;
-                background-color: map-get($color , "cover");
+                box-shadow: 0 5px 5px 0 map-get($color , "sub_blue");
+                padding: 10px;
                 transition: 1s;
+                color: map-get($color , "main");
                 h3{
-                    color: map-get($color , "main");
                     border-bottom: 1px solid map-get($color , "sub_red");
                 }
             }
@@ -171,20 +164,37 @@
             top: 0;
             opacity: .8;
         }
-        &:nth-child(2) .bookmark{
-            right: 90px;
-            transform: rotate(86deg);
-            background:linear-gradient(-90deg,map-get($color ,"sub_inprogress") 30px,map-get($btn_color,"deep_blue") 30px);
+        &:nth-child(2){
+            width: calc(100% - 100px);
+            .afterTxt{
+                background:linear-gradient(180deg,map-get($color ,"sub_inprogress") 30px,map-get($btn_color,"deep_blue") 30px);
+            }
+            .bookmark{
+                right: 90px;
+                transform: rotate(86deg);
+                background:linear-gradient(-90deg,map-get($color ,"sub_inprogress") 30px,map-get($btn_color,"deep_blue") 30px);
+            }
         }
-        &:nth-child(3) .bookmark{
-            right: 45px;
-            transform: rotate(82deg);
-            background:linear-gradient(-90deg,#f7b018 30px,map-get($color,"sub_pending") 30px);
+        &:nth-child(3){
+            width: calc(100% - 90px);
+            .afterTxt{
+                background:linear-gradient(180deg,#f7b018 30px,map-get($color,"sub_pending") 30px);
+            }
+            .bookmark{
+                right: 45px;
+                transform: rotate(82deg);
+                background:linear-gradient(-90deg,#f7b018 30px,map-get($color,"sub_pending") 30px);
+            }
         }
-        &:nth-child(4) .bookmark{
-            right: 0%;
-            transform: rotate(88deg);
-            background:linear-gradient(-90deg,#87d10f 30px,map-get($color,"sub_success") 30px);
+        &:nth-child(4){
+            .afterTxt{
+                background:linear-gradient(180deg,#87d10f 30px,map-get($color,"sub_success") 30px);
+            }
+            .bookmark{
+                right: 0%;
+                transform: rotate(88deg);
+                background:linear-gradient(-90deg,#87d10f 30px,map-get($color,"sub_success") 30px);
+            }
         }
     }
 }
@@ -320,11 +330,15 @@
             max-width: 1200px;
         }
         .case{
+            background-color: map-get($color , "bg");
+            box-shadow: 0 0 5px 1px map-get($color , "sub_blue");
+            border-radius: 10px;
+            position: relative;
             height: calc(100vh - 240px);
             display: flex;
             flex-direction: row;
-            flex-direction: row;
             align-items: center;
+            justify-content: center;
             max-width: 1200px;
             margin: 50px auto;
             &:nth-child(2){
@@ -336,23 +350,28 @@
             &:nth-child(odd){
                 flex-direction: row-reverse;
             }
-            &:nth-child(even) .pic{
-                margin-right: 30px;
-            }
-            &:nth-child(odd) .pic{
-                margin-left: 30px;
-            }
             .pic{
-                width: 50%;
-                height: calc(100vh - 300px);
+                // margin: 0;
+                box-shadow:none;
+                border-radius: 10px;
+                width: auto;
+                // flex-grow: 1;
+                max-height: 100%;
+                // height: calc(100vh - 300px);
                 >img{
                     width: auto;
                     height: calc(100vh - 300px);
                 }
             }
             .txt{
-                width: 50%;
-                // padding: 20px 50px;
+                padding: 20px 30px;
+                box-shadow:none;
+                box-sizing: border-box;
+                border-radius: 10px;
+                width: 500px;
+                .afterTxt{
+                    padding: 30px;
+                }
             }
             &:nth-child(2) .bookmark{
                 right: auto;
