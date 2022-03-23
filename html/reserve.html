@@ -36,10 +36,11 @@
         <div class="content">
             <div v-show="activetab ==='1'" class="tabcontent">
                 <!-- 預約表單 -->
-                <form>
+                <form class="r_form">
+                    <h2 class="form_title">服務預約</h2>
                     <!-- 選擇方案 -->
                     <div>
-                        <h3>選擇方案</h3>
+                        <h3><span class="step">1</span> 選擇方案</h3>
                     </div>
                     <div class="form_item choose_plan">
                         <div class="plan_li">
@@ -106,7 +107,7 @@
 
                     <!-- 選擇整理師 -->
                     <div class="form_item choose_emp">
-                        <h3>選擇整理師</h3>
+                        <h3><span class="step">2</span> 選擇整理師</h3>
                         <div>
                             <select v-model="selectedEmp" @change="getInfo">
                                 <option value="" disabled>請選擇</option>
@@ -118,34 +119,49 @@
 
                     <!-- 選擇日期 -->
                     <div class="form_item choose_date">
-                        <h3>選擇日期
-                           <span class="more_info">i
-                            </span>
-                        </h3>
+                        <h3><span class="step">3</span> 選擇日期</h3>
+                        <span>點擊日期與時段選擇，僅接受今日之後的預約，每次施作以三小時為單位。</span>
+                           <!-- <span class="more_info">i
+                            </span> -->
+                        
                         
                         <div class="calendar_time">
-                            <!-- 月曆 -->
-                            <div id="calendari"></div>
-                            <!-- 挑時段 -->
-                            <div class="time_period">
-                                <input type="radio" v-model="dataTime" value="上午9-12點" id="period_1">
-                                <label class="label_period" for="period_1" data-period="1">
-                                    <div class="time_item">
-                                        <p>上午<br>9-12點</p>
+                            <div class="can_pan">
+                                <!-- 月曆 -->
+                                <div>
+                                    <div id="calendari"></div>
+                                    <!-- 挑時段 -->
+                                    <div class="time_period">
+                                        <input type="radio" v-model="dataTime" value="上午9-12點" id="period_1">
+                                        <label class="label_period" for="period_1" data-period="1">
+                                            <div class="time_item">
+                                                <p>上午<br>9-12點</p>
+                                            </div>
+                                        </label>
+                                        <input type="radio" v-model="dataTime" value="下午14-17點" id="period_2">
+                                        <label class="label_period" for="period_2" data-period="2">
+                                            <div class="time_item">
+                                                <p>下午<br>14-17點</p>
+                                            </div>
+                                        </label>
+                                        <input type="radio" v-model="dataTime" value="晚上18-21點" id="period_3">
+                                        <label class="label_period" for="period_3" data-period="3">
+                                            <div class="time_item">
+                                                <p>晚上<br>18-21點</p>
+                                            </div>
+                                        </label>
                                     </div>
-                                </label>
-                                <input type="radio" v-model="dataTime" value="下午14-17點" id="period_2">
-                                <label class="label_period" for="period_2" data-period="2">
-                                    <div class="time_item">
-                                        <p>下午<br>14-17點</p>
+                                </div>
+                                <div class="time_panel">
+                                    <div>
+                                        <p>｜預約日期</p>
+                                        <p id="selectedDate"></p>
                                     </div>
-                                </label>
-                                <input type="radio" v-model="dataTime" value="晚上18-21點" id="period_3">
-                                <label class="label_period" for="period_3" data-period="3">
-                                    <div class="time_item">
-                                        <p>晚上<br>18-21點</p>
+                                    <div>
+                                        <p>｜預約時段</p>
+                                        <p id="selectedPeriod">{{dataTime}}</p>
                                     </div>
-                                </label>
+                                </div>
                             </div>
                             <!-- 顯示挑選時間 -->
                             <!-- <div class="time_panel" >
@@ -159,19 +175,9 @@
                                 </div>
                             </div> -->
                         </div>
-                        <!-- 顯示挑選時間 -->
-                        <div class="time_panel">
-                            <div>
-                                <p>｜預約日期</p>
-                                <p id="selectedDate"></p>
-                            </div>
-                            <div>
-                                <p>｜預約時段</p>
-                                <p id="selectedPeriod">{{dataTime}}</p>
-                            </div>
-                        </div>
                     </div>
-                    <div>
+                    <div class="my_info flex">
+                        <h3><span class="step">4</span> 填寫資料</h3>
                         <li>
                             <input type="checkbox" id="same_as_cus" value="true" class="radio-input" hidden @change="same_as_cus">
                             <label for="same_as_cus" class="radio-label pointer">
@@ -180,21 +186,19 @@
                             </label>
                         </li>
                     </div>
-                    <!-- <input type="radio" name="same_as_cus">
-                    <label for="same_as_cus">同會員資料</label> -->
                     <!-- 姓名 -->
                     <div class="form_item input_name">
-                        <h3>姓名</h3>
+                        <h4>姓名</h4>
                         <input type="text" v-model.trim="name" placeholder="請輸入姓名" required>
                     </div>
                     <!-- 電話 -->
                     <div class="form_item input_tel">
-                        <h3>電話</h3>
+                        <h4>電話</h4>
                         <input type="text" v-model="tel"  placeholder="請輸入電話" maxlength="10" required>
                     </div>
                     <!-- 地址 -->
                     <div class="form_item choose_add">
-                        <h3>地址</h3>
+                        <h4>地址</h4>
                         <div> 
                             <select name="市" v-model="selectedCity" @change="changeCity">
                                 <option value="" disabled>選擇縣市</option>
@@ -209,7 +213,7 @@
                     </div>
                     <!-- 需求 -->
                     <div class="form_item input_need">
-                        <h3>需求</h3>
+                        <h4>需求</h4>
                         <textarea cols="57" rows="5" v-model="need"></textarea>
                     </div>
                     <!-- 上傳照片 -->
@@ -311,7 +315,7 @@
                                     <option value="Visa" id="visa">Visa</option>
                                     <option value="Mastercard" id="mastercard">Mastercard</option>
                                 </select>
-                                <input type="text" name="cardNumber" id="cardNum" v-model="credit_card" maxlength="16" />
+                                <input type="text" name="cardNumber" id="cardNum" v-model="credit_card" maxlength="16" @change="ValidateCreditCardNumber(credit_card)" />
                             </div>
                             <div class="flex">
                                 <h4 class="left">驗證碼</h4>
@@ -351,7 +355,7 @@
                 <div class="details">
                     <div class="center"><h3>預約明細</h3></div>
                     <div class="datails_info flex">
-                        <table class="d_table">
+                        <table class="d_table m_0_auto">
                             <tr>
                                 <td>姓名</td>
                                 <td>{{name}}</td>
@@ -405,7 +409,6 @@
                 <div class="btn_div between" style="margin: 30px auto;">
                     <a href="mall.html">
                         <button class="center" type="button">
-                            <!-- <ion-icon name="arrow-back-outline"></ion-icon> -->
                             前往商城
                         </button>
                     </a>
@@ -508,7 +511,7 @@
                 // let credit_valid = this.ValidateCreditCardNumber(this.credit_card);
                 if (num == 2) {
                     if (!this.credit_card || !this.selectedYear || !this.selectedMonth || !this.test)
-                    alert("資料不完整");
+                    alert("請填寫付款資訊");
                     else{
                         this.sendForm();
                         alert("預約成功!");
@@ -758,7 +761,14 @@
                 }else if(this.cCard === 'Mastercard'){
                     this.ccard_src='img/mstercard.gif'
                 }
-            }
+            },
+            show_pic(){
+                if(upFile1.files[0] != undefined){
+                    return true;
+                }else{
+                    return false;
+                }
+            },
         },
         mounted() {
             this.getMemberInfo();
