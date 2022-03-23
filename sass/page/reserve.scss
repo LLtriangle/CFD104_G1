@@ -83,7 +83,7 @@ table.creditCard{
 .form_item{
     margin: 20px auto; 
     display: flex;
-    h3{
+    h4{
         margin-right: 20px;
     }
 }
@@ -176,7 +176,7 @@ table.creditCard{
             align-items: center;
             position: absolute;   
             top: 25%;
-            left: 120px;
+            left: 180px;
             font-size: 15px;
             width: 20px;
             height: 20px;
@@ -203,35 +203,6 @@ table.creditCard{
                 opacity: 1;
                 }
             }
-    }
-
-    // 顯示預約時間
-    .time_panel{
-        width: 650px;
-        display: flex;
-        border-radius: 10px;
-        background-color: white;
-        box-shadow: 1px 1px 2px map-get($color , 'sub_blue' );
-        // padding: 10px;
-        box-sizing: border-box;
-        align-items: center;
-        padding: 10px;
-        div{
-            display: flex;
-            width: 50%;
-            // width: 200px;
-            // &:last-child{
-            //     margin-left: 50px;
-            // }
-            p{
-                &:first-child{
-                    font-weight: 800;
-                }
-                &:last-child{
-                    margin-left: 50px;
-                }
-            }
-        }
     }
 }
 
@@ -503,10 +474,10 @@ textarea {
     }
     .choose_date {
         .time_panel{
-            min-width: unset;
+            min-width: 100%;
             width: 100%;
             display: block;
-            margin: 10px auto;
+            margin: 10px 0;
             div{
                 width: 100%;
             }
@@ -619,4 +590,23 @@ textarea {
 }
 .in-b{
     display: inline-block;
+}
+// .ml_10{
+//     margin-left: 10px;
+// }
+.my_info{
+    margin-top: 50px;
+    li{
+        margin-left: 20px;
+    }
+}
+.step{
+    background-color: map-get($color , "main" );
+    width: 25px;
+    height: 25px;
+    color: white;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    margin-right: 5px;
 }

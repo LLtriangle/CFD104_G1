@@ -7,7 +7,7 @@
     position: relative;
     overflow: hidden;
     min-width: 550px;
-    height: 480px;
+    height: 400px;
     font-size: 14px;
     box-shadow: 0px 1px 4px rgba(0,0,0,0.4);
     border-radius: 10px;
@@ -195,54 +195,76 @@
         opacity: 0.5;
         background-color: gray;
     }
-    
+// ---------------------  
     // 早中晚input
-    .calendar_time{
-        display: flex;
-        // justify-content: space-between;
-        
-            .time_period{
-                width: 20%;
-                padding-top: 110px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: space-evenly;
-                input{
-                    display: none;
+.calendar_time{
+    // display: flex;
+    // 顯示預約時間
+    .time_panel{
+        display: block;
+        width: 300px;
+        // padding: 10px;
+        box-sizing: border-box;
+        align-items: center;
+        padding: 10px;
+        div{
+            box-shadow: 1px 1px 2px map-get($color , 'sub_blue' );
+            border-radius: 10px;
+            background-color: white;
+            display: flex;
+            width: 100%;
+            padding: 10px 0;
+            margin: 10px 0;
+            p{
+                &:first-child{
+                    font-weight: 800;
                 }
-                input:checked + label .time_item{
-                    border: 2px solid #82002D;
-                    p{
-                        font-weight: 900;
-                    }
+                &:last-child{
+                    margin-left: 50px;
                 }
-                label{
-                    cursor: pointer;
-                    .time_item{
-                        border: 3px solid transparent;
-                        border-radius: 50%;
-                        width: 80px;
-                        height: 80px;
-                        margin: 5px;
-                        text-align: center;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        background-color:#dfbe9be1;
-                        box-sizing: border-box;
-                        p{  
-                            box-sizing: border-box;
-                            font-size: 12px;
-                            padding: 10px;
-                            font-weight: 900;
-                            letter-spacing: 0.1em;
-                        }
-                    }
-                }
-    
             }
         }
+    }
+    .time_period{
+        width: 550px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        input{
+            display: none;
+        }
+        input:checked + label .time_item{
+            border: 2px solid #82002D;
+            p{
+                font-weight: 900;
+            }
+        }
+        label{
+            cursor: pointer;
+            .time_item{
+                border: 3px solid transparent;
+                border-radius: 50%;
+                width: 80px;
+                height: 80px;
+                margin: 5px;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color:#dfbe9be1;
+                box-sizing: border-box;
+                p{  
+                    box-sizing: border-box;
+                    font-size: 12px;
+                    padding: 10px;
+                    font-weight: 900;
+                    letter-spacing: 0.1em;
+                }
+            }
+        }
+
+    }
+}
 // font-size: 8px;
 // font-weight: bold;
 // color: rgb(44, 39, 39);
@@ -265,6 +287,7 @@
     border-radius: 10px;
 }
 
+// 830以下
 @media screen and (max-width: 830px) {
     #calendari {
         min-width: unset;
@@ -279,5 +302,49 @@
             width: 100%;
         }
     }
-    
+    .can_pan{
+        display: block;
+    }
+}
+.r_form{
+    margin:0 auto;
+    .form_title{
+        margin-bottom: 50px;
+    }
+}
+// 830px 以上
+@media screen and (min-width: 830px) {
+    .r_form{
+        margin:0 50px;
+        .form_title{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 50px;
+            position: relative;
+            &:before{
+                content: "";
+                width: 30%;
+                height: 3px;
+                background-color: map-get($color , "main" );
+                position: absolute;
+                right: 0px;
+            }
+            &:after{
+                content: "";
+                width: 30%;
+                height: 3px;
+                background-color: map-get($color , "main" );
+                position: absolute;
+                left: 0px;
+            }
+        }
+    }
+    .can_pan{
+        display: flex;
+        .time_panel{
+            margin-top: 290px;
+            margin-left: 50px;
+        }
+    }
 }
