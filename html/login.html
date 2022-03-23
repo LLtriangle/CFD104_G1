@@ -12,7 +12,7 @@
   </head>
   <body>
     @@include('layout/header.html')
-    <main>
+    <main id="app">
         <!-- rwd專屬 -->
         <div class="lo_or_si">
             <button type="button" class="rwd_button sirwd" id="si_box">註冊</button>
@@ -100,5 +100,34 @@
             sibox.style="transform: scale(0.9);background-color:#ECF0F3";
         }
     </script>
+    <!-- <script>
+        new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods: {
+                addMem(){
+                  let xhr = new XMLHttpRequest();
+                  xhr.onload = function(){
+                    //跳轉
+                    location.href="member.html";
+                  }
+                  xhr.open("post", "phps/register.php", true);  
+                  xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    
+                  let datas = {};
+                  datas.memId = $id("cusId").value; // 收到輸入框的會員帳號
+                  datas.memPsw = $id("cusPsw").value; // 收到輸入框的會員密碼
+                  datas.memName = $id("cusName").value; // 收到輸入框的會員姓名
+                
+                  let data_info = "json=" + JSON.stringify(datas);
+                  xhr.send(data_info);
+                  console.log(data_info);
+                },
+
+            },
+        })
+    </script> -->
   </body>
 </html>

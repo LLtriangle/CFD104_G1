@@ -7,6 +7,91 @@
     padding: 0;
     box-sizing: border-box;
 }
+// loading畫面
+#loading_box {
+    position: fixed;
+    width: 100vw;
+    height: 120vh;
+    top: 0;
+    left: 0;
+    z-index: 900;
+    // background: url('../SoEazy.png') no-repeat 49.5% 52%/160px;
+    background-color: map-get($color , "cover" );
+    background-blend-mode: difference;
+    #loading_svg {
+        width: 100vw;
+        height: 100vh;
+        animation: svgOut .5s 3.2s;
+        animation-fill-mode: forwards;
+        polyline,
+        line{
+            stroke: map-get($color , "main" );
+            stroke-width: 2px;
+            fill: none;
+        }
+        line{
+            &:nth-of-type(1){
+                transform-origin:-50px -37px;
+            }
+            &:nth-of-type(2){
+                transform-origin:50px -37px;
+            }
+        }
+        rect{
+            &:nth-of-type(1){
+                fill: map-get($color , "sub_red" );
+            }
+            &:nth-of-type(2){
+                fill: map-get($color , "bg_pink" );
+            }
+        }
+        
+        polyline{
+            &:nth-of-type(2){
+                // opacity: .5;
+                fill: map-get($color , "sub_brown" );
+                stroke: none;
+            }
+            &:nth-of-type(3){
+                // opacity: .5;
+                fill: map-get($color , "sub_blue" );
+                stroke:none
+            }
+        }
+    }
+    .pic{
+        position: absolute;
+        background-color: map-get($color , "cover" );
+        z-index: 999;
+        width: 21vw;
+        overflow: hidden;
+        left: 50%;
+        top: 50%;
+        transform: translate(-52% ,-43.2%);
+        opacity: 0;
+        animation: picIn .5s 3s;
+        animation-fill-mode: forwards;
+        img{
+            width: 100%;
+        }
+    }
+}
+@keyframes svgOut{
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes picIn{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 body{
     min-height: 100vh;
     overflow-x: hidden;
@@ -91,7 +176,7 @@ input[type="file"]{
             }
             &:last-child{
                 background-color: map-get($color, 'main');
-                pointer-events: none;
+                // pointer-events: none;
                 a{
                     color: map-get($color, 'bg');
                     img{
@@ -130,8 +215,8 @@ input[type="file"]{
         }
     }
 }
-.navigation ul li:hover a::before,
-.navigation ul li.hovered a::before{
+.navigation ul li:not(:last-child):hover a::before,
+.navigation ul li:not(:last-child).hovered a::before{
     content: '';
     position: absolute;
     right: 0;
@@ -144,8 +229,8 @@ input[type="file"]{
     pointer-events: none;
 }
   
-.navigation ul li:hover a::after, 
-.navigation ul li.hovered a::after{
+.navigation ul li:not(:last-child):hover a::after, 
+.navigation ul li:not(:last-child).hovered a::after{
     content: '';
     position: absolute;
     right: 0;
@@ -417,7 +502,7 @@ input[type="file"]{
 
     
 
-    .prd_img, .need_img, .before_img, .after_img, .event_img, .col_img{
+    .prd_img, .need_img, .before_img, .after_img, .event_img, .col_img, .emp_img, .new_emp_img, .new_col_author_img{
         border: 1.5px solid map-get($color , "sub_brown" );
         background-color: #fff;
         width: 260px;

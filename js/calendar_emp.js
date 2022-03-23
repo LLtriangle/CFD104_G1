@@ -167,14 +167,14 @@ function createCalendar(){
                 
                 let dp = new Date();
                 let month00 = dp.getMonth(); // 現在月份
-                // if(actual.getDate() <= data.getDate() && actual.getMonth() <= month00){
-                //     td.className = 'past';
-                // }
+                if(actual.getDate() < data.getDate() && actual.getMonth() <= month00){
+                    td.className = 'pastday';
+                }
     
                 // today=今天
                 // data.getMonth() = 2
                 if(data.getDate() == actual.getDate() && actual.getMonth() == month00){
-                    // td.className = 'today';
+                    td.classList.add("today");
                     td.classList.add("active");
                 }
                 // ---------------3/14新增
@@ -221,14 +221,9 @@ function createCalendar(){
 
                 for(let i=0; i<tds.length; i++){
 
-                    if(tds[i].className.indexOf('fora') == -1 && tds[i].className.indexOf('today') == -1 && tds[i].className.indexOf('past') == -1 ){
+                    if(tds[i].className.indexOf('fora') == -1 ){
                         tds[i].onclick=function(){
-                            // vm.sao_date=tds[i].dataset.date;
-                            // console.log(actual.getDate());
 
-                            // 每次點擊清空時段選擇
-                            // vm.dataTime = null;
-                            // tds[i] 是這個被點到的格子
                             $('#calendari td').removeClass("active");
                             $(this).addClass("active");
                             // data.getDate() 是今天的日期

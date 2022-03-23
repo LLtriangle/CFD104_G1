@@ -34,8 +34,8 @@
                     </div>
                 </label>
                 <div class="con_data">
-                    <a>工作行程</a><br>
-                    <a>工作紀錄</a><br>
+                    <a @click="workSch=true;workInfo=false">工作行程</a><br>
+                    <a @click="workSch=false;workInfo=true">工作紀錄</a><br>
                     <a id="btnLogout" @click="logout">登出</a>
                 </div>
             </div>
@@ -47,17 +47,19 @@
             <div class="title_color"></div>
             <!-- 資料區的內容盒子 data_mem------------------>
             <!-- 工作行程 -->
-            <div class="data_mem emp_sch center relative">
+            <div class="data_mem emp_sch center relative" v-show="workSch">
 
                 <!-- 月曆 -->
                 <div class="emp_calendar">
-                    <button class="btn_btn br btn_job" type="button">請假</button>
+                    <button class="btn_btn br btn_job" @click="setSch" type="button">請假</button>
 
                     <div id="calendari"></div>
+
+                    <button class="btn_btn br btn_confirm" @click="sendSch" type="button">確認</button>
                 </div>
                 <!-- 我是預約明細 ------------------------------->
                 <div class="data_list" id="lightbox">
-                    <button type="button" class="btn_btn del_btn center" @click="close_lightbox">×</button>
+                    <button type="button" class="btn_btn br del_btn center" @click="close_lightbox">×</button>
                     
                     <div class="memberReserve" v-for="item in saoinfos.filter(obj=>obj.SAO_DATE == clickDate)">
                         <div class="memberReserveContent">
@@ -98,17 +100,17 @@
                                         <div>顧客環境照</div>
                                     </div>
                                     <div href="product.html" class="memberOrderD2 sao_pics">
-                                        <p id='none'>無</p>
-                                        <img class="sao_pic1" :src="item.UPLOAD_PIC1">
-                                        <img class="sao_pic2" :src="item.UPLOAD_PIC2">
-                                        <img class="sao_pic3" :src="item.UPLOAD_PIC3">
+                                        <p id='none' v-show="!item.UPLOAD_PIC1">無</p>
+                                        <img class="sao_pic1" v-show="item.UPLOAD_PIC1" :src="item.UPLOAD_PIC1">
+                                        <img class="sao_pic2" v-show="item.UPLOAD_PIC2" :src="item.UPLOAD_PIC2">
+                                        <img class="sao_pic3" v-show="item.UPLOAD_PIC3" :src="item.UPLOAD_PIC3">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- 回報btn放這裡---- -->
-                        <button class="btn_btn btn_report" type="button" @click="showForm(item.SAO_NO,item.SAO_DATE,item.SAO_ADD)">回報</button>
+                        <button class="btn_btn br btn_report" type="button" v-show="item.STATE == '未完成' " @click="showForm(item.SAO_NO,item.SAO_DATE,item.SAO_ADD)">回報</button>
                     </div>
 
                 </div>
@@ -146,11 +148,47 @@
 
             </div>
 
-
             <!-- 工作紀錄 -->
-            <div class="data_mem">
-
+            <div class="data_mem data_list" v-show="workInfo">
+                
+                <div class="memberReserve" v-for="item in saoinfos">
+                    <div class="memberReserveContent">
+                        <div class="memberGrid">
+                            <div class="memberGrid1">預約編號</div>
+                            <div class="memberGrid2">預約時間</div>
+                            <div class="memberGrid3">預約時段</div>
+                            <div class="memberGrid4">預約人</div>
+                            <div class="memberGrid5">預約地址</div>
+                            <div class="memberGrid6">電話</div>
+                            <div class="memberGrid7">預約方案</div>
+                            <div class="memberGrid8">預約狀態</div>
+                            <!-- ----------------- -->
+                            <div class="memberGrid9"> {{item.SAO_NO}} </div>
+                            <div class="memberGrid10"> {{item.SAO_DATE}} </div>
+                            <div class="memberGrid11"> {{item.SAO_TIME}} </div>
+                            <div class="memberGrid12"> {{item.SAO_NAME}} </div>
+                            <div class="memberGrid13"> {{item.SAO_ADD}} </div>
+                            <div class="memberGrid14"> {{item.SAO_TEL}} </div>
+                            <div class="memberGrid15"> {{item.PLAN_NAME}} </div>
+                            <div class="memberGrid16"> {{item.STATE}} </div>
+                        </div>
+                    </div>
+            
+                    <!-- <div class="memberReserveDetailHere">
+                        <div class="memberReserveDetailAll">
+                            <div class="memberReserveDetail">
+                                <div class="memberReserveD1">
+                                    <div>顧客需求</div>
+                                </div>
+                                <div href="product.html" class="memberOrderD2">
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
             </div>
+            <!-- -------------工作紀錄結束 -->
         </section>
 
     </main>
@@ -159,6 +197,8 @@
             let vm = new Vue({
                 el:'#emp_data',
                 data:{
+                    workSch: true, // 預設
+                    workInfo: false, // 預設
                     emp_pic:'img/cus/emp_img.jpg', // 預設大頭貼
                     empRow:[],
                     saoinfos:[],
@@ -171,6 +211,8 @@
                     sao_no:"",
                     sao_date:"",
                     sao_add:"",
+                    todaySao:[],
+                    nodos:[],
                 },
                 methods: {
                     getEmpInfo(){
@@ -195,19 +237,15 @@
                             type: 'GET', 
                             dataType: 'json', 
                             success(res){
-                                let tds = $("#calendari td");
+                                let tds = document.querySelectorAll("#calendari td");
                                 thisVue.saoinfos = res;
+                                console.log(tds.length);
                                 // 有幾筆預約訂單跑幾次
-                                
-
                                 for(let j=0; j<tds.length; j++){
+                                    // 開燈箱
                                     // $('#lightbox .memberReserve').remove();
                                     for(let i=0; i<thisVue.saoinfos.length; i++){
-                                        // console.log("SAO_DATE",thisVue.saoinfos[i].SAO_DATE);
-                                        // console.log("SAO_TIME",thisVue.saoinfos[i].SAO_TIME);
-                                        // for(let j=0; j<tds.length; j++){
-                                        //     console.log(tds[j].dataset.date);
-                                        // }
+                                        tds[j].addEventListener('click',thisVue.open_lightbox,false);
                                         
                                         if(thisVue.saoinfos[i].SAO_DATE == tds[j].dataset.date){
                                             // 早中晚點點加上reserved
@@ -229,66 +267,14 @@
     
                                             if(thisVue.saoinfos[i].STATE == 1){
                                                 thisVue.saoinfos[i].STATE = "已完成";
-                                                $(".btn_report").hide();
+                                                // $(".btn_report").hide();
                                             }else if(thisVue.saoinfos[i].STATE == 0){
                                                 thisVue.saoinfos[i].STATE = "未完成";
                                             }; 
-
+                                            
                                             // 需求
                                             if(thisVue.saoinfos[i].NEEDS == "" || thisVue.saoinfos[i].NEEDS == null){
                                                 thisVue.saoinfos[i].NEEDS = "無"
-                                            };
-                                            // $(".memberReserve").append("<button class='btn_btn' type='button'>回報</button>");
-                                                // $(".btn_report").hide();
-                                            
-                                            // 照片
-                                            // if(thisVue.saoinfos[i].UPLOAD_PIC1 == "" || thisVue.saoinfos[i].UPLOAD_PIC1 == null){
-                                            //     $("#none").show();
-                                            //     $(".sao_pic1").hide();
-                                            //     $(".sao_pic2").hide();
-                                            //     $(".sao_pic3").hide();
-                                            // }else{ // 有圖
-                                            //     $("#none").remove();
-                                            //     $(".sao_pic1").show();
-                                            //     $(".sao_pic2").show();
-                                            //     $(".sao_pic3").show();
-
-                                            //     thisVue.saoinfos[i].UPLOAD_PIC1 = "img/reserve/"+thisVue.saoinfos[i].UPLOAD_PIC1;
-                                            //     // $(".sao_pic1").attr("src","img/reserve/"+thisVue.saoinfos[i].UPLOAD_PIC1);
-                                            //     if(thisVue.saoinfos[i].UPLOAD_PIC2 != null)
-                                            //     thisVue.saoinfos[i].UPLOAD_PIC2 = "img/reserve/"+thisVue.saoinfos[i].UPLOAD_PIC2;
-                                            //     if(thisVue.saoinfos[i].UPLOAD_PIC3 != null)
-                                            //     thisVue.saoinfos[i].UPLOAD_PIC3 = "img/reserve/"+thisVue.saoinfos[i].UPLOAD_PIC3;
-                                            // };
-
-                                            tds[j].onclick = function (){
-                                                thisVue.clickDate = tds[j].dataset.date;
-                                                $("#lightbox").toggle().show();
-
-                                                $('#calendari td').removeClass("active");
-                                                $(this).addClass("active");
-                                                
-                                                // 照片
-                                            if(thisVue.saoinfos[i].UPLOAD_PIC1 == "" || thisVue.saoinfos[i].UPLOAD_PIC1 == null){
-                                                $("#none").show();
-                                                $(".sao_pic1").hide();
-                                                $(".sao_pic2").hide();
-                                                $(".sao_pic3").hide();
-                                            }else{ // 有圖
-                                                $("#none").hide();
-                                                $(".sao_pic1").show();
-                                                $(".sao_pic2").show();
-                                                $(".sao_pic3").show();
-
-                                                thisVue.saoinfos[i].UPLOAD_PIC1 = "img/reserve/"+thisVue.saoinfos[i].UPLOAD_PIC1;
-                                                // $(".sao_pic1").attr("src","img/reserve/"+thisVue.saoinfos[i].UPLOAD_PIC1);
-                                                if(thisVue.saoinfos[i].UPLOAD_PIC2 != null)
-                                                thisVue.saoinfos[i].UPLOAD_PIC2 = "img/reserve/"+thisVue.saoinfos[i].UPLOAD_PIC2;
-                                                if(thisVue.saoinfos[i].UPLOAD_PIC3 != null)
-                                                thisVue.saoinfos[i].UPLOAD_PIC3 = "img/reserve/"+thisVue.saoinfos[i].UPLOAD_PIC3;
-                                            };
-                                                
-
                                             };
                                         };
                                     };
@@ -313,8 +299,6 @@
                                 thisVue.schinfos = res;
 
                                 for(let i=0; i<thisVue.schinfos.length; i++){
-                                    // console.log("DAY_OFF",thisVue.schinfos[i].DAY_OFF);
-                                    // console.log("SCH_TIME",thisVue.schinfos[i].SCH_TIME);
 
                                     for(let j=0; j<tds.length; j++){
                                         if(thisVue.schinfos[i].DAY_OFF == tds[j].dataset.date){
@@ -326,12 +310,6 @@
                                             }else if(thisVue.schinfos[i].SCH_TIME==3){
                                                 tds[j].childNodes[0].childNodes[1].childNodes[2].classList.add('leave');
                                             }
-                                            // tds[j].onclick = function (){
-                                            //     // $("#lightbox").toggle().show();
-                                            //     // console.log($(".memberGrid9").text());
-                                            //     $(".memberGrid9").text(thisVue.saoinfos[i].SAO_DATE);
-                                                
-                                            // }  
                                         }
                                     }
                                 }
@@ -350,6 +328,41 @@
                         }
                         xhr.open("get", "phps/logout.php", true); // 清空session
                         xhr.send(null);
+                    },
+                    open_lightbox(e){
+                        e.stopPropagation();
+                        console.log("我要開燈箱",e);
+                        let thisVue = this;
+                        // let td = document.querySelector("#calendari td.active");
+                        let td = e.target.closest("td");
+                        // console.log(td);
+                        thisVue.clickDate = td.dataset.date;
+                        thisVue.todaySao = thisVue.saoinfos.filter(obj=>obj.SAO_DATE==thisVue.clickDate);
+
+                        if(thisVue.todaySao.length>0){
+                            $("#lightbox").toggle().show();
+                            
+                            for(let index in thisVue.todaySao){
+
+                                if(thisVue.todaySao[index].UPLOAD_PIC1 == "" || thisVue.todaySao[index].UPLOAD_PIC1 == null){
+                                    // 沒圖
+                                    thisVue.todaySao[index].UPLOAD_PIC1 = false;
+                                }else{ // 有圖
+                                    thisVue.todaySao[index].UPLOAD_PIC1 = "img/reserve/"+thisVue.todaySao[index].UPLOAD_PIC1;
+                                    if(thisVue.todaySao[index].UPLOAD_PIC2 != null){
+                                        thisVue.todaySao[index].UPLOAD_PIC2 = "img/reserve/"+thisVue.todaySao[index].UPLOAD_PIC2;
+                                    }else{
+                                        thisVue.todaySao[index].UPLOAD_PIC2 = false;
+                                    }
+
+                                    if(thisVue.todaySao[index].UPLOAD_PIC3 != null){
+                                        thisVue.todaySao[index].UPLOAD_PIC3 = "img/reserve/"+thisVue.todaySao[index].UPLOAD_PIC3;
+                                    }else{
+                                        thisVue.todaySao[index].UPLOAD_PIC3 = false;
+                                    }
+                                };
+                            }
+                        }
                     },
                     close_lightbox(){
                         $("#lightbox").toggle().hide();
@@ -396,6 +409,96 @@
                             xhr.open("post", "phps/sendReport.php", true);  
                             xhr.send(formData);
                         }
+                    },
+                    selectSch(e){
+                        console.log("我在selectSch請假",e.target);
+                        e.stopPropagation();
+                        
+                        $(e.target).toggleClass("nodo");
+                        // let slot = {};
+                        // slot.date = e.target.closest("td").dataset.date;
+                        // slot.time = e.target.dataset.time;
+                        // let aa= this.nodos.filter(obj => (obj.date == slot.date )&& (obj.time == slot.time));
+
+                        // if(aa>0){
+                        //     console.log(aa);
+                        //     this.nodos.pop(slot);
+                        // }else{
+                        //     console.log(aa);
+                        //     this.nodos.push(slot);
+                        // }
+
+                    },
+                    // 按下請假btn
+                    setSch(){
+                        let thisVue = this;
+                        let periods = $("span.period");
+                        // console.log(periods.length); //126
+                        for(let i=0; i<periods.length; i++){
+                            periods[i].addEventListener("click",thisVue.selectSch,false);
+                            // if(periods[i].classList.contains("leave") == false && periods[i].classList.contains("reserved") == false){
+                            //     // periods[i].style.transform = "scale(1.5)"
+                            // }
+                        };
+                        // 顯示確認btn
+                        $(".btn_job").hide();
+                        $(".btn_confirm").show();
+                        $("#calendari td").css({
+                            "pointer-events":"none"
+                        });
+                        $("span.period").css({
+                            "pointer-events":"auto"
+                        });
+                        $("#calendari td.pastday span.period,#calendari td.today span, span.period.leave, span.period.reserved").css({
+                            "pointer-events":"none"
+                        });
+                        $("#calendari td.pastday,#calendari td.today").css({
+                            "opacity":"0.3",
+                            "pointer-events":"none"
+                        });
+                        $("#calendari td").removeClass("active");
+
+
+                        
+                    },
+                    // 按下確認
+                    sendSch(){
+                        $("#calendari td.pastday,#calendari td.today").css({
+                            "opacity":"1"
+                        });
+                        $("#calendari td").css({
+                            "pointer-events":"auto"
+                        });
+                        $("span.period").css({
+                            "pointer-events":"none"
+                        });
+                        // 今天要加回active
+                        this.getsao();
+                        this.getsch();
+                        
+                        let nl = $(".nodo");
+                        for(let i=0; i<nl.length; i++){
+                            let slot = {};
+                            slot.date = nl[i].closest("td").dataset.date;
+                            slot.time = nl[i].dataset.time;
+                            this.nodos.push(slot);
+                        }
+                        let xhr = new XMLHttpRequest();
+                        let thisVue = this;
+                        xhr.onload = function(){
+                            alert("請假成功!");
+                            $(".nodo").addClass("leave")
+                            $(".nodo").removeClass("nodo");
+                        }
+                        
+                        let json = JSON.stringify(this.nodos);
+                        // console.log(json);
+                        xhr.open("get", "phps/sendSch.php?json="+json, true);
+                        xhr.send(null);
+
+                        $(".btn_job").show();
+                        $(".btn_confirm").hide();
+                       
                     },
                 },
                 mounted() {

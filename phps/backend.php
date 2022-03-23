@@ -35,7 +35,7 @@ try {
 		$sql = "select CASE_NO ta, INFO_BEFORE, INFO_AFTER from {$_GET['data']}";
 		
 	}elseif ($_GET['data'] == "event"){
-		$sql = "select COUPON ta, TITLE, START, END, STATE from {$_GET['data']}";
+		$sql = "select COUPON ta, TITLE, START, END, STATE from {$_GET['data']} order by END";
 		
 	}elseif ($_GET['data'] == "columntable"){
 		$sql = "select COLUMN_NO ta, TOPIC, AUTHOR, DATE from {$_GET['data']}";
