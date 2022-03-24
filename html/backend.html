@@ -1477,7 +1477,7 @@
                 content(tableName) {
                     this.tableName = tableName;
                     var vueApp = this;
-                    console.log("重新再跑一次R!:", tableName);
+                    // console.log("重新再跑一次R!:", tableName);
                     $.ajax({
                         url: `phps/backend.php`,   // 呼叫的檔案或網址列
                         data: `data=${tableName}`,     // 傳送到 server 端的資料，會自動轉成字串形式
@@ -1605,8 +1605,8 @@
                             $(`.nav_li.${vueApp.tableName}`).addClass("hovered");
                         },
                         error(res){
-                            console.log('error');
-                            console.log(res);
+                            // console.log('error');
+                            // console.log(res);
                         },
                         
                     });
@@ -1648,7 +1648,7 @@
                             type: 'GET',     // GET 或 POST
                             dataType: 'json', // response 的資料格式，xml | html | script | json | jsonp | text
                             success(res){
-                                console.log(res);
+                                // console.log(res);
                                 vueApp.showLightBox = res;
                                 $(`.light_box.${vueApp.tableName}`).addClass("show");
 
@@ -1671,7 +1671,7 @@
 
                             },
                             error(res){
-                                console.log(res);
+                                // console.log(res);
                             },
                         });
                     };
@@ -1752,7 +1752,7 @@
                         // console.log(xhr.responseText);
                         // vueApp.showLightBox = JSON.parse(xhr.responseText);
                         // vueApp.showLightBox = xhr.responseText;
-                        console.log(`修改${xhr.responseText}筆資料`);
+                        // console.log(`修改${xhr.responseText}筆資料`);
                         vueApp.content(vueApp.tableName);
                     }
 
@@ -1785,7 +1785,7 @@
                     let xhr = new XMLHttpRequest();
                     let thisVue = this;
                     xhr.onload = function () {
-                        console.log(xhr.responseText);
+                        // console.log(xhr.responseText);
                         if (!JSON.parse(xhr.responseText).EMP_EMAIL) {
                             location.href="backendlogin.html";
                         };
@@ -1804,14 +1804,14 @@
                         // vueApp.showLightBox = JSON.parse(xhr.responseText);
                         // vueApp.showLightBox = xhr.responseText;
                         // console.log(`新增${xhr.responseText}筆資料`);
-                        console.log(xhr.responseText);
+                        // console.log(xhr.responseText);
                         vueApp.content(vueApp.tableName);
                     }
 
                     xhr.open("post", "phps/backendNew.php", true);
                     let this_form = e.target.closest("form");
                     let formData = new FormData(this_form);
-                    console.log(document.getElementsByName("new_emp_email")[0].value);
+                    // console.log(document.getElementsByName("new_emp_email")[0].value);
                     xhr.send(formData);
                     // console.log(formData);
 
