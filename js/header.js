@@ -21,7 +21,7 @@ $(window).on('load',function(){
 
     // menu 顯示
     $('.menu_btns').on('click',function(){
-        console.log("menu_btns click");
+        // console.log("menu_btns click");
         $('.logo').toggleClass('on');
         $('.header_function').toggleClass('on');
         $('.menu_link').toggleClass('on');
@@ -44,7 +44,7 @@ $(window).on('load',function(){
     var currentScrollPos = window.pageYOffset;
     
         if($('.menu_link.on')[0]){
-            console.log("menu_btns open, no slide disapper");
+            // console.log("menu_btns open, no slide disapper");
         }else{
             if (prevScrollpos > currentScrollPos) {
                 $("header").removeClass("hide");
