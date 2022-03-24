@@ -10,7 +10,7 @@ try {
 	$Rows = $allTable->fetchAll(PDO::FETCH_ASSOC);
 
     
-    echo json_encode($Rows).'|';
+    // echo json_encode($Rows).'|';
     // $sql = "select o.ORD_NO,o.CUS_NO,o.CUS_NAME,o.CUS_TEL,o.CUS_ADD,o.TIME,o.SHIPPING,o.TOTAL,o.PAY_STATE,o.STATE,o.COUPON,i.PRD_NO,p.PRD_NAME,i.PRICE prd_price,i.AMOUNT,p.IMG1
         // from ordinfo i join ord o on o.ORD_NO = i.ORD_NO
         //                join prd p on p.PRD_NO = i.PRD_NO";
@@ -21,10 +21,10 @@ try {
 	
 	$allInfo = $pdo->query($sql);
 	$OrdInfo = $allInfo->fetchAll(PDO::FETCH_ASSOC);
-	echo json_encode($OrdInfo);
+	// echo json_encode($OrdInfo);
 } catch (PDOException $e) {
-	echo "錯誤原因 : ", $e->getMessage(), "<br>";
-	echo "錯誤行號 : ", $e->getLine(), "<br>";
+	// echo "錯誤原因 : ", $e->getMessage(), "<br>";
+	// echo "錯誤行號 : ", $e->getLine(), "<br>";
 	// echo "系統錯誤, 請通知系統維護人員<br>";
 };
 ?>

@@ -378,7 +378,7 @@
                     let xhr = new XMLHttpRequest();
                     let thisVue = this;
                     xhr.onload = function(){
-                        console.log(JSON.parse(xhr.responseText));
+                        // console.log(JSON.parse(xhr.responseText));
                         thisVue.empsRows = JSON.parse(xhr.responseText);
                     }
                     xhr.open("get", "phps/emp.php", true);
