@@ -882,9 +882,8 @@
                             <li>服務人員編號: {{showLightBox.EMP_NO}}</li>
                             <li>服務金額: NT$ {{showLightBox.PRICE}}元</li>
                             <li class="sao_detail_content need">
-                                服務需求:
                                 <label for="">服務需求內容:</label>
-                                <textarea class="text_area" name="" cols="30" rows="10" readonly="readonly" v-model.trim="showLightBox.INFO">
+                                <textarea class="text_area" name="" cols="30" rows="10" readonly="readonly" v-model.trim="showLightBox.NEEDS">
                                     {{showLightBox.NEEDS}}
                                 </textarea>
                             </li>
@@ -894,21 +893,21 @@
                                 <div class="need_img_box">
                                     <label for="need_img1">客戶需求圖片1:
                                         <div class="need_img">
-                                            <img class="preview_img" :src='"img/"+showLightBox.UPLOAD_PIC1'>
+                                            <img class="preview_img" :src='"img/reserve/"+showLightBox.UPLOAD_PIC1'>
                                         </div>
                                     </label>
                                 </div>
                                 <div class="need_img_box">
                                     <label for="need_img2">客戶需求圖片2:
                                         <div class="need_img">
-                                            <img class="preview_img" :src='"img/"+showLightBox.UPLOAD_PIC2'>
+                                            <img class="preview_img" :src='"img/reserve/"+showLightBox.UPLOAD_PIC2'>
                                         </div>
                                     </label>
                                 </div>
                                 <div class="need_img_box">
                                     <label for="need_img3">客戶需求圖片3:
                                         <div class="need_img">
-                                            <img class="preview_img" :src='"img/"+showLightBox.UPLOAD_PIC3'>
+                                            <img class="preview_img" :src='"img/reserve/"+showLightBox.UPLOAD_PIC3'>
                                         </div>
                                     </label>
                                 </div>
@@ -926,14 +925,14 @@
                                 <div class="before_img_box">
                                     <label for="before_img">服務前記錄圖片:
                                         <div class="before_img">
-                                            <img class="preview_img" :src='"img/"+showLightBox.BEFORE_IMG'>
+                                            <img class="preview_img" :src='"img/report/"+showLightBox.BEFORE_IMG'>
                                         </div>
                                     </label>
                                 </div>
                                 <div class="after_img_box">
                                     <label for="after_img">服務後記錄圖片:
                                         <div class="after_img">
-                                            <img class="preview_img" :src='"img/"+showLightBox.AFTER_IMG'>
+                                            <img class="preview_img" :src='"img/report/"+showLightBox.AFTER_IMG'>
                                         </div>
                                     </label>
                                 </div>
