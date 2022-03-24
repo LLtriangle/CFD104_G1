@@ -52,15 +52,10 @@
 			</div>
 		</section>
     <!-- </main> -->
-        <section class="groupSearchBar">
+        <section class="mall_product">
             <div class="search_wrap">
                 <input type="text" placeholder="搜尋商品名稱" class="search_input" id="searchInput" @keyup.enter="filterPrds" v-model="searchText">
-                <!-- <button class="search" @click="filterPrds">
-                    <img src="img/loupe.png" alt="GoSearch">
-                </button> -->
             </div>
-        </section>
-        <section class="mall_product">
             <!-- 5大分類按鈕 -->
             <div class="btn_btn_box mall_btn">
                 <button class="btn_btn bl" @click="changClass('熱門商品')">
@@ -125,10 +120,6 @@
                 searchText: '',
 			},
 			methods: {
-                filterPrds() {
-                    let thisVue = this;
-                    thisVue.prdsRows = thisVue.allPrdsRows.filter(v => v.PRD_NAME.indexOf(thisVue.searchText) > -1);
-                },
 				getprds(){
 					let xhr = new XMLHttpRequest();
 					let thisVue = this;
@@ -139,6 +130,13 @@
 					xhr.open("get", "phps/selectAll.php?tableName=prd", true);
 					xhr.send(null);
 				},
+                filterPrds() {
+                    let thisVue = this;
+                    thisVue.prdsRows = thisVue.allPrdsRows.filter(v => v.PRD_NAME.indexOf(thisVue.searchText) > -1);
+                    if(thisVue.prdsRows.length==0){
+                        $('.mall_nextpagebtn input').val('找不到商品').prop('disabled',true).css('backgroundColor','#8c96a8').css('cursor', 'default').css('box-shadow','none');
+                    };
+                },
                 changClass(prdClass){
                     $('.mall_nextpagebtn input').val('看更多商品').prop('disabled',false).css('backgroundColor','#d6aa81');
                     let thisVue = this;
