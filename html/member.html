@@ -120,7 +120,7 @@
             <div class="data_mem data_list" v-show="p_order">
                 <!-- <h3>商品訂單</h3> -->
                 <div class="ori">
-                    <h3>目前尚無訂單</h3>
+                    <a class="jump" href="mall.html">目前尚無訂單，前往商城</a>
                 </div>
                 <div class="memberOrder" v-for="ordcloumn in ordcloumns">
                     <div class="memberOrderContent">
@@ -197,7 +197,7 @@
             <!-- 我是預約區 ------------------------------->
             <div class="data_mem data_list" v-show="p_reserve">
                 <div class="ori">
-                    <h3>目前尚無訂單</h3>
+                    <a  class="jump" href="reserve.html">目前尚無訂單，前往預約服務</a>
                 </div>
                 <div class="memberReserve" v-for="rescloumn in rescloumns">
                     <div class="memberReserveContent">
