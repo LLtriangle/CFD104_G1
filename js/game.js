@@ -5,7 +5,6 @@ function itemClick(){
 
 // 送出按鈕disabled切換
 function finishButton(){
-    // console.log(0);
     if($('#item_group img').length == 0) {
         $('#finish').attr('disabled',false);
     }else if($('#item_group img').length > 0){
