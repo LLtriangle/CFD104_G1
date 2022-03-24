@@ -34,7 +34,7 @@
                         <div class="flex-grow center">
                             <p>{{item.prdName}}</p>
                         </div>
-                        <div style="display: flex;">
+                        <div style="display: flex;" style="justify-content: center;">
                             <div class="center" style="width: 80px;">
                                 <p>$ {{item.prdPrice}}</p>
                             </div>
@@ -74,8 +74,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="left"><input type="radio" v-model="person.delivery" value="宅配" id="plan1"
-                                class="radio-input full"><label for="plan1" class="radio-label"><span
+                        <td class="left flex"><input type="radio" v-model="person.delivery" value="宅配" id="plan1"
+                                class="radio-input full"><label for="plan1" class="radio-label center"><span
                                     class="radio-button"></span>
                                 <p>宅配</p>
                             </label></td>
@@ -84,8 +84,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="left"><input type="radio" v-model="person.delivery" value="7-11超商取貨" id="plan2"
-                                class="radio-input full"><label for="plan2" class="radio-label"><span
+                        <td class="left flex"><input type="radio" v-model="person.delivery" value="7-11超商取貨" id="plan2"
+                                class="radio-input full"><label for="plan2" class="radio-label center"><span
                                     class="radio-button"></span>
                                 <p>7-11超商取貨</p>
                             </label></td>
@@ -94,8 +94,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="left"><input type="radio" v-model="person.delivery" value="全家超商取貨" id="plan3"
-                                class="radio-input full"><label for="plan3" class="radio-label"><span
+                        <td class="left flex"><input type="radio" v-model="person.delivery" value="全家超商取貨" id="plan3"
+                                class="radio-input full"><label for="plan3" class="radio-label center"><span
                                     class="radio-button"></span>
                                 <p>全家超商取貨</p>
                             </label></td>
