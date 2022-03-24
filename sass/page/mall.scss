@@ -11,15 +11,14 @@
         border-radius: 0%;
     }
 }
-.groupSearchBar{
-    .groupSearchBar_wrap{
-        .search_wrap{
-            .search{
-                img{
-                width: 40px;
-                }
-            }
-        }
+.search_wrap{
+padding: 30px 10px 10px;
+max-width: 1200px;
+box-sizing: border-box;
+margin: auto;
+text-align: right;
+    .search_input{
+        background: url('../img/mall-search.png') no-repeat right/auto 50%;
     }
 }
 .container{
@@ -66,12 +65,9 @@
     #npimg{
         display: none;
     }
-    .mall_nextpagebtn{
-        display: flex;
-        justify-content: center;
-    }
 }
 .mall_nextpagebtn{
+        padding: 10px;
     display: flex;
     justify-content: center;
 }

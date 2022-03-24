@@ -42,7 +42,7 @@ input{
 // 手機-------------------------------
 @media  screen and (max-width:768px){
     main{
-        margin-top: 80px;
+        margin-top: 30px;
         .data_column{
             margin: auto;
             width: 95%;
@@ -107,23 +107,6 @@ input{
                             transition: .5s;
                             transform:rotate(180deg);
                         }
-                        // &::before
-                        // {
-                        //     transition: .5s;
-                        //     content: '';
-                        //     position: absolute;
-                        //     top: 120px;
-                        //     right: 118px;
-                        //     transform: translate(-2px,-50%) rotate(45deg);
-                        //     border:1px solid black;
-                        //     border-width: 0 2px 2px 0;
-                        //     display: inline-block;
-                        //     padding: 10px;
-                            
-                        // }
-                        // &::after{
-                        //     transform: translate(-2px,-50%) rotate(-90deg);
-                        // }
                     }
                     
                 }
@@ -155,6 +138,47 @@ input{
         }
 
     }
+    // ------ 月曆手機版768
+    .emp_calendar{
+        .btn_job{
+            position: relative;
+            top: 10px;
+            left: calc(100% - 82px);
+        }
+        #calendari{
+            min-width:500px;
+            height: 470px;
+        }
+    }
+    #lightbox,#workInfo{
+        .memberReserve .memberReserveContent {
+            .memberGrid {
+                grid-template-columns: repeat(4, 1fr);
+                // grid-auto-flow:發現前面有空位的話，就去補他
+                grid-auto-flow: dense;
+            }
+            .memberGrid4 {
+                grid-column: unset;
+                grid-row: unset;
+            }
+            .memberGrid5 {
+                grid-column: 1;
+                grid-row: 3;
+            }
+            .memberGrid6 {
+                grid-column: 2;
+                grid-row: 3;
+            }
+            .memberGrid7 {
+                grid-column: 3;
+                grid-row: 3;
+            }
+            .memberGrid8 {
+                grid-column: 4;
+                grid-row: 3;
+            }
+        }
+    }
 }
 
 
@@ -167,7 +191,7 @@ input{
         // 左側功能欄
         .data_column{
             width: 15%;
-            height: calc(100vh - 80px);
+            height: calc(100vh - 50px);
             margin-top: 50px;
             // margin:90px auto 0px;
             // overflow: auto;
@@ -202,7 +226,7 @@ input{
             }
         }
         .data_con{
-            width: 80%;
+            width: 75%;
             height: calc(100vh - 100px);
             margin: 50px auto 0px;
             // margin:auto 0px;
@@ -272,23 +296,6 @@ input{
     // 月曆
     .emp_calendar{
 
-        .btn_job{
-            position: absolute;
-            left: calc(50% + 302px);
-            // right: 50px;
-            // left: 600px;
-            // display: block;
-            margin: 10px 0;
-        }
-        .btn_confirm{
-            position: absolute;
-            left: calc(50% + 302px);
-            // right: 50px;
-            // left: 600px;
-            bottom: 10px;
-            display: none;
-            // margin: 10px 0;
-        }
         #calendari{
             margin: 10px auto;
             width: 500px;
@@ -309,88 +316,36 @@ input{
             }
         }
     }
+    .memberReserve {
+        margin: auto;
+        box-sizing: border-box;
+        padding: 30px 20px;
+        width: 90%;
+        
+        .memberReserveContent {
+            // table-layout:fixed;
+            width: 100%;
+            border: solid 1px map-get($color, "sub_brown");
+            border-collapse: collapse;
+            .memberGrid {
+                display: grid;
+                grid-template-columns: repeat(8, 1fr);
+                .memberReceiverID {
+                    //詳細資料
+                    color: map-get($btn_color, "deep_blue");
+                    cursor: pointer;
+                }
+            }
+        }
+    
+    
+    }
     
 
 }
 
 
-/* rwd */
-@media  screen and (max-width:768px) {
-    .memberAll {
-        width: 75%;
-        margin: 0 auto;
-    }
-
-    // 收藏商品管理
-    .memberPart5 {
-        .memberLikePack {
-            width: calc((100% - 75px)/4);
-            
-        }
-        .memberLikePack:nth-child(5n+1) {
-            margin-left: 20px;
-        }
-        .memberLikePack:nth-child(4n+1) {
-            margin-left: 0;
-        }
-
-        .memberFavoriteName{
-                display: none;
-                position: absolute;
-                padding-top: 42%;
-                top: 0;
-                left: 0;
-                text-align: center;
-                width: 100%;
-                height: 100%;
-                color: #172852;
-                background-color: rgba(255,255,255,.5);
-                // &:hover{
-                //     display: block;
-                // }
-            }
-    }
-    // 標題改為滑動的方式
-    .memberLine {
-        overflow-x: auto;
-        height: 40px;
-        h4 {
-            white-space: nowrap;
-            border-bottom: 2px solid #cba89a;
-            padding-bottom: 7px;
-            margin-right: 15px;
-            margin-left: 5%;
-            margin-right: 5%;
-            flex: 0;
-        }
-        h4:first-child {
-            margin-left: 0;
-        }
-        .underLine{
-            display: none;
-        }
-        // 點擊後底線變色
-        .mClicked{
-            border-bottom: 2px solid #172852;
-        }
-    }
-    .memberLine::-webkit-scrollbar {
-        display: none
-    }
-
-    // ------ 月曆手機版
-    .emp_calendar{
-        .btn_job{
-            position: relative;
-            top: 10px;
-            left: calc(100% - 82px);
-        }
-        #calendari{
-            min-width: 550px;
-            height: 470px;
-        }
-    }
-}
+// 575以下----------------------------
 @media  screen and (max-width:575px) {
     .memberAll {
         width: 90%;
@@ -402,7 +357,16 @@ input{
                 width: 270px;
             }
         }
-
+    }
+    .emp_calendar{
+        #calendari{
+            min-width: 350px;
+            // height: 470px;
+            span.period{
+                width: 10px;
+                height: 10px;
+            }
+        }
     }
 }
 
@@ -417,6 +381,7 @@ input{
     // width: 90%;
     display: none;
     .memberReserve{
+        margin-top: 50px;
         // position: relative;
         // .memberReserveContent{
         //     .memberGrid{
@@ -495,19 +460,6 @@ td>div div:nth-child(2) span.leave {
     position: relative;
     // font-weight: bolder;
     background-color:#d03e3e;
-    // &::after{
-    //     content: '×';
-    //     color: red;
-    //     margin: auto;
-    //     text-align: center;
-    //     position: absolute;
-    //     line-height: 8px;
-    //     left: 0;
-    //     top: 0;
-    //     display: block;
-    //     font-size: 8px;
-    //     font-weight: 900;
-    // }
 }
 // #calendari td.pastday{
 //     opacity: 0.3;
@@ -518,148 +470,74 @@ td>div div:nth-child(2) span.leave {
     // transform: scale(1.1);
 } 
 
-// -----------------
-.memberOrder,.memberReserve {
-    margin: auto;
-    box-sizing: border-box;
-    padding: 30px 20px;
-    width: 90%;
-    
-    .memberOrderContent {
-        // table-layout:fixed;
-        width: 100%;
-        border: solid 1px map-get($color, "sub_brown");
-        border-collapse: collapse;
-        .memberGrid {
-            display: grid;
-            grid-template-columns: repeat(8, 1fr);
-            .memberGrid1{
-                width: 50px;
-            }
-            // .memberReceiverID {
-            //     //詳細資料
-            //     color: map-get($btn_color, "deep_blue");
-            //     cursor: pointer;
-            // }
-        }
-    }
-    .memberReserveContent {
-        // table-layout:fixed;
-        width: 100%;
-        border: solid 1px map-get($color, "sub_brown");
-        border-collapse: collapse;
-        .memberGrid {
-            display: grid;
-            grid-template-columns: repeat(8, 1fr);
-            .memberReceiverID {
-                //詳細資料
-                color: map-get($btn_color, "deep_blue");
-                cursor: pointer;
-            }
-        }
-    }
 
+
+// 回報btn
+.btn_report{
+    margin: 10px 0;
+}
+// 請假btn
+.btn_job{
+    position: absolute;
+    left: calc(50% + 302px);
+    margin: 10px 0;
+    min-width: 82px;
+}
+// 確認請假btn
+.btn_confirm{
+    position: absolute;
+    left: calc(50% + 302px);
+    margin: 10px 0;
+    display: none;
+    min-width: 82px;
+}
+// 取消請假btn
+.btn_cancel{
+    position: absolute;
+    left: calc(50% + 394px);
+    margin: 10px 0;
+    display: none;
+    min-width: 82px;
+}
+.emp_calendar{
+    position: relative;
+    .demo{
+        position: absolute;
+        left: -150px;
+        bottom: 20px;
+        span{
+            width: 15px;
+            height: 15px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        .brown{
+            background-color: #DFBE9B;
+        }
+        .red{
+            background-color: map-get($color, "sub_red");
+        }
+        .blue{
+            background-color: map-get($color, "sub_blue");
+        }
+    }
+}
+.left{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 
 }
-// --------------手機
-@media  screen and (max-width:768px) {
-    .memberAll {
-        width: 75%;
-        margin: 0 auto;
+.memberOrderD2.ba_pics{
+    img.b_pic{
+        width: 200px;
     }
-    // 商品訂單查詢表格
-    .memberOrder .memberOrderContent {
-        .memberGrid {
-            grid-template-columns: repeat(3, 1fr);
-            // grid-auto-flow:發現前面有空位的話，就去補他
-            grid-auto-flow: dense;
-        }
-        .memberGrid9 {
-            grid-column: 1;
-            grid-row: 3;
-        }
-        .memberGrid10 {
-            grid-column: 2;
-            grid-row: 3;
-        }
-        .memberGrid11 {
-            grid-column: 3;
-            grid-row: 3;
-        }
-        .memberGrid12 {
-            grid-column: 4;
-            grid-row: 3;
-        }
-        // .memberGrid13 {
-        //     grid-column: 5;
-        //     grid-row: 3;
-        // }
-        // .memberGrid14 {
-        //     grid-column: 6;
-        //     grid-row: 3;
-        // }
-        // .memberGrid15 {
-        //     grid-column: 7;
-        //     grid-row: 3;
-        // }
+    img.a_pic{
+        width: 200px;
     }
+}
 
-    // 服務預約查詢表格
-    // 商品訂單查詢表格
-    .memberReserve .memberReserveContent {
-        .memberGrid {
-            grid-template-columns: repeat(3, 1fr);
-            // grid-auto-flow:發現前面有空位的話，就去補他
-            grid-auto-flow: dense;
-        }
-        .memberGrid4 {
-            grid-column: 1;
-            grid-row: 3;
-        }
-        .memberGrid5 {
-            grid-column: 2;
-            grid-row: 3;
-        }
-        .memberGrid6 {
-            grid-column: 3;
-            grid-row: 3;
-        }
-        .memberGrid7 {
-            grid-column: 4;
-            grid-row: 3;
-        }
-    }
-    
-    // 標題改為滑動的方式
-    .memberLine {
-        overflow-x: auto;
-        height: 40px;
-        h4 {
-            white-space: nowrap;
-            border-bottom: 2px solid #cba89a;
-            padding-bottom: 7px;
-            margin-right: 15px;
-            margin-left: 5%;
-            margin-right: 5%;
-            flex: 0;
-        }
-        h4:first-child {
-            margin-left: 0;
-        }
-        .underLine{
-            display: none;
-        }
-        // 點擊後底線變色
-        .mClicked{
-            border-bottom: 2px solid #172852;
-        }
-    }
-    .memberLine::-webkit-scrollbar {
-        display: none
-    }
-    //新增限制手機版商品名稱長度  超過隱藏
-    .memberOrderDetail .memberOrderD2 div,.memberReserveDetail .memberReserveD2 div{
-        overflow: hidden;
-        max-height: 30px;
-    }
+.pl_10{
+   padding-left: 10px;
+   font-size: 16px;
 }

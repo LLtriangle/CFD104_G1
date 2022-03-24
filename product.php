@@ -154,7 +154,6 @@ function areYouLogin(){
     let xhr = new XMLHttpRequest();
     let thisVue = this;
     xhr.onload = function(){
-        // console.log(xhr.responseText);
         if(xhr.responseText=='未登入'){
             $('.user').attr('href','login.html');
         }else{
@@ -458,13 +457,10 @@ window.addEventListener('load',indexOfCart,false);
         
         function setItemCart(){
             var num = parseInt($("#num").val());
-            // console.log(JSON.parse(localStorage.getItem("cart")));
             var cartArr = JSON.parse(localStorage.getItem("cart"));
             if(cartArr == null){
                 cartArr = [];
-                // cartArr.push({prdNo : prd_name.PRD_NO, prdName : prd_name.PRD_NAME, prdPrice : prd_name.PRICE, prdImg : prd_name.IMG1, prdNum : num});
             };
-            // console.log(cartArr.filter(obj=>obj.prdNo == prd_name.PRD_NO));
             var arrObj = cartArr.filter(obj=>obj.prdNo == prd_name.PRD_NO);
             if(arrObj.length==0){
                 cartArr.push({prdNo : prd_name.PRD_NO, prdName : prd_name.PRD_NAME, prdPrice : prd_name.PRICE, prdImg : prd_name.IMG1, prdNum : num});
