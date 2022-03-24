@@ -430,10 +430,10 @@
                 getCol(){
                     let xhr = new XMLHttpRequest();
                     let thisVue = this;
-                    console.log(1);
+                    // console.log(1);
                     xhr.onload = function(){
-                        console.log(xhr.responseText);
-                        console.log(2);
+                        // console.log(xhr.responseText);
+                        // console.log(2);
                         thisVue.colRows = JSON.parse(xhr.responseText);
                     }
                     xhr.open("get","phps/selectAll.php?tableName=columntable", true);
@@ -457,7 +457,7 @@
 
         $('.colNum').on("click",function(){
             let colNumb = $('.col_num').text();
-            console.log(colNumb);
+            // console.log(colNumb);
             localStorage.setItem('colNumb',colNumb);
             window.location.href='columns.html';
         });

@@ -304,7 +304,7 @@
                         let thisVue = this;
                         let xhr = new XMLHttpRequest();
                         xhr.onload = function(){
-                            console.log(xhr.responseText);
+                            // console.log(xhr.responseText);
                             thisVue.getMemberInfo();
                             history.go(0);
                         }
@@ -326,7 +326,7 @@
                             thisVue.ordcloumns = JSON.parse(a[0]); //訂單細項
                             thisVue.ordprds = JSON.parse(a[1]);    //商品詳情
 
-                            console.log(thisVue.ordcloumns[0].SHIPPING);
+                            // console.log(thisVue.ordcloumns[0].SHIPPING);
                             for(i in thisVue.ordcloumns){
 
                                 if(thisVue.ordcloumns[i].SHIPPING == '1'){
@@ -367,7 +367,7 @@
                         let xhr = new XMLHttpRequest();
                         let thisVue = this;
                         xhr.onload = function(){
-                            console.log(xhr.responseText);
+                            // console.log(xhr.responseText);
                             thisVue.rescloumns = JSON.parse(xhr.responseText);
                             for(i in thisVue.rescloumns){
                                 if(thisVue.rescloumns[i].STATE == '1'){

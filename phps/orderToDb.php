@@ -19,8 +19,6 @@ try {
 			$CUS_NAME = $_SESSION["CUS_NAME"];
 			$CUS_TEL = $_SESSION["CUS_TEL"];
 			$coupon = $person->coupon;
-			// $selectedCity = $person->selectedCity;
-			// $selectedArea = $person->selectedArea;
 			$address = $person->address;
 			$phone = $person->phone;
 			$name = $person->name;
@@ -32,16 +30,12 @@ try {
 			}else $delivery = 3;
 			$total = $person->total;
 			$Date = date("Y-m-d h:i:s");
-			// $full_add = $selectedCity.$selectedArea.$address;
-				echo $coupon;
 			if ($coupon=='') {
 				$sql = "INSERT INTO `ord`(`CUS_NO`, `CUS_NAME`, `CUS_TEL`, `CUS_ADD`, `TIME`, `SHIPPING`, `TOTAL`, `STATE`, `COUPON`) VALUES ({$cusNo},'{$CUS_NAME}','{$CUS_TEL}','{$address}','$Date','$delivery',{$total},0,null)";
 			}else{
 				$sql = "INSERT INTO `ord`(`CUS_NO`, `CUS_NAME`, `CUS_TEL`, `CUS_ADD`, `TIME`, `SHIPPING`, `TOTAL`, `STATE`, `COUPON`) VALUES ({$cusNo},'{$CUS_NAME}','{$CUS_TEL}','{$address}','$Date','$delivery',{$total},0,'{$coupon}')";
 			};
-			// $ORDINFO = $pdo->exec($sql);
 			$ORDINFO = $pdo->exec($sql);
-			echo $ORDINFO;
 			// $sql = "select LAST(ORD_NO) form ord";
 			// $ORD_NO = $pdo->query($sql);
 			// $Rows = $ORD_NO->fetchAll(PDO::FETCH_ASSOC);
@@ -55,6 +49,10 @@ try {
 				$ORDTABLE = $pdo->prepare($sql);
 				$ORDTABLE->execute();
 			};
+			if ($coupon!=''){
+				$sql = "INSERT INTO `coupon`(`CUS_NO`, `COUPON`) VALUES ({$cusNo},'{$coupon}')"
+				$COUPON = $pdo->exec($sql);
+			}
 	}else{ //尚未登入
 		echo "{}";
 	}

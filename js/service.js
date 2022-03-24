@@ -18,49 +18,53 @@ window.addEventListener('load',function(){
 		y:120,
 		})
 		// x:0,})
+	.fromTo('.serve_case > div:nth-of-type(1) .bookmark',{
+		y:1000,},{
+		y:-30,})
 	.to('.serve_case > div:nth-of-type(1) .pic .afterPic',{
 		width:700,},">")
 	.to('.serve_case > div:nth-of-type(1) .pic .handle',{
 		left:700,},"<")
-	.to('.serve_case > div:nth-of-type(1) .txt .afterTxt',{
-		height:300,},">")
-	.fromTo('.serve_case > div:nth-of-type(1) .bookmark',{
-		y:1000,},{
-		y:-30,})
+	.from('.serve_case > div:nth-of-type(1) .txt .afterTxt',{
+		y:1000,})
+		// y:1000,},">")
 	.fromTo('.serve_case > div:nth-of-type(2)',{
 		y:1000,},{
-		y:150,})
+		y:150,
+		delay: 2})
 	.to('.serve_case > div:nth-of-type(1)',{
 		y:120,
 		},"<")
 		// x:20,},"<")
+	.fromTo('.serve_case > div:nth-of-type(2) .bookmark',{
+		y:1000,},{
+		y:-30,})
 	.to('.serve_case > div:nth-of-type(2) .pic .afterPic',{
 		width:700,},">")
 	.to('.serve_case > div:nth-of-type(2) .pic .handle',{
 		left:700,},"<")
-	.to('.serve_case > div:nth-of-type(2) .txt .afterTxt',{
-		height:300,},">")
-	.fromTo('.serve_case > div:nth-of-type(2) .bookmark',{
-		y:1000,},{
-		y:-30,})
+	.from('.serve_case > div:nth-of-type(2) .txt .afterTxt',{
+		y:1000,})
+		// y:1000,},">")
 	.fromTo('.serve_case > div:nth-of-type(3)',{
 		y:1000,},{
 		y:150,
-		})
+		delay: 2})
 		// x:-20,})
 	.to('.serve_case > div:nth-of-type(1)',{
 		y:90,},"<")
 	.to('.serve_case > div:nth-of-type(2)',{
 		y:120,},"<")
+	.fromTo('.serve_case > div:nth-of-type(3) .bookmark',{
+		y:1000,},{
+		y:-30,})
 	.to('.serve_case > div:nth-of-type(3) .pic .afterPic',{
 		width:700,},">")
 	.to('.serve_case > div:nth-of-type(3) .pic .handle',{
 		left:700,},"<")
-	.to('.serve_case > div:nth-of-type(3) .txt .afterTxt',{
-		height:300,},">")
-	.fromTo('.serve_case > div:nth-of-type(3) .bookmark',{
-		y:1000,},{
-		y:-30,});
+	.from('.serve_case > div:nth-of-type(3) .txt .afterTxt',{
+		y:1000,});
+		// y:1000,},">");
 
 // 前後對比與滑鼠位置
     $('.case .pic').on('mousemove', function(e) {
@@ -87,7 +91,7 @@ window.addEventListener('load',function(){
 // 	$('.bookmark').on('click',function () {
 // 		$('html, body').animate({
 // 			scrollTop: case0,
-// 		}, 500);
+// 		}, 1000);
 // 		return false;
 // });
 });
