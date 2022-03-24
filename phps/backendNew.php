@@ -368,10 +368,10 @@ try{
 	};
 
     $affect = $sql_exe->execute();
-    echo `修改${affect}筆資料`;
+    // echo `修改${affect}筆資料`;
 
 }catch(PDOException $e){
-  echo $e->getMessage();
+  // echo $e->getMessage();
 }
 ?>
 

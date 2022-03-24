@@ -54,13 +54,13 @@ $(window).on('load',function(){
     let lg_w = $('.logo_shape_img_box').width();
     let lg_h = $('.logo_shape_img_box').height();
 
-    console.log(lg_w);
-    console.log(lg_h);
+    // console.log(lg_w);
+    // console.log(lg_h);
 
     let ig_w = $('.img_grow').width(lg_w);
     let ig_h = $('.img_grow').height(lg_h);
 
-    console.log(ig_w);
+    // console.log(ig_w);
 
     $(window).on('resize', function() {
         let ig_l = `${lg.offset().left}px`;

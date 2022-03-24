@@ -71,8 +71,11 @@
         padding: 30px 60px;
     }
     .case{
-        width: calc(100% - 80px);
-        height: calc(100vh - 160px);
+        box-shadow: 0 0 5px 1px map-get($color , "sub_blue");
+        background-color: map-get($color , "bg");
+        border-radius: 10px;
+        width: calc(100% - 40px);
+        height: calc(100vh - 180px);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -83,7 +86,6 @@
             transform: translate(-50%);
         }
         .pic{
-            box-shadow: 0 0 5px 1px map-get($color , "sub_blue");
             box-sizing: border-box;
             border: 30px solid map-get($color , "bg");
             border-radius: 10px 10px 0 0;
@@ -133,7 +135,7 @@
         }
         .txt{
             border-radius: 0 0 10px 10px;
-            box-shadow: 0 5px 5px 1px map-get($color , "sub_blue");
+            // box-shadow: 0 5px 5px 1px map-get($color , "sub_blue");
             background-color: map-get($color , "bg");
             position: relative;
             top: -1px;
@@ -154,7 +156,7 @@
                 transition: 1s;
                 color: map-get($color , "main");
                 h3{
-                    border-bottom: 1px solid map-get($color , "sub_red");
+                    border-bottom: none;
                 }
             }
         }
@@ -165,9 +167,9 @@
             opacity: .8;
         }
         &:nth-child(2){
-            width: calc(100% - 100px);
+            width: calc(100% - 80px);
             .afterTxt{
-                background:linear-gradient(180deg,map-get($color ,"sub_inprogress") 30px,map-get($btn_color,"deep_blue") 30px);
+                background:linear-gradient(180deg,#45AAD8 54px,#799DF0 54px);
             }
             .bookmark{
                 right: 90px;
@@ -176,9 +178,9 @@
             }
         }
         &:nth-child(3){
-            width: calc(100% - 90px);
+            width: calc(100% - 60px);
             .afterTxt{
-                background:linear-gradient(180deg,#f7b018 30px,map-get($color,"sub_pending") 30px);
+                background:linear-gradient(180deg,#F9C046 54px,#FAD565 54px);
             }
             .bookmark{
                 right: 45px;
@@ -188,7 +190,7 @@
         }
         &:nth-child(4){
             .afterTxt{
-                background:linear-gradient(180deg,#87d10f 30px,map-get($color,"sub_success") 30px);
+                background:linear-gradient(180deg,#9FDA3F 54px,#A4E656 54px);
             }
             .bookmark{
                 right: 0%;

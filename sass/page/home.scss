@@ -103,6 +103,12 @@ $section_margin_top: 60px;
                 padding: 0;
                 transform: translateY(0);
                 text-align: center;
+                
+
+                @include pad{
+                    font-size: $font_size_h3;
+                    text-align: left;
+                }
             }
 
             p{
