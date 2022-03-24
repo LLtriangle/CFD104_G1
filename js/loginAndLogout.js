@@ -49,9 +49,9 @@ let member={};
         if(xhr.status == 200){ //正確的執行完畢
           // console.log(xhr.responseText);
           $id("idMsg").innerText = xhr.responseText;
-          if($id("idMsg").innerText=="此帳號可使用"){
-            $id("btnRegister").disabled = false;
-          }
+          // if($id("idMsg").innerText=="此帳號可使用" && $id("cusName").value != "" && $id("cusPsw").value != ""){
+          //   $id("btnRegister").disabled = false;
+          // }
         }else{
           alert(xhr.status);
           alert(xhr.statusText);
@@ -73,8 +73,14 @@ let member={};
         $id("idMsg").innerText = "";
       }
     }
-
-    // 註冊會員
+    // 註冊按鈕轉換
+    function btnRswitch(){
+        if($id("idMsg").innerText=="此帳號可使用" && $id("cusName").value != '' && $id("cusPsw").value != ''){
+          $id("btnRegister").disabled = false;
+        }else{
+          $id("btnRegister").disabled = true;
+        }
+    };
     function addMem(){
       let xhr = new XMLHttpRequest();
       xhr.onload = function(){
@@ -110,8 +116,14 @@ let member={};
       // 檢查會員帳號是否存在
       $id('cusId').addEventListener("keyup", checkId, false);
       
+      // 註冊按鈕轉換
+      $id('cusId').addEventListener("keyup", btnRswitch, false);
+      $id('cusPsw').addEventListener("keyup", btnRswitch, false);
+      $id('cusName').addEventListener("keyup", btnRswitch, false);
+      
       //===設定btnRegister.onclick 事件處理程序是 addMem
       $id('btnRegister').addEventListener("click",addMem);
+
       $('#cusPsw').bind('keypress', function (event){
           if (event.keyCode == 13){
             // alert("按下enter!");
