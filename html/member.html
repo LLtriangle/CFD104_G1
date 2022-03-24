@@ -61,13 +61,14 @@
                     <!-- 不是table -->
                     <div class="mem_txt">
                         <div class="item_box">
-                            <label><p> &emsp; &emsp;姓名
+                             <!-- &emsp; &emsp; -->
+                            <label><p>會員姓名
                                 <input id="cus_name" name="cus_name" class='member_name cus_name' type="text" v-model="cusRow.CUS_NAME" disabled >
                                </p>
                             </label>
                         </div>
                         <div class="item_box">
-                            <div class='gender'><p> &emsp; &emsp;性別</p>
+                            <div class='gender'><p>您的性別</p>
                                 <ul>
                                     <li>
                                         <input class='radio-input' name='gender' type="radio" id="male" value='男' disabled>
@@ -88,17 +89,17 @@
                             </div>
                         </div>
                         <div class="item_box">
-                            <label for="email"><p> &emsp; &emsp;帳號
+                            <label for="email"><p>會員帳號
                                 <input id="email" name="my_email" class='mem_id' type="email" v-model='cusRow.EMAIL' disabled></p>
                             </label>
                         </div>
                         <div class="item_box">
-                            <label><p>&ensp;連絡電話
+                            <label><p>連絡電話
                                 <input id="cus_tel" name="cus_tel"  type="text" v-model=cusRow.CUS_TEL disabled maxlength="10"></p>
                             </label>
                         </div>
                         <div class="item_box">
-                            <label><p>&ensp;連絡地址
+                            <label><p>連絡地址
                                 <input id="cus_add" name="cus_add" class='memberLeft memberAdr' type="text" v-model=cusRow.CUS_ADD disabled></p>
                             </label>
                         </div>

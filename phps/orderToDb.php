@@ -49,12 +49,12 @@ try {
 				$ORDTABLE = $pdo->prepare($sql);
 				$ORDTABLE->execute();
 			};
-			if ($coupon!=''){
-				$sql = "INSERT INTO `coupon`(`CUS_NO`, `COUPON`) VALUES ({$cusNo},'{$coupon}')"
-				$COUPON = $pdo->exec($sql);
-			}
-	}else{ //尚未登入
-		echo "{}";
+			// if ($coupon!=''){
+			// 	$sql = "INSERT INTO `coupon`(`CUS_NO`, `COUPON`) VALUES ({$cusNo},'{$coupon}')"
+			// 	$COUPON = $pdo->exec($sql);
+			// }
+		}else{ //尚未登入
+			echo "{}";
 	}
 } catch (PDOException $e) {
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";

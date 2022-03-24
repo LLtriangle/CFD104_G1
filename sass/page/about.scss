@@ -227,11 +227,11 @@ screen and (max-width:992px)
                 min-width: 384px;
                 position:absolute;
                 top: 90%;
-                left: 50%;
-                transform: translate(-50%, 0%);
+                left: 55%;
+                transform: translate(-53%, 0%);
 
                 .rwd_mem_1{
-                    width: 96px;
+                    width: 100px;
                     height: 40px;
                     border: 2px solid map-get($color, "sub_brown");
                     border-radius: 20px;
@@ -242,7 +242,7 @@ screen and (max-width:992px)
                 }
                 .rwd_mem_2{
                     // position:absolute;
-                    width: 90px;
+                    width: 80px;
                     height: 40px;
                     border: 2px solid map-get($color, "sub_brown");;
                     border-radius: 20px;
@@ -252,7 +252,7 @@ screen and (max-width:992px)
                 }
                 .rwd_mem_3{
                     // position:absolute;
-                    width: 90px;
+                    width: 80px;
                     height: 40px;
                     border: 2px solid map-get($color, "sub_brown");;
                     border-radius: 20px;
@@ -413,7 +413,7 @@ screen and (max-width:992px)
                 text-align: center;
                 line-height: 15;
                 margin: auto;
-                width: 400px;
+                width: 300px;
                 height: 200px;
                 // background-color: map-get($color, "sub_brown");
             } 
@@ -427,6 +427,11 @@ screen and (max-width:992px)
         .circle_big_img{
             .btn_mem{
                 top: 85%;
+                button{
+                    font-size: 14px;
+                    width: 80px;
+
+                }
             }
             .img_box{
                 .change_img{

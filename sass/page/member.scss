@@ -54,6 +54,7 @@ input{
 }
 // 手機-------------------------------
 @media  screen and (max-width:768px){
+    
     main{
         margin-top: 80px;
         .data_column{
@@ -243,6 +244,7 @@ input{
         }
 
     }
+    
 }
 
 
@@ -676,6 +678,14 @@ input{
 
 /* rwd */
 @media  screen and (max-width:768px) {
+    .memberGrid{
+        div{
+            font-size: 10px;
+        }
+    }
+    .memberGrid15{
+        overflow: hidden;
+    }
     .ordprd_PRD_NAME,.amount_center,.total_cla{
         font-size: 12px;
     }
@@ -878,3 +888,6 @@ main{
 // }
 
 
+@media  screen and (min-width:414px){
+
+}

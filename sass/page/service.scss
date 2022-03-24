@@ -156,7 +156,7 @@
                 transition: 1s;
                 color: map-get($color , "main");
                 h3{
-                    border-bottom: 1px solid map-get($color , "sub_red");
+                    border-bottom: none;
                 }
             }
         }
@@ -169,7 +169,7 @@
         &:nth-child(2){
             width: calc(100% - 80px);
             .afterTxt{
-                background:linear-gradient(180deg,map-get($color ,"sub_inprogress") 30px,map-get($btn_color,"deep_blue") 30px);
+                background:linear-gradient(180deg,#45AAD8 54px,#799DF0 54px);
             }
             .bookmark{
                 right: 90px;
@@ -180,7 +180,7 @@
         &:nth-child(3){
             width: calc(100% - 60px);
             .afterTxt{
-                background:linear-gradient(180deg,#f7b018 30px,map-get($color,"sub_pending") 30px);
+                background:linear-gradient(180deg,#F9C046 54px,#FAD565 54px);
             }
             .bookmark{
                 right: 45px;
@@ -190,7 +190,7 @@
         }
         &:nth-child(4){
             .afterTxt{
-                background:linear-gradient(180deg,#87d10f 30px,map-get($color,"sub_success") 30px);
+                background:linear-gradient(180deg,#9FDA3F 54px,#A4E656 54px);
             }
             .bookmark{
                 right: 0%;
