@@ -34,8 +34,8 @@
                     </div>
                 </label>
                 <div class="con_data">
-                    <a class="hovered" @click="workSch=true;workInfo=false" onclick="changChick(this)">工作行程</a><br>
-                    <a @click="workSch=false;workInfo=true" onclick="changChick(this)">工作紀錄</a><br>
+                    <a class="hovered" @click="workSch=true;workInfo=false" onclick="changChick(this)">工作行程</a>
+                    <a @click="workSch=false;workInfo=true" onclick="changChick(this)">工作紀錄</a>
                     <a id="btnLogout" @click="logout">登出</a>
                 </div>
             </div>
@@ -246,16 +246,20 @@
                         let thisVue = this;
                         xhr.onload = function(){
                             thisVue.empRow = JSON.parse(xhr.responseText);
-                            console.log(thisVue.empRow);
+                            // console.log(thisVue.empRow);
                             if(thisVue.empRow.EMP_PIC!=''){
                                 thisVue.emp_pic = "img/"+thisVue.empRow.EMP_PIC; // 大頭貼路徑
+                                if (!JSON.parse(xhr.responseText).EMP_EMAIL) {
+                                    alert("請先登入");
+                                    location.href="backendlogin.html";
+                                };
                             }  
                         }
                         xhr.open("get", "phps/getEmpInfo.php", true);
                         xhr.send(null);
                     },
                     getsao(){
-                        console.log("getsao進入ㄌ");
+                        // console.log("getsao進入ㄌ");
                         let thisVue = this;
                         $.ajax({
                             url: `phps/getEmpSao.php`,
@@ -265,7 +269,7 @@
                             success(res){
                                 let tds = document.querySelectorAll("#calendari td");
                                 thisVue.saoinfos = res;
-                                console.log(tds.length);
+                                // console.log(tds.length);
                                 // 有幾筆預約訂單跑幾次
                                 for(let j=0; j<tds.length; j++){
                                     // 開燈箱
@@ -358,7 +362,7 @@
                     },
                     open_lightbox(e){
                         e.stopPropagation();
-                        console.log("我要開燈箱",e);
+                        // console.log("我要開燈箱",e);
                         let thisVue = this;
                         // let td = document.querySelector("#calendari td.active");
                         let td = e.target.closest("td");
@@ -399,12 +403,11 @@
                     // 按下回報btn 打開回報form
                     showForm(SAO_NO,SAO_DATE,SAO_ADD){
                         $("#lightbox").hide();
-                        console.log("按下回報關掉燈箱");
+                        // console.log("按下回報關掉燈箱");
                         $("#report_div").show();
                         this.sao_no = SAO_NO;
                         this.sao_date = SAO_DATE;
                         this.sao_add = SAO_ADD;
-                        console.log(SAO_DATE);
                     },
                     closeForm(){
                         $("#report_div").hide();
@@ -428,7 +431,7 @@
     
                             let xhr = new XMLHttpRequest();
                             xhr.onload = function(){
-                                console.log("這是sendReport的xhr.responseText",xhr.responseText);
+                                // console.log("這是sendReport的xhr.responseText",xhr.responseText);
                                 alert("已送出回報");
                                 // 送出後要清空INFO和照片
                                 thisVue.INFO = "";
@@ -441,7 +444,7 @@
                         }
                     },
                     selectSch(e){
-                        console.log("我在selectSch請假",e.target);
+                        // console.log("我在selectSch請假",e.target);
                         e.stopPropagation();
                         
                         $(e.target).toggleClass("nodo");
@@ -449,14 +452,6 @@
                         // slot.date = e.target.closest("td").dataset.date;
                         // slot.time = e.target.dataset.time;
                         // let aa= this.nodos.filter(obj => (obj.date == slot.date )&& (obj.time == slot.time));
-
-                        // if(aa>0){
-                        //     console.log(aa);
-                        //     this.nodos.pop(slot);
-                        // }else{
-                        //     console.log(aa);
-                        //     this.nodos.push(slot);
-                        // }
 
                     },
                     // 按下請假btn
@@ -486,13 +481,24 @@
                             "pointer-events":"none"
                         });
                         $("#calendari td").removeClass("active");
-
-                        
-                        
+     
                     },
                     // 按下確認
                     sendSch(){
                         let nl = $(".nodo");
+                        for(let i=0; i<nl.length; i++){
+                            let slot = {};
+                            slot.date = nl[i].closest("td").dataset.date;
+                            slot.time = nl[i].dataset.time;
+                            this.nodos.push(slot);
+                        }
+                        let xhr = new XMLHttpRequest();
+                        let thisVue = this;
+                        xhr.onload = function(){
+                            $(".nodo").addClass("leave")
+                            $(".nodo").removeClass("nodo");
+                        };
+
                         if(nl.length=0){
                             alert("點擊時間段安排休假");
                         }else{
@@ -511,21 +517,21 @@
                             this.getsch();
                         }
                         
-                        for(let i=0; i<nl.length; i++){
-                            let slot = {};
-                            slot.date = nl[i].closest("td").dataset.date;
-                            slot.time = nl[i].dataset.time;
-                            this.nodos.push(slot);
-                        }
-                        let xhr = new XMLHttpRequest();
-                        let thisVue = this;
-                        xhr.onload = function(){
-                            $(".nodo").addClass("leave")
-                            $(".nodo").removeClass("nodo");
-                        }
+                        // for(let i=0; i<nl.length; i++){
+                        //     let slot = {};
+                        //     slot.date = nl[i].closest("td").dataset.date;
+                        //     slot.time = nl[i].dataset.time;
+                        //     this.nodos.push(slot);
+                        // }
+                        // let xhr = new XMLHttpRequest();
+                        // let thisVue = this;
+                        // xhr.onload = function(){
+                        //     $(".nodo").addClass("leave")
+                        //     $(".nodo").removeClass("nodo");
+                        // }
                         
                         let json = JSON.stringify(this.nodos);
-                        // console.log(json);
+                        console.log(json);
                         xhr.open("get", "phps/sendSch.php?json="+json, true);
                         xhr.send(null);
 

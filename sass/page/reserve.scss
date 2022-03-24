@@ -132,17 +132,20 @@ table.creditCard{
 
 .choose_emp{
     display: flex;
+    div{
+        margin-left: 20px;
+    }
     select{
         height: 100%
     }
-    .emp_info{
-        display: flex;
-        text-align: center;
-        .emp_pic{
-            width: 50px;
-            border-radius: 50%;
-        }
-    }
+    // .emp_info{
+    //     display: flex;
+    //     text-align: center;
+    //     .emp_pic{
+    //         width: 50px;
+    //         border-radius: 50%;
+    //     }
+    // }
 }
 .form_item.upload_pics{
     display: block;
@@ -150,20 +153,6 @@ table.creditCard{
         display: flex;
     }
 }
-
-// 更改input[type=text]樣式
-// input[type=text],input[type=email]{
-//     border: 0.3px solid map-get($btn_color, 'brown');
-//     box-shadow: 2px 2px map-get($btn_color, 'brown');
-//     padding: 5px;
-//     border-radius: 10px;
-//     background-color: map-get($color , "plain" );
-//     &:focus{
-//         box-shadow: -1.5px -1.5px map-get($color, 'main');
-//         border: 0.3px solid map-get($color, 'main');
-//     }
-// }
-
 
 // 選擇日期
 .choose_date{
@@ -419,6 +408,9 @@ textarea {
         border-top-right-radius: unset;
     }
     .choose_emp{
+        div{
+            margin-left: 0px;
+        }
         select{
             height: 45px;
         }
@@ -527,6 +519,7 @@ textarea {
 
         }
     }
+
     .details{
         .datails_info{
             display: block;
@@ -598,6 +591,7 @@ textarea {
     margin-top: 50px;
     li{
         margin-left: 20px;
+        margin-top: 10px;
     }
 }
 .step{
@@ -613,4 +607,7 @@ textarea {
 
 .m_0_auto{
     margin: 0 auto;
+}
+.ml_20{
+    margin-left: 20px;
 }
