@@ -58,9 +58,10 @@ input{
         .ori{
             .jump{
                 font-size: 18px;
-                &:hover{
-                    border-bottom:2px solid black;
-                }
+                border-bottom:2px solid black;
+                // &:hover{
+                //     border-bottom:2px solid black;
+                // }
             }
         }
     
@@ -914,9 +915,10 @@ main{
         .ori{
             .jump{
                 font-size: 12px;
-                &:hover{
-                    border-bottom:2px solid black;
-                }
+                border-bottom:2px solid black;
+                // &:hover{
+                //     border-bottom:2px solid black;
+                // }
             }
         }
     
