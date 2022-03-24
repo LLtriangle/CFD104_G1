@@ -81,6 +81,16 @@ let member={};
           $id("btnRegister").disabled = true;
         }
     };
+    function enterToAdd(e){
+      if (e.keyCode == 13){
+        if($id("idMsg").innerText=="此帳號可使用" && $id("cusName").value != '' && $id("cusPsw").value != ''){
+          addMem();
+          // alert("按下enter!來註冊");
+        }else{
+          alert("請完整填寫");
+        }
+      }
+    };
     function addMem(){
       let xhr = new XMLHttpRequest();
       xhr.onload = function(){
@@ -124,12 +134,7 @@ let member={};
       //===設定btnRegister.onclick 事件處理程序是 addMem
       $id('btnRegister').addEventListener("click",addMem);
 
-      $('#cusPsw').bind('keypress', function (event){
-          if (event.keyCode == 13){
-            // alert("按下enter!");
-          // addMem();
-          }
-        });
+      $('#cusPsw').bind('keypress', enterToAdd);
     }; 
 
     window.addEventListener("load",init);
