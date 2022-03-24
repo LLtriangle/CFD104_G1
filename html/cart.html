@@ -9,18 +9,14 @@
 </head>
 
 <body>
-
     <!-- <header></header> -->
     @@include('layout/header.html')
     <div id="tabs" class="container">
 
         <div class="progress">
-            <a v-bind:class="[ activetab === '1' ? 'active' : '' ]" @click="clickHandler(1)"><img
-                    src="img/reserve_contract.png" alt=""> 商品資訊</a>
-            <a v-bind:class="[ activetab === '2' ? 'active' : '' ]" @click="clickHandler(2)"><img
-                    src="img/reserve_credit-card.png" alt=""> 付款資訊</a>
-            <a v-bind:class="[ activetab === '3' ? 'active' : '' ]" @click="clickHandler(3)"><img
-                    src="img/reserve_receipt.png" alt=""> 訂單明細</a>
+            <a v-bind:class="[ activetab === '1' ? 'active' : '' ]" @click="clickHandler(1)"><img src="img/reserve_contract.png" alt=""> 商品資訊</a>
+            <a v-bind:class="[ activetab === '2' ? 'active' : '' ]" @click="clickHandler(2)"><img src="img/reserve_credit-card.png" alt=""> 付款資訊</a>
+            <a v-bind:class="[ activetab === '3' ? 'active' : '' ]" @click="clickHandler(3)"><img src="img/reserve_receipt.png" alt=""> 訂單明細</a>
         </div>
 
         <div class="content">
@@ -34,25 +30,23 @@
                         <div class="flex-grow center">
                             <p>{{item.prdName}}</p>
                         </div>
-                        <div style="display: flex;">
+                        <div style="display: flex;" style="justify-content: center;">
                             <div class="center" style="width: 80px;">
                                 <p>$ {{item.prdPrice}}</p>
                             </div>
-                            <div class="center"><button @click="countNum(-1,index)" :disabled="item.isDisabled"
-                                    class="add">
+                            <div class="center"><button @click="countNum(-1,index)" :disabled="item.isDisabled" class="add">
                                     <p>-</p>
                                 </button>
                             </div>
-                            <div class="center"><input @change="changeNum" type="number" min="1" max="99"
-                                    v-model.number="item.prdNum" size="1" class="changeNum"></div>
+                            <div class="center">
+                                <input @change="changeNum" type="number" min="1" max="99" v-model.number="item.prdNum" size="1" class="changeNum"></div>
                             <div class="center"><button @click="countNum(1,index)" class="add">
                                     <p>+</p>
                                 </button></div>
                             <div class="center" style="width: 90px;">
                                 <p>$ {{(item.prdPrice* item.prdNum)}}</p>
                             </div>
-                            <div class="center"><img src="img/trash_bin.png" @click="del_btn(index)"
-                                    style="width: 30px;filter: invert(100%);"></div>
+                            <div class="center"><img src="img/trash_bin.png" @click="del_btn(index)" style="width: 30px;filter: invert(100%);"></div>
                         </div>
                     </div>
                 </div>
@@ -74,9 +68,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="left"><input type="radio" v-model="person.delivery" value="宅配" id="plan1"
-                                class="radio-input full"><label for="plan1" class="radio-label"><span
-                                    class="radio-button"></span>
+                        <td class="left flex">
+                            <input type="radio" v-model="person.delivery" value="宅配" id="plan1" class="radio-input full"><label for="plan1" class="radio-label center"><span class="radio-button"></span>
                                 <p>宅配</p>
                             </label></td>
                         <td>
@@ -84,19 +77,17 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="left"><input type="radio" v-model="person.delivery" value="7-11超商取貨" id="plan2"
-                                class="radio-input full"><label for="plan2" class="radio-label"><span
-                                    class="radio-button"></span>
-                                <p>7-11超商取貨</p>
+                        <td class="left flex">
+                            <input type="radio" v-model="person.delivery" value="7-11超商取貨" id="plan2" class="radio-input full"><label for="plan2" class="radio-label center"><span class="radio-button"></span>
+                            <p>7-11超商取貨</p>
                             </label></td>
                         <td>
                             <p>$ 90</p>
                         </td>
                     </tr>
                     <tr>
-                        <td class="left"><input type="radio" v-model="person.delivery" value="全家超商取貨" id="plan3"
-                                class="radio-input full"><label for="plan3" class="radio-label"><span
-                                    class="radio-button"></span>
+                        <td class="left flex">
+                            <input type="radio" v-model="person.delivery" value="全家超商取貨" id="plan3" class="radio-input full"><label for="plan3" class="radio-label center"><span class="radio-button"></span>
                                 <p>全家超商取貨</p>
                             </label></td>
                         <td>
@@ -131,14 +122,11 @@
                         </select>
                     </div>
                     <div>
-                        <input type="text" name="cardNumber" id="cardNum" v-model.number="credit_card"
-                            @change="ValidateCreditCardNumber(credit_card)" placeholder=" 請輸入信用卡卡號 " maxlength="16"
-                            size="12" />
+                        <input type="text" name="cardNumber" id="cardNum" v-model.number="credit_card" @change="ValidateCreditCardNumber(credit_card)" placeholder=" 請輸入信用卡卡號 " maxlength="16" size="12" />
                     </div>
                     <div></div>
                     <div style="width: 100px;">
-                        <img class="card_img" :src="[cCard ==='Visa' ? credit_card_png[0] : credit_card_png[1]]"
-                            alt="credit_card">
+                        <img class="card_img" :src="[cCard ==='Visa' ? credit_card_png[0] : credit_card_png[1]]" alt="credit_card">
                     </div>
                 </div>
                 <div class="flex padding-bottom">
@@ -251,8 +239,6 @@
                 noshopping: true,
                 cart: [],
                 prdsRows: '',
-                // Citys: ["台北市", "新北市", "基隆市", "桃園市"],
-                // Areas: '',
                 selectedYear: '',
                 selectedMonth: '',
                 test: '',
@@ -271,8 +257,6 @@
                 person: {
                     phone: '',
                     coupon: '',
-                    // selectedCity: '',
-                    // selectedArea: '',
                     address: '',
                     name: '',
                     delivery: '宅配',
@@ -281,7 +265,7 @@
             },
             watch: {
                 credit_card(nVal, oVal) {
-                    console.log(nVal, oVal);
+                    // console.log(nVal, oVal);
                     // this.ValidateCreditCardNumber(nVal);
                 },
             },
@@ -314,10 +298,6 @@
                         dataType: 'json',
                         success(res) {
                             thisVue.couponinfos = res;
-                        },
-                        error(res) {
-                            console.log('error');
-                            console.log(res);
                         },
                     })
                 },
