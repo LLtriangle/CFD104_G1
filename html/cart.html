@@ -38,7 +38,8 @@
                                     <p>-</p>
                                 </button>
                             </div>
-                            <div class="center"><input @change="changeNum" type="number" min="1" max="99" v-model.number="item.prdNum" size="1" class="changeNum"></div>
+                            <div class="center">
+                                <input @change="changeNum" type="number" min="1" max="99" v-model.number="item.prdNum" size="1" class="changeNum"></div>
                             <div class="center"><button @click="countNum(1,index)" class="add">
                                     <p>+</p>
                                 </button></div>
@@ -67,7 +68,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="left flex"><input type="radio" v-model="person.delivery" value="宅配" id="plan1" class="radio-input full"><label for="plan1" class="radio-label center"><span class="radio-button"></span>
+                        <td class="left flex">
+                            <input type="radio" v-model="person.delivery" value="宅配" id="plan1" class="radio-input full"><label for="plan1" class="radio-label center"><span class="radio-button"></span>
                                 <p>宅配</p>
                             </label></td>
                         <td>
@@ -75,15 +77,17 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="left flex"><input type="radio" v-model="person.delivery" value="7-11超商取貨" id="plan2" class="radio-input full"><label for="plan2" class="radio-label center"><span class="radio-button"></span>
-                                <p>7-11超商取貨</p>
+                        <td class="left flex">
+                            <input type="radio" v-model="person.delivery" value="7-11超商取貨" id="plan2" class="radio-input full"><label for="plan2" class="radio-label center"><span class="radio-button"></span>
+                            <p>7-11超商取貨</p>
                             </label></td>
                         <td>
                             <p>$ 90</p>
                         </td>
                     </tr>
                     <tr>
-                        <td class="left flex"><input type="radio" v-model="person.delivery" value="全家超商取貨" id="plan3" class="radio-input full"><label for="plan3" class="radio-label center"><span class="radio-button"></span>
+                        <td class="left flex">
+                            <input type="radio" v-model="person.delivery" value="全家超商取貨" id="plan3" class="radio-input full"><label for="plan3" class="radio-label center"><span class="radio-button"></span>
                                 <p>全家超商取貨</p>
                             </label></td>
                         <td>
@@ -235,8 +239,6 @@
                 noshopping: true,
                 cart: [],
                 prdsRows: '',
-                // Citys: ["台北市", "新北市", "基隆市", "桃園市"],
-                // Areas: '',
                 selectedYear: '',
                 selectedMonth: '',
                 test: '',
@@ -263,7 +265,7 @@
             },
             watch: {
                 credit_card(nVal, oVal) {
-                    console.log(nVal, oVal);
+                    // console.log(nVal, oVal);
                     // this.ValidateCreditCardNumber(nVal);
                 },
             },
@@ -296,10 +298,6 @@
                         dataType: 'json',
                         success(res) {
                             thisVue.couponinfos = res;
-                        },
-                        error(res) {
-                            console.log('error');
-                            console.log(res);
                         },
                     })
                 },
