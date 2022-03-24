@@ -18,8 +18,8 @@
 	<!-- .js連結-->
 	<script src="js/jquery.min.js"></script>
   	<script src="js/jquery-ui.js"></script>
-  	<script src="js/vue.min.js"></script>
-  	<!-- <script src="js/vue.js"></script> -->
+  	<!-- <script src="js/vue.min.js"></script> -->
+  	<script src="js/vue.js"></script>
   	<script src="js/backend.js"></script>
       
 </head>
@@ -197,10 +197,10 @@
                         </li>
                         <li class="emp_group">
                             <label for="emp_img">員工照片:
-                                <input name="emp_img" class="upFile" type="file" @change="uploadImg">
+                                <input name="emp_img" class="upFile" type="file" @change="uploadImg"  v-show="showLightBox.EMP_PIC">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="emp_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.EMP_PIC'>
+                                    <img class="preview_img" :src='"img/"+showLightBox.EMP_PIC'  v-show="showLightBox.EMP_PIC">
                                 </div>
                             </label>
                         </li>
@@ -473,7 +473,7 @@
                                 <input name="prd_img_1" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.IMG1'>
+                                    <img class="preview_img" :src='"img/"+showLightBox.IMG1' v-show="showLightBox.IMG1">
                                 </div>
                             </label>
                         </div>
@@ -482,7 +482,7 @@
                                 <input name="prd_img_2" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.IMG2'>
+                                    <img class="preview_img" :src='"img/"+showLightBox.IMG2' v-show="showLightBox.IMG2">
                                 </div>
                             </label>
                         </div>
@@ -491,7 +491,7 @@
                                 <input name="prd_img_3" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.IMG3'>
+                                    <img class="preview_img" :src='"img/"+showLightBox.IMG3' v-show="showLightBox.IMG3">
                                 </div>
                             </label>
                         </div>
@@ -500,7 +500,7 @@
                                 <input name="prd_img_4" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.IMG4'>
+                                    <img class="preview_img" :src='"img/"+showLightBox.IMG4' v-show="showLightBox.IMG4">
                                 </div>
                             </label>
                         </div>
@@ -509,7 +509,7 @@
                                 <input name="prd_info_img_1" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.INFO_IMG1'>
+                                    <img class="preview_img" :src='"img/"+showLightBox.INFO_IMG1' v-show="showLightBox.INFO_IMG1">
                                 </div>
                             </label>
                         </div>
@@ -518,7 +518,7 @@
                                 <input name="prd_info_img_2" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.INFO_IMG2'>
+                                    <img class="preview_img" :src='"img/"+showLightBox.INFO_IMG2' v-show="showLightBox.INFO_IMG2">
                                 </div>
                             </label>
                         </div>
@@ -527,7 +527,7 @@
                                 <input name="prd_spec_img" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.SPEC_IMG'>
+                                    <img class="preview_img" :src='"img/"+showLightBox.SPEC_IMG' v-show="showLightBox.SPEC_IMG">
                                 </div>
                             </label>
                         </div>
@@ -621,7 +621,7 @@
                                 <input name="new_prd_img_1" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.IMG1'>
+                                    <img class="preview_img" :src='"img/"+showLightBox.IMG1' v-show="showLightBox.IMG1">
                                 </div>
                             </label>
                         </div>
@@ -630,7 +630,7 @@
                                 <input name="new_prd_img_2" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.IMG2'>
+                                    <img class="preview_img" :src='"img/"+showLightBox.IMG2' v-show="showLightBox.IMG2">
                                 </div>
                             </label>
                         </div>
@@ -639,7 +639,7 @@
                                 <input name="new_prd_img_3" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.IMG3'>
+                                    <img class="preview_img" :src='"img/"+showLightBox.IMG3' v-show="showLightBox.IMG3">
                                 </div>
                             </label>
                         </div>
@@ -648,7 +648,7 @@
                                 <input name="new_prd_img_4" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.IMG4'>
+                                    <img class="preview_img" :src='"img/"+showLightBox.IMG4'v-show="showLightBox.IMG4">
                                 </div>
                             </label>
                         </div>
@@ -657,7 +657,7 @@
                                 <input name="new_prd_info_img_1" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.INFO_IMG1'>
+                                    <img class="preview_img" :src='"img/"+showLightBox.INFO_IMG1' v-show="showLightBox.INFO_IMG1">
                                 </div>
                             </label>
                         </div>
@@ -666,7 +666,7 @@
                                 <input name="new_prd_info_img_2" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.INFO_IMG2'>
+                                    <img class="preview_img" :src='"img/"+showLightBox.INFO_IMG2' v-show="showLightBox.INFO_IMG2">
                                 </div>
                             </label>
                         </div>
@@ -675,7 +675,7 @@
                                 <input name="new_prd_spec_img" class="upFile" type="file" @change="uploadImg">
                                 <p class="dnone">請選擇圖片上傳</p>
                                 <div class="prd_img">
-                                    <img class="preview_img" :src='"img/"+showLightBox.SPEC_IMG'>
+                                    <img class="preview_img" :src='"img/"+showLightBox.SPEC_IMG' v-show="showLightBox.SPEC_IMG">
                                 </div>
                             </label>
                         </div>
@@ -893,21 +893,21 @@
                                 <div class="need_img_box">
                                     <label for="need_img1">客戶需求圖片1:
                                         <div class="need_img">
-                                            <img class="preview_img" :src='"img/reserve/"+showLightBox.UPLOAD_PIC1'>
+                                            <img class="preview_img" :src='"img/reserve/"+showLightBox.UPLOAD_PIC1' v-show="showLightBox.UPLOAD_PIC1">
                                         </div>
                                     </label>
                                 </div>
                                 <div class="need_img_box">
                                     <label for="need_img2">客戶需求圖片2:
                                         <div class="need_img">
-                                            <img class="preview_img" :src='"img/reserve/"+showLightBox.UPLOAD_PIC2'>
+                                            <img class="preview_img" :src='"img/reserve/"+showLightBox.UPLOAD_PIC2' v-show="showLightBox.UPLOAD_PIC2">
                                         </div>
                                     </label>
                                 </div>
                                 <div class="need_img_box">
                                     <label for="need_img3">客戶需求圖片3:
                                         <div class="need_img">
-                                            <img class="preview_img" :src='"img/reserve/"+showLightBox.UPLOAD_PIC3'>
+                                            <img class="preview_img" :src='"img/reserve/"+showLightBox.UPLOAD_PIC3' v-show="showLightBox.UPLOAD_PIC3">
                                         </div>
                                     </label>
                                 </div>
@@ -925,14 +925,14 @@
                                 <div class="before_img_box">
                                     <label for="before_img">服務前記錄圖片:
                                         <div class="before_img">
-                                            <img class="preview_img" :src='"img/report/"+showLightBox.BEFORE_IMG'>
+                                            <img class="preview_img" :src='"img/report/"+showLightBox.BEFORE_IMG'v-show="showLightBox.BEFORE_IMG">
                                         </div>
                                     </label>
                                 </div>
                                 <div class="after_img_box">
                                     <label for="after_img">服務後記錄圖片:
                                         <div class="after_img">
-                                            <img class="preview_img" :src='"img/report/"+showLightBox.AFTER_IMG'>
+                                            <img class="preview_img" :src='"img/report/"+showLightBox.AFTER_IMG' v-show="showLightBox.AFTER_IMG">
                                         </div>
                                     </label>
                                 </div>
@@ -1662,6 +1662,60 @@
                                     $(".status option[value='2']").attr("selected", "selected");
 
                                 };
+
+                                // emp img
+
+                                if(vueApp.showLightBox.EMP_PIC == null || vueApp.showLightBox.EMP_PIC == ""){ 
+                                    vueApp.showLightBox.EMP_PIC = false;
+                                };
+                                
+                                //prd img
+                                if(vueApp.showLightBox.IMG1 == null || vueApp.showLightBox.IMG1 == ""){ 
+                                    vueApp.showLightBox.IMG1 = false;
+                                };
+                                if(vueApp.showLightBox.IMG2 == null || vueApp.showLightBox.IMG2 == ""){ 
+                                    vueApp.showLightBox.IMG2 = false;
+                                };
+                                if(vueApp.showLightBox.IMG3 == null || vueApp.showLightBox.IMG3 == ""){ 
+                                    vueApp.showLightBox.IMG3 = false;
+                                };
+                                if(vueApp.showLightBox.IMG4 == null || vueApp.showLightBox.IMG4 == ""){ 
+                                    vueApp.showLightBox.IMG4 = false;
+                                };
+
+                                if(vueApp.showLightBox.IMG4 == null || vueApp.showLightBox.INFO_IMG1 == ""){ 
+                                    vueApp.showLightBox.IMG4 = false;
+                                };
+                                if(vueApp.showLightBox.IMG4 == null || vueApp.showLightBox.INFO_IMG2 == ""){ 
+                                    vueApp.showLightBox.IMG4 = false;
+                                };
+
+                                if(vueApp.showLightBox.IMG4 == null || vueApp.showLightBox.SPEC_IMG == ""){ 
+                                    vueApp.showLightBox.IMG4 = false;
+                                };
+
+                                // sao img
+                                if(vueApp.showLightBox.UPLOAD_PIC1 == null ){ 
+                                    vueApp.showLightBox.UPLOAD_PIC1 = false;
+                                };
+                                if(vueApp.showLightBox.UPLOAD_PIC2 == null ){ 
+                                    vueApp.showLightBox.UPLOAD_PIC2 = false;
+                                };
+                                if(vueApp.showLightBox.UPLOAD_PIC3 == null ){ 
+                                    vueApp.showLightBox.UPLOAD_PIC3 = false;
+                                };
+
+                                if(vueApp.showLightBox.BEFORE_IMG == null ){ 
+                                    vueApp.showLightBox.BEFORE_IMG = false;
+                                };
+                                if(vueApp.showLightBox.AFTER_IMG == null ){ 
+                                    vueApp.showLightBox.AFTER_IMG = false;
+                                };
+
+
+
+                                
+                                
 
                                 
 
