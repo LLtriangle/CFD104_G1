@@ -39,9 +39,9 @@ try{
 	<!-- .css連結 -->
 	<link rel="stylesheet" href="css/style.css">
 	<!-- .js連結-->
-	<script src="js/jquery.js"></script>
+	<script src="js/jquery.min.js"></script>
   	<script src="js/jquery-ui.js"></script>
-  	<script src="js/vue.js"></script>
+  	<script src="js/vue.min.js"></script>
 	<script src="js/header.js"></script>
 	<script src="js/loading.js"></script>
     <title>商品內頁</title>
