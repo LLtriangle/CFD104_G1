@@ -74,10 +74,8 @@
 					this.colnum=localStorage.getItem('colNumb')-1;
 					let xhr = new XMLHttpRequest();
 					let thisVue = this;
-					console.log(1);
 					xhr.onload = function(){
 						console.log(xhr.responseText);
-						console.log(2);
 						thisVue.colRows = JSON.parse(xhr.responseText);
 					}
 					xhr.open("get","phps/selectAll.php?tableName=columntable", true);

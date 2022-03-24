@@ -3,7 +3,6 @@ session_start();
 try{
     // if(session_status() == PHP_SESSION_ACTIVE){  // 會員
     if(isset($_SESSION["CUS_NO"])){  // 會員
-	    // echo '已登入';
 	    echo $_SESSION["CUS_PIC"];
     }else{
 	    echo '未登入';
