@@ -11,7 +11,7 @@ try {
 
 	$allTable = $pdo->query($sql);
 	$Rows = $allTable->fetchAll(PDO::FETCH_ASSOC);
-	// echo json_encode($Rows);
+	echo json_encode($Rows);
 } catch (PDOException $e) {
 	// echo "錯誤原因 : ", $e->getMessage(), "<br>";
 	// echo "錯誤行號 : ", $e->getLine(), "<br>";
