@@ -52,7 +52,7 @@
                         <div class="mem_icon" >
                                 <!-- 大頭貼 -->
                                 <img id="myImg" :src="cus_pic">
-                                <input type="file" name="upFile" id="upFile" accept="image/jpeg, image/png" >
+                                <input type="file" name="upFile" id="upFile" @change="uploadFile" accept="image/jpeg, image/png" >
                                 <label id="btnUpload" class="btn_btn br" for="upFile">編輯大頭貼
                                 </label>
                         </div>
@@ -105,7 +105,7 @@
                         </div>
                 
                         <!-------新增取消修改-------->
-                        <button id="btnCancel" type="button" class="btn_sub bl cancel" @click="getMemberInfo">取消修改</button>
+                        <button id="btnCancel" type="button" class="btn_sub bl cancel" @click="cancel">取消修改</button>
                         <button id="btnSave" type="button" class="btn_sub br" @click="changeMemberInfo">儲存修改</button>
                         <button id="btnChange" type="button" class="btn_sub br">修改會員資料</button>
                     </div>
@@ -282,7 +282,7 @@
                         let thisVue = this;
                         xhr.onload = function(){
                             thisVue.cusRow = JSON.parse(xhr.responseText);
-                            // console.log(thisVue.cusRow);
+                            console.log(thisVue.cusRow);
                             if (!thisVue.cusRow.EMAIL) {
                                 // alert("請先登入");
                                 location.href="login.html";
@@ -300,6 +300,19 @@
                         };
                         xhr.open("get", "phps/getMemberInfo.php", true);
                         xhr.send(null);
+                    },
+                    uploadFile(e){
+                        //選檔案:change事件
+                        let file = e.target.files[0]; //找物件
+                        let reader = new FileReader(); //reader讀物件
+                        reader.readAsDataURL(file);
+                        reader.onload = function(){ 
+                            $("#myImg").src(reader.result);
+                        }
+                    },
+                    cancel(){
+                        this.getMemberInfo();
+                        $("#myImg").src = this.cus_pic;
                     },
                     changeMemberInfo(){
                         let thisVue = this;

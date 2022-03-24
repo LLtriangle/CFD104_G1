@@ -76,23 +76,21 @@ function logout(){
 };
 
 // 上傳照片與大頭貼預覽
-function uploadFile(){
-    upFile.onchange=function(e){ //選檔案:change事件
-        let file = e.target.files[0]; //找物件
-        let reader = new FileReader(); //reader讀物件
-        reader.onload = function(){ 
-            $id("myImg").src = reader.result;
-            // console.log($id("myImg").src);
-        }
-        reader.readAsDataURL(file);
-    }
-};
+// function uploadFile(){
+//     upFile.onchange=function(e){ //選檔案:change事件
+//         let file = e.target.files[0]; //找物件
+//         let reader = new FileReader(); //reader讀物件
+//         reader.onload = function(){ 
+//             $id("myImg").src = reader.result;
+//         }
+//         reader.readAsDataURL(file);
+//     }
+// };
 function init(){
     // getMemberInfo();
     uploadFile();
     $id('btnLogout').addEventListener("click",logout);
     $id('btnCancel').addEventListener("click",hideBtn);
-    // $id('btnSave').addEventListener("click",changeMemberInfo);
     $id('btnSave').addEventListener("click",hideBtn);
     $id('btnChange').addEventListener("click",showBtn);
 }; 

@@ -114,7 +114,7 @@ let member={};
       $id('btnRegister').addEventListener("click",addMem);
       $('#cusPsw').bind('keypress', function (event){
           if (event.keyCode == 13){
-            alert("按下enter!");
+            // alert("按下enter!");
           // addMem();
           }
         });
