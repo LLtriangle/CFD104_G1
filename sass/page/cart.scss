@@ -115,6 +115,7 @@ button{
     .border-bottom{
         padding-bottom: 10px;
         border-bottom: 1px solid map-get($btn_color, 'brown');
+        justify-content: center;
     }
     .left{
         text-align: left;
