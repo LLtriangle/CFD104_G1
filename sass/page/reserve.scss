@@ -25,6 +25,7 @@ button{
 }
 .container{
     max-width: 1200px;
+    width: calc(100% - 40px);
     margin: auto;
     margin-top: 92px; // 推header
     font-family: $font_family;
@@ -41,8 +42,9 @@ button{
             transition: background-color 0.2s;
             box-sizing: border-box;
             border-bottom: none;
-            box-shadow: 4px 4px 5px #e1e1e1;
-            background-color:map-get($color , "cover" );
+            // box-shadow: 4px 4px 5px #F3EEE2;
+            // background-color:map-get($color , "cover" );
+            background:linear-gradient(-135deg,transparent 40px,#d6d3cc 44px,rgb(219, 213, 207) 45px);
             border-radius: 10px 10px 0 0;
             font-weight: bold;
             &:hover {
@@ -50,7 +52,9 @@ button{
             color: map-get($color, 'yellow');
             }
             &.active {
-            background-color:#E2C4A4;
+            // background-color:#E2C4A4;
+            // background-color:#F3EEE2;
+            background:linear-gradient(-135deg,transparent 40px,#e2e1df 44px,map-get($color , "cover" ) 40px);
             color: map-get($color, 'blue');
             cursor: default;
             }
@@ -106,14 +110,14 @@ table.creditCard{
         min-width: 450px;
         min-height: 292px;
         line-height: 1.5;
-        // margin-left: 50px;
+        // margin-left: 150px;
+        margin: 0 auto;
         .plan_txt{
             border-radius: 10px;
             background-color: white;
             box-shadow: 1px 1px 2px map-get($color , 'sub_blue' );
             padding: 10px;
             box-sizing: border-box;
-
             p{
                 padding-left: 2rem;
             }
@@ -387,7 +391,7 @@ textarea {
 
 // RWD
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 768px) {
     .form_item{
         margin-bottom: 20px;
     }
@@ -588,7 +592,7 @@ textarea {
 //     margin-left: 10px;
 // }
 .my_info{
-    margin-top: 50px;
+    margin-top: 20px;
     li{
         margin-left: 20px;
         margin-top: 10px;

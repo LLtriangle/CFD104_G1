@@ -203,7 +203,6 @@
     .time_panel{
         display: block;
         width: 300px;
-        // padding: 10px;
         box-sizing: border-box;
         align-items: center;
         padding: 10px;
@@ -227,10 +226,12 @@
         }
     }
     .time_period{
-        width: 550px;
+        width: 400px;
         display: flex;
+        flex-wrap: wrap;
+        align-content: center;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: center;
         input{
             display: none;
         }
@@ -242,6 +243,7 @@
         }
         label{
             cursor: pointer;
+            margin: 0 5px;
             .time_item{
                 border: 3px solid transparent;
                 border-radius: 50%;
@@ -301,9 +303,14 @@
             flex-direction: row;
             padding-top: 0px;
             width: 100%;
+            justify-content: space-evenly;
         }
     }
     .can_pan{
+        display: block;
+    }
+    .wrap{
+        flex-wrap: wrap;
         display: block;
     }
 }
@@ -326,26 +333,28 @@
             &:before{
                 content: "";
                 width: 30%;
-                height: 3px;
-                background-color: map-get($color , "main" );
+                height:1px;
+                background-color: map-get($color ,"sub_brown");
                 position: absolute;
                 right: 0px;
             }
             &:after{
                 content: "";
                 width: 30%;
-                height: 3px;
-                background-color: map-get($color , "main" );
+                height:1px;
+                background-color: map-get($color ,"sub_brown");
                 position: absolute;
                 left: 0px;
             }
         }
     }
-    .can_pan{
-        display: flex;
-        .time_panel{
-            margin-top: 290px;
-            margin-left: 50px;
-        }
-    }
+    // .can_pan{
+    //     .time_panel{
+    //         // margin-left: 50px;
+    //     }
+    // }
+}
+.wrap{
+    flex-wrap: wrap;
+    justify-content: space-between;
 }

@@ -128,7 +128,7 @@
                         <div class="calendar_time">
                             <div class="can_pan">
                                 <!-- 月曆 -->
-                                <div>
+                                <div class="flex wrap">
                                     <div id="calendari"></div>
                                     <!-- 挑時段 -->
                                     <div class="time_period">
@@ -150,18 +150,21 @@
                                                 <p>晚上<br>18-21點</p>
                                             </div>
                                         </label>
+
+                                        <div class="time_panel">
+                                            <div>
+                                                <p>｜預約日期</p>
+                                                <p id="selectedDate"></p>
+                                            </div>
+                                            <div>
+                                                <p>｜預約時段</p>
+                                                <p id="selectedPeriod">{{dataTime}}</p>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
-                                <div class="time_panel">
-                                    <div>
-                                        <p>｜預約日期</p>
-                                        <p id="selectedDate"></p>
-                                    </div>
-                                    <div>
-                                        <p>｜預約時段</p>
-                                        <p id="selectedPeriod">{{dataTime}}</p>
-                                    </div>
-                                </div>
+                                
                             </div>
                             <!-- 顯示挑選時間 -->
                             <!-- <div class="time_panel" >

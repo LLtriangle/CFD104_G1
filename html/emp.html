@@ -362,16 +362,29 @@
                     },
                     open_lightbox(e){
                         e.stopPropagation();
-                        // console.log("我要開燈箱",e);
                         let thisVue = this;
                         // let td = document.querySelector("#calendari td.active");
                         let td = e.target.closest("td");
                         // console.log(td);
                         thisVue.clickDate = td.dataset.date;
                         thisVue.todaySao = thisVue.saoinfos.filter(obj=>obj.SAO_DATE==thisVue.clickDate);
+                        // if(thisVue.clickDate)
+                        let today = new Date();
+                        let d = today.getDate(); // 今天日期
+                        if(d<10){d= "0"+d};
+                        let m = today.getMonth()+1; // 今天月份
+                        if(m<10){m= "0"+m};
+                        let y = today.getFullYear();
+                        let tday = y+"-"+m+"-"+d; // 今天 2022-03-25
 
                         if(thisVue.todaySao.length>0){
                             $("#lightbox").toggle().show();
+
+                            if(tday<thisVue.clickDate){
+                                console.log(tday<thisVue.clickDate);
+                                console.log($(".btn_report"));
+                                $(".btn_report").attr('disabled',true);
+                            };
                             
                             for(let index in thisVue.todaySao){
 
