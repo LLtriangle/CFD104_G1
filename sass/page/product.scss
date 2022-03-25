@@ -177,6 +177,12 @@ p{
             border-radius: 10px;
             background-color: map-get($color, 'bg_white');
             position: relative;
+            h3{
+                font-size: 0.1rem;
+                text-align: center;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         }
     }
 } 
@@ -351,6 +357,9 @@ p{
                 // border: 2px solid map-get($color, 'main');
                 border-radius: 10px;
                 background-color: map-get($color, 'bg_white');
+                h3{
+                    text-align: center;
+                }
             }
         }
     }
@@ -579,6 +588,9 @@ p{
                 border-radius: 10px;
                 background-color: map-get($color, 'bg_white');
                 position: relative;
+                h3{
+                    text-align: center;
+                }
             }
         }
     }
