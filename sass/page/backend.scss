@@ -383,7 +383,15 @@ input[type="file"]{
         }
         table{
             width: 100%;
+            thead{
+                text-align: left;
+                th{
+                    padding: 10px;  
+                }
+            }
+            
             tbody{
+                text-align: left;
                 tr{
                     .status{
                         &.delivered{
@@ -433,12 +441,12 @@ input[type="file"]{
                     border-bottom: none;
                 }
                 td{
+                    text-align: left;
                     overflow:hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
                     padding: 10px;
                     max-width: 170px;
-                    text-align: center;
                     color: map-get($color , "main" );
                     .edit_btn{
                         padding: 5px 10px;

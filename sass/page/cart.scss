@@ -1,6 +1,19 @@
 @import  "../base/var";
 @import  "../base/color";
 
+//rwd變數
+@mixin pad{
+    @media(max-width:767px){
+      @content;
+    }
+  }
+  
+  @mixin PC{
+    @media(min-width:768px){
+      @content;
+    }
+}
+
 *{
     box-sizing: border-box;
 }
@@ -19,7 +32,9 @@ button{
     }
 }
 .container{
-    margin: 40px;
+    max-width: 1200px;
+    margin: auto;
+    // margin: 40px;
     margin-top: 92px; // 推header
     font-family: $font_family;
     font-size: 0.9em;
@@ -66,6 +81,8 @@ button{
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 4px 4px 8px #e1e1e1;
+    min-height: 40vh;
+    flex-wrap: wrap;
     td,div {
         text-align: center;
         padding: 0 0.1em;
@@ -75,8 +92,35 @@ button{
             text-align: left;
         }
     }
+    .price{
+        text-align: right;
+        padding-right: 60px;
+    }
+    
+    
     .padding-bottom{
-        padding-bottom: 10px;
+        padding-bottom: 20px;
+
+
+        .box{
+            
+            @include pad{
+                margin: 20px 0;
+            }
+            display: flex;
+
+            &.verify{
+                margin-right: 100px;
+            }
+            p{
+                text-align: left;
+            }
+
+            .select_box{
+                padding-left: 25px;
+            }
+
+        }
     }
     .noshopping{
         padding: 20px;
@@ -85,6 +129,8 @@ button{
         display: flex;
         width: 100%;
         justify-content: space-between;
+
+
         .widthname{
             min-width: 60px;
         }
@@ -125,6 +171,27 @@ button{
         display: flex;
         justify-content: space-between;
     }
+
+    .shlist{
+
+        td{
+            
+            p{
+                line-height: 90px;
+            }
+
+            
+        }
+
+        td:nth-child(1) p{
+            text-align: right;
+            padding-right: 80px;
+        }
+
+        td:nth-child(2) p{
+            text-align: left;
+        }
+    }
 }
 .data { width: 120px; }
 
@@ -144,7 +211,7 @@ select{
     box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
     border-radius: 10px;
     padding: 5px;
-    min-width: 100px;
+    min-width: 120px;
     &:focus{
         outline: none;
         box-shadow: 1px 1px 5px map-get($color, 'main');
@@ -207,3 +274,21 @@ textarea {
         flex-wrap: wrap;
     }
 }
+
+// @include PC{
+//     .tabcontent .left{
+//         justify-content: flex-end;
+//     }
+//     td{
+//         text-align: right;
+        
+//         p{
+//             text-align: left;
+            
+//         }
+//         .price{
+//             padding-left: 50px;
+//         }
+//     }       
+// }
+

@@ -20,14 +20,14 @@ try {
 		$sql = "select PRD_NO ta, CATEGORY, PRD_NAME,PRICE, STATE from {$_GET['data']}";
 		
 	}elseif ($_GET['data'] == "ord"){
-		$sql = "select ORD_NO ta, CUS_NO, TIME, STATE from {$_GET['data']}";
+		$sql = "select ORD_NO ta, CUS_NO, TIME, STATE from {$_GET['data']} order by TIME desc";
 		
 	}elseif ($_GET['data'] == "plan"){
 		$sql = "select PLAN_NO ta, PLAN_NAME, PRICE from {$_GET['data']}";
 
 	}elseif ($_GET['data'] == "sao"){
 		// saoTableHead:['服務訂單編號','員工編號','會員編號','方案編號','服務日期','服務時間','付款狀態','服務訂單狀態'],
-		$sql = "select SAO_NO ta, EMP_NO, CUS_NO, PLAN_NO, SAO_DATE, SAO_TIME, STATE from {$_GET['data']}";
+		$sql = "select SAO_NO ta, EMP_NO, CUS_NO, PLAN_NO, SAO_DATE, SAO_TIME, STATE from {$_GET['data']} order by SAO_DATE desc";
 		// $sql = "select S.SAO_NO ta, EMP_NO, CUS_NO, PLAN_NO, SAO_DATE, SAO_TIME, PAY_STATE, STATE 
 		// from result R join plan P on R.PLAN_NO = P.PLAN_NO";
 			
@@ -38,10 +38,10 @@ try {
 		$sql = "select COUPON ta, TITLE, START, END, STATE from {$_GET['data']} order by END";
 		
 	}elseif ($_GET['data'] == "columntable"){
-		$sql = "select COLUMN_NO ta, TOPIC, AUTHOR, DATE from {$_GET['data']}";
+		$sql = "select COLUMN_NO ta, TOPIC, AUTHOR, DATE from {$_GET['data']} order by DATE desc";
 	
 	}elseif ($_GET['data'] == "sch"){
-		$sql = "select * from {$_GET['data']} order by DAY_OFF";
+		$sql = "select * from {$_GET['data']} order by DAY_OFF desc";
 
 	};
 	$cases = $pdo->query($sql);	
