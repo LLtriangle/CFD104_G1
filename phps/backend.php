@@ -41,7 +41,7 @@ try {
 		$sql = "select COLUMN_NO ta, TOPIC, AUTHOR, DATE from {$_GET['data']}";
 	
 	}elseif ($_GET['data'] == "sch"){
-		$sql = "select * from {$_GET['data']}";
+		$sql = "select * from {$_GET['data']} order by DAY_OFF";
 
 	};
 	$cases = $pdo->query($sql);	

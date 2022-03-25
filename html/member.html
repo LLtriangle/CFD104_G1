@@ -311,8 +311,7 @@
                         }
                     },
                     cancel(){
-                        this.getMemberInfo();
-                        $("#myImg").src = this.cus_pic;
+                        $("#myImg").attr("src",this.cus_pic);
                     },
                     changeMemberInfo(){
                         let thisVue = this;
