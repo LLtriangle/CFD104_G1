@@ -73,7 +73,7 @@
                                 <p>宅配</p>
                             </label></td>
                         <td>
-                            <p>$ 100</p>
+                            <p class="price">$ 100</p>
                         </td>
                     </tr>
                     <tr>
@@ -82,7 +82,7 @@
                             <p>7-11超商取貨</p>
                             </label></td>
                         <td>
-                            <p>$ 90</p>
+                            <p class="price">$ 90</p>
                         </td>
                     </tr>
                     <tr>
@@ -91,7 +91,7 @@
                                 <p>全家超商取貨</p>
                             </label></td>
                         <td>
-                            <p>$ 80</p>
+                            <p class="price">$ 80</p>
                         </td>
                     </tr>
                     <tr>
@@ -99,7 +99,7 @@
                             <p>總金額</p>
                         </td>
                         <td>
-                            <p>$ {{total_all}}</p>
+                            <p class="price">$ {{total_all}}</p>
                         </td>
                     </tr>
                 </table>
@@ -111,61 +111,72 @@
                 </div>
             </div>
             <div v-if="activetab ==='2'" class="tabcontent" style="padding: 10px 60px;">
-                <div class="flex padding-bottom">
-                    <div>
-                        <p style="width: 100px;">信用卡卡號:</p>
+                <div class="flex padding-bottom credit">
+                    <div class="box">
+                        <div>
+                            <p style="width: 100px;">信用卡卡號:</p>
+                        </div>
+                        <div class="select_box">
+                            <select name="信用卡" v-model="cCard" class="select">
+                                <option value="Visa" id="visa">Visa</option>
+                                <option value="Mastercard" id="mastercard">Mastercard</option>
+                            </select>
+                        </div>
+                        <div class="select_box">
+                            <input type="text" name="cardNumber" id="cardNum" v-model.number="credit_card" @change="ValidateCreditCardNumber(credit_card)" placeholder=" 請輸入信用卡卡號 " maxlength="16" size="12" />
+                        </div>
                     </div>
-                    <div>
-                        <select name="信用卡" v-model="cCard" class="select">
-                            <option value="Visa" id="visa">Visa</option>
-                            <option value="Mastercard" id="mastercard">Mastercard</option>
-                        </select>
-                    </div>
-                    <div>
-                        <input type="text" name="cardNumber" id="cardNum" v-model.number="credit_card" @change="ValidateCreditCardNumber(credit_card)" placeholder=" 請輸入信用卡卡號 " maxlength="16" size="12" />
-                    </div>
-                    <div></div>
                     <div style="width: 100px;">
                         <img class="card_img" :src="[cCard ==='Visa' ? credit_card_png[0] : credit_card_png[1]]" alt="credit_card">
                     </div>
                 </div>
                 <div class="flex padding-bottom">
-                    <div>
-                        <p style="width: 100px;">到期日:</p>
+                    <div class="box">
+                        <div>
+                            <p style="width: 100px;">到期日:</p>
+                        </div>
+                        <div class="select_box">
+                            <select name="年" v-model="selectedYear" class="select">
+                                <option value="" disabled>選擇年份</option>
+                                <option v-for="year in years">{{year}}年</option>
+                            </select>
+                        </div>
+                        <div class="select_box">
+                            <select name="月份" v-model="selectedMonth" class="select">
+                                <option value="" disabled>選擇月份</option>
+                                <option v-for="month in 12">{{month}}月</option>
+                            </select>
+                        </div>
                     </div>
-                    <div>
-                        <select name="年" v-model="selectedYear" class="select">
-                            <option value="" disabled>選擇年份</option>
-                            <option v-for="year in years">{{year}}年</option>
-                        </select>
+                    <div class="box verify">
+                        <div>
+                            <p style="width: 100px;">驗證碼:</p>
+                        </div>
+                        <div class="select_box"><input type="text" maxlength="3" v-model.number="test" size="1"></div>
                     </div>
-                    <div>
-                        <select name="月份" v-model="selectedMonth" class="select">
-                            <option value="" disabled>選擇月份</option>
-                            <option v-for="month in 12">{{month}}月</option>
-                        </select>
-                    </div>
-                    <div>
-                        <p style="width: 100px;">驗證碼:</p>
-                    </div>
-                    <div><input type="text" maxlength="3" v-model.number="test" size="1"></div>
                 </div>
                 <div class="flex padding-bottom">
-                    <div>
-                        <p style="width: 100px;">姓名:</p>
+                    <div class="box">
+                        <div>
+                            <p style="width: 100px;">姓名:</p>
+                        </div>
+                        <div class="select_box"><input type="text" v-model.trim="person.name" size="10"></div>
                     </div>
-                    <div><input type="text" v-model.trim="person.name" size="10"></div>
                     <div></div>
-                    <div>
-                        <p style="width: 100px;">電話:</p>
+                    <div class="box">
+                        <div>
+                            <p style="width: 100px;">電話:</p>
+                        </div>
+                        <div class="select_box"><input type="text" v-model.number="person.phone" maxlength="10" size="10"></div>
                     </div>
-                    <div><input type="text" v-model.number="person.phone" maxlength="10" size="10"></div>
                 </div>
                 <div class="flex padding-bottom">
-                    <div>
-                        <p style="width: 100px;">地址:</p>
+                    <div class="box">
+                        <div>
+                            <p style="width: 100px;">地址:</p>
+                        </div>
+                        <div class="select_box"><input type="text" v-model.trim="person.address" style="width: 100%;" size="33"></div>
                     </div>
-                    <div><input type="text" v-model.trim="person.address" style="width: 100%;" size="33"></div>
                 </div>
                 <div class="space">
                     <button class="center" v-on:click="activetab='1'">返回
@@ -175,7 +186,7 @@
             </div>
             <div v-if="activetab ==='3'" class="tabcontent">
                 <table>
-                    <tr class="padding-bottom">
+                    <tr class="padding-bottom shlist">
                         <td class="left">
                             <p>信用卡明細:</p>
                         </td>
@@ -183,7 +194,7 @@
                             <p>{{credit_card}}</p>
                         </td>
                     </tr>
-                    <tr class="padding-bottom">
+                    <tr class="padding-bottom shlist">
                         <td class="left">
                             <p>物流資訊:</p>
                         </td>
@@ -191,7 +202,7 @@
                             <p>{{person.delivery}}</p>
                         </td>
                     </tr>
-                    <tr class="padding-bottom">
+                    <tr class="padding-bottom shlist">
                         <td class="left">
                             <p>收貨地址:</p>
                         </td>
@@ -199,7 +210,7 @@
                             <p>{{person.address}}</p>
                         </td>
                     </tr>
-                    <tr class="padding-bottom">
+                    <tr class="padding-bottom shlist">
                         <td class="left">
                             <p>收貨人姓名:</p>
                         </td>
@@ -207,7 +218,7 @@
                             <p>{{person.name}}</p>
                         </td>
                     </tr>
-                    <tr class="padding-bottom">
+                    <tr class="padding-bottom shlist">
                         <td class="left">
                             <p>收貨人電話:</p>
                         </td>
@@ -215,7 +226,7 @@
                             <p>{{person.phone}}</p>
                         </td>
                     </tr>
-                    <tr class="padding-bottom">
+                    <tr class="padding-bottom shlist">
                         <td class="left">
                             <p>總金額:</p>
                         </td>
