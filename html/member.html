@@ -35,7 +35,7 @@
                     <a @click="data=true,p_order=false,p_reserve=false" class="changChick hovered" onclick="changChick(this)">會員資料</a>
                     <a @click="data=false,p_order=true,p_reserve=false" class="changChick" onclick="changChick(this)">商品訂單</a>
                     <a @click="data=false,p_order=false,p_reserve=true" class="changChick" onclick="changChick(this)">服務預約</a>
-                    <a id="btnLogout">登出</a>
+                    <a @click="logout" id="btnLogout">登出</a>
                 </div>
             </div>
         </section>
@@ -259,24 +259,16 @@
                     ordprds:[],
                 },
                 methods: {
-                // getMemberInfo() {
-                //     let xhr = new XMLHttpRequest();
-                //     let thisVue = this;
-                //     xhr.onload = function () {
-                //         thisVue.cusRow = JSON.parse(xhr.responseText);
-                //         // console.log(thisVue.cusRow);
-                //         if (!thisVue.cusRow.EMAIL) {
-                //             alert("請先登入");
-                //             location.href="login.html";
-                //         } else {
-                //             thisVue.person.name = thisVue.cusRow.CUS_NAME;
-                //             thisVue.person.phone = thisVue.cusRow.CUS_TEL;
-                //             thisVue.person.address = thisVue.cusRow.CUS_ADD;
-                //         };
-                //     };
-                //     xhr.open("get", "phps/getMemberInfo.php", true);
-                //     xhr.send(null);
-                // },
+                    // 登出
+                    logout(){        
+                        let xhr = new XMLHttpRequest();
+                        xhr.onload = function(){
+                            // 跳轉畫面
+                            window.location.assign("home.html");       
+                        }
+                        xhr.open("get", "phps/logout.php", true); // 清空session
+                        xhr.send(null);
+                    },
                     getMemberInfo(){
                         let xhr = new XMLHttpRequest();
                         let thisVue = this;
@@ -307,7 +299,7 @@
                         let reader = new FileReader(); //reader讀物件
                         reader.readAsDataURL(file);
                         reader.onload = function(){ 
-                            $("#myImg").src(reader.result);
+                            $("#myImg").attr("src",reader.result);
                         }
                     },
                     cancel(){

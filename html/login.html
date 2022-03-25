@@ -38,7 +38,7 @@
                 <input id="cusPsw" class="form_input" type="password" placeholder="設定密碼(含英數至少六個字元)" maxlength="50" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$" required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('請輸入正確的密碼格式:含英數至少六個字元');"/><br>
                 <!-- 驗證密碼 -->
                 <input id="ConfirmPassword" type="password"  placeholder="再次確認密碼" required="required" oninput="setCustomValidity('');" onchange="if(document.getElementById('cusPsw').value != document.getElementById('ConfirmPassword').value){setCustomValidity('密碼不吻合');}"/>
-
+                <span id="pswMsg"></span>
                 <input id="btnRegister" type="button" class="form_button button" value="註冊" disabled>
             </form>
         </div>

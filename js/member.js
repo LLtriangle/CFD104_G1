@@ -2,17 +2,17 @@ function $id(id){
 	return document.getElementById(id);
 }	
 
-let member={};
+// let member={};
 
 // 取得會員資料
-function getMemberInfo(){
-    let xhr = new XMLHttpRequest();
-    xhr.onload = function(){
-    member = JSON.parse(xhr.responseText);
-    }
-    xhr.open("get", "phps/getMemberInfo.php", true);
-    xhr.send(null);
-};
+// function getMemberInfo(){
+//     let xhr = new XMLHttpRequest();
+//     xhr.onload = function(){
+//         member = JSON.parse(xhr.responseText);
+//     }
+//     xhr.open("get", "phps/getMemberInfo.php", true);
+//     xhr.send(null);
+// };
 
 // 顯示btn 且 可以修改欄位
 function showBtn(){
@@ -65,15 +65,15 @@ function hideBtn(){
 // };
 
 // 登出
-function logout(){        
-    let xhr = new XMLHttpRequest();
-    xhr.onload = function(){
-        // 跳轉畫面
-        window.location.assign("home.html");       
-    }
-    xhr.open("get", "phps/logout.php", true); // 清空session
-    xhr.send(null);
-};
+// function logout(){        
+//     let xhr = new XMLHttpRequest();
+//     xhr.onload = function(){
+//         // 跳轉畫面
+//         // window.location.assign("home.html");       
+//     }
+//     xhr.open("get", "phps/logout.php", true); // 清空session
+//     xhr.send(null);
+// };
 
 // 上傳照片與大頭貼預覽
 // function uploadFile(){
@@ -88,8 +88,8 @@ function logout(){
 // };
 function init(){
     // getMemberInfo();
-    uploadFile();
-    $id('btnLogout').addEventListener("click",logout);
+    // uploadFile();
+    // $id('btnLogout').addEventListener("click",logout);
     $id('btnCancel').addEventListener("click",hideBtn);
     $id('btnSave').addEventListener("click",hideBtn);
     $id('btnChange').addEventListener("click",showBtn);

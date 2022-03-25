@@ -30,16 +30,6 @@ let member={};
         
     };
 
-    // 取得會員資料
-    // function getMemberInfo(){
-    //   let xhr = new XMLHttpRequest();
-    //   xhr.onload = function(){
-    //     member = JSON.parse(xhr.responseText);
-    //   }
-    //   xhr.open("get", "phps/getMemberInfo.php", true);
-    //   xhr.send(null);
-    // };
-
 // -------------註冊
 
     // 檢查會員帳號是否存在
@@ -49,41 +39,47 @@ let member={};
         if(xhr.status == 200){ //正確的執行完畢
           // console.log(xhr.responseText);
           $id("idMsg").innerText = xhr.responseText;
-          // if($id("idMsg").innerText=="此帳號可使用" && $id("cusName").value != "" && $id("cusPsw").value != ""){
-          //   $id("btnRegister").disabled = false;
-          // }
         }else{
           alert(xhr.status);
           alert(xhr.statusText);
         }
-      }
+      } 
       //cusId不為空值時做驗證
       if($id("cusId").value != ""){
         // 信箱驗證
-        var emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
-        if(emailRule.test($id("cusId").value)){
-          let url = "phps/cus_vali.php?cusId=" + $id("cusId").value;
-          xhr.open("get", url, true);
-          xhr.send(null);
-        }else{
-          $id("idMsg").innerText = "信箱格式錯誤";
-          // $id("btnRegister").disabled = true;
-        }
+          var emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+          if(emailRule.test($id("cusId").value)){
+            let url = "phps/cus_vali.php?cusId=" + $id("cusId").value;
+            xhr.open("get", url, true);
+            xhr.send(null);
+          }else{
+            $id("idMsg").innerText = "信箱格式錯誤";
+            // $id("btnRegister").disabled = true;
+          }
       }else{
         $id("idMsg").innerText = "";
       }
     }
     // 註冊按鈕轉換
     function btnRswitch(){
-        if($id("idMsg").innerText=="此帳號可使用" && $id("cusName").value != '' && $id("cusPsw").value != ''){
-          $id("btnRegister").disabled = false;
+        if($id("idMsg").innerText=="此帳號可使用" && $id("cusName").value != '' && $id("cusPsw").value != '' && $id("cusPsw").value == $id("ConfirmPassword").value){
+          $id("btnRegister").disabled = false;  
         }else{
           $id("btnRegister").disabled = true;
         }
     };
+    function showMsg(){
+      if($id("cusPsw").value == $id("ConfirmPassword").value){
+        $("#pswMsg").text("正確");
+      }else if($id("cusPsw").value != $id("ConfirmPassword").value){
+        $("#pswMsg").text("錯誤");
+      }else{
+        $("#pswMsg").text("");
+      }
+    };
     function enterToAdd(e){
       if (e.keyCode == 13){
-        if($id("idMsg").innerText=="此帳號可使用" && $id("cusName").value != '' && $id("cusPsw").value != ''){
+        if($id("idMsg").innerText=="此帳號可使用" && $id("cusName").value != '' && $id("cusPsw").value != '' && $id("cusPsw").value == $id("ConfirmPassword").value){
           addMem();
           // alert("按下enter!來註冊");
         }else{
@@ -127,14 +123,17 @@ let member={};
       $id('cusId').addEventListener("keyup", checkId, false);
       
       // 註冊按鈕轉換
+      $id('cusName').addEventListener("keyup", btnRswitch, false);
       $id('cusId').addEventListener("keyup", btnRswitch, false);
       $id('cusPsw').addEventListener("keyup", btnRswitch, false);
-      $id('cusName').addEventListener("keyup", btnRswitch, false);
+      $id('ConfirmPassword').addEventListener("keyup", btnRswitch, false);
+
+      $id('ConfirmPassword').addEventListener("keyup", showMsg, false);
       
       //===設定btnRegister.onclick 事件處理程序是 addMem
       $id('btnRegister').addEventListener("click",addMem);
 
-      $('#cusPsw').bind('keypress', enterToAdd);
+      $('#ConfirmPassword').bind('keypress', enterToAdd);
     }; 
 
     window.addEventListener("load",init);
