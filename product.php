@@ -179,30 +179,6 @@ window.addEventListener('load',indexOfCart,false);
 </script>
 
 
-
-
-<!-- <script>
-    //header 下滑消失，上滑出現
-    gsap.registerPlugin(ScrollTrigger);
-
-    let showAnim = gsap.from("header", { 
-        yPercent: -100,
-        paused: true,
-        duration: 0.2
-        }).progress(1);
-
-        ScrollTrigger.create({
-        start: "top top",
-        end: 99999,
-        onUpdate: (self) => {
-            self.direction === -1 ? showAnim.play() : showAnim.reverse()
-        }
-    });
-    
-</script> -->
-
-
-
     <!-- 橫幅 -->
     <main>
     
@@ -225,7 +201,7 @@ window.addEventListener('load',indexOfCart,false);
                         </div>
                         <!-- 商品 1-4 -->
                         <div class="prod_img smallimg pointer">
-                            <img src="img/<?=$prodRow["IMG1"]?>" class="small"/>
+                            <img src="img/<?=$prodRow["IMG4"]?>" class="small"/>
                         </div>
                     </div>           
                 </div>
