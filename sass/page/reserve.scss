@@ -42,21 +42,17 @@ button{
             transition: background-color 0.2s;
             box-sizing: border-box;
             border-bottom: none;
-            // box-shadow: 4px 4px 5px #F3EEE2;
-            // background-color:map-get($color , "cover" );
             background:linear-gradient(-135deg,transparent 40px,#d6d3cc 44px,rgb(219, 213, 207) 45px);
             border-radius: 10px 10px 0 0;
             font-weight: bold;
             &:hover {
-            background-color: map-get($color, 'yellow');
-            color: map-get($color, 'yellow');
+                background-color: map-get($color, 'yellow');
+                color: map-get($color, 'yellow');
             }
             &.active {
-            // background-color:#E2C4A4;
-            // background-color:#F3EEE2;
-            background:linear-gradient(-135deg,transparent 40px,#e2e1df 44px,map-get($color , "cover" ) 40px);
-            color: map-get($color, 'blue');
-            cursor: default;
+                background:linear-gradient(-135deg,transparent 40px,#e2e1df 44px,map-get($color , "cover" ) 40px);
+                color: map-get($color, 'blue');
+                cursor: default;
             }
             img{
                 width: 30px;
