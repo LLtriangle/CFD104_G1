@@ -7,7 +7,8 @@ try {
     from sao s join emp e on s.EMP_NO = e.EMP_NO
                join cus c on s.CUS_NO = c.CUS_NO
                join plan p on s.PLAN_NO = p.PLAN_NO
-			   where c.CUS_NO = {$cus_NO}";
+			   where c.CUS_NO = {$cus_NO}
+			   order by SAO_NO";
 
 	$allTable = $pdo->query($sql);
 	$Rows = $allTable->fetchAll(PDO::FETCH_ASSOC);
