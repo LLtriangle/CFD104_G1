@@ -1104,11 +1104,11 @@
                         </li>
                         <li>
                             <label for="event_start">開始日期:</label>
-                            <input name="event_start" type="datetime" v-model.trim="showLightBox.START">
+                            <input name="event_start" class="input_time" type="datetime" v-model.trim="showLightBox.START">
                         </li>
                         <li>
                             <label for="event_end">截止日期:</label>
-                            <input name="event_end" type="datetime" v-model.trim="showLightBox.END">
+                            <input name="event_end" class="input_time" type="datetime" v-model.trim="showLightBox.END">
                         </li>
                         <li>
                             <label for="event_parm">優惠折數:</label>
@@ -1182,11 +1182,11 @@
                         </li>
                         <li>
                             <label for="new_event_start">開始日期:</label>
-                            <input name="new_event_start" type="datetime-local">
+                            <input name="new_event_start" class="input_time" type="datetime-local">
                         </li>
                         <li>
                             <label for="new_event_end">截止日期:</label>
-                            <input name="new_event_end" type="datetime-local">
+                            <input name="new_event_end" class="input_time" type="datetime-local">
                         </li>
                         <li>
                             <label for="new_event_parm">優惠折數:</label>
@@ -1345,7 +1345,7 @@
                             </li>
                             <li>
                                 <label for="new_col_start">發表時間:</label>
-                                <input name="new_col_start" type="datetime-local">
+                                <input name="new_col_start" class="input_time" type="datetime-local">
                             </li>
                             <li>
                                 <label for="new_col_sub_title_1">專欄副標題1:

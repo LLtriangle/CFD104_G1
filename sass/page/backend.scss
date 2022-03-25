@@ -105,6 +105,11 @@ input,textarea,select{
 input[type="text"], input[type="tel"], input[type="date"], textarea, select, option{
     border: 1.5px solid map-get($color , "sub_brown" );
 }
+.input_time{
+    border: none;
+    border: 1.5px solid map-get($color , "sub_brown" );
+}
+
 input[type="file"]{
     padding: 5px 10px;
     background: #d6aa81;
