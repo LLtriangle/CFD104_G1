@@ -385,7 +385,7 @@ textarea {
     }
 }
 
-// RWD
+// ---------------RWD
 
 @media screen and (max-width: 768px) {
     .form_item{
@@ -539,7 +539,7 @@ textarea {
             }
         }
     }
-
+// ----------------RWD
     // 第二頁
     .payment{
         .ccard{
@@ -565,6 +565,12 @@ textarea {
                     select{
                         margin: 10px auto;
                         min-width: unset;
+                    }
+                    #card_type{
+                        width: 30%;
+                    }
+                    .ml_5_r{
+                        margin-left: 5px;
                     }
                 }
             }

@@ -131,7 +131,7 @@ button{
     .flex{
         display: flex;
         width: 100%;
-        justify-content: space-between;
+        // justify-content: space-between;
 
 
         .widthname{
@@ -199,27 +199,27 @@ button{
 .data { width: 120px; }
 
 // 更改input[type=text]樣式
-input[type=text],input[type=email]{
-    box-shadow: -1px -1px 3px map-get($btn_color, 'brown');
-    padding: 5px;
-    border-radius: 10px;
-    background-color: map-get($color , "plain" );
-    &:focus{
-        box-shadow: -1px -1px 3px map-get($color, 'main');
-    }
-}
+// input[type=text],input[type=email]{
+//     box-shadow: -1px -1px 3px map-get($btn_color, 'brown');
+//     padding: 5px;
+//     border-radius: 10px;
+//     background-color: map-get($color , "plain" );
+//     &:focus{
+//         box-shadow: -1px -1px 3px map-get($color, 'main');
+//     }
+// }
 // 下拉式選單樣式
-select{
-    border: none;
-    box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
-    border-radius: 10px;
-    padding: 5px;
-    min-width: 120px;
-    &:focus{
-        outline: none;
-        box-shadow: 1px 1px 5px map-get($color, 'main');
-    }
-}
+// select{
+//     border: none;
+//     box-shadow: 1px 1px 3px map-get($btn_color, 'brown');
+//     border-radius: 10px;
+//     padding: 5px;
+//     min-width: 120px;
+//     &:focus{
+//         outline: none;
+//         box-shadow: 1px 1px 5px map-get($color, 'main');
+//     }
+// }
 
 .choose_add select{
     margin-right: 10px;
@@ -272,9 +272,15 @@ textarea {
         }
     }
 }
+.payment .ccard .table_ccard{
+    padding-left: 110px;
+}
 @media screen and (max-width: 650px) {
     .tabcontent .flex{
         flex-wrap: wrap;
+    }
+    .payment .ccard .table_ccard{
+        padding-left: 0px;
     }
 }
 

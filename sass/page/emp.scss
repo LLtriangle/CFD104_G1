@@ -360,8 +360,8 @@ input{
     }
     .emp_calendar{
         #calendari{
-            min-width: 350px;
-            // height: 470px;
+            min-width: 400px;
+            // width: 100%;
             span.period{
                 width: 10px;
                 height: 10px;
@@ -392,7 +392,8 @@ input{
            .memberReserveDetail{
                .sao_pics{
                    img{
-                    height: 200px;
+                       width: 300px;
+                    // height: 200px;
                    }
                }
            } 
@@ -529,11 +530,8 @@ td>div div:nth-child(2) span.leave {
 
 }
 .memberOrderD2.ba_pics{
-    img.b_pic{
-        width: 200px;
-    }
-    img.a_pic{
-        width: 200px;
+    img{
+        width: 300px;
     }
 }
 

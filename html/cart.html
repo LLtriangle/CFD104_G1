@@ -5,6 +5,7 @@
     <!-- 初始設定，請自行修改title，及添加js連結 -->
     @@include('layout/head.html')
     <title>cart</title>
+    <link rel="stylesheet" href="css/reserve.css">
     <link rel="stylesheet" href="css/cart.css">
 </head>
 
@@ -111,10 +112,54 @@
                 </div>
             </div>
             <div v-if="activetab ==='2'" class="tabcontent" style="padding: 10px 60px;">
-                <div class="flex padding-bottom credit">
+                <div class="payment">
+                    <div class="center"><h3>付款資訊</h3></div>
+                    <div class="ccard flex">
+                        <div class="c_pic center">
+                            <img :src="[cCard ==='Visa' ? credit_card_png[0] : credit_card_png[1]]" alt="credit_card">
+                        </div>
+                        <div class="table_ccard">
+                            <div class="flex">
+                                <h4 class="left">信用卡卡號</h4>
+                                <select name="信用卡" v-model="cCard" @change="change_src" id="card_type">
+                                    <option value="Visa" id="visa">Visa</option>
+                                    <option value="Mastercard" id="mastercard">Mastercard</option>
+                                </select>
+                                <input type="text" name="cardNumber" id="cardNum" v-model.number="credit_card" @change="ValidateCreditCardNumber(credit_card)" placeholder=" 請輸入信用卡卡號 " maxlength="16"/>
+                            </div>
+                            <div class="flex">
+                                <h4 class="left">驗證碼</h4>
+                                <input type="text" maxlength="3" size="9" v-model.number="test">
+                            </div>
+                            <div class="flex">
+                                <h4 class="left">信用卡到期日</h4>
+                                <select name="年" v-model="selectedYear">
+                                    <option v-for="year in years">{{year}}年</option>
+                                </select>
+                                <select name="月份"  v-model="selectedMonth" >
+                                    <option v-for="month in 12">{{month}}月</option>
+                                </select>
+                            </div>
+                            <div class="flex">
+                                <h4 class="left">姓名</h4>
+                                <input type="text" v-model.trim="person.name">
+                            </div>
+                            <div class="flex">
+                                <h4 class="left">電話</h4>
+                                <input type="text" v-model="person.phone" maxlength="10">
+                            </div>
+                            <div class="flex">
+                                <h4 class="left">地址</h4>
+                                <input type="text" v-model.trim="person.address">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ----舊版----- -->
+                <!-- <div class="flex padding-bottom credit">
                     <div class="box">
                         <div>
-                            <p style="width: 100px;">信用卡卡號:</p>
+                            <p style="width: 100px;">信用卡卡號</p>
                         </div>
                         <div class="select_box">
                             <select name="信用卡" v-model="cCard" class="select">
@@ -154,8 +199,8 @@
                         </div>
                         <div class="select_box"><input type="text" maxlength="3" v-model.number="test" size="1"></div>
                     </div>
-                </div>
-                <div class="flex padding-bottom">
+                </div> -->
+                <!-- <div class="flex padding-bottom">
                     <div class="box">
                         <div>
                             <p style="width: 100px;">姓名:</p>
@@ -177,7 +222,7 @@
                         </div>
                         <div class="select_box"><input type="text" v-model.trim="person.address" style="width: 100%;" size="33"></div>
                     </div>
-                </div>
+                </div> -->
                 <div class="space">
                     <button class="center" v-on:click="activetab='1'">返回
                     </button>

@@ -296,7 +296,7 @@
                             </tr>
                             <tr>
                                 <td>價格</td>
-                                <td>{{total}}</td>
+                                <td>{{total}} 元</td>
                             </tr>
                         </table>
                         <div class="d_pic center" id="d_pic">
@@ -314,11 +314,11 @@
                         <div class="table_ccard">
                             <div class="flex">
                                 <h4 class="left">信用卡卡號</h4>
-                                <select name="信用卡" v-model="cCard" @change="change_src">
+                                <select name="信用卡" v-model="cCard" @change="change_src" id="card_type">
                                     <option value="Visa" id="visa">Visa</option>
                                     <option value="Mastercard" id="mastercard">Mastercard</option>
                                 </select>
-                                <input type="text" name="cardNumber" id="cardNum" v-model="credit_card" maxlength="16" @change="ValidateCreditCardNumber(credit_card)" />
+                                <input type="text" name="cardNumber" id="cardNum" v-model="credit_card" maxlength="16" @change="ValidateCreditCardNumber(credit_card)" class="ml_5_r"/>
                             </div>
                             <div class="flex">
                                 <h4 class="left">驗證碼</h4>
@@ -329,7 +329,7 @@
                                 <select name="年" v-model="selectedYear">
                                     <option v-for="year in years">{{year}}年</option>
                                 </select>
-                                <select name="月份"  v-model="selectedMonth">
+                                <select name="月份"  v-model="selectedMonth"  class="ml_5_r">
                                     <option v-for="month in 12">{{month}}月</option>
                                 </select>
                             </div>
@@ -392,7 +392,7 @@
                             </tr>
                             <tr>
                                 <td>價格</td>
-                                <td>{{total}}</td>
+                                <td>{{total}} 元</td>
                             </tr>
                             <tr>
                                 <td>信用卡種類</td>
